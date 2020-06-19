@@ -231,10 +231,6 @@
     <string name="unknown">غير معروف</string>
     <string name="licensed">مُرخّصة</string>
     <string name="remove_from_library">إزالة من المكتبة</string>
-    <string name="manga_info_chapters_label">الفصول</string>
-    <string name="manga_info_status_label">الحالة</string>
-    <string name="manga_info_source_label">المصدر</string>
-    <string name="manga_info_genres_label">التصنيفات</string>
     <string name="delete_downloads_for_manga">حذف الفصول المحمله؟</string>
     <string name="manga_chapters_tab">الفصول</string>
     <string name="manga_chapter_no_title">بدون عنوان</string>
@@ -308,7 +304,6 @@
     <string name="update_check_notification_download_complete">اكتمل التحميل</string>
     <string name="update_check_notification_download_error">حدث خطأ فى التحميل</string>
     <string name="update_check_notification_update_available">يتوفّر تحديث جديد!</string>
-    <string name="description_backdrop">خلفية المانجا</string>
     <string name="description_cover">غلاف المانجا</string>
     <string name="information_no_downloads">لا توجد تحميلات</string>
     <string name="information_no_recent">لا توجد تحديثات جديدة</string>
@@ -367,7 +362,6 @@
     <string name="track_start_date">تم البدء فيها</string>
     <string name="track_type">النوع</string>
     <string name="track_author">المؤلف</string>
-    <string name="url_not_set">لم يتم تعيين رابط المانجا، يُرجى الضغط على العنوان وتحديد مانجا مرة أخرى</string>
     <string name="migration_info">اضغط لتحديد مصدر للترحيل منه</string>
     <string name="migration_dialog_what_to_include">اختر بيانات لتضمينها</string>
     <string name="migrate">ترحيل</string>
@@ -408,7 +402,6 @@
     <string name="action_newest">الأجدد</string>
     <string name="action_reorganize_by">تسجيل</string>
     <string name="action_cancel_all">إلغاء الكل</string>
-    <string name="action_hide">إخفاء</string>
     <string name="action_view_chapters">عرض الفصول</string>
     <string name="action_sort_latest_chapter">أحدث الفصول</string>
     <string name="action_sort_last_checked">المحدثة أخيرًا</string>
@@ -529,8 +522,6 @@
     <string name="manga_info_collapse">إظهار معلومات أقل</string>
     <string name="manga_info_expand">إظهار المزيد من المعلومات</string>
     <string name="manga_info_about_label">حول</string>
-    <string name="manga_info_latest_data_label">تم التحديث</string>
-    <string name="manga_info_last_chapter_label">آخر فصل</string>
     <string name="in_library">في المكتبة</string>
     <string name="add_to_library">إضافة إلى المكتبة</string>
     <string name="local_source_help_guide">دليل استخدام ميزة المصدر المحلي</string>
@@ -615,5 +606,4 @@
     <string name="action_disable_all">تعطيل الكل</string>
     <string name="pref_show_reading_mode_summary">إظهار الوضع الحالي لفترةٍ وجيزةٍ عند فتح القارئ</string>
     <string name="pref_show_reading_mode">إظهار وضع القراءة</string>
-    <string name="enabled">مُفعّل</string>
 </resources>

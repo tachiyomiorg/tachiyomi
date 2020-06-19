@@ -99,7 +99,6 @@
     <string name="dialog_with_checkbox_remove_description">פעולה זו תסיר את התאריך הקריאה של פרק זה. האם אתה בטוח\?</string>
     <string name="snack_categories_deleted">הקטגוריות נמחקו</string>
     <string name="error_category_exists">קטגוריה עם שם זה כבר קיימת!</string>
-    <string name="url_not_set">כתובת האתר של המנגה לא הוגדרה, אנא לחץ על כותרת ובחר שוב מאנגה</string>
     <string name="track_author">מחבר</string>
     <string name="track_type">סוג</string>
     <string name="track_start_date">הותחל</string>
@@ -140,9 +139,6 @@
     <string name="snack_add_to_library">להוסיף מאנגה לספרייה\?</string>
     <string name="source_not_installed">המקור לא הותקן: %1$s</string>
     <string name="delete_downloads_for_manga">למחוק פרקים שהורדו\?</string>
-    <string name="manga_info_genres_label">סגנון</string>
-    <string name="manga_info_source_label">מקור</string>
-    <string name="manga_info_chapters_label">פרקים</string>
     <string name="manga_added_library">נוסף לספרייה</string>
     <string name="remove_from_library">הסר מהספרייה</string>
     <string name="manga_removed_library">הוסר מהספרייה</string>
@@ -280,7 +276,6 @@
     <string name="track">מעקב</string>
     <string name="label_more">עוד</string>
     <string name="action_cancel">ביטול</string>
-    <string name="action_hide">להסתיר</string>
     <string name="action_display_download_badge">להוריד תגים</string>
     <string name="action_display_list">רשימה</string>
     <string name="action_display_grid">רשת</string>

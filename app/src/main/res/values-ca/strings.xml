@@ -263,10 +263,6 @@
     <string name="manga_info_full_title_label">Títol</string>
     <string name="manga_added_library">S\'ha afegit a la biblioteca</string>
     <string name="manga_removed_library">S\'ha eliminat de la biblioteca</string>
-    <string name="manga_info_chapters_label">Capítols</string>
-    <string name="manga_info_status_label">Estat</string>
-    <string name="manga_info_source_label">Font</string>
-    <string name="manga_info_genres_label">Gèneres</string>
     <string name="delete_downloads_for_manga">Voleu suprimir els capítols baixats\?</string>
     <string name="copied_to_clipboard">S\'ha copiat al porta-retalls:
 \n%1$s</string>
@@ -309,7 +305,6 @@
     <string name="track_start_date">Començat</string>
     <string name="track_type">Tipus</string>
     <string name="track_author">Autor</string>
-    <string name="url_not_set">La URL del manga no està definida, feu clic al títol i torneu a seleccionar un manga</string>
     <string name="error_category_exists">Ja hi ha una categoria amb aquest nom!</string>
     <string name="snack_categories_deleted">S\'han suprimit les categories</string>
     <string name="dialog_with_checkbox_remove_description">S\'eliminarà la data de lectura d\'aquest capítol. N\'esteu segur\?</string>
@@ -363,7 +358,6 @@
     <string name="update_check_notification_download_complete">Baixada completada</string>
     <string name="update_check_notification_download_error">Error de baixada</string>
     <string name="update_check_notification_update_available">Nova versió disponible!</string>
-    <string name="description_backdrop">Imatge de fons del manga</string>
     <string name="description_cover">Portada del manga</string>
     <string name="information_no_downloads">No hi ha baixades</string>
     <string name="information_no_recent">No hi ha actualitzacions recents</string>
@@ -454,7 +448,6 @@
         <item quantity="one">Capítols %1$s i 1 més</item>
         <item quantity="other">Capítols %1$s i %2$d més</item>
     </plurals>
-    <string name="action_hide">Amaga</string>
     <string name="hide_notification_content">Amaga el contingut de les notificacions</string>
     <string name="notification_check_updates">S\'està comprovant si hi ha capítols nous</string>
     <string name="pref_disable_battery_optimization">Desactiva l\'optimització de la bateria</string>
@@ -526,8 +519,6 @@
     <string name="last_used_source">Utilitzada per darrer cop</string>
     <string name="check_for_updates">Comprova si hi ha actualitzacions</string>
     <string name="restore_duration">%02d min i %02d s</string>
-    <string name="manga_info_latest_data_label">Actualitzat</string>
-    <string name="manga_info_last_chapter_label">Darrer capítol</string>
     <string name="downloaded_only_summary">Filtra tot el manga de la vostra biblioteca</string>
     <plurals name="download_queue_summary">
         <item quantity="one">En resta 1</item>
@@ -577,5 +568,4 @@
     <string name="page_list_empty_error">No s\'ha trobat cap pàgina</string>
     <string name="action_disable_all">Desactiva-ho tot</string>
     <string name="action_enable_all">Activa-ho tot</string>
-    <string name="enabled">Activat</string>
 </resources>

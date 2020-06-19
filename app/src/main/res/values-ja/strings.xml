@@ -261,10 +261,6 @@
     <string name="manga_info_full_title_label">タイトル</string>
     <string name="manga_added_library">ライブラリに追加しました</string>
     <string name="manga_removed_library">ライブラリから削除しました</string>
-    <string name="manga_info_chapters_label">章</string>
-    <string name="manga_info_status_label">ステータス</string>
-    <string name="manga_info_source_label">ソース</string>
-    <string name="manga_info_genres_label">ジャンル</string>
     <string name="delete_downloads_for_manga">ダウンロードした章を削除してもよろしいですか？</string>
     <string name="copied_to_clipboard">次をクリップボードにコピーしました：
 \n%1$s</string>
@@ -305,7 +301,6 @@
     <string name="track_start_date">開始済み</string>
     <string name="track_type">タイプ</string>
     <string name="track_author">作者</string>
-    <string name="url_not_set">マンガURLが設定されていません。タイトルをタップしてマンガをもう一度選択してください</string>
     <string name="error_category_exists">この名前が既に存在しています！</string>
     <string name="snack_categories_deleted">カテゴリーが削除されました</string>
     <string name="dialog_with_checkbox_remove_description">この章の読書日時を削除してもよろしいですか？</string>
@@ -351,7 +346,6 @@
     <string name="update_check_notification_download_complete">ダウンロード完了</string>
     <string name="update_check_notification_download_error">ダウンロード中にエラー発生</string>
     <string name="update_check_notification_update_available">アップデート利用可能！</string>
-    <string name="description_backdrop">マンガ背景</string>
     <string name="description_cover">マンガカバー</string>
     <string name="information_no_downloads">ダウンロードタスクなし</string>
     <string name="information_no_recent">最近の章なし</string>
@@ -433,7 +427,6 @@
         <item quantity="other">%1$d新しい章</item>
     </plurals>
     <string name="notification_chapters_single">第%1$s章</string>
-    <string name="action_hide">隠す</string>
     <string name="action_newest">最新</string>
     <string name="label_sources">ソース</string>
     <string name="local_source">ローカルソース</string>
@@ -491,7 +484,6 @@
     <string name="filter_mode_multiply">乗算</string>
     <string name="pref_true_color_summary">バンディングを軽減しますが、パフォーマンスを影響します</string>
     <string name="pref_cutout_short">画面の切り抜きエリアにも内容を表示</string>
-    <string name="enabled">有効</string>
     <string name="unofficial_extension_message">この拡張機能はTachiyomiの公式拡張機能リストに含まれていません。</string>
     <string name="ext_unofficial">非公式</string>
     <string name="ext_updates_pending">更新あり</string>
@@ -539,7 +531,6 @@
     <string name="error_invalid_date_supplied">無効な日付です</string>
     <string name="track_started_reading_date">読書開始日付</string>
     <string name="manga_info_collapse">一部の情報を非表示</string>
-    <string name="manga_info_last_chapter_label">最新章</string>
     <string name="channel_backup_restore_progress">進捗</string>
     <string name="channel_ext_updates">拡張機能の更新</string>
     <string name="information_cloudflare_bypass_failure">Cloudflareをバイパスできませんでした</string>
@@ -563,7 +554,6 @@
     <string name="add_to_library">ライブラリに追加</string>
     <string name="sort_by_upload_date">アップロード日付順</string>
     <string name="manga_info_expand">情報をもっと表示</string>
-    <string name="manga_info_latest_data_label">更新日付</string>
     <string name="in_library">ライブラリ内</string>
     <string name="local_source_help_guide">ローカルソースガイド</string>
     <string name="invalid_combination">既定のカテゴリーをその他のカテゴリーと同時に選択できません</string>

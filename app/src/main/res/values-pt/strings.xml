@@ -170,10 +170,6 @@
     <string name="unknown">Desconhecido</string>
     <string name="licensed">Licenciado</string>
     <string name="remove_from_library">Remover da biblioteca</string>
-    <string name="manga_info_chapters_label">Capítulos</string>
-    <string name="manga_info_status_label">Estado</string>
-    <string name="manga_info_source_label">Fonte</string>
-    <string name="manga_info_genres_label">Géneros</string>
     <!-- Manga chapter fragment -->
     <string name="manga_chapters_tab">Capítulos</string>
     <string name="manga_chapter_no_title">Sem título</string>
@@ -245,7 +241,6 @@
     <string name="update_check_notification_download_error">Erro na transferência</string>
     <string name="update_check_notification_update_available">Nova versão disponível!</string>
     <!--Content Description-->
-    <string name="description_backdrop">Imagem de capa da manga</string>
     <string name="description_cover">Imagem de capa da manga</string>
     <!-- Information Text -->
     <string name="information_no_downloads">Sem transferências</string>
@@ -382,7 +377,6 @@
     <string name="track_start_date">Começado</string>
     <string name="track_type">Tipo</string>
     <string name="track_author">Autor</string>
-    <string name="url_not_set">URL do mangá não definido, por favor clique no título e selecione novamente</string>
     <string name="error_category_exists">Já existe uma categoria com este nome!</string>
     <string name="snack_categories_deleted">Categorias excluídas</string>
     <string name="snack_add_to_library">Adicionar mangá a biblioteca\?</string>
@@ -479,7 +473,6 @@
         <item quantity="one">Capítulos %1$s e 1 mais</item>
         <item quantity="other">Capítulos %1$s e %2$d mais</item>
     </plurals>
-    <string name="action_hide">Ocultar</string>
     <string name="hide_notification_content">Ocultar conteúdo da notificação</string>
     <string name="notification_check_updates">Verificando por novos capítulos</string>
     <string name="pref_disable_battery_optimization">Desabilitar a otimização de bateria</string>
@@ -555,8 +548,6 @@
     <string name="last_used_source">Último usado</string>
     <string name="check_for_updates">Verificar por atualizações</string>
     <string name="licenses">Licenças open source</string>
-    <string name="manga_info_latest_data_label">Atualizada</string>
-    <string name="manga_info_last_chapter_label">Último capítulo</string>
     <string name="downloaded_only_summary">Filtrar todas as mangás em sua biblioteca</string>
     <string name="restore_duration">%02d min, %02d seg</string>
     <string name="pref_search_pinned_sources_only">Apenas incluir fontes fixadas</string>
@@ -600,7 +591,6 @@
     <string name="tracker_not_logged_in">Não autenticado: %1$s</string>
     <string name="source_not_found_name">Fonte não encontrada: %1$s</string>
     <string name="pref_show_reading_mode">Mostrar modo de leitura</string>
-    <string name="enabled">Ativado</string>
     <string name="ext_unofficial">Não oficial</string>
     <string name="pref_library_update_error_notification">Notificar erros de atualizações</string>
     <string name="pref_library_update_refresh_metadata_summary">Procurar nova capa e detalhes quando a biblioteca atualizar</string>
@@ -610,4 +600,5 @@
     <string name="action_migrate">Migrar</string>
     <string name="action_disable_all">Desativar todas</string>
     <string name="action_enable_all">Ativar todas</string>
+    <string name="action_start">Iniciar</string>
 </resources>

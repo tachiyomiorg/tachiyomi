@@ -162,10 +162,6 @@
     <string name="unknown">Desconocido</string>
     <string name="licensed">Licenciado</string>
     <string name="remove_from_library">Eliminar de biblioteca</string>
-    <string name="manga_info_chapters_label">Capítulos</string>
-    <string name="manga_info_status_label">Estado</string>
-    <string name="manga_info_source_label">Fuente</string>
-    <string name="manga_info_genres_label">Géneros</string>
     <!-- Manga chapters fragment -->
     <string name="manga_chapters_tab">Capítulos</string>
     <string name="manga_chapter_no_title">Sin título</string>
@@ -238,13 +234,12 @@
     <string name="update_check_notification_download_error">Error de descarga</string>
     <string name="update_check_notification_update_available">Nueva versión disponible!</string>
     <!--Content Description-->
-    <string name="description_backdrop">Imagen de fondo del manga</string>
     <string name="description_cover">Portada del manga</string>
     <!-- Information Text -->
     <string name="information_no_downloads">No hay descargas</string>
     <string name="information_no_recent">No hay actualizaciones recientes</string>
     <string name="information_no_recent_manga">Nada leeído recientemente</string>
-    <string name="information_empty_library">La biblioteca está vacía, añádale series a partir de la Busqueda.</string>
+    <string name="information_empty_library">La biblioteca está vacía. Añádale series a partir de la Busqueda.</string>
     <!-- Download Notification -->
     <string name="download_notifier_title_error">Error</string>
     <string name="download_notifier_unknown_error">No se pudo descargar el capítulo debido a un error inesperado</string>
@@ -402,7 +397,6 @@
     <string name="track_start_date">Empezado</string>
     <string name="track_type">Tipo</string>
     <string name="track_author">Autor</string>
-    <string name="url_not_set">URL del manga no establecida, haga clic en el título y seleccione el manga nuevamente</string>
     <string name="transition_finished">Finalizado:</string>
     <string name="transition_current">Actual:</string>
     <string name="transition_pages_loading">Cargando páginas…</string>
@@ -484,7 +478,6 @@
         <item quantity="one">Capítulos %1$s y 1 más</item>
         <item quantity="other">Capítulos %1$s y %2$d más</item>
     </plurals>
-    <string name="action_hide">Ocultar</string>
     <string name="hide_notification_content">Ocultar contenido de la notificacion</string>
     <string name="notification_check_updates">Buscando nuevos capítulos</string>
     <string name="pref_disable_battery_optimization">Desactivar optimización de la batería</string>
@@ -557,8 +550,6 @@
     <string name="check_for_updates">Comprobar las actualizaciones</string>
     <string name="channel_backup_restore_complete">Terminado</string>
     <string name="channel_backup_restore_progress">Progreso</string>
-    <string name="manga_info_latest_data_label">Actualizado</string>
-    <string name="manga_info_last_chapter_label">Ultimo capítulo</string>
     <string name="local_source_help_guide">Instruccion local de fuente</string>
     <plurals name="download_queue_summary">
         <item quantity="one">Queda 1</item>
@@ -606,7 +597,8 @@
     <string name="page_list_empty_error">No hay páginas</string>
     <string name="action_disable_all">Deshabilitar todo</string>
     <string name="action_enable_all">Habilitar todo</string>
-    <string name="enabled">Habilitado</string>
     <string name="pref_show_reading_mode_summary">Mostrar brevemente el modo actual cuándo el lector está abierto</string>
     <string name="pref_show_reading_mode">Mostrar modo de lectura</string>
+    <string name="action_start">Empezar</string>
+    <string name="loader_not_implemented_error">Fuente no encontrada</string>
 </resources>

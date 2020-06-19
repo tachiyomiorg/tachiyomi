@@ -222,10 +222,6 @@
     <string name="unknown">Unbekannt</string>
     <string name="licensed">Lizenziert</string>
     <string name="remove_from_library">Aus Bibliothek entfernen</string>
-    <string name="manga_info_chapters_label">Kapitel</string>
-    <string name="manga_info_status_label">Status</string>
-    <string name="manga_info_source_label">Quelle</string>
-    <string name="manga_info_genres_label">Genres</string>
     <string name="delete_downloads_for_manga">Heruntergeladene Kapitel löschen?</string>
     <string name="manga_chapters_tab">Kapitel</string>
     <string name="manga_chapter_no_title">Kein Titel</string>
@@ -299,7 +295,6 @@
     <string name="update_check_notification_download_complete">Download abgeschlossen</string>
     <string name="update_check_notification_download_error">Fehler beim Herunterladen</string>
     <string name="update_check_notification_update_available">Neue Version verfügbar!</string>
-    <string name="description_backdrop">Hintergrundbild vom Manga</string>
     <string name="description_cover">Manga-Cover</string>
     <string name="information_no_downloads">Keine Downloads</string>
     <string name="information_no_recent">Keine neuen Aktualisierungen</string>
@@ -372,7 +367,6 @@
     <string name="track_start_date">Angefangen</string>
     <string name="track_type">Typ</string>
     <string name="track_author">Autor</string>
-    <string name="url_not_set">Manga-URL ist nicht festgelegt. Drücke auf den Titel und wähle den Manga erneut aus</string>
     <string name="transition_finished">Beendet:</string>
     <string name="transition_current">Aktuell:</string>
     <string name="transition_next">Als Nächstes:</string>
@@ -454,7 +448,6 @@
         <item quantity="one">Kapitel %1$s und 1 mehr</item>
         <item quantity="other">Kapitel %1$s und %2$d mehr</item>
     </plurals>
-    <string name="action_hide">Verbergen</string>
     <string name="hide_notification_content">Benachrichtigungsinhalt verbergen</string>
     <string name="notification_check_updates">Überprüfe auf neue Kapitel</string>
     <string name="pref_disable_battery_optimization">Akkuverbrauch-Optimierung deaktivieren</string>
@@ -478,7 +471,7 @@
     <string name="action_move_to_top">Nach oben verschieben</string>
     <string name="action_move_to_bottom">Nach unten verschieben</string>
     <string name="action_sort_last_checked">Zuletzt überprüft</string>
-    <string name="pref_enable_automatic_extension_updates">Nach Erweit.-Updates suchen</string>
+    <string name="pref_enable_automatic_extension_updates">Nach Erweiterungsupdates suchen</string>
     <plurals name="update_check_notification_ext_updates">
         <item quantity="one">Erweiterungsupdate verfügbar</item>
         <item quantity="other">%d Erweiterungsupdates verfügbar</item>
@@ -526,8 +519,6 @@
     <string name="last_used_source">Zuletzt genutzt</string>
     <string name="local_source_help_guide">Lokale-Quellen-Guide</string>
     <string name="restore_duration">%02d min, %02d s</string>
-    <string name="manga_info_latest_data_label">Aktualisiert</string>
-    <string name="manga_info_last_chapter_label">Neuestes Kapitel</string>
     <string name="downloaded_only_summary">Filtert alle Manga in deiner Bibliothek</string>
     <plurals name="download_queue_summary">
         <item quantity="one">1 verbleibend</item>
@@ -577,8 +568,9 @@
     <string name="page_list_empty_error">Keine Seiten gefunden</string>
     <string name="action_disable_all">Alles deaktivieren</string>
     <string name="action_enable_all">Alles aktivieren</string>
-    <string name="enabled">Aktiviert</string>
     <string name="pref_show_reading_mode_summary">Kurz den aktuellen Modus anzeigen, wenn der Reader geöffnet wird</string>
     <string name="pref_show_reading_mode">Lesemodus anzeigen</string>
     <string name="action_start">Starten</string>
+    <string name="loader_not_implemented_error">Quelle nicht gefunden</string>
+    <string name="action_disable">Deaktivieren</string>
 </resources>

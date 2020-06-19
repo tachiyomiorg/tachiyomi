@@ -67,7 +67,6 @@
     <string name="action_cancel">रद्द करा</string>
     <string name="action_unpin">पिन काढा</string>
     <string name="action_pin">पिन</string>
-    <string name="action_hide">लपवा</string>
     <string name="action_display_unread_badge">न वाचलेले बॅज</string>
     <string name="action_display_download_badge">Download बॅज</string>
     <string name="action_display_list">यादी</string>

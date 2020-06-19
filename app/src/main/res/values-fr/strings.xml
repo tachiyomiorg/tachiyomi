@@ -186,10 +186,6 @@
     <string name="unknown">Inconnu</string>
     <string name="licensed">Licencié</string>
     <string name="remove_from_library">Enlever de la bilbiothèque</string>
-    <string name="manga_info_chapters_label">Chapitres</string>
-    <string name="manga_info_status_label">Statut</string>
-    <string name="manga_info_source_label">Source</string>
-    <string name="manga_info_genres_label">Genres</string>
     <!-- Manga chapters fragment -->
     <string name="manga_chapters_tab">Chapitres</string>
     <string name="display_mode_chapter">Chapitre %1$s</string>
@@ -272,13 +268,12 @@
     <string name="update_check_notification_download_error">Erreur lors du téléchargement</string>
     <string name="update_check_notification_update_available">Mise à jour disponible !</string>
     <!--Content Description-->
-    <string name="description_backdrop">Image de fond du manga</string>
     <string name="description_cover">Couverture du manga</string>
     <!-- Information Text -->
     <string name="information_no_downloads">Aucun téléchargement</string>
     <string name="information_no_recent">Aucun chapitre récent</string>
     <string name="information_no_recent_manga">Aucune série lu récemment</string>
-    <string name="information_empty_library">Bibliothèque vide, ajoutez des séries à votre bibliothèque depuis le Catalogue.</string>
+    <string name="information_empty_library">Bibliothèque vide, ajoutez des séries à votre bibliothèque depuis Explorer.</string>
     <!-- Download Notification -->
     <string name="download_notifier_downloader_title">Téléchargement</string>
     <string name="download_notifier_title_error">Erreur</string>
@@ -395,7 +390,6 @@
     <string name="track_start_date">Démarré</string>
     <string name="track_type">Type</string>
     <string name="track_author">Auteur</string>
-    <string name="url_not_set">L\'URL du manga n\'a pas été définie, veuillez cliquer sur le titre et sélectionner à nouveau le manga</string>
     <string name="migration_dialog_what_to_include">Sélectionner les données à inclure</string>
     <string name="label_migration">Migration</string>
     <string name="label_extension_info">Information complémentaire</string>
@@ -488,7 +482,6 @@
         <item quantity="one">Chapitre %1$s et 1 autre</item>
         <item quantity="other">Chapitres %1$s et %2$d autres</item>
     </plurals>
-    <string name="action_hide">Cacher</string>
     <string name="hide_notification_content">Cacher le contenu des notifications</string>
     <string name="notification_check_updates">Recherche de nouveaux chapitres</string>
     <string name="pref_disable_battery_optimization">Désactiver la fonction Optimisation utilisation batterie</string>
@@ -564,8 +557,6 @@
         <item quantity="one">1 restant</item>
         <item quantity="other">%1$s restants</item>
     </plurals>
-    <string name="manga_info_last_chapter_label">Dernier chapitre</string>
-    <string name="manga_info_latest_data_label">Mis à jour le</string>
     <string name="channel_backup_restore_complete">Terminé</string>
     <string name="channel_backup_restore_progress">Progression</string>
     <string name="downloaded_only_summary">Afficher uniquement les séries téléchargés</string>
@@ -611,7 +602,7 @@
     <string name="page_list_empty_error">Aucune page trouvée</string>
     <string name="action_disable_all">Tout désactiver</string>
     <string name="action_enable_all">Tout activer</string>
-    <string name="enabled">Activé</string>
     <string name="pref_show_reading_mode_summary">Afficher la liste des modes de lecture lorsque le lecteur est ouvert</string>
     <string name="pref_show_reading_mode">Afficher le mode de lecture</string>
+    <string name="action_start">Démarrer</string>
 </resources>

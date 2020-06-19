@@ -197,10 +197,6 @@
     <string name="unknown">Неизвестно</string>
     <string name="licensed">Лицензирана</string>
     <string name="remove_from_library">Премахни от библиотеката</string>
-    <string name="manga_info_chapters_label">Глави</string>
-    <string name="manga_info_status_label">Статус</string>
-    <string name="manga_info_source_label">Източник</string>
-    <string name="manga_info_genres_label">Жанрове</string>
     <!-- Manga chapters fragment -->
     <string name="manga_chapters_tab">Глави</string>
     <string name="manga_chapter_no_title">Неозаглавена</string>
@@ -289,7 +285,6 @@
     <string name="update_check_notification_download_error">Грешка при изтегляне</string>
     <string name="update_check_notification_update_available">Има нова версия!</string>
     <!--Content Description-->
-    <string name="description_backdrop">Фон на мангата</string>
     <string name="description_cover">Корица</string>
     <!-- Information Text -->
     <string name="information_no_downloads">Нямате изтегляния</string>
@@ -406,7 +401,6 @@
     <string name="track_start_date">Начало</string>
     <string name="track_type">Тип</string>
     <string name="track_author">Автор</string>
-    <string name="url_not_set">Мангата няма връзка с акаунта, молим отново да натиснете заглавието и да изберете мангата</string>
     <string name="transition_finished">Завършени:</string>
     <string name="transition_current">Текущи:</string>
     <string name="transition_next">Следва:</string>
@@ -484,8 +478,6 @@
     <string name="manga_info_collapse">Покажи по-малко</string>
     <string name="manga_info_expand">Покажи повече</string>
     <string name="manga_info_about_label">Инфо</string>
-    <string name="manga_info_latest_data_label">Обновени</string>
-    <string name="manga_info_last_chapter_label">Последна глава</string>
     <string name="in_library">В библиотеката</string>
     <string name="add_to_library">Добави към библиотеката</string>
     <string name="local_source_help_guide">Помощ за локални източници</string>
@@ -560,7 +552,6 @@
     <string name="action_cancel_all">Отмени всичко</string>
     <string name="action_unpin">Откачи</string>
     <string name="action_pin">Закачи</string>
-    <string name="action_hide">Скрий</string>
     <string name="action_view_chapters">Преглед на глави</string>
     <string name="action_select_inverse">Избери обратно</string>
     <string name="action_sort_latest_chapter">Последна глава</string>

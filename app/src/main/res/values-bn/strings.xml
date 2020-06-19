@@ -231,10 +231,6 @@
     <string name="unknown">অজানা</string>
     <string name="licensed">লাইসেন্সকৃত</string>
     <string name="remove_from_library">মাংগাশালা থেকে সরিয়ে ফেলুন</string>
-    <string name="manga_info_chapters_label">অধ্যায়গুলো</string>
-    <string name="manga_info_status_label">স্ট্যাটাস</string>
-    <string name="manga_info_source_label">উৎস</string>
-    <string name="manga_info_genres_label">প্রকারভেদ</string>
     <string name="delete_downloads_for_manga">ডাউনলোডকৃত অধ্যায়গুলো মুছে ফেলতে চান?</string>
     <string name="manga_chapters_tab">অধ্যায়গুলো</string>
     <string name="manga_chapter_no_title">শিরোনামহীন</string>
@@ -308,7 +304,6 @@
     <string name="update_check_notification_download_complete">ডাউনলোড হয়ে গেছে</string>
     <string name="update_check_notification_download_error">ডাউনলোড ত্রুটি দেখা গিয়েছে</string>
     <string name="update_check_notification_update_available">আপডেট এসেছে!</string>
-    <string name="description_backdrop">মাংগার ব্যাকড্রপ ছবি</string>
     <string name="description_cover">মাংগার কভার</string>
     <string name="information_no_downloads">ডাউনলোড নেই</string>
     <string name="information_no_recent">কোন সাম্প্রতিক অধ্যায় নেই</string>
@@ -377,7 +372,6 @@
     <string name="transition_no_previous">কোন পূর্ববর্তী অধ্যায় আছে</string>
     <string name="transition_pages_loading">পৃষ্ঠা লোড হচ্ছে …</string>
     <string name="transition_pages_error">পৃষ্ঠা লোড করতে ব্যর্থ হয়েছে: %1$s</string>
-    <string name="url_not_set">মাংগা ইউআরএল সেট না শিরোনাম ক্লিক করুন এবং আবার মাংগা নির্বাচন করুন</string>
     <string name="pref_read_with_long_tap">দীর্ঘক্ষণ ট্যাপ ডায়ালগ</string>
     <string name="action_open_in_web_view">ওয়েব দর্শনে খুলুন</string>
     <string name="pref_true_color">৩২-বিট রঙ</string>

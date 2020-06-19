@@ -263,10 +263,6 @@
     <string name="manga_info_full_title_label">Titlu</string>
     <string name="manga_added_library">Adăugat la bibliotecă</string>
     <string name="manga_removed_library">Eliminat din bibliotecă</string>
-    <string name="manga_info_chapters_label">Capitole</string>
-    <string name="manga_info_status_label">Status</string>
-    <string name="manga_info_source_label">Sursă</string>
-    <string name="manga_info_genres_label">Genuri</string>
     <string name="delete_downloads_for_manga">Ștergeți capitolele descărcate\?</string>
     <string name="copied_to_clipboard">Copiat în clipboard:
 \n%1$s</string>
@@ -309,7 +305,6 @@
     <string name="track_start_date">Început</string>
     <string name="track_type">Tip</string>
     <string name="track_author">Autor</string>
-    <string name="url_not_set">URL-ul de la manga nu e setat, vă rugam selectați titlul și manga din nou</string>
     <string name="error_category_exists">O categorie cu acest nume deja există!</string>
     <string name="snack_categories_deleted">Categoriile au fost șterse</string>
     <string name="dialog_with_checkbox_remove_description">Acest lucru va șterge data citirii acestui capitol. Ești sigur\?</string>
@@ -363,7 +358,6 @@
     <string name="update_check_notification_download_complete">Descărcare completă</string>
     <string name="update_check_notification_download_error">Eroare la descărcare</string>
     <string name="update_check_notification_update_available">Versiune nouă disponibilă!</string>
-    <string name="description_backdrop">Imagine de fundal la manga</string>
     <string name="description_cover">Copertă la manga</string>
     <string name="information_no_downloads">Fără descărcări</string>
     <string name="information_no_recent">Nu există actualizări recente</string>
@@ -427,7 +421,6 @@
     <string name="pref_category_security">Securitate</string>
     <string name="lock_with_biometrics">Blocare cu amprentă</string>
     <string name="unlock_app">Deblochează Tachiyomi</string>
-    <string name="action_hide">Ascunde</string>
     <string name="action_sort_latest_chapter">Ultimul capitol</string>
     <string name="lock_when_idle">Blocați când este inactiv</string>
     <string name="lock_always">Întotdeauna</string>
@@ -531,8 +524,6 @@
     <string name="last_used_source">Data ultimei utilizări</string>
     <string name="check_for_updates">Verifică pentru actualizări</string>
     <string name="restore_duration">%02d minute, %02d secunde</string>
-    <string name="manga_info_latest_data_label">Actualizată</string>
-    <string name="manga_info_last_chapter_label">Ultimul capitol</string>
     <string name="downloaded_only_summary">Filtrează toate manga-urile din bibliotecă</string>
     <plurals name="download_queue_summary">
         <item quantity="one">Una rămasă</item>
@@ -588,5 +579,4 @@
     <string name="action_enable_all">Activează toate</string>
     <string name="pref_show_reading_mode_summary">Afișați scurt modul curent când este deschis cititorul</string>
     <string name="pref_show_reading_mode">Arată modul de citire</string>
-    <string name="enabled">Activată</string>
 </resources>

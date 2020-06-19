@@ -232,10 +232,6 @@
     <string name="unknown">Tidak diketahui</string>
     <string name="licensed">Berlesen</string>
     <string name="remove_from_library">Keluarkan daripada pustaka</string>
-    <string name="manga_info_chapters_label">Bab</string>
-    <string name="manga_info_status_label">Status</string>
-    <string name="manga_info_source_label">Sumber</string>
-    <string name="manga_info_genres_label">Genre</string>
     <string name="delete_downloads_for_manga">Padam bab-bab yang dimuat turun?</string>
     <string name="manga_chapters_tab">Bab</string>
     <string name="manga_chapter_no_title">Tiada tajuk</string>
@@ -310,12 +306,11 @@
     <string name="update_check_notification_download_complete">Muat turun selesai</string>
     <string name="update_check_notification_download_error">Ralat muat turun</string>
     <string name="update_check_notification_update_available">Versi baharu boleh didapati!</string>
-    <string name="description_backdrop">Gambar latar belakang manga</string>
     <string name="description_cover">Muka hadapan manga</string>
     <string name="information_no_downloads">Tiada muat turun</string>
     <string name="information_no_recent">Tiada kemas kini terkini</string>
     <string name="information_no_recent_manga">Tiada bacaan setakat ini</string>
-    <string name="information_empty_library">Pustaka kosong, tambah siri ke pustaka menggunakan Semak imbas.</string>
+    <string name="information_empty_library">Pustaka kosong. Tambah siri ke pustaka menggunakan Semak imbas.</string>
     <string name="download_notifier_downloader_title">Pemuat turun</string>
     <string name="download_notifier_title_error">Ralat</string>
     <string name="download_notifier_unknown_error">Ralat tidak diketahui ketika memuat turun bab</string>
@@ -371,7 +366,6 @@
     <string name="track_start_date">Bermula</string>
     <string name="track_type">Jenis</string>
     <string name="track_author">Pengarang</string>
-    <string name="url_not_set">Manga URL tidak ditetapkan, sila klik tajuk dan pilih manga sekali lagi</string>
     <string name="transition_finished">Selesai:</string>
     <string name="transition_current">Sekarang:</string>
     <string name="transition_next">Seterusnya:</string>
@@ -451,7 +445,6 @@
     <plurals name="notification_chapters_multiple_and_more">
         <item quantity="other">Bab %1$s dan %2$d lagi</item>
     </plurals>
-    <string name="action_hide">Sembunyikan</string>
     <string name="hide_notification_content">Sembunyikan kandungan pemberitahuan</string>
     <string name="notification_check_updates">Mencari bab baharu</string>
     <string name="pref_disable_battery_optimization">Nyahdaya pengoptimuman bateri</string>
@@ -521,8 +514,6 @@
     <string name="check_for_updates">Semak untuk pengemaskinian</string>
     <string name="local_source_help_guide">Panduan penggunaan sumber tempatan</string>
     <string name="restore_duration">%02d minit, %02d saat</string>
-    <string name="manga_info_latest_data_label">Dikemaskini</string>
-    <string name="manga_info_last_chapter_label">Bab terakhir</string>
     <string name="downloaded_only_summary">Tapis semua manga di dalam pustaka anda</string>
     <plurals name="download_queue_summary">
         <item quantity="other">%1$s baki</item>
@@ -569,6 +560,7 @@
     <string name="action_disable_all">Matikan semua</string>
     <string name="action_enable_all">Hidupkan semua</string>
     <string name="pref_show_reading_mode_summary">Tunjukkan seketika mod membaca yang digunakan apabila pembaca dibuka</string>
-    <string name="enabled">Didayakan</string>
     <string name="pref_show_reading_mode">Tunjuk mod membaca</string>
+    <string name="loader_not_implemented_error">Sumber tidak dijumpai</string>
+    <string name="action_start">Mula</string>
 </resources>
