@@ -96,6 +96,7 @@
     <string name="action_cancel">Cancel</string>
     <string name="action_cancel_all">Cancel all</string>
     <string name="action_sort">Sort</string>
+    <string name="action_sort_descending">Descending</string>
     <string name="action_reorganize_by">Reorder</string>
     <string name="action_newest">Newest</string>
     <string name="action_oldest">Oldest</string>

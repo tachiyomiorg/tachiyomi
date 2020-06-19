@@ -227,6 +227,7 @@ class MangaInfoChaptersController(private val fromSource: Boolean = false) :
             else -> throw NotImplementedError("Unimplemented sorting method")
         }
         menu.findItem(sortingItem).isChecked = true
+        menu.findItem(R.id.action_sort_descending).isChecked = presenter.manga.sortDescending()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -251,6 +252,10 @@ class MangaInfoChaptersController(private val fromSource: Boolean = false) :
             R.id.sort_by_upload_date -> {
                 item.isChecked = true
                 presenter.setSorting(Manga.SORTING_UPLOAD_DATE)
+            }
+            R.id.action_sort_descending -> {
+                presenter.reverseSortOrder()
+                activity?.invalidateOptionsMenu()
             }
 
             R.id.download_next, R.id.download_next_5, R.id.download_next_10,
@@ -281,7 +286,6 @@ class MangaInfoChaptersController(private val fromSource: Boolean = false) :
                 presenter.removeFilters()
                 activity?.invalidateOptionsMenu()
             }
-            R.id.action_sort -> presenter.revertSortOrder()
 
             R.id.action_migrate -> migrateManga()
         }

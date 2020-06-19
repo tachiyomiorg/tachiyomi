@@ -32,11 +32,29 @@
     </item>
 
     <item
-        android:id="@+id/action_sort"
-        android:icon="@drawable/ic_sort_by_numeric_white_24dp"
-        android:title="@string/action_sort"
+        android:icon="@drawable/ic_sort_24dp"
+        android:title="@string/sorting_mode"
         app:iconTint="?attr/colorOnPrimary"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/sort_by_source"
+                    android:title="@string/sort_by_source" />
+                <item
+                    android:id="@+id/sort_by_number"
+                    android:title="@string/sort_by_number" />
+                <item
+                    android:id="@+id/sort_by_upload_date"
+                    android:title="@string/sort_by_upload_date" />
+            </group>
+
+            <item
+                android:id="@+id/action_sort_descending"
+                android:checkable="true"
+                android:title="@string/action_sort_descending" />
+        </menu>
+    </item>
 
     <item
         android:title="@string/action_display_mode"
@@ -49,24 +67,6 @@
                 <item
                     android:id="@+id/display_chapter_number"
                     android:title="@string/show_chapter_number" />
-            </group>
-        </menu>
-    </item>
-
-    <item
-        android:title="@string/sorting_mode"
-        app:showAsAction="never">
-        <menu>
-            <group android:checkableBehavior="single">
-                <item
-                    android:id="@+id/sort_by_source"
-                    android:title="@string/sort_by_source" />
-                <item
-                    android:id="@+id/sort_by_number"
-                    android:title="@string/sort_by_number" />
-                <item
-                    android:id="@+id/sort_by_upload_date"
-                    android:title="@string/sort_by_upload_date" />
             </group>
         </menu>
     </item>

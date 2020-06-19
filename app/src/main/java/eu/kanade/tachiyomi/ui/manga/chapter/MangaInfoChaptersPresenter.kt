@@ -441,7 +441,7 @@ class MangaInfoChaptersPresenter(
     /**
      * Reverses the sorting and requests an UI update.
      */
-    fun revertSortOrder() {
+    fun reverseSortOrder() {
         manga.setChapterOrder(if (sortDescending()) Manga.SORT_ASC else Manga.SORT_DESC)
         db.updateFlags(manga).executeAsBlocking()
         refreshChapters()
