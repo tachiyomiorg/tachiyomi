@@ -8,7 +8,9 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.annotation.MenuRes
+import androidx.annotation.StringRes
 import androidx.appcompat.widget.PopupMenu
+import androidx.appcompat.widget.TooltipCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
@@ -36,6 +38,15 @@ inline fun View.snack(message: String, length: Int = Snackbar.LENGTH_LONG, f: Sn
     snack.f()
     snack.show()
     return snack
+}
+
+/**
+ * Adds a tooltip shown on long press.
+ *
+ * @param stringRes String resource for tooltip.
+ */
+inline fun View.setTooltip(@StringRes stringRes: Int) {
+    TooltipCompat.setTooltipText(this, context.getString(stringRes))
 }
 
 /**

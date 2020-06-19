@@ -20,6 +20,7 @@ import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.util.system.copyToClipboard
 import eu.kanade.tachiyomi.util.view.gone
 import eu.kanade.tachiyomi.util.view.setChips
+import eu.kanade.tachiyomi.util.view.setTooltip
 import eu.kanade.tachiyomi.util.view.visible
 import eu.kanade.tachiyomi.util.view.visibleIf
 import kotlinx.coroutines.CoroutineScope
@@ -89,17 +90,20 @@ class MangaInfoHeaderAdapter(
             binding.btnCategories.clicks()
                 .onEach { controller.onCategoriesClick() }
                 .launchIn(scope)
+            binding.btnCategories.setTooltip(R.string.action_move_category)
 
             if (controller.presenter.source is HttpSource) {
                 binding.btnWebview.visible()
-                binding.btnShare.visible()
-
                 binding.btnWebview.clicks()
                     .onEach { controller.openMangaInWebView() }
                     .launchIn(scope)
+                binding.btnWebview.setTooltip(R.string.action_open_in_web_view)
+
+                binding.btnShare.visible()
                 binding.btnShare.clicks()
                     .onEach { controller.shareManga() }
                     .launchIn(scope)
+                binding.btnShare.setTooltip(R.string.action_share)
             }
 
             binding.mangaFullTitle.longClicks()
