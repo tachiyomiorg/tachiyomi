@@ -104,7 +104,6 @@
     <string name="action_filter_downloaded">Preuzeto</string>
     <string name="chapters">Poglavlja</string>
     <string name="categories">Kategorije</string>
-    <string name="app_name" translatable="false">Tachiyomi</string>
     <string name="information_empty_category">Nemaš kategorija. Za stvaranje kategorije i organiziranje biblioteke, dodirni gumb plus.</string>
     <string name="information_empty_library">Biblioteka je prazna. Dodaj serijale u biblioteku u odjeljku „Pregledaj”.</string>
     <string name="information_no_recent_manga">Ništa nije nedavno čitano</string>

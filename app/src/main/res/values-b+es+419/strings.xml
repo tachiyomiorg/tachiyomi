@@ -47,7 +47,6 @@
     <string name="chapters">Capítulos</string>
     <string name="manga">Manga</string>
     <string name="categories">Categorías</string>
-    <string name="app_name" translatable="false">Tachiyomi</string>
     <string name="information_empty_category">No hay categorías. Presione el botón de más para crear categorías y organizar tu Biblioteca.</string>
     <string name="information_empty_library">La biblioteca esta vacía, agregue series a la biblioteca desde Explorar.</string>
     <string name="information_no_recent_manga">Ninguna lectura reciente</string>

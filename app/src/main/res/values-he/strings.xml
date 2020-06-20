@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Tachiyomi</string>
     <string name="channel_ext_updates">עדכונים לתוסף</string>
     <string name="channel_new_chapters">עדכונים לפרק</string>
     <string name="channel_library">ספרייה</string>
