@@ -203,15 +203,6 @@ class MangaInfoChaptersController(private val fromSource: Boolean = false) :
         // Only show remove filter option if there's a filter set.
         menuFilterEmpty.isVisible = filterSet
 
-        // Disable unread filter option if read filter is enabled.
-        if (presenter.onlyRead()) {
-            menuFilterUnread.isEnabled = false
-        }
-        // Disable read filter option if unread filter is enabled.
-        if (presenter.onlyUnread()) {
-            menuFilterRead.isEnabled = false
-        }
-
         // Display mode submenu
         if (presenter.manga.displayMode == Manga.DISPLAY_NAME) {
             menu.findItem(R.id.display_title).isChecked = true
