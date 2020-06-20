@@ -515,6 +515,9 @@ class MangaInfoChaptersController(private val fromSource: Boolean = false) :
             fetchChaptersFromSource()
         }
 
+        val header = headerAdapter ?: return
+        header.setNumChapters(chapters.size)
+
         val adapter = chaptersAdapter ?: return
         adapter.updateDataSet(chapters)
 

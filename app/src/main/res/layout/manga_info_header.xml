@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingBottom="8dp"
     tools:context=".ui.browse.source.browse.BrowseSourceController">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -40,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.38" />
+                app:layout_constraintGuide_percent="0.33" />
 
             <ImageView
                 android:id="@+id/manga_cover"
@@ -88,7 +87,6 @@
                     style="@style/TextAppearance.Regular.Body1.Secondary"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:textIsSelectable="false"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -130,9 +128,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingStart="16dp"
-            android:paddingTop="8dp"
             android:paddingEnd="16dp"
-            android:paddingBottom="8dp"
             app:layout_constraintTop_toBottomOf="@+id/manga_info">
 
             <com.google.android.material.button.MaterialButton
@@ -250,5 +246,23 @@
         android:layout_marginEnd="16dp"
         android:text="@string/manga_info_expand"
         android:textSize="12sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:id="@+id/chapters_label"
+            style="@style/TextAppearance.Regular.SubHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/chapters"
+            android:textIsSelectable="false" />
+
+    </RelativeLayout>
 
 </LinearLayout>

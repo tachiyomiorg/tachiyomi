@@ -41,6 +41,7 @@ class MangaInfoHeaderAdapter(
 
     private var manga: Manga? = null
     private var source: Source? = null
+    private var numChapters: Int? = null
 
     private val scope = CoroutineScope(Job() + Dispatchers.Main)
     private lateinit var binding: MangaInfoHeaderBinding
@@ -67,6 +68,12 @@ class MangaInfoHeaderAdapter(
     fun update(manga: Manga, source: Source?) {
         this.manga = manga
         this.source = source
+
+        notifyDataSetChanged()
+    }
+
+    fun setNumChapters(numChapters: Int) {
+        this.numChapters = numChapters
 
         notifyDataSetChanged()
     }
@@ -155,6 +162,7 @@ class MangaInfoHeaderAdapter(
                 .launchIn(scope)
 
             setMangaInfo(manga!!, source)
+            setChapterInfo()
         }
 
         /**
@@ -314,6 +322,15 @@ class MangaInfoHeaderAdapter(
                 text =
                     context.getString(if (isFavorite) R.string.in_library else R.string.add_to_library)
                 isChecked = isFavorite
+            }
+        }
+
+        private fun setChapterInfo() {
+            // Chapters heading
+            binding.chaptersLabel.text = if (numChapters == null) {
+                view.context.getString(R.string.chapters)
+            } else {
+                view.context.resources.getQuantityString(R.plurals.manga_num_chapters, numChapters!!, numChapters)
             }
         }
     }

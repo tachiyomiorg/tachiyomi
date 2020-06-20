@@ -463,6 +463,11 @@
     <string name="manga_info_about_label">About</string>
     <string name="manga_info_expand">Show more info</string>
     <string name="manga_info_collapse">Show less info</string>
+    <plurals name="manga_num_chapters">
+        <item quantity="zero">No chapters</item>
+        <item quantity="one">1 chapter</item>
+        <item quantity="other">%1$s chapters</item>
+    </plurals>
     <string name="delete_downloads_for_manga">Delete downloaded chapters?</string>
     <string name="copied_to_clipboard">Copied to clipboard:\n%1$s</string>
     <string name="source_not_installed">Source not installed: %1$s</string>
