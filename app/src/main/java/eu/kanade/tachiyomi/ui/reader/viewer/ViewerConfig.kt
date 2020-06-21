@@ -20,6 +20,7 @@ abstract class ViewerConfig(preferences: PreferencesHelper) {
 
     var tappingEnabled = true
     var longTapEnabled = true
+    var tappingInverted = false
     var doubleTapAnimDuration = 500
     var volumeKeysEnabled = false
     var volumeKeysInverted = false
@@ -29,6 +30,9 @@ abstract class ViewerConfig(preferences: PreferencesHelper) {
     init {
         preferences.readWithTapping()
             .register({ tappingEnabled = it })
+
+        preferences.readWithTappingInverted()
+                .register({ tappingInverted = it })
 
         preferences.readWithLongTap()
             .register({ longTapEnabled = it })

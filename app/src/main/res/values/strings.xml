@@ -665,5 +665,6 @@
     <string name="channel_backup_restore">Backup and restore</string>
     <string name="channel_backup_restore_progress">Progress</string>
     <string name="channel_backup_restore_complete">Complete</string>
+    <string name="pref_read_with_tapping_inverted">Invert tapping</string>
 
 </resources>

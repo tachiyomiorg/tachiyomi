@@ -191,6 +191,11 @@ class SettingsReaderController : SettingsController() {
                 defaultValue = true
             }
             switchPreference {
+                key = Keys.readWithTappingInverted
+                titleRes = R.string.pref_read_with_tapping_inverted
+                defaultValue = false
+            }.apply { dependency = Keys.readWithTapping }
+            switchPreference {
                 key = Keys.readWithLongTap
                 titleRes = R.string.pref_read_with_long_tap
                 defaultValue = true
