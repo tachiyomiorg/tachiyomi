@@ -52,11 +52,20 @@
                 style="@style/TextAppearance.Regular.Body1.Secondary"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:textIsSelectable="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/manga_full_title"
                 tools:text="Author" />
+
+            <TextView
+                android:id="@+id/manga_artist"
+                style="@style/TextAppearance.Regular.Body1.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textIsSelectable="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/manga_author"
+                tools:text="Artist" />
 
             <TextView
                 android:id="@+id/manga_status"
@@ -69,7 +78,8 @@
                 android:textIsSelectable="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/manga_author" />
+                app:layout_constraintTop_toBottomOf="@+id/manga_artist"
+                tools:text="Source" />
 
             <TextView
                 android:id="@+id/manga_source"
@@ -81,7 +91,8 @@
                 android:textIsSelectable="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/manga_status" />
+                app:layout_constraintTop_toBottomOf="@+id/manga_status"
+                tools:text="Status" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
