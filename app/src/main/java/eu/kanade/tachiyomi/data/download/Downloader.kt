@@ -330,7 +330,7 @@ class Downloader(
             return Observable.just(page)
         }
 
-        val filename = String.format("%03d", page.number)
+        val filename = String.format("%05d", page.number)
         val tmpFile = tmpDir.findFile("$filename.tmp")
 
         // Delete temp file if it exists.
