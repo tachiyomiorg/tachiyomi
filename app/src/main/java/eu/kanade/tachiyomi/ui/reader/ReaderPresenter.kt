@@ -666,7 +666,7 @@ class ReaderPresenter(
      * manager handles persisting it across process deaths.
      */
     private fun enqueueDeleteReadChapters(chapter: ReaderChapter) {
-        if (!chapter.chapter.read || chapter.pageLoader !is DownloadPageLoader) return
+        if (!chapter.chapter.read) return
         val manga = manga ?: return
 
         launchIO {
