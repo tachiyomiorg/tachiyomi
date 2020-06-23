@@ -4,9 +4,11 @@ import android.os.Build
 import androidx.preference.PreferenceScreen
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
+import eu.kanade.tachiyomi.data.preference.PreferenceValues.TappingInvertMode
 import eu.kanade.tachiyomi.util.preference.defaultValue
 import eu.kanade.tachiyomi.util.preference.entriesRes
 import eu.kanade.tachiyomi.util.preference.intListPreference
+import eu.kanade.tachiyomi.util.preference.listPreference
 import eu.kanade.tachiyomi.util.preference.preferenceCategory
 import eu.kanade.tachiyomi.util.preference.summaryRes
 import eu.kanade.tachiyomi.util.preference.switchPreference
@@ -190,10 +192,23 @@ class SettingsReaderController : SettingsController() {
                 titleRes = R.string.pref_read_with_tapping
                 defaultValue = true
             }
-            switchPreference {
+            listPreference {
                 key = Keys.readWithTappingInverted
                 titleRes = R.string.pref_read_with_tapping_inverted
-                defaultValue = false
+                entriesRes = arrayOf(
+                    R.string.tapping_inverted_none,
+                    R.string.tapping_inverted_horizontal,
+                    R.string.tapping_inverted_vertical,
+                    R.string.tapping_inverted_both
+                )
+                entryValues = arrayOf(
+                    TappingInvertMode.NONE.name,
+                    TappingInvertMode.HORIZONTAL.name,
+                    TappingInvertMode.VERTICAL.name,
+                    TappingInvertMode.BOTH.name
+                )
+                defaultValue = TappingInvertMode.NONE.name
+                summary = "%s"
             }.apply { dependency = Keys.readWithTapping }
             switchPreference {
                 key = Keys.readWithLongTap

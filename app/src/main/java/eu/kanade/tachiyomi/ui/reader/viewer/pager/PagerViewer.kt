@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup.LayoutParams
 import androidx.viewpager.widget.ViewPager
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.preference.PreferenceValues.TappingInvertMode
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
@@ -80,10 +81,11 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
             }
         })
         pager.tapListener = { event ->
-            val tappingInverted = config.tappingInverted
+            val invertMode = config.tappingInverted
 
             if (this is VerticalPagerViewer) {
                 val positionY = event.y
+                val tappingInverted = invertMode == TappingInvertMode.VERTICAL || invertMode == TappingInvertMode.BOTH
                 val topSideTap = positionY < pager.height * 0.33f && config.tappingEnabled
                 val bottomSideTap = positionY > pager.height * 0.66f && config.tappingEnabled
 
@@ -94,6 +96,7 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
                 }
             } else {
                 val positionX = event.x
+                val tappingInverted = invertMode == TappingInvertMode.HORIZONTAL || invertMode == TappingInvertMode.BOTH
                 val leftSideTap = positionX < pager.width * 0.33f && config.tappingEnabled
                 val rightSideTap = positionX > pager.width * 0.66f && config.tappingEnabled
 

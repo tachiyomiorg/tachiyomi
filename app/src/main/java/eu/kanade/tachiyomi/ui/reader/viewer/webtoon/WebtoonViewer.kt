@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.WebtoonLayoutManager
+import eu.kanade.tachiyomi.data.preference.PreferenceValues.TappingInvertMode
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
@@ -14,10 +15,10 @@ import eu.kanade.tachiyomi.ui.reader.model.ViewerChapters
 import eu.kanade.tachiyomi.ui.reader.viewer.BaseViewer
 import eu.kanade.tachiyomi.util.view.gone
 import eu.kanade.tachiyomi.util.view.visible
-import kotlin.math.max
-import kotlin.math.min
 import rx.subscriptions.CompositeSubscription
 import timber.log.Timber
+import kotlin.math.max
+import kotlin.math.min
 
 /**
  * Implementation of a [BaseViewer] to display pages with a [RecyclerView].
@@ -94,9 +95,11 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
         })
         recycler.tapListener = { event ->
             val positionY = event.rawY
-            val tappingInverted = config.tappingInverted
+            val invertMode = config.tappingInverted
             val topSideTap = positionY < recycler.height * 0.33f && config.tappingEnabled
             val bottomSideTap = positionY > recycler.height * 0.66f && config.tappingEnabled
+
+            val tappingInverted = invertMode == TappingInvertMode.VERTICAL || invertMode == TappingInvertMode.BOTH
 
             when {
                 topSideTap && !tappingInverted || bottomSideTap && tappingInverted -> scrollUp()

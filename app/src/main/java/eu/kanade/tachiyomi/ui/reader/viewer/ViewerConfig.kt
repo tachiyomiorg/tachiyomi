@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.ui.reader.viewer
 
 import com.tfcporciuncula.flow.Preference
+import eu.kanade.tachiyomi.data.preference.PreferenceValues.TappingInvertMode
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -20,7 +21,7 @@ abstract class ViewerConfig(preferences: PreferencesHelper) {
 
     var tappingEnabled = true
     var longTapEnabled = true
-    var tappingInverted = false
+    var tappingInverted = TappingInvertMode.NONE
     var doubleTapAnimDuration = 500
     var volumeKeysEnabled = false
     var volumeKeysInverted = false
