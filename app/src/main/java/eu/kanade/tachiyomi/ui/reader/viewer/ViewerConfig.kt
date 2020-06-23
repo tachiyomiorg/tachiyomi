@@ -32,7 +32,7 @@ abstract class ViewerConfig(preferences: PreferencesHelper) {
             .register({ tappingEnabled = it })
 
         preferences.readWithTappingInverted()
-                .register({ tappingInverted = it })
+            .register({ tappingInverted = it })
 
         preferences.readWithLongTap()
             .register({ longTapEnabled = it })
