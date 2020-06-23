@@ -26,6 +26,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/Theme.Tachiyomi.Light"
         android:usesCleartextTraffic="true">
+        <meta-data
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:value="ocr" />
         <activity
             android:name=".ui.main.MainActivity"
             android:launchMode="singleTop"

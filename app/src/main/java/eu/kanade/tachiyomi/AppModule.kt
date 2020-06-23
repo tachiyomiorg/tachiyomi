@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi
 
 import android.app.Application
+import com.google.firebase.FirebaseApp
 import com.google.gson.Gson
 import eu.kanade.tachiyomi.data.cache.ChapterCache
 import eu.kanade.tachiyomi.data.cache.CoverCache
@@ -55,5 +56,7 @@ class AppModule(val app: Application) : InjektModule {
         GlobalScope.launch { get<DatabaseHelper>() }
 
         GlobalScope.launch { get<DownloadManager>() }
+
+        GlobalScope.launch { FirebaseApp.initializeApp(app) }
     }
 }

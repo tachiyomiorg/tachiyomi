@@ -539,6 +539,8 @@
 
     <!-- Reader activity -->
     <string name="custom_filter">Custom filter</string>
+    <string name="extract_text_from_page">Extract text from page</string>
+    <string name="extract_text_search_terms">Search (%1$d)</string>
     <string name="set_as_cover">Set as cover</string>
     <string name="cover_updated">Cover updated</string>
     <string name="page_downloaded">Page copied to %1$s</string>

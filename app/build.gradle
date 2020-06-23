@@ -264,6 +264,9 @@ dependencies {
     implementation "com.mikepenz:aboutlibraries-core:$aboutlibraries_version"
     implementation "com.mikepenz:aboutlibraries:$aboutlibraries_version"
 
+    // ML Kit
+    implementation 'com.google.firebase:firebase-ml-vision:24.0.3'
+
     // Tests
     testImplementation 'junit:junit:4.13'
     testImplementation 'org.assertj:assertj-core:3.12.2'
@@ -314,6 +317,4 @@ task copyResources(type: Copy) {
 
 preBuild.dependsOn(ktlintFormat, copyResources)
 
-if (getGradle().getStartParameter().getTaskRequests().toString().contains("Standard")) {
-    apply plugin: 'com.google.gms.google-services'
-}
+apply plugin: 'com.google.gms.google-services'

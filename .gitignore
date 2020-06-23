@@ -6,6 +6,8 @@
 *iml
 *.iml
 
+app/google-services.json
+
 # Built files
 */build
 /build

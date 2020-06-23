@@ -23,4 +23,5 @@
     <dimen name="text_small_body">14sp</dimen>
 
     <dimen name="bottom_sheet_width">0dp</dimen>
+    <dimen name="extracted_text_bottom_sheet_padding">5dp</dimen>
 </resources>
