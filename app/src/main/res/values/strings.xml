@@ -464,7 +464,6 @@
     <string name="manga_info_expand">Show more info</string>
     <string name="manga_info_collapse">Show less info</string>
     <plurals name="manga_num_chapters">
-        <item quantity="zero">No chapters</item>
         <item quantity="one">1 chapter</item>
         <item quantity="other">%1$s chapters</item>
     </plurals>
