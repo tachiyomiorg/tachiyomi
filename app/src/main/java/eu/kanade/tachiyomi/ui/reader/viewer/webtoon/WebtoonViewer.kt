@@ -93,13 +93,10 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
             }
         })
         recycler.tapListener = { event ->
-            val positionX = event.rawX
             val positionY = event.rawY
             when {
-                positionY < recycler.height * 0.25 && config.tappingEnabled -> scrollUp()
-                positionY > recycler.height * 0.75 && config.tappingEnabled -> scrollDown()
-                positionX < recycler.width * 0.33 && config.tappingEnabled -> scrollUp()
-                positionX > recycler.width * 0.66 && config.tappingEnabled -> scrollDown()
+                positionY < recycler.height * 0.33f && config.tappingEnabled -> scrollUp()
+                positionY > recycler.height * 0.66f && config.tappingEnabled -> scrollDown()
                 else -> activity.toggleMenu()
             }
         }
