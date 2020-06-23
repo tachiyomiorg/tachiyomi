@@ -293,17 +293,24 @@ class MangaInfoHeaderAdapter(
             val isExpanded =
                 binding.mangaInfoToggle.text == context.getString(R.string.manga_info_collapse)
 
-            binding.mangaInfoToggle.text =
-                if (isExpanded) {
+            with(binding.mangaInfoToggle) {
+                text = if (isExpanded) {
                     context.getString(R.string.manga_info_expand)
                 } else {
                     context.getString(R.string.manga_info_collapse)
                 }
 
+                icon = if (isExpanded) {
+                    context.getDrawable(R.drawable.ic_baseline_expand_more_24dp)
+                } else {
+                    context.getDrawable(R.drawable.ic_baseline_expand_less_24dp)
+                }
+            }
+
             with(binding.mangaSummary) {
                 maxLines =
                     if (isExpanded) {
-                        3
+                        2
                     } else {
                         Int.MAX_VALUE
                     }

@@ -461,8 +461,8 @@
     <string name="manga_added_library">Added to library</string>
     <string name="manga_removed_library">Removed from library</string>
     <string name="manga_info_about_label">About</string>
-    <string name="manga_info_expand">Show more info</string>
-    <string name="manga_info_collapse">Show less info</string>
+    <string name="manga_info_expand">More</string>
+    <string name="manga_info_collapse">Less</string>
     <plurals name="manga_num_chapters">
         <item quantity="one">1 chapter</item>
         <item quantity="other">%1$s chapters</item>
