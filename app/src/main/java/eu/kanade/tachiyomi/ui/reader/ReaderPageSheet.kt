@@ -10,9 +10,8 @@ import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
-import kotlinx.android.synthetic.main.reader_extract_page_text_sheet.view.*
+import eu.kanade.tachiyomi.util.system.toast
 import kotlinx.android.synthetic.main.reader_page_sheet.*
-import kotlinx.android.synthetic.main.reader_page_sheet.view.*
 import timber.log.Timber
 
 /**
@@ -56,19 +55,35 @@ class ReaderPageSheet(
             detector.processImage(image)
                 .addOnSuccessListener { result ->
                     // Task completed successfully
-                    // ...
-                    val resultText = result.text
-                    Timber.d("resultText: $resultText")
 
+                    /**
+                     * The recognized text we get from result.text comes out in a weird format
+                     * so we're reformatting it here
+                     * */
+                    var resultText = ""
+
+                    for (block in result.textBlocks) {
+                        var blockText = ""
+
+                        for (line in block.lines) { blockText += "${line.text} " }
+
+                        resultText += "\n\n$blockText"
+                    }
+
+                    resultText += "\n\n"
+
+                    Timber.d("resultText: $resultText")
                     ReaderExtractedTextSheet(activity, resultText).show()
 
                     this@ReaderPageSheet.dismiss()
                 }
-                .addOnFailureListener { e ->
+                .addOnFailureListener { ex ->
                     // Task failed with an exception
                     // ...
+                    context.toast(ex.message)
                 }
         } catch (ex: Throwable) {
+            context.toast(ex.message)
             Timber.e(ex.message)
         }
     }

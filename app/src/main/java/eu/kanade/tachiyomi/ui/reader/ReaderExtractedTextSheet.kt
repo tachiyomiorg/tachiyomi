@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.ui.main.DeepLinkActivity
@@ -33,7 +34,7 @@ class ReaderExtractedTextSheet(
         extracted_page_text.text = text
 
         extracted_page_text.customSelectionActionModeCallback = object : android.view.ActionMode.Callback {
-            val QUEUE_SEARCH_TERM = 999
+            val ADD_SEARCH_TERM = 999
 
             override fun onPrepareActionMode(mode: ActionMode?, menu: Menu?): Boolean {
                 try {
@@ -48,7 +49,7 @@ class ReaderExtractedTextSheet(
             }
 
             override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
-                menu?.add(0, QUEUE_SEARCH_TERM, 0, "Queue")?.setIcon(R.drawable.ic_explore_outline_24dp)
+                menu?.add(0, ADD_SEARCH_TERM, 0, context.getString(R.string.extract_text_add_search_term))?.setIcon(R.drawable.ic_explore_outline_24dp)
                 return true
             }
 
@@ -56,7 +57,7 @@ class ReaderExtractedTextSheet(
 
             override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
                 when (item?.itemId) {
-                    QUEUE_SEARCH_TERM -> {
+                    ADD_SEARCH_TERM -> {
                         // ref: https://stackoverflow.com/questions/22832123/get-selected-text-from-textview
                         var min = 0
                         var max: Int = extracted_page_text.text.length
@@ -114,6 +115,8 @@ class ReaderExtractedTextSheet(
         if (width > 0) {
             window?.setLayout(width, ViewGroup.LayoutParams.MATCH_PARENT)
         }
+
+        behavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED
     }
 
     private fun updateSearchButton() {
