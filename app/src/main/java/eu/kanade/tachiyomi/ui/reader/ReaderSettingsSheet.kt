@@ -12,6 +12,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.reader.viewer.pager.PagerViewer
 import eu.kanade.tachiyomi.ui.reader.viewer.webtoon.WebtoonViewer
+import eu.kanade.tachiyomi.util.view.gone
 import eu.kanade.tachiyomi.util.view.invisible
 import eu.kanade.tachiyomi.util.view.visible
 import eu.kanade.tachiyomi.widget.IgnoreFirstSpinnerListener
@@ -23,6 +24,7 @@ import kotlinx.android.synthetic.main.reader_settings_sheet.cutout_short
 import kotlinx.android.synthetic.main.reader_settings_sheet.fullscreen
 import kotlinx.android.synthetic.main.reader_settings_sheet.keepscreen
 import kotlinx.android.synthetic.main.reader_settings_sheet.long_tap
+import kotlinx.android.synthetic.main.reader_settings_sheet.navigation_prefs_group
 import kotlinx.android.synthetic.main.reader_settings_sheet.page_transitions
 import kotlinx.android.synthetic.main.reader_settings_sheet.pager_prefs_group
 import kotlinx.android.synthetic.main.reader_settings_sheet.rotation_mode
@@ -125,6 +127,10 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
      * Init the preferences for navigation.
      */
     private fun initNavigationPreferences() {
+        if (!preferences.readWithTapping().get()) {
+            navigation_prefs_group.gone()
+        }
+
         tapping_inverted.bindToPreference(preferences.readWithTappingInverted())
     }
 
