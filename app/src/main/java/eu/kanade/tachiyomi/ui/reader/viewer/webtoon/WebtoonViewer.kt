@@ -15,10 +15,10 @@ import eu.kanade.tachiyomi.ui.reader.model.ViewerChapters
 import eu.kanade.tachiyomi.ui.reader.viewer.BaseViewer
 import eu.kanade.tachiyomi.util.view.gone
 import eu.kanade.tachiyomi.util.view.visible
-import rx.subscriptions.CompositeSubscription
-import timber.log.Timber
 import kotlin.math.max
 import kotlin.math.min
+import rx.subscriptions.CompositeSubscription
+import timber.log.Timber
 
 /**
  * Implementation of a [BaseViewer] to display pages with a [RecyclerView].

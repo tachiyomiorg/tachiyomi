@@ -28,6 +28,7 @@ import kotlinx.android.synthetic.main.reader_settings_sheet.pager_prefs_group
 import kotlinx.android.synthetic.main.reader_settings_sheet.rotation_mode
 import kotlinx.android.synthetic.main.reader_settings_sheet.scale_type
 import kotlinx.android.synthetic.main.reader_settings_sheet.show_page_number
+import kotlinx.android.synthetic.main.reader_settings_sheet.tapping_inverted
 import kotlinx.android.synthetic.main.reader_settings_sheet.true_color
 import kotlinx.android.synthetic.main.reader_settings_sheet.viewer
 import kotlinx.android.synthetic.main.reader_settings_sheet.webtoon_prefs_group
@@ -57,6 +58,7 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
         super.onCreate(savedInstanceState)
 
         initGeneralPreferences()
+        initNavigationPreferences()
 
         when (activity.viewer) {
             is PagerViewer -> initPagerPreferences()
@@ -120,6 +122,13 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
     }
 
     /**
+     * Init the preferences for navigation.
+     */
+    private fun initNavigationPreferences() {
+        tapping_inverted.bindToPreference(preferences.readWithTappingInverted())
+    }
+
+    /**
      * Binds a checkbox or switch view with a boolean preference.
      */
     private fun CompoundButton.bindToPreference(pref: Preference<Boolean>) {
@@ -135,6 +144,19 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
             pref.set(position + offset)
         }
         setSelection(pref.get() - offset, false)
+    }
+
+    /**
+     * Binds a spinner to an enum preference.
+     */
+    private inline fun <reified T : Enum<T>> Spinner.bindToPreference(pref: Preference<T>) {
+        val enumConstants = T::class.java.enumConstants
+
+        onItemSelectedListener = IgnoreFirstSpinnerListener { position ->
+            enumConstants?.get(position)?.let { pref.set(it) }
+        }
+
+        enumConstants?.indexOf(pref.get())?.let { setSelection(it, false) }
     }
 
     /**
