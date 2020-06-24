@@ -361,13 +361,16 @@
     <string name="restoring_backup_canceled">Canceled restore</string>
 
       <!-- Advanced section -->
+    <string name="label_network">Network</string>
+    <string name="pref_clear_cookies">Clear cookies</string>
+    <string name="pref_dns_over_https" translatable="false">DNS over HTTPS (Cloudflare)</string>
+    <string name="pref_dns_over_https_summary">Requires app restart to take effect</string>
+    <string name="cookies_cleared">Cookies cleared</string>
     <string name="label_data">Data</string>
     <string name="pref_clear_chapter_cache">Clear chapter cache</string>
     <string name="used_cache">Used: %1$s</string>
     <string name="cache_deleted">Cache cleared. %1$d files have been deleted</string>
     <string name="cache_delete_error">An error occurred while clearing cache</string>
-    <string name="pref_clear_cookies">Clear cookies</string>
-    <string name="cookies_cleared">Cookies cleared</string>
     <string name="choices_reset">Dialog choices reset</string>
     <string name="pref_clear_database">Clear database</string>
     <string name="pref_clear_database_summary">Delete history for manga that are not saved in your library</string>

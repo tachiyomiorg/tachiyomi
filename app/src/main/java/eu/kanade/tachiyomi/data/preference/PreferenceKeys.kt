@@ -157,6 +157,8 @@ object PreferenceKeys {
 
     const val searchPinnedSourcesOnly = "search_pinned_sources_only"
 
+    const val enableDoh = "enable_doh"
+
     fun trackUsername(syncId: Int) = "pref_mangasync_username_$syncId"
 
     fun trackPassword(syncId: Int) = "pref_mangasync_password_$syncId"

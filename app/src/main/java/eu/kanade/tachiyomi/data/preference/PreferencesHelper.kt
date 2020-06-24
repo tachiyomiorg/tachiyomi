@@ -236,4 +236,6 @@ class PreferencesHelper(val context: Context) {
     fun migrateFlags() = flowPrefs.getInt("migrate_flags", Int.MAX_VALUE)
 
     fun trustedSignatures() = flowPrefs.getStringSet("trusted_signatures", emptySet())
+
+    fun enableDoh() = prefs.getBoolean(Keys.enableDoh, false)
 }

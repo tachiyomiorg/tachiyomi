@@ -166,6 +166,7 @@ dependencies {
     final okhttp_version = '4.7.2'
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+    implementation "com.squareup.okhttp3:okhttp-dnsoverhttps:$okhttp_version"
     implementation 'com.squareup.okio:okio:2.6.0'
 
     // TLS 1.3 support for Android < 10
