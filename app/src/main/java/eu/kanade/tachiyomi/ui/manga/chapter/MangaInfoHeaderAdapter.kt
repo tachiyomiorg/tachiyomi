@@ -246,9 +246,9 @@ class MangaInfoHeaderAdapter(
             }
 
             // Manga info section
-            if (manga.description.isNullOrBlank() && manga.genre.isNullOrBlank()) {
-                hideMangaInfo()
-            } else {
+            val hasInfoContent = !manga.description.isNullOrBlank() || !manga.genre.isNullOrBlank()
+            showMangaInfo(hasInfoContent)
+            if (hasInfoContent) {
                 // Update description TextView.
                 binding.mangaSummary.text = if (manga.description.isNullOrBlank()) {
                     view.context.getString(R.string.unknown)
@@ -282,11 +282,11 @@ class MangaInfoHeaderAdapter(
             binding.btnCategories.visibleIf { manga.favorite && controller.presenter.getCategories().isNotEmpty() }
         }
 
-        private fun hideMangaInfo() {
-            binding.mangaSummaryLabel.gone()
-            binding.mangaSummary.gone()
-            binding.mangaGenresTagsWrapper.gone()
-            binding.mangaInfoToggle.gone()
+        private fun showMangaInfo(visible: Boolean) {
+            binding.mangaSummaryLabel.visibleIf { visible }
+            binding.mangaSummary.visibleIf { visible }
+            binding.mangaGenresTagsWrapper.visibleIf { visible }
+            binding.mangaInfoToggle.visibleIf { visible }
         }
 
         private fun toggleMangaInfo(context: Context) {
