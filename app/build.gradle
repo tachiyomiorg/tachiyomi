@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.AbstractKotlinCompile
 import java.text.SimpleDateFormat
 
 apply plugin: 'com.android.application'
-apply plugin: 'com.jaredsburrows.license'
+apply plugin: 'com.mikepenz.aboutlibraries.plugin'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
@@ -29,21 +29,6 @@ ext {
         df.setTimeZone(TimeZone.getTimeZone("UTC"))
         return df.format(new Date())
     }
-
-    getGradleWrapper = {
-        if (System.properties['os.name'].toLowerCase().contains('windows')) {
-            return '../gradlew.bat'
-        } else {
-            return '../gradlew'
-        }
-    }
-}
-
-licenseReport {
-    generateHtmlReport = true
-    generateJsonReport = false
-
-    copyHtmlReportToAssets = true
 }
 
 android {
@@ -115,6 +100,9 @@ android {
     }
 
     lintOptions {
+        disable 'MissingTranslation'
+        disable 'ExtraTranslation'
+
         abortOnError false
         checkReleaseBuilds false
     }
@@ -139,24 +127,32 @@ dependencies {
     implementation 'com.github.inorichi:subsampling-scale-image-view:ac0dae7'
     implementation 'com.github.inorichi:junrar-android:634c1f5'
 
-    // Android support library
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'androidx.preference:preference:1.1.1'
+    // AndroidX libraries
     implementation 'androidx.annotation:annotation:1.1.0'
-    implementation 'androidx.browser:browser:1.2.0'
-    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.appcompat:appcompat:1.3.0-alpha01'
     implementation 'androidx.biometric:biometric:1.0.1'
+    implementation 'androidx.browser:browser:1.2.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta7'
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.preference:preference:1.1.1'
+    implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha03'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-rc01'
+    implementation 'androidx.webkit:webkit:1.3.0-beta01'
 
     final lifecycle_version = '2.2.0'
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
 
+    // Job scheduling
+    final work_version = '2.4.0-beta01'
+    implementation "androidx.work:work-runtime:$work_version"
+    implementation "androidx.work:work-runtime-ktx:$work_version"
+
     // UI library
-    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'com.google.android.material:material:1.3.0-alpha01'
 
     standardImplementation 'com.google.firebase:firebase-core:17.4.3'
 
@@ -170,6 +166,7 @@ dependencies {
     final okhttp_version = '4.7.2'
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+    implementation "com.squareup.okhttp3:okhttp-dnsoverhttps:$okhttp_version"
     implementation 'com.squareup.okio:okio:2.6.0'
 
     // TLS 1.3 support for Android < 10
@@ -194,11 +191,6 @@ dependencies {
 
     // HTML parser
     implementation 'org.jsoup:jsoup:1.13.1'
-
-    // Job scheduling
-    final work_version = '2.3.4'
-    implementation "androidx.work:work-runtime:$work_version"
-    implementation "androidx.work:work-runtime-ktx:$work_version"
 
     // Changelog
     implementation 'com.github.gabrielemariotti.changeloglib:changelog:2.1.0'
@@ -268,6 +260,11 @@ dependencies {
     implementation "io.github.reactivecircus.flowbinding:flowbinding-swiperefreshlayout:$flowbinding_version"
     implementation "io.github.reactivecircus.flowbinding:flowbinding-viewpager:$flowbinding_version"
 
+    // Licenses
+    final aboutlibraries_version = '8.2.0'
+    implementation "com.mikepenz:aboutlibraries-core:$aboutlibraries_version"
+    implementation "com.mikepenz:aboutlibraries:$aboutlibraries_version"
+
     // Tests
     testImplementation 'junit:junit:4.13'
     testImplementation 'org.assertj:assertj-core:3.12.2'
@@ -316,22 +313,7 @@ task copyResources(type: Copy) {
     include '**/*'
 }
 
-// See https://github.com/jaredsburrows/gradle-license-plugin/issues/113
-task licenseReportPreBuild(type: Exec) {
-    switch (getGradle().getStartParameter().getTaskRequests().toString()) {
-        case ~/.*Standard.*/:
-            commandLine getGradleWrapper(), 'licenseStandardReleaseReport'
-            break
-        case ~/.*Fdroid.*/:
-            commandLine getGradleWrapper(), 'licenseFdroidReleaseReport'
-            break
-        case ~/.*Dev.*/:
-            commandLine getGradleWrapper(), 'licenseDevReleaseReport'
-            break
-    }
-}
-
-preBuild.dependsOn(ktlintFormat, copyResources, licenseReportPreBuild)
+preBuild.dependsOn(ktlintFormat, copyResources)
 
 if (getGradle().getStartParameter().getTaskRequests().toString().contains("Standard")) {
     apply plugin: 'com.google.gms.google-services'

@@ -64,6 +64,19 @@
             app:layout_constraintTop_toBottomOf="@+id/ext_title"
             tools:text="Version" />
 
+        <TextView
+            android:id="@+id/warning"
+            style="@style/TextAppearance.Regular.Body1.Secondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:maxLines="1"
+            android:textColor="?attr/colorError"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@id/version"
+            app:layout_constraintTop_toBottomOf="@+id/ext_title"
+            tools:text="Warning" />
+
         <Button
             android:id="@+id/ext_button"
             style="@style/Theme.Widget.Button"

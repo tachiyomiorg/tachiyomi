@@ -67,7 +67,6 @@
     <string name="pref_language">Jazyk</string>
     <string name="system_default">Výchozí</string>
     <string name="all_lang">Vše</string>
-    <string name="ext_details">Detaily</string>
     <string name="ext_update">Aktualizovat</string>
     <string name="ext_install">Instalovat</string>
     <string name="ext_pending">Čeká se</string>
@@ -77,7 +76,6 @@
     <string name="ext_trust">Důvěryhodné</string>
     <string name="ext_untrusted">Nedůvěryhodné</string>
     <string name="ext_uninstall">Odinstalovat</string>
-    <string name="ext_preferences">Předvolby</string>
     <string name="ext_available">Dostupné</string>
     <string name="untrusted_extension">Nedůvěryhodné rozšíření</string>
     <string name="untrusted_extension_message">Toto rozšíření bylo podepsané nedůvěryhodným certifikátem a nebylo aktivované.
@@ -87,7 +85,6 @@
 \nDůvěřováním tomuto certifikátu přijímáte tato rizika.</string>
     <string name="ext_version_info">Verze: %1$s</string>
     <string name="ext_language_info">Jazyk: %1$s</string>
-    <string name="ext_empty_preferences">Neexistují žádné předvolby k úpravám pro toto rozšíření</string>
     <string name="pref_fullscreen">Celá obrazovka</string>
     <string name="pref_page_transitions">Přechody stránek</string>
     <string name="pref_show_page_number">Zobrazit číslo stránky</string>
@@ -132,10 +129,6 @@
     <string name="manga_info_full_title_label">Název</string>
     <string name="manga_added_library">Přidáno do knihovny</string>
     <string name="manga_removed_library">Odstraněno z knihovny</string>
-    <string name="manga_info_author_label">Autor</string>
-    <string name="manga_info_chapters_label">Kapitoly</string>
-    <string name="manga_info_source_label">Zdroj</string>
-    <string name="manga_info_genres_label">Žánry</string>
     <string name="delete_downloads_for_manga">Smazat stažené kapitoly\?</string>
     <string name="source_not_installed">Zdroj není nainstalován: %1$s</string>
     <string name="manga_chapters_tab">Kapitoly</string>
@@ -184,7 +177,6 @@
     <string name="transition_no_next">Žádná další kapitola</string>
     <string name="transition_no_previous">Žádná předchozí kapitola</string>
     <string name="transition_pages_loading">Načítání stránek…</string>
-    <string name="select">Vybrat</string>
     <string name="migrate">Migrovat</string>
     <string name="copy">Kopírovat</string>
     <string name="download_queue_error">Došlo k chybě při stahování kapitol. Zkuste to znovu v sekci stahování</string>
@@ -319,8 +311,6 @@
     <string name="browse">Procházet</string>
     <string name="unknown">Neznámý</string>
     <string name="licensed">Licencovaný</string>
-    <string name="manga_info_artist_label">Kreslíř</string>
-    <string name="manga_info_status_label">Stav</string>
     <string name="copied_to_clipboard">%1$s zkopírováno do schránky</string>
     <string name="chapter_queued">Ve frontě</string>
     <string name="fetch_chapters_error">Chyba při načítání kapitol.</string>
@@ -366,7 +356,6 @@
     <string name="invalid_combination">Výchozí nemůže být vybrána s ostatními kategoriemi</string>
     <string name="show_title">Zobrazit název</string>
     <string name="show_chapter_number">Zobrazit číslo kapitoly</string>
-    <string name="url_not_set">Url mangy není nastaveno, klikněte prosím na název a vyberte mangu znovu.</string>
     <string name="error_category_exists">Kategorie s tímto jménem již existuje!</string>
     <string name="dialog_with_checkbox_remove_description">Toto odstraní datum přečtení této kapitoly. Jste si jistý\?</string>
     <string name="confirm_set_image_as_cover">Chcete tento obrázek nastavit jako obal\?</string>
@@ -377,7 +366,6 @@
     <string name="notification_first_add_to_library">Přidejte si prosím mangu do knihovny před tím, než toto uděláte</string>
     <string name="file_select_cover">Vybrat obrázek obalu</string>
     <string name="update_check_notification_download_in_progress">Probíhá stahování…</string>
-    <string name="description_backdrop">Obrázek pozadí manga</string>
     <string name="description_cover">Obal mangy</string>
     <string name="information_no_downloads">Žádné stahování</string>
     <string name="information_empty_library">Vaše knihovna je prázdná, můžete si sem přidat něco z Katalogů.</string>

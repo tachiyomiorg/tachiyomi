@@ -197,12 +197,6 @@
     <string name="unknown">Неизвестно</string>
     <string name="licensed">Лицензирана</string>
     <string name="remove_from_library">Премахни от библиотеката</string>
-    <string name="manga_info_author_label">Автор</string>
-    <string name="manga_info_artist_label">Артист</string>
-    <string name="manga_info_chapters_label">Глави</string>
-    <string name="manga_info_status_label">Статус</string>
-    <string name="manga_info_source_label">Източник</string>
-    <string name="manga_info_genres_label">Жанрове</string>
     <!-- Manga chapters fragment -->
     <string name="manga_chapters_tab">Глави</string>
     <string name="manga_chapter_no_title">Неозаглавена</string>
@@ -291,7 +285,6 @@
     <string name="update_check_notification_download_error">Грешка при изтегляне</string>
     <string name="update_check_notification_update_available">Има нова версия!</string>
     <!--Content Description-->
-    <string name="description_backdrop">Фон на мангата</string>
     <string name="description_cover">Корица</string>
     <!-- Information Text -->
     <string name="information_no_downloads">Нямате изтегляния</string>
@@ -364,11 +357,10 @@
     <string name="action_display_download_badge">Изтегляне на значки</string>
     <string name="local_source_badge">Локална</string>
     <string name="information_empty_category">Нямате категории. Натиснете плюса, за да създадете такава и да организирате библиотеката си.</string>
-    <string name="label_migration">Смяна на източник</string>
+    <string name="label_migration">Мигриране</string>
     <string name="label_extensions">Разширения</string>
     <string name="label_extension_info">Информация</string>
     <string name="all_lang">Всички</string>
-    <string name="ext_details">Подробности</string>
     <string name="ext_update">Обнови</string>
     <string name="ext_install">Инсталирай</string>
     <string name="ext_pending">На изчакване</string>
@@ -378,7 +370,6 @@
     <string name="ext_trust">Потвърдени</string>
     <string name="ext_untrusted">Непотвърдени</string>
     <string name="ext_uninstall">Деинсталирай</string>
-    <string name="ext_preferences">Предпочитания</string>
     <string name="ext_available">Достъпни</string>
     <string name="untrusted_extension">Непотвърдено разширение</string>
     <string name="untrusted_extension_message">Следното разширение имаше непотвърден сертификат и не беше активирано.
@@ -388,7 +379,6 @@
 \nПотвърждавайки този сертификат, вие приемате тези рискове.</string>
     <string name="ext_version_info">Версия: %1$s</string>
     <string name="ext_language_info">Език: %1$s</string>
-    <string name="ext_empty_preferences">Няма предпочитания за това разширение</string>
     <string name="pref_double_tap_anim_speed">Скорост на анимацията</string>
     <string name="double_tap_anim_speed_0">Без анимация</string>
     <string name="double_tap_anim_speed_normal">Нормална</string>
@@ -402,7 +392,6 @@
     <string name="download_custom">Определен брой</string>
     <string name="migration_info">Натисни, за да избереш от кой източник да мигрираш</string>
     <string name="migration_dialog_what_to_include">Изберете кои данни ще мигрирате</string>
-    <string name="select">Избери</string>
     <string name="migrate">Мигрирай</string>
     <string name="copy">Копирай</string>
     <string name="pager_viewer">Страница</string>
@@ -412,7 +401,6 @@
     <string name="track_start_date">Начало</string>
     <string name="track_type">Тип</string>
     <string name="track_author">Автор</string>
-    <string name="url_not_set">Мангата няма връзка с акаунта, молим отново да натиснете заглавието и да изберете мангата</string>
     <string name="transition_finished">Завършени:</string>
     <string name="transition_current">Текущи:</string>
     <string name="transition_next">Следва:</string>
@@ -490,8 +478,6 @@
     <string name="manga_info_collapse">Покажи по-малко</string>
     <string name="manga_info_expand">Покажи повече</string>
     <string name="manga_info_about_label">Инфо</string>
-    <string name="manga_info_latest_data_label">Обновени</string>
-    <string name="manga_info_last_chapter_label">Последна глава</string>
     <string name="in_library">В библиотеката</string>
     <string name="add_to_library">Добави към библиотеката</string>
     <string name="local_source_help_guide">Помощ за локални източници</string>
@@ -566,7 +552,6 @@
     <string name="action_cancel_all">Отмени всичко</string>
     <string name="action_unpin">Откачи</string>
     <string name="action_pin">Закачи</string>
-    <string name="action_hide">Скрий</string>
     <string name="action_view_chapters">Преглед на глави</string>
     <string name="action_select_inverse">Избери обратно</string>
     <string name="action_sort_latest_chapter">Последна глава</string>
@@ -592,4 +577,5 @@
         <item quantity="other">%d категории</item>
     </plurals>
     <string name="action_display_unread_badge">Покажи непрочетени</string>
+    <string name="action_migrate">Мигрирай</string>
 </resources>

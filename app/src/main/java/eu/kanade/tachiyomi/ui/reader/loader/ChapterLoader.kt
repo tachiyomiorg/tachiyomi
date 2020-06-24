@@ -101,7 +101,7 @@ class ChapterLoader(
                     is LocalSource.Format.Epub -> EpubPageLoader(format.file)
                 }
             }
-            else -> error("Loader not implemented")
+            else -> error(context.getString(R.string.loader_not_implemented_error))
         }
     }
 }

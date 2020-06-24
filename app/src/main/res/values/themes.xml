@@ -54,10 +54,13 @@
         <item name="alertDialogTheme">@style/Theme.AlertDialog.Dark</item>
         <item name="chipStyle">@style/Theme.Widget.Chip</item>
         <item name="buttonStyle">@style/Theme.Widget.Button</item>
+        <item name="snackbarStyle">@style/Theme.Widget.Snackbar</item>
         <item name="snackbarButtonStyle">@style/Theme.Widget.Button</item>
+        <item name="snackbarTextViewStyle">@style/Theme.Widget.Snackbar.TextView</item>
         <item name="textAppearanceButton">@style/TextAppearance.Widget.Button</item>
         <item name="textInputStyle">@style/Theme.Widget.TextInputLayout.OutlinedBox</item>
         <item name="android:itemTextAppearance">@style/TextAppearance.Widget.Menu</item>
+        <item name="swipeRefreshLayoutProgressSpinnerBackgroundColor">?attr/colorAccent</item>
 
         <!-- Material Dialogs -->
         <item name="md_background_color">?attr/colorSurface</item>
@@ -137,9 +140,11 @@
         <item name="buttonStyle">@style/Theme.Widget.Button</item>
         <item name="snackbarStyle">@style/Theme.Widget.Snackbar</item>
         <item name="snackbarButtonStyle">@style/Theme.Widget.Button</item>
+        <item name="snackbarTextViewStyle">@style/Theme.Widget.Snackbar.TextView</item>
         <item name="textAppearanceButton">@style/TextAppearance.Widget.Button</item>
         <item name="textInputStyle">@style/Theme.Widget.TextInputLayout.OutlinedBox</item>
         <item name="android:itemTextAppearance">@style/TextAppearance.Widget.Menu</item>
+        <item name="swipeRefreshLayoutProgressSpinnerBackgroundColor">?attr/colorAccent</item>
 
         <!-- Material Dialogs -->
         <item name="md_background_color">?attr/colorSurface</item>

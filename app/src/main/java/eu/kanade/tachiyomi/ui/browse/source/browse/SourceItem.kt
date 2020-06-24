@@ -17,11 +17,11 @@ import eu.kanade.tachiyomi.widget.AutofitRecyclerView
 import kotlinx.android.synthetic.main.source_compact_grid_item.view.card
 import kotlinx.android.synthetic.main.source_compact_grid_item.view.gradient
 
-class SourceItem(val manga: Manga, private val catalogueDisplayMode: Preference<DisplayMode>) :
+class SourceItem(val manga: Manga, private val displayMode: Preference<DisplayMode>) :
     AbstractFlexibleItem<SourceHolder>() {
 
     override fun getLayoutRes(): Int {
-        return when (catalogueDisplayMode.get()) {
+        return when (displayMode.get()) {
             DisplayMode.COMPACT_GRID -> R.layout.source_compact_grid_item
             DisplayMode.COMFORTABLE_GRID -> R.layout.source_comfortable_grid_item
             DisplayMode.LIST -> R.layout.source_list_item
@@ -32,7 +32,7 @@ class SourceItem(val manga: Manga, private val catalogueDisplayMode: Preference<
         view: View,
         adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>
     ): SourceHolder {
-        return when (catalogueDisplayMode.get()) {
+        return when (displayMode.get()) {
             DisplayMode.COMPACT_GRID -> {
                 val parent = adapter.recyclerView as AutofitRecyclerView
                 val coverHeight = parent.itemWidth / 3 * 4

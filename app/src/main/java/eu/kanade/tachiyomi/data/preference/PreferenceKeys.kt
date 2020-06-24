@@ -71,11 +71,11 @@ object PreferenceKeys {
 
     const val autoUpdateTrack = "pref_auto_update_manga_sync_key"
 
-    const val lastUsedCatalogueSource = "last_catalogue_source"
+    const val lastUsedSource = "last_catalogue_source"
 
     const val lastUsedCategory = "last_used_category"
 
-    const val catalogueDisplayMode = "pref_display_mode_catalogue"
+    const val sourceDisplayMode = "pref_display_mode_catalogue"
 
     const val enabledLanguages = "source_languages"
 
@@ -156,6 +156,8 @@ object PreferenceKeys {
     const val searchPinnedSourcesOnly = "search_pinned_sources_only"
 
     const val steadyChapterDownload = "steady_chapter_download"
+
+    const val enableDoh = "enable_doh"
 
     fun trackUsername(syncId: Int) = "pref_mangasync_username_$syncId"
 

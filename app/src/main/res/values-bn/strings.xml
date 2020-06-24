@@ -231,12 +231,6 @@
     <string name="unknown">অজানা</string>
     <string name="licensed">লাইসেন্সকৃত</string>
     <string name="remove_from_library">মাংগাশালা থেকে সরিয়ে ফেলুন</string>
-    <string name="manga_info_author_label">লেখক</string>
-    <string name="manga_info_artist_label">চিত্রকর</string>
-    <string name="manga_info_chapters_label">অধ্যায়গুলো</string>
-    <string name="manga_info_status_label">স্ট্যাটাস</string>
-    <string name="manga_info_source_label">উৎস</string>
-    <string name="manga_info_genres_label">প্রকারভেদ</string>
     <string name="delete_downloads_for_manga">ডাউনলোডকৃত অধ্যায়গুলো মুছে ফেলতে চান?</string>
     <string name="manga_chapters_tab">অধ্যায়গুলো</string>
     <string name="manga_chapter_no_title">শিরোনামহীন</string>
@@ -310,7 +304,6 @@
     <string name="update_check_notification_download_complete">ডাউনলোড হয়ে গেছে</string>
     <string name="update_check_notification_download_error">ডাউনলোড ত্রুটি দেখা গিয়েছে</string>
     <string name="update_check_notification_update_available">আপডেট এসেছে!</string>
-    <string name="description_backdrop">মাংগার ব্যাকড্রপ ছবি</string>
     <string name="description_cover">মাংগার কভার</string>
     <string name="information_no_downloads">ডাউনলোড নেই</string>
     <string name="information_no_recent">কোন সাম্প্রতিক অধ্যায় নেই</string>
@@ -332,7 +325,6 @@
     <string name="label_extensions">সংযোজিত অংশ</string>
     <string name="label_extension_info">সংযোজিত অংশ তথ্য</string>
     <string name="all_lang">সব</string>
-    <string name="ext_details">বিস্তারিত</string>
     <string name="ext_update">আপডেট</string>
     <string name="ext_install">ইন্সটল</string>
     <string name="ext_pending">প্রক্রিয়াধীন</string>
@@ -342,7 +334,6 @@
     <string name="ext_trust">নির্ভর</string>
     <string name="ext_untrusted">অনির্ভরযোগ্য</string>
     <string name="ext_uninstall">আন ইন্সটল</string>
-    <string name="ext_preferences">পছন্দ</string>
     <string name="ext_available">সহজলভ্য</string>
     <string name="untrusted_extension">অনির্ভর‍যোগ্য অংশ</string>
     <string name="untrusted_extension_message">এই এক্সটেনশনটি অবিশ্বস্ত শংসাপত্রের সাথে স্বাক্ষরিত হয়েছিল এবং সক্রিয় হয়নি n\'t
@@ -352,7 +343,6 @@
 \nএই শংসাপত্রকে বিশ্বাস করে আপনি এই ঝুঁকিগুলি গ্রহণ করেন।</string>
     <string name="ext_version_info">ভার্সন: %1$s</string>
     <string name="ext_language_info">ভাষা: %1$s</string>
-    <string name="ext_empty_preferences">এই প্রসারের জন্য সম্পাদনা করার কোন পছন্দ নেই</string>
     <string name="pref_double_tap_anim_speed">দুই টোকায় এনিমেশনের গতি</string>
     <string name="double_tap_anim_speed_0">এনিমেশন নেই</string>
     <string name="double_tap_anim_speed_normal">সাধারণ</string>
@@ -365,7 +355,6 @@
     <string name="download_custom">কাস্টম</string>
     <string name="migration_info">সরিয়ে নেয়ার জন্য উৎস নির্বাচন করুন</string>
     <string name="migration_dialog_what_to_include">যোগ করার জন্য উপাত্ত নির্বাচন করুন</string>
-    <string name="select">নির্বাচন</string>
     <string name="migrate">সরিয়ে ফেলুন</string>
     <string name="copy">কপি</string>
     <string name="pager_viewer">পেজার</string>
@@ -383,7 +372,6 @@
     <string name="transition_no_previous">কোন পূর্ববর্তী অধ্যায় আছে</string>
     <string name="transition_pages_loading">পৃষ্ঠা লোড হচ্ছে …</string>
     <string name="transition_pages_error">পৃষ্ঠা লোড করতে ব্যর্থ হয়েছে: %1$s</string>
-    <string name="url_not_set">মাংগা ইউআরএল সেট না শিরোনাম ক্লিক করুন এবং আবার মাংগা নির্বাচন করুন</string>
     <string name="pref_read_with_long_tap">দীর্ঘক্ষণ ট্যাপ ডায়ালগ</string>
     <string name="action_open_in_web_view">ওয়েব দর্শনে খুলুন</string>
     <string name="pref_true_color">৩২-বিট রঙ</string>

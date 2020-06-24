@@ -13,7 +13,7 @@
             android:id="@+id/downloaded_only"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorSecondary"
+            android:background="@color/pale_green"
             android:visibility="gone">
 
             <TextView
@@ -22,7 +22,7 @@
                 android:layout_gravity="center"
                 android:padding="4dp"
                 android:text="@string/label_downloaded_only"
-                android:textColor="?attr/colorOnSecondary" />
+                android:textColor="@color/md_black_1000" />
 
         </FrameLayout>
 

@@ -139,7 +139,7 @@ open class BrowseSourcePresenter(
 
         val sourceId = source.id
 
-        val catalogueDisplayMode = prefs.catalogueDisplayMode()
+        val sourceDisplayMode = prefs.sourceDisplayMode()
 
         // Prepare the pager.
         pagerSubscription?.let { remove(it) }
@@ -147,7 +147,7 @@ open class BrowseSourcePresenter(
             .observeOn(Schedulers.io())
             .map { pair -> pair.first to pair.second.map { networkToLocalManga(it, sourceId) } }
             .doOnNext { initializeMangas(it.second) }
-            .map { pair -> pair.first to pair.second.map { SourceItem(it, catalogueDisplayMode) } }
+            .map { pair -> pair.first to pair.second.map { SourceItem(it, sourceDisplayMode) } }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeReplay(
                 { view, (page, mangas) ->

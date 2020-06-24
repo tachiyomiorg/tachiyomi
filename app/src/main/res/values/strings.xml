@@ -76,10 +76,12 @@
     <string name="action_next_chapter">Next chapter</string>
     <string name="action_retry">Retry</string>
     <string name="action_remove">Remove</string>
+    <string name="action_start">Start</string>
     <string name="action_resume">Resume</string>
     <string name="action_move">Move</string>
     <string name="action_open_in_browser">Open in browser</string>
     <string name="action_open_in_web_view">Open in WebView</string>
+    <string name="action_open_in_settings">Open in Settings</string>
     <string name="action_migrate">Migrate</string>
     <string name="action_display_mode">Display mode</string>
     <string name="action_display">Display</string>
@@ -89,12 +91,13 @@
     <string name="action_display_download_badge">Download badges</string>
     <string name="action_display_unread_badge">Unread badges</string>
     <string name="action_display_show_tabs">Show category tabs</string>
-    <string name="action_hide">Hide</string>
+    <string name="action_disable">Disable</string>
     <string name="action_pin">Pin</string>
     <string name="action_unpin">Unpin</string>
     <string name="action_cancel">Cancel</string>
     <string name="action_cancel_all">Cancel all</string>
     <string name="action_sort">Sort</string>
+    <string name="action_sort_descending">Descending</string>
     <string name="action_reorganize_by">Reorder</string>
     <string name="action_newest">Newest</string>
     <string name="action_oldest">Oldest</string>
@@ -204,7 +207,6 @@
 
       <!-- Extension section -->
     <string name="all_lang">All</string>
-    <string name="ext_details">Details</string>
     <string name="ext_updates_pending">Updates pending</string>
     <string name="ext_update">Update</string>
     <string name="ext_obsolete">Obsolete</string>
@@ -224,7 +226,6 @@
     <string name="unofficial_extension_message">This extension is not from the official Tachiyomi extensions list.</string>
     <string name="ext_version_info">Version: %1$s</string>
     <string name="ext_language_info">Language: %1$s</string>
-    <string name="enabled">Enabled</string>
 
       <!-- Reader section -->
     <string name="pref_fullscreen">Fullscreen</string>
@@ -362,16 +363,19 @@
     <string name="restoring_backup_canceled">Canceled restore</string>
 
       <!-- Advanced section -->
+    <string name="label_network">Network</string>
+    <string name="pref_clear_cookies">Clear cookies</string>
+    <string name="pref_dns_over_https" translatable="false">DNS over HTTPS (Cloudflare)</string>
+    <string name="pref_dns_over_https_summary">Requires app restart to take effect</string>
+    <string name="cookies_cleared">Cookies cleared</string>
     <string name="label_data">Data</string>
     <string name="pref_clear_chapter_cache">Clear chapter cache</string>
     <string name="used_cache">Used: %1$s</string>
     <string name="cache_deleted">Cache cleared. %1$d files have been deleted</string>
     <string name="cache_delete_error">An error occurred while clearing cache</string>
-    <string name="pref_clear_cookies">Clear cookies</string>
-    <string name="cookies_cleared">Cookies cleared</string>
     <string name="choices_reset">Dialog choices reset</string>
     <string name="pref_clear_database">Clear database</string>
-    <string name="pref_clear_database_summary">Delete history for manga that are not in saved your library</string>
+    <string name="pref_clear_database_summary">Delete history for manga that are not saved in your library</string>
     <string name="clear_database_confirmation">Are you sure? Read chapters and progress of non-library manga will be lost</string>
     <string name="clear_database_completed">Entries deleted</string>
     <string name="pref_refresh_library_covers">Refresh library manga covers</string>
@@ -461,17 +465,13 @@
     <string name="manga_info_full_title_label">Title</string>
     <string name="manga_added_library">Added to library</string>
     <string name="manga_removed_library">Removed from library</string>
-    <string name="manga_info_author_label">Author</string>
-    <string name="manga_info_artist_label">Artist</string>
-    <string name="manga_info_chapters_label">Chapters</string>
-    <string name="manga_info_last_chapter_label">Last chapter</string>
-    <string name="manga_info_latest_data_label">Updated</string>
-    <string name="manga_info_status_label">Status</string>
-    <string name="manga_info_source_label">Source</string>
-    <string name="manga_info_genres_label">Genres</string>
     <string name="manga_info_about_label">About</string>
-    <string name="manga_info_expand">Show more info</string>
-    <string name="manga_info_collapse">Show less info</string>
+    <string name="manga_info_expand">More</string>
+    <string name="manga_info_collapse">Less</string>
+    <plurals name="manga_num_chapters">
+        <item quantity="one">1 chapter</item>
+        <item quantity="other">%1$s chapters</item>
+    </plurals>
     <string name="delete_downloads_for_manga">Delete downloaded chapters?</string>
     <string name="copied_to_clipboard">Copied to clipboard:\n%1$s</string>
     <string name="source_not_installed">Source not installed: %1$s</string>
@@ -527,7 +527,6 @@
     <string name="track_type">Type</string>
     <string name="track_author">Author</string>
     <string name="error_invalid_date_supplied">Invalid date supplied</string>
-    <string name="url_not_set">Manga URL not set, please click title and select manga again</string>
 
     <!-- Category activity -->
     <string name="error_category_exists">A category with this name already exists!</string>
@@ -567,6 +566,7 @@
     <string name="transition_pages_loading">Loading pages…</string>
     <string name="transition_pages_error">Failed to load pages: %1$s</string>
     <string name="page_list_empty_error">No pages found</string>
+    <string name="loader_not_implemented_error">Source not found</string>
 
     <!-- Updates fragment -->
     <string name="updating_library">Updating library</string>
@@ -639,15 +639,14 @@
     </plurals>
 
     <!--Content Description-->
-    <string name="description_backdrop">Backdrop image of manga</string>
     <string name="description_cover">Cover of manga</string>
 
     <!-- Information Text -->
     <string name="information_no_downloads">No downloads</string>
     <string name="information_no_recent">No recent updates</string>
     <string name="information_no_recent_manga">Nothing read recently</string>
-    <string name="information_empty_library">Your library is empty, add series to your library from Browse.</string>
-    <string name="information_empty_category">You have no categories. Hit the plus button to create one for organizing your library.</string>
+    <string name="information_empty_library">Your library is empty. Add series to your library from Browse.</string>
+    <string name="information_empty_category">You have no categories. Tap the plus button to create one for organizing your library.</string>
     <string name="information_cloudflare_bypass_failure">Failed to bypass Cloudflare</string>
     <string name="information_webview_required">WebView is required for Tachiyomi</string>
     <string name="information_webview_outdated">Please update the WebView app for better compatibility</string>

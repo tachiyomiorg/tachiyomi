@@ -130,7 +130,7 @@
     <string name="pref_clear_cookies">Borrar cookies</string>
     <string name="cookies_cleared">Cookies borradas</string>
     <string name="pref_clear_database">Borrar redundancia de la base de datos</string>
-    <string name="pref_clear_database_summary">Eliminar mangas y capítulos que no están en su biblioteca</string>
+    <string name="pref_clear_database_summary">Borrar la historia de mangas que no están en la biblioteca guardadas</string>
     <string name="clear_database_confirmation">¿Lo confirma\? Se perderán los capítulos leídos y el progreso de los mangas que no estén en la biblioteca</string>
     <string name="clear_database_completed">Entradas eliminadas</string>
     <!-- About section -->
@@ -162,12 +162,6 @@
     <string name="unknown">Desconocido</string>
     <string name="licensed">Licenciado</string>
     <string name="remove_from_library">Eliminar de biblioteca</string>
-    <string name="manga_info_author_label">Autor</string>
-    <string name="manga_info_artist_label">Artista</string>
-    <string name="manga_info_chapters_label">Capítulos</string>
-    <string name="manga_info_status_label">Estado</string>
-    <string name="manga_info_source_label">Fuente</string>
-    <string name="manga_info_genres_label">Géneros</string>
     <!-- Manga chapters fragment -->
     <string name="manga_chapters_tab">Capítulos</string>
     <string name="manga_chapter_no_title">Sin título</string>
@@ -183,7 +177,7 @@
     <string name="sorting_mode">Ordenado de capítulos</string>
     <string name="sort_by_source">Por fuente</string>
     <string name="sort_by_number">Por número de capítulo</string>
-    <string name="sort_by_upload_date">Por fecha de carga</string>
+    <string name="sort_by_upload_date">Por fecha de subida</string>
     <string name="manga_download">Descargar</string>
     <string name="download_1">Siguiente capítulo</string>
     <string name="download_5">Siguientes 5 capítulos</string>
@@ -240,13 +234,12 @@
     <string name="update_check_notification_download_error">Error de descarga</string>
     <string name="update_check_notification_update_available">Nueva versión disponible!</string>
     <!--Content Description-->
-    <string name="description_backdrop">Imagen de fondo del manga</string>
     <string name="description_cover">Portada del manga</string>
     <!-- Information Text -->
     <string name="information_no_downloads">No hay descargas</string>
     <string name="information_no_recent">No hay actualizaciones recientes</string>
     <string name="information_no_recent_manga">Nada leeído recientemente</string>
-    <string name="information_empty_library">La biblioteca está vacía, añádale series a partir de la Busqueda.</string>
+    <string name="information_empty_library">La biblioteca está vacía. Añádale series a partir de la Busqueda.</string>
     <!-- Download Notification -->
     <string name="download_notifier_title_error">Error</string>
     <string name="download_notifier_unknown_error">No se pudo descargar el capítulo debido a un error inesperado</string>
@@ -271,7 +264,7 @@
     <string name="action_close">Cerrar</string>
     <string name="action_move">Mover</string>
     <string name="action_display">Mostrar</string>
-    <string name="action_display_grid">Cuadrícula</string>
+    <string name="action_display_grid">Rejilla compacta</string>
     <string name="action_display_list">Lista</string>
     <string name="action_share">Compartir</string>
     <string name="action_save">Guardar</string>
@@ -362,10 +355,9 @@
     <string name="channel_library">Biblioteca</string>
     <string name="channel_downloader">Descargador</string>
     <string name="information_empty_category">No hay categorías. Pulse el botón «+» para crear una y organizar su biblioteca.</string>
-    <string name="label_migration">Migración de fuente</string>
+    <string name="label_migration">Migrar</string>
     <string name="label_extensions">Extensiones</string>
     <string name="label_extension_info">Información de extensión</string>
-    <string name="ext_details">Detalles</string>
     <string name="ext_update">Actualizar</string>
     <string name="ext_install">Instalar</string>
     <string name="ext_pending">Pendiente</string>
@@ -388,11 +380,9 @@
     <string name="transition_no_previous">No hay capítulo anterior</string>
     <string name="migrate">Migrar</string>
     <string name="copy">Copiar</string>
-    <string name="ext_preferences">Configuraciones</string>
     <string name="untrusted_extension_message">Esta extensión fue firmada por una fuente no certificada y no fue activada.
 \nUna extencion maliciosa puede leer cualquier credencial de inicio guardada en Tachiyomi o ejecutar código arbitrario.
 \nConfiando en este certificado aceptas estos riesgos.</string>
-    <string name="ext_empty_preferences">No hay preferencias para editar en esta extensión</string>
     <string name="double_tap_anim_speed_0">Sin animación</string>
     <string name="manga_info_full_title_label">Título</string>
     <string name="manga_added_library">Añadido a biblioteca</string>
@@ -407,14 +397,12 @@
     <string name="track_start_date">Empezado</string>
     <string name="track_type">Tipo</string>
     <string name="track_author">Autor</string>
-    <string name="url_not_set">URL del manga no establecida, haga clic en el título y seleccione el manga nuevamente</string>
     <string name="transition_finished">Finalizado:</string>
     <string name="transition_current">Actual:</string>
     <string name="transition_pages_loading">Cargando páginas…</string>
     <string name="transition_pages_error">Error al cargar páginas: %1$s</string>
     <string name="migration_info">Pulse para seleccionar la fuente desde la que migrar</string>
     <string name="migration_dialog_what_to_include">Seleccionar datos para incluir</string>
-    <string name="select">Seleccionar</string>
     <string name="pref_double_tap_anim_speed">Velocidad de animación de doble toque</string>
     <string name="pager_viewer">Paginado</string>
     <string name="pref_read_with_long_tap">Diálogo de toque largo</string>
@@ -452,11 +440,11 @@
     <string name="action_sort_latest_chapter">Capítulo más reciente</string>
     <string name="action_view_chapters">Ver capítulos</string>
     <string name="action_cancel_all">Cancelar todo</string>
-    <string name="pref_theme_mode">Tema de aplicación</string>
-    <string name="theme_light">Claro</string>
-    <string name="theme_dark">Oscuro</string>
+    <string name="pref_theme_mode">Modo oscuro</string>
+    <string name="theme_light">Apagado</string>
+    <string name="theme_dark">Encendido</string>
     <string name="theme_system">Usar el del sistema</string>
-    <string name="pref_theme_dark">Variación del tema oscuro</string>
+    <string name="pref_theme_dark">Tema oscuro</string>
     <string name="theme_dark_default">Predeterminado</string>
     <string name="theme_dark_blue">Negro y azul</string>
     <string name="theme_dark_amoled">AMOLED negro</string>
@@ -490,7 +478,6 @@
         <item quantity="one">Capítulos %1$s y 1 más</item>
         <item quantity="other">Capítulos %1$s y %2$d más</item>
     </plurals>
-    <string name="action_hide">Ocultar</string>
     <string name="hide_notification_content">Ocultar contenido de la notificacion</string>
     <string name="notification_check_updates">Buscando nuevos capítulos</string>
     <string name="pref_disable_battery_optimization">Desactivar optimización de la batería</string>
@@ -504,7 +491,7 @@
     </plurals>
     <string name="notices">Nota de versiones recientes</string>
     <string name="changelog">Registro de cambios</string>
-    <string name="pref_theme_light">Variación del tema claro</string>
+    <string name="pref_theme_light">Tema claro</string>
     <string name="theme_light_default">Predeterminado</string>
     <string name="theme_light_blue">Azul y blanco</string>
     <string name="action_menu">Menú</string>
@@ -563,8 +550,6 @@
     <string name="check_for_updates">Comprobar las actualizaciones</string>
     <string name="channel_backup_restore_complete">Terminado</string>
     <string name="channel_backup_restore_progress">Progreso</string>
-    <string name="manga_info_latest_data_label">Actualizado</string>
-    <string name="manga_info_last_chapter_label">Ultimo capítulo</string>
     <string name="local_source_help_guide">Instruccion local de fuente</string>
     <plurals name="download_queue_summary">
         <item quantity="one">Queda 1</item>
@@ -594,4 +579,26 @@
     </plurals>
     <string name="unofficial_extension_message">Esta extensión no es de la lista oficial de extensiónes de Tachiyomi.</string>
     <string name="ext_unofficial">No oficial</string>
+    <string name="label_data">Datos</string>
+    <string name="backup_restore_missing_sources">Fuentes que faltan:</string>
+    <string name="invalid_backup_file_missing_manga">Copia de seguridad no contiene manga.</string>
+    <string name="invalid_backup_file_missing_data">En archivo faltan datos.</string>
+    <string name="invalid_backup_file">Un archivo invalido de copia de seguridad</string>
+    <string name="tracker_not_logged_in">No esta registrado en: %1$s</string>
+    <string name="source_not_found_name">Fuente no encontrada: %1$s</string>
+    <string name="pref_library_update_error_notification">Mostrar notificaciones de errores de actualización</string>
+    <string name="pref_library_update_refresh_metadata_summary">Comprobar nueva portada y los detalles cuando actualizes la biblioteca</string>
+    <string name="pref_library_update_refresh_metadata">Refrescar automaticamente los metadatos</string>
+    <string name="action_display_comfortable_grid">Rejilla cómoda</string>
+    <string name="action_migrate">Migrar</string>
+    <string name="tabs_header">Pestañas</string>
+    <string name="badges_header">Insignias</string>
+    <string name="action_display_show_tabs">Mostrar pestañas de categorías</string>
+    <string name="page_list_empty_error">No hay páginas</string>
+    <string name="action_disable_all">Deshabilitar todo</string>
+    <string name="action_enable_all">Habilitar todo</string>
+    <string name="pref_show_reading_mode_summary">Mostrar brevemente el modo actual cuándo el lector está abierto</string>
+    <string name="pref_show_reading_mode">Mostrar modo de lectura</string>
+    <string name="action_start">Empezar</string>
+    <string name="loader_not_implemented_error">Fuente no encontrada</string>
 </resources>

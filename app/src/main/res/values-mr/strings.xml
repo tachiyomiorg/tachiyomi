@@ -67,7 +67,6 @@
     <string name="action_cancel">रद्द करा</string>
     <string name="action_unpin">पिन काढा</string>
     <string name="action_pin">पिन</string>
-    <string name="action_hide">लपवा</string>
     <string name="action_display_unread_badge">न वाचलेले बॅज</string>
     <string name="action_display_download_badge">Download बॅज</string>
     <string name="action_display_list">यादी</string>
@@ -158,7 +157,6 @@
     <string name="pref_page_transitions">पृष्ठ संक्रमण संजीवित करा</string>
     <string name="pref_lock_orientation">अभिमुखता</string>
     <string name="pref_cutout_short">कटआउट क्षेत्रात सामग्री दर्शवा</string>
-    <string name="ext_empty_preferences">या विस्तारासाठी संपादित करण्यासाठी कोणतीही प्राधान्ये नाहीत</string>
     <string name="obsolete_extension_message">हे एक्सटेन्शन उपलब्ध नाही.</string>
     <string name="untrusted_extension_message">हे एक्सटेन्शन एका अविश्वासू प्रमानपत्रासहित आले आहे म्हणून हे स्थापित होऊ शकले नाही. 
 \n
@@ -167,7 +165,6 @@
 \nव अश्या एक्सटेन्शन वर विश्वास करून तुम्ही ह्या सगद्या जोखीम घेत आहेत.</string>
     <string name="untrusted_extension">अविश्वासू एक्सटेन्शन</string>
     <string name="ext_available">उपलब्ध</string>
-    <string name="ext_preferences">प्राधान्ये</string>
     <string name="ext_uninstall">विस्थापित करा</string>
     <string name="ext_untrusted">अविश्वासू</string>
     <string name="ext_trust">विश्वास</string>
@@ -179,7 +176,6 @@
     <string name="ext_obsolete">कालबाह्य</string>
     <string name="ext_update">अध्यातणीत करा</string>
     <string name="ext_updates_pending">प्रलंबित अध्यातणे</string>
-    <string name="ext_details">तपशिले</string>
     <string name="all_lang">सगडे</string>
     <string name="all">सगडे</string>
     <string name="pref_library_update_categories">जागतिक अध्यतानामध्ये समाविष्ट होणाऱ्या श्रेणी</string>

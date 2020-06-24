@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,7 +15,6 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             android:theme="?attr/actionBarTheme"
-            app:layout_scrollFlags="scroll|enterAlways|snap"
             app:navigationIcon="@drawable/ic_close_24dp" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -23,32 +22,23 @@
     <eu.kanade.tachiyomi.widget.ThemedSwipeRefreshLayout
         android:id="@id/swipe_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_height="match_parent">
 
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/nested_view"
+        <WebView
+            android:id="@+id/webview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:layout_height="match_parent">
 
-            <WebView
-                android:id="@+id/webview"
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="2dp"
+                android:progressBackgroundTint="@color/colorPrimary"
+                android:progressTint="@color/colorPrimary" />
 
-                <ProgressBar
-                    android:id="@+id/progress_bar"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:progressBackgroundTint="@color/colorPrimary"
-                    android:progressTint="@color/colorPrimary" />
-
-            </WebView>
-
-        </androidx.core.widget.NestedScrollView>
+        </WebView>
 
     </eu.kanade.tachiyomi.widget.ThemedSwipeRefreshLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>

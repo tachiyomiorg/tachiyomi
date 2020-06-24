@@ -11,6 +11,7 @@ import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.util.isLocal
 import eu.kanade.tachiyomi.util.view.visibleIf
+import kotlinx.android.synthetic.main.source_list_item.badges
 import kotlinx.android.synthetic.main.source_list_item.download_text
 import kotlinx.android.synthetic.main.source_list_item.local_text
 import kotlinx.android.synthetic.main.source_list_item.thumbnail
@@ -41,6 +42,9 @@ class LibraryListHolder(
     override fun onSetValues(item: LibraryItem) {
         // Update the title of the manga.
         title.text = item.manga.title
+
+        // For rounded corners
+        badges.clipToOutline = true
 
         // Update the unread count and its visibility.
         with(unread_text) {

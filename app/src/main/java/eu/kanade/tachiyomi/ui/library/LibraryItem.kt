@@ -48,7 +48,7 @@ class LibraryItem(val manga: LibraryManga, private val libraryDisplayMode: Prefe
                         MATCH_PARENT, coverHeight / 2, Gravity.BOTTOM
                     )
                 }
-                LibraryGridHolder(view, adapter)
+                LibraryCompactGridHolder(view, adapter)
             }
             DisplayMode.COMFORTABLE_GRID -> {
                 val parent = adapter.recyclerView as AutofitRecyclerView

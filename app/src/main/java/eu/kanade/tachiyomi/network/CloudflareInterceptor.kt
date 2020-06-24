@@ -2,15 +2,17 @@ package eu.kanade.tachiyomi.network
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.os.Build
 import android.os.Handler
 import android.os.Looper
+import android.webkit.WebResourceRequest
+import android.webkit.WebResourceResponse
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.widget.Toast
+import androidx.webkit.WebViewClientCompat
+import androidx.webkit.WebViewFeature
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.source.online.HttpSource
-import eu.kanade.tachiyomi.util.system.WebViewClientCompat
 import eu.kanade.tachiyomi.util.system.isOutdated
 import eu.kanade.tachiyomi.util.system.toast
 import java.io.IOException
@@ -103,7 +105,7 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
                     }
 
                     // HTTP error codes are only received since M
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
+                    if (WebViewFeature.isFeatureSupported(WebViewFeature.RECEIVE_WEB_RESOURCE_ERROR) &&
                         url == origRequestUrl && !challengeFound
                     ) {
                         // The first request didn't return the challenge, abort.
@@ -111,16 +113,14 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
                     }
                 }
 
-                override fun onReceivedErrorCompat(
+                override fun onReceivedHttpError(
                     view: WebView,
-                    errorCode: Int,
-                    description: String?,
-                    failingUrl: String,
-                    isMainFrame: Boolean
+                    request: WebResourceRequest,
+                    errorResponse: WebResourceResponse
                 ) {
-                    if (isMainFrame) {
-                        if (errorCode == 503) {
-                            // Found the cloudflare challenge page.
+                    if (request.isForMainFrame) {
+                        if (errorResponse.statusCode == 503) {
+                            // Found the Cloudflare challenge page.
                             challengeFound = true
                         } else {
                             // Unlock thread, the challenge wasn't found.

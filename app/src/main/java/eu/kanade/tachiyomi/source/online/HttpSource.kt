@@ -34,7 +34,7 @@ abstract class HttpSource : CatalogueSource {
 //     * Preferences that a source may need.
 //     */
 //    val preferences: SharedPreferences by lazy {
-//        Injekt.get<Application>().getSharedPreferences("source_$id", Context.MODE_PRIVATE)
+//        Injekt.get<Application>().getSharedPreferences(source.getPreferenceKey(), Context.MODE_PRIVATE)
 //    }
 
     /**

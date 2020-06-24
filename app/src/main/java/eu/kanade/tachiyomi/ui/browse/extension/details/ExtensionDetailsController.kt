@@ -1,8 +1,11 @@
-package eu.kanade.tachiyomi.ui.browse.extension
+package eu.kanade.tachiyomi.ui.browse.extension.details
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.Menu
@@ -19,6 +22,7 @@ import androidx.preference.SwitchPreferenceCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.MergeAdapter
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.EmptyPreferenceDataStore
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
@@ -27,6 +31,7 @@ import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.ConfigurableSource
 import eu.kanade.tachiyomi.source.Source
+import eu.kanade.tachiyomi.source.getPreferenceKey
 import eu.kanade.tachiyomi.ui.base.controller.NoToolbarElevationController
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
@@ -36,10 +41,8 @@ import eu.kanade.tachiyomi.util.preference.preferenceCategory
 import eu.kanade.tachiyomi.util.preference.switchPreference
 import eu.kanade.tachiyomi.util.preference.switchSettingsPreference
 import eu.kanade.tachiyomi.util.system.LocaleHelper
-import eu.kanade.tachiyomi.util.view.visible
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import reactivecircus.flowbinding.android.view.clicks
 import uy.kohesive.injekt.injectLazy
 
 @SuppressLint("RestrictedApi")
@@ -82,30 +85,15 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
         val extension = presenter.extension ?: return
         val context = view.context
 
-        extension.getApplicationIcon(context)?.let { binding.extensionIcon.setImageDrawable(it) }
-        binding.extensionTitle.text = extension.name
-        binding.extensionVersion.text = context.getString(R.string.ext_version_info, extension.versionName)
-        binding.extensionLang.text = context.getString(R.string.ext_language_info, LocaleHelper.getSourceDisplayName(extension.lang, context))
-        binding.extensionPkg.text = extension.pkgName
-
-        binding.extensionUninstallButton.clicks()
-            .onEach { presenter.uninstallExtension() }
-            .launchIn(scope)
-
-        if (extension.isObsolete) {
-            binding.extensionWarningBanner.visible()
-            binding.extensionWarningBanner.setText(R.string.obsolete_extension_message)
-        }
-
-        if (extension.isUnofficial) {
-            binding.extensionWarningBanner.visible()
-            binding.extensionWarningBanner.setText(R.string.unofficial_extension_message)
-        }
-
-        initPreferences(context, extension)
+        binding.extensionPrefsRecycler.layoutManager = LinearLayoutManager(context)
+        binding.extensionPrefsRecycler.adapter = MergeAdapter(
+            ExtensionDetailsHeaderAdapter(presenter),
+            initPreferencesAdapter(context, extension)
+        )
+        binding.extensionPrefsRecycler.addItemDecoration(DividerItemDecoration(context, VERTICAL))
     }
 
-    private fun initPreferences(context: Context, extension: Extension.Installed) {
+    private fun initPreferencesAdapter(context: Context, extension: Extension.Installed): PreferenceGroupAdapter {
         val themedContext = getPreferenceThemeContext()
         val manager = PreferenceManager(themedContext)
         manager.preferenceDataStore = EmptyPreferenceDataStore()
@@ -113,28 +101,24 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
         preferenceScreen = screen
 
         val isMultiSource = extension.sources.size > 1
+        val isMultiLangSingleSource = isMultiSource && extension.sources.map { it.name }.distinct().size == 1
 
         with(screen) {
             extension.sources
                 .groupBy { (it as CatalogueSource).lang }
                 .toSortedMap(compareBy { LocaleHelper.getSourceDisplayName(it, context) })
                 .forEach {
-                    preferenceCategory {
-                        if (isMultiSource) {
-                            title = LocaleHelper.getSourceDisplayName(it.key, context)
-                        }
-
+                    val preferenceBlock = {
                         it.value
                             .sortedWith(compareBy({ !it.isEnabled() }, { it.name }))
                             .forEach { source ->
                                 val sourcePrefs = mutableListOf<Preference>()
 
                                 val block: (@DSL SwitchPreferenceCompat).() -> Unit = {
-                                    key = getSourceKey(source.id)
-                                    title = if (isMultiSource) {
-                                        source.toString()
-                                    } else {
-                                        context.getString(R.string.enabled)
+                                    key = source.getPreferenceKey()
+                                    title = when {
+                                        isMultiSource && !isMultiLangSingleSource -> source.toString()
+                                        else -> LocaleHelper.getSourceDisplayName(it.key, context)
                                     }
                                     isPersistent = false
                                     isChecked = source.isEnabled()
@@ -146,7 +130,7 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
                                     }
 
                                     // React to enable/disable all changes
-                                    preferences.hiddenCatalogues().asFlow()
+                                    preferences.disabledSources().asFlow()
                                         .onEach {
                                             val enabled = source.isEnabled()
                                             isChecked = enabled
@@ -160,7 +144,9 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
                                     switchSettingsPreference {
                                         block()
                                         onSettingsClick = View.OnClickListener {
-                                            router.pushController(SourcePreferencesController(source.id).withFadeTransaction())
+                                            router.pushController(
+                                                SourcePreferencesController(source.id).withFadeTransaction()
+                                            )
                                         }
                                     }
                                 } else {
@@ -168,12 +154,20 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
                                 }
                             }
                     }
+
+                    if (isMultiSource && !isMultiLangSingleSource) {
+                        preferenceCategory {
+                            title = LocaleHelper.getSourceDisplayName(it.key, context)
+
+                            preferenceBlock()
+                        }
+                    } else {
+                        preferenceBlock()
+                    }
                 }
         }
 
-        binding.extensionPrefsRecycler.layoutManager = LinearLayoutManager(context)
-        binding.extensionPrefsRecycler.adapter = PreferenceGroupAdapter(screen)
-        binding.extensionPrefsRecycler.addItemDecoration(DividerItemDecoration(context, VERTICAL))
+        return PreferenceGroupAdapter(screen)
     }
 
     override fun onDestroyView(view: View) {
@@ -189,6 +183,7 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
         when (item.itemId) {
             R.id.action_enable_all -> toggleAllSources(true)
             R.id.action_disable_all -> toggleAllSources(false)
+            R.id.action_open_in_settings -> openInSettings()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -202,9 +197,9 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
     }
 
     private fun toggleSource(source: Source, enable: Boolean) {
-        val current = preferences.hiddenCatalogues().get()
+        val current = preferences.disabledSources().get()
 
-        preferences.hiddenCatalogues().set(
+        preferences.disabledSources().set(
             if (enable) {
                 current - source.id.toString()
             } else {
@@ -213,12 +208,15 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
         )
     }
 
-    private fun Source.isEnabled(): Boolean {
-        return id.toString() !in preferences.hiddenCatalogues().get()
+    private fun openInSettings() {
+        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+            data = Uri.fromParts("package", presenter.pkgName, null)
+        }
+        startActivity(intent)
     }
 
-    private fun getSourceKey(sourceId: Long): String {
-        return "source_$sourceId"
+    private fun Source.isEnabled(): Boolean {
+        return id.toString() !in preferences.disabledSources().get()
     }
 
     private fun getPreferenceThemeContext(): Context {

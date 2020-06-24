@@ -53,7 +53,7 @@
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fab"
         style="@style/Theme.Widget.FAB"
-        android:text="@string/action_resume"
+        android:text="@string/action_start"
         app:icon="@drawable/ic_play_arrow_24dp"
         app:layout_anchor="@id/recycler" />
 

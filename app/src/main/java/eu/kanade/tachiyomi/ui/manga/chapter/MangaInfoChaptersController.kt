@@ -15,18 +15,34 @@ import androidx.appcompat.view.ActionMode
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.MergeAdapter
 import com.google.android.material.snackbar.Snackbar
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.SelectableAdapter
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.model.Download
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.databinding.ChaptersControllerBinding
+import eu.kanade.tachiyomi.source.LocalSource
+import eu.kanade.tachiyomi.source.Source
+import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
+import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
+import eu.kanade.tachiyomi.ui.browse.migration.search.SearchController
+import eu.kanade.tachiyomi.ui.browse.source.browse.BrowseSourceController
+import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchController
+import eu.kanade.tachiyomi.ui.library.ChangeMangaCategoriesDialog
+import eu.kanade.tachiyomi.ui.library.LibraryController
+import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.main.offsetAppbarHeight
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
+import eu.kanade.tachiyomi.ui.recent.history.HistoryController
+import eu.kanade.tachiyomi.ui.recent.updates.UpdatesController
+import eu.kanade.tachiyomi.ui.webview.WebViewActivity
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.getCoordinates
@@ -39,19 +55,21 @@ import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.view.clicks
 import reactivecircus.flowbinding.swiperefreshlayout.refreshes
 import timber.log.Timber
+import uy.kohesive.injekt.injectLazy
 
-class ChaptersController :
-    NucleusController<ChaptersControllerBinding, ChaptersPresenter>(),
+class MangaInfoChaptersController(private val fromSource: Boolean = false) :
+    NucleusController<ChaptersControllerBinding, MangaInfoChaptersPresenter>(),
     ActionMode.Callback,
     FlexibleAdapter.OnItemClickListener,
     FlexibleAdapter.OnItemLongClickListener,
+    ChangeMangaCategoriesDialog.Listener,
     DownloadCustomChaptersDialog.Listener,
     DeleteChaptersDialog.Listener {
 
-    /**
-     * Adapter containing a list of chapters.
-     */
-    private var adapter: ChaptersAdapter? = null
+    private val preferences: PreferencesHelper by injectLazy()
+
+    private var headerAdapter: MangaInfoHeaderAdapter? = null
+    private var chaptersAdapter: ChaptersAdapter? = null
 
     /**
      * Action mode for multiple selection.
@@ -61,20 +79,22 @@ class ChaptersController :
     /**
      * Selected items. Used to restore selections after a rotation.
      */
-    private val selectedItems = mutableSetOf<ChapterItem>()
+    private val selectedChapters = mutableSetOf<ChapterItem>()
 
     private var lastClickPosition = -1
+
+    private var isRefreshingInfo = false
+    private var isRefreshingChapters = false
 
     init {
         setHasOptionsMenu(true)
         setOptionsMenuHidden(true)
     }
 
-    override fun createPresenter(): ChaptersPresenter {
+    override fun createPresenter(): MangaInfoChaptersPresenter {
         val ctrl = parentController as MangaController
-        return ChaptersPresenter(
-            ctrl.manga!!, ctrl.source!!,
-            ctrl.chapterCountRelay, ctrl.lastUpdateRelay, ctrl.mangaFavoriteRelay
+        return MangaInfoChaptersPresenter(
+            ctrl.manga!!, ctrl.source!!, ctrl.mangaFavoriteRelay
         )
     }
 
@@ -90,16 +110,20 @@ class ChaptersController :
         if (ctrl.manga == null || ctrl.source == null) return
 
         // Init RecyclerView and adapter
-        adapter = ChaptersAdapter(this, view.context)
+        headerAdapter = MangaInfoHeaderAdapter(this, fromSource)
+        chaptersAdapter = ChaptersAdapter(this, view.context)
 
-        binding.recycler.adapter = adapter
+        binding.recycler.adapter = MergeAdapter(headerAdapter, chaptersAdapter)
         binding.recycler.layoutManager = LinearLayoutManager(view.context)
         binding.recycler.addItemDecoration(DividerItemDecoration(view.context, DividerItemDecoration.VERTICAL))
         binding.recycler.setHasFixedSize(true)
-        adapter?.fastScroller = binding.fastScroller
+        chaptersAdapter?.fastScroller = binding.fastScroller
 
         binding.swipeRefresh.refreshes()
-            .onEach { fetchChaptersFromSource(manualFetch = true) }
+            .onEach {
+                fetchMangaInfoFromSource(manualFetch = true)
+                fetchChaptersFromSource(manualFetch = true)
+            }
             .launchIn(scope)
 
         binding.fab.clicks()
@@ -133,7 +157,8 @@ class ChaptersController :
     override fun onDestroyView(view: View) {
         destroyActionModeIfNeeded()
         binding.actionToolbar.destroy()
-        adapter = null
+        headerAdapter = null
+        chaptersAdapter = null
         super.onDestroyView(view)
     }
 
@@ -170,7 +195,6 @@ class ChaptersController :
         menuFilterBookmarked.isChecked = presenter.onlyBookmarked()
 
         val filterSet = presenter.onlyRead() || presenter.onlyUnread() || presenter.onlyDownloaded() || presenter.onlyBookmarked()
-
         if (filterSet) {
             val filterColor = activity!!.getResourceColor(R.attr.colorFilterActive)
             DrawableCompat.setTint(menu.findItem(R.id.action_filter).icon, filterColor)
@@ -178,15 +202,6 @@ class ChaptersController :
 
         // Only show remove filter option if there's a filter set.
         menuFilterEmpty.isVisible = filterSet
-
-        // Disable unread filter option if read filter is enabled.
-        if (presenter.onlyRead()) {
-            menuFilterUnread.isEnabled = false
-        }
-        // Disable read filter option if unread filter is enabled.
-        if (presenter.onlyUnread()) {
-            menuFilterRead.isEnabled = false
-        }
 
         // Display mode submenu
         if (presenter.manga.displayMode == Manga.DISPLAY_NAME) {
@@ -203,6 +218,7 @@ class ChaptersController :
             else -> throw NotImplementedError("Unimplemented sorting method")
         }
         menu.findItem(sortingItem).isChecked = true
+        menu.findItem(R.id.action_sort_descending).isChecked = presenter.manga.sortDescending()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -227,6 +243,10 @@ class ChaptersController :
             R.id.sort_by_upload_date -> {
                 item.isChecked = true
                 presenter.setSorting(Manga.SORTING_UPLOAD_DATE)
+            }
+            R.id.action_sort_descending -> {
+                presenter.reverseSortOrder()
+                activity?.invalidateOptionsMenu()
             }
 
             R.id.download_next, R.id.download_next_5, R.id.download_next_10,
@@ -257,9 +277,226 @@ class ChaptersController :
                 presenter.removeFilters()
                 activity?.invalidateOptionsMenu()
             }
-            R.id.action_sort -> presenter.revertSortOrder()
+
+            R.id.action_migrate -> migrateManga()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun updateRefreshing() {
+        binding.swipeRefresh.isRefreshing = isRefreshingInfo || isRefreshingChapters
+    }
+
+    // Manga info - start
+
+    /**
+     * Check if manga is initialized.
+     * If true update header with manga information,
+     * if false fetch manga information
+     *
+     * @param manga manga object containing information about manga.
+     * @param source the source of the manga.
+     */
+    fun onNextMangaInfo(manga: Manga, source: Source) {
+        if (manga.initialized) {
+            // Update view.
+            headerAdapter?.update(manga, source)
+        } else {
+            // Initialize manga.
+            fetchMangaInfoFromSource()
+        }
+    }
+
+    /**
+     * Start fetching manga information from source.
+     */
+    private fun fetchMangaInfoFromSource(manualFetch: Boolean = false) {
+        isRefreshingInfo = true
+        updateRefreshing()
+
+        // Call presenter and start fetching manga information
+        presenter.fetchMangaFromSource(manualFetch)
+    }
+
+    fun onFetchMangaInfoDone() {
+        isRefreshingInfo = false
+        updateRefreshing()
+    }
+
+    fun onFetchMangaInfoError(error: Throwable) {
+        isRefreshingInfo = false
+        updateRefreshing()
+        activity?.toast(error.message)
+    }
+
+    fun openMangaInWebView() {
+        val source = presenter.source as? HttpSource ?: return
+
+        val url = try {
+            source.mangaDetailsRequest(presenter.manga).url.toString()
+        } catch (e: Exception) {
+            return
+        }
+
+        val activity = activity ?: return
+        val intent = WebViewActivity.newIntent(activity, url, source.id, presenter.manga.title)
+        startActivity(intent)
+    }
+
+    fun shareManga() {
+        val context = view?.context ?: return
+
+        val source = presenter.source as? HttpSource ?: return
+        try {
+            val url = source.mangaDetailsRequest(presenter.manga).url.toString()
+            val intent = Intent(Intent.ACTION_SEND).apply {
+                type = "text/plain"
+                putExtra(Intent.EXTRA_TEXT, url)
+            }
+            startActivity(Intent.createChooser(intent, context.getString(R.string.action_share)))
+        } catch (e: Exception) {
+            context.toast(e.message)
+        }
+    }
+
+    fun onFavoriteClick() {
+        val manga = presenter.manga
+
+        if (manga.favorite) {
+            toggleFavorite()
+            activity?.toast(activity?.getString(R.string.manga_removed_library))
+        } else {
+            val categories = presenter.getCategories()
+            val defaultCategoryId = preferences.defaultCategory()
+            val defaultCategory = categories.find { it.id == defaultCategoryId }
+
+            when {
+                // Default category set
+                defaultCategory != null -> {
+                    toggleFavorite()
+                    presenter.moveMangaToCategory(manga, defaultCategory)
+                    activity?.toast(activity?.getString(R.string.manga_added_library))
+                }
+
+                // Automatic 'Default' or no categories
+                defaultCategoryId == 0 || categories.isEmpty() -> {
+                    toggleFavorite()
+                    presenter.moveMangaToCategory(manga, null)
+                    activity?.toast(activity?.getString(R.string.manga_added_library))
+                }
+
+                // Choose a category
+                else -> {
+                    val ids = presenter.getMangaCategoryIds(manga)
+                    val preselected = ids.mapNotNull { id ->
+                        categories.indexOfFirst { it.id == id }.takeIf { it != -1 }
+                    }.toTypedArray()
+
+                    ChangeMangaCategoriesDialog(this, listOf(manga), categories, preselected)
+                        .showDialog(router)
+                }
+            }
+        }
+    }
+
+    /**
+     * Toggles the favorite status and asks for confirmation to delete downloaded chapters.
+     */
+    private fun toggleFavorite() {
+        val view = view
+
+        val isNowFavorite = presenter.toggleFavorite()
+        if (view != null && !isNowFavorite && presenter.hasDownloads()) {
+            view.snack(view.context.getString(R.string.delete_downloads_for_manga)) {
+                setAction(R.string.action_delete) {
+                    presenter.deleteDownloads()
+                }
+            }
+        }
+
+        headerAdapter?.notifyDataSetChanged()
+    }
+
+    fun onCategoriesClick() {
+        val manga = presenter.manga
+        val categories = presenter.getCategories()
+
+        val ids = presenter.getMangaCategoryIds(manga)
+        val preselected = ids.mapNotNull { id ->
+            categories.indexOfFirst { it.id == id }.takeIf { it != -1 }
+        }.toTypedArray()
+
+        ChangeMangaCategoriesDialog(this, listOf(manga), categories, preselected)
+            .showDialog(router)
+    }
+
+    override fun updateCategoriesForMangas(mangas: List<Manga>, categories: List<Category>) {
+        val manga = mangas.firstOrNull() ?: return
+
+        if (!manga.favorite) {
+            toggleFavorite()
+            activity?.toast(activity?.getString(R.string.manga_added_library))
+        }
+
+        presenter.moveMangaToCategories(manga, categories)
+    }
+
+    /**
+     * Perform a global search using the provided query.
+     *
+     * @param query the search query to pass to the search controller
+     */
+    fun performGlobalSearch(query: String) {
+        val router = parentController?.router ?: return
+        router.pushController(GlobalSearchController(query).withFadeTransaction())
+    }
+
+    /**
+     * Perform a search using the provided query.
+     *
+     * @param query the search query to the parent controller
+     */
+    fun performSearch(query: String) {
+        val router = parentController?.router ?: return
+
+        if (router.backstackSize < 2) {
+            return
+        }
+
+        when (val previousController = router.backstack[router.backstackSize - 2].controller()) {
+            is LibraryController -> {
+                router.handleBack()
+                previousController.search(query)
+            }
+            is UpdatesController,
+            is HistoryController -> {
+                // Manually navigate to LibraryController
+                router.handleBack()
+                (router.activity as MainActivity).setSelectedNavItem(R.id.nav_library)
+                val controller = router.getControllerWithTag(R.id.nav_library.toString()) as LibraryController
+                controller.search(query)
+            }
+            is BrowseSourceController -> {
+                router.handleBack()
+                previousController.searchWithQuery(query)
+            }
+        }
+    }
+
+    // Manga info - end
+
+    // Chapters list - start
+
+    /**
+     * Initiates source migration for the specific manga.
+     */
+    private fun migrateManga() {
+        val controller =
+            SearchController(
+                presenter.manga
+            )
+        controller.targetController = this
+        parentController!!.router.pushController(controller.withFadeTransaction())
     }
 
     fun onNextChapters(chapters: List<ChapterItem>) {
@@ -269,13 +506,16 @@ class ChaptersController :
             fetchChaptersFromSource()
         }
 
-        val adapter = adapter ?: return
+        val header = headerAdapter ?: return
+        header.setNumChapters(chapters.size)
+
+        val adapter = chaptersAdapter ?: return
         adapter.updateDataSet(chapters)
 
-        if (selectedItems.isNotEmpty()) {
+        if (selectedChapters.isNotEmpty()) {
             adapter.clearSelection() // we need to start from a clean state, index may have changed
             createActionModeIfNeeded()
-            selectedItems.forEach { item ->
+            selectedChapters.forEach { item ->
                 val position = adapter.indexOf(item)
                 if (position != -1 && !adapter.isSelected(position)) {
                     adapter.toggleSelection(position)
@@ -283,19 +523,28 @@ class ChaptersController :
             }
             actionMode?.invalidate()
         }
+
+        val context = view?.context
+        if (context != null && chapters.any { it.read }) {
+            binding.fab.text = context.getString(R.string.action_resume)
+        }
     }
 
     private fun fetchChaptersFromSource(manualFetch: Boolean = false) {
-        binding.swipeRefresh.isRefreshing = true
+        isRefreshingChapters = true
+        updateRefreshing()
+
         presenter.fetchChaptersFromSource(manualFetch)
     }
 
     fun onFetchChaptersDone() {
-        binding.swipeRefresh.isRefreshing = false
+        isRefreshingChapters = false
+        updateRefreshing()
     }
 
     fun onFetchChaptersError(error: Throwable) {
-        binding.swipeRefresh.isRefreshing = false
+        isRefreshingChapters = false
+        updateRefreshing()
         activity?.toast(error.message)
     }
 
@@ -317,7 +566,7 @@ class ChaptersController :
     }
 
     override fun onItemClick(view: View?, position: Int): Boolean {
-        val adapter = adapter ?: return false
+        val adapter = chaptersAdapter ?: return false
         val item = adapter.getItem(position) ?: return false
         return if (actionMode != null && adapter.mode == SelectableAdapter.Mode.MULTI) {
             lastClickPosition = position
@@ -342,36 +591,36 @@ class ChaptersController :
             else -> setSelection(position)
         }
         lastClickPosition = position
-        adapter?.notifyDataSetChanged()
+        chaptersAdapter?.notifyDataSetChanged()
     }
 
     // SELECTIONS & ACTION MODE
 
     private fun toggleSelection(position: Int) {
-        val adapter = adapter ?: return
+        val adapter = chaptersAdapter ?: return
         val item = adapter.getItem(position) ?: return
         adapter.toggleSelection(position)
         adapter.notifyDataSetChanged()
         if (adapter.isSelected(position)) {
-            selectedItems.add(item)
+            selectedChapters.add(item)
         } else {
-            selectedItems.remove(item)
+            selectedChapters.remove(item)
         }
         actionMode?.invalidate()
     }
 
     private fun setSelection(position: Int) {
-        val adapter = adapter ?: return
+        val adapter = chaptersAdapter ?: return
         val item = adapter.getItem(position) ?: return
         if (!adapter.isSelected(position)) {
             adapter.toggleSelection(position)
-            selectedItems.add(item)
+            selectedChapters.add(item)
             actionMode?.invalidate()
         }
     }
 
     private fun getSelectedChapters(): List<ChapterItem> {
-        val adapter = adapter ?: return emptyList()
+        val adapter = chaptersAdapter ?: return emptyList()
         return adapter.selectedPositions.mapNotNull { adapter.getItem(it) }
     }
 
@@ -392,21 +641,22 @@ class ChaptersController :
 
     override fun onCreateActionMode(mode: ActionMode, menu: Menu): Boolean {
         mode.menuInflater.inflate(R.menu.generic_selection, menu)
-        adapter?.mode = SelectableAdapter.Mode.MULTI
+        chaptersAdapter?.mode = SelectableAdapter.Mode.MULTI
         return true
     }
 
     override fun onPrepareActionMode(mode: ActionMode, menu: Menu): Boolean {
-        val count = adapter?.selectedItemCount ?: 0
+        val count = chaptersAdapter?.selectedItemCount ?: 0
         if (count == 0) {
             // Destroy action mode if there are no items selected.
             destroyActionModeIfNeeded()
         } else {
             mode.title = count.toString()
 
+            val isLocalSource = presenter.source.id == LocalSource.ID
             val chapters = getSelectedChapters()
-            binding.actionToolbar.findItem(R.id.action_download)?.isVisible = chapters.any { !it.isDownloaded }
-            binding.actionToolbar.findItem(R.id.action_delete)?.isVisible = chapters.any { it.isDownloaded }
+            binding.actionToolbar.findItem(R.id.action_download)?.isVisible = !isLocalSource && chapters.any { !it.isDownloaded }
+            binding.actionToolbar.findItem(R.id.action_delete)?.isVisible = !isLocalSource && chapters.any { it.isDownloaded }
             binding.actionToolbar.findItem(R.id.action_bookmark)?.isVisible = chapters.any { !it.chapter.bookmark }
             binding.actionToolbar.findItem(R.id.action_remove_bookmark)?.isVisible = chapters.all { it.chapter.bookmark }
             binding.actionToolbar.findItem(R.id.action_mark_as_read)?.isVisible = chapters.any { !it.chapter.read }
@@ -441,9 +691,9 @@ class ChaptersController :
 
     override fun onDestroyActionMode(mode: ActionMode) {
         binding.actionToolbar.hide()
-        adapter?.mode = SelectableAdapter.Mode.SINGLE
-        adapter?.clearSelection()
-        selectedItems.clear()
+        chaptersAdapter?.mode = SelectableAdapter.Mode.SINGLE
+        chaptersAdapter?.clearSelection()
+        selectedChapters.clear()
         actionMode = null
 
         // TODO: there seems to be a bug in MaterialComponents where the [ExtendedFloatingActionButton]
@@ -460,20 +710,20 @@ class ChaptersController :
     // SELECTION MODE ACTIONS
 
     private fun selectAll() {
-        val adapter = adapter ?: return
+        val adapter = chaptersAdapter ?: return
         adapter.selectAll()
-        selectedItems.addAll(adapter.items)
+        selectedChapters.addAll(adapter.items)
         actionMode?.invalidate()
     }
 
     private fun selectInverse() {
-        val adapter = adapter ?: return
+        val adapter = chaptersAdapter ?: return
 
-        selectedItems.clear()
+        selectedChapters.clear()
         for (i in 0..adapter.itemCount) {
             adapter.toggleSelection(i)
         }
-        selectedItems.addAll(adapter.selectedPositions.mapNotNull { adapter.getItem(it) })
+        selectedChapters.addAll(adapter.selectedPositions.mapNotNull { adapter.getItem(it) })
 
         actionMode?.invalidate()
         adapter.notifyDataSetChanged()
@@ -514,7 +764,7 @@ class ChaptersController :
     }
 
     private fun markPreviousAsRead(chapters: List<ChapterItem>) {
-        val adapter = adapter ?: return
+        val adapter = chaptersAdapter ?: return
         val prevChapters = if (presenter.sortDescending()) adapter.items.reversed() else adapter.items
         val chapterPos = prevChapters.indexOf(chapters.last())
         if (chapterPos != -1) {
@@ -538,9 +788,9 @@ class ChaptersController :
     fun onChaptersDeleted(chapters: List<ChapterItem>) {
         // this is needed so the downloaded text gets removed from the item
         chapters.forEach {
-            adapter?.updateItem(it)
+            chaptersAdapter?.updateItem(it)
         }
-        adapter?.notifyDataSetChanged()
+        chaptersAdapter?.notifyDataSetChanged()
     }
 
     fun onChaptersDeletedError(error: Throwable) {
@@ -551,7 +801,7 @@ class ChaptersController :
 
     private fun setDisplayMode(id: Int) {
         presenter.setDisplayMode(id)
-        adapter?.notifyDataSetChanged()
+        chaptersAdapter?.notifyDataSetChanged()
     }
 
     private fun getUnreadChaptersSorted() = presenter.chapters
@@ -588,4 +838,6 @@ class ChaptersController :
             downloadChapters(chaptersToDownload)
         }
     }
+
+    // Chapters list - end
 }

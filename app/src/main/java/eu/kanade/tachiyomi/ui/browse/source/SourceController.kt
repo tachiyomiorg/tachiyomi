@@ -120,7 +120,7 @@ class SourceController :
     private fun onItemClick(position: Int) {
         val item = adapter?.getItem(position) as? SourceItem ?: return
         val source = item.source
-        openCatalogue(source, BrowseSourceController(source))
+        openSource(source, BrowseSourceController(source))
     }
 
     override fun onItemLongClick(position: Int) {
@@ -132,11 +132,11 @@ class SourceController :
         val items = mutableListOf(
             Pair(
                 activity.getString(if (isPinned) R.string.action_unpin else R.string.action_pin),
-                { pinCatalogue(item.source, isPinned) }
+                { pinSource(item.source, isPinned) }
             )
         )
         if (item.source !is LocalSource) {
-            items.add(Pair(activity.getString(R.string.action_hide), { hideCatalogue(item.source) }))
+            items.add(Pair(activity.getString(R.string.action_disable), { disableSource(item.source) }))
         }
 
         MaterialDialog(activity)
@@ -151,19 +151,19 @@ class SourceController :
             .show()
     }
 
-    private fun hideCatalogue(source: Source) {
-        val current = preferences.hiddenCatalogues().get()
-        preferences.hiddenCatalogues().set(current + source.id.toString())
+    private fun disableSource(source: Source) {
+        val current = preferences.disabledSources().get()
+        preferences.disabledSources().set(current + source.id.toString())
 
         presenter.updateSources()
     }
 
-    private fun pinCatalogue(source: Source, isPinned: Boolean) {
-        val current = preferences.pinnedCatalogues().get()
+    private fun pinSource(source: Source, isPinned: Boolean) {
+        val current = preferences.pinnedSources().get()
         if (isPinned) {
-            preferences.pinnedCatalogues().set(current - source.id.toString())
+            preferences.pinnedSources().set(current - source.id.toString())
         } else {
-            preferences.pinnedCatalogues().set(current + source.id.toString())
+            preferences.pinnedSources().set(current + source.id.toString())
         }
 
         presenter.updateSources()
@@ -181,14 +181,14 @@ class SourceController :
      */
     override fun onLatestClick(position: Int) {
         val item = adapter?.getItem(position) as? SourceItem ?: return
-        openCatalogue(item.source, LatestUpdatesController(item.source))
+        openSource(item.source, LatestUpdatesController(item.source))
     }
 
     /**
      * Opens a catalogue with the given controller.
      */
-    private fun openCatalogue(source: CatalogueSource, controller: BrowseSourceController) {
-        preferences.lastUsedCatalogueSource().set(source.id)
+    private fun openSource(source: CatalogueSource, controller: BrowseSourceController) {
+        preferences.lastUsedSource().set(source.id)
         parentController!!.router.pushController(controller.withFadeTransaction())
     }
 

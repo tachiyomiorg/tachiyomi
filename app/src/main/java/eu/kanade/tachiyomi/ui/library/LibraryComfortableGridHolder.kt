@@ -9,6 +9,7 @@ import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.util.isLocal
 import eu.kanade.tachiyomi.util.view.visibleIf
+import kotlinx.android.synthetic.main.source_comfortable_grid_item.badges
 import kotlinx.android.synthetic.main.source_comfortable_grid_item.card
 import kotlinx.android.synthetic.main.source_comfortable_grid_item.download_text
 import kotlinx.android.synthetic.main.source_comfortable_grid_item.local_text
@@ -28,7 +29,7 @@ import kotlinx.android.synthetic.main.source_comfortable_grid_item.unread_text
 class LibraryComfortableGridHolder(
     private val view: View,
     adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>
-) : LibraryGridHolder(view, adapter) {
+) : LibraryCompactGridHolder(view, adapter) {
 
     /**
      * Method called from [LibraryCategoryAdapter.onBindViewHolder]. It updates the data for this
@@ -39,6 +40,9 @@ class LibraryComfortableGridHolder(
     override fun onSetValues(item: LibraryItem) {
         // Update the title of the manga.
         title.text = item.manga.title
+
+        // For rounded corners
+        badges.clipToOutline = true
 
         // Update the unread count and its visibility.
         with(unread_text) {
@@ -53,7 +57,7 @@ class LibraryComfortableGridHolder(
         // set local visibility if its local manga
         local_text.visibleIf { item.manga.isLocal() }
 
-        // Setting this via XML doesn't work
+        // For rounded corners
         card.clipToOutline = true
 
         // Update the cover.

@@ -11,7 +11,7 @@ import java.text.DecimalFormatSymbols
 import uy.kohesive.injekt.injectLazy
 
 class ChaptersAdapter(
-    controller: ChaptersController,
+    controller: MangaInfoChaptersController,
     context: Context
 ) : FlexibleAdapter<ChapterItem>(null, controller, true) {
 

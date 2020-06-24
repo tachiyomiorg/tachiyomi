@@ -135,13 +135,13 @@ class PreferencesHelper(val context: Context) {
 
     fun autoUpdateTrack() = prefs.getBoolean(Keys.autoUpdateTrack, true)
 
-    fun lastUsedCatalogueSource() = flowPrefs.getLong(Keys.lastUsedCatalogueSource, -1)
+    fun lastUsedSource() = flowPrefs.getLong(Keys.lastUsedSource, -1)
 
     fun lastUsedCategory() = flowPrefs.getInt(Keys.lastUsedCategory, 0)
 
     fun lastVersionCode() = flowPrefs.getInt("last_version_code", 0)
 
-    fun catalogueDisplayMode() = flowPrefs.getEnum(Keys.catalogueDisplayMode, DisplayMode.COMPACT_GRID)
+    fun sourceDisplayMode() = flowPrefs.getEnum(Keys.sourceDisplayMode, DisplayMode.COMPACT_GRID)
 
     fun enabledLanguages() = flowPrefs.getStringSet(Keys.enabledLanguages, setOf("en", Locale.getDefault().language))
 
@@ -215,9 +215,9 @@ class PreferencesHelper(val context: Context) {
 
     fun searchPinnedSourcesOnly() = prefs.getBoolean(Keys.searchPinnedSourcesOnly, false)
 
-    fun hiddenCatalogues() = flowPrefs.getStringSet("hidden_catalogues", emptySet())
+    fun disabledSources() = flowPrefs.getStringSet("hidden_catalogues", emptySet())
 
-    fun pinnedCatalogues() = flowPrefs.getStringSet("pinned_catalogues", emptySet())
+    fun pinnedSources() = flowPrefs.getStringSet("pinned_catalogues", emptySet())
 
     fun downloadNew() = flowPrefs.getBoolean(Keys.downloadNew, false)
 
@@ -236,4 +236,6 @@ class PreferencesHelper(val context: Context) {
     fun trustedSignatures() = flowPrefs.getStringSet("trusted_signatures", emptySet())
 
     fun steadyChapterDownload() = prefs.getBoolean(Keys.steadyChapterDownload, false)
+
+    fun enableDoh() = prefs.getBoolean(Keys.enableDoh, false)
 }

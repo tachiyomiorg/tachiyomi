@@ -2,15 +2,15 @@
 
 package eu.kanade.tachiyomi.util.view
 
-import android.graphics.Color
 import android.graphics.Point
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.TextView
 import androidx.annotation.MenuRes
+import androidx.annotation.StringRes
 import androidx.appcompat.widget.PopupMenu
+import androidx.appcompat.widget.TooltipCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
@@ -35,11 +35,18 @@ fun View.getCoordinates() = Point((left + right) / 2, (top + bottom) / 2)
  */
 inline fun View.snack(message: String, length: Int = Snackbar.LENGTH_LONG, f: Snackbar.() -> Unit = {}): Snackbar {
     val snack = Snackbar.make(this, message, length)
-    val textView: TextView = snack.view.findViewById(com.google.android.material.R.id.snackbar_text)
-    textView.setTextColor(Color.WHITE)
     snack.f()
     snack.show()
     return snack
+}
+
+/**
+ * Adds a tooltip shown on long press.
+ *
+ * @param stringRes String resource for tooltip.
+ */
+inline fun View.setTooltip(@StringRes stringRes: Int) {
+    TooltipCompat.setTooltipText(this, context.getString(stringRes))
 }
 
 /**
