@@ -301,6 +301,11 @@ class MangaInfoChaptersController(private val fromSource: Boolean = false) :
         if (manga.initialized) {
             // Update view.
             headerAdapter?.update(manga, source)
+
+            // Skips directly to chapters list by default if navigated to from the library
+            if (!fromSource) {
+                (binding.recycler.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(1, 0)
+            }
         } else {
             // Initialize manga.
             fetchMangaInfoFromSource()
