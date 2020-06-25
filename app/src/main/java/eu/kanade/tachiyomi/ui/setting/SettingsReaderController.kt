@@ -5,6 +5,7 @@ import androidx.preference.PreferenceScreen
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.data.preference.PreferenceValues.TappingInvertMode
+import eu.kanade.tachiyomi.data.preference.asImmediateFlow
 import eu.kanade.tachiyomi.util.preference.defaultValue
 import eu.kanade.tachiyomi.util.preference.entriesRes
 import eu.kanade.tachiyomi.util.preference.intListPreference
@@ -14,6 +15,7 @@ import eu.kanade.tachiyomi.util.preference.summaryRes
 import eu.kanade.tachiyomi.util.preference.switchPreference
 import eu.kanade.tachiyomi.util.preference.titleRes
 import eu.kanade.tachiyomi.util.system.hasDisplayCutout
+import kotlinx.coroutines.flow.launchIn
 
 class SettingsReaderController : SettingsController() {
 
@@ -209,7 +211,9 @@ class SettingsReaderController : SettingsController() {
                 )
                 defaultValue = TappingInvertMode.NONE.name
                 summary = "%s"
-            }.apply { dependency = Keys.readWithTapping }
+
+                preferences.readWithTapping().asImmediateFlow { isVisible = it }.launchIn(scope)
+            }
             switchPreference {
                 key = Keys.readWithLongTap
                 titleRes = R.string.pref_read_with_long_tap
