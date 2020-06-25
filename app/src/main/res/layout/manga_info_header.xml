@@ -252,22 +252,4 @@
 
     </FrameLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:paddingTop="16dp"
-        android:paddingBottom="8dp">
-
-        <TextView
-            android:id="@+id/chapters_label"
-            style="@style/TextAppearance.Regular.SubHeading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/chapters"
-            android:textIsSelectable="false" />
-
-    </RelativeLayout>
-
 </LinearLayout>

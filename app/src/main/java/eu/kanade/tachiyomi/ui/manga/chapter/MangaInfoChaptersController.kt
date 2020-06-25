@@ -68,7 +68,8 @@ class MangaInfoChaptersController(private val fromSource: Boolean = false) :
 
     private val preferences: PreferencesHelper by injectLazy()
 
-    private var headerAdapter: MangaInfoHeaderAdapter? = null
+    private var mangaInfoAdapter: MangaInfoHeaderAdapter? = null
+    private var chaptersHeaderAdapter: MangaChaptersHeaderAdapter? = null
     private var chaptersAdapter: ChaptersAdapter? = null
 
     /**
@@ -110,10 +111,11 @@ class MangaInfoChaptersController(private val fromSource: Boolean = false) :
         if (ctrl.manga == null || ctrl.source == null) return
 
         // Init RecyclerView and adapter
-        headerAdapter = MangaInfoHeaderAdapter(this, fromSource)
+        mangaInfoAdapter = MangaInfoHeaderAdapter(this, fromSource)
+        chaptersHeaderAdapter = MangaChaptersHeaderAdapter()
         chaptersAdapter = ChaptersAdapter(this, view.context)
 
-        binding.recycler.adapter = MergeAdapter(headerAdapter, chaptersAdapter)
+        binding.recycler.adapter = MergeAdapter(mangaInfoAdapter, chaptersHeaderAdapter, chaptersAdapter)
         binding.recycler.layoutManager = LinearLayoutManager(view.context)
         binding.recycler.addItemDecoration(DividerItemDecoration(view.context, DividerItemDecoration.VERTICAL))
         binding.recycler.setHasFixedSize(true)
@@ -157,7 +159,8 @@ class MangaInfoChaptersController(private val fromSource: Boolean = false) :
     override fun onDestroyView(view: View) {
         destroyActionModeIfNeeded()
         binding.actionToolbar.destroy()
-        headerAdapter = null
+        mangaInfoAdapter = null
+        chaptersHeaderAdapter = null
         chaptersAdapter = null
         super.onDestroyView(view)
     }
@@ -300,7 +303,7 @@ class MangaInfoChaptersController(private val fromSource: Boolean = false) :
     fun onNextMangaInfo(manga: Manga, source: Source) {
         if (manga.initialized) {
             // Update view.
-            headerAdapter?.update(manga, source)
+            mangaInfoAdapter?.update(manga, source)
 
             // Skips directly to chapters list by default if navigated to from the library
             if (!fromSource) {
@@ -419,7 +422,7 @@ class MangaInfoChaptersController(private val fromSource: Boolean = false) :
             }
         }
 
-        headerAdapter?.notifyDataSetChanged()
+        mangaInfoAdapter?.notifyDataSetChanged()
     }
 
     fun onCategoriesClick() {
@@ -511,8 +514,8 @@ class MangaInfoChaptersController(private val fromSource: Boolean = false) :
             fetchChaptersFromSource()
         }
 
-        val header = headerAdapter ?: return
-        header.setNumChapters(chapters.size)
+        val chaptersHeader = chaptersHeaderAdapter ?: return
+        chaptersHeader.setNumChapters(chapters.size)
 
         val adapter = chaptersAdapter ?: return
         adapter.updateDataSet(chapters)
