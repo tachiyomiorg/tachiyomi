@@ -72,6 +72,8 @@ class MangaInfoChaptersController(private val fromSource: Boolean = false) :
     private var chaptersHeaderAdapter: MangaChaptersHeaderAdapter? = null
     private var chaptersAdapter: ChaptersAdapter? = null
 
+    private var skippedInfoOnOpen: Boolean = false
+
     /**
      * Action mode for multiple selection.
      */
@@ -305,9 +307,10 @@ class MangaInfoChaptersController(private val fromSource: Boolean = false) :
             // Update view.
             mangaInfoAdapter?.update(manga, source)
 
-            // Skips directly to chapters list by default if navigated to from the library
-            if (!fromSource) {
+            // Skips directly to chapters list if navigated to from the library
+            if (!fromSource && !skippedInfoOnOpen && preferences.jumpToChapters()) {
                 (binding.recycler.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(1, 0)
+                skippedInfoOnOpen = true
             }
         } else {
             // Initialize manga.

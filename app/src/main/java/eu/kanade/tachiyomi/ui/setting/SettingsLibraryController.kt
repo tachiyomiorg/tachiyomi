@@ -72,6 +72,11 @@ class SettingsLibraryController : SettingsController() {
                     }
                     .launchIn(scope)
             }
+            switchPreference {
+                key = Keys.jumpToChapters
+                titleRes = R.string.pref_jump_to_chapters
+                defaultValue = false
+            }
         }
 
         preferenceCategory {

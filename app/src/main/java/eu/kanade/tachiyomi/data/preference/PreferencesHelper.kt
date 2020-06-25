@@ -133,6 +133,8 @@ class PreferencesHelper(val context: Context) {
 
     fun landscapeColumns() = flowPrefs.getInt(Keys.landscapeColumns, 0)
 
+    fun jumpToChapters() = prefs.getBoolean(Keys.jumpToChapters, false)
+
     fun updateOnlyNonCompleted() = prefs.getBoolean(Keys.updateOnlyNonCompleted, false)
 
     fun autoUpdateTrack() = prefs.getBoolean(Keys.autoUpdateTrack, true)
