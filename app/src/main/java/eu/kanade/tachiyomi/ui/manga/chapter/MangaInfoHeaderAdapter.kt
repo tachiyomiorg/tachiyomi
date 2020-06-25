@@ -185,7 +185,7 @@ class MangaInfoHeaderAdapter(
 
             // Update author TextView.
             binding.mangaAuthor.text = if (manga.author.isNullOrBlank()) {
-                view.context.getString(R.string.unknown)
+                view.context.getString(R.string.unknown_author)
             } else {
                 manga.author
             }
@@ -217,7 +217,7 @@ class MangaInfoHeaderAdapter(
                     SManga.ONGOING -> R.string.ongoing
                     SManga.COMPLETED -> R.string.completed
                     SManga.LICENSED -> R.string.licensed
-                    else -> R.string.unknown
+                    else -> R.string.unknown_status
                 }
             )
 

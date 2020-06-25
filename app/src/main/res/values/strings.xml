@@ -457,6 +457,8 @@
     <string name="description">Description</string>
     <string name="ongoing">Ongoing</string>
     <string name="unknown">Unknown</string>
+    <string name="unknown_author">Unknown author</string>
+    <string name="unknown_status">Unknown status</string>
     <string name="licensed">Licensed</string>
     <string name="add_to_library">Add to library</string>
     <string name="in_library">In library</string>
