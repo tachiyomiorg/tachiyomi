@@ -72,8 +72,6 @@ class MangaInfoChaptersController(private val fromSource: Boolean = false) :
     private var chaptersHeaderAdapter: MangaChaptersHeaderAdapter? = null
     private var chaptersAdapter: ChaptersAdapter? = null
 
-    private var skippedInfoOnOpen: Boolean = false
-
     /**
      * Action mode for multiple selection.
      */
@@ -122,6 +120,13 @@ class MangaInfoChaptersController(private val fromSource: Boolean = false) :
         binding.recycler.addItemDecoration(DividerItemDecoration(view.context, DividerItemDecoration.VERTICAL))
         binding.recycler.setHasFixedSize(true)
         chaptersAdapter?.fastScroller = binding.fastScroller
+
+        // Skips directly to chapters list if navigated to from the library
+        binding.recycler.post {
+            if (!fromSource && preferences.jumpToChapters()) {
+                (binding.recycler.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(1, 0)
+            }
+        }
 
         binding.swipeRefresh.refreshes()
             .onEach {
@@ -306,12 +311,6 @@ class MangaInfoChaptersController(private val fromSource: Boolean = false) :
         if (manga.initialized) {
             // Update view.
             mangaInfoAdapter?.update(manga, source)
-
-            // Skips directly to chapters list if navigated to from the library
-            if (!fromSource && !skippedInfoOnOpen && preferences.jumpToChapters()) {
-                (binding.recycler.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(1, 0)
-                skippedInfoOnOpen = true
-            }
         } else {
             // Initialize manga.
             fetchMangaInfoFromSource()
