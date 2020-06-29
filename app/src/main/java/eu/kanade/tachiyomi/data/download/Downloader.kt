@@ -110,6 +110,8 @@ class Downloader(
             return false
         }
 
+        notifier.paused = false
+
         if (!subscriptions.hasSubscriptions()) {
             initializeSubscriptions()
         }
