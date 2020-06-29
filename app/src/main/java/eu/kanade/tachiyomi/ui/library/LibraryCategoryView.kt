@@ -72,7 +72,8 @@ class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: Att
     fun onCreate(controller: LibraryController) {
         this.controller = controller
 
-        recycler = if (preferences.libraryDisplayMode().get() == DisplayMode.LIST) {
+        recycler = if (preferences.libraryDisplayMode().get() == DisplayMode.LIST &&
+                !preferences.categorisedDisplaySettings().get()) {
             (swipe_refresh.inflate(R.layout.library_list_recycler) as AutofitRecyclerView).apply {
                 spanCount = 1
             }

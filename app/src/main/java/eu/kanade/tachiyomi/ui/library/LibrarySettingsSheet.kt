@@ -21,8 +21,8 @@ class LibrarySettingsSheet(
      * adjusts selected button to match real state.
      * @param currentCategory ID of currently shown category
      */
-    fun show(currentCategory: Int) {
-        display.currentCategory = currentCategory
+    fun show(currentCategory: Int?) {
+        display.currentCategory = currentCategory ?: -1
         display.adjustDisplaySelection()
         super.show()
     }

@@ -23,8 +23,8 @@ import eu.kanade.tachiyomi.util.system.toast
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.view.clicks
-import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import uy.kohesive.injekt.injectLazy
 
 /**
  * Controller to manage the categories for the users' library.
@@ -42,7 +42,7 @@ class CategoryController :
     /**
      * Preferences helper necessary to apply changes.
      */
-     val preferences: PreferencesHelper = Injekt.get()
+    private val preferences: PreferencesHelper by injectLazy()
 
     /**
      * Object used to show ActionMode toolbar.
@@ -187,8 +187,12 @@ class CategoryController :
 
         when (item.itemId) {
             R.id.action_delete -> {
-                adapter.selectedPositions.forEach {
-                    adapter.getItem(it)?.category?.id?.let { it1 -> preferences.getCategoryDisplayPreference(it1).delete() }
+                // Delete entry from category display preferences too.
+                adapter.selectedPositions.forEach { categoryPosition ->
+                    adapter.getItem(categoryPosition)?.category?.id?.let {
+                        categoryId ->
+                        preferences.getCategoryDisplayPreference(categoryId).delete()
+                    }
                 }
 
                 undoHelper = UndoHelper(adapter, this)

@@ -12,7 +12,6 @@ import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.library.LibraryUpdateJob
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
-import eu.kanade.tachiyomi.data.preference.PreferenceValues
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.asImmediateFlow
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
@@ -110,16 +109,9 @@ class SettingsLibraryController : SettingsController() {
             }
 
             switchPreference {
-                key = Keys.categorisedDisplaySettings
-                titleRes = R.string.categorised_display_settings
+                key = Keys.categorizedDisplay
+                titleRes = R.string.categorized_display_settings
                 defaultValue = false
-
-                onChange {
-                    // Set default value to global settings. This will ensure,
-                    // that default library settings will not mess anything up.
-                    preferences.libraryDisplayMode().set(PreferenceValues.DisplayMode.COMPACT_GRID)
-                    true
-                }
             }
         }
 

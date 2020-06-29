@@ -247,7 +247,9 @@ class LibraryController(
     }
 
     fun showSettingsSheet() {
-        adapter?.categories?.get(binding.libraryPager.currentItem)?.id?.let { settingsSheet?.show(it) }
+        adapter?.categories?.get(binding.libraryPager.currentItem)?.let { category ->
+            settingsSheet?.show(category.id)
+        }
     }
 
     fun onNextLibraryUpdate(categories: List<Category>, mangaMap: Map<Int, List<LibraryItem>>) {
