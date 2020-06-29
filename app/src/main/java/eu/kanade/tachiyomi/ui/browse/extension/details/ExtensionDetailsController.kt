@@ -19,10 +19,10 @@ import androidx.preference.PreferenceGroupAdapter
 import androidx.preference.PreferenceManager
 import androidx.preference.PreferenceScreen
 import androidx.preference.SwitchPreferenceCompat
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.MergeAdapter
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.EmptyPreferenceDataStore
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
@@ -86,7 +86,7 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
         val context = view.context
 
         binding.extensionPrefsRecycler.layoutManager = LinearLayoutManager(context)
-        binding.extensionPrefsRecycler.adapter = MergeAdapter(
+        binding.extensionPrefsRecycler.adapter = ConcatAdapter(
             ExtensionDetailsHeaderAdapter(presenter),
             initPreferencesAdapter(context, extension)
         )

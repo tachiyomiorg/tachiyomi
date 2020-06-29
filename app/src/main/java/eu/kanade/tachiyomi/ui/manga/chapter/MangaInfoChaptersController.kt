@@ -13,9 +13,9 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
 import androidx.core.graphics.drawable.DrawableCompat
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.MergeAdapter
 import com.google.android.material.snackbar.Snackbar
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.SelectableAdapter
@@ -117,7 +117,7 @@ class MangaInfoChaptersController(private val fromSource: Boolean = false) :
         chaptersHeaderAdapter = MangaChaptersHeaderAdapter()
         chaptersAdapter = ChaptersAdapter(this, view.context)
 
-        binding.recycler.adapter = MergeAdapter(mangaInfoAdapter, chaptersHeaderAdapter, chaptersAdapter)
+        binding.recycler.adapter = ConcatAdapter(mangaInfoAdapter, chaptersHeaderAdapter, chaptersAdapter)
         binding.recycler.layoutManager = LinearLayoutManager(view.context)
         binding.recycler.addItemDecoration(DividerItemDecoration(view.context, DividerItemDecoration.VERTICAL))
         binding.recycler.setHasFixedSize(true)
