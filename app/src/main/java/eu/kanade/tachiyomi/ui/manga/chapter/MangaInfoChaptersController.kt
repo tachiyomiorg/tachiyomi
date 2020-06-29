@@ -82,6 +82,8 @@ class MangaInfoChaptersController(private val fromSource: Boolean = false) :
      */
     private val selectedChapters = mutableSetOf<ChapterItem>()
 
+    private val isLocalSource by lazy { presenter.source.id == LocalSource.ID }
+
     private var lastClickPosition = -1
 
     private var isRefreshingInfo = false
@@ -229,6 +231,9 @@ class MangaInfoChaptersController(private val fromSource: Boolean = false) :
         }
         menu.findItem(sortingItem).isChecked = true
         menu.findItem(R.id.action_sort_descending).isChecked = presenter.manga.sortDescending()
+
+        // Hide download options for local manga
+        menu.findItem(R.id.download_group).isVisible = !isLocalSource
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -663,7 +668,6 @@ class MangaInfoChaptersController(private val fromSource: Boolean = false) :
         } else {
             mode.title = count.toString()
 
-            val isLocalSource = presenter.source.id == LocalSource.ID
             val chapters = getSelectedChapters()
             binding.actionToolbar.findItem(R.id.action_download)?.isVisible = !isLocalSource && chapters.any { !it.isDownloaded }
             binding.actionToolbar.findItem(R.id.action_delete)?.isVisible = !isLocalSource && chapters.any { it.isDownloaded }

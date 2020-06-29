@@ -72,6 +72,7 @@
     </item>
 
     <item
+        android:id="@+id/download_group"
         android:title="@string/manga_download"
         app:showAsAction="never">
         <menu>
