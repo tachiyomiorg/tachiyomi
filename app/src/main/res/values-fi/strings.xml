@@ -508,8 +508,8 @@
     <string name="error_invalid_date_supplied">Annettu päivämäärä ei kelpaa</string>
     <string name="track_finished_reading_date">Lopetuspäivämäärä</string>
     <string name="track_started_reading_date">Aloituspäivämäärä</string>
-    <string name="manga_info_collapse">Näytä vähemmän</string>
-    <string name="manga_info_expand">Näytä lisätiedot</string>
+    <string name="manga_info_collapse">Vähemmän</string>
+    <string name="manga_info_expand">Enemmän</string>
     <string name="manga_info_about_label">Tietoa</string>
     <string name="pinned_sources">Kiinnitetyt</string>
     <string name="http_error_hint">Katso sivu WebViewissä</string>
@@ -573,4 +573,21 @@
     <string name="action_start">Aloita</string>
     <string name="loader_not_implemented_error">Lähdettä ei löytynyt</string>
     <string name="action_disable">Poista käytöstä</string>
+    <string name="action_sort_descending">Laskeva</string>
+    <plurals name="manga_num_chapters">
+        <item quantity="one">1 luku</item>
+        <item quantity="other">%1$s lukua</item>
+    </plurals>
+    <string name="action_open_in_settings">Avaa Asetuksissa</string>
+    <string name="pref_dns_over_https_summary">Edellyttää sovelluksen käynnistämistä uudelleen</string>
+    <string name="pref_dns_over_https" translatable="false">DNS HTTPS:n kautta (Cloudflare)</string>
+    <string name="label_network">Verkko</string>
+    <string name="pref_jump_to_chapters">Siirry lukuihin avatessa</string>
+    <string name="tapping_inverted_both">Molemmat</string>
+    <string name="tapping_inverted_vertical">Pystysuora</string>
+    <string name="tapping_inverted_horizontal">Vaakasuora</string>
+    <string name="tapping_inverted_none">Ei mitään</string>
+    <string name="pref_read_with_tapping_inverted">Käännä näpäyttäminen</string>
+    <string name="unknown_status">Tuntematon tila</string>
+    <string name="unknown_author">Tuntematon tekijä</string>
 </resources>

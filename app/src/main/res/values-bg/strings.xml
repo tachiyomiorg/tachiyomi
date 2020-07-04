@@ -578,4 +578,40 @@
     </plurals>
     <string name="action_display_unread_badge">Покажи непрочетени</string>
     <string name="action_migrate">Мигрирай</string>
+    <plurals name="notification_update_error">
+        <item quantity="one">1 актуализация не бе успешна</item>
+        <item quantity="other">%1$d актуализации не бяха успешни</item>
+    </plurals>
+    <string name="loader_not_implemented_error">Източникът не е намерен</string>
+    <string name="page_list_empty_error">Няма намерени страници</string>
+    <string name="sort_by_upload_date">По дата на качване</string>
+    <plurals name="manga_num_chapters">
+        <item quantity="one">1 глава</item>
+        <item quantity="other">%1$s глави</item>
+    </plurals>
+    <string name="tabs_header">Раздели</string>
+    <string name="badges_header">Значки</string>
+    <string name="label_data">Данни</string>
+    <string name="pref_dns_over_https_summary">Изисква рестартиране на приложението, за да влезе в сила</string>
+    <string name="label_network">Мрежа</string>
+    <string name="backup_restore_missing_sources">Липсващи източници:</string>
+    <string name="invalid_backup_file_missing_manga">Резервно копие не съдържа никаква манга.</string>
+    <string name="invalid_backup_file_missing_data">Във файла липсват метаданни.</string>
+    <string name="invalid_backup_file">Невалиден резервен файл</string>
+    <string name="source_not_found_name">Източник не е открит: %1$s</string>
+    <string name="pref_show_reading_mode_summary">Накратко показване на текущия режим при отваряне на четеца</string>
+    <string name="pref_show_reading_mode">Покажи режим на четене</string>
+    <string name="unofficial_extension_message">Това разширение не е от официалния списък с разширения на Tachiyomi.</string>
+    <string name="ext_unofficial">Неофициален</string>
+    <string name="pref_library_update_error_notification">Показване на известия за грешки при актуализиране</string>
+    <string name="pref_library_update_refresh_metadata_summary">Провери за нова корица и подробности при актуализиране на библиотеката</string>
+    <string name="pref_library_update_refresh_metadata">Автоматично обновяване на метаданните</string>
+    <string name="action_sort_descending">Низходящ</string>
+    <string name="action_disable">Деактивиране</string>
+    <string name="action_display_show_tabs">Показване на раздели за категории</string>
+    <string name="action_display_comfortable_grid">Удобна решетка</string>
+    <string name="action_open_in_settings">Отваряне в \"Настройки\"</string>
+    <string name="action_start">Започни</string>
+    <string name="action_disable_all">Деактивирай всички</string>
+    <string name="action_enable_all">Активира всички</string>
 </resources>

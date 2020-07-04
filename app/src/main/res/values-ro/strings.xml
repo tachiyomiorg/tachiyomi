@@ -362,7 +362,7 @@
     <string name="information_no_downloads">Fără descărcări</string>
     <string name="information_no_recent">Nu există actualizări recente</string>
     <string name="information_no_recent_manga">Nimic citit recent</string>
-    <string name="information_empty_library">Biblioteca este goală, adaugă serii bibliotecii tale din Caută.</string>
+    <string name="information_empty_library">Biblioteca este goală. Adaugă serii bibliotecii tale din Caută.</string>
     <string name="information_empty_category">Nu aveți categorii. Apăsați butonul plus pentru a crea una pentru a vă organiza biblioteca.</string>
     <string name="download_notifier_downloader_title">Client de descărcare</string>
     <string name="download_notifier_title_error">Eroare</string>
@@ -504,8 +504,8 @@
     <string name="channel_backup_restore">Creează copie de rezervă și restaurează</string>
     <string name="information_webview_required">WebView este necesar pentru Tachiyomi</string>
     <string name="recent_manga_time">Ch. %1$s - %2$s</string>
-    <string name="manga_info_collapse">Afișați mai puține informații</string>
-    <string name="manga_info_expand">Afișați mai multe informații</string>
+    <string name="manga_info_collapse">Mai puțin</string>
+    <string name="manga_info_expand">Mai mult</string>
     <string name="manga_info_about_label">Despre</string>
     <string name="licenses">Licențele open source</string>
     <string name="website">Pagină web</string>
@@ -579,4 +579,25 @@
     <string name="action_enable_all">Activează toate</string>
     <string name="pref_show_reading_mode_summary">Afișați scurt modul curent când este deschis cititorul</string>
     <string name="pref_show_reading_mode">Arată modul de citire</string>
+    <string name="label_network">Reţea</string>
+    <string name="loader_not_implemented_error">Nu s-a găsit sursa</string>
+    <plurals name="manga_num_chapters">
+        <item quantity="one">1 capitol</item>
+        <item quantity="few">%1$s capitole</item>
+        <item quantity="other">%1$s de capitole</item>
+    </plurals>
+    <string name="pref_dns_over_https_summary">Necesită restartarea aplicației pentru a avea efect</string>
+    <string name="pref_dns_over_https" translatable="false">DNS prin HTTPS (Cloudflare)</string>
+    <string name="action_sort_descending">Descrescător</string>
+    <string name="action_disable">Dezactivați</string>
+    <string name="action_open_in_settings">Deschideți în Setări</string>
+    <string name="action_start">Start</string>
+    <string name="tapping_inverted_both">Ambele</string>
+    <string name="tapping_inverted_vertical">Vertical</string>
+    <string name="tapping_inverted_horizontal">Orizontal</string>
+    <string name="tapping_inverted_none">Nici unul</string>
+    <string name="pref_read_with_tapping_inverted">Invertiți atingerea</string>
+    <string name="unknown_status">Stare necunoscută</string>
+    <string name="unknown_author">Autor necunoscut</string>
+    <string name="pref_jump_to_chapters">Sari la capitole deschise</string>
 </resources>

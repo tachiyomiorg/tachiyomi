@@ -496,8 +496,8 @@
     <string name="add_tracking">Annanghe arrastamentu</string>
     <string name="in_library">In sa biblioteca</string>
     <string name="add_to_library">Annanghe a sa biblioteca</string>
-    <string name="manga_info_collapse">Ammustra prus pagu informatziones</string>
-    <string name="manga_info_expand">Ammustra prus informatziones</string>
+    <string name="manga_info_collapse">De mancu</string>
+    <string name="manga_info_expand">De prus</string>
     <string name="manga_info_about_label">Informatziones</string>
     <string name="information_webview_required">Pro Tachiyomi b\'at bisòngiu de WebView</string>
     <string name="licenses">Litzèntzias a mitza aberta</string>
@@ -573,4 +573,21 @@
     <string name="action_start">Incumintza</string>
     <string name="loader_not_implemented_error">Mitza no agatada</string>
     <string name="action_disable">Disabìlita</string>
+    <string name="action_sort_descending">Minimante</string>
+    <string name="action_open_in_settings">Aberi in sas impostatziones</string>
+    <plurals name="manga_num_chapters">
+        <item quantity="one">1 capìtulu</item>
+        <item quantity="other">%1$s capìtulos</item>
+    </plurals>
+    <string name="pref_dns_over_https_summary">Tenet bisòngiu chi torres a allùghere s\'aplicatzione pro tènnere efetu</string>
+    <string name="pref_dns_over_https" translatable="false">DNS pro mèdiu de HTTPS (Cloudflare)</string>
+    <string name="label_network">Retza</string>
+    <string name="pref_jump_to_chapters">Brinca a sos capìtulos abertos</string>
+    <string name="tapping_inverted_both">Ambos</string>
+    <string name="tapping_inverted_vertical">Verticale</string>
+    <string name="tapping_inverted_horizontal">Orizontale</string>
+    <string name="tapping_inverted_none">Perunu</string>
+    <string name="pref_read_with_tapping_inverted">Inverte su tocu</string>
+    <string name="unknown_status">Istadu disconnotu</string>
+    <string name="unknown_author">Autore disconnotu</string>
 </resources>

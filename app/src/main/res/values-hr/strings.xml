@@ -7,7 +7,7 @@
     </plurals>
     <string name="lock_never">Nikada</string>
     <string name="lock_always">Uvijek</string>
-    <string name="pref_fullscreen">Cjeloekranski prikaz</string>
+    <string name="pref_fullscreen">Prikaz preko cijelog ekrana</string>
     <string name="ext_language_info">Jezik: %1$s</string>
     <string name="ext_version_info">Verzija %1$s</string>
     <string name="obsolete_extension_message">Ovo proširenje više nije dostupno.</string>
@@ -48,14 +48,14 @@
     <string name="pref_library_update_prioritization">Redoslijed ažuriranja biblioteke</string>
     <string name="update_monthly">Mjesečno</string>
     <string name="update_weekly">Tjedno</string>
-    <string name="update_48hour">Svaka 2 dana</string>
+    <string name="update_48hour">Svaki drugi dan</string>
     <string name="update_24hour">Dnevno</string>
     <string name="update_12hour">Svakih 12 sati</string>
     <string name="update_6hour">Svakih 6 sati</string>
     <string name="update_3hour">Svaka 3 sata</string>
     <string name="update_2hour">Svaka 2 sata</string>
     <string name="update_1hour">Svaki sat</string>
-    <string name="update_never">Priručnik</string>
+    <string name="update_never">Ručno</string>
     <string name="pref_library_update_interval">Učestalost ažuriranja biblioteke</string>
     <string name="pref_category_library_update">Ažuriranja</string>
     <string name="default_columns">Standardno</string>
@@ -64,13 +64,13 @@
     <string name="pref_library_columns">Broj elemenata po retku</string>
     <string name="pref_category_display">Prikaz</string>
     <string name="hide_notification_content">Sakrij sadržaj obavijesti</string>
-    <string name="secure_screen_summary">Sakrij sadržaj aplikacije prilikom prebacivanja aplikacija i blokiraj snimke ekrana</string>
+    <string name="secure_screen_summary">Sakrij sadržaj programa prilikom prebacivanja između programa i blokiraj snimke ekrana</string>
     <string name="secure_screen">Siguran ekran</string>
     <string name="lock_when_idle">Zaključaj prilikom mirovanja</string>
     <string name="lock_with_biometrics">Zaključaj pomoću biometrije</string>
     <string name="pref_category_security">Sigurnost</string>
     <string name="pref_manage_notifications">Upravljaj obavijestima</string>
-    <string name="pref_confirm_exit">Potvrdi zatvaranje programa</string>
+    <string name="pref_confirm_exit">Potvrdi zatvaranje aplikacije</string>
     <string name="pref_date_format">Format datuma</string>
     <string name="system_default">Standardno</string>
     <string name="pref_language">Jezik</string>
@@ -94,7 +94,7 @@
     <string name="pref_category_library">Biblioteka</string>
     <string name="pref_category_general">Opće</string>
     <string name="short_recent_updates">Ažuriranja</string>
-    <string name="app_not_available">Aplikacija nije dostupna</string>
+    <string name="app_not_available">Program nije dostupan</string>
     <string name="loading">Učitavanje …</string>
     <string name="action_webview_refresh">Osvježi</string>
     <string name="action_webview_forward">Naprijed</string>
@@ -213,7 +213,7 @@
     <string name="pref_create_backup">Stvori sigurnosnu kopiju</string>
     <string name="backup">Sigurnosna kopija</string>
     <string name="pref_search_pinned_sources_only">Uključi samo prikvačene izvore</string>
-    <string name="pref_enable_automatic_extension_updates">Provjeri ažuriranja proširenja</string>
+    <string name="pref_enable_automatic_extension_updates">Redovita provjera ažuriranja izvora</string>
     <string name="services">Usluge</string>
     <string name="pref_auto_update_manga_sync">Sinkroniziraj napredak poglavlja nakon čitanja</string>
     <string name="pref_download_new_categories">Kategorije koje treba uključiti u preuzimanje</string>
@@ -226,15 +226,15 @@
     <string name="disabled">Isključeno</string>
     <string name="custom_dir">Prilagođeno mjesto</string>
     <string name="pref_remove_after_read">Ukloni nakon čitanja</string>
-    <string name="pref_remove_after_marked_as_read">Ukloni kad se označeni kao pročitano</string>
+    <string name="pref_remove_after_marked_as_read">Ukloni kad se označi kao pročitano</string>
     <string name="pref_download_only_over_wifi">Preuzimaj samo putem Wi-Fi veze</string>
-    <string name="pref_download_directory">Mjesto za preuzimanja</string>
+    <string name="pref_download_directory">Mjesto preuzimanja</string>
     <string name="webtoon_side_padding_25">25 %</string>
     <string name="webtoon_side_padding_20">20 %</string>
     <string name="webtoon_side_padding_15">15 %</string>
     <string name="webtoon_side_padding_10">10 %</string>
     <string name="webtoon_side_padding_0">Ništa</string>
-    <string name="pref_webtoon_side_padding">Bočni paspartu</string>
+    <string name="pref_webtoon_side_padding">Ispunjavanje bokova</string>
     <string name="pref_category_reading">Čitanje</string>
     <string name="pref_always_show_chapter_transition">Uvijek prikaži prijelaze između poglavlja</string>
     <string name="color_filter_a_value">A</string>
@@ -260,7 +260,7 @@
     <string name="scale_type_fit_width">Prilagodi širinu</string>
     <string name="scale_type_stretch">Rastegni</string>
     <string name="scale_type_fit_screen">Prilagodi ekranu</string>
-    <string name="pref_image_scale_type">Način mijenjanja veličine</string>
+    <string name="pref_image_scale_type">Vrsta mjerila</string>
     <string name="pref_image_decoder">Dekoder slika</string>
     <string name="pager_viewer">Pregled stranica</string>
     <string name="vertical_plus_viewer">Kontinuirano okomito</string>
@@ -273,7 +273,7 @@
     <string name="black_background">Crna</string>
     <string name="gray_background">Siva</string>
     <string name="white_background">Bijela</string>
-    <string name="pref_keep_screen_on">Ne gasi ekran</string>
+    <string name="pref_keep_screen_on">Drži zaslon uključen</string>
     <string name="filter_mode_darken">Potamni</string>
     <string name="filter_mode_lighten">Posvijetli</string>
     <string name="filter_mode_screen">Ekran</string>
@@ -298,7 +298,7 @@
     <string name="pref_read_with_volume_keys">Tipke za glasnoću</string>
     <string name="pref_reader_navigation">Navigacija</string>
     <string name="pref_skip_filtered_chapters">Preskoči filtrirana poglavlja</string>
-    <string name="pref_skip_read_chapters">Preskoči poglavlja označena kao pročitana</string>
+    <string name="pref_skip_read_chapters">Preskoči pročitana poglavlja</string>
     <string name="update_check_notification_update_available">Dostupna je nova verzija!</string>
     <string name="update_check_notification_download_error">Pogreška pri preuzimanju</string>
     <string name="update_check_notification_download_complete">Preuzimanje završeno</string>
@@ -382,11 +382,11 @@
     <string name="score">Ocjena</string>
     <string name="repeating">Ponovno čitanje</string>
     <string name="want_to_read">Želim čitati</string>
-    <string name="plan_to_read">Planiram pročitati</string>
+    <string name="plan_to_read">Planiram čitati</string>
     <string name="paused">Zaustavljeno</string>
     <string name="on_hold">Na čekanju</string>
     <string name="dropped">Ispušteno</string>
-    <string name="completed">Dovršeno</string>
+    <string name="completed">Završeno</string>
     <string name="currently_reading">Trenutačno čitaš</string>
     <string name="reading">Čitanje</string>
     <string name="add_tracking">Dodaj praćenje</string>
@@ -421,8 +421,8 @@
     <string name="copied_to_clipboard">Kopirano u međuspremnik:
 \n%1$s</string>
     <string name="delete_downloads_for_manga">Izbrisati preuzeta poglavlja\?</string>
-    <string name="manga_info_collapse">Pokaži manje podataka</string>
-    <string name="manga_info_expand">Pokaži više podataka</string>
+    <string name="manga_info_collapse">Manje</string>
+    <string name="manga_info_expand">Više</string>
     <string name="manga_info_about_label">Podaci</string>
     <string name="manga_removed_library">Uklonjeno iz biblioteke</string>
     <string name="manga_added_library">Dodano u biblioteku</string>
@@ -437,7 +437,7 @@
     <string name="manga_detail_tab">Info</string>
     <string name="manga_not_in_db">Ovaj je manga uklonjen iz baze podataka.</string>
     <string name="local_source_help_guide">Vodič za lokalni izvor</string>
-    <string name="browse">Pregledaj</string>
+    <string name="browse">Izvori</string>
     <string name="latest">Najnovije</string>
     <string name="action_global_search_hint">Globalna pretraga …</string>
     <string name="added_to_library">Manga je dodan u biblioteku</string>
@@ -542,7 +542,7 @@
     <string name="download_notifier_unknown_error">Poglavlje nije moguće preuzeti zbog neočekivane pogreške</string>
     <string name="download_notifier_title_error">Greška</string>
     <string name="download_notifier_downloader_title">Preuzimanja</string>
-    <string name="information_webview_outdated">Ažuriraj WebView aplikaciju za bolju kompatibilnost</string>
+    <string name="information_webview_outdated">Za bolju kompatibilnost, aktualiziraj WebView</string>
     <string name="pref_refresh_library_covers">Osvježi naslovnice za manga u biblioteci</string>
     <string name="sort_by_upload_date">Po datumu prijenosa</string>
     <string name="label_data">Podaci</string>
@@ -582,4 +582,22 @@
     <string name="action_start">Pokreni</string>
     <string name="action_disable">Deaktiviraj</string>
     <string name="loader_not_implemented_error">Izvor nije pronađen</string>
+    <string name="action_sort_descending">Silazno</string>
+    <string name="action_open_in_settings">Otvori u postavkama</string>
+    <plurals name="manga_num_chapters">
+        <item quantity="one">1 poglavlje</item>
+        <item quantity="few">%1$s poglavlja</item>
+        <item quantity="other">%1$s poglavlja</item>
+    </plurals>
+    <string name="pref_dns_over_https_summary">Za preuzimanje postavke, ponovo pokreni program</string>
+    <string name="pref_dns_over_https" translatable="false">DNS preko HTTPS-a (Cloudflare)</string>
+    <string name="label_network">Mreža</string>
+    <string name="tapping_inverted_both">Oboje</string>
+    <string name="tapping_inverted_vertical">Okomito</string>
+    <string name="tapping_inverted_horizontal">Vodoravno</string>
+    <string name="tapping_inverted_none">Ništa</string>
+    <string name="pref_read_with_tapping_inverted">Preokreni dodirivanje</string>
+    <string name="unknown_status">Nepoznato stanje</string>
+    <string name="unknown_author">Nepoznat autor</string>
+    <string name="pref_jump_to_chapters">Skoči na poglavlja nakon pokretanja</string>
 </resources>

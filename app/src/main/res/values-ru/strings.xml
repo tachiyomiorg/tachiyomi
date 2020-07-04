@@ -17,7 +17,7 @@
     <string name="action_filter_bookmarked">Закладка</string>
     <string name="action_filter_downloaded">Загружено</string>
     <string name="action_filter_empty">Удалить фильтр</string>
-    <string name="action_filter_read">Читать</string>
+    <string name="action_filter_read">Прочитано</string>
     <string name="action_filter_unread">Не прочитано</string>
     <string name="action_install">Установить</string>
     <string name="action_mark_as_read">Отметить как прочитанное</string>
@@ -503,8 +503,8 @@
     <string name="confirm_exit">Нажмите назад, ещё раз, чтобы выйти</string>
     <string name="label_downloaded_only">Только загруженное</string>
     <string name="information_webview_required">WebView требуется для Tachiyomi</string>
-    <string name="manga_info_collapse">Показать меньше информации</string>
-    <string name="manga_info_expand">Показать больше информации</string>
+    <string name="manga_info_collapse">Меньше</string>
+    <string name="manga_info_expand">Больше</string>
     <string name="manga_info_about_label">Содержимое</string>
     <string name="in_library">В библиотеке</string>
     <string name="add_to_library">Добавить в библиотеку</string>
@@ -586,4 +586,25 @@
     <string name="pref_show_reading_mode">Показать режим чтения</string>
     <string name="action_start">Начать</string>
     <string name="loader_not_implemented_error">Источник не найден</string>
+    <string name="action_disable">Отключить</string>
+    <string name="action_open_in_settings">Открыть в Настройках</string>
+    <plurals name="manga_num_chapters">
+        <item quantity="one">Нет глав</item>
+        <item quantity="few">1 глава</item>
+        <item quantity="many">%1$s глав</item>
+        <item quantity="other">%1$s глав</item>
+    </plurals>
+    <string name="action_sort_descending">По убыванию</string>
+    <string name="pref_dns_over_https_summary">Требуется перезапуск приложения для вступления в силу</string>
+    <string name="pref_dns_over_https" translatable="false">DNS по HTTPS (Cloudflare)</string>
+    <string name="label_network">Сеть</string>
+    <string name="pref_jump_to_chapters">Перейти к открытым главам</string>
+    <string name="tapping_inverted_both">Оба</string>
+    <string name="tapping_inverted_vertical">Вертикально</string>
+    <string name="tapping_inverted_horizontal">Горизонтально</string>
+    <string name="tapping_inverted_none">Ничего</string>
+    <string name="pref_read_with_tapping_inverted">Инвертировать нажатие</string>
+    <string name="unknown_status">Неизвестный статус</string>
+    <string name="unknown_author">Неизвестный автор</string>
+    <string name="action_download_unread">Скачать непрочитанные главы</string>
 </resources>

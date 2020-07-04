@@ -362,8 +362,8 @@
     <string name="information_no_downloads">Немає завантажень</string>
     <string name="information_no_recent">Без оновлень</string>
     <string name="information_no_recent_manga">Останнім часом нічого не прочитано</string>
-    <string name="information_empty_library">Ваша бібліотека порожня, ви можете додати твори з пошуку.</string>
-    <string name="information_empty_category">У вас немає категорій. Натисніть кнопку + для початку облаштування вашої бібліотеки.</string>
+    <string name="information_empty_library">Ваша бібліотека порожня. Додайте твори з пошуку.</string>
+    <string name="information_empty_category">У вас немає категорій. Тицьніть кнопку плюс, для початку облаштування вашої бібліотеки.</string>
     <string name="download_notifier_downloader_title">Завантажувач</string>
     <string name="download_notifier_title_error">Помилка</string>
     <string name="download_notifier_unknown_error">Невідома помилка при завантаженні глави</string>
@@ -501,8 +501,8 @@
     <string name="action_pin">Закріпити</string>
     <string name="in_library">В бібліотеці</string>
     <string name="add_to_library">Додати в бібліотеку</string>
-    <string name="manga_info_collapse">Показати менше інформації</string>
-    <string name="manga_info_expand">Показати більше інформації</string>
+    <string name="manga_info_collapse">Менше</string>
+    <string name="manga_info_expand">Більше</string>
     <string name="manga_info_about_label">Про мангу</string>
     <string name="information_webview_required">WebView необхідний для Tachiyomi</string>
     <string name="licenses">Ліцензії з відкритим кодом</string>
@@ -584,4 +584,25 @@
     <string name="pref_show_reading_mode_summary">Стисло відобразити поточний режим, коли читалку відкрито</string>
     <string name="pref_show_reading_mode">Показати режим читання</string>
     <string name="action_start">Розпочати</string>
+    <string name="loader_not_implemented_error">Джерело не знайдено</string>
+    <plurals name="manga_num_chapters">
+        <item quantity="one">Немає глав</item>
+        <item quantity="few">1 глава</item>
+        <item quantity="many">%1$s глав</item>
+        <item quantity="other">%1$s глав</item>
+    </plurals>
+    <string name="action_sort_descending">За спаданням</string>
+    <string name="action_disable">Відключити</string>
+    <string name="action_open_in_settings">Відкрити в Налаштуваннях</string>
+    <string name="tapping_inverted_both">Обоє</string>
+    <string name="tapping_inverted_vertical">Вертикально</string>
+    <string name="tapping_inverted_horizontal">Горизонтально</string>
+    <string name="tapping_inverted_none">Нічого</string>
+    <string name="pref_read_with_tapping_inverted">Інвертувати тицяння</string>
+    <string name="unknown_status">Невідомий статус</string>
+    <string name="unknown_author">Невідомий автор</string>
+    <string name="pref_dns_over_https_summary">Потрібен перезапуск, щоб зміни вступили в дію</string>
+    <string name="pref_dns_over_https" translatable="false">DNS понад HTTPS (Cloudflare)</string>
+    <string name="label_network">Мережа</string>
+    <string name="pref_jump_to_chapters">Перейти до глав при відкритті</string>
 </resources>

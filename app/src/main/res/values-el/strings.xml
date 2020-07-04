@@ -429,8 +429,8 @@
     <string name="want_to_read">Θέλω να διαβάσω</string>
     <string name="paused">Σε παύση</string>
     <string name="currently_reading">Διαβάζετε αυτή τη στιγμή</string>
-    <string name="manga_info_collapse">Εμφάνιση λιγότερων πληροφοριών</string>
-    <string name="manga_info_expand">Εμφάνιση περισσότερων πληροφοριών</string>
+    <string name="manga_info_collapse">Λιγότερα</string>
+    <string name="manga_info_expand">Περισσότερα</string>
     <string name="manga_info_about_label">Περί</string>
     <string name="in_library">Στη βιβλιοθήκη</string>
     <string name="add_to_library">Προσθήκη στη βιβλιοθήκη</string>
@@ -573,4 +573,21 @@
     <string name="action_start">Έναρξη</string>
     <string name="loader_not_implemented_error">Δεν βρέθηκε πηγή</string>
     <string name="action_disable">Απενεργοποίηση</string>
+    <string name="action_sort_descending">Φθίνουσα</string>
+    <plurals name="manga_num_chapters">
+        <item quantity="one">1 κεφάλαιο</item>
+        <item quantity="other">%1$s κεφάλαια</item>
+    </plurals>
+    <string name="action_open_in_settings">Άνοιγμα στις Ρυθμίσεις</string>
+    <string name="pref_dns_over_https_summary">Απαιτείται επανεκκίνηση της εφαρμογής για να τεθεί σε ισχύ</string>
+    <string name="pref_dns_over_https" translatable="false">DNS μέσω HTTPS (Cloudflare)</string>
+    <string name="label_network">Δίκτυο</string>
+    <string name="pref_jump_to_chapters">Μετάβαση στα κεφάλαια κατά το άνοιγμα</string>
+    <string name="tapping_inverted_both">Και τα δυο</string>
+    <string name="tapping_inverted_vertical">Κάθετα</string>
+    <string name="tapping_inverted_horizontal">Οριζόντια</string>
+    <string name="tapping_inverted_none">Κανένα</string>
+    <string name="pref_read_with_tapping_inverted">Αντιστροφή πατήματος</string>
+    <string name="unknown_status">Άγνωστη κατάσταση</string>
+    <string name="unknown_author">Άγνωστος συγγραφέας</string>
 </resources>

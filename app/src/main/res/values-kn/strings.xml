@@ -571,4 +571,7 @@
     <string name="action_disable_all">ಎಲ್ಲವನ್ನೂ ನಿಷ್ಕ್ರಿಯೆಗೊಳಿಸಿ</string>
     <string name="action_enable_all">ಎಲ್ಲವನ್ನೂ ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
     <string name="action_start">ಪ್ರಾರಂಭ</string>
+    <string name="loader_not_implemented_error">ಮೂಲ ಕಂಡುಬಂದಿಲ್ಲ</string>
+    <string name="action_sort_descending">ಅವರೋಹಣ</string>
+    <string name="action_disable">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
 </resources>

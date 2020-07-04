@@ -496,8 +496,8 @@
     <string name="add_tracking">ट्रैकिंग जोड़ें</string>
     <string name="in_library">पुस्तकालय में</string>
     <string name="add_to_library">पुस्तकालय में जोड़ें</string>
-    <string name="manga_info_collapse">कम जानकारी दिखाएं</string>
-    <string name="manga_info_expand">अधिक जानकारी दिखाएं</string>
+    <string name="manga_info_collapse">कम</string>
+    <string name="manga_info_expand">अधिक</string>
     <string name="manga_info_about_label">के बारे में</string>
     <string name="information_webview_required">WebView के लिए आवश्यक है Tachiyomi</string>
     <string name="licenses">ओपन सोर्स लाइसेंस</string>
@@ -573,4 +573,22 @@
     <string name="loader_not_implemented_error">स्रोत नहीं मिला</string>
     <string name="action_disable">बंद करें</string>
     <string name="action_start">प्रारंभ</string>
+    <plurals name="manga_num_chapters">
+        <item quantity="one">1 अध्याय</item>
+        <item quantity="other">%1$s अध्याय</item>
+    </plurals>
+    <string name="action_sort_descending">अवरोही</string>
+    <string name="action_open_in_settings">सेटिंग्स में खोलें</string>
+    <string name="pref_dns_over_https" translatable="false">HTTPS (Cloudflare) पर DNS</string>
+    <string name="label_network">नेटवर्क</string>
+    <string name="pref_jump_to_chapters">खुलने पर अध्यायों पर जाएं</string>
+    <string name="tapping_inverted_both">दोनों</string>
+    <string name="tapping_inverted_vertical">शीर्ष से असंतत</string>
+    <string name="tapping_inverted_horizontal">क्षैतिज</string>
+    <string name="tapping_inverted_none">कोई नहीं</string>
+    <string name="pref_read_with_tapping_inverted">उलटा दोहन</string>
+    <string name="unknown_status">अज्ञात स्थिति</string>
+    <string name="unknown_author">अज्ञात लेखक</string>
+    <string name="pref_dns_over_https_summary">प्रभावी होने के लिए ऐप पुनः आरंभ करने की आवश्यकता है</string>
+    <string name="action_download_unread">अपठित अध्याय डाउनलोड करें</string>
 </resources>

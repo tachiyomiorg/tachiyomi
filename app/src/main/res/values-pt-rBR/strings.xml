@@ -31,7 +31,7 @@
     <string name="action_download">Fazer download</string>
     <string name="action_bookmark">Adicionar aos favoritos</string>
     <string name="action_remove_bookmark">Remover dos favoritos</string>
-    <string name="action_delete">Excluir</string>
+    <string name="action_delete">Remover</string>
     <string name="action_update">Atualizar</string>
     <string name="action_update_library">Atualizar biblioteca</string>
     <string name="action_edit">Editar</string>
@@ -186,7 +186,7 @@
     <string name="cache_deleted">Cache limpo. %1$d arquivos foram excluídos</string>
     <string name="cache_delete_error">Ocorreu um erro ao limpar o cache</string>
     <string name="pref_clear_cookies">Limpar os cookies</string>
-    <string name="cookies_cleared">Cookies excluídos</string>
+    <string name="cookies_cleared">Cookies limpos</string>
     <string name="choices_reset">Restaurar escolhas de diálogos</string>
     <string name="pref_clear_database">Limpar o banco de dados</string>
     <string name="pref_clear_database_summary">Exclui o histórico de mangás que não estão salvos em sua biblioteca</string>
@@ -208,15 +208,15 @@
     <string name="unknown_error">Erro desconhecido</string>
     <string name="library_search_hint">Título ou autor…</string>
     <string name="updating_category">Atualizando categoria</string>
-    <string name="confirm_delete_manga">Tem certeza de que deseja remover os mangás selecionados\?</string>
+    <string name="confirm_delete_manga">Você tem certeza de que deseja remover os mangás selecionados\?</string>
     <string name="also_delete_chapters">Também excluir os capítulos disponíveis offline</string>
-    <string name="source_requires_login">Esta fonte requer que você efetue login</string>
+    <string name="source_requires_login">Esta fonte requer que você faça login</string>
     <string name="select_source">Selecione uma fonte</string>
     <string name="no_valid_sources">Por favor, ative pelo menos uma fonte válida</string>
     <string name="no_more_results">Não há mais resultados</string>
     <string name="local_source">Fonte local</string>
     <string name="added_to_library">O mangá foi adicionado à sua biblioteca</string>
-    <string name="manga_not_in_db">Este mangá foi excluído do banco de dados.</string>
+    <string name="manga_not_in_db">Este mangá foi removido do banco de dados.</string>
     <string name="manga_detail_tab">Informações</string>
     <string name="description">Descrição</string>
     <string name="ongoing">Em andamento</string>
@@ -281,7 +281,7 @@
     <string name="notification_cover_update_failed">Erro ao atualizar a capa</string>
     <string name="notification_first_add_to_library">Por favor, adicione o mangá à sua biblioteca antes de fazer isso</string>
     <string name="notification_not_connected_to_ac_title">Sincronização cancelada</string>
-    <string name="notification_not_connected_to_ac_body">O dispositivo não está sendo carregado</string>
+    <string name="notification_not_connected_to_ac_body">Não conectado a um carregador</string>
     <string name="notification_no_connection_title">Sincronização cancelada</string>
     <string name="notification_no_connection_body">Conexão indisponível</string>
     <string name="file_select_cover">Selecionar imagem de capa</string>
@@ -322,7 +322,7 @@
     <string name="channel_downloader">Fila de download</string>
     <string name="action_display_download_badge">Selos de disponível offline</string>
     <string name="local_source_badge">Local</string>
-    <string name="information_empty_category">Você ainda não tem nenhuma categoria. Pressione o botão (+) para criar uma para organizar a sua biblioteca.</string>
+    <string name="information_empty_category">Você ainda não tem nenhuma categoria. Toque no botão (+) para criar uma para organizar a sua biblioteca.</string>
     <string name="label_migration">Migrar</string>
     <string name="label_extensions">Extensões</string>
     <string name="label_extension_info">Informações da extensão</string>
@@ -496,8 +496,8 @@
     <string name="add_tracking">Adicionar monitoramento</string>
     <string name="add_to_library">Adicionar à biblioteca</string>
     <string name="in_library">Na biblioteca</string>
-    <string name="manga_info_collapse">Mostrar menos informações</string>
-    <string name="manga_info_expand">Mostrar mais informações</string>
+    <string name="manga_info_collapse">Menos</string>
+    <string name="manga_info_expand">Mais</string>
     <string name="manga_info_about_label">Sobre</string>
     <string name="pref_confirm_exit">Confirmar ao sair</string>
     <string name="confirm_exit">Pressione voltar novamente para sair</string>
@@ -574,4 +574,21 @@
     <string name="loader_not_implemented_error">Fonte não encontrada</string>
     <string name="action_disable">Desativar</string>
     <string name="action_sort_descending">Decrescente</string>
+    <plurals name="manga_num_chapters">
+        <item quantity="one">1 capítulo</item>
+        <item quantity="other">%1$s capítulos</item>
+    </plurals>
+    <string name="action_open_in_settings">Abrir nas Configurações</string>
+    <string name="pref_dns_over_https_summary">Requer o reinício do aplicativo para ter efeito</string>
+    <string name="pref_dns_over_https" translatable="false">DNS sob HTTPS (Cloudflare)</string>
+    <string name="label_network">Rede</string>
+    <string name="pref_jump_to_chapters">Pular para os capítulos ao abrir</string>
+    <string name="tapping_inverted_none">Nenhum</string>
+    <string name="tapping_inverted_both">Ambos</string>
+    <string name="tapping_inverted_vertical">Vertical</string>
+    <string name="tapping_inverted_horizontal">Horizontal</string>
+    <string name="pref_read_with_tapping_inverted">Inverter o toque</string>
+    <string name="unknown_status">Estado desconhecido</string>
+    <string name="unknown_author">Autor desconhecido</string>
+    <string name="action_download_unread">Fazer download de capítulos não lidos</string>
 </resources>

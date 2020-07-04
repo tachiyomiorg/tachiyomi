@@ -381,7 +381,9 @@
     <string name="migrate">Migrar</string>
     <string name="copy">Copiar</string>
     <string name="untrusted_extension_message">Esta extensión fue firmada por una fuente no certificada y no fue activada.
-\nUna extencion maliciosa puede leer cualquier credencial de inicio guardada en Tachiyomi o ejecutar código arbitrario.
+\n
+\nUna extencion maliciosa puede leer cualquier credencial de inicio guardada en Tachiyomi o ejecutar código arbitrario. 
+\n
 \nConfiando en este certificado aceptas estos riesgos.</string>
     <string name="double_tap_anim_speed_0">Sin animación</string>
     <string name="manga_info_full_title_label">Título</string>
@@ -527,8 +529,8 @@
     <string name="in_library">En biblioteca</string>
     <string name="add_to_library">Añadir a biblioteca</string>
     <string name="information_webview_required">Tachiyomi necesita WebView</string>
-    <string name="manga_info_collapse">Mostrar menos información</string>
-    <string name="manga_info_expand">Mostrar más información</string>
+    <string name="manga_info_collapse">Menos</string>
+    <string name="manga_info_expand">Más</string>
     <string name="manga_info_about_label">Acerca de</string>
     <string name="licenses">Licencias de código abierto</string>
     <string name="website">Sitio web</string>
@@ -601,4 +603,22 @@
     <string name="pref_show_reading_mode">Mostrar modo de lectura</string>
     <string name="action_start">Empezar</string>
     <string name="loader_not_implemented_error">Fuente no encontrada</string>
+    <plurals name="manga_num_chapters">
+        <item quantity="one">1 capítulo</item>
+        <item quantity="other">%1$s capítulos</item>
+    </plurals>
+    <string name="action_sort_descending">Descendente</string>
+    <string name="action_disable">Desactivar</string>
+    <string name="action_open_in_settings">Abrir en Configuración</string>
+    <string name="pref_dns_over_https_summary">Requiere el reinicio de la aplicación para que surta efecto</string>
+    <string name="pref_dns_over_https" translatable="false">DNS sobre HTTPS (Cloudflare)</string>
+    <string name="label_network">Red</string>
+    <string name="pref_jump_to_chapters">Saltar a los capítulos abiertos</string>
+    <string name="unknown_status">Estado desconocido</string>
+    <string name="tapping_inverted_both">Ambos</string>
+    <string name="tapping_inverted_vertical">Vertical</string>
+    <string name="tapping_inverted_horizontal">Horizontal</string>
+    <string name="tapping_inverted_none">Ninguno</string>
+    <string name="pref_read_with_tapping_inverted">Tapping invertido</string>
+    <string name="unknown_author">Autor desconocido</string>
 </resources>

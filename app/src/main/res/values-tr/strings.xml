@@ -406,7 +406,7 @@
     <string name="currently_reading">Şu anda okunan</string>
     <string name="paused">Duraklatıldı</string>
     <string name="want_to_read">Okunmak istenen</string>
-    <string name="label_more">Daha</string>
+    <string name="label_more">Daha fazla</string>
     <string name="action_sort_latest_chapter">Son bölüm</string>
     <string name="action_view_chapters">Bölümleri görüntüle</string>
     <string name="action_cancel_all">Hepsini iptal et</string>
@@ -496,8 +496,8 @@
     <string name="add_tracking">İzleme ekle</string>
     <string name="in_library">Kitaplıkta</string>
     <string name="add_to_library">Kitaplığa ekle</string>
-    <string name="manga_info_collapse">Daha az bilgi göster</string>
-    <string name="manga_info_expand">Daha çok bilgi göster</string>
+    <string name="manga_info_collapse">Daha az</string>
+    <string name="manga_info_expand">Daha fazla</string>
     <string name="manga_info_about_label">Hakkında</string>
     <string name="website">Web sitesi</string>
     <string name="information_webview_required">WebView, Tachiyomi için gereklidir</string>
@@ -574,4 +574,21 @@
     <string name="loader_not_implemented_error">Kaynak bulunamadı</string>
     <string name="action_disable">Devre dışı bırak</string>
     <string name="action_sort_descending">Azalan</string>
+    <plurals name="manga_num_chapters">
+        <item quantity="one">1 bölüm</item>
+        <item quantity="other">%1$s bölüm</item>
+    </plurals>
+    <string name="action_open_in_settings">Ayarlarda aç</string>
+    <string name="pref_dns_over_https_summary">Etkili olması için uygulama yeniden başlatılmalıdır</string>
+    <string name="pref_dns_over_https" translatable="false">HTTPS ile DNS (Cloudflare)</string>
+    <string name="label_network">Ağ</string>
+    <string name="pref_jump_to_chapters">Açınca bölümlere git</string>
+    <string name="tapping_inverted_none">Yok</string>
+    <string name="pref_read_with_tapping_inverted">Dokunmayı ters çevir</string>
+    <string name="tapping_inverted_both">Her ikisi de</string>
+    <string name="tapping_inverted_vertical">Dikey</string>
+    <string name="tapping_inverted_horizontal">Yatay</string>
+    <string name="unknown_status">Bilinmeyen durum</string>
+    <string name="unknown_author">Bilinmeyen yazar</string>
+    <string name="action_download_unread">Okunmamış bölümleri indir</string>
 </resources>

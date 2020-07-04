@@ -356,7 +356,7 @@
     <string name="local_source_badge">Local</string>
     <string name="channel_common">Général</string>
     <string name="channel_downloader">Téléchargeur</string>
-    <string name="information_empty_category">Vous n\'avez aucune catégorie. Appuyez sur le bouton plus pour en créer une afin d\'organiser votre bibliothèque.</string>
+    <string name="information_empty_category">Vous n\'avez aucune catégorie. Appuyez sur le bouton \"Plus\" pour en créer une afin d\'organiser votre bibliothèque.</string>
     <string name="label_extensions">Extensions</string>
     <string name="ext_update">Mettre à jour</string>
     <string name="ext_install">Installer</string>
@@ -536,8 +536,8 @@
     <string name="label_downloaded_only">Téléchargés uniquement</string>
     <string name="creating_backup_error">Échec de la sauvegarde</string>
     <string name="backup_in_progress">Sauvegarde déjà en cours</string>
-    <string name="manga_info_collapse">Afficher moins d\'informations</string>
-    <string name="manga_info_expand">Afficher plus d\'informations</string>
+    <string name="manga_info_collapse">Moins</string>
+    <string name="manga_info_expand">Plus</string>
     <string name="manga_info_about_label">À propos</string>
     <string name="website">Site web</string>
     <string name="pref_confirm_exit">Confirmer la sortie</string>
@@ -605,4 +605,23 @@
     <string name="pref_show_reading_mode_summary">Afficher la liste des modes de lecture lorsque le lecteur est ouvert</string>
     <string name="pref_show_reading_mode">Afficher le mode de lecture</string>
     <string name="action_start">Démarrer</string>
+    <string name="loader_not_implemented_error">Source introuvable</string>
+    <plurals name="manga_num_chapters">
+        <item quantity="one">1 chapitre</item>
+        <item quantity="other">%1$s chapitres</item>
+    </plurals>
+    <string name="action_sort_descending">Décroissant</string>
+    <string name="action_disable">Désactiver</string>
+    <string name="action_open_in_settings">Ouvrir dans les paramètres</string>
+    <string name="pref_dns_over_https_summary">Nécessite un redémarrage de l\'application pour prendre effet</string>
+    <string name="pref_dns_over_https" translatable="false">DNS sur HTTPS (Cloudflare)</string>
+    <string name="label_network">Réseau</string>
+    <string name="tapping_inverted_both">Les deux</string>
+    <string name="tapping_inverted_vertical">Vertical</string>
+    <string name="tapping_inverted_horizontal">Horizontal</string>
+    <string name="tapping_inverted_none">Non</string>
+    <string name="pref_read_with_tapping_inverted">Inverser les touches</string>
+    <string name="unknown_status">Statut inconnu</string>
+    <string name="unknown_author">Auteur inconnu</string>
+    <string name="pref_jump_to_chapters">Aller aux chapitres à l\'ouverture</string>
 </resources>

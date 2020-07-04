@@ -362,7 +362,7 @@
     <string name="information_no_downloads">Inga nedladdningar</string>
     <string name="information_no_recent">Inga nya uppdateringar</string>
     <string name="information_no_recent_manga">Inget nyligen läst</string>
-    <string name="information_empty_library">Biblioteket är tomt, lägg till serier i ditt bibliotek från \"Bläddra\".</string>
+    <string name="information_empty_library">Biblioteket är tomt. Lägg till serier i ditt bibliotek från \"Bläddra\".</string>
     <string name="information_empty_category">Du har inga kategorier. Tryck på plus-knappen för att skapa en för att organisera ditt bibliotek.</string>
     <string name="download_notifier_downloader_title">Nedladdare</string>
     <string name="download_notifier_title_error">Fel</string>
@@ -496,8 +496,8 @@
     <string name="action_unpin">Lossa</string>
     <string name="action_pin">Nåla</string>
     <string name="action_select_inverse">Välj omvänd</string>
-    <string name="manga_info_collapse">Visa mindre info</string>
-    <string name="manga_info_expand">Visa mer info</string>
+    <string name="manga_info_collapse">Mindre</string>
+    <string name="manga_info_expand">Mer</string>
     <string name="manga_info_about_label">Info</string>
     <string name="pref_confirm_exit">Bekräfta utgång</string>
     <string name="confirm_exit">Tryck tillbaka igen för att gå ur</string>
@@ -562,13 +562,32 @@
     <string name="pref_library_update_refresh_metadata">Uppdatera metadata automatiskt</string>
     <string name="action_migrate">Migrera</string>
     <string name="action_disable_all">Inaktivera alla</string>
-    <string name="page_list_empty_error">Inga sidor hittades</string>
+    <string name="page_list_empty_error">Hittade inga sidor</string>
     <string name="tabs_header">Flikar</string>
-    <string name="badges_header">Märken</string>
+    <string name="badges_header">Emblem</string>
     <string name="pref_show_reading_mode_summary">Visa nuvarande läge när läsaren öppnas</string>
     <string name="pref_show_reading_mode">Visa läsläge</string>
     <string name="action_display_show_tabs">Visa kategoriflikar</string>
-    <string name="action_display_comfortable_grid">Bekvämt rutnät</string>
+    <string name="action_display_comfortable_grid">Komfortabelt rutnät</string>
     <string name="action_enable_all">Aktivera alla</string>
     <string name="action_start">Start</string>
+    <string name="tapping_inverted_both">Både</string>
+    <string name="tapping_inverted_vertical">Vertikal</string>
+    <string name="tapping_inverted_horizontal">Horisontell</string>
+    <string name="tapping_inverted_none">Ingen</string>
+    <string name="pref_read_with_tapping_inverted">Invertera tryck</string>
+    <string name="loader_not_implemented_error">Källan hittades inte</string>
+    <plurals name="manga_num_chapters">
+        <item quantity="one">1 kapitel</item>
+        <item quantity="other">%1$s kapitel</item>
+    </plurals>
+    <string name="unknown_status">Okänd status</string>
+    <string name="unknown_author">Okänd författare</string>
+    <string name="pref_dns_over_https_summary">Kräver omstart av appen för att börja gälla</string>
+    <string name="pref_dns_over_https" translatable="false">DNS över HTTPS (Cloudflare)</string>
+    <string name="label_network">Nätverk</string>
+    <string name="pref_jump_to_chapters">Hoppa till kapitel vid öppning</string>
+    <string name="action_sort_descending">Fallande</string>
+    <string name="action_disable">Inaktivera</string>
+    <string name="action_open_in_settings">Öppna i Inställningar</string>
 </resources>

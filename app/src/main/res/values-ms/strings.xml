@@ -488,8 +488,8 @@
     <string name="track_finished_reading_date">Tarikh selesai membaca</string>
     <string name="track_started_reading_date">Tarikh mula membaca</string>
     <string name="add_tracking">Tambah penjejakan</string>
-    <string name="manga_info_collapse">Sembunyi info lanjut</string>
-    <string name="manga_info_expand">Tunjuk info lanjut</string>
+    <string name="manga_info_collapse">Tutup</string>
+    <string name="manga_info_expand">Buka</string>
     <string name="manga_info_about_label">Tentang</string>
     <string name="in_library">Dalam pustaka</string>
     <string name="add_to_library">Tambah ke pustaka</string>
@@ -563,4 +563,22 @@
     <string name="pref_show_reading_mode">Tunjuk mod membaca</string>
     <string name="loader_not_implemented_error">Sumber tidak dijumpai</string>
     <string name="action_start">Mula</string>
+    <string name="action_open_in_settings">Buka di Tetapan</string>
+    <plurals name="manga_num_chapters">
+        <item quantity="other">Jumlah bab: %1$s</item>
+    </plurals>
+    <string name="action_sort_descending">Menurun</string>
+    <string name="action_disable">Matikan</string>
+    <string name="pref_dns_over_https_summary">Mula semula diperlukan untuk berkesan</string>
+    <string name="pref_dns_over_https" translatable="false">DNS melalui HTTPS (Cloudflare)</string>
+    <string name="label_network">Rangkaian</string>
+    <string name="pref_jump_to_chapters">Terus ke bab bila buka</string>
+    <string name="tapping_inverted_both">Kedua-dua</string>
+    <string name="tapping_inverted_vertical">Mod atas bawah</string>
+    <string name="tapping_inverted_horizontal">Mod kanan kiri</string>
+    <string name="tapping_inverted_none">Tidak aktif</string>
+    <string name="pref_read_with_tapping_inverted">Songsangkan tekan skrin</string>
+    <string name="unknown_status">Status tidak diketahui</string>
+    <string name="unknown_author">Pengarang tidak diketahui</string>
+    <string name="action_download_unread">Muat turun bab belum dibaca</string>
 </resources>

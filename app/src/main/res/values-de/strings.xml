@@ -389,7 +389,7 @@
     <string name="label_help">Hilfe</string>
     <string name="pref_library_update_prioritization">Reihenfolge der Bibliotheksaktualisierung</string>
     <string name="no_results_found">Keine Ergebnisse gefunden</string>
-    <string name="migration_selection_prompt">Wähle eine Quelle, aus welcher migriert werden soll</string>
+    <string name="migration_selection_prompt">Wähle eine Quelle, aus welcher du migrieren möchtest</string>
     <string name="action_webview_back">Zurück</string>
     <string name="action_webview_forward">Vorwärts</string>
     <string name="action_webview_refresh">Aktualisieren</string>
@@ -494,8 +494,8 @@
     <string name="action_unpin">Loslösen</string>
     <string name="action_pin">Anheften</string>
     <string name="add_tracking">Tracking hinzufügen</string>
-    <string name="manga_info_collapse">Weniger Infos anzeigen</string>
-    <string name="manga_info_expand">Mehr Infos anzeigen</string>
+    <string name="manga_info_collapse">Weniger</string>
+    <string name="manga_info_expand">Mehr</string>
     <string name="manga_info_about_label">Inhalt</string>
     <string name="in_library">In der Bibliothek</string>
     <string name="add_to_library">Zur Bibliothek hinzufügen</string>
@@ -573,4 +573,22 @@
     <string name="action_start">Starten</string>
     <string name="loader_not_implemented_error">Quelle nicht gefunden</string>
     <string name="action_disable">Deaktivieren</string>
+    <string name="action_sort_descending">Absteigend</string>
+    <plurals name="manga_num_chapters">
+        <item quantity="one">1 Kapitel</item>
+        <item quantity="other">%1$s Kapitel</item>
+    </plurals>
+    <string name="action_open_in_settings">In den Einstellungen öffnen</string>
+    <string name="pref_dns_over_https_summary">App muss neu gestartet werden, um die Einstellung zu übernehmen</string>
+    <string name="pref_dns_over_https" translatable="false">DNS über HTTPS (Cloudflare)</string>
+    <string name="label_network">Netzwerk</string>
+    <string name="pref_jump_to_chapters">Beim Öffnen zu den Kapiteln springen</string>
+    <string name="pref_read_with_tapping_inverted">Tippen invertieren</string>
+    <string name="tapping_inverted_both">Beide</string>
+    <string name="tapping_inverted_vertical">Vertikal</string>
+    <string name="tapping_inverted_horizontal">Horizontal</string>
+    <string name="tapping_inverted_none">–</string>
+    <string name="unknown_status">Unbekannter Status</string>
+    <string name="unknown_author">Unbekannter Autor</string>
+    <string name="action_download_unread">Ungelesene Kapitel herunterladen</string>
 </resources>

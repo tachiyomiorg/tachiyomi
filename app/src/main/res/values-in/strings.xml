@@ -479,8 +479,8 @@
     <string name="recent_manga_time">Bab. %1$s - %2$s</string>
     <string name="updating_library">Memperbaharui koleksi perpustakaan</string>
     <string name="add_tracking">Tambahkan pelacak</string>
-    <string name="manga_info_collapse">Tampilkan sedikit informasi</string>
-    <string name="manga_info_expand">Liat informasi lebih lanjut</string>
+    <string name="manga_info_collapse">Lebih sedikit</string>
+    <string name="manga_info_expand">Selengkapnya</string>
     <string name="manga_info_about_label">Tentang</string>
     <string name="in_library">Dalam koleksi</string>
     <string name="add_to_library">Tambahkan ke koleksi</string>
@@ -562,4 +562,15 @@
     <string name="pref_show_reading_mode_summary">Perlihatkan mode saat ini secara singkat ketika pembaca dibuka</string>
     <string name="pref_show_reading_mode">Tampilkan mode membaca</string>
     <string name="action_start">Mulai</string>
+    <string name="loader_not_implemented_error">Sumber tidak ditemukan</string>
+    <plurals name="manga_num_chapters">
+        <item quantity="other">%1$s bab</item>
+    </plurals>
+    <string name="pref_dns_over_https_summary">Mulai ulang aplikasi untuk menerapkan pengaturan</string>
+    <string name="pref_dns_over_https" translatable="false">DNS melalui HTTPS (Cloudflare)</string>
+    <string name="label_network">Jaringan</string>
+    <string name="pref_jump_to_chapters">Lompat ke bab saat dibuka</string>
+    <string name="action_sort_descending">Menurun</string>
+    <string name="action_disable">Matikan</string>
+    <string name="action_open_in_settings">Buka di pengaturan</string>
 </resources>

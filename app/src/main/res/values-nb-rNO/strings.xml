@@ -12,7 +12,7 @@
     <string name="label_recent_updates">Oppdateringer</string>
     <string name="label_categories">Kategorier</string>
     <string name="label_backup">Sikkerhetskopi</string>
-    <string name="label_migration">Flytt</string>
+    <string name="label_migration">Flytte</string>
     <string name="label_extensions">Utvidelser</string>
     <string name="label_extension_info">Utvidelsesinfo</string>
     <string name="action_settings">Innstillinger</string>
@@ -371,7 +371,7 @@
     <string name="information_no_downloads">Ingen nedlastinger</string>
     <string name="information_no_recent">Ingen nylige oppdateringer</string>
     <string name="information_no_recent_manga">Ingenting lest nylig</string>
-    <string name="information_empty_library">Biblioteket ditt er tomt,legg til serier i biblioteket ditt fra katalogene.</string>
+    <string name="information_empty_library">Biblioteket ditt er tomt, legg til serier i biblioteket ditt fra katalogene.</string>
     <string name="information_empty_category">Du har ingen kategorier. Trykk på pluss-knappen for å lage en for å organisere ditt bibliotek.</string>
     <string name="download_notifier_downloader_title">Nedlaster</string>
     <string name="download_notifier_title_error">Feil</string>
@@ -495,4 +495,65 @@
     <string name="action_display_show_tabs">Vis kategorifaner</string>
     <string name="action_display_comfortable_grid">Komfortabelt rutenett</string>
     <string name="action_migrate">Flytt</string>
+    <string name="action_start">Start</string>
+    <string name="tapping_inverted_both">Begge</string>
+    <string name="tapping_inverted_vertical">loddrett</string>
+    <string name="tapping_inverted_horizontal">vannrett</string>
+    <string name="tapping_inverted_none">Ingen</string>
+    <plurals name="notification_update_error">
+        <item quantity="one">1 oppdatering mislyktes</item>
+        <item quantity="other">%1$d oppdateringer mislyktes</item>
+    </plurals>
+    <plurals name="notification_chapters_generic">
+        <item quantity="one">1 nytt kapittel</item>
+        <item quantity="other">1 nye kapitler</item>
+    </plurals>
+    <plurals name="notification_new_chapters_summary">
+        <item quantity="one">For 1 tittel</item>
+        <item quantity="other">For %d titler</item>
+    </plurals>
+    <string name="notification_check_updates">Søker etter nye kapitler</string>
+    <string name="loader_not_implemented_error">Kilden ikke funnet</string>
+    <string name="pref_category_for_this_series">For denne serien</string>
+    <plurals name="manga_num_chapters">
+        <item quantity="one">1 kapittel</item>
+        <item quantity="other">%1$s kapitler</item>
+    </plurals>
+    <string name="unknown_status">Ukjent status</string>
+    <string name="unknown_author">Ukjent forfatter</string>
+    <string name="local_source_help_guide">Lokal kildeguide</string>
+    <string name="http_error_hint">Sjekk nettsted i nettvisning</string>
+    <string name="badges_header">merker</string>
+    <plurals name="download_queue_summary">
+        <item quantity="one">1 gjenstående</item>
+        <item quantity="other">%1$s gjenstående</item>
+    </plurals>
+    <string name="downloaded_only_summary">Filtrerer alt manga i biblioteket ditt</string>
+    <string name="check_for_updates">Se etter oppdateringer</string>
+    <string name="battery_optimization_setting_activity_not_found">Kunne ikke åpne enhetens innstillinger</string>
+    <string name="battery_optimization_disabled">Batterioptimalisering er allerede deaktivert</string>
+    <string name="pref_disable_battery_optimization">Deaktiver batterioptimalisering</string>
+    <string name="label_data">Data</string>
+    <string name="pref_dns_over_https_summary">Krever omstart for å tre i kraft</string>
+    <string name="label_network">Nettverk</string>
+    <string name="restoring_backup_canceled">Avbrutt gjenoppretting</string>
+    <string name="restore_in_progress">Gjenoppretting er allerede i gang</string>
+    <plurals name="restore_completed_message">
+        <item quantity="one">Gjort i %1$s med %2$s feil</item>
+        <item quantity="other">Gjort i %1$s med %2$s feil</item>
+    </plurals>
+    <string name="invalid_backup_file_missing_data">Filen mangler data.</string>
+    <string name="tracker_not_logged_in">Ikke logget inn: %1$s</string>
+    <string name="source_not_found_name">kilde ikke funnet: %1$s</string>
+    <string name="pref_search_pinned_sources_only">Inkluder bare festede kilder</string>
+    <string name="pref_show_reading_mode">Vis lesemodus</string>
+    <string name="unofficial_extension_message">Denne utvidelsen kommer ikke fra den offisielle Tachiyomi-utvidelseslisten.</string>
+    <string name="pref_library_update_error_notification">Vis varsler om oppdateringsfeil</string>
+    <string name="pref_jump_to_chapters">Hopp til kapitler på åpning</string>
+    <string name="action_disable">deaktivere</string>
+    <string name="action_display_unread_badge">ulest merke</string>
+    <string name="action_disable_all">deaktiver alle</string>
+    <string name="action_enable_all">aktiver alle</string>
+    <string name="action_open_in_settings">åpen i innstillinger</string>
+    <string name="action_sort_latest_chapter">Siste kapittel</string>
 </resources>
