@@ -17,6 +17,7 @@ import eu.kanade.tachiyomi.data.cache.ChapterCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService.Target
+import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.network.NetworkHelper
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.library.LibraryController
@@ -88,14 +89,6 @@ class SettingsAdvancedController : SettingsController() {
                 onClick { clearChapterCache() }
             }
             preference {
-                titleRes = R.string.pref_clear_cookies
-
-                onClick {
-                    network.cookieManager.removeAll()
-                    activity?.toast(R.string.cookies_cleared)
-                }
-            }
-            preference {
                 titleRes = R.string.pref_clear_database
                 summaryRes = R.string.pref_clear_database_summary
 
@@ -104,6 +97,25 @@ class SettingsAdvancedController : SettingsController() {
                     ctrl.targetController = this@SettingsAdvancedController
                     ctrl.showDialog(router)
                 }
+            }
+        }
+
+        preferenceCategory {
+            titleRes = R.string.label_network
+
+            preference {
+                titleRes = R.string.pref_clear_cookies
+
+                onClick {
+                    network.cookieManager.removeAll()
+                    activity?.toast(R.string.cookies_cleared)
+                }
+            }
+            switchPreference {
+                key = Keys.enableDoh
+                titleRes = R.string.pref_dns_over_https
+                summaryRes = R.string.pref_dns_over_https_summary
+                defaultValue = false
             }
         }
 

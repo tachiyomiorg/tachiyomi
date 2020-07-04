@@ -188,7 +188,7 @@
         android:textColor="?attr/colorAccent"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/end_general_preferences" />
+        app:layout_constraintTop_toBottomOf="@id/end_navigation_preferences" />
 
     <TextView
         android:id="@+id/scale_type_text"
@@ -245,6 +245,50 @@
         android:textColor="?android:attr/textColorSecondary"
         app:layout_constraintTop_toBottomOf="@id/crop_borders" />
 
+    <android.widget.Space
+        android:id="@+id/end_paged_preferences"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/page_transitions"
+        tools:layout_editor_absoluteX="24dp" />
+
+    <TextView
+        android:id="@+id/navigation_prefs"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/pref_reader_navigation"
+        android:textColor="?attr/colorAccent"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/end_general_preferences" />
+
+    <TextView
+        android:id="@+id/tapping_inverted_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/pref_read_with_tapping_inverted"
+        app:layout_constraintBaseline_toBaselineOf="@id/tapping_inverted"
+        app:layout_constraintEnd_toStartOf="@id/verticalcenter"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/tapping_inverted"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:entries="@array/invert_tapping_mode"
+        app:layout_constraintEnd_toEndOf="@id/spinner_end"
+        app:layout_constraintStart_toEndOf="@id/verticalcenter"
+        app:layout_constraintTop_toBottomOf="@+id/navigation_prefs" />
+
+    <android.widget.Space
+        android:id="@+id/end_navigation_preferences"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tapping_inverted"
+        tools:layout_editor_absoluteX="24dp" />
+
     <!-- Webtoon preferences -->
 
     <TextView
@@ -256,7 +300,7 @@
         android:textColor="?attr/colorAccent"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/end_general_preferences" />
+        app:layout_constraintTop_toBottomOf="@id/end_navigation_preferences" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/crop_borders_webtoon"
@@ -309,5 +353,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/navigation_prefs_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="navigation_prefs,tapping_inverted_text,end_navigation_preferences,tapping_inverted"
+        tools:layout_editor_absoluteX="24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

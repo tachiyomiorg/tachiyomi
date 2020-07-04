@@ -1,11 +1,14 @@
 package eu.kanade.tachiyomi.ui.manga.track
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.databinding.TrackItemBinding
 import eu.kanade.tachiyomi.util.view.inflate
 
 class TrackAdapter(controller: TrackController) : RecyclerView.Adapter<TrackHolder>() {
+
+    private lateinit var binding: TrackItemBinding
 
     var items = emptyList<TrackItem>()
         set(value) {
@@ -26,8 +29,8 @@ class TrackAdapter(controller: TrackController) : RecyclerView.Adapter<TrackHold
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackHolder {
-        val view = parent.inflate(R.layout.track_item)
-        return TrackHolder(view, this)
+        binding = TrackItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return TrackHolder(binding, this)
     }
 
     override fun onBindViewHolder(holder: TrackHolder, position: Int) {

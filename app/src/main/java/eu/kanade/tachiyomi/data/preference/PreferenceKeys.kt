@@ -55,6 +55,8 @@ object PreferenceKeys {
 
     const val readWithTapping = "reader_tap"
 
+    const val readWithTappingInverted = "reader_tapping_inverted"
+
     const val readWithLongTap = "reader_long_tap"
 
     const val readWithVolumeKeys = "reader_volume_keys"
@@ -67,15 +69,17 @@ object PreferenceKeys {
 
     const val landscapeColumns = "pref_library_columns_landscape_key"
 
+    const val jumpToChapters = "jump_to_chapters"
+
     const val updateOnlyNonCompleted = "pref_update_only_non_completed_key"
 
     const val autoUpdateTrack = "pref_auto_update_manga_sync_key"
 
-    const val lastUsedCatalogueSource = "last_catalogue_source"
+    const val lastUsedSource = "last_catalogue_source"
 
     const val lastUsedCategory = "last_used_category"
 
-    const val catalogueDisplayMode = "pref_display_mode_catalogue"
+    const val sourceDisplayMode = "pref_display_mode_catalogue"
 
     const val enabledLanguages = "source_languages"
 
@@ -156,6 +160,8 @@ object PreferenceKeys {
     const val alwaysShowChapterTransition = "always_show_chapter_transition"
 
     const val searchPinnedSourcesOnly = "search_pinned_sources_only"
+
+    const val enableDoh = "enable_doh"
 
     fun trackUsername(syncId: Int) = "pref_mangasync_username_$syncId"
 

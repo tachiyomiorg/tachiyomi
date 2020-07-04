@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Tachiyomi</string>
     <string name="channel_ext_updates">עדכונים לתוסף</string>
     <string name="channel_new_chapters">עדכונים לפרק</string>
     <string name="channel_library">ספרייה</string>
@@ -68,7 +67,6 @@
     <string name="download_queue_error">לא ניתן היה להוריד פרקים. אתה יכול לנסות שוב בדף ההורדות</string>
     <string name="copy">העתק</string>
     <string name="migrate">הגר</string>
-    <string name="select">בחר</string>
     <string name="migration_selection_prompt">בחר מקור שברצונך להגר ממנו</string>
     <string name="migration_dialog_what_to_include">בחר נתונים כדי לכלול</string>
     <string name="migration_info">הקש כדי לבחור את המקור שתרצה לעבור ממנו</string>
@@ -100,7 +98,6 @@
     <string name="dialog_with_checkbox_remove_description">פעולה זו תסיר את התאריך הקריאה של פרק זה. האם אתה בטוח\?</string>
     <string name="snack_categories_deleted">הקטגוריות נמחקו</string>
     <string name="error_category_exists">קטגוריה עם שם זה כבר קיימת!</string>
-    <string name="url_not_set">כתובת האתר של המנגה לא הוגדרה, אנא לחץ על כותרת ובחר שוב מאנגה</string>
     <string name="track_author">מחבר</string>
     <string name="track_type">סוג</string>
     <string name="track_start_date">הותחל</string>
@@ -141,11 +138,6 @@
     <string name="snack_add_to_library">להוסיף מאנגה לספרייה\?</string>
     <string name="source_not_installed">המקור לא הותקן: %1$s</string>
     <string name="delete_downloads_for_manga">למחוק פרקים שהורדו\?</string>
-    <string name="manga_info_genres_label">סגנון</string>
-    <string name="manga_info_source_label">מקור</string>
-    <string name="manga_info_chapters_label">פרקים</string>
-    <string name="manga_info_artist_label">אומן</string>
-    <string name="manga_info_author_label">מחבר</string>
     <string name="manga_added_library">נוסף לספרייה</string>
     <string name="remove_from_library">הסר מהספרייה</string>
     <string name="manga_removed_library">הוסר מהספרייה</string>
@@ -200,7 +192,6 @@
     <string name="ext_install">התקן</string>
     <string name="ext_update">עדכון</string>
     <string name="ext_updates_pending">עדכונים ממתינים</string>
-    <string name="ext_details">פרטים</string>
     <string name="all_lang">הכל</string>
     <string name="all">הכל</string>
     <string name="pref_library_update_categories">קטגוריות שיש לכלול בעדכון כללי</string>
@@ -284,7 +275,6 @@
     <string name="track">מעקב</string>
     <string name="label_more">עוד</string>
     <string name="action_cancel">ביטול</string>
-    <string name="action_hide">להסתיר</string>
     <string name="action_display_download_badge">להוריד תגים</string>
     <string name="action_display_list">רשימה</string>
     <string name="action_display_grid">רשת</string>
@@ -415,7 +405,6 @@
     <string name="pref_lock_orientation">נעל כיוון מסך</string>
     <string name="pref_cutout_short">הצג תוכן באזור החתוך</string>
     <string name="pref_enable_automatic_extension_updates">בדוק אם קיימים עדכונים עבור תוספים</string>
-    <string name="ext_empty_preferences">אין אפשרויות לעריכה עבור תוסף זה</string>
     <string name="untrusted_extension">תוסף לא מאומת</string>
     <string name="obsolete_extension_message">תוסף זה אינו זמין עוד.</string>
     <string name="pref_fullscreen">מסך מלא</string>

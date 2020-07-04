@@ -28,6 +28,7 @@ import eu.kanade.tachiyomi.data.library.LibraryUpdateService
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.asImmediateFlow
 import eu.kanade.tachiyomi.databinding.LibraryControllerBinding
+import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.RootController
 import eu.kanade.tachiyomi.ui.base.controller.TabbedController
@@ -227,7 +228,7 @@ class LibraryController(
 
     override fun configureTabs(tabs: TabLayout) {
         with(tabs) {
-            tabGravity = TabLayout.GRAVITY_CENTER
+            tabGravity = TabLayout.GRAVITY_START
             tabMode = TabLayout.MODE_SCROLLABLE
         }
         tabsVisibilitySubscription?.unsubscribe()
@@ -443,6 +444,7 @@ class LibraryController(
             mode.title = count.toString()
 
             binding.actionToolbar.findItem(R.id.action_edit_cover)?.isVisible = count == 1
+            binding.actionToolbar.findItem(R.id.action_download_unread)?.isVisible = selectedMangas.any { it.source != LocalSource.ID }
         }
         return false
     }
@@ -455,6 +457,7 @@ class LibraryController(
         when (item.itemId) {
             R.id.action_edit_cover -> handleChangeCover()
             R.id.action_move_to_category -> showChangeMangaCategoriesDialog()
+            R.id.action_download_unread -> downloadUnreadChapters()
             R.id.action_delete -> showDeleteMangaDialog()
             R.id.action_select_all -> selectAllCategoryManga()
             R.id.action_select_inverse -> selectInverseCategoryManga()
@@ -546,6 +549,12 @@ class LibraryController(
 
         ChangeMangaCategoriesDialog(this, mangas, categories, commonCategoriesIndexes)
             .showDialog(router)
+    }
+
+    private fun downloadUnreadChapters() {
+        val mangas = selectedMangas.toList()
+        presenter.downloadUnreadChapters(mangas)
+        destroyActionModeIfNeeded()
     }
 
     private fun showDeleteMangaDialog() {

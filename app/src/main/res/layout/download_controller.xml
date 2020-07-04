@@ -14,7 +14,7 @@
         android:paddingBottom="@dimen/fab_list_padding"
         tools:listitem="@layout/download_item" />
 
-    <eu.kanade.tachiyomi.ui.library.MaterialFastScroll
+    <eu.kanade.tachiyomi.widget.MaterialFastScroll
         android:id="@+id/fast_scroller"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

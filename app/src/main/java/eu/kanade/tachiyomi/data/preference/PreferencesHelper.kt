@@ -121,6 +121,8 @@ class PreferencesHelper(val context: Context) {
 
     fun readWithTapping() = flowPrefs.getBoolean(Keys.readWithTapping, true)
 
+    fun readWithTappingInverted() = flowPrefs.getEnum(Keys.readWithTappingInverted, Values.TappingInvertMode.NONE)
+
     fun readWithLongTap() = flowPrefs.getBoolean(Keys.readWithLongTap, true)
 
     fun readWithVolumeKeys() = flowPrefs.getBoolean(Keys.readWithVolumeKeys, false)
@@ -131,17 +133,19 @@ class PreferencesHelper(val context: Context) {
 
     fun landscapeColumns() = flowPrefs.getInt(Keys.landscapeColumns, 0)
 
+    fun jumpToChapters() = prefs.getBoolean(Keys.jumpToChapters, false)
+
     fun updateOnlyNonCompleted() = prefs.getBoolean(Keys.updateOnlyNonCompleted, false)
 
     fun autoUpdateTrack() = prefs.getBoolean(Keys.autoUpdateTrack, true)
 
-    fun lastUsedCatalogueSource() = flowPrefs.getLong(Keys.lastUsedCatalogueSource, -1)
+    fun lastUsedSource() = flowPrefs.getLong(Keys.lastUsedSource, -1)
 
     fun lastUsedCategory() = flowPrefs.getInt(Keys.lastUsedCategory, 0)
 
     fun lastVersionCode() = flowPrefs.getInt("last_version_code", 0)
 
-    fun catalogueDisplayMode() = flowPrefs.getEnum(Keys.catalogueDisplayMode, DisplayMode.COMPACT_GRID)
+    fun sourceDisplayMode() = flowPrefs.getEnum(Keys.sourceDisplayMode, DisplayMode.COMPACT_GRID)
 
     fun enabledLanguages() = flowPrefs.getStringSet(Keys.enabledLanguages, setOf("en", Locale.getDefault().language))
 
@@ -215,9 +219,9 @@ class PreferencesHelper(val context: Context) {
 
     fun searchPinnedSourcesOnly() = prefs.getBoolean(Keys.searchPinnedSourcesOnly, false)
 
-    fun hiddenCatalogues() = flowPrefs.getStringSet("hidden_catalogues", emptySet())
+    fun disabledSources() = flowPrefs.getStringSet("hidden_catalogues", emptySet())
 
-    fun pinnedCatalogues() = flowPrefs.getStringSet("pinned_catalogues", emptySet())
+    fun pinnedSources() = flowPrefs.getStringSet("pinned_catalogues", emptySet())
 
     fun downloadNew() = flowPrefs.getBoolean(Keys.downloadNew, false)
 
@@ -240,6 +244,8 @@ class PreferencesHelper(val context: Context) {
 
     fun trustedSignatures() = flowPrefs.getStringSet("trusted_signatures", emptySet())
 
+    fun enableDoh() = prefs.getBoolean(Keys.enableDoh, false)
+  
     // Helper function to store Enum maps as preferences.
     private inline fun <reified E : Enum<E>> getEnumPreferenceFromMap(preferenceKey: String, mapKey: String, default: E): Preference<E> =
         flowPrefs.getEnum(preferenceKey + "_" + mapKey, defaultValue = default)

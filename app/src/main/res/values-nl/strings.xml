@@ -52,7 +52,7 @@
     <string name="action_open_in_browser">Openen in browser</string>
     <string name="action_display_mode">Weergavemodus</string>
     <string name="action_display">Weergave</string>
-    <string name="action_display_grid">Raster</string>
+    <string name="action_display_grid">Compact raster</string>
     <string name="action_display_list">Lijst</string>
     <string name="action_cancel">Annuleren</string>
     <string name="action_sort">Sorteren</string>
@@ -171,11 +171,6 @@
     <string name="description">Beschrijving</string>
     <string name="unknown">Onbekend</string>
     <string name="remove_from_library">Verwijderen uit bibliotheek</string>
-    <string name="manga_info_author_label">Auteur</string>
-    <string name="manga_info_artist_label">Artiest</string>
-    <string name="manga_info_chapters_label">Hoofdstukken</string>
-    <string name="manga_info_status_label">Status</string>
-    <string name="manga_info_source_label">Bron</string>
     <string name="display_mode_chapter">Hoofdstuk %1$s</string>
     <string name="chapter_downloaded">Gedownload</string>
     <string name="chapter_queued">In de wachtrij</string>
@@ -231,8 +226,8 @@
     <string name="description_cover">Omslag van de manga</string>
     <string name="information_no_downloads">Geen downloads</string>
     <string name="information_no_recent">Geen recente updates</string>
-    <string name="information_empty_library">Je bibliotheek is leeg, voeg manga toe aan je bibliotheek via Bladeren.</string>
-    <string name="information_empty_category">Er zijn nog geen categorieën, druk op de plus knop om een categorie aan te maken.</string>
+    <string name="information_empty_library">Je bibliotheek is leeg. Voeg series toe aan je bibliotheek via Bladeren.</string>
+    <string name="information_empty_category">Er zijn nog geen categorieën. Druk op de plus-knop om er een aan te maken.</string>
     <string name="download_notifier_downloader_title">Downloader</string>
     <string name="download_notifier_title_error">Error</string>
     <string name="download_notifier_page_ready_error">Een pagina werd niet geladen</string>
@@ -268,7 +263,7 @@
     <string name="cache_deleted">Cache geleegd. %1$d bestanden zijn verwijderd</string>
     <string name="cache_delete_error">Er is een fout opgetreden bij het legen van de cache</string>
     <string name="pref_clear_database">Database legen</string>
-    <string name="pref_clear_database_summary">Verwijder manga en hoofdstukken die niet in je bibliotheek staan</string>
+    <string name="pref_clear_database_summary">Verwijder geschiedenis voor manga die niet in je bibliotheek zijn opgeslagen</string>
     <string name="pref_refresh_library_tracking">Tracking verversen</string>
     <string name="build_time">Compilatietijd</string>
     <string name="pref_enable_acra">Rapporteer bugs</string>
@@ -287,7 +282,6 @@
     <string name="clear_database_completed">Databank geleegd</string>
     <string name="source_requires_login">Deze bron vereist dat je inlogt</string>
     <string name="ongoing">Lopend</string>
-    <string name="manga_info_genres_label">Genres</string>
     <string name="delete_downloads_for_manga">Verwijder gedownloade hoofdstukken?</string>
     <string name="manga_chapters_tab">Hoofdstukken</string>
     <string name="manga_chapter_no_title">Geen titel</string>
@@ -308,7 +302,6 @@
     <string name="update_check_notification_file_download">Download update</string>
     <string name="update_check_notification_download_in_progress">Downloaden…</string>
     <string name="update_check_notification_download_error">Fout bij het downloaden</string>
-    <string name="description_backdrop">Achtergrondafbeelding van manga</string>
     <string name="action_filter_bookmarked">Met bladwijzer</string>
     <string name="backup_restore_content">Herstellen gebruikt bronnen om data op te halen, mogelijk zijn extra kosten van toepassing. 
 \n 
@@ -330,11 +323,10 @@
     <string name="channel_downloader">Downloader</string>
     <string name="browse">Bladeren</string>
     <string name="channel_common">Algemeen</string>
-    <string name="label_migration">Bronmigratie</string>
+    <string name="label_migration">Migreren</string>
     <string name="label_extensions">Extensies</string>
     <string name="label_extension_info">Informatie over extensie</string>
     <string name="all_lang">Alles</string>
-    <string name="ext_details">Details</string>
     <string name="ext_update">Bijwerken</string>
     <string name="ext_install">Installeer</string>
     <string name="ext_pending">Aan het afwachten</string>
@@ -344,7 +336,6 @@
     <string name="ext_trust">Vertouw</string>
     <string name="ext_untrusted">Niet vertrouwd</string>
     <string name="ext_uninstall">Verwijderen</string>
-    <string name="ext_preferences">Voorkeuren</string>
     <string name="ext_available">Beschikbaar</string>
     <string name="untrusted_extension">Niet vertrouwde extensie</string>
     <string name="untrusted_extension_message">Deze extensie is door een niet vertrouwd certificaat ondertekend en is niet geactiveerd.
@@ -354,10 +345,9 @@
 \nBij het vertrouwen van dit certificaat accepteer je deze risico\'s.</string>
     <string name="ext_version_info">Versie: %1$s</string>
     <string name="ext_language_info">Taal: %1$s</string>
-    <string name="ext_empty_preferences">Geen aan te passen voorkeuren voor deze extensie</string>
     <string name="pref_double_tap_anim_speed">Dubbel tik animatiesnelheid</string>
     <string name="pref_read_with_long_tap">Lange tik dialoog</string>
-    <string name="pager_viewer">Paged</string>
+    <string name="pager_viewer">Gepagineerd</string>
     <string name="double_tap_anim_speed_0">Geen animatie</string>
     <string name="double_tap_anim_speed_normal">Normaal</string>
     <string name="double_tap_anim_speed_fast">Snel</string>
@@ -374,7 +364,6 @@
     <string name="track_start_date">Gestart</string>
     <string name="track_type">Soort</string>
     <string name="track_author">Auteur</string>
-    <string name="url_not_set">Manga URL is niet ingesteld, klik alstublieft op de titel en selecteer de manga opnieuw</string>
     <string name="transition_finished">Afgerond:</string>
     <string name="transition_current">Huidige:</string>
     <string name="transition_next">Volgende:</string>
@@ -385,7 +374,6 @@
     <string name="transition_pages_error">Fout bij het laden van pagina\'s : %1$s</string>
     <string name="migration_info">Tik om een bron te selecteren om naar toe te migreren</string>
     <string name="migration_dialog_what_to_include">Selecteer data om mee te tellen</string>
-    <string name="select">Selecteer</string>
     <string name="migrate">Migreer</string>
     <string name="copy">Kopiëren</string>
     <string name="filter_mode_default">Standaard</string>
@@ -422,11 +410,11 @@
     <string name="action_sort_latest_chapter">Laatste hoofdstuk</string>
     <string name="action_view_chapters">Hoofdstukken bekijken</string>
     <string name="action_cancel_all">Alles annuleren</string>
-    <string name="pref_theme_mode">Appthema</string>
-    <string name="theme_light">Licht</string>
-    <string name="theme_dark">Donker</string>
+    <string name="pref_theme_mode">Donkere modus</string>
+    <string name="theme_light">Uit</string>
+    <string name="theme_dark">Aan</string>
     <string name="theme_system">Volgsysteem</string>
-    <string name="pref_theme_dark">Donker thema variant</string>
+    <string name="pref_theme_dark">Donker thema</string>
     <string name="theme_dark_default">Standaard</string>
     <string name="theme_dark_blue">Donkerblauw</string>
     <string name="theme_dark_amoled">AMOLED-zwart</string>
@@ -452,7 +440,6 @@
     <string name="action_oldest">Oudste</string>
     <string name="action_newest">Nieuwste</string>
     <string name="action_reorganize_by">Opnieuw organiseren</string>
-    <string name="action_hide">Verbergen</string>
     <string name="action_sort_last_checked">Laatst gecheckt</string>
     <string name="action_menu">Menu</string>
     <string name="action_pin">Vastspelden</string>
@@ -494,8 +481,6 @@
     <string name="manga_info_collapse">Minder informatie weergeven</string>
     <string name="manga_info_expand">Toon meer info</string>
     <string name="manga_info_about_label">Over</string>
-    <string name="manga_info_latest_data_label">Bijgewerkt</string>
-    <string name="manga_info_last_chapter_label">Laatste hoofdstuk</string>
     <string name="in_library">In bibliotheek</string>
     <string name="add_to_library">Toevoegen aan bibliotheek</string>
     <string name="local_source_help_guide">Lokale brongids</string>
@@ -535,7 +520,7 @@
     <string name="pref_confirm_exit">Bevestig exit</string>
     <string name="theme_light_blue">Licht blauw</string>
     <string name="theme_light_default">Standaard</string>
-    <string name="pref_theme_light">Licht thema variant</string>
+    <string name="pref_theme_light">Licht thema</string>
     <string name="action_move_to_top">Verplaats naar top</string>
     <string name="action_unpin">Losspelden</string>
     <string name="channel_backup_restore_complete">Voltooid</string>
@@ -564,4 +549,28 @@
     </plurals>
     <string name="unofficial_extension_message">Deze extensie behoort niet tot de officiële Tachiyomi extensie lijst.</string>
     <string name="ext_unofficial">Onofficieël</string>
+    <string name="pref_library_update_refresh_metadata_summary">Controleer bij het bijwerken van de bibliotheek op nieuwe omslag en details</string>
+    <string name="loader_not_implemented_error">Bron niet gevonden</string>
+    <string name="page_list_empty_error">Geen pagina\'s gevonden</string>
+    <string name="sort_by_upload_date">Op uploaddatum</string>
+    <string name="tabs_header">Tabbladen</string>
+    <string name="badges_header">Badges</string>
+    <string name="label_data">Data</string>
+    <string name="backup_restore_missing_sources">Missende bronnen:</string>
+    <string name="invalid_backup_file_missing_manga">Backup bevat geen manga.</string>
+    <string name="invalid_backup_file_missing_data">Bestand mist data.</string>
+    <string name="invalid_backup_file">Ongeldig backupbestand</string>
+    <string name="tracker_not_logged_in">Niet ingelogd: %1$s</string>
+    <string name="source_not_found_name">Bron niet gevonden: %1$s</string>
+    <string name="pref_show_reading_mode_summary">Laat huidige modus kort zien als lezer geopend wordt</string>
+    <string name="pref_show_reading_mode">Toon leesmodus</string>
+    <string name="pref_library_update_error_notification">Geef updatefoutmeldingen weer</string>
+    <string name="pref_library_update_refresh_metadata">Metadata automatisch bijwerken</string>
+    <string name="action_disable">Uitzetten</string>
+    <string name="action_display_show_tabs">Toon categorietabbladen</string>
+    <string name="action_display_comfortable_grid">Comfortabel raster</string>
+    <string name="action_migrate">Migreren</string>
+    <string name="action_start">Beginnen</string>
+    <string name="action_disable_all">Alles uitzetten</string>
+    <string name="action_enable_all">Alles aanzetten</string>
 </resources>

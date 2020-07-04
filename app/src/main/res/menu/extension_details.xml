@@ -11,4 +11,9 @@
         android:title="@string/action_disable_all"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/action_open_in_settings"
+        android:title="@string/action_open_in_settings"
+        app:showAsAction="never" />
+
 </menu>

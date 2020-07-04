@@ -4,14 +4,18 @@ import android.os.Build
 import androidx.preference.PreferenceScreen
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
+import eu.kanade.tachiyomi.data.preference.PreferenceValues.TappingInvertMode
+import eu.kanade.tachiyomi.data.preference.asImmediateFlow
 import eu.kanade.tachiyomi.util.preference.defaultValue
 import eu.kanade.tachiyomi.util.preference.entriesRes
 import eu.kanade.tachiyomi.util.preference.intListPreference
+import eu.kanade.tachiyomi.util.preference.listPreference
 import eu.kanade.tachiyomi.util.preference.preferenceCategory
 import eu.kanade.tachiyomi.util.preference.summaryRes
 import eu.kanade.tachiyomi.util.preference.switchPreference
 import eu.kanade.tachiyomi.util.preference.titleRes
 import eu.kanade.tachiyomi.util.system.hasDisplayCutout
+import kotlinx.coroutines.flow.launchIn
 
 class SettingsReaderController : SettingsController() {
 
@@ -189,6 +193,26 @@ class SettingsReaderController : SettingsController() {
                 key = Keys.readWithTapping
                 titleRes = R.string.pref_read_with_tapping
                 defaultValue = true
+            }
+            listPreference {
+                key = Keys.readWithTappingInverted
+                titleRes = R.string.pref_read_with_tapping_inverted
+                entriesRes = arrayOf(
+                    R.string.tapping_inverted_none,
+                    R.string.tapping_inverted_horizontal,
+                    R.string.tapping_inverted_vertical,
+                    R.string.tapping_inverted_both
+                )
+                entryValues = arrayOf(
+                    TappingInvertMode.NONE.name,
+                    TappingInvertMode.HORIZONTAL.name,
+                    TappingInvertMode.VERTICAL.name,
+                    TappingInvertMode.BOTH.name
+                )
+                defaultValue = TappingInvertMode.NONE.name
+                summary = "%s"
+
+                preferences.readWithTapping().asImmediateFlow { isVisible = it }.launchIn(scope)
             }
             switchPreference {
                 key = Keys.readWithLongTap

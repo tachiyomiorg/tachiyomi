@@ -34,7 +34,7 @@
 
     </eu.kanade.tachiyomi.widget.ThemedSwipeRefreshLayout>
 
-    <eu.kanade.tachiyomi.ui.library.MaterialFastScroll
+    <eu.kanade.tachiyomi.widget.MaterialFastScroll
         android:id="@+id/fast_scroller"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -53,7 +53,7 @@
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fab"
         style="@style/Theme.Widget.FAB"
-        android:text="@string/action_resume"
+        android:text="@string/action_start"
         app:icon="@drawable/ic_play_arrow_24dp"
         app:layout_anchor="@id/recycler" />
 

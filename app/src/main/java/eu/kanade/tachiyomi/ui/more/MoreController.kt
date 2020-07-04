@@ -11,6 +11,7 @@ import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.ui.base.controller.NoToolbarElevationController
 import eu.kanade.tachiyomi.ui.base.controller.RootController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
+import eu.kanade.tachiyomi.ui.category.CategoryController
 import eu.kanade.tachiyomi.ui.download.DownloadController
 import eu.kanade.tachiyomi.ui.setting.SettingsController
 import eu.kanade.tachiyomi.ui.setting.SettingsMainController
@@ -64,6 +65,14 @@ class MoreController :
                 iconTint = tintColor
                 onClick {
                     router.pushController(DownloadController().withFadeTransaction())
+                }
+            }
+            preference {
+                titleRes = R.string.label_categories
+                iconRes = R.drawable.ic_label_24dp
+                iconTint = tintColor
+                onClick {
+                    router.pushController(CategoryController().withFadeTransaction())
                 }
             }
         }

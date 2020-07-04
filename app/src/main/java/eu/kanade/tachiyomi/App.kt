@@ -49,7 +49,7 @@ open class App : Application(), LifecycleObserver {
             ForceCloseActivity.closeApp(this)
         }
 
-        // TLS 1.3 support for Android 10 and below
+        // TLS 1.3 support for Android < 10
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
             Security.insertProviderAt(Conscrypt.newProvider(), 1)
         }

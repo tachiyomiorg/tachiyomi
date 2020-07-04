@@ -323,6 +323,22 @@ class LibraryPresenter(
     }
 
     /**
+     * Queues all unread chapters from the given list of manga.
+     *
+     * @param mangas the list of manga.
+     */
+    fun downloadUnreadChapters(mangas: List<Manga>) {
+        mangas.forEach { manga ->
+            launchIO {
+                val chapters = db.getChapters(manga).executeAsBlocking()
+                    .filter { !it.read }
+
+                downloadManager.downloadChapters(manga, chapters)
+            }
+        }
+    }
+
+    /**
      * Remove the selected manga from the library.
      *
      * @param mangas the list of manga to delete.

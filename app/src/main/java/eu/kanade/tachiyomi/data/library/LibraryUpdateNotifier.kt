@@ -104,10 +104,14 @@ class LibraryUpdateNotifier(private val context: Context) {
                     )
                 )
                 setSmallIcon(R.drawable.ic_tachi)
+
+                val errorLogIntent = NotificationReceiver.openErrorLogPendingActivity(context, uri)
+
+                setContentIntent(errorLogIntent)
                 addAction(
                     R.drawable.nnf_ic_file_folder,
                     context.getString(R.string.action_open_log),
-                    NotificationReceiver.openErrorLogPendingActivity(context, uri)
+                    errorLogIntent
                 )
             }
                 .build()

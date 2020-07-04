@@ -17,13 +17,14 @@
         android:layout_weight="1"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="?attr/colorOnPrimary"
         tools:text="Header" />
 
     <ImageView
         android:id="@+id/expand_icon"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:tint="?attr/colorOnPrimary" />
 
 </LinearLayout>

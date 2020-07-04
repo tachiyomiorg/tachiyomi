@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.browse.extension
+package eu.kanade.tachiyomi.ui.browse.extension.details
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -28,6 +28,7 @@ import eu.kanade.tachiyomi.data.preference.SharedPreferencesDataStore
 import eu.kanade.tachiyomi.databinding.SourcePreferencesControllerBinding
 import eu.kanade.tachiyomi.source.ConfigurableSource
 import eu.kanade.tachiyomi.source.Source
+import eu.kanade.tachiyomi.source.getPreferenceKey
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import timber.log.Timber
 
@@ -107,7 +108,7 @@ class SourcePreferencesController(bundle: Bundle? = null) :
         val context = screen.context
 
         val dataStore = SharedPreferencesDataStore(
-            context.getSharedPreferences("source_${source.id}", Context.MODE_PRIVATE)
+            context.getSharedPreferences(source.getPreferenceKey(), Context.MODE_PRIVATE)
         )
 
         if (source is ConfigurableSource) {

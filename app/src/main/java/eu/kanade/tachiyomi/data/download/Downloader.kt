@@ -117,6 +117,8 @@ class Downloader(
         val pending = queue.filter { it.status != Download.DOWNLOADED }
         pending.forEach { if (it.status != Download.QUEUE) it.status = Download.QUEUE }
 
+        notifier.paused = false
+
         downloadsRelay.call(pending)
         return pending.isNotEmpty()
     }
