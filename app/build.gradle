@@ -64,11 +64,15 @@ android {
             versionNameSuffix "-${getCommitCount()}"
             applicationIdSuffix ".debug"
         }
-//        release {
-//            minifyEnabled true
-//            shrinkResources true
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//        }
+        release {
+            postprocessing {
+                obfuscate false
+                optimizeCode true
+                removeUnusedCode false
+                removeUnusedResources true
+                proguardFiles 'proguard-rules.pro'
+            }
+        }
     }
 
     flavorDimensions "default"
