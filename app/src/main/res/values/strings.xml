@@ -42,6 +42,7 @@
     <string name="action_sort_last_read">Last read</string>
     <string name="action_sort_last_checked">Last checked</string>
     <string name="action_sort_latest_chapter">Latest chapter</string>
+    <string name="action_sort_date_added">Date added</string>
     <string name="action_search">Search</string>
     <string name="action_global_search">Global search</string>
     <string name="action_select_all">Select all</string>
@@ -136,6 +137,8 @@
     <string name="pref_category_about">About</string>
 
       <!-- General section -->
+    <string name="pref_category_theme">Theme</string>
+    <string name="pref_category_locale">Locale</string>
     <string name="pref_theme_mode">Dark mode</string>
     <string name="theme_system">Follow system</string>
     <string name="theme_light">Off</string>
@@ -241,8 +244,8 @@
     <string name="pref_true_color">32-bit color</string>
     <string name="pref_true_color_summary">Reduces banding, but impacts performance</string>
     <string name="pref_crop_borders">Crop borders</string>
-    <string name="pref_custom_brightness">Use custom brightness</string>
-    <string name="pref_custom_color_filter">Use custom color filter</string>
+    <string name="pref_custom_brightness">Custom brightness</string>
+    <string name="pref_custom_color_filter">Custom color filter</string>
     <string name="pref_color_filter_mode">Color filter blend mode</string>
     <string name="filter_mode_default">Default</string>
     <string name="filter_mode_overlay">Overlay</string>
@@ -296,6 +299,7 @@
     <string name="color_filter_b_value">B</string>
     <string name="color_filter_a_value">A</string>
     <string name="pref_always_show_chapter_transition">Always show chapter transition</string>
+    <string name="pref_category_reading_mode">Reading mode</string>
     <string name="pref_category_reading">Reading</string>
     <string name="pref_webtoon_side_padding">Side padding</string>
     <string name="webtoon_side_padding_0">None</string>
@@ -447,6 +451,7 @@
     <string name="invalid_combination">Default can\'t be selected with other categories</string>
     <string name="added_to_library">The manga has been added to your library</string>
     <string name="action_global_search_hint">Global search…</string>
+    <string name="action_global_search_query">Search for \"%1$s\" globally</string>
     <string name="latest">Latest</string>
     <string name="browse">Browse</string>
     <string name="local_source_help_guide">Local source guide</string>
@@ -584,7 +589,8 @@
     <string name="copy">Copy</string>
 
     <!-- Downloads activity and service -->
-    <string name="download_queue_error">Could not download chapters. You can try again in the downloads section</string>
+    <string name="download_queue_error">Couldn\'t download chapters. You can try again in the downloads section</string>
+    <string name="download_insufficient_space">Couldn\'t download chapters due to low disk space</string>
 
     <!-- Library update service notifications -->
     <string name="notification_check_updates">Checking for new chapters</string>

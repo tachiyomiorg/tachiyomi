@@ -75,7 +75,6 @@ open class GlobalSearchController(
      * @param manga clicked item containing manga information.
      */
     override fun onMangaClick(manga: Manga) {
-        // Open MangaController.
         router.pushController(MangaController(manga, true).withFadeTransaction())
     }
 

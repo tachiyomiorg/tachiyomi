@@ -11,30 +11,18 @@ import uy.kohesive.injekt.api.get
 class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelper = Injekt.get()) :
     ViewerConfig(preferences) {
 
-    var usePageTransitions = false
-        private set
-
     var imageScaleType = 1
         private set
 
     var imageZoomType = ZoomType.Left
         private set
 
-    var imageCropBorders = false
-        private set
-
     init {
-        preferences.pageTransitions()
-            .register({ usePageTransitions = it })
-
         preferences.imageScaleType()
             .register({ imageScaleType = it }, { imagePropertyChangedListener?.invoke() })
 
         preferences.zoomStart()
             .register({ zoomTypeFromPreference(it) }, { imagePropertyChangedListener?.invoke() })
-
-        preferences.cropBorders()
-            .register({ imageCropBorders = it }, { imagePropertyChangedListener?.invoke() })
     }
 
     private fun zoomTypeFromPreference(value: Int) {

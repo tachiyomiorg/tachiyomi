@@ -232,7 +232,17 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
                 invalidateOptionsMenu()
             }
             R.id.action_settings -> ReaderSettingsSheet(this).show()
-            R.id.action_custom_filter -> ReaderColorFilterSheet(this).show()
+            R.id.action_custom_filter -> {
+                val sheet = ReaderColorFilterSheet(this)
+                    // Remove dimmed backdrop so changes can be previewd
+                    .apply { window?.setDimAmount(0f) }
+
+                // Hide toolbars while sheet is open for better preview
+                sheet.setOnDismissListener { setMenuVisibility(true) }
+                setMenuVisibility(false)
+
+                sheet.show()
+            }
         }
         return super.onOptionsItemSelected(item)
     }

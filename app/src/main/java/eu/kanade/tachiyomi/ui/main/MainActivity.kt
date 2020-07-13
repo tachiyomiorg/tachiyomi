@@ -27,6 +27,7 @@ import eu.kanade.tachiyomi.databinding.MainActivityBinding
 import eu.kanade.tachiyomi.extension.api.ExtensionGithubApi
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
+import eu.kanade.tachiyomi.ui.base.controller.FabController
 import eu.kanade.tachiyomi.ui.base.controller.NoToolbarElevationController
 import eu.kanade.tachiyomi.ui.base.controller.RootController
 import eu.kanade.tachiyomi.ui.base.controller.TabbedController
@@ -42,9 +43,13 @@ import eu.kanade.tachiyomi.ui.recent.updates.UpdatesController
 import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.lang.launchUI
 import eu.kanade.tachiyomi.util.system.toast
+import eu.kanade.tachiyomi.util.view.gone
 import eu.kanade.tachiyomi.util.view.snack
+import eu.kanade.tachiyomi.util.view.visible
 import java.util.Date
 import java.util.concurrent.TimeUnit
+import kotlinx.android.synthetic.main.main_activity.appbar
+import kotlinx.android.synthetic.main.main_activity.tabs
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -111,8 +116,7 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
             true
         }
 
-        val container: ViewGroup = findViewById(R.id.controller_container)
-
+        val container: ViewGroup = binding.controllerContainer
         router = Conductor.attachRouter(this, container, savedInstanceState)
         if (!router.hasRootController()) {
             // Set start screen
@@ -151,20 +155,7 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
         if (savedInstanceState == null) {
             // Show changelog prompt on update
             if (Migrations.upgrade(preferences) && !BuildConfig.DEBUG) {
-                binding.controllerContainer.snack(getString(R.string.updated_version, BuildConfig.VERSION_NAME), Snackbar.LENGTH_INDEFINITE) {
-                    setAction(R.string.whats_new) {
-                        val url = "https://github.com/inorichi/tachiyomi/releases/tag/v${BuildConfig.VERSION_NAME}"
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                        startActivity(intent)
-                    }
-
-                    // Ensure the snackbar sits above the bottom nav
-                    val layoutParams = view.layoutParams as CoordinatorLayout.LayoutParams
-                    layoutParams.anchorId = binding.bottomNav.id
-                    layoutParams.anchorGravity = Gravity.TOP
-                    layoutParams.gravity = Gravity.TOP
-                    view.layoutParams = layoutParams
-                }
+                showUpdateInfoSnackbar()
             }
         }
 
@@ -325,7 +316,7 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
     }
 
     private fun setRoot(controller: Controller, id: Int) {
-        router.setRoot(controller.withFadeTransaction().tag(id.toString()))
+        router.setRoot(RouterTransaction.with(controller).tag(id.toString()))
     }
 
     private fun syncActivityViewWithController(to: Controller?, from: Controller? = null) {
@@ -357,6 +348,15 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
             binding.tabs.setupWithViewPager(null)
         }
 
+        if (from is FabController) {
+            binding.rootFab.gone()
+            from.cleanupFab(binding.rootFab)
+        }
+        if (to is FabController) {
+            binding.rootFab.visible()
+            to.configureFab(binding.rootFab)
+        }
+
         if (to is NoToolbarElevationController) {
             binding.appbar.disableElevation()
         } else {
@@ -382,6 +382,32 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
         }
     }
 
+    private fun showUpdateInfoSnackbar() {
+        val snack = binding.rootCoordinator.snack(
+            getString(R.string.updated_version, BuildConfig.VERSION_NAME),
+            Snackbar.LENGTH_INDEFINITE
+        ) {
+            setAction(R.string.whats_new) {
+                val url = "https://github.com/inorichi/tachiyomi/releases/tag/v${BuildConfig.VERSION_NAME}"
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                startActivity(intent)
+            }
+
+            // Ensure the snackbar sits above the bottom nav
+            val layoutParams = view.layoutParams as CoordinatorLayout.LayoutParams
+            layoutParams.anchorId = binding.bottomNav.id
+            layoutParams.anchorGravity = Gravity.TOP
+            layoutParams.gravity = Gravity.TOP
+            view.layoutParams = layoutParams
+        }
+
+        // Manually handle dismiss delay since Snackbar.LENGTH_LONG is a too short
+        launchIO {
+            delay(5000)
+            snack.dismiss()
+        }
+    }
+
     companion object {
         // Shortcut actions
         const val SHORTCUT_LIBRARY = "eu.kanade.tachiyomi.SHOW_LIBRARY"
@@ -403,8 +429,8 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
  * collapsing AppBarLayout.
  */
 fun View.offsetAppbarHeight(activity: Activity) {
-    val appbar: AppBarLayout = activity.findViewById(R.id.appbar)
-    val tabs: TabLayout = activity.findViewById(R.id.tabs)
+    val appbar: AppBarLayout = activity.appbar
+    val tabs: TabLayout = activity.tabs
     appbar.addOnOffsetChangedListener(
         AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
             val maxAbsOffset = appBarLayout.measuredHeight - tabs.measuredHeight

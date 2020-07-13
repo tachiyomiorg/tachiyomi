@@ -23,7 +23,7 @@ class ViewHeightAnimator(val view: View) {
      */
     private val animation by lazy {
         ObjectAnimator.ofInt(this, "height", height).apply {
-            duration = 300L
+            duration = 250L
             interpolator = DecelerateInterpolator()
         }
     }

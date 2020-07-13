@@ -1,7 +1,5 @@
 package eu.kanade.tachiyomi.ui.library
 
-import android.app.Activity
-import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -21,7 +19,6 @@ import com.jakewharton.rxrelay.BehaviorRelay
 import com.jakewharton.rxrelay.PublishRelay
 import com.tfcporciuncula.flow.Preference
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService
@@ -33,34 +30,33 @@ import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.RootController
 import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
+import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchController
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.main.offsetAppbarHeight
 import eu.kanade.tachiyomi.ui.manga.MangaController
-import eu.kanade.tachiyomi.util.hasCustomCover
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.toast
+import eu.kanade.tachiyomi.util.view.gone
 import eu.kanade.tachiyomi.util.view.visible
 import kotlinx.android.synthetic.main.main_activity.tabs
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.drop
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import reactivecircus.flowbinding.android.view.clicks
 import reactivecircus.flowbinding.appcompat.queryTextChanges
 import reactivecircus.flowbinding.viewpager.pageSelections
 import rx.Subscription
-import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
 class LibraryController(
     bundle: Bundle? = null,
-    private val preferences: PreferencesHelper = Injekt.get(),
-    private val coverCache: CoverCache = Injekt.get()
+    private val preferences: PreferencesHelper = Injekt.get()
 ) : NucleusController<LibraryControllerBinding, LibraryPresenter>(bundle),
     RootController,
     TabbedController,
     ActionMode.Callback,
-    ChangeMangaCoverDialog.Listener,
     ChangeMangaCategoriesDialog.Listener,
     DeleteLibraryMangasDialog.Listener {
 
@@ -77,14 +73,12 @@ class LibraryController(
     /**
      * Library search query.
      */
-    private var query = ""
+    private var query: String? = ""
 
     /**
      * Currently selected mangas.
      */
     val selectedMangas = mutableSetOf<Manga>()
-
-    private var selectedCoverManga: Manga? = null
 
     /**
      * Relay to notify the UI of selection updates.
@@ -203,6 +197,14 @@ class LibraryController(
         if (preferences.downloadedOnly().get()) {
             binding.downloadedOnly.visible()
         }
+
+        binding.btnGlobalSearch.clicks()
+            .onEach {
+                router.pushController(
+                    GlobalSearchController(query).withFadeTransaction()
+                )
+            }
+            .launchIn(scope)
 
         binding.actionToolbar.offsetAppbarHeight(activity!!)
     }
@@ -364,33 +366,48 @@ class LibraryController(
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
         searchView.maxWidth = Int.MAX_VALUE
+        searchItem.fixExpand(onExpand = { invalidateMenuOnExpand() })
 
-        searchView.queryTextChanges()
-            // Ignore events if this controller isn't at the top
-            .filter { router.backstack.lastOrNull()?.controller() == this }
-            .onEach {
-                query = it.toString()
-                searchRelay.call(query)
-            }
-            .launchIn(scope)
-
-        if (query.isNotEmpty()) {
+        if (!query.isNullOrEmpty()) {
             searchItem.expandActionView()
             searchView.setQuery(query, true)
             searchView.clearFocus()
 
-            // Manually trigger the search since the binding doesn't trigger for some reason
-            searchRelay.call(query)
+            // If we re-enter the controller with a prior search still active
+            view?.post {
+                performSearch()
+            }
         }
 
-        searchItem.fixExpand(onExpand = { invalidateMenuOnExpand() })
+        searchView.queryTextChanges()
+            .distinctUntilChanged()
+            .onEach {
+                query = it.toString()
+                performSearch()
+            }
+            .launchIn(scope)
 
         // Mutate the filter icon because it needs to be tinted and the resource is shared.
         menu.findItem(R.id.action_filter).icon.mutate()
     }
 
-    fun search(query: String) {
-        this.query = query
+    fun search(query: String?) {
+        // Delay to let contents load first for searches from manga info
+        view?.post {
+            this.query = query
+            performSearch()
+        }
+    }
+
+    private fun performSearch() {
+        searchRelay.call(query)
+        if (!query.isNullOrEmpty()) {
+            binding.btnGlobalSearch.visible()
+            binding.btnGlobalSearch.text =
+                resources?.getString(R.string.action_global_search_query, query)
+        } else {
+            binding.btnGlobalSearch.gone()
+        }
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
@@ -441,7 +458,6 @@ class LibraryController(
         } else {
             mode.title = count.toString()
 
-            binding.actionToolbar.findItem(R.id.action_edit_cover)?.isVisible = count == 1
             binding.actionToolbar.findItem(R.id.action_download_unread)?.isVisible = selectedMangas.any { it.source != LocalSource.ID }
         }
         return false
@@ -453,7 +469,6 @@ class LibraryController(
 
     private fun onActionItemClicked(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_edit_cover -> handleChangeCover()
             R.id.action_move_to_category -> showChangeMangaCategoriesDialog()
             R.id.action_download_unread -> downloadUnreadChapters()
             R.id.action_delete -> showDeleteMangaDialog()
@@ -513,23 +528,6 @@ class LibraryController(
         }
     }
 
-    private fun handleChangeCover() {
-        val manga = selectedMangas.firstOrNull() ?: return
-
-        if (manga.hasCustomCover(coverCache)) {
-            showEditCoverDialog(manga)
-        } else {
-            openMangaCoverPicker(manga)
-        }
-    }
-
-    /**
-     * Edit custom cover for selected manga.
-     */
-    private fun showEditCoverDialog(manga: Manga) {
-        ChangeMangaCoverDialog(this, manga).showDialog(router)
-    }
-
     /**
      * Move the selected manga to a list of categories.
      */
@@ -559,31 +557,6 @@ class LibraryController(
         DeleteLibraryMangasDialog(this, selectedMangas.toList()).showDialog(router)
     }
 
-    override fun openMangaCoverPicker(manga: Manga) {
-        selectedCoverManga = manga
-
-        if (manga.favorite) {
-            val intent = Intent(Intent.ACTION_GET_CONTENT)
-            intent.type = "image/*"
-            startActivityForResult(
-                Intent.createChooser(
-                    intent,
-                    resources?.getString(R.string.file_select_cover)
-                ),
-                REQUEST_IMAGE_OPEN
-            )
-        } else {
-            activity?.toast(R.string.notification_first_add_to_library)
-        }
-
-        destroyActionModeIfNeeded()
-    }
-
-    override fun deleteMangaCover(manga: Manga) {
-        presenter.deleteCustomCover(manga)
-        destroyActionModeIfNeeded()
-    }
-
     override fun updateCategoriesForMangas(mangas: List<Manga>, categories: List<Category>) {
         presenter.moveMangasToCategories(categories, mangas)
         destroyActionModeIfNeeded()
@@ -604,33 +577,5 @@ class LibraryController(
         adapter?.categories?.getOrNull(binding.libraryPager.currentItem)?.id?.let {
             selectInverseRelay.call(it)
         }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == REQUEST_IMAGE_OPEN) {
-            val dataUri = data?.data
-            if (dataUri == null || resultCode != Activity.RESULT_OK) return
-            val activity = activity ?: return
-            val manga = selectedCoverManga ?: return
-
-            selectedCoverManga = null
-            presenter.editCover(manga, activity, dataUri)
-        }
-    }
-
-    fun onSetCoverSuccess() {
-        activity?.toast(R.string.cover_updated)
-    }
-
-    fun onSetCoverError(error: Throwable) {
-        activity?.toast(R.string.notification_cover_update_failed)
-        Timber.e(error)
-    }
-
-    private companion object {
-        /**
-         * Key to change the cover of a manga in [onActivityResult].
-         */
-        const val REQUEST_IMAGE_OPEN = 101
     }
 }

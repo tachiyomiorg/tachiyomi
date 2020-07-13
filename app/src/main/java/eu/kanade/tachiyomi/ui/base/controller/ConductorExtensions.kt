@@ -28,8 +28,8 @@ fun Controller.requestPermissionsSafe(permissions: Array<String>, requestCode: I
     }
 }
 
-fun Controller.withFadeTransaction(): RouterTransaction {
+fun Controller.withFadeTransaction(duration: Long = 150L): RouterTransaction {
     return RouterTransaction.with(this)
-        .pushChangeHandler(FadeChangeHandler())
-        .popChangeHandler(FadeChangeHandler())
+        .pushChangeHandler(FadeChangeHandler(duration))
+        .popChangeHandler(FadeChangeHandler(duration))
 }

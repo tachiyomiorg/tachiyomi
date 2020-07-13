@@ -13,6 +13,7 @@ import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchCardItem
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchItem
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchPresenter
 import eu.kanade.tachiyomi.util.chapter.syncChaptersWithSource
+import java.util.Date
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -146,6 +147,14 @@ class SearchPresenter(
             db.updateFlags(manga).executeAsBlocking()
             manga.viewer = prevManga.viewer
             db.updateMangaViewer(manga).executeAsBlocking()
+
+            // Update date added
+            if (replace) {
+                manga.date_added = prevManga.date_added
+                prevManga.date_added = 0
+            } else {
+                manga.date_added = Date().time
+            }
 
             // SearchPresenter#networkToLocalManga may have updated the manga title, so ensure db gets updated title
             db.updateMangaTitle(manga).executeAsBlocking()

@@ -3,15 +3,13 @@ package eu.kanade.tachiyomi.ui.browse.source.browse
 import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
-import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.util.view.inflate
+import eu.kanade.tachiyomi.databinding.SourceFilterSheetBinding
 import eu.kanade.tachiyomi.widget.SimpleNavigationView
-import kotlinx.android.synthetic.main.source_filter_sheet.view.filter_btn
-import kotlinx.android.synthetic.main.source_filter_sheet.view.reset_btn
 
 class SourceFilterSheet(
     activity: Activity,
@@ -46,14 +44,15 @@ class SourceFilterSheet(
             .setDisplayHeadersAtStartUp(true)
             .setStickyHeaders(true)
 
+        private val binding = SourceFilterSheetBinding.inflate(LayoutInflater.from(context), null, false)
+
         init {
             recycler.adapter = adapter
             recycler.setHasFixedSize(true)
-            val view = inflate(R.layout.source_filter_sheet)
-            ((view as ViewGroup).getChildAt(1) as ViewGroup).addView(recycler)
-            addView(view)
-            filter_btn.setOnClickListener { onFilterClicked() }
-            reset_btn.setOnClickListener { onResetClicked() }
+            (binding.root.getChildAt(1) as ViewGroup).addView(recycler)
+            addView(binding.root)
+            binding.filterBtn.setOnClickListener { onFilterClicked() }
+            binding.resetBtn.setOnClickListener { onResetClicked() }
         }
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Environment
+import android.os.StatFs
 import androidx.core.content.ContextCompat
 import androidx.core.os.EnvironmentCompat
 import com.hippo.unifile.UniFile
@@ -26,6 +27,17 @@ object DiskUtil {
             size = f.length()
         }
         return size
+    }
+
+    /**
+     * Gets the available space for the disk that a file path points to, in bytes.
+     */
+    fun getAvailableStorageSpace(f: UniFile): Long {
+        val stat = StatFs(f.filePath)
+        val availBlocks = stat.availableBlocksLong
+        val blockSize = stat.blockSizeLong
+
+        return availBlocks * blockSize
     }
 
     /**

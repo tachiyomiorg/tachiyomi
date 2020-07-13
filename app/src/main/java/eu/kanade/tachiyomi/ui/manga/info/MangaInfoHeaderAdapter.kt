@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.manga.chapter
+package eu.kanade.tachiyomi.ui.manga.info
 
 import android.content.Context
 import android.text.TextUtils
@@ -12,12 +12,15 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.glide.GlideApp
+import eu.kanade.tachiyomi.data.glide.MangaThumbnail
 import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
+import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.databinding.MangaInfoHeaderBinding
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.source.online.HttpSource
+import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.system.copyToClipboard
 import eu.kanade.tachiyomi.util.view.gone
 import eu.kanade.tachiyomi.util.view.setChips
@@ -35,7 +38,7 @@ import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
 class MangaInfoHeaderAdapter(
-    private val controller: MangaInfoChaptersController,
+    private val controller: MangaController,
     private val fromSource: Boolean
 ) :
     RecyclerView.Adapter<MangaInfoHeaderAdapter.HeaderViewHolder>() {
@@ -47,6 +50,7 @@ class MangaInfoHeaderAdapter(
     private lateinit var binding: MangaInfoHeaderBinding
 
     private var initialLoad: Boolean = true
+    private var currentMangaThumbnail: MangaThumbnail? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeaderViewHolder {
         binding = MangaInfoHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -81,13 +85,24 @@ class MangaInfoHeaderAdapter(
                 .onEach { controller.onFavoriteClick() }
                 .launchIn(scope)
 
+            if (controller.presenter.manga.favorite && Injekt.get<TrackManager>().hasLoggedServices()) {
+                binding.btnTracking.visible()
+                binding.btnTracking.clicks()
+                    .onEach { controller.onTrackingClick() }
+                    .launchIn(scope)
+            } else {
+                binding.btnTracking.gone()
+            }
+
             if (controller.presenter.manga.favorite && controller.presenter.getCategories().isNotEmpty()) {
                 binding.btnCategories.visible()
+                binding.btnCategories.clicks()
+                    .onEach { controller.onCategoriesClick() }
+                    .launchIn(scope)
+                binding.btnCategories.setTooltip(R.string.action_move_category)
+            } else {
+                binding.btnCategories.gone()
             }
-            binding.btnCategories.clicks()
-                .onEach { controller.onCategoriesClick() }
-                .launchIn(scope)
-            binding.btnCategories.setTooltip(R.string.action_move_category)
 
             if (controller.presenter.source is HttpSource) {
                 binding.btnWebview.visible()
@@ -224,9 +239,10 @@ class MangaInfoHeaderAdapter(
             // Set the favorite drawable to the correct one.
             setFavoriteButtonState(manga.favorite)
 
-            // Set cover if it wasn't already.
-            if (binding.mangaCover.drawable == null) {
-                val mangaThumbnail = manga.toMangaThumbnail()
+            // Set cover if changed.
+            val mangaThumbnail = manga.toMangaThumbnail()
+            if (mangaThumbnail != currentMangaThumbnail) {
+                currentMangaThumbnail = mangaThumbnail
                 listOf(binding.mangaCover, binding.backdrop)
                     .forEach {
                         GlideApp.with(view.context)

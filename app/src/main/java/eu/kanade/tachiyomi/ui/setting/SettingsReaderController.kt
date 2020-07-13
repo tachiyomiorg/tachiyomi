@@ -23,7 +23,7 @@ class SettingsReaderController : SettingsController() {
         titleRes = R.string.pref_category_reader
 
         preferenceCategory {
-            titleRes = R.string.pref_category_general
+            titleRes = R.string.pref_category_reading_mode
 
             intListPreference {
                 key = Keys.defaultViewer
@@ -36,6 +36,43 @@ class SettingsReaderController : SettingsController() {
                 defaultValue = "2"
                 summary = "%s"
             }
+            intListPreference {
+                key = Keys.doubleTapAnimationSpeed
+                titleRes = R.string.pref_double_tap_anim_speed
+                entries = arrayOf(context.getString(R.string.double_tap_anim_speed_0), context.getString(R.string.double_tap_anim_speed_normal), context.getString(R.string.double_tap_anim_speed_fast))
+                entryValues = arrayOf("1", "500", "250") // using a value of 0 breaks the image viewer, so min is 1
+                defaultValue = "500"
+                summary = "%s"
+            }
+            switchPreference {
+                key = Keys.showReadingMode
+                titleRes = R.string.pref_show_reading_mode
+                summaryRes = R.string.pref_show_reading_mode_summary
+                defaultValue = true
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                switchPreference {
+                    key = Keys.trueColor
+                    titleRes = R.string.pref_true_color
+                    summaryRes = R.string.pref_true_color_summary
+                    defaultValue = false
+                }
+            }
+            switchPreference {
+                key = Keys.cropBorders
+                titleRes = R.string.pref_crop_borders
+                defaultValue = false
+            }
+            switchPreference {
+                key = Keys.enableTransitions
+                titleRes = R.string.pref_page_transitions
+                defaultValue = true
+            }
+        }
+
+        preferenceCategory {
+            titleRes = R.string.pref_category_display
+
             intListPreference {
                 key = Keys.rotation
                 titleRes = R.string.pref_rotation_type
@@ -53,14 +90,6 @@ class SettingsReaderController : SettingsController() {
                 entriesRes = arrayOf(R.string.black_background, R.string.gray_background, R.string.white_background)
                 entryValues = arrayOf("1", "2", "0")
                 defaultValue = "1"
-                summary = "%s"
-            }
-            intListPreference {
-                key = Keys.doubleTapAnimationSpeed
-                titleRes = R.string.pref_double_tap_anim_speed
-                entries = arrayOf(context.getString(R.string.double_tap_anim_speed_0), context.getString(R.string.double_tap_anim_speed_fast), context.getString(R.string.double_tap_anim_speed_normal))
-                entryValues = arrayOf("1", "250", "500") // using a value of 0 breaks the image viewer, so min is 1
-                defaultValue = "500"
                 summary = "%s"
             }
             switchPreference {
@@ -86,20 +115,6 @@ class SettingsReaderController : SettingsController() {
                 key = Keys.showPageNumber
                 titleRes = R.string.pref_show_page_number
                 defaultValue = true
-            }
-            switchPreference {
-                key = Keys.showReadingMode
-                titleRes = R.string.pref_show_reading_mode
-                summaryRes = R.string.pref_show_reading_mode_summary
-                defaultValue = true
-            }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                switchPreference {
-                    key = Keys.trueColor
-                    titleRes = R.string.pref_true_color
-                    summaryRes = R.string.pref_true_color_summary
-                    defaultValue = false
-                }
             }
         }
 
@@ -149,26 +164,10 @@ class SettingsReaderController : SettingsController() {
                 defaultValue = "1"
                 summary = "%s"
             }
-            switchPreference {
-                key = Keys.enableTransitions
-                titleRes = R.string.pref_page_transitions
-                defaultValue = true
-            }
-            switchPreference {
-                key = Keys.cropBorders
-                titleRes = R.string.pref_crop_borders
-                defaultValue = false
-            }
         }
 
         preferenceCategory {
             titleRes = R.string.webtoon_viewer
-
-            switchPreference {
-                key = Keys.cropBordersWebtoon
-                titleRes = R.string.pref_crop_borders
-                defaultValue = false
-            }
 
             intListPreference {
                 key = Keys.webtoonSidePadding
@@ -228,7 +227,9 @@ class SettingsReaderController : SettingsController() {
                 key = Keys.readWithVolumeKeysInverted
                 titleRes = R.string.pref_read_with_volume_keys_inverted
                 defaultValue = false
-            }.apply { dependency = Keys.readWithVolumeKeys }
+
+                preferences.readWithVolumeKeys().asImmediateFlow { isVisible = it }.launchIn(scope)
+            }
         }
     }
 }

@@ -28,6 +28,8 @@ object MangaTable {
 
     const val COL_LAST_UPDATE = "last_update"
 
+    const val COL_DATE_ADDED = "date_added"
+
     const val COL_INITIALIZED = "initialized"
 
     const val COL_VIEWER = "viewer"
@@ -58,7 +60,8 @@ object MangaTable {
             $COL_INITIALIZED BOOLEAN NOT NULL,
             $COL_VIEWER INTEGER NOT NULL,
             $COL_CHAPTER_FLAGS INTEGER NOT NULL,
-            $COL_COVER_LAST_MODIFIED LONG NOT NULL
+            $COL_COVER_LAST_MODIFIED LONG NOT NULL,
+            $COL_DATE_ADDED LONG NOT NULL
             )"""
 
     val createUrlIndexQuery: String
@@ -70,4 +73,17 @@ object MangaTable {
 
     val addCoverLastModified: String
         get() = "ALTER TABLE $TABLE ADD COLUMN $COL_COVER_LAST_MODIFIED LONG NOT NULL DEFAULT 0"
+
+    val addDateAdded: String
+        get() = "ALTER TABLE $TABLE ADD COLUMN $COL_DATE_ADDED LONG NOT NULL DEFAULT 0"
+
+    /**
+     * Used with addDateAdded to populate it with the oldest chapter fetch date.
+     */
+    val backfillDateAdded: String
+        get() = "UPDATE $TABLE SET $COL_DATE_ADDED = " +
+            "(SELECT MIN(${ChapterTable.COL_DATE_FETCH}) " +
+            "FROM $TABLE INNER JOIN ${ChapterTable.TABLE} " +
+            "ON $TABLE.$COL_ID = ${ChapterTable.TABLE}.${ChapterTable.COL_MANGA_ID} " +
+            "GROUP BY $TABLE.$COL_ID)"
 }

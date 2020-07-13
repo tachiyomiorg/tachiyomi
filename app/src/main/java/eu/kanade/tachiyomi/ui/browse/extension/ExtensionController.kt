@@ -129,6 +129,9 @@ open class ExtensionController :
         val searchView = searchItem.actionView as SearchView
         searchView.maxWidth = Int.MAX_VALUE
 
+        // Fixes problem with the overflow icon showing up in lieu of search
+        searchItem.fixExpand(onExpand = { invalidateMenuOnExpand() })
+
         if (query.isNotEmpty()) {
             searchItem.expandActionView()
             searchView.setQuery(query, true)
@@ -142,9 +145,6 @@ open class ExtensionController :
                 drawExtensions()
             }
             .launchIn(scope)
-
-        // Fixes problem with the overflow icon showing up in lieu of search
-        searchItem.fixExpand(onExpand = { invalidateMenuOnExpand() })
     }
 
     override fun onItemClick(view: View, position: Int): Boolean {

@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.manga.chapter
+package eu.kanade.tachiyomi.ui.manga.info
 
 import android.content.Context
 import android.util.AttributeSet

@@ -66,7 +66,7 @@ abstract class BaseController<VB : ViewBinding>(bundle: Bundle? = null) :
             setTitle()
             setHasOptionsMenu(true)
         }
-        
+
         super.onChangeStarted(handler, type)
     }
 

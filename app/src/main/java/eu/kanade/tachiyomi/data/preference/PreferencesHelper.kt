@@ -115,8 +115,6 @@ class PreferencesHelper(val context: Context) {
 
     fun cropBorders() = flowPrefs.getBoolean(Keys.cropBorders, false)
 
-    fun cropBordersWebtoon() = flowPrefs.getBoolean(Keys.cropBordersWebtoon, false)
-
     fun webtoonSidePadding() = flowPrefs.getInt(Keys.webtoonSidePadding, 0)
 
     fun readWithTapping() = flowPrefs.getBoolean(Keys.readWithTapping, true)

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItems
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.tfcporciuncula.flow.Preference
 import eu.davidea.flexibleadapter.FlexibleAdapter
@@ -30,10 +31,10 @@ import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.model.FilterList
 import eu.kanade.tachiyomi.source.online.HttpSource
+import eu.kanade.tachiyomi.ui.base.controller.FabController
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.library.ChangeMangaCategoriesDialog
-import eu.kanade.tachiyomi.ui.main.offsetAppbarHeight
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.webview.WebViewActivity
 import eu.kanade.tachiyomi.util.system.connectivityManager
@@ -62,6 +63,7 @@ import uy.kohesive.injekt.injectLazy
  */
 open class BrowseSourceController(bundle: Bundle) :
     NucleusController<SourceControllerBinding, BrowseSourcePresenter>(bundle),
+    FabController,
     FlexibleAdapter.OnItemClickListener,
     FlexibleAdapter.OnItemLongClickListener,
     FlexibleAdapter.EndlessScrollListener,
@@ -83,6 +85,9 @@ open class BrowseSourceController(bundle: Bundle) :
      * Adapter containing the list of manga from the catalogue.
      */
     private var adapter: FlexibleAdapter<IFlexible<*>>? = null
+
+    private var actionFab: ExtendedFloatingActionButton? = null
+    private var actionFabScrollListener: RecyclerView.OnScrollListener? = null
 
     /**
      * Snackbar containing an error message when a request fails.
@@ -162,13 +167,27 @@ open class BrowseSourceController(bundle: Bundle) :
         filterSheet?.setFilters(presenter.filterItems)
 
         // TODO: [ExtendedFloatingActionButton] hide/show methods don't work properly
-        filterSheet?.setOnShowListener { binding.fabFilter.gone() }
-        filterSheet?.setOnDismissListener { binding.fabFilter.visible() }
+        filterSheet?.setOnShowListener { actionFab?.gone() }
+        filterSheet?.setOnDismissListener { actionFab?.visible() }
 
-        binding.fabFilter.setOnClickListener { filterSheet?.show() }
+        actionFab?.setOnClickListener { filterSheet?.show() }
 
-        binding.fabFilter.offsetAppbarHeight(activity!!)
-        binding.fabFilter.visible()
+        actionFab?.visible()
+    }
+
+    override fun configureFab(fab: ExtendedFloatingActionButton) {
+        actionFab = fab
+
+        // Controlled by initFilterSheet()
+        fab.gone()
+
+        fab.setText(R.string.action_filter)
+        fab.setIconResource(R.drawable.ic_filter_list_24dp)
+    }
+
+    override fun cleanupFab(fab: ExtendedFloatingActionButton) {
+        actionFabScrollListener?.let { recycler?.removeOnScrollListener(it) }
+        actionFab = null
     }
 
     override fun onDestroyView(view: View) {
@@ -228,7 +247,7 @@ open class BrowseSourceController(bundle: Bundle) :
             )
             recycler.clipToPadding = false
 
-            binding.fabFilter.shrinkOnScroll(recycler)
+            actionFab?.shrinkOnScroll(recycler)
         }
 
         recycler.setHasFixedSize(true)

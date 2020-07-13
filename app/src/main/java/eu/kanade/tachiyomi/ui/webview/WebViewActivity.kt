@@ -22,6 +22,7 @@ import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
 import eu.kanade.tachiyomi.ui.main.ForceCloseActivity
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.openInBrowser
+import eu.kanade.tachiyomi.util.system.setDefaultSettings
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.invisible
 import eu.kanade.tachiyomi.util.view.visible
@@ -71,15 +72,14 @@ class WebViewActivity : BaseActivity<WebviewActivityBinding>() {
                 binding.webview.settings.userAgentString = source.headers["User-Agent"]
             }
 
+            binding.webview.setDefaultSettings()
+
             supportActionBar?.subtitle = url
 
             // Debug mode (chrome://inspect/#devices)
             if (BuildConfig.DEBUG && 0 != applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE) {
                 WebView.setWebContentsDebuggingEnabled(true)
             }
-
-            binding.webview.settings.javaScriptEnabled = true
-            binding.webview.settings.domStorageEnabled = true
 
             binding.webview.webChromeClient = object : WebChromeClient() {
                 override fun onProgressChanged(view: WebView?, newProgress: Int) {

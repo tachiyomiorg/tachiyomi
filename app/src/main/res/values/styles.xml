@@ -242,12 +242,14 @@
     <style name="Theme.Widget.Button" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:textColor">?attr/colorAccent</item>
         <item name="rippleColor">?attr/colorAccent</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 
     <style name="Theme.Widget.Button.FilledAccent" parent="Widget.MaterialComponents.Button">
         <item name="android:textColor">?attr/colorOnSecondary</item>
         <item name="backgroundTint">?attr/colorAccent</item>
         <item name="rippleColor">?attr/colorAccent</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 
     <style name="Theme.Widget.Button.Icon" parent="Widget.MaterialComponents.Button.OutlinedButton.Icon">

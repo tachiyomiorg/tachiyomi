@@ -3,13 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_edit_cover"
-        android:icon="@drawable/ic_edit_24dp"
-        android:title="@string/action_edit_cover"
-        app:iconTint="?attr/colorOnPrimary"
-        app:showAsAction="always" />
-
-    <item
         android:id="@+id/action_move_to_category"
         android:icon="@drawable/ic_label_24dp"
         android:title="@string/action_move_category"

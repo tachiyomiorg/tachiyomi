@@ -24,8 +24,7 @@ class CategoryHolder(view: View, val adapter: CategoryAdapter) : BaseFlexibleVie
      * @param category The category to bind.
      */
     fun bind(category: Category) {
-        // Set capitalized title.
-        title.text = category.name.capitalize()
+        title.text = category.name
     }
 
     /**
