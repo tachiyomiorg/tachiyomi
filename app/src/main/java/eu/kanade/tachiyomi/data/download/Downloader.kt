@@ -234,10 +234,8 @@ class Downloader(
             val mangaDir = provider.findMangaDir(manga, source)
 
             chapters
-                // Avoid downloading chapters with the same name.
-                .distinctBy { it.name }
                 // Filter out those already downloaded.
-                .filter { mangaDir?.findFile(provider.getChapterDirName(it)) == null }
+                .filter { provider.findChapterDir(it, manga, source) == null }
                 // Add chapters to queue from the start.
                 .sortedByDescending { it.source_order }
         }
