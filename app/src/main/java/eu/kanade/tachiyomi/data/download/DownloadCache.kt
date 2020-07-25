@@ -194,7 +194,7 @@ class DownloadCache(
         val chapterDirName = provider.getValidChapterDirNames(chapter)
         chapterDirName.forEach {
             if (it in mangaDir.files) {
-                mangaDir.files -= chapterDirName
+                mangaDir.files -= it
             }
         }
     }
@@ -213,7 +213,7 @@ class DownloadCache(
             val chapterDirName = provider.getValidChapterDirNames(chapter)
             chapterDirName.forEach {
                 if (it in mangaDir.files) {
-                    mangaDir.files -= chapterDirName
+                    mangaDir.files -= it
                 }
             }
         }
