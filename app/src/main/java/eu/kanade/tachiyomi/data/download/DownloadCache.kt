@@ -191,8 +191,7 @@ class DownloadCache(
     fun removeChapter(chapter: Chapter, manga: Manga) {
         val sourceDir = rootDir.files[manga.source] ?: return
         val mangaDir = sourceDir.files[provider.getMangaDirName(manga)] ?: return
-        val chapterDirName = provider.getValidChapterDirNames(chapter)
-        chapterDirName.forEach {
+        provider.getValidChapterDirNames(chapter).forEach {
             if (it in mangaDir.files) {
                 mangaDir.files -= it
             }
@@ -210,8 +209,7 @@ class DownloadCache(
         val sourceDir = rootDir.files[manga.source] ?: return
         val mangaDir = sourceDir.files[provider.getMangaDirName(manga)] ?: return
         chapters.forEach { chapter ->
-            val chapterDirName = provider.getValidChapterDirNames(chapter)
-            chapterDirName.forEach {
+            provider.getValidChapterDirNames(chapter).forEach {
                 if (it in mangaDir.files) {
                     mangaDir.files -= it
                 }
