@@ -93,8 +93,8 @@
     <string name="pref_page_transitions">Animeer pagina-overgangen</string>
     <string name="pref_show_page_number">Toon paginanummer</string>
     <string name="pref_crop_borders">Randen bijsnijden</string>
-    <string name="pref_custom_brightness">Gebruik aangepaste helderheid</string>
-    <string name="pref_custom_color_filter">Gebruik aangepast kleurfilter</string>
+    <string name="pref_custom_brightness">Aangepaste helderheid</string>
+    <string name="pref_custom_color_filter">Aangepast kleurfilter</string>
     <string name="pref_read_with_volume_keys">Volumeknoppen</string>
     <string name="pref_read_with_tapping">Tikken</string>
     <string name="pref_reader_theme">Achtergrondkleur</string>
@@ -139,7 +139,6 @@
     <string name="pref_backup_service_category">Automatische backups</string>
     <string name="pref_backup_interval">Back-up frequentie</string>
     <string name="pref_backup_slots">Maximaal aantal back-ups</string>
-    <string name="source_not_found">Bron niet gevonden</string>
     <string name="backup_created">Back-up gemaakt</string>
     <string name="restore_completed">Herstellen voltooid</string>
     <string name="backup_choice">Wat wil je back-uppen?</string>
@@ -497,7 +496,6 @@
     <string name="check_for_updates">Controleer op updates</string>
     <string name="licenses">Open-sourcelicenties</string>
     <string name="notices">Voorbeeldversie mededelingen</string>
-    <string name="changelog">Wijzigingslog</string>
     <string name="website">Website</string>
     <string name="battery_optimization_disabled">Batterijoptimalisatie is al uitgeschakeld</string>
     <string name="pref_disable_battery_optimization_summary">Helpt bij het bijwerken van bibliotheek en back-ups op de achtergrond</string>
@@ -590,4 +588,17 @@
     <string name="pref_read_with_tapping_inverted">Tikken omkeren</string>
     <string name="unknown_status">Onbekende status</string>
     <string name="unknown_author">Onbekende auteur</string>
+    <string name="download_insufficient_space">Kon hoofdstukken niet downloaden omdat er te weinig opslagruimte is</string>
+    <string name="action_global_search_query">Overal zoeken naar \"%1$s\"</string>
+    <string name="updated_version">Bijgewerkt naar v%1$s</string>
+    <string name="whats_new">Wat is er nieuw</string>
+    <string name="pref_category_reading_mode">Leesmodus</string>
+    <string name="pref_category_locale">Landinstelling</string>
+    <string name="pref_category_theme">Thema</string>
+    <string name="action_download_unread">Ongelezen hoofdstukken downloaden</string>
+    <string name="action_sort_date_added">Datum toegevoegd</string>
+    <plurals name="num_trackers">
+        <item quantity="one">1 tracker</item>
+        <item quantity="other">%d trackers</item>
+    </plurals>
 </resources>

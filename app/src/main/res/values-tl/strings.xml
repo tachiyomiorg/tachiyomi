@@ -207,7 +207,6 @@
     <string name="pref_backup_service_category">Serbisyo</string>
     <string name="pref_backup_interval">Dalas ng pag-backup</string>
     <string name="pref_backup_slots">Hangganan ng mga awtomatikong backup</string>
-    <string name="source_not_found">Hindi nakita ang source</string>
     <string name="backup_created">Nagawa na ang backup</string>
     <string name="restore_completed">Nakumpleto na ang pagre-restore</string>
     <string name="backup_restore_content">Ginagamit ng pagre-restore ang source para makakuha ng data, maaring magamit ang inyong data.

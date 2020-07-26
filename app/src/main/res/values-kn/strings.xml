@@ -154,7 +154,6 @@
     <string name="restore_duration">%02d ನಿಮಿಷ, %02d ಸೆಕೆಂಡು</string>
     <string name="restore_completed">ಮರುಸ್ಥಾಪನೆ ಪೂರ್ಣಗೊಂಡಿದೆ</string>
     <string name="backup_created">ಬ್ಯಾಕಪ್ ರಚಿಸಲಾಗಿದೆ</string>
-    <string name="source_not_found">ಮೂಲ ಕಂಡುಬಂದಿಲ್ಲ</string>
     <string name="pref_backup_slots">ಗರಿಷ್ಠ ಬ್ಯಾಕಪ್‌ಗಳು</string>
     <string name="pref_backup_interval">ಬ್ಯಾಕಪ್ ಆವರ್ತನ</string>
     <string name="pref_backup_service_category">ಸ್ವಯಂಚಾಲಿತ ಬ್ಯಾಕಪ್</string>
@@ -242,8 +241,8 @@
     <string name="filter_mode_overlay">ಒವರ್ಲೆ</string>
     <string name="filter_mode_default">ಡೀಫಾಲ್ಟ್</string>
     <string name="pref_color_filter_mode">ಬಣ್ಣಗಳು ಫಿಲ್ಟರ್ ಮಿಶ್ರಣ ರೀತಿ</string>
-    <string name="pref_custom_color_filter">ಕಸ್ಟಮ್ ಬಣ್ಣಗಳ ಫಿಲ್ಟರ್ ಬಳಸಿ</string>
-    <string name="pref_custom_brightness">ಬೇಕಾದಂತಹ ಪರದೆಯ ಬೆಳಕನ್ನು ಬಳಸಿ</string>
+    <string name="pref_custom_color_filter">ಕಸ್ಟಮ್ ಬಣ್ಣಗಳ ಫಿಲ್ಟರ್</string>
+    <string name="pref_custom_brightness">ಕಸ್ಟಮ್ ಬೆಳಕು</string>
     <string name="pref_crop_borders">ಗಡಿಗಳನ್ನು ಕತ್ತರಿಸಿ</string>
     <string name="pref_true_color_summary">ಬ್ಯಾಂಡಿಂಗ್ ಅನ್ನು ಕಡಿಮೆ ಮಾಡುತ್ತದೆ, ಆದರೆ ಕಾರ್ಯಕ್ಷಮತೆಯ ಮೇಲೆ ಪರಿಣಾಮ ಬೀರುತ್ತದೆ</string>
     <string name="pref_true_color">32-ಬಿಟ್ ಬಣ್ಣ</string>
@@ -452,9 +451,9 @@
     <string name="copied_to_clipboard">ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ಗೆ ನಕಲಿಸಲಾಗಿದೆ:
 \n%1$s</string>
     <string name="delete_downloads_for_manga">ಡೌನ್‌ಲೋಡ್ ಮಾಡಿದ ಅಧ್ಯಾಯಗಳನ್ನು ಅಳಿಸುವುದೇ\?</string>
-    <string name="manga_info_collapse">ಕಡಿಮೆ ಮಾಹಿತಿಯನ್ನು ತೋರಿಸಿ</string>
+    <string name="manga_info_collapse">ಕಡಿಮೆ</string>
     <string name="manga_info_about_label">ಇದರ ಬಗ್ಗೆ</string>
-    <string name="manga_info_expand">ಹೆಚ್ಚಿನ ಮಾಹಿತಿಯನ್ನು ತೋರಿಸಿ</string>
+    <string name="manga_info_expand">ಹೆಚ್ಚು</string>
     <string name="manga_removed_library">ಗ್ರಂಥಾಲಯದಿಂದ ತೆಗೆದುಹಾಕಲಾಗಿದೆ</string>
     <string name="manga_added_library">ಗ್ರಂಥಾಲಯಕ್ಕೆ ಸೇರಿಸಲಾಗಿದೆ</string>
     <string name="manga_info_full_title_label">ಶೀರ್ಷಿಕೆ</string>
@@ -510,7 +509,6 @@
     <string name="check_for_updates">ನವೀಕರಣಗಳಿಗಾಗಿ ಪರಿಶೀಲಿಸಿ</string>
     <string name="licenses">ಓಪನ್ ಸೋರ್ಸ್ ಪರವಾನಗಿಗಳು</string>
     <string name="notices">ಬಿಲ್ಡ್ ಪ್ರಕಟಣೆಗಳ ಪೂರ್ವವೀಕ್ಷಣೆ</string>
-    <string name="changelog">ಬದಲಾದ ಮಾಹಿತಿ</string>
     <string name="build_time">ನಿರ್ಮಿಸಿದ ಸಮಯ</string>
     <string name="version">ಆವೃತ್ತಿ</string>
     <string name="website">ವೆಬ್ಸೈಟ್</string>
@@ -574,4 +572,33 @@
     <string name="loader_not_implemented_error">ಮೂಲ ಕಂಡುಬಂದಿಲ್ಲ</string>
     <string name="action_sort_descending">ಅವರೋಹಣ</string>
     <string name="action_disable">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
+    <string name="tapping_inverted_both">ಎರಡೂ</string>
+    <string name="tapping_inverted_vertical">ಉದ್ದದ</string>
+    <string name="tapping_inverted_horizontal">ಅಡ್ಡ</string>
+    <string name="tapping_inverted_none">ಯಾವುದು ಅಲ್ಲ</string>
+    <string name="pref_read_with_tapping_inverted">ಟ್ಯಾಪಿಂಗ ಅನ್ನು ತಿರುಗಿಸಿ</string>
+    <string name="download_insufficient_space">ಕಡಿಮೆ ಡಿಸ್ಕ್ ಸ್ಥಳಾವಕಾಶದ ಕಾರಣ ಅಧ್ಯಾಯಗಳನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
+    <plurals name="manga_num_chapters">
+        <item quantity="one">1 ಚಾಪ್ಟರ್</item>
+        <item quantity="other">%1$s ಚಾಪ್ಟರಗಳು</item>
+    </plurals>
+    <string name="unknown_status">ಅಜ್ಞಾತ ಸ್ಥಿತಿ</string>
+    <string name="unknown_author">ಅಜ್ಞಾತ ಲೇಖಕ</string>
+    <string name="action_global_search_query">\"%1$s\" ಅನ್ನು ಗ್ಲೋಬಲ್ ಸರ್ಚ್ ಮಾಡಿ</string>
+    <string name="updated_version">v%1$s ಗೆ ಅಪ್ಡೇಟ್ ಆಗಿದೆ</string>
+    <string name="whats_new">ಹೊಸತೇನಿದೆ</string>
+    <string name="pref_dns_over_https_summary">ಜಾರಿಗೆ ಬರಲು ಅಪ್ಲಿಕೇಶನ್ ಮರುಪ್ರಾರಂಭದ ಅಗತ್ಯವಿದೆ</string>
+    <string name="label_network">ಅಡ್ವಾನ್ಸ್ಡ್ ಸೆಕ್ಷನ್</string>
+    <string name="pref_category_reading_mode">ಓದುವ ಮೊಡ್</string>
+    <string name="pref_jump_to_chapters">ಓಪನ್ ಮಾಡಿದ ಮೇಲೆ ಅಧ್ಯಯಕ್ಕೆ ಹೋಗಿ</string>
+    <string name="pref_category_locale">ಭಾಷೆ</string>
+    <string name="pref_category_theme">ಜನರಲ್ ಸೆಲೆಕ್ಷನ್</string>
+    <string name="action_open_in_settings">ಸೆಟ್ಟಿಂಗ್ಸ್ ನಲ್ಲಿ ಓಪನ್ ಮಾಡಿ</string>
+    <string name="action_download_unread">ಓದದಿರುವ ಅಧ್ಯಾಯಗಳನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ</string>
+    <string name="action_sort_date_added">ಹಾಕಿದ್ದ ದಿನಾಂಕ</string>
+    <plurals name="num_trackers">
+        <item quantity="one">1 ಟ್ರಾಕರ್</item>
+        <item quantity="other">%d ಟ್ರಾಕರ್ ಗಳು</item>
+    </plurals>
+    <string name="no_pinned_sources">ಯಾವುದೆ ಪಿನ್ ಮಾಡಿರುವ ಸೋರ್ಸ್ ಗಳು ಇಲ್ಲ</string>
 </resources>

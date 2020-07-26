@@ -138,8 +138,8 @@
     <string name="pref_double_tap_anim_speed">Швидкість анімації при подвійному натиснені</string>
     <string name="pref_show_page_number">Показувати номер сторінки</string>
     <string name="pref_crop_borders">Межі обрізки</string>
-    <string name="pref_custom_brightness">Використовувати користувацьку яскравість</string>
-    <string name="pref_custom_color_filter">Використовувати користувацький кольоровий фільтр</string>
+    <string name="pref_custom_brightness">Користувацька яскравість</string>
+    <string name="pref_custom_color_filter">Користувацький кольоровий фільтр</string>
     <string name="pref_keep_screen_on">Тримати екран ввімкненим</string>
     <string name="pref_reader_navigation">Навігація</string>
     <string name="pref_read_with_volume_keys">Клавіші гучності</string>
@@ -203,7 +203,6 @@
     <string name="pref_backup_service_category">Автоматичне резервування</string>
     <string name="pref_backup_interval">Частота створення резервної копії</string>
     <string name="pref_backup_slots">Максимальна кількість резервних копій</string>
-    <string name="source_not_found">Джерело не знайдено</string>
     <string name="backup_created">Резервна копія створена</string>
     <string name="restore_completed">Відновлення завершено</string>
     <string name="backup_restore_content">Відновлення використовує джерела для отримання даних, можуть застосовуватися витрати оператора.
@@ -464,7 +463,6 @@
         <item quantity="many">Для %d тайтлів</item>
     </plurals>
     <string name="notices">Примітки білдів</string>
-    <string name="changelog">Чейнджлог</string>
     <string name="pref_theme_light">Світла тема</string>
     <string name="theme_light_default">За замовчуванням</string>
     <string name="theme_light_blue">Блакитна</string>
@@ -605,4 +603,19 @@
     <string name="pref_dns_over_https" translatable="false">DNS понад HTTPS (Cloudflare)</string>
     <string name="label_network">Мережа</string>
     <string name="pref_jump_to_chapters">Перейти до глав при відкритті</string>
+    <string name="updated_version">Оновлено до v%1$s</string>
+    <string name="whats_new">Що новенького</string>
+    <string name="action_download_unread">Завантажити непрочитані глави</string>
+    <string name="download_insufficient_space">Не вдалось завантажити глави через нестачу місця на диску</string>
+    <string name="action_global_search_query">Шукати для \"%1$s\" глобально</string>
+    <string name="pref_category_reading_mode">Режим читання</string>
+    <string name="pref_category_locale">Локаль</string>
+    <string name="pref_category_theme">Тема</string>
+    <string name="action_sort_date_added">Дата додавання</string>
+    <plurals name="num_trackers">
+        <item quantity="one">1 трекер</item>
+        <item quantity="few">%d трекери</item>
+        <item quantity="many">%d трекерів</item>
+        <item quantity="other">%d трекерів</item>
+    </plurals>
 </resources>

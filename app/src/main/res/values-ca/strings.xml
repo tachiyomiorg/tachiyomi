@@ -137,8 +137,8 @@
     <string name="pref_page_transitions">Anima les transicions de pàgina</string>
     <string name="pref_show_page_number">Mostra el número de pàgina</string>
     <string name="pref_crop_borders">Retalla les vores</string>
-    <string name="pref_custom_brightness">Utilitza la brillantor personalitzada</string>
-    <string name="pref_custom_color_filter">Utilitza el filtre de color personalitzat</string>
+    <string name="pref_custom_brightness">Brillantor personalitzada</string>
+    <string name="pref_custom_color_filter">Filtre de color personalitzat</string>
     <string name="pref_keep_screen_on">Mantingues la pantalla encesa</string>
     <string name="pref_reader_navigation">Navegació</string>
     <string name="pref_read_with_volume_keys">Tecles de volum</string>
@@ -203,7 +203,6 @@
     <string name="pref_backup_service_category">Còpies de seguretat automàtiques</string>
     <string name="pref_backup_interval">Freqüència de la còpia de seguretat</string>
     <string name="pref_backup_slots">Màxim de còpies de seguretat</string>
-    <string name="source_not_found">No s\'ha trobat la font</string>
     <string name="backup_created">S\'ha creat la còpia de seguretat</string>
     <string name="restore_completed">S\'ha completat la restauració</string>
     <string name="backup_restore_content">La restauració obté dades de les fonts, poden haver-hi despeses de l\'operador. 
@@ -337,7 +336,7 @@
     <string name="migration_dialog_what_to_include">Seleccioneu les dades a incloure</string>
     <string name="migrate">Migra</string>
     <string name="copy">Copia</string>
-    <string name="download_queue_error">No s\'han pogut baixar capítols. Podeu tornar-ho a provar a la secció de baixades</string>
+    <string name="download_queue_error">No s\'han pogut baixar els capítols. Podeu tornar-ho a provar a la secció de baixades</string>
     <string name="notification_update_progress">Progrés de l\'actualització: %1$d/%2$d</string>
     <string name="notification_new_chapters">S\'han trobat nous capítols</string>
     <string name="notification_cover_update_failed">No s\'ha pogut actualitzar la portada</string>
@@ -362,7 +361,7 @@
     <string name="information_no_downloads">No hi ha baixades</string>
     <string name="information_no_recent">No hi ha actualitzacions recents</string>
     <string name="information_no_recent_manga">No heu llegit res recentment</string>
-    <string name="information_empty_library">La vostra biblioteca és buida, afegiu-hi sèries a Explora.</string>
+    <string name="information_empty_library">La vostra biblioteca és buida. Afegiu-hi sèries a Explora.</string>
     <string name="information_empty_category">No teniu categories. Premeu el botó més per a crear-ne una i organitzar la vostra biblioteca.</string>
     <string name="download_notifier_downloader_title">Baixades</string>
     <string name="download_notifier_title_error">Error</string>
@@ -460,7 +459,6 @@
         <item quantity="other">Per a %d títols</item>
     </plurals>
     <string name="notices">Avisos de compilacions de previsualització</string>
-    <string name="changelog">Registre de canvis</string>
     <string name="pref_theme_light">Tema clar</string>
     <string name="theme_light_default">Per defecte</string>
     <string name="theme_light_blue">Blau clar</string>
@@ -497,8 +495,8 @@
     <string name="in_library">A la biblioteca</string>
     <string name="add_to_library">Afegeix a la biblioteca</string>
     <string name="information_webview_required">El Tachiyomi requereix el WebView</string>
-    <string name="manga_info_collapse">Mostra\'n menys informació</string>
-    <string name="manga_info_expand">Mostra\'n més informació</string>
+    <string name="manga_info_collapse">Menys</string>
+    <string name="manga_info_expand">Més</string>
     <string name="manga_info_about_label">Quant a</string>
     <string name="licenses">Llicències de codi obert</string>
     <string name="website">Lloc web</string>
@@ -568,4 +566,39 @@
     <string name="page_list_empty_error">No s\'ha trobat cap pàgina</string>
     <string name="action_disable_all">Desactiva-ho tot</string>
     <string name="action_enable_all">Activa-ho tot</string>
+    <string name="tapping_inverted_both">En totes dues direccions</string>
+    <string name="tapping_inverted_vertical">En vertical</string>
+    <string name="tapping_inverted_horizontal">En horitzontal</string>
+    <string name="tapping_inverted_none">Cap</string>
+    <string name="pref_read_with_tapping_inverted">Inverteix els tocs</string>
+    <string name="download_insufficient_space">No s\'han pogut baixar els capítols perquè hi ha poc espai al disc</string>
+    <string name="loader_not_implemented_error">No s\'ha trobat la font</string>
+    <plurals name="manga_num_chapters">
+        <item quantity="one">1 capítol</item>
+        <item quantity="other">%1$s capítols</item>
+    </plurals>
+    <string name="unknown_status">Estat desconegut</string>
+    <string name="unknown_author">Autor desconegut</string>
+    <string name="action_global_search_query">Cerca \"%1$s\" globalment</string>
+    <string name="updated_version">S\'ha actualitzat a la v%1$s</string>
+    <string name="whats_new">Novetats</string>
+    <string name="pref_dns_over_https_summary">Cal reiniciar l\'aplicació perquè s\'apliqui</string>
+    <string name="label_network">Xarxa</string>
+    <string name="pref_category_reading_mode">Mode de lectura</string>
+    <string name="pref_show_reading_mode_summary">Mostra breument el mode actual en obrir el lector</string>
+    <string name="pref_show_reading_mode">Mostra el mode de lectura</string>
+    <string name="pref_jump_to_chapters">Salta als capítols en obrir</string>
+    <string name="pref_category_locale">Llengua</string>
+    <string name="pref_category_theme">Tema</string>
+    <string name="action_sort_descending">Descendent</string>
+    <string name="action_disable">Desactiva</string>
+    <string name="action_open_in_settings">Obre a Configuració</string>
+    <string name="action_start">Inicia</string>
+    <string name="action_download_unread">Baixa els capítols no llegits</string>
+    <string name="action_sort_date_added">Data d\'incorporació</string>
+    <plurals name="num_trackers">
+        <item quantity="one">1 seguidor</item>
+        <item quantity="other">%d seguidors</item>
+    </plurals>
+    <string name="no_pinned_sources">No teniu cap origen fixat</string>
 </resources>

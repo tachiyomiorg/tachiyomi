@@ -111,7 +111,7 @@
     <string name="pref_page_transitions">Transisi halaman</string>
     <string name="pref_show_page_number">Tampilkan nomor halaman</string>
     <string name="pref_crop_borders">Potong pinggiran</string>
-    <string name="pref_custom_brightness">Atur kecerahan layar</string>
+    <string name="pref_custom_brightness">Sesuaikan kecerahan layar</string>
     <string name="pref_custom_color_filter">Gunakan filter warna khusus</string>
     <string name="pref_keep_screen_on">Biarkan layar tetap menyala</string>
     <string name="pref_reader_navigation">Navigasi</string>
@@ -172,7 +172,6 @@
     <string name="pref_backup_service_category">Pencadangan otomatis</string>
     <string name="pref_backup_interval">Frekuensi cadangan dibuat</string>
     <string name="pref_backup_slots">Jumlah maksimum cadangan</string>
-    <string name="source_not_found">Sumber tidak ditemukan</string>
     <string name="backup_created">Cadangan dibuat</string>
     <string name="restore_completed">Pemulihan telah selesai</string>
     <string name="backup_restore_content">Proses pemulihan menggunakan koneksi internet untuk mengambil data, biaya operator mungkin berlaku.
@@ -276,7 +275,7 @@
     <string name="no_previous_chapter">Bab sebelumnya tidak ditemukan</string>
     <string name="decode_image_error">Gambar tidak bisa dimuat</string>
     <string name="confirm_set_image_as_cover">Gunakan gambar ini sebagai sampul\?</string>
-    <string name="download_queue_error">Tidak dapat mengunduh bab. Anda bisa mencoba lagi di halaman unduhan</string>
+    <string name="download_queue_error">Tidak dapat mengunduh bab. Anda bisa mencoba lagi di bagian unduhan</string>
     <string name="notification_update_progress">Proses pembaruan sedang berlangsung: %1$d/%2$d</string>
     <string name="notification_new_chapters">Bab baru ditemukan</string>
     <string name="notification_cover_update_failed">Gagal memperbarui sampul</string>
@@ -465,7 +464,6 @@
     <plurals name="notification_new_chapters_summary">
         <item quantity="other">Untuk judul %d</item>
     </plurals>
-    <string name="changelog">Catatan perubahan</string>
     <string name="label_sources">Sumber</string>
     <string name="channel_ext_updates">Pembaruan ekstensi</string>
     <string name="pref_enable_automatic_extension_updates">Periksa untuk pembaruan extension</string>
@@ -573,4 +571,24 @@
     <string name="action_sort_descending">Menurun</string>
     <string name="action_disable">Matikan</string>
     <string name="action_open_in_settings">Buka di pengaturan</string>
+    <string name="tapping_inverted_both">Keduanya</string>
+    <string name="tapping_inverted_vertical">Tegak</string>
+    <string name="tapping_inverted_horizontal">Mendatar</string>
+    <string name="tapping_inverted_none">Tidak ada</string>
+    <string name="pref_read_with_tapping_inverted">Membalikkan ketukkan</string>
+    <string name="unknown_status">Status tidak diketahui</string>
+    <string name="unknown_author">Penulis tidak diketahui</string>
+    <string name="updated_version">Diperbaharui ke v%1$s</string>
+    <string name="whats_new">Apa yang baru</string>
+    <string name="action_download_unread">Unduh bab yang belum dibaca</string>
+    <string name="download_insufficient_space">Tidak dapat mengunduh bab karena ruang disk rendah</string>
+    <string name="action_global_search_query">Pencarian untuk \"%1$s\" secara global</string>
+    <string name="pref_category_reading_mode">Mode membaca</string>
+    <string name="pref_category_locale">Daerah</string>
+    <string name="pref_category_theme">Tema</string>
+    <string name="action_sort_date_added">Tanggal ditambahkan</string>
+    <plurals name="num_trackers">
+        <item quantity="other">%d pelacak</item>
+    </plurals>
+    <string name="no_pinned_sources">Anda tidak memiliki sumber yang disematkan</string>
 </resources>

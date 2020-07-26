@@ -205,7 +205,6 @@
     <string name="pref_backup_service_category">บริการ</string>
     <string name="pref_backup_interval">ความถี่ในการสำรองข้อมูล</string>
     <string name="pref_backup_slots">จำนวนการสำรองข้อมูลอัตโนมัติสูงสุด</string>
-    <string name="source_not_found">ไม่พบแหล่งที่มา</string>
     <string name="backup_created">การสำรองข้อมูลที่สร้างขึ้น</string>
     <string name="restore_completed">การคืนค่าเสร็จสมบูรณ์</string>
     <string name="backup_choice">คุณต้องการสำรองข้อมูลอะไร\?</string>

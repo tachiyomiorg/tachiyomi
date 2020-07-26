@@ -217,7 +217,7 @@
     <string name="action_update">Aktualizovat</string>
     <string name="action_update_library">Aktualizovat knihovnu</string>
     <string name="action_rename_category">Přejmenovat kategorii</string>
-    <string name="action_move_category">Přesunout do kategorií</string>
+    <string name="action_move_category">Vybrat kategorie</string>
     <string name="action_stop">Stop</string>
     <string name="action_pause">Pauza</string>
     <string name="action_retry">Opakovat</string>
@@ -277,7 +277,6 @@
     <string name="pref_backup_directory">Adresář zálohy</string>
     <string name="pref_backup_service_category">Služba</string>
     <string name="pref_backup_interval">Frekvence zálohy</string>
-    <string name="source_not_found">Zdroj nebyl nalezen</string>
     <string name="backup_created">Záloha vytvořena</string>
     <string name="restore_completed">Obnova kompletní</string>
     <string name="backup_choice">Co chcete zálohovat\?</string>

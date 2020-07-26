@@ -138,8 +138,8 @@
     <string name="pref_double_tap_anim_speed">Lestresa de s\'animatzione de su tocu dòpiu</string>
     <string name="pref_show_page_number">Ammustra su nùmeru de sa pàgina</string>
     <string name="pref_crop_borders">Sega sos oros</string>
-    <string name="pref_custom_brightness">Imprea una luminosidade personalizada</string>
-    <string name="pref_custom_color_filter">Imprea unu filtru de colore personalizadu</string>
+    <string name="pref_custom_brightness">Luminosidade personalizada</string>
+    <string name="pref_custom_color_filter">Filtru de colore personalizadu</string>
     <string name="pref_keep_screen_on">Mantene s\'ischermu allutu</string>
     <string name="pref_reader_navigation">Navigatzione</string>
     <string name="pref_read_with_volume_keys">Teclas de su volume</string>
@@ -204,7 +204,6 @@
     <string name="pref_backup_service_category">Còpias de seguresa automàticas</string>
     <string name="pref_backup_interval">Frecuèntzia de sarvatàgiu de sas còpias de seguresa</string>
     <string name="pref_backup_slots">Màssimu de còpias de seguresa</string>
-    <string name="source_not_found">Mitza no agatada</string>
     <string name="backup_created">Còpia de seguresa creada</string>
     <string name="restore_completed">Riprìstinu acabadu</string>
     <string name="backup_restore_content">Su riprìstinu impreat sas mitzas pro otènnere sos datos, bi diant pòdere èssere costos de s\'operadore. 
@@ -460,7 +459,6 @@
         <item quantity="other">Pro %d tìtulos</item>
     </plurals>
     <string name="notices">Avisos de versiones de anteprima</string>
-    <string name="changelog">Registru de sas modìficas</string>
     <string name="pref_theme_light">Tema craru</string>
     <string name="theme_light_default">Predefinidu</string>
     <string name="theme_light_blue">Biaitu craru</string>
@@ -582,7 +580,7 @@
     <string name="pref_dns_over_https_summary">Tenet bisòngiu chi torres a allùghere s\'aplicatzione pro tènnere efetu</string>
     <string name="pref_dns_over_https" translatable="false">DNS pro mèdiu de HTTPS (Cloudflare)</string>
     <string name="label_network">Retza</string>
-    <string name="pref_jump_to_chapters">Brinca a sos capìtulos abertos</string>
+    <string name="pref_jump_to_chapters">Brinca a sos capìtulos a s\'abertura</string>
     <string name="tapping_inverted_both">Ambos</string>
     <string name="tapping_inverted_vertical">Verticale</string>
     <string name="tapping_inverted_horizontal">Orizontale</string>
@@ -590,4 +588,17 @@
     <string name="pref_read_with_tapping_inverted">Inverte su tocu</string>
     <string name="unknown_status">Istadu disconnotu</string>
     <string name="unknown_author">Autore disconnotu</string>
+    <string name="updated_version">Agiornadu a v%1$s</string>
+    <string name="whats_new">Ite b\'at de nou</string>
+    <string name="action_download_unread">Iscàrriga sos capìtulos non lèghidos</string>
+    <string name="download_insufficient_space">Iscarrigamentu de sos capìtulos fallidu pro more de su pagu ispàtziu lìberu in su discu</string>
+    <string name="action_global_search_query">Chirca «%1$s» globalmente</string>
+    <string name="pref_category_reading_mode">Modalidade de leghidura</string>
+    <string name="pref_category_locale">Limba</string>
+    <string name="pref_category_theme">Tema</string>
+    <string name="action_sort_date_added">Data de annanghidura</string>
+    <plurals name="num_trackers">
+        <item quantity="one">1 arrastadore</item>
+        <item quantity="other">%d arrastadores</item>
+    </plurals>
 </resources>

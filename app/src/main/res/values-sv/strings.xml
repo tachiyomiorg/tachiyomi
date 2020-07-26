@@ -203,7 +203,6 @@
     <string name="pref_backup_service_category">Automatiska säkerhetskopior</string>
     <string name="pref_backup_interval">Säkerhetskopieringsfrekvens</string>
     <string name="pref_backup_slots">Maximala säkerhetskopior</string>
-    <string name="source_not_found">Källan hittades inte</string>
     <string name="backup_created">Säkerhetskopia skapad</string>
     <string name="restore_completed">Återställning slutförd</string>
     <string name="backup_restore_content">Återställning använder källor för att hämta data, data kostnader kan tillkomma. 
@@ -453,14 +452,13 @@
     <string name="pref_disable_battery_optimization">Inaktivera batterioptimering</string>
     <string name="pref_disable_battery_optimization_summary">Hjälper till med uppdateringar och säkerhetskopior i bakgrunden</string>
     <string name="battery_optimization_disabled">Batterioptimering är redan inaktiverat</string>
-    <string name="email">E-postaddress</string>
+    <string name="email">E-postadress</string>
     <string name="pref_always_show_chapter_transition">Visa alltid kapitelövergång</string>
     <plurals name="notification_new_chapters_summary">
         <item quantity="one">För 1 titel</item>
         <item quantity="other">För %d titlar</item>
     </plurals>
     <string name="notices">Byggmeddelanden</string>
-    <string name="changelog">Ändringslogg</string>
     <string name="pref_theme_light">Ljust tema</string>
     <string name="theme_light_default">Standard</string>
     <string name="theme_light_blue">Ljusblå</string>
@@ -590,4 +588,13 @@
     <string name="action_sort_descending">Fallande</string>
     <string name="action_disable">Inaktivera</string>
     <string name="action_open_in_settings">Öppna i Inställningar</string>
+    <string name="download_insufficient_space">Det gick inte att ladda ner kapitelt på grund av lågt diskutrymme</string>
+    <string name="action_global_search_query">Sök efter \"%1$s\" globalt</string>
+    <string name="updated_version">Uppdaterad till v%1$s</string>
+    <string name="whats_new">Vad är nytt</string>
+    <string name="pref_category_reading_mode">Läsläge</string>
+    <string name="pref_category_locale">Språk</string>
+    <string name="pref_category_theme">Tema</string>
+    <string name="action_download_unread">Ladda ner olästa kapitel</string>
+    <string name="action_sort_date_added">Datum tillagd</string>
 </resources>

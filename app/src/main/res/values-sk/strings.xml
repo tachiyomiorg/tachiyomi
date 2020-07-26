@@ -216,7 +216,6 @@
     <string name="pref_backup_service_category">Služby</string>
     <string name="pref_backup_interval">Frekvencia zálohovania</string>
     <string name="pref_backup_slots">Max. počet automatických záloh</string>
-    <string name="source_not_found">Zdroj sa nenašiel</string>
     <string name="backup_created">Záloha bola vytvorená</string>
     <string name="restore_completed">Obnovenie dokončené</string>
     <string name="backup_restore_content">Obnovenie využíva zdroje na načítanie údajov, môžu sa účtovať poplatky operátora.

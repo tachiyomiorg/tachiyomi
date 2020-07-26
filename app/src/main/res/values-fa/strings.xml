@@ -188,7 +188,6 @@
     <string name="confirm_delete_manga">آیا مطمئنید که می خواهید مانگای انتخاب شده را حذف کنید ؟</string>
     <string name="tracker_not_logged_in">وارد سیستم نشده اید: %1$s</string>
     <string name="source_not_found_name">منبع یافت نشد: %1$s</string>
-    <string name="source_not_found">منبع یافت نشد</string>
     <string name="pref_backup_slots">حداکثر تعداد نسخه‌های پشتیبان</string>
     <string name="pref_backup_interval">فرکانس پشتیبان گیری</string>
     <string name="pref_backup_service_category">پشتیبان گیری خودکار</string>
@@ -488,7 +487,6 @@
     <string name="check_for_updates">بررسی برای به روز رسانی</string>
     <string name="licenses">مجوزهای منبع باز</string>
     <string name="notices">اطلاعیه های نسخه پیش نمایش</string>
-    <string name="changelog">لیست تغییرات برنامه</string>
     <string name="build_time">زمان ساخت</string>
     <string name="version">نسخهٔ</string>
     <string name="website">وب سایت</string>

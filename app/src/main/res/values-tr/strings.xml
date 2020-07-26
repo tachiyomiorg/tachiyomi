@@ -138,8 +138,8 @@
     <string name="pref_double_tap_anim_speed">Çift dokunma animasyon hızı</string>
     <string name="pref_show_page_number">Sayfa numarası göster</string>
     <string name="pref_crop_borders">Kenarları kırp</string>
-    <string name="pref_custom_brightness">Özel parlaklık kullan</string>
-    <string name="pref_custom_color_filter">Özel renk filtresi kullan</string>
+    <string name="pref_custom_brightness">Özel parlaklık</string>
+    <string name="pref_custom_color_filter">Özel renk filtresi</string>
     <string name="pref_keep_screen_on">Ekranı açık tut</string>
     <string name="pref_reader_navigation">Gezinti</string>
     <string name="pref_read_with_volume_keys">Ses tuşları</string>
@@ -203,7 +203,6 @@
     <string name="pref_backup_service_category">Kendiliğinden yedekleme</string>
     <string name="pref_backup_interval">Yedekleme sıklığı</string>
     <string name="pref_backup_slots">Maksimum yedek</string>
-    <string name="source_not_found">Kaynak bulunamadı</string>
     <string name="backup_created">Yedek oluşturuldu</string>
     <string name="restore_completed">Geri yükleme tamamlandı</string>
     <string name="backup_restore_content">Geri yükleme veriyi almak için kaynakları kullanır, taşıyıcı ücreti uygulanabilir. 
@@ -224,7 +223,7 @@
     <string name="clear_database_confirmation">Emin misiniz? Kitaplıkta olmayan mangaların okunmuş bölümleri ve ilerlemesi kaybolacak</string>
     <string name="clear_database_completed">Girdileri silindi</string>
     <string name="pref_refresh_library_tracking">İzlemeyi yenile</string>
-    <string name="pref_refresh_library_tracking_summary">İzleme servisinden durumu, puanı ve son okunan bölümü günceller</string>
+    <string name="pref_refresh_library_tracking_summary">İzleme hizmetlerinden durumu, puanı ve son okunan bölümü günceller</string>
     <string name="version">Sürüm</string>
     <string name="build_time">İnşa tarihi</string>
     <string name="pref_enable_acra">Çökme bildirimi gönder</string>
@@ -460,7 +459,6 @@
         <item quantity="other">%d başlık için</item>
     </plurals>
     <string name="notices">Derleme notlarını göster</string>
-    <string name="changelog">Değişiklikler</string>
     <string name="pref_theme_light">Aydınlık tema</string>
     <string name="theme_light_default">Öntanımlı</string>
     <string name="theme_light_blue">Açık mavi</string>
@@ -591,4 +589,17 @@
     <string name="unknown_status">Bilinmeyen durum</string>
     <string name="unknown_author">Bilinmeyen yazar</string>
     <string name="action_download_unread">Okunmamış bölümleri indir</string>
+    <string name="updated_version">v%1$s sürümüne güncellendi</string>
+    <string name="whats_new">Yenilikler</string>
+    <string name="download_insufficient_space">Disk alanı az olduğundan bölümler indirilemedi</string>
+    <string name="action_sort_date_added">Eklendiği tarih</string>
+    <string name="action_global_search_query">\"%1$s\" için genel arama</string>
+    <string name="pref_category_reading_mode">Okuma kipi</string>
+    <string name="pref_category_locale">Yerel</string>
+    <string name="pref_category_theme">Tema</string>
+    <plurals name="num_trackers">
+        <item quantity="one">1 izleyici</item>
+        <item quantity="other">%d izleyici</item>
+    </plurals>
+    <string name="no_pinned_sources">Sabitlenmiş kaynağınız yok</string>
 </resources>

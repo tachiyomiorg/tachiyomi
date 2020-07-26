@@ -170,8 +170,8 @@
     <string name="pref_clear_cookies">Очистить куки</string>
     <string name="pref_clear_database">Очистить базу данных</string>
     <string name="pref_clear_database_summary">Удалить историю для манги, которая не находится в вашей библиотеке</string>
-    <string name="pref_custom_brightness">Использовать пользовательскую яркость</string>
-    <string name="pref_custom_color_filter">Использовать пользовательский цветовой фильтр</string>
+    <string name="pref_custom_brightness">Пользовательская яркость</string>
+    <string name="pref_custom_color_filter">Пользовательский цветовой фильтр</string>
     <string name="pref_download_directory">Каталог загрузок</string>
     <string name="pref_download_new">Загружать новые главы</string>
     <string name="pref_download_only_over_wifi">Загружать только через Wi-Fi</string>
@@ -302,7 +302,6 @@
     <string name="restoring_backup">Восстановление бэкапа</string>
     <string name="short_recent_updates">Обновления</string>
     <string name="snack_categories_deleted">Категории удалены</string>
-    <string name="source_not_found">Источник не найден</string>
     <string name="track">Отслеживание</string>
     <string name="update_monthly">Ежемесячно</string>
     <string name="update_weekly">Еженедельно</string>
@@ -458,7 +457,6 @@
     <string name="notification_check_updates">Проверка наличия новых глав</string>
     <string name="updating_library">Обновления библиотеки</string>
     <string name="http_error_hint">Проверить страницу в WebView</string>
-    <string name="changelog">Изменения</string>
     <string name="battery_optimization_disabled">Оптимизация батареи уже выключенна</string>
     <string name="pref_disable_battery_optimization_summary">Помогает с фоновым обновлением библиотеки и бэкапом</string>
     <string name="pref_disable_battery_optimization">Выключить оптимизацию батареи</string>
@@ -553,7 +551,7 @@
         <item quantity="many">Сделано %1$s с %2$s ошибками</item>
         <item quantity="other">Сделано %1$s с %2$s ошибками</item>
     </plurals>
-    <string name="tracking_info">Односторонняя синхронизация для обновления прогресса главы в отслеживаемых сервисов. Настройте отслеживание для отдельных записей манги с их вкладками отслеживания.</string>
+    <string name="tracking_info">Односторонняя синхронизация для обновления прогресса глав в отслеживаемых сервисов. Настройте отслеживание для отдельных записей манги с их вкладками отслеживания.</string>
     <string name="action_display_unread_badge">Значок непрочитанных</string>
     <plurals name="notification_update_error">
         <item quantity="one">1 ошибка обновления</item>
@@ -589,8 +587,8 @@
     <string name="action_disable">Отключить</string>
     <string name="action_open_in_settings">Открыть в Настройках</string>
     <plurals name="manga_num_chapters">
-        <item quantity="one">Нет глав</item>
-        <item quantity="few">1 глава</item>
+        <item quantity="one">1 глава</item>
+        <item quantity="few">%1$s главы</item>
         <item quantity="many">%1$s глав</item>
         <item quantity="other">%1$s глав</item>
     </plurals>
@@ -602,9 +600,24 @@
     <string name="tapping_inverted_both">Оба</string>
     <string name="tapping_inverted_vertical">Вертикально</string>
     <string name="tapping_inverted_horizontal">Горизонтально</string>
-    <string name="tapping_inverted_none">Ничего</string>
-    <string name="pref_read_with_tapping_inverted">Инвертировать нажатие</string>
+    <string name="tapping_inverted_none">Нет</string>
+    <string name="pref_read_with_tapping_inverted">Инверсия нажатия</string>
     <string name="unknown_status">Неизвестный статус</string>
     <string name="unknown_author">Неизвестный автор</string>
-    <string name="action_download_unread">Скачать непрочитанные главы</string>
+    <string name="action_download_unread">Загрузить непрочитанные главы</string>
+    <string name="updated_version">Обновлено до v%1$s</string>
+    <string name="whats_new">Что нового</string>
+    <string name="download_insufficient_space">Невозможно загрузить главы из-за нехватки места на диске</string>
+    <string name="action_global_search_query">Искать для \"%1$s\" глобально</string>
+    <string name="pref_category_reading_mode">Режим чтения</string>
+    <string name="pref_category_locale">Местоположение</string>
+    <string name="pref_category_theme">Тема</string>
+    <string name="action_sort_date_added">Дата добавления</string>
+    <plurals name="num_trackers">
+        <item quantity="one">1 трекер</item>
+        <item quantity="few">%d трекера</item>
+        <item quantity="many">%d трекеров</item>
+        <item quantity="other">%d трекеров</item>
+    </plurals>
+    <string name="no_pinned_sources">У вас нет закрепленных источников</string>
 </resources>

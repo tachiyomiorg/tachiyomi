@@ -168,7 +168,6 @@
     <string name="pref_backup_service_category">النسخ الاحتياطيّة التلقائيّة</string>
     <string name="pref_backup_interval">معدل النسخ الإحتياطي</string>
     <string name="pref_backup_slots">أقصى عدد للنسخ الاحتياطيّة</string>
-    <string name="source_not_found">لم يتم إيجاد المصدر</string>
     <string name="backup_created">تم إنشاء النسخة الإحتياطية</string>
     <string name="restore_completed">اكتملت الاستعادة</string>
     <string name="backup_restore_content">عملية الاستعادة تستخدم المصادر لجلب البيانات؛ قد يتم تطبيق تكاليف مزود الخدمة.
@@ -426,7 +425,6 @@
     <string name="theme_dark">مفعّل</string>
     <string name="theme_light">غير مفعّل</string>
     <string name="pref_theme_mode">الوضع الليلي</string>
-    <string name="changelog">سجل التغييرات</string>
     <string name="battery_optimization_disabled">تم إلغاء وضع تحسين البطارية مُسبقاً</string>
     <string name="pref_disable_battery_optimization_summary">يساعد في عملية تحديث المكتبة والنسخ الإحتياطي في الخلفية</string>
     <string name="pref_disable_battery_optimization">إطفاء وضع تحسين البطارية</string>

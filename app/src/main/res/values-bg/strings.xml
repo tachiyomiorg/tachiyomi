@@ -326,7 +326,6 @@
     <string name="pref_backup_service_category">Автоматично запазване</string>
     <string name="pref_backup_interval">Честота на запазване</string>
     <string name="pref_backup_slots">Максимален брой копия</string>
-    <string name="source_not_found">Не беше намерен източник</string>
     <string name="backup_created">Резервно копие създадено</string>
     <string name="restore_completed">Възстановяването завършено</string>
     <string name="backup_choice">Какво искате да запазите?</string>
@@ -494,7 +493,6 @@
     <string name="check_for_updates">Провери за ъпдейт</string>
     <string name="licenses">Лицензи за отворен код</string>
     <string name="notices">Известия за предвартилени билдове</string>
-    <string name="changelog">Промени</string>
     <string name="website">Уебсайт</string>
     <string name="battery_optimization_disabled">Оптимизацията на батерията е изключена</string>
     <string name="pref_disable_battery_optimization_summary">Помага при фонови обновявания на библиотеката и резервни копия</string>

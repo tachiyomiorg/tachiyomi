@@ -238,7 +238,6 @@
     <string name="zoom_start_right">右邊</string>
     <string name="zoom_start_center">中間</string>
     <string name="pref_restore_backup_summ">由備份檔案還原書櫃內容</string>
-    <string name="source_not_found">找不到來源</string>
     <string name="used_cache">已使用：%1$s</string>
     <string name="cache_deleted">已清除快取，%1$d 個檔案已被刪除</string>
     <string name="cache_delete_error">清除快取時發生錯誤</string>
@@ -289,11 +288,11 @@
     <string name="show_chapter_number">章節編號</string>
     <string name="sorting_mode">排序依據</string>
     <string name="sort_by_source">遵循來源</string>
-    <string name="sort_by_number">依章節順序</string>
+    <string name="sort_by_number">章節順序</string>
     <string name="download_1">後一章</string>
     <string name="download_5">後五章</string>
     <string name="download_10">後十章</string>
-    <string name="completed">已閱畢</string>
+    <string name="completed">已完結</string>
     <string name="score">評分</string>
     <string name="title">標題</string>
     <string name="status">狀態</string>
@@ -417,7 +416,6 @@
     <string name="notices">預覽版本公告</string>
     <string name="licenses">開放原始碼授權</string>
     <string name="website">網站</string>
-    <string name="changelog">更新日誌</string>
     <string name="check_for_updates">檢查更新</string>
     <string name="label_more">其他</string>
     <string name="manga_info_expand">更多</string>
@@ -511,7 +509,7 @@
     <string name="action_move_to_top">排至最前</string>
     <string name="action_cancel_all">全部取消</string>
     <string name="action_reorganize_by">重新排列</string>
-    <string name="sort_by_upload_date">依上傳日期</string>
+    <string name="sort_by_upload_date">上傳日期</string>
     <string name="action_sort_latest_chapter">最新章節</string>
     <string name="action_sort_last_checked">最近檢查</string>
     <string name="invalid_backup_file">無效的備份檔</string>
@@ -564,4 +562,25 @@
     <plurals name="notification_chapters_multiple_and_more">
         <item quantity="other">第 %1$s 章以及另外 %2$d 章</item>
     </plurals>
+    <string name="whats_new">更新日誌</string>
+    <plurals name="notification_update_error">
+        <item quantity="one">有 %1$d 項更新失敗</item>
+        <item quantity="other"/>
+    </plurals>
+    <string name="unknown_status">連載狀態不明</string>
+    <string name="unknown_author">佚名</string>
+    <string name="action_download_unread">下載未讀章節</string>
+    <string name="action_global_search_query">在所有範圍內搜尋「%1$s」</string>
+    <string name="download_insufficient_space">由於儲存空間不足，無法下載章節</string>
+    <string name="updated_version">已更新至 v%1$s</string>
+    <plurals name="num_trackers">
+        <item quantity="one">%d 個歷程平台</item>
+        <item quantity="other"/>
+    </plurals>
+    <string name="pref_category_reading_mode">閱讀模式</string>
+    <string name="pref_category_locale">在地化</string>
+    <string name="pref_category_theme">主題</string>
+    <string name="action_sort_date_added">收藏日期</string>
+    <string name="loader_not_implemented_error">找不到来源</string>
+    <string name="tracker_not_logged_in">未登錄</string>
 </resources>

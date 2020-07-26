@@ -174,7 +174,6 @@
     <string name="pref_backup_service_category">서비스</string>
     <string name="pref_backup_interval">백업 주기</string>
     <string name="pref_backup_slots">최대 자동 백업</string>
-    <string name="source_not_found">소스를 찾을 수 없음</string>
     <string name="backup_created">백업 생성됨</string>
     <string name="restore_completed">복원 완료</string>
     <string name="restoring_backup">백업 복원중</string>
@@ -385,4 +384,5 @@
     <string name="filter_mode_lighten">닷지 / 밝게하기</string>
     <string name="filter_mode_darken">번 / 어둡게하기</string>
     <string name="label_help">도움</string>
+    <string name="email">이메일 주소</string>
 </resources>

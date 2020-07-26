@@ -114,8 +114,8 @@
     <string name="pref_page_transitions">Menggerakkan peralihan muka surat</string>
     <string name="pref_show_page_number">Tunjuk nombor muka surat</string>
     <string name="pref_crop_borders">Potong pinggiran</string>
-    <string name="pref_custom_brightness">Guna kecerahan tersuai</string>
-    <string name="pref_custom_color_filter">Guna turas warna tersuai</string>
+    <string name="pref_custom_brightness">Kecerahan tersuai</string>
+    <string name="pref_custom_color_filter">Turas warna tersuai</string>
     <string name="pref_keep_screen_on">Tetap nyalakan skrin</string>
     <string name="pref_reader_navigation">Navigasi</string>
     <string name="pref_read_with_volume_keys">Butang volum</string>
@@ -175,7 +175,6 @@
     <string name="pref_backup_service_category">Sandaran automatik</string>
     <string name="pref_backup_interval">Kekerapan sandaran</string>
     <string name="pref_backup_slots">Sandaran maksimum</string>
-    <string name="source_not_found">Sumber tidak ditemui</string>
     <string name="backup_created">Sandaran dibuat</string>
     <string name="restore_completed">Pemulihan selesai</string>
     <string name="backup_restore_content">Pemulihan menggunakan Sambungan untuk memperolehi data, caj telco mungkin dikenakan.
@@ -456,7 +455,6 @@
         <item quantity="other">Untuk %d tajuk</item>
     </plurals>
     <string name="notices">Notis binaan Preview</string>
-    <string name="changelog">Log perubahan</string>
     <string name="pref_theme_light">Tema terang</string>
     <string name="theme_light_default">Lalai</string>
     <string name="theme_light_blue">Biru terang</string>
@@ -581,4 +579,16 @@
     <string name="unknown_status">Status tidak diketahui</string>
     <string name="unknown_author">Pengarang tidak diketahui</string>
     <string name="action_download_unread">Muat turun bab belum dibaca</string>
+    <string name="updated_version">Dikemaskini ke v%1$s</string>
+    <string name="whats_new">Pembaharuan baharu</string>
+    <string name="action_sort_date_added">Tarikh ditambah</string>
+    <string name="download_insufficient_space">Memuat turun tidak berjaya kerana kekurangan ruang storan</string>
+    <string name="action_global_search_query">Cari untuk \"%1$s\" menggunakan carian keseluruhan</string>
+    <string name="pref_category_reading_mode">Mod membaca</string>
+    <string name="pref_category_locale">Tempat</string>
+    <string name="pref_category_theme">Tema</string>
+    <plurals name="num_trackers">
+        <item quantity="other">%d penjejak</item>
+    </plurals>
+    <string name="no_pinned_sources">Tiada sumber yang disematkan</string>
 </resources>

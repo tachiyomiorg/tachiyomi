@@ -115,8 +115,8 @@
     <string name="pref_page_transitions">चेतन पृष्ठ संक्रमण</string>
     <string name="pref_show_page_number">पृष्ठ संख्या दिखाएं</string>
     <string name="pref_crop_borders">किनारा कांटे</string>
-    <string name="pref_custom_brightness">इच्छा अनुसार द्य्रुति</string>
-    <string name="pref_custom_color_filter">इच्छा अनुसार रंग को फिल्टर करें</string>
+    <string name="pref_custom_brightness">अपनी पसंदीदा ब्राइटनेस</string>
+    <string name="pref_custom_color_filter">पसंदीदा कलर फिल्टर</string>
     <string name="pref_keep_screen_on">स्क्रीन को चालू रखें</string>
     <string name="pref_reader_navigation">पथ प्रदर्शन</string>
     <string name="pref_read_with_volume_keys">ध्वनि कुंजी</string>
@@ -176,7 +176,6 @@
     <string name="pref_backup_service_category">स्वचालित बैकअप</string>
     <string name="pref_backup_interval">बैकअप फ़्रीक्वेंसी</string>
     <string name="pref_backup_slots">अधिकतम बैकअप</string>
-    <string name="source_not_found">स्रोत नहीं मिला</string>
     <string name="backup_created">बैकअप बनाया</string>
     <string name="restore_completed">पुनर्स्थापना पूर्ण हुआ</string>
     <string name="backup_restore_content">डेटा लाने के लिए स्रोतों का उपयोग करें, वाहक लागत लागू हो सकती है।
@@ -285,7 +284,7 @@
     <string name="no_previous_chapter">पिछला अध्याय नहीं मिला</string>
     <string name="decode_image_error">छवि को लोड नहीं किया जा सका</string>
     <string name="confirm_set_image_as_cover">कवर कला के रूप में इस छवि का उपयोग करें\?</string>
-    <string name="download_queue_error">चैप्टर डाउनलोड नहीं कर सके। आप डाउनलोड अनुभाग में फिर से आज़मा सकते हैं</string>
+    <string name="download_queue_error">अध्याय डाउनलोड नहीं कर सका। आप डाउनलोड अनुभाग में फिर से कोशिश कर सकते हैं</string>
     <string name="notification_update_progress">अपडेट प्रगति: %1$d/%2$d</string>
     <string name="notification_new_chapters">नए अध्याय पाए गए</string>
     <string name="notification_cover_update_failed">कवर को अपडेट करने में विफल</string>
@@ -460,7 +459,6 @@
         <item quantity="other">%d शीर्षक के लिए</item>
     </plurals>
     <string name="notices">पूर्वावलोकन बनाएँ नोटिस</string>
-    <string name="changelog">बदलाव लॉग</string>
     <string name="pref_theme_light">लाइट थीम</string>
     <string name="theme_light_default">डिफ़ॉल्ट</string>
     <string name="theme_light_blue">हल्का नीला</string>
@@ -591,4 +589,17 @@
     <string name="unknown_author">अज्ञात लेखक</string>
     <string name="pref_dns_over_https_summary">प्रभावी होने के लिए ऐप पुनः आरंभ करने की आवश्यकता है</string>
     <string name="action_download_unread">अपठित अध्याय डाउनलोड करें</string>
+    <string name="whats_new">नया क्या है</string>
+    <string name="download_insufficient_space">कम डिस्क स्पेस के कारण अध्याय डाउनलोड नहीं कर सका</string>
+    <string name="action_global_search_query">विश्व स्तर पर \"%1$s\" के लिए खोजें</string>
+    <string name="updated_version">v%1$s तक अद्यतन</string>
+    <string name="pref_category_reading_mode">पढ़न मोड</string>
+    <string name="pref_category_locale">भाषा</string>
+    <string name="pref_category_theme">थीम</string>
+    <string name="action_sort_date_added">तारीख को जोड़ा गया</string>
+    <plurals name="num_trackers">
+        <item quantity="one">1 ट्रैकर</item>
+        <item quantity="other">%d ट्रैकरस</item>
+    </plurals>
+    <string name="no_pinned_sources">कोई पिन किया हुआ सोर्स नही है</string>
 </resources>

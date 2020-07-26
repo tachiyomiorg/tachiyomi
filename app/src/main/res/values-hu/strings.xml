@@ -215,4 +215,5 @@
     <string name="update_check_notification_update_available">Új verzió érhető el!</string>
     <string name="update_check_notification_download_error">Letöltési hiba</string>
     <string name="update_check_notification_download_complete">Letöltés kész</string>
+    <string name="email">Ímélcím</string>
 </resources>

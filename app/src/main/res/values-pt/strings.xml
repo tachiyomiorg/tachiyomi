@@ -83,7 +83,7 @@
     <string name="pref_lock_orientation">Bloquear orientação</string>
     <string name="pref_page_transitions">Animar transições de página</string>
     <string name="pref_show_page_number">Mostrar número de página</string>
-    <string name="pref_custom_brightness">Usar brilho personalizado</string>
+    <string name="pref_custom_brightness">Brilho personalizado</string>
     <string name="pref_keep_screen_on">Manter o ecrã ligado</string>
     <string name="pref_reader_navigation">Navegação</string>
     <string name="pref_read_with_volume_keys">Teclas de volume</string>
@@ -305,7 +305,7 @@
     <string name="ext_version_info">Versão: %1$s</string>
     <string name="ext_language_info">Língua: %1$s</string>
     <string name="pref_crop_borders">Cortar bordas</string>
-    <string name="pref_custom_color_filter">Usar filtro de cor personalizado</string>
+    <string name="pref_custom_color_filter">Filtro de cor personalizado</string>
     <string name="pref_read_with_volume_keys_inverted">Inverter teclas de volume</string>
     <string name="double_tap_anim_speed_0">Sem animação</string>
     <string name="double_tap_anim_speed_normal">Normal</string>
@@ -320,7 +320,6 @@
     <string name="pref_restore_backup_summ">Restaurar biblioteca a partir de cópia de segurança</string>
     <string name="pref_backup_service_category">Cópias de segurança automáticas</string>
     <string name="pref_backup_interval">Frequência de cópia de segurança</string>
-    <string name="source_not_found">Fonte não encontrada</string>
     <string name="restoring_backup">Restaurando cópia de segurança</string>
     <string name="creating_backup">Criando cópia de segurança</string>
     <string name="label_migration">Migrar</string>
@@ -485,7 +484,6 @@
         <item quantity="other">Para %d títulos</item>
     </plurals>
     <string name="notices">Avisos de build de preview</string>
-    <string name="changelog">Registo de alterações</string>
     <string name="pref_theme_light">Tema claro</string>
     <string name="theme_light_default">Padrão</string>
     <string name="theme_light_blue">Azul claro</string>
@@ -620,4 +618,18 @@
     <string name="pref_dns_over_https_summary">Requer reinício da aplicação para ter efeito</string>
     <string name="label_network">Rede</string>
     <string name="pref_dns_over_https" translatable="false">DNS por HTTPS (Cloudflare)</string>
+    <string name="updated_version">Atualizado para v%1$s</string>
+    <string name="whats_new">Novidades</string>
+    <string name="action_download_unread">Transferir capítulos não lidos</string>
+    <string name="download_insufficient_space">Não foi possível transferir capítulos devido a falta de espaço em disco</string>
+    <string name="action_global_search_query">Procurar por \"%1$s\" globalmente</string>
+    <string name="pref_category_reading_mode">Modo de leitura</string>
+    <string name="pref_category_locale">Localidade</string>
+    <string name="pref_category_theme">Tema</string>
+    <string name="action_sort_date_added">Data de adição</string>
+    <plurals name="num_trackers">
+        <item quantity="one">1 monitorizador</item>
+        <item quantity="other">%d monitorizadores</item>
+    </plurals>
+    <string name="no_pinned_sources">Você não possui fontes fixadas</string>
 </resources>
