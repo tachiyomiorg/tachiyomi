@@ -671,6 +671,7 @@
     <string name="download_notifier_text_only_wifi">No Wi-Fi connection available</string>
     <string name="download_notifier_no_network">No network connection available</string>
     <string name="download_notifier_download_paused">Download paused</string>
+    <string name="download_notifier_download_finish">The download has been completed</string>
 
     <!-- Notification channels -->
     <string name="channel_common">Common</string>

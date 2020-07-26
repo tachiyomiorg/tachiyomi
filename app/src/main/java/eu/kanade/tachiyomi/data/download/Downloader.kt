@@ -139,7 +139,7 @@ class Downloader(
                 notifier.paused = false
                 notifier.onDownloadPaused()
             } else {
-                notifier.dismiss()
+                notifier.downloadFinished()
             }
         }
     }

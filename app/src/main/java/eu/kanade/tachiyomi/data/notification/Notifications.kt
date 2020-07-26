@@ -33,6 +33,7 @@ object Notifications {
     const val CHANNEL_DOWNLOADER = "downloader_channel"
     const val ID_DOWNLOAD_CHAPTER = -201
     const val ID_DOWNLOAD_CHAPTER_ERROR = -202
+    const val ID_DOWNLOAD_CHAPTER_COMPLETE = -203
 
     /**
      * Notification channel and ids used by the library updater.
