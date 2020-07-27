@@ -13,8 +13,6 @@ object PreferenceKeys {
 
     const val confirmExit = "pref_confirm_exit"
 
-    const val rotation = "pref_rotation_type_key"
-
     const val enableTransitions = "pref_enable_transitions_key"
 
     const val doubleTapAnimationSpeed = "pref_double_tap_anim_speed"
@@ -42,6 +40,8 @@ object PreferenceKeys {
     const val colorFilterMode = "color_filter_mode"
 
     const val defaultViewer = "pref_default_viewer_key"
+
+    const val defaultRotationType = "pref_default_rotation_type_key"
 
     const val imageScaleType = "pref_image_scale_type_key"
 

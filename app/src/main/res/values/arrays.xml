@@ -61,17 +61,11 @@
     </string-array>
 
     <string-array name="rotation_type">
+        <item>@string/default_rotation_type</item>
         <item>@string/rotation_free</item>
         <item>@string/rotation_lock</item>
         <item>@string/rotation_force_portrait</item>
         <item>@string/rotation_force_landscape</item>
-    </string-array>
-
-    <string-array name="rotation_type_values">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
     </string-array>
 
     <string-array name="color_filter_modes">

@@ -166,11 +166,13 @@ class BackupTest {
         // Add manga to database
         val manga = getSingleManga("One Piece")
         manga.viewer = 3
+        manga.rotationType = Manga.ROTATION_FORCE_PORTRAIT
         manga.id = db.insertManga(manga).executeAsBlocking().insertedId()
 
         var favoriteManga = backupManager.databaseHelper.getFavoriteMangas().executeAsBlocking()
         assertThat(favoriteManga).hasSize(1)
         assertThat(favoriteManga[0].viewer).isEqualTo(3)
+        assertThat(favoriteManga[0].rotationType).isEqualTo(Manga.ROTATION_FORCE_PORTRAIT)
 
         // Update json with all options enabled
         mangaEntries.add(backupManager.backupMangaObject(manga, 1))
@@ -183,6 +185,7 @@ class BackupTest {
         favoriteManga = backupManager.databaseHelper.getFavoriteMangas().executeAsBlocking()
         assertThat(favoriteManga).hasSize(1)
         assertThat(favoriteManga[0].viewer).isEqualTo(0)
+        assertThat(favoriteManga[0].rotationType).isEqualTo(Manga.ROTATION_DEFAULT)
 
         // Restore local manga
         backupManager.restoreMangaNoFetch(manga, dbManga)
@@ -191,6 +194,7 @@ class BackupTest {
         favoriteManga = backupManager.databaseHelper.getFavoriteMangas().executeAsBlocking()
         assertThat(favoriteManga).hasSize(1)
         assertThat(favoriteManga[0].viewer).isEqualTo(3)
+        assertThat(favoriteManga[0].rotationType).isEqualTo(Manga.ROTATION_FORCE_PORTRAIT)
 
         // Clear database to test manga fetch
         clearDatabase()
@@ -220,6 +224,7 @@ class BackupTest {
         val dbCats = backupManager.databaseHelper.getFavoriteMangas().executeAsBlocking()
         assertThat(dbCats).hasSize(1)
         assertThat(dbCats[0].viewer).isEqualTo(3)
+        assertThat(dbCats[0].rotationType).isEqualTo(Manga.ROTATION_FORCE_PORTRAIT)
         assertThat(dbCats[0].description).isEqualTo("This is a description")
     }
 

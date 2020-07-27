@@ -57,6 +57,10 @@ interface Manga : SManga {
         get() = chapter_flags and SORTING_MASK
         set(sort) = setFlags(sort, SORTING_MASK)
 
+    var rotationType: Int
+        get() = chapter_flags and ROTATION_MASK
+        set(rotation) = setFlags(rotation, ROTATION_MASK)
+
     companion object {
 
         const val SORT_DESC = 0x00000000
@@ -86,6 +90,13 @@ interface Manga : SManga {
         const val DISPLAY_NAME = 0x00000000
         const val DISPLAY_NUMBER = 0x00100000
         const val DISPLAY_MASK = 0x00100000
+
+        const val ROTATION_DEFAULT = 0x00000000
+        const val ROTATION_FREE = 0x00200000
+        const val ROTATION_LOCK = 0x00400000
+        const val ROTATION_FORCE_PORTRAIT = 0x00600000
+        const val ROTATION_FORCE_LANDSCAPE = 0x00800000
+        const val ROTATION_MASK = 0x00e00000
 
         fun create(source: Long): Manga = MangaImpl().apply {
             this.source = source

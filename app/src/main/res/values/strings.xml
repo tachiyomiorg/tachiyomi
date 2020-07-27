@@ -289,7 +289,7 @@
     <string name="double_tap_anim_speed_0">No animation</string>
     <string name="double_tap_anim_speed_normal">Normal</string>
     <string name="double_tap_anim_speed_fast">Fast</string>
-    <string name="pref_rotation_type">Rotation</string>
+    <string name="pref_rotation_type">Default rotation type</string>
     <string name="rotation_free">Free</string>
     <string name="rotation_lock">Lock</string>
     <string name="rotation_force_portrait">Force portrait</string>
@@ -686,5 +686,7 @@
     <string name="tapping_inverted_horizontal">Horizontal</string>
     <string name="tapping_inverted_vertical">Vertical</string>
     <string name="tapping_inverted_both">Both</string>
+    <string name="default_rotation_type">Default</string>
+    <string name="rotation_type">Rotation type</string>
 
 </resources>

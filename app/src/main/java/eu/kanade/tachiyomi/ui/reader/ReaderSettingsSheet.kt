@@ -8,6 +8,7 @@ import androidx.core.widget.NestedScrollView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.tfcporciuncula.flow.Preference
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.databinding.ReaderSettingsSheetBinding
 import eu.kanade.tachiyomi.ui.reader.viewer.pager.PagerViewer
@@ -64,7 +65,12 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
         }
         binding.viewer.setSelection(activity.presenter.manga?.viewer ?: 0, false)
 
-        binding.rotationMode.bindToPreference(preferences.rotation(), 1)
+        binding.rotationType.onItemSelectedListener = IgnoreFirstSpinnerListener { position ->
+            activity.presenter.setMangaRotationType(position.let(::positionToRotationType))
+            activity.setOrientation(activity.presenter.getMangaRotationType())
+        }
+        binding.rotationType.setSelection(activity.presenter.manga?.rotationType.let(::rotationTypeToPosition), false)
+
         binding.backgroundColor.bindToIntPreference(preferences.readerTheme(), R.array.reader_themes_values)
         binding.showPageNumber.bindToPreference(preferences.showPageNumber())
         binding.fullscreen.bindToPreference(preferences.fullscreen())
@@ -150,5 +156,41 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
             pref.set(intValues[position]!!)
         }
         setSelection(intValues.indexOf(pref.get()), false)
+    }
+
+    /**
+     * Map from [position] of [binding#rotationType] to rotation type value.
+     * @throws IllegalArgumentException if selected value is invalid
+     * @see Manga.ROTATION_DEFAULT
+     * @see Manga.ROTATION_FREE
+     * @see Manga.ROTATION_LOCK
+     * @see Manga.ROTATION_FORCE_PORTRAIT
+     * @see Manga.ROTATION_FORCE_LANDSCAPE
+     */
+    private fun positionToRotationType(position: Int) = when (position) {
+        0 -> Manga.ROTATION_DEFAULT
+        1 -> Manga.ROTATION_FREE
+        2 -> Manga.ROTATION_LOCK
+        3 -> Manga.ROTATION_FORCE_PORTRAIT
+        4 -> Manga.ROTATION_FORCE_LANDSCAPE
+        else -> throw IllegalArgumentException() // should not happen
+    }
+
+    /**
+     * Map from [rotationType] value to position of [binding#rotationType] spinner.
+     * Return 0 if invalid value.
+     * @see Manga.ROTATION_DEFAULT
+     * @see Manga.ROTATION_FREE
+     * @see Manga.ROTATION_LOCK
+     * @see Manga.ROTATION_FORCE_PORTRAIT
+     * @see Manga.ROTATION_FORCE_LANDSCAPE
+     */
+    private fun rotationTypeToPosition(rotationType: Int?) = when (rotationType) {
+        Manga.ROTATION_DEFAULT -> 0
+        Manga.ROTATION_FREE -> 1
+        Manga.ROTATION_LOCK -> 2
+        Manga.ROTATION_FORCE_PORTRAIT -> 3
+        Manga.ROTATION_FORCE_LANDSCAPE -> 4
+        else -> 0
     }
 }

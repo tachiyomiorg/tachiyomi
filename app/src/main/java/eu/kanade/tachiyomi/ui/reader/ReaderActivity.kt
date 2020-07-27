@@ -29,7 +29,6 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.notification.NotificationReceiver
 import eu.kanade.tachiyomi.data.notification.Notifications
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.asImmediateFlow
 import eu.kanade.tachiyomi.databinding.ReaderActivityBinding
 import eu.kanade.tachiyomi.ui.base.activity.BaseRxActivity
 import eu.kanade.tachiyomi.ui.reader.ReaderPresenter.SetAsCoverResult.AddToLibraryFirst
@@ -57,7 +56,6 @@ import eu.kanade.tachiyomi.widget.SimpleAnimationListener
 import eu.kanade.tachiyomi.widget.SimpleSeekBarListener
 import java.io.File
 import kotlin.math.abs
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -93,7 +91,7 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
         private set
 
     /**
-     * Configuration at reader level, like background color or forced orientation.
+     * Configuration at reader level, like background color.
      */
     private var config: ReaderConfig? = null
 
@@ -424,6 +422,9 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
 
         binding.pleaseWait.visible()
         binding.pleaseWait.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in_long))
+
+        // Set forced orientation from manga-wised or system-wised settings
+        setOrientation(presenter.getMangaRotationType())
     }
 
     private fun showReadingModeSnackbar(mode: Int) {
@@ -624,6 +625,33 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
     }
 
     /**
+     * Forces the user preferred [orientation] on the activity.
+     */
+    fun setOrientation(orientation: Int) {
+        val newOrientation = when (orientation) {
+            // Lock in current orientation
+            Manga.ROTATION_LOCK -> {
+                val currentOrientation = resources.configuration.orientation
+                if (currentOrientation == Configuration.ORIENTATION_PORTRAIT) {
+                    ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT
+                } else {
+                    ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
+                }
+            }
+            // Lock in portrait
+            Manga.ROTATION_FORCE_PORTRAIT -> ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT
+            // Lock in landscape
+            Manga.ROTATION_FORCE_LANDSCAPE -> ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
+            // Rotation free
+            else -> ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+        }
+
+        if (newOrientation != requestedOrientation) {
+            requestedOrientation = newOrientation
+        }
+    }
+
+    /**
      * Class that handles the user preferences of the reader.
      */
     private inner class ReaderConfig {
@@ -632,14 +660,6 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
          * Initializes the reader subscriptions.
          */
         init {
-            preferences.rotation().asImmediateFlow { setOrientation(it) }
-                .drop(1)
-                .onEach {
-                    delay(250)
-                    setOrientation(it)
-                }
-                .launchIn(scope)
-
             preferences.readerTheme().asFlow()
                 .drop(1) // We only care about updates
                 .onEach { recreate() }
@@ -674,33 +694,6 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
             preferences.colorFilterMode().asFlow()
                 .onEach { setColorFilter(preferences.colorFilter().get()) }
                 .launchIn(scope)
-        }
-
-        /**
-         * Forces the user preferred [orientation] on the activity.
-         */
-        private fun setOrientation(orientation: Int) {
-            val newOrientation = when (orientation) {
-                // Lock in current orientation
-                2 -> {
-                    val currentOrientation = resources.configuration.orientation
-                    if (currentOrientation == Configuration.ORIENTATION_PORTRAIT) {
-                        ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT
-                    } else {
-                        ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
-                    }
-                }
-                // Lock in portrait
-                3 -> ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT
-                // Lock in landscape
-                4 -> ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
-                // Rotation free
-                else -> ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
-            }
-
-            if (newOrientation != requestedOrientation) {
-                requestedOrientation = newOrientation
-            }
         }
 
         /**

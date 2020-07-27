@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.ui.setting
 import android.os.Build
 import androidx.preference.PreferenceScreen
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.data.preference.PreferenceValues.TappingInvertMode
 import eu.kanade.tachiyomi.data.preference.asImmediateFlow
@@ -31,6 +32,17 @@ class SettingsReaderController : SettingsController() {
             )
             entryValues = arrayOf("1", "2", "3", "4", "5")
             defaultValue = "2"
+            summary = "%s"
+        }
+        intListPreference {
+            key = Keys.defaultRotationType
+            titleRes = R.string.pref_rotation_type
+            entriesRes = arrayOf(
+                R.string.rotation_free, R.string.rotation_lock,
+                R.string.rotation_force_portrait, R.string.rotation_force_landscape
+            )
+            entryValues = arrayOf(Manga.ROTATION_FREE.toString(), Manga.ROTATION_LOCK.toString(), Manga.ROTATION_FORCE_PORTRAIT.toString(), Manga.ROTATION_FORCE_LANDSCAPE.toString())
+            defaultValue = Manga.ROTATION_FREE.toString()
             summary = "%s"
         }
         intListPreference {
@@ -69,17 +81,6 @@ class SettingsReaderController : SettingsController() {
         preferenceCategory {
             titleRes = R.string.pref_category_display
 
-            intListPreference {
-                key = Keys.rotation
-                titleRes = R.string.pref_rotation_type
-                entriesRes = arrayOf(
-                    R.string.rotation_free, R.string.rotation_lock,
-                    R.string.rotation_force_portrait, R.string.rotation_force_landscape
-                )
-                entryValues = arrayOf("1", "2", "3", "4")
-                defaultValue = "1"
-                summary = "%s"
-            }
             intListPreference {
                 key = Keys.readerTheme
                 titleRes = R.string.pref_reader_theme

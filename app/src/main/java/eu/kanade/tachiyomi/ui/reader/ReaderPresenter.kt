@@ -491,6 +491,23 @@ class ReaderPresenter(
     }
 
     /**
+     * Returns the rotation type used by this manga or the default one.
+     */
+    fun getMangaRotationType(): Int {
+        val manga = manga ?: return preferences.defaultRotationType()
+        return if (manga.rotationType == Manga.ROTATION_DEFAULT) preferences.defaultRotationType() else manga.rotationType
+    }
+
+    /**
+     * Updates the rotation type for the open manga.
+     */
+    fun setMangaRotationType(rotationType: Int) {
+        val manga = manga ?: return
+        manga.rotationType = rotationType
+        db.updateFlags(manga).executeAsBlocking()
+    }
+
+    /**
      * Saves the image of this [page] in the given [directory] and returns the file location.
      */
     private fun saveImage(page: ReaderPage, directory: File, manga: Manga): File {

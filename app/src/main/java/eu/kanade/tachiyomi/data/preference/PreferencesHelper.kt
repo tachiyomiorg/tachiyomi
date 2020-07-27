@@ -7,6 +7,7 @@ import androidx.preference.PreferenceManager
 import com.tfcporciuncula.flow.FlowSharedPreferences
 import com.tfcporciuncula.flow.Preference
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.data.preference.PreferenceValues as Values
 import eu.kanade.tachiyomi.data.preference.PreferenceValues.DisplayMode
@@ -75,8 +76,6 @@ class PreferencesHelper(val context: Context) {
 
     fun themeDark() = flowPrefs.getEnum(Keys.themeDark, Values.DarkThemeVariant.default)
 
-    fun rotation() = flowPrefs.getInt(Keys.rotation, 1)
-
     fun pageTransitions() = flowPrefs.getBoolean(Keys.enableTransitions, true)
 
     fun doubleTapAnimSpeed() = flowPrefs.getInt(Keys.doubleTapAnimationSpeed, 500)
@@ -104,6 +103,8 @@ class PreferencesHelper(val context: Context) {
     fun colorFilterMode() = flowPrefs.getInt(Keys.colorFilterMode, 0)
 
     fun defaultViewer() = prefs.getInt(Keys.defaultViewer, 2)
+
+    fun defaultRotationType() = prefs.getInt(Keys.defaultRotationType, Manga.ROTATION_FREE)
 
     fun imageScaleType() = flowPrefs.getInt(Keys.imageScaleType, 1)
 
