@@ -72,7 +72,7 @@ class CategoryTest {
 
         // It should not have 0 as id
         val c = db.getCategories().executeAsBlocking()[0]
-        assertThat(c.id).isNotZero
+        assertThat(c.id).isNotZero()
 
         // Add a manga to a category
         val m = db.getMangas().executeAsBlocking()[0]

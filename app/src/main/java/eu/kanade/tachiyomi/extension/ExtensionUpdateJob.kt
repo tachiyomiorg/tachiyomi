@@ -39,25 +39,28 @@ class ExtensionUpdateJob(private val context: Context, workerParams: WorkerParam
     }
 
     private fun createUpdateNotification(names: List<String>) {
-        NotificationManagerCompat.from(context).apply {
-            notify(
-                Notifications.ID_UPDATES_TO_EXTS,
-                context.notification(Notifications.CHANNEL_UPDATES_TO_EXTS) {
-                    setContentTitle(
-                        context.resources.getQuantityString(
-                            R.plurals.update_check_notification_ext_updates,
-                            names.size,
-                            names.size
+        val preferences = Injekt.get<PreferencesHelper>()
+        if (!preferences.disableExtUpdatesNotification().get()) {
+            NotificationManagerCompat.from(context).apply {
+                notify(
+                    Notifications.ID_UPDATES_TO_EXTS,
+                    context.notification(Notifications.CHANNEL_UPDATES_TO_EXTS) {
+                        setContentTitle(
+                            context.resources.getQuantityString(
+                                R.plurals.update_check_notification_ext_updates,
+                                names.size,
+                                names.size
+                            )
                         )
-                    )
-                    val extNames = names.joinToString(", ")
-                    setContentText(extNames)
-                    setStyle(NotificationCompat.BigTextStyle().bigText(extNames))
-                    setSmallIcon(R.drawable.ic_extension_24dp)
-                    setContentIntent(NotificationReceiver.openExtensionsPendingActivity(context))
-                    setAutoCancel(true)
-                }
-            )
+                        val extNames = names.joinToString(", ")
+                        setContentText(extNames)
+                        setStyle(NotificationCompat.BigTextStyle().bigText(extNames))
+                        setSmallIcon(R.drawable.ic_extension_24dp)
+                        setContentIntent(NotificationReceiver.openExtensionsPendingActivity(context))
+                        setAutoCancel(true)
+                    }
+                )
+            }
         }
     }
 

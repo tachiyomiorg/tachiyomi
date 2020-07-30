@@ -40,5 +40,15 @@ class SettingsBrowseController : SettingsController() {
                 defaultValue = false
             }
         }
+
+        preferenceCategory {
+            titleRes = R.string.label_notifications
+
+            switchPreference {
+                key = Keys.disableExtUpdateNotification
+                titleRes = R.string.pref_disable_extension_updates_notification
+                defaultValue = false
+            }
+        }
     }
 }
