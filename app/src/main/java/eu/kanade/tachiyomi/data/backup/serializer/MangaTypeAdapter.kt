@@ -16,7 +16,7 @@ object MangaTypeAdapter {
                 value(it.url)
                 value(it.title)
                 value(it.source)
-                value(it.viewer)
+                value(it.viewer_flags)
                 value(it.chapter_flags)
                 endArray()
             }
@@ -27,7 +27,7 @@ object MangaTypeAdapter {
                 manga.url = nextString()
                 manga.title = nextString()
                 manga.source = nextLong()
-                manga.viewer = nextInt()
+                manga.viewer_flags = nextInt()
                 manga.chapter_flags = nextInt()
                 endArray()
                 manga

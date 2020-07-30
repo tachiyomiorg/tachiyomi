@@ -462,18 +462,18 @@ class ReaderPresenter(
     /**
      * Returns the viewer position used by this manga or the default one.
      */
-    fun getMangaViewer(): Int {
-        val manga = manga ?: return preferences.defaultViewer()
-        return if (manga.viewer == 0) preferences.defaultViewer() else manga.viewer
+    fun getMangaReadingMode(): Int {
+        val manga = manga ?: return preferences.defaultReadingMode()
+        return if (manga.readingMode == Manga.READING_DEFAULT) preferences.defaultReadingMode() else manga.readingMode
     }
 
     /**
      * Updates the viewer position for the open manga.
      */
-    fun setMangaViewer(viewer: Int) {
+    fun setMangaReadingMode(readingMode: Int) {
         val manga = manga ?: return
-        manga.viewer = viewer
-        db.updateMangaViewer(manga).executeAsBlocking()
+        manga.readingMode = readingMode
+        db.updateViewerFlags(manga).executeAsBlocking()
 
         Observable.timer(250, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
             .subscribeFirst({ view, _ ->
@@ -504,7 +504,7 @@ class ReaderPresenter(
     fun setMangaRotationType(rotationType: Int) {
         val manga = manga ?: return
         manga.rotationType = rotationType
-        db.updateFlags(manga).executeAsBlocking()
+        db.updateViewerFlags(manga).executeAsBlocking()
     }
 
     /**

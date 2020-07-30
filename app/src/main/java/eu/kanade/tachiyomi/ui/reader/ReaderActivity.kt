@@ -102,13 +102,6 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
     private var progressDialog: ProgressDialog? = null
 
     companion object {
-        @Suppress("unused")
-        const val LEFT_TO_RIGHT = 1
-        const val RIGHT_TO_LEFT = 2
-        const val VERTICAL = 3
-        const val WEBTOON = 4
-        const val VERTICAL_PLUS = 5
-
         fun newIntent(context: Context, manga: Manga, chapter: Chapter): Intent {
             return Intent(context, ReaderActivity::class.java).apply {
                 putExtra("manga", manga.id)
@@ -396,12 +389,12 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
      */
     fun setManga(manga: Manga) {
         val prevViewer = viewer
-        val newViewer = when (presenter.getMangaViewer()) {
-            RIGHT_TO_LEFT -> R2LPagerViewer(this)
-            VERTICAL -> VerticalPagerViewer(this)
-            WEBTOON -> WebtoonViewer(this)
-            VERTICAL_PLUS -> WebtoonViewer(this, isContinuous = false)
-            else -> L2RPagerViewer(this)
+        val newViewer = when (presenter.getMangaReadingMode()) {
+            Manga.READING_R2L -> R2LPagerViewer(this)
+            Manga.READING_VERTICAL -> VerticalPagerViewer(this)
+            Manga.READING_WEBTOON -> WebtoonViewer(this)
+            Manga.READING_CONT_VERTICAL -> WebtoonViewer(this, isContinuous = false)
+            else /*Manga.READING_L2R*/ -> L2RPagerViewer(this)
         }
 
         // Destroy previous viewer if there was one
@@ -413,7 +406,7 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
         binding.viewerContainer.addView(newViewer.getView())
 
         if (preferences.showReadingMode()) {
-            showReadingModeSnackbar(presenter.getMangaViewer())
+            showReadingModeSnackbar(presenter.getMangaReadingMode())
         }
 
         binding.toolbar.title = manga.title

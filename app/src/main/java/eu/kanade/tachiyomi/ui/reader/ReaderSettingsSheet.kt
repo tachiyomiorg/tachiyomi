@@ -54,16 +54,16 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
      */
     private fun initGeneralPreferences() {
         binding.viewer.onItemSelectedListener = IgnoreFirstSpinnerListener { position ->
-            activity.presenter.setMangaViewer(position)
+            activity.presenter.setMangaReadingMode(position.let(::positionToReadingMode))
 
-            val mangaViewer = activity.presenter.getMangaViewer()
-            if (mangaViewer == ReaderActivity.WEBTOON || mangaViewer == ReaderActivity.VERTICAL_PLUS) {
+            val mangaViewer = activity.presenter.getMangaReadingMode()
+            if (mangaViewer == Manga.READING_WEBTOON || mangaViewer == Manga.READING_CONT_VERTICAL) {
                 initWebtoonPreferences()
             } else {
                 initPagerPreferences()
             }
         }
-        binding.viewer.setSelection(activity.presenter.manga?.viewer ?: 0, false)
+        binding.viewer.setSelection(activity.presenter.manga?.readingMode.let(::readingModeToPosition), false)
 
         binding.rotationType.onItemSelectedListener = IgnoreFirstSpinnerListener { position ->
             activity.presenter.setMangaRotationType(position.let(::positionToRotationType))
@@ -147,7 +147,7 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
 
     /**
      * Binds a spinner to an int preference. The position of the spinner item must
-     * correlate with the [intValues] resource item (in arrays.xml), which is a <string-array>
+     * correlate with the [intValuesResource] resource item (in arrays.xml), which is a <string-array>
      * of int values that will be parsed here and applied to the preference.
      */
     private fun Spinner.bindToIntPreference(pref: Preference<Int>, @ArrayRes intValuesResource: Int) {
@@ -177,6 +177,26 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
     }
 
     /**
+     * Map from [position] of [binding#viewer] to rotation type value.
+     * @throws IllegalArgumentException if selected value is invalid
+     * @see Manga.READING_DEFAULT
+     * @see Manga.READING_L2R
+     * @see Manga.READING_R2L
+     * @see Manga.READING_VERTICAL
+     * @see Manga.READING_WEBTOON
+     * @see Manga.READING_CONT_VERTICAL
+     */
+    private fun positionToReadingMode(position: Int) = when (position) {
+        0 -> Manga.READING_DEFAULT
+        1 -> Manga.READING_L2R
+        2 -> Manga.READING_R2L
+        3 -> Manga.READING_VERTICAL
+        4 -> Manga.READING_WEBTOON
+        5 -> Manga.READING_CONT_VERTICAL
+        else -> throw IllegalArgumentException() // should not happen
+    }
+
+    /**
      * Map from [rotationType] value to position of [binding#rotationType] spinner.
      * Return 0 if invalid value.
      * @see Manga.ROTATION_DEFAULT
@@ -191,6 +211,26 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
         Manga.ROTATION_LOCK -> 2
         Manga.ROTATION_FORCE_PORTRAIT -> 3
         Manga.ROTATION_FORCE_LANDSCAPE -> 4
+        else -> 0
+    }
+
+    /**
+     * Map from [readingMode] value to position of [binding#viewer] spinner.
+     * Return 0 if invalid value.
+     * @see Manga.READING_DEFAULT
+     * @see Manga.READING_L2R
+     * @see Manga.READING_R2L
+     * @see Manga.READING_VERTICAL
+     * @see Manga.READING_WEBTOON
+     * @see Manga.READING_CONT_VERTICAL
+     */
+    private fun readingModeToPosition(readingMode: Int?) = when (readingMode) {
+        Manga.READING_DEFAULT -> 0
+        Manga.READING_L2R -> 1
+        Manga.READING_R2L -> 2
+        Manga.READING_VERTICAL -> 3
+        Manga.READING_WEBTOON -> 4
+        Manga.READING_CONT_VERTICAL -> 5
         else -> 0
     }
 }

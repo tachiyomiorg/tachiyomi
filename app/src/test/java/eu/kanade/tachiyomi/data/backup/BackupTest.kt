@@ -165,13 +165,13 @@ class BackupTest {
 
         // Add manga to database
         val manga = getSingleManga("One Piece")
-        manga.viewer = 3
+        manga.readingMode = 3
         manga.rotationType = Manga.ROTATION_FORCE_PORTRAIT
         manga.id = db.insertManga(manga).executeAsBlocking().insertedId()
 
         var favoriteManga = backupManager.databaseHelper.getFavoriteMangas().executeAsBlocking()
         assertThat(favoriteManga).hasSize(1)
-        assertThat(favoriteManga[0].viewer).isEqualTo(3)
+        assertThat(favoriteManga[0].readingMode).isEqualTo(3)
         assertThat(favoriteManga[0].rotationType).isEqualTo(Manga.ROTATION_FORCE_PORTRAIT)
 
         // Update json with all options enabled
@@ -184,7 +184,7 @@ class BackupTest {
 
         favoriteManga = backupManager.databaseHelper.getFavoriteMangas().executeAsBlocking()
         assertThat(favoriteManga).hasSize(1)
-        assertThat(favoriteManga[0].viewer).isEqualTo(0)
+        assertThat(favoriteManga[0].readingMode).isEqualTo(0)
         assertThat(favoriteManga[0].rotationType).isEqualTo(Manga.ROTATION_DEFAULT)
 
         // Restore local manga
@@ -193,7 +193,7 @@ class BackupTest {
         // Test if restore successful
         favoriteManga = backupManager.databaseHelper.getFavoriteMangas().executeAsBlocking()
         assertThat(favoriteManga).hasSize(1)
-        assertThat(favoriteManga[0].viewer).isEqualTo(3)
+        assertThat(favoriteManga[0].readingMode).isEqualTo(3)
         assertThat(favoriteManga[0].rotationType).isEqualTo(Manga.ROTATION_FORCE_PORTRAIT)
 
         // Clear database to test manga fetch
@@ -223,7 +223,7 @@ class BackupTest {
         // Check if restore successful
         val dbCats = backupManager.databaseHelper.getFavoriteMangas().executeAsBlocking()
         assertThat(dbCats).hasSize(1)
-        assertThat(dbCats[0].viewer).isEqualTo(3)
+        assertThat(dbCats[0].readingMode).isEqualTo(3)
         assertThat(dbCats[0].rotationType).isEqualTo(Manga.ROTATION_FORCE_PORTRAIT)
         assertThat(dbCats[0].description).isEqualTo("This is a description")
     }

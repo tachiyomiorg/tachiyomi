@@ -8,8 +8,9 @@ import com.pushtorefresh.storio.sqlite.queries.UpdateQuery
 import eu.kanade.tachiyomi.data.database.inTransactionReturn
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.database.tables.MangaTable
+import kotlin.reflect.KProperty1
 
-class MangaFlagsPutResolver : PutResolver<Manga>() {
+class MangaFlagsPutResolver(private val colName: String, private val fieldGetter: KProperty1<Manga, Int>) : PutResolver<Manga>() {
 
     override fun performPut(db: StorIOSQLite, manga: Manga) = db.inTransactionReturn {
         val updateQuery = mapToUpdateQuery(manga)
@@ -26,6 +27,6 @@ class MangaFlagsPutResolver : PutResolver<Manga>() {
         .build()
 
     fun mapToContentValues(manga: Manga) = ContentValues(1).apply {
-        put(MangaTable.COL_CHAPTER_FLAGS, manga.chapter_flags)
+        put(colName, fieldGetter.get(manga))
     }
 }

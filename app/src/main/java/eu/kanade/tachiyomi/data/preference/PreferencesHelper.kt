@@ -102,7 +102,7 @@ class PreferencesHelper(val context: Context) {
 
     fun colorFilterMode() = flowPrefs.getInt(Keys.colorFilterMode, 0)
 
-    fun defaultViewer() = prefs.getInt(Keys.defaultViewer, 2)
+    fun defaultReadingMode() = prefs.getInt(Keys.defaultReadingMode, Manga.READING_R2L)
 
     fun defaultRotationType() = prefs.getInt(Keys.defaultRotationType, Manga.ROTATION_FREE)
 

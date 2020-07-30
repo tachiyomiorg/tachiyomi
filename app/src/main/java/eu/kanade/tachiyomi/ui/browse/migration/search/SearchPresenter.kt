@@ -144,9 +144,9 @@ class SearchPresenter(
 
             // Update reading preferences
             manga.chapter_flags = prevManga.chapter_flags
-            db.updateFlags(manga).executeAsBlocking()
-            manga.viewer = prevManga.viewer
-            db.updateMangaViewer(manga).executeAsBlocking()
+            db.updateChapterFlags(manga).executeAsBlocking()
+            manga.viewer_flags = prevManga.viewer_flags
+            db.updateViewerFlags(manga).executeAsBlocking()
 
             // Update date added
             if (replace) {

@@ -39,7 +39,7 @@ object PreferenceKeys {
 
     const val colorFilterMode = "color_filter_mode"
 
-    const val defaultViewer = "pref_default_viewer_key"
+    const val defaultReadingMode = "pref_default_reading_mode_key"
 
     const val defaultRotationType = "pref_default_rotation_type_key"
 

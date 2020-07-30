@@ -14,14 +14,14 @@ interface Manga : SManga {
 
     var date_added: Long
 
-    var viewer: Int
-
     var chapter_flags: Int
+
+    var viewer_flags: Int
 
     var cover_last_modified: Long
 
     fun setChapterOrder(order: Int) {
-        setFlags(order, SORT_MASK)
+        setChapterFlags(order, SORT_MASK)
     }
 
     fun sortDescending(): Boolean {
@@ -32,34 +32,42 @@ interface Manga : SManga {
         return genre?.split(", ")?.map { it.trim() }
     }
 
-    private fun setFlags(flag: Int, mask: Int) {
+    private fun setChapterFlags(flag: Int, mask: Int) {
         chapter_flags = chapter_flags and mask.inv() or (flag and mask)
+    }
+
+    private fun setViewerFlags(flag: Int, mask: Int) {
+        viewer_flags = viewer_flags and mask.inv() or (flag and mask)
     }
 
     // Used to display the chapter's title one way or another
     var displayMode: Int
         get() = chapter_flags and DISPLAY_MASK
-        set(mode) = setFlags(mode, DISPLAY_MASK)
+        set(mode) = setChapterFlags(mode, DISPLAY_MASK)
 
     var readFilter: Int
         get() = chapter_flags and READ_MASK
-        set(filter) = setFlags(filter, READ_MASK)
+        set(filter) = setChapterFlags(filter, READ_MASK)
 
     var downloadedFilter: Int
         get() = chapter_flags and DOWNLOADED_MASK
-        set(filter) = setFlags(filter, DOWNLOADED_MASK)
+        set(filter) = setChapterFlags(filter, DOWNLOADED_MASK)
 
     var bookmarkedFilter: Int
         get() = chapter_flags and BOOKMARKED_MASK
-        set(filter) = setFlags(filter, BOOKMARKED_MASK)
+        set(filter) = setChapterFlags(filter, BOOKMARKED_MASK)
 
     var sorting: Int
         get() = chapter_flags and SORTING_MASK
-        set(sort) = setFlags(sort, SORTING_MASK)
+        set(sort) = setChapterFlags(sort, SORTING_MASK)
+
+    var readingMode: Int
+        get() = viewer_flags and READING_MASK
+        set(readingMode) = setViewerFlags(readingMode, ROTATION_MASK)
 
     var rotationType: Int
-        get() = chapter_flags and ROTATION_MASK
-        set(rotation) = setFlags(rotation, ROTATION_MASK)
+        get() = viewer_flags and ROTATION_MASK
+        set(rotationType) = setViewerFlags(rotationType, ROTATION_MASK)
 
     companion object {
 
@@ -91,12 +99,20 @@ interface Manga : SManga {
         const val DISPLAY_NUMBER = 0x00100000
         const val DISPLAY_MASK = 0x00100000
 
+        const val READING_DEFAULT = 0x00000000
+        const val READING_L2R = 0x00000001
+        const val READING_R2L = 0x00000002
+        const val READING_VERTICAL = 0x00000003
+        const val READING_WEBTOON = 0x000000004
+        const val READING_CONT_VERTICAL = 0x00000005
+        const val READING_MASK = 0x00000007
+
         const val ROTATION_DEFAULT = 0x00000000
-        const val ROTATION_FREE = 0x00200000
-        const val ROTATION_LOCK = 0x00400000
-        const val ROTATION_FORCE_PORTRAIT = 0x00600000
-        const val ROTATION_FORCE_LANDSCAPE = 0x00800000
-        const val ROTATION_MASK = 0x00e00000
+        const val ROTATION_FREE = 0x00000008
+        const val ROTATION_LOCK = 0x00000010
+        const val ROTATION_FORCE_PORTRAIT = 0x00000018
+        const val ROTATION_FORCE_LANDSCAPE = 0x00000020
+        const val ROTATION_MASK = 0x00000038
 
         fun create(source: Long): Manga = MangaImpl().apply {
             this.source = source

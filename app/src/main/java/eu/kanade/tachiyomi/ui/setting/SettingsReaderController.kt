@@ -24,7 +24,7 @@ class SettingsReaderController : SettingsController() {
         titleRes = R.string.pref_category_reader
 
         intListPreference {
-            key = Keys.defaultViewer
+            key = Keys.defaultReadingMode
             titleRes = R.string.pref_viewer_type
             entriesRes = arrayOf(
                 R.string.left_to_right_viewer, R.string.right_to_left_viewer,

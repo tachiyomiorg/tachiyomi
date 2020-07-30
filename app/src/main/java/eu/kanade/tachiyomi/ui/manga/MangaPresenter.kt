@@ -506,7 +506,7 @@ class MangaPresenter(
      */
     fun reverseSortOrder() {
         manga.setChapterOrder(if (sortDescending()) Manga.SORT_ASC else Manga.SORT_DESC)
-        db.updateFlags(manga).executeAsBlocking()
+        db.updateChapterFlags(manga).executeAsBlocking()
         refreshChapters()
     }
 
@@ -516,7 +516,7 @@ class MangaPresenter(
      */
     fun setUnreadFilter(onlyUnread: Boolean) {
         manga.readFilter = if (onlyUnread) Manga.SHOW_UNREAD else Manga.SHOW_ALL
-        db.updateFlags(manga).executeAsBlocking()
+        db.updateChapterFlags(manga).executeAsBlocking()
         refreshChapters()
     }
 
@@ -526,7 +526,7 @@ class MangaPresenter(
      */
     fun setReadFilter(onlyRead: Boolean) {
         manga.readFilter = if (onlyRead) Manga.SHOW_READ else Manga.SHOW_ALL
-        db.updateFlags(manga).executeAsBlocking()
+        db.updateChapterFlags(manga).executeAsBlocking()
         refreshChapters()
     }
 
@@ -536,7 +536,7 @@ class MangaPresenter(
      */
     fun setDownloadedFilter(onlyDownloaded: Boolean) {
         manga.downloadedFilter = if (onlyDownloaded) Manga.SHOW_DOWNLOADED else Manga.SHOW_ALL
-        db.updateFlags(manga).executeAsBlocking()
+        db.updateChapterFlags(manga).executeAsBlocking()
         refreshChapters()
     }
 
@@ -546,7 +546,7 @@ class MangaPresenter(
      */
     fun setBookmarkedFilter(onlyBookmarked: Boolean) {
         manga.bookmarkedFilter = if (onlyBookmarked) Manga.SHOW_BOOKMARKED else Manga.SHOW_ALL
-        db.updateFlags(manga).executeAsBlocking()
+        db.updateChapterFlags(manga).executeAsBlocking()
         refreshChapters()
     }
 
@@ -556,7 +556,7 @@ class MangaPresenter(
      */
     fun setDisplayMode(mode: Int) {
         manga.displayMode = mode
-        db.updateFlags(manga).executeAsBlocking()
+        db.updateChapterFlags(manga).executeAsBlocking()
     }
 
     /**
@@ -565,7 +565,7 @@ class MangaPresenter(
      */
     fun setSorting(sort: Int) {
         manga.sorting = sort
-        db.updateFlags(manga).executeAsBlocking()
+        db.updateChapterFlags(manga).executeAsBlocking()
         refreshChapters()
     }
 
