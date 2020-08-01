@@ -253,7 +253,6 @@
     <string name="information_no_recent_manga">沒有近期閱讀</string>
     <string name="channel_common">一般</string>
     <string name="channel_library">書櫃</string>
-    <string name="channel_downloader">下載</string>
     <string name="all_lang">全球</string>
     <string name="pref_create_backup_summ">可用來保存目前書櫃內容</string>
     <string name="backup_restore_content">還原時需連線至來源以取得資料，可能要支付數據傳輸費用。 
@@ -396,7 +395,6 @@
     <string name="invalid_download_dir">無效的下載位置</string>
     <string name="ext_obsolete">過舊</string>
     <string name="obsolete_extension_message">這個擴充套件已無法使用。</string>
-    <string name="channel_backup_restore">備份與還原</string>
     <string name="theme_light_blue">淺藍</string>
     <string name="theme_dark_blue">深藍</string>
     <string name="theme_dark_amoled">全黑 (AMOLED)</string>
@@ -492,8 +490,6 @@
     <string name="pref_webtoon_side_padding">頁緣留白</string>
     <string name="add_tracking">新增閱讀歷程</string>
     <string name="channel_new_chapters">新刊發行</string>
-    <string name="channel_backup_restore_complete">執行完成</string>
-    <string name="channel_backup_restore_progress">執行進度</string>
     <string name="in_library">在書櫃中</string>
     <string name="viewer">閱讀模式</string>
     <string name="action_open_in_settings">前往系統設定</string>
@@ -579,6 +575,12 @@
     <string name="pref_category_locale">在地化</string>
     <string name="pref_category_theme">主題</string>
     <string name="action_sort_date_added">收藏日期</string>
-    <string name="loader_not_implemented_error">找不到来源</string>
-    <string name="tracker_not_logged_in">未登錄</string>
+    <string name="loader_not_implemented_error">找不到來源</string>
+    <string name="tracker_not_logged_in">尚未登入：%1$s</string>
+    <string name="no_pinned_sources">你尚未釘選任何來源</string>
+    <string name="page_list_empty_error">沒有任何頁面</string>
+    <string name="backup_restore_missing_sources">遺失來源：</string>
+    <string name="invalid_backup_file_missing_data">檔案遺失資料</string>
+    <string name="group_backup_restore">備份與還原</string>
+    <string name="source_not_found_name">找不到來源：%1$s</string>
 </resources>

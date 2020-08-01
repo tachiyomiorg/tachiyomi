@@ -95,7 +95,7 @@
     <string name="manga">Mga Manga</string>
     <string name="categories">Mga Kategorya</string>
     <string name="app_name" translatable="false">Tachiyomi</string>
-    <string name="information_empty_category">Wala ka pang kategorya. Pindutin ang plus button para makagawa ka ng isa para maayos mo na ang iyong Aklatan.</string>
+    <string name="information_empty_category">Wala ka pang kategorya. Pindutin ang plus button para makagawa ka ng isa nang maayos mo na ang iyong Aklatan.</string>
     <string name="information_empty_library">Walang laman ang iyong Aklatan. Magdagdag ng serye rito mula sa Maghanap.</string>
     <string name="information_no_recent_manga">Walang kamakailang binása</string>
     <string name="information_no_recent">Walang kamakailang update</string>
@@ -106,13 +106,13 @@
     <string name="label_migration">Paglipat</string>
     <string name="label_backup">Pag-backup</string>
     <string name="label_categories">Mga Kategorya</string>
-    <string name="label_sources">Mga Pinagkukunan</string>
-    <string name="label_recent_manga">Kamakailang Binása</string>
-    <string name="label_recent_updates">Mga Update</string>
+    <string name="label_sources">Pinagkukunan</string>
+    <string name="label_recent_manga">Kamakailan</string>
+    <string name="label_recent_updates">Bago</string>
     <string name="label_library">Aklatan</string>
     <string name="label_download_queue">Mga Dina-download</string>
     <string name="label_settings">Pagsasaayos</string>
-    <string name="label_more">Higit pa</string>
+    <string name="label_more">Karagdagan</string>
     <string name="name">Pangalan</string>
     <plurals name="lock_after_mins">
         <item quantity="one">Pagkatapos ng isang minuto</item>
@@ -209,7 +209,7 @@
     <string name="pref_read_with_volume_keys">Pindutan ng volume</string>
     <string name="pref_reader_navigation">Pagnanabigá</string>
     <string name="pref_skip_filtered_chapters">Laktawan ang (mga) sinálang kabanata</string>
-    <string name="pref_skip_read_chapters">Laktawan ang (mga) namarkahang nabásang kabanata</string>
+    <string name="pref_skip_read_chapters">Laktawan ang mga nabása na</string>
     <string name="pref_keep_screen_on">Panatilihing nakabukás ang iskrin</string>
     <string name="filter_mode_darken">Padilimin (Burn/Darken)</string>
     <string name="filter_mode_lighten">Paliwanagin (Dodge/Lighten)</string>
@@ -232,7 +232,7 @@
     <string name="pref_cutout_short">Ipakita ang laman sa cutout area</string>
     <string name="pref_fullscreen">Naka-fullscreen</string>
     <string name="ext_language_info">Wika: %1$s</string>
-    <string name="ext_version_info">Bersiyon: %1$s</string>
+    <string name="ext_version_info">Bersyon: %1$s</string>
     <string name="unofficial_extension_message">Wala sa opisyal na listahan ng mga dugtong ng Tachiyomi ang dugtong na ito.</string>
     <string name="obsolete_extension_message">Wala na\'ng ganitong dugtong.</string>
     <string name="untrusted_extension_message">Pinirmahan ang dugtong na ito gamit ang isang di-pinagkakatiwalaang certificate at hindi muna binuksan.
@@ -256,7 +256,7 @@
     <string name="ext_updates_pending">Mga nakabinbin</string>
     <string name="all_lang">Lahat</string>
     <string name="all">Lahat</string>
-    <string name="pref_library_update_categories">Mga kategoryang kasama sa pangkalahatang pagsapanahon</string>
+    <string name="pref_library_update_categories">Kategoryang kasama sa panlahat na update</string>
     <plurals name="num_categories">
         <item quantity="one">Isang kategorya</item>
         <item quantity="other">%d (na) kategorya</item>
@@ -264,10 +264,10 @@
     <string name="default_category_summary">Palaging tanungin</string>
     <string name="default_category">Lagayan</string>
     <string name="pref_library_update_refresh_metadata_summary">Tumingin ng mga bagong pabalat at detalye tuwing nagsasapanahon</string>
-    <string name="pref_library_update_error_notification">Ipakita ang mga abiso ng palya sa pagsasapanahon</string>
+    <string name="pref_library_update_error_notification">Abiso sa pagpalya ng update</string>
     <string name="pref_category_library_categories">Mga Kategorya</string>
     <string name="pref_library_update_refresh_metadata">Awtomatikong sariwain ang metadata</string>
-    <string name="pref_update_only_non_completed">I-update lang ang mga nagpapatuloy na manga</string>
+    <string name="pref_update_only_non_completed">I-update lang ang nagpapatuloy</string>
     <string name="charging">Naka-charge</string>
     <string name="wifi">Naka-wifi</string>
     <string name="pref_library_update_restriction_summary">Isapanahon kung nakamit ang (mga) kondisyon</string>
@@ -293,8 +293,7 @@
     <string name="hide_notification_content">Itago ang nilalaman ng abiso</string>
     <string name="secure_screen_summary">Itago ang nilalaman ng app habang nagpapalit ng app at harangin ang mga screenshot</string>
     <string name="secure_screen">Bantayán ang iskrin</string>
-    <string name="pref_jump_to_chapters">Puntahán agad ang mga kabanata pagkabukás</string>
-    <string name="channel_downloader">Taga-download</string>
+    <string name="pref_jump_to_chapters">Buksan agad ang kabanata</string>
     <string name="pref_read_with_tapping_inverted">Baliktarin ang pag-tap</string>
     <string name="backup_restore_missing_sources">Nawawalang (mga) pinagkunan:</string>
     <string name="invalid_backup_file_missing_manga">Walang manga ang backup.</string>
@@ -305,7 +304,7 @@
     <string name="source_not_found_name">Di makita ang pinagkunan: %1$s</string>
     <string name="pref_backup_slots">Dami ng backup</string>
     <string name="pref_backup_interval">Dalas ng pag-backup</string>
-    <string name="pref_backup_service_category">Pinapaubayang pag-backup</string>
+    <string name="pref_backup_service_category">Awtomatikong pag-backup</string>
     <string name="pref_backup_directory">Lugar ng pag-backup</string>
     <string name="pref_restore_backup_summ">Ibalik ang Aklatan sa naka-backup na file</string>
     <string name="pref_restore_backup">Bumalik sa backup</string>
@@ -313,12 +312,12 @@
     <string name="pref_create_backup">Gumawa ng backup</string>
     <string name="backup">Pag-backup</string>
     <string name="pref_search_pinned_sources_only">Isama lamang ang mga naka-pin na pinagkukunan</string>
-    <string name="pref_enable_automatic_extension_updates">Maghanap ng update sa dugtong</string>
-    <string name="tracking_info">Isahang pagsabay (sync) para ma-update ang bilang ng nabásang kabanata sa mga serbisyong nanununton. Isaayos ang pagtunton para sa mga manga sa knailang mga tab ng Pagtunton.</string>
+    <string name="pref_enable_automatic_extension_updates">Tumingin ng update sa dugtong</string>
+    <string name="tracking_info">Isahang pagsabay (sync) para ma-update ang bilang ng nabásang kabanata sa mga serbisyo ng panunundan (tracking services). Isaayos ang Pagsunod para sa mga manga sa kanilang mga tab ng Pagsunod.</string>
     <string name="services">Mga Serbisyo</string>
-    <string name="pref_auto_update_manga_sync">Isapanahon ang bahagdang nabása pagkabása</string>
-    <string name="pref_download_new_categories">(Mga) Kategoryang isasama sa pag-download</string>
-    <string name="pref_download_new">Pag-download sa (mga) bagong kabanata</string>
+    <string name="pref_auto_update_manga_sync">I-update ang bahagdang nabása pagkabása</string>
+    <string name="pref_download_new_categories">Mga kategoryang kasama sa download</string>
+    <string name="pref_download_new">I-download ang mga bagong kabanata</string>
     <string name="fifth_to_last">Panlima sa huli</string>
     <string name="fourth_to_last">Pang-apat sa huli</string>
     <string name="third_to_last">Pangatlo sa huli</string>
@@ -351,7 +350,7 @@
         <item quantity="one">May update sa dugtong</item>
         <item quantity="other">May update sa $d (na) dugtong</item>
     </plurals>
-    <string name="update_check_notification_update_available">May bagong bersiyon!</string>
+    <string name="update_check_notification_update_available">May bagong bersyon!</string>
     <string name="update_check_notification_download_error">Nagka-error sa pag-download</string>
     <string name="update_check_notification_download_complete">Na-download na</string>
     <string name="update_check_notification_download_in_progress">Dina-download…</string>
@@ -547,22 +546,22 @@
     <string name="downloaded_only_summary">Sinasala ang lahat ng manga ng Aklatan</string>
     <string name="label_downloaded_only">Mga na-download lang</string>
     <string name="pref_acra_summary">Nakatutulong sa pag-ayos sa mga bug. Walang sensitibong data ang ipapadala</string>
-    <string name="pref_enable_acra">Ipadala ang mga ulat ng pagbagsak</string>
+    <string name="pref_enable_acra">Ipadala ang mga ulat ng pag-crash</string>
     <string name="updated_version">In-update patungong bersyon %1$s</string>
     <string name="check_for_updates">Tumingin ng update</string>
     <string name="licenses">Mga lisensiyang open-source</string>
     <string name="notices">Mga abiso sa panilip na gawa (preview build)</string>
     <string name="whats_new">Anong bago</string>
-    <string name="build_time">Oras ng paggawa</string>
-    <string name="version">Bersiyon</string>
+    <string name="build_time">Oras ng paggawa (build time)</string>
+    <string name="version">Bersyon</string>
     <string name="website">Site</string>
     <string name="battery_optimization_setting_activity_not_found">Di mabuksan ang pagsasaayos ng iyong device</string>
     <string name="battery_optimization_disabled">Nakapatay na ang pag-o-optimisa sa baterya</string>
     <string name="pref_disable_battery_optimization">Patayin ang pag-o-optimisa sa baterya</string>
     <string name="pref_disable_battery_optimization_summary">Nakatutulong sa gawaing-likuran na pagsasapanahon at pag-backup</string>
-    <string name="pref_refresh_library_tracking_summary">Isinasapanahon ang estado, iskor, at huling nabásang kabanata mula sa mga serbisyo ng panunundan</string>
-    <string name="pref_refresh_library_tracking">Isapanahon ang panunundan</string>
-    <string name="pref_refresh_library_covers">Sariwain ang mga pabalat ng mga manga</string>
+    <string name="pref_refresh_library_tracking_summary">Inia-update ang estado, iskor, at huling nabásang kabanata mula sa mga serbisyo ng panunundan</string>
+    <string name="pref_refresh_library_tracking">Sariwain ang pagsunod</string>
+    <string name="pref_refresh_library_covers">Sariwain ang pabalat ng mga manga</string>
     <string name="clear_database_completed">Binura na</string>
     <string name="clear_database_confirmation">Sigurado ka ba\? Mawawala ang datos ng mga manga na wala sa Aklatan mo</string>
     <string name="pref_clear_database_summary">Burahin ang kasaysayan ng mga manga na hindi nakalagay sa Aklatan mo</string>
@@ -574,13 +573,10 @@
     <string name="pref_clear_chapter_cache">Linisin ang cache ng kabanata</string>
     <string name="label_data">Data</string>
     <string name="cookies_cleared">Nalinis na ang mga cookie</string>
-    <string name="pref_dns_over_https_summary">Kinakailangang buksan muli ang app para gumana</string>
+    <string name="pref_dns_over_https_summary">Nangangailangang buksan muli ang app para gumana</string>
     <string name="pref_clear_cookies">Linisin ang mga cookie</string>
-    <string name="label_network">Internet</string>
+    <string name="label_network">Network</string>
     <string name="restoring_backup_error">Pumalya sa pagbalik sa backup</string>
-    <string name="channel_backup_restore_complete">Tapos na</string>
-    <string name="channel_backup_restore_progress">Sulong</string>
-    <string name="channel_backup_restore">Pag-backup at pagbalik</string>
     <string name="restoring_backup_canceled">Itigil ang pagbalik</string>
     <string name="restore_in_progress">Binabalik na</string>
     <plurals name="restore_completed_message">
@@ -601,4 +597,5 @@
         <item quantity="one">Isang tagatunton</item>
         <item quantity="other">%d (na) tagatunton</item>
     </plurals>
+    <string name="no_pinned_sources">Wala kang naka-pin na pinagkukunan</string>
 </resources>

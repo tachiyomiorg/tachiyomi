@@ -196,8 +196,6 @@
     <string name="information_empty_library">A könyvtárad üres. Adj hozzá új sorozatokat a Böngészőből.</string>
     <string name="information_no_recent">Nincs új frissítés</string>
     <string name="information_no_downloads">Nincs letöltés folyamatban</string>
-    <string name="channel_backup_restore_complete">Teljesítve</string>
-    <string name="channel_backup_restore">Biztonsági mentés és visszaállítás</string>
     <string name="channel_ext_updates">Bővítményfrissítések</string>
     <string name="channel_new_chapters">Fejezetfrissítések</string>
     <string name="channel_library">Könyvtár</string>

@@ -138,8 +138,8 @@
     <string name="pref_double_tap_anim_speed">Animationshastighet för dubbelklick</string>
     <string name="pref_show_page_number">Visa sidnummer</string>
     <string name="pref_crop_borders">Beskär kanter</string>
-    <string name="pref_custom_brightness">Använd egen ljusstyrka</string>
-    <string name="pref_custom_color_filter">Använd eget färgfilter</string>
+    <string name="pref_custom_brightness">Anpassad ljusstyrka</string>
+    <string name="pref_custom_color_filter">Anpassad färgfilter</string>
     <string name="pref_keep_screen_on">Håll skärmen på</string>
     <string name="pref_reader_navigation">Navigering</string>
     <string name="pref_read_with_volume_keys">Volymknapparna</string>
@@ -373,7 +373,6 @@
     <string name="download_notifier_download_paused">Nedladdning pausad</string>
     <string name="channel_common">Vanlig</string>
     <string name="channel_library">Bibliotek</string>
-    <string name="channel_downloader">Nedladdare</string>
     <string name="action_open_in_web_view">Öppna i WebView</string>
     <string name="pref_true_color">32-bitars färg</string>
     <string name="pref_skip_read_chapters">Skippa lästa kapitel</string>
@@ -499,7 +498,6 @@
     <string name="manga_info_about_label">Info</string>
     <string name="pref_confirm_exit">Bekräfta utgång</string>
     <string name="confirm_exit">Tryck tillbaka igen för att gå ur</string>
-    <string name="channel_backup_restore">Säkerhetskopiering och återställning</string>
     <string name="information_webview_required">WebView krävs för Tachiyomi</string>
     <string name="recent_manga_time">Kapitel %1$s - %2$s</string>
     <string name="error_invalid_date_supplied">Ogiltigt datum har angetts</string>
@@ -518,8 +516,6 @@
     <string name="restore_duration">%02d minuter, %02d sekunder</string>
     <string name="label_downloaded_only">Endast nedladdat</string>
     <string name="downloaded_only_summary">Filtrerar all manga i ditt bibliotek</string>
-    <string name="channel_backup_restore_complete">Färdig</string>
-    <string name="channel_backup_restore_progress">Förlopp</string>
     <plurals name="download_queue_summary">
         <item quantity="one">1 återstående</item>
         <item quantity="other">%1$s återstående</item>
@@ -597,4 +593,14 @@
     <string name="pref_category_theme">Tema</string>
     <string name="action_download_unread">Ladda ner olästa kapitel</string>
     <string name="action_sort_date_added">Datum tillagd</string>
+    <string name="group_backup_restore">Säkerhetskopiering och återställning</string>
+    <string name="group_downloader">Nedladdningar</string>
+    <string name="channel_complete">Färdig</string>
+    <string name="channel_progress">Förlopp</string>
+    <string name="download_notifier_download_finish">Nedladdningen slutförd</string>
+    <plurals name="num_trackers">
+        <item quantity="one">1 tracker</item>
+        <item quantity="other">%d trackers</item>
+    </plurals>
+    <string name="no_pinned_sources">Du har inga fästa källor</string>
 </resources>

@@ -373,7 +373,6 @@
     <string name="download_notifier_download_paused">Baixada pausada</string>
     <string name="channel_common">General</string>
     <string name="channel_library">Biblioteca</string>
-    <string name="channel_downloader">Baixades</string>
     <string name="pref_read_with_long_tap">Finestra de toc llarg</string>
     <string name="action_open_in_web_view">Obre en una visualització web</string>
     <string name="pref_true_color">Color de 32 bits</string>
@@ -503,7 +502,6 @@
     <string name="pref_confirm_exit">Confirma la sortida</string>
     <string name="confirm_exit">Torneu a prémer Endarrere per a sortir</string>
     <string name="label_downloaded_only">Només els baixats</string>
-    <string name="channel_backup_restore">Còpia de seguretat i restauració</string>
     <string name="recent_manga_time">Cap. %1$s - %2$s</string>
     <string name="restoring_backup_error">Ha fallat la restauració de la còpia de seguretat</string>
     <string name="creating_backup_error">Ha fallat la còpia de seguretat</string>
@@ -523,8 +521,6 @@
         <item quantity="other">En resten %1$s</item>
     </plurals>
     <string name="pref_search_pinned_sources_only">Inclou només les fonts fixades</string>
-    <string name="channel_backup_restore_complete">Completada</string>
-    <string name="channel_backup_restore_progress">Progrés</string>
     <string name="gray_background">Gris</string>
     <string name="viewer">Mode de lectura</string>
     <string name="pref_category_for_this_series">Per a aquesta sèrie</string>
@@ -601,4 +597,9 @@
         <item quantity="other">%d seguidors</item>
     </plurals>
     <string name="no_pinned_sources">No teniu cap origen fixat</string>
+    <string name="download_notifier_download_finish">Baixada completada</string>
+    <string name="group_backup_restore">Còpia de seguretat i restauració</string>
+    <string name="group_downloader">Baixades</string>
+    <string name="channel_complete">Completada</string>
+    <string name="channel_progress">Progrés</string>
 </resources>

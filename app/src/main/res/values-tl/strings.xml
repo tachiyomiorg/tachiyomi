@@ -384,7 +384,6 @@
     <string name="download_notifier_download_paused">Nakahinto ang pag-download</string>
     <string name="channel_common">Karaniwan</string>
     <string name="channel_library">Aklatan</string>
-    <string name="channel_downloader">Tagapag-download</string>
     <string name="no_results_found">Walang nahanap na resulta</string>
     <string name="action_webview_back">Bumalik</string>
     <string name="action_webview_forward">Susunod</string>

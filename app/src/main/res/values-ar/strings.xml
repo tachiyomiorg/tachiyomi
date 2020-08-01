@@ -318,7 +318,6 @@
     <string name="download_notifier_download_paused">تم إيقاف التحميل مؤقتا</string>
     <string name="channel_common">عامٌّ</string>
     <string name="channel_library">المكتبة</string>
-    <string name="channel_downloader">مدير التحميلات</string>
     <string name="label_migration">انتقل إلى</string>
     <string name="label_extensions">اﻹضافات</string>
     <string name="label_extension_info">معلومات اﻹضافة</string>
@@ -462,9 +461,6 @@
     <string name="action_pin">تثبيت</string>
     <string name="action_select_inverse">عكس التحديد</string>
     <string name="confirm_exit">اضغط رجوع مرة أخرى للخروج</string>
-    <string name="channel_backup_restore_complete">مُكتمِل</string>
-    <string name="channel_backup_restore_progress">التقدم</string>
-    <string name="channel_backup_restore">النسخ الاحتياطي والاستعادة</string>
     <string name="channel_ext_updates">تحديثات اﻹضافات</string>
     <string name="channel_new_chapters">تحديثات الفصول</string>
     <string name="information_webview_outdated">يرجى تحديث تطبيق WebView لتوافق أفضل</string>

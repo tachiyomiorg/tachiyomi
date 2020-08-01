@@ -326,7 +326,6 @@
     <string name="migrate">Migrer</string>
     <string name="copy">Kopier</string>
     <string name="channel_library">Bibliotek</string>
-    <string name="channel_downloader">Nedlaster</string>
     <string name="notification_new_chapters">Nye kapitler funnet</string>
     <string name="notification_cover_update_failed">Klarte ikke å oppdatere omslag</string>
     <string name="update_check_confirm">Last ned</string>
@@ -449,7 +448,6 @@
     <string name="action_sort_last_checked">Sist sjekket</string>
     <string name="action_menu">Meny</string>
     <string name="label_sources">Kilder</string>
-    <string name="channel_backup_restore">Sikkerhetskopier og gjenopprett</string>
     <string name="channel_ext_updates">Utvidelsesoppdateringer</string>
     <string name="information_webview_required">Tachiyomi krever WebView</string>
     <string name="add_tracking">Legg til sporing</string>
@@ -475,8 +473,6 @@
     <string name="ext_unofficial">Uoffisiell</string>
     <string name="error_invalid_date_supplied">Ugyldig dato angitt</string>
     <string name="viewer">Lesemodus</string>
-    <string name="channel_backup_restore_complete">Fullført</string>
-    <string name="channel_backup_restore_progress">Framdrift</string>
     <string name="information_cloudflare_bypass_failure">Klarte ikke å omgå Cloudflare</string>
     <string name="updating_library">Oppdaterer bibliotek</string>
     <string name="page_list_empty_error">Fant ingen sider</string>

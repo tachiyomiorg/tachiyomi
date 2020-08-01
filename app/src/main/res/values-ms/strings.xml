@@ -320,7 +320,6 @@
     <string name="download_notifier_download_paused">Muat turun dihentikan sebentar</string>
     <string name="channel_common">Biasa</string>
     <string name="channel_library">Pustaka</string>
-    <string name="channel_downloader">Pemuat turun</string>
     <string name="label_migration">Pindah sumber</string>
     <string name="label_extensions">Sambungan</string>
     <string name="label_extension_info">Info sambungan</string>
@@ -479,7 +478,6 @@
     <string name="label_sources">Sumber</string>
     <string name="pref_webtoon_side_padding">Tambahan sisi</string>
     <string name="webtoon_side_padding_10">10%</string>
-    <string name="channel_backup_restore">Sandaran dan memulih</string>
     <string name="information_webview_required">WebView diperlukan untuk Tachiyomi</string>
     <string name="recent_manga_time">Bab %1$s - %2$s</string>
     <string name="error_invalid_date_supplied">Tarikh dimasukkan tidak sah</string>
@@ -517,8 +515,6 @@
         <item quantity="other">%1$s baki</item>
     </plurals>
     <string name="pref_search_pinned_sources_only">Hanya termasuk sumber yang disematkan</string>
-    <string name="channel_backup_restore_complete">Selesai</string>
-    <string name="channel_backup_restore_progress">Kemajuan</string>
     <string name="gray_background">Kelabu</string>
     <string name="viewer">Mod membaca</string>
     <string name="pref_category_for_this_series">Untuk siri ini</string>
@@ -591,4 +587,9 @@
         <item quantity="other">%d penjejak</item>
     </plurals>
     <string name="no_pinned_sources">Tiada sumber yang disematkan</string>
+    <string name="download_notifier_download_finish">Muat turun selesai</string>
+    <string name="channel_progress">Kemajuan</string>
+    <string name="group_backup_restore">Sandaran dan memulih</string>
+    <string name="group_downloader">Muat turun</string>
+    <string name="channel_complete">Selesai</string>
 </resources>

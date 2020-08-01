@@ -453,11 +453,7 @@
     <string name="download_notifier_download_paused">გადმოწერა დაპაუზებულია</string>
     <string name="channel_common">საერთო</string>
     <string name="channel_library">ბიბლიოთეკა</string>
-    <string name="channel_downloader">გადმომწერი</string>
     <string name="channel_new_chapters">თავების განახლებები</string>
-    <string name="channel_backup_restore_progress">პროგრესი</string>
-    <string name="channel_backup_restore">რეზერვი და აღდგენა</string>
-    <string name="channel_backup_restore_complete">შესრულებულია</string>
     <string name="channel_ext_updates">გავრცობის განახლებები</string>
     <string name="chapters">თავები</string>
     <string name="track">თვალყურის დევნება</string>

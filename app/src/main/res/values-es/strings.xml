@@ -352,7 +352,6 @@
     <string name="browse">Explorar</string>
     <string name="channel_common">Común</string>
     <string name="channel_library">Biblioteca</string>
-    <string name="channel_downloader">Descargador</string>
     <string name="information_empty_category">No hay categorías. Pulse el botón «+» para crear una y organizar su biblioteca.</string>
     <string name="label_migration">Migrar</string>
     <string name="label_extensions">Extensiones</string>
@@ -536,7 +535,6 @@
     <string name="confirm_exit">Pulse Atrás de nuevo para salir</string>
     <string name="label_downloaded_only">Descargados solo</string>
     <string name="recent_manga_time">Caps. %1$s-%2$s</string>
-    <string name="channel_backup_restore">Copia de seguridad y restauración</string>
     <string name="restoring_backup_canceled">Se canceló la restauración</string>
     <string name="restoring_backup_error">Falló de la restauración de la copia de seguridad</string>
     <string name="restore_in_progress">La restauración ya está en curso</string>
@@ -548,8 +546,6 @@
     <string name="track_started_reading_date">Fecha de inicio de lectura</string>
     <string name="last_used_source">Ultímo usado</string>
     <string name="check_for_updates">Comprobar las actualizaciones</string>
-    <string name="channel_backup_restore_complete">Terminado</string>
-    <string name="channel_backup_restore_progress">Progreso</string>
     <string name="local_source_help_guide">Instruccion local de fuente</string>
     <plurals name="download_queue_summary">
         <item quantity="one">Queda 1</item>
@@ -633,4 +629,9 @@
         <item quantity="other">%d rastreadores</item>
     </plurals>
     <string name="no_pinned_sources">Usted no tiene fuentes anclados</string>
+    <string name="download_notifier_download_finish">Descarga completada</string>
+    <string name="group_backup_restore">Respaldar y restaurar</string>
+    <string name="group_downloader">Descargas</string>
+    <string name="channel_complete">Completo</string>
+    <string name="channel_progress">Progreso</string>
 </resources>

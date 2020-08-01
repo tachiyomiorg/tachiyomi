@@ -407,7 +407,6 @@
     <string name="download_notifier_download_paused">Transferência pausada</string>
     <string name="channel_common">Comum</string>
     <string name="channel_library">Biblioteca</string>
-    <string name="channel_downloader">Gestor de transferências</string>
     <string name="filter_mode_default">Padrão</string>
     <string name="filter_mode_overlay">Sobrepor</string>
     <string name="filter_mode_multiply">Multiplicação</string>
@@ -530,7 +529,6 @@
     <string name="pref_confirm_exit">Confirmar sair</string>
     <string name="confirm_exit">Pressione novamente para sair</string>
     <string name="label_downloaded_only">Apenas transferidos</string>
-    <string name="channel_backup_restore">Cópia de segurança e restauro</string>
     <string name="information_webview_required">WebView é necessária para Tachiyomi</string>
     <string name="recent_manga_time">Cap. %1$s - %2$s</string>
     <string name="error_invalid_date_supplied">Data fornecida inválida</string>
@@ -549,13 +547,11 @@
     <string name="downloaded_only_summary">Filtrar todas as mangás em sua biblioteca</string>
     <string name="restore_duration">%02d min, %02d seg</string>
     <string name="pref_search_pinned_sources_only">Apenas incluir fontes fixadas</string>
-    <string name="channel_backup_restore_progress">Progresso</string>
     <plurals name="download_queue_summary">
         <item quantity="one">1 restante</item>
         <item quantity="other">%1$s restantes</item>
     </plurals>
     <string name="gray_background">Cinzento</string>
-    <string name="channel_backup_restore_complete">Completo</string>
     <string name="viewer">Modo de leitura</string>
     <string name="pref_category_for_this_series">Para esta série</string>
     <string name="pref_true_color_summary">Reduz bandas de cor, mas impacta a performance</string>
@@ -632,4 +628,9 @@
         <item quantity="other">%d monitorizadores</item>
     </plurals>
     <string name="no_pinned_sources">Você não possui fontes fixadas</string>
+    <string name="group_backup_restore">Cópia de segurança e restauração</string>
+    <string name="group_downloader">Transferências</string>
+    <string name="channel_complete">Completo</string>
+    <string name="channel_progress">Progresso</string>
+    <string name="download_notifier_download_finish">Transferência concluída</string>
 </resources>

@@ -321,7 +321,6 @@
     <string name="download_notifier_download_paused">डाउनलोड रोक दिया है</string>
     <string name="channel_common">सामान्य</string>
     <string name="channel_library">पुस्तकालय</string>
-    <string name="channel_downloader">डाउनलोडर</string>
     <string name="label_migration">प्रवास</string>
     <string name="label_extensions">विस्तार</string>
     <string name="label_extension_info">विस्तार की जानकारी</string>
@@ -503,7 +502,6 @@
     <string name="pref_confirm_exit">बाहर निकलने की पुष्टि करें</string>
     <string name="confirm_exit">बाहर निकलने के लिए फिर से वापस दबाएं</string>
     <string name="label_downloaded_only">केवल डाउनलोड किए गए</string>
-    <string name="channel_backup_restore">बैकअप और पुनर्स्थापना</string>
     <string name="recent_manga_time">अध्याय %1 $ s - %2 $ s</string>
     <string name="restoring_backup_error">बैकअप बहाल करने में विफल रहा</string>
     <string name="creating_backup_error">बैकअप फेल</string>
@@ -523,8 +521,6 @@
         <item quantity="other">%1$s शेष</item>
     </plurals>
     <string name="pref_search_pinned_sources_only">केवल पिन किए गए स्रोत शामिल हैं</string>
-    <string name="channel_backup_restore_complete">पूर्ण</string>
-    <string name="channel_backup_restore_progress">प्रगती</string>
     <string name="viewer">पढ़न मोड</string>
     <string name="pref_category_for_this_series">इस श्रृंखला के लिए</string>
     <string name="gray_background">ग्रे</string>
@@ -602,4 +598,9 @@
         <item quantity="other">%d ट्रैकरस</item>
     </plurals>
     <string name="no_pinned_sources">कोई पिन किया हुआ सोर्स नही है</string>
+    <string name="group_backup_restore">बैकअप और पुनर्स्थापना</string>
+    <string name="group_downloader">डाउनलोड</string>
+    <string name="channel_complete">पूर्ण</string>
+    <string name="channel_progress">प्रगती</string>
+    <string name="download_notifier_download_finish">डाउनलोड सम्पन्न हुआ</string>
 </resources>

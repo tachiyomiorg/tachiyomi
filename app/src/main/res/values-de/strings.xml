@@ -318,7 +318,6 @@
     <string name="browse">Stöbern</string>
     <string name="channel_library">Bibliothek</string>
     <string name="channel_common">Allgemein</string>
-    <string name="channel_downloader">Downloader</string>
     <string name="action_display_download_badge">Downloadzähler</string>
     <string name="local_source_badge">Lokal</string>
     <string name="information_empty_category">Keine Kategorien vorhanden. Tippe auf die Plus-Schaltfläche, um eine Kategorie zum Sortieren deiner Bibliothek zu erstellen.</string>
@@ -503,7 +502,6 @@
     <string name="website">Website</string>
     <string name="pref_confirm_exit">Beenden bestätigen</string>
     <string name="label_downloaded_only">Nur Heruntergeladenes</string>
-    <string name="channel_backup_restore">Sicherung und Wiederherstellen</string>
     <string name="recent_manga_time">Kap. %1$s - %2$s</string>
     <string name="restoring_backup_error">Sicherungswiederherstellung fehlgeschlagen</string>
     <string name="creating_backup_error">Sicherung fehlgeschlagen</string>
@@ -523,8 +521,6 @@
         <item quantity="other">%1$s verbleibend</item>
     </plurals>
     <string name="pref_search_pinned_sources_only">Nur angeheftete Quellen einbeziehen</string>
-    <string name="channel_backup_restore_complete">Abgeschlossen</string>
-    <string name="channel_backup_restore_progress">Fortschritt</string>
     <string name="gray_background">Grau</string>
     <string name="viewer">Lesemodus</string>
     <string name="pref_category_for_this_series">Für diese Serie</string>
@@ -602,4 +598,9 @@
         <item quantity="other">%d Tracker</item>
     </plurals>
     <string name="no_pinned_sources">Du hast keine angehefteten Quellen</string>
+    <string name="download_notifier_download_finish">Download abgeschlossen</string>
+    <string name="group_backup_restore">Sichern und Wiederherstellen</string>
+    <string name="group_downloader">Downloads</string>
+    <string name="channel_complete">Abgeschlossen</string>
+    <string name="channel_progress">Fortschritt</string>
 </resources>

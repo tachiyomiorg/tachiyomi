@@ -320,7 +320,6 @@
     <string name="browse">Поиск</string>
     <string name="channel_common">Обычный</string>
     <string name="channel_library">Библиотека</string>
-    <string name="channel_downloader">Загрузчик</string>
     <string name="information_empty_category">У вас нет категорий. Нажмите кнопку + чтобы создать категорию для организации вашей библиотеки.</string>
     <string name="label_migration">Мигрировать</string>
     <string name="label_extensions">Дополнения</string>
@@ -509,7 +508,6 @@
     <string name="licenses">Лицензии с открытым кодом</string>
     <string name="website">Вебсайт</string>
     <string name="pref_confirm_exit">Подтвердить выход</string>
-    <string name="channel_backup_restore">Бэкап и восстановление</string>
     <string name="recent_manga_time">Гл. %1$s - %2$s</string>
     <string name="error_invalid_date_supplied">Неправильная указанная дата</string>
     <string name="track_finished_reading_date">Дата окончания прочтения</string>
@@ -531,8 +529,6 @@
         <item quantity="many">Осталось %1$s</item>
         <item quantity="other">Осталось %1$s</item>
     </plurals>
-    <string name="channel_backup_restore_complete">Завершено</string>
-    <string name="channel_backup_restore_progress">Прогресс</string>
     <string name="viewer">Режим чтения</string>
     <string name="pref_category_for_this_series">Для этой серии</string>
     <string name="gray_background">Серый</string>
@@ -620,4 +616,9 @@
         <item quantity="other">%d трекеров</item>
     </plurals>
     <string name="no_pinned_sources">У вас нет закрепленных источников</string>
+    <string name="download_notifier_download_finish">Загрузка завершена</string>
+    <string name="group_backup_restore">Бэкап и восстановление</string>
+    <string name="group_downloader">Загрузки</string>
+    <string name="channel_complete">Завершено</string>
+    <string name="channel_progress">Прогресс</string>
 </resources>

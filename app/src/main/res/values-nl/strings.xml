@@ -137,7 +137,7 @@
     <string name="pref_restore_backup_summ">Herstellen van back-up bestand</string>
     <string name="pref_backup_directory">Back-uplocatie</string>
     <string name="pref_backup_service_category">Automatische backups</string>
-    <string name="pref_backup_interval">Back-up frequentie</string>
+    <string name="pref_backup_interval">Back-upfrequentie</string>
     <string name="pref_backup_slots">Maximaal aantal back-ups</string>
     <string name="backup_created">Back-up gemaakt</string>
     <string name="restore_completed">Herstellen voltooid</string>
@@ -319,7 +319,6 @@
     <string name="action_global_search_hint">Globaal zoeken…</string>
     <string name="latest">Nieuwste</string>
     <string name="channel_library">Bibliotheek</string>
-    <string name="channel_downloader">Downloader</string>
     <string name="browse">Bladeren</string>
     <string name="channel_common">Algemeen</string>
     <string name="label_migration">Migreren</string>
@@ -441,14 +440,13 @@
     <string name="action_reorganize_by">Opnieuw organiseren</string>
     <string name="action_sort_last_checked">Laatst gecontroleerd</string>
     <string name="action_menu">Menu</string>
-    <string name="action_pin">Vastspelden</string>
+    <string name="action_pin">Vastpinnen</string>
     <string name="label_sources">Bronnen</string>
     <string name="action_select_inverse">Selectie omkeren</string>
     <string name="confirm_exit">Druk nogmaals op terug om te verlaten</string>
     <string name="restoring_backup_canceled">Herstellen geannuleerd</string>
     <string name="restoring_backup_error">Herstellen mislukt</string>
     <string name="restore_in_progress">Er wordt al een back-up hersteld</string>
-    <string name="channel_backup_restore">Back-up en herstel</string>
     <string name="channel_ext_updates">Extensie-updates</string>
     <string name="information_webview_required">WebView is vereist voor Tachiyomi</string>
     <plurals name="update_check_notification_ext_updates">
@@ -483,7 +481,7 @@
     <string name="in_library">In bibliotheek</string>
     <string name="add_to_library">Toevoegen aan bibliotheek</string>
     <string name="local_source_help_guide">Hulp bij lokale bronnen</string>
-    <string name="pinned_sources">Vastgespeld</string>
+    <string name="pinned_sources">Vastgepind</string>
     <string name="last_used_source">Laatst gebruikt</string>
     <string name="http_error_hint">Bekijk website in WebView</string>
     <string name="email">E-mailadres</string>
@@ -520,9 +518,7 @@
     <string name="theme_light_default">Standaard</string>
     <string name="pref_theme_light">Licht thema</string>
     <string name="action_move_to_top">Verplaats naar top</string>
-    <string name="action_unpin">Losspelden</string>
-    <string name="channel_backup_restore_complete">Voltooid</string>
-    <string name="channel_backup_restore_progress">Voortgang</string>
+    <string name="action_unpin">Lospinnen</string>
     <string name="viewer">Leesmodus</string>
     <string name="pref_category_for_this_series">Voor deze serie</string>
     <string name="battery_optimization_setting_activity_not_found">Kon de apparaatinstellingen niet openen</string>
@@ -530,7 +526,7 @@
         <item quantity="one">Voltooid in %1$s met %2$s foutmelding</item>
         <item quantity="other">Voltooid in %1$s met %2$s foutmeldingen</item>
     </plurals>
-    <string name="pref_search_pinned_sources_only">Neem alleen vastgespelde bronnen mee</string>
+    <string name="pref_search_pinned_sources_only">Neem alleen vastgepinde bronnen mee</string>
     <string name="pref_webtoon_side_padding">Opvulling zijkant</string>
     <string name="gray_background">Grijs</string>
     <string name="pref_true_color_summary">Vermindert kleurstrepen, maar beïnvloedt de prestaties</string>
@@ -601,4 +597,10 @@
         <item quantity="one">1 tracker</item>
         <item quantity="other">%d trackers</item>
     </plurals>
+    <string name="no_pinned_sources">Je hebt geen vastgepinde bronnen</string>
+    <string name="group_backup_restore">Back-up en herstel</string>
+    <string name="group_downloader">Downloads</string>
+    <string name="channel_complete">Voltooid</string>
+    <string name="channel_progress">Voortgang</string>
+    <string name="download_notifier_download_finish">Download voltooid</string>
 </resources>

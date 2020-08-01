@@ -348,16 +348,12 @@
     <string name="dialog_with_checkbox_reset">Ҫак манкӑн пур сыпӑка тасат</string>
     <string name="pref_cutout_short">Каснӑ тӑрӑхра шалашне кӑтарт</string>
     <string name="pref_read_with_tapping_inverted">Пусӑмсене вырӑнсемпе улӑштар</string>
-    <string name="channel_backup_restore">Янтӑв тата тавӑрни</string>
     <string name="tapping_inverted_both">Иккӗш те</string>
     <string name="tapping_inverted_vertical">Урлӑ</string>
     <string name="tapping_inverted_horizontal">Тӑрӑх</string>
     <string name="tapping_inverted_none">Ҫук</string>
-    <string name="channel_backup_restore_complete">Вӗҫленӗ</string>
-    <string name="channel_backup_restore_progress">Ӳсӗм</string>
     <string name="channel_ext_updates">Хушмасен ҫӗнетӗвӗсем</string>
     <string name="channel_new_chapters">Сыпӑксен ҫӗнетӗвӗсем</string>
-    <string name="channel_downloader">Тиевҫӗ</string>
     <string name="channel_library">Вулавӑш</string>
     <string name="channel_common">Яланхи</string>
     <string name="download_notifier_download_paused">Тиеве вӑхӑтлӑха чарнӑ</string>
@@ -603,4 +599,9 @@
         <item quantity="other">%d сӑнану</item>
     </plurals>
     <string name="no_pinned_sources">Санӑн ҫакнӑ ҫӑл куҫ ҫук</string>
+    <string name="group_backup_restore">Янтӑв тата тавӑрни</string>
+    <string name="group_downloader">Тиевсем</string>
+    <string name="channel_complete">Вӗҫленӗ</string>
+    <string name="channel_progress">Ӳсӗм</string>
+    <string name="download_notifier_download_finish">Тиенчӗ</string>
 </resources>

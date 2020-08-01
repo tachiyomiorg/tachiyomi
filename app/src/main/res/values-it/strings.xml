@@ -398,7 +398,6 @@
     <string name="information_empty_category">Non hai categorie. Tocca il pulsante più per crearne una per organizzare la tua libreria.</string>
     <string name="channel_common">Comune</string>
     <string name="channel_library">Libreria</string>
-    <string name="channel_downloader">Downloader</string>
     <string name="transition_finished">Finito:</string>
     <string name="transition_current">Corrente:</string>
     <string name="transition_next">Prossimo:</string>
@@ -527,7 +526,6 @@
     <string name="vertical_plus_viewer">Verticale continuo</string>
     <string name="action_unpin">Rimuovi</string>
     <string name="action_select_inverse">Selezione inversa</string>
-    <string name="channel_backup_restore">Backup e ripristino</string>
     <string name="recent_manga_time">Cap. %1$s - %2$s</string>
     <string name="error_invalid_date_supplied">Data inesistente selezionata</string>
     <string name="track_finished_reading_date">Data fine lettura</string>
@@ -545,8 +543,6 @@
     <string name="pref_confirm_exit">Conferma uscita</string>
     <string name="confirm_exit">Premi indietro nuovamente per uscire</string>
     <string name="label_downloaded_only">Solo scaricati</string>
-    <string name="channel_backup_restore_complete">Completato</string>
-    <string name="channel_backup_restore_progress">Avanzamento</string>
     <string name="information_webview_required">È necessaria l\'app WebView per Tachiyomi</string>
     <string name="viewer">Modalità di lettura</string>
     <string name="pref_category_for_this_series">Per questa serie</string>

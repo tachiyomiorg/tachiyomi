@@ -114,8 +114,8 @@
     <string name="pref_page_transitions">ページ遷移エフェクトを表示</string>
     <string name="pref_double_tap_anim_speed">ダブルタップアニメーション速度</string>
     <string name="pref_crop_borders">クロップボーダー</string>
-    <string name="pref_custom_brightness">カスタムの明るさを使う</string>
-    <string name="pref_custom_color_filter">カスタムカラーフィルターを使用</string>
+    <string name="pref_custom_brightness">カスタムの明るさ</string>
+    <string name="pref_custom_color_filter">カスタムカラーフィルター</string>
     <string name="pref_reader_navigation">ナビゲーション</string>
     <string name="pref_read_with_volume_keys">音量キー</string>
     <string name="pref_read_with_volume_keys_inverted">音量キーを反転</string>
@@ -361,7 +361,6 @@
     <string name="download_notifier_download_paused">ダウンロード一時停止済み</string>
     <string name="channel_common">一般設定</string>
     <string name="channel_library">ライブラリ</string>
-    <string name="channel_downloader">ダウンロード</string>
     <string name="repeating">読み直している</string>
     <string name="source_not_installed">未インストールのソース：%1$s</string>
     <string name="transition_finished">読み終わった：</string>
@@ -515,8 +514,6 @@
     <string name="action_sort_last_checked">最近のアクセス日付順</string>
     <string name="action_menu">メニュー</string>
     <string name="confirm_exit">もう一度押して終了します</string>
-    <string name="channel_backup_restore_complete">完了</string>
-    <string name="channel_backup_restore">バックアップと復元</string>
     <string name="channel_new_chapters">章の更新</string>
     <string name="information_webview_outdated">WebViewアプリを更新して互換性を向上させてください</string>
     <string name="information_webview_required">TachiyomiはWebViewを必要としています</string>
@@ -529,7 +526,6 @@
     <string name="error_invalid_date_supplied">無効な日付です</string>
     <string name="track_started_reading_date">読書開始日付</string>
     <string name="manga_info_collapse">詳細を非表示</string>
-    <string name="channel_backup_restore_progress">進捗</string>
     <string name="channel_ext_updates">拡張機能の更新</string>
     <string name="information_cloudflare_bypass_failure">Cloudflareをバイパスできませんでした</string>
     <plurals name="notification_chapters_multiple_and_more">
@@ -581,4 +577,19 @@
     <string name="whats_new">更新情報</string>
     <string name="pref_dns_over_https" translatable="false">DNS over HTTPS（Cloudflare）</string>
     <string name="action_download_unread">未読の章をダウンロード</string>
+    <string name="pref_category_reading_mode">読み方</string>
+    <string name="group_backup_restore">バックアップと復元</string>
+    <string name="group_downloader">ダウンロード</string>
+    <string name="channel_complete">完了</string>
+    <string name="channel_progress">プログレス</string>
+    <string name="download_notifier_download_finish">ダウンロード完了</string>
+    <string name="download_insufficient_space">ディスクスペースは足りないので章のダウンロード失敗しました</string>
+    <plurals name="num_trackers">
+        <item quantity="other">%dトラッカー</item>
+    </plurals>
+    <string name="no_pinned_sources">ピンソースがありません</string>
+    <string name="action_global_search_query">グローバルで「%1$s」を探す</string>
+    <string name="pref_category_locale">ロカール</string>
+    <string name="pref_category_theme">テーマ</string>
+    <string name="action_sort_date_added">日付</string>
 </resources>

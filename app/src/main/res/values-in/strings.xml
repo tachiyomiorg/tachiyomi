@@ -320,7 +320,6 @@
     <string name="browse">Jelajahi</string>
     <string name="channel_common">Umum</string>
     <string name="channel_library">Perpustakaan</string>
-    <string name="channel_downloader">Pengunduh</string>
     <string name="information_empty_category">Anda belum memiliki kategori. Tekan tombol tambah untuk menambahkan kategori baru untuk mengatur perpustakaan Anda.</string>
     <string name="label_migration">Migrasi</string>
     <string name="label_extensions">Ekstensi</string>
@@ -469,7 +468,6 @@
     <string name="pref_enable_automatic_extension_updates">Periksa untuk pembaruan extension</string>
     <string name="pref_category_reading">Membaca</string>
     <string name="action_sort_last_checked">Terakhir diperiksa</string>
-    <string name="channel_backup_restore">Pencadangan dan pemulihan</string>
     <string name="information_webview_required">Tampilan web dibutuhkan untuk Tachiyomi</string>
     <plurals name="update_check_notification_ext_updates">
         <item quantity="other">Terdapat perbaharuan ekstensi</item>
@@ -524,8 +522,6 @@
     </plurals>
     <string name="action_display_unread_badge">Belum Dibaca</string>
     <string name="gray_background">Abu-abu</string>
-    <string name="channel_backup_restore_complete">Lengkap</string>
-    <string name="channel_backup_restore_progress">Kemajuan</string>
     <string name="pref_category_for_this_series">Untuk seri ini</string>
     <string name="battery_optimization_setting_activity_not_found">Tidak dapat membuka pengaturan perangkat</string>
     <string name="pref_refresh_library_covers">Segarkan perpustakaan sampul manga</string>
@@ -574,8 +570,8 @@
     <string name="tapping_inverted_both">Keduanya</string>
     <string name="tapping_inverted_vertical">Tegak</string>
     <string name="tapping_inverted_horizontal">Mendatar</string>
-    <string name="tapping_inverted_none">Tidak ada</string>
-    <string name="pref_read_with_tapping_inverted">Membalikkan ketukkan</string>
+    <string name="tapping_inverted_none">Tidak</string>
+    <string name="pref_read_with_tapping_inverted">Ketukan arah sebaliknya</string>
     <string name="unknown_status">Status tidak diketahui</string>
     <string name="unknown_author">Penulis tidak diketahui</string>
     <string name="updated_version">Diperbaharui ke v%1$s</string>
@@ -591,4 +587,9 @@
         <item quantity="other">%d pelacak</item>
     </plurals>
     <string name="no_pinned_sources">Anda tidak memiliki sumber yang disematkan</string>
+    <string name="group_backup_restore">Cadangkan dan pulihkan</string>
+    <string name="group_downloader">Unduhan</string>
+    <string name="channel_complete">Lengkap</string>
+    <string name="channel_progress">Kemajuan</string>
+    <string name="download_notifier_download_finish">Unduhan selesai</string>
 </resources>

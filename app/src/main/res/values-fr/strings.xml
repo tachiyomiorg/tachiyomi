@@ -354,7 +354,6 @@
     <string name="action_display_download_badge">Badges des téléchargements</string>
     <string name="local_source_badge">Local</string>
     <string name="channel_common">Général</string>
-    <string name="channel_downloader">Téléchargeur</string>
     <string name="information_empty_category">Vous n\'avez aucune catégorie. Appuyez sur le bouton « plus » pour en créer une afin d\'organiser votre bibliothèque.</string>
     <string name="label_extensions">Extensions</string>
     <string name="ext_update">Mettre à jour</string>
@@ -550,13 +549,10 @@
     <string name="restore_duration">%02d min, %02d s</string>
     <string name="information_webview_required">WebView est requis par Tachiyomi</string>
     <string name="local_source_help_guide">Guide des sources locales</string>
-    <string name="channel_backup_restore">Sauvegarde et restauration</string>
     <plurals name="download_queue_summary">
         <item quantity="one">1 restant</item>
         <item quantity="other">%1$s restants</item>
     </plurals>
-    <string name="channel_backup_restore_complete">Terminé</string>
-    <string name="channel_backup_restore_progress">Progression</string>
     <string name="downloaded_only_summary">Filtrer tous les mangas dans la bibliothèque</string>
     <string name="pref_search_pinned_sources_only">N\'inclure que les sources épinglés</string>
     <string name="gray_background">Gris</string>
@@ -636,4 +632,9 @@
         <item quantity="other">%d traqueurs</item>
     </plurals>
     <string name="no_pinned_sources">Vous n\'avez aucune source épinglée</string>
+    <string name="group_downloader">Téléchargés</string>
+    <string name="group_backup_restore">Sauvegarde et restauration</string>
+    <string name="channel_complete">Compléter</string>
+    <string name="channel_progress">Progression</string>
+    <string name="download_notifier_download_finish">Téléchargement terminé</string>
 </resources>

@@ -524,15 +524,11 @@
         <item quantity="few">%1$d novih poglavlja</item>
         <item quantity="other">%1$d novih poglavlja</item>
     </plurals>
-    <string name="channel_backup_restore_complete">Završeno</string>
-    <string name="channel_backup_restore_progress">Napredak</string>
-    <string name="channel_backup_restore">Sigurnosna kopija i obnova</string>
     <string name="channel_ext_updates">Ažuriranja proširenja</string>
     <string name="channel_new_chapters">Ažuriranja poglavlja</string>
-    <string name="channel_downloader">Preuzimanja</string>
     <string name="channel_library">Biblioteka</string>
     <string name="channel_common">Opće</string>
-    <string name="download_notifier_download_paused">Preuzimanje je zaustavljeno</string>
+    <string name="download_notifier_download_paused">Preuzimanje zaustavljeno</string>
     <string name="download_notifier_no_network">Nema mrežne veze</string>
     <string name="download_notifier_text_only_wifi">Nema dostupne Wi-Fi veze</string>
     <string name="download_notifier_page_ready_error">Jedna stranica nije učitana</string>
@@ -613,4 +609,9 @@
         <item quantity="other">%d lokatora</item>
     </plurals>
     <string name="no_pinned_sources">Nemaš prikvačenih izvora</string>
+    <string name="group_backup_restore">Sigurnosna kopija i obnavljanje</string>
+    <string name="group_downloader">Preuzimanja</string>
+    <string name="channel_complete">Gotovo</string>
+    <string name="channel_progress">Napredak</string>
+    <string name="download_notifier_download_finish">Preuzimanje gotovo</string>
 </resources>

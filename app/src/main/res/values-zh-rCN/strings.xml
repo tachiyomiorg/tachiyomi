@@ -373,7 +373,6 @@
     <string name="download_notifier_download_paused">下载已暂停</string>
     <string name="channel_common">一般</string>
     <string name="channel_library">书架</string>
-    <string name="channel_downloader">下载</string>
     <string name="pref_read_with_long_tap">长按弹出菜单</string>
     <string name="action_open_in_web_view">在 WebView 中打开</string>
     <string name="pref_true_color">32 位色彩</string>
@@ -503,9 +502,6 @@
     <string name="restoring_backup_error">还原备份失败</string>
     <string name="restore_in_progress">还原已在进行</string>
     <string name="backup_in_progress">备份已在进行</string>
-    <string name="channel_backup_restore">备份与还原</string>
-    <string name="channel_backup_restore_complete">完成</string>
-    <string name="channel_backup_restore_progress">进度</string>
     <string name="recent_manga_time">第 %1$s 章 - %2$s</string>
     <string name="local_source_help_guide">本地图源指南</string>
     <string name="last_used_source">上次浏览</string>
@@ -591,4 +587,9 @@
     </plurals>
     <string name="pref_read_with_tapping_inverted">反转轻触方向</string>
     <string name="no_pinned_sources">你没有已置顶的图源</string>
+    <string name="group_backup_restore">备份和还原</string>
+    <string name="group_downloader">下载项</string>
+    <string name="channel_complete">完成</string>
+    <string name="channel_progress">进度</string>
+    <string name="download_notifier_download_finish">下载已完成</string>
 </resources>

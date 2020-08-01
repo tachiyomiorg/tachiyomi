@@ -115,13 +115,9 @@
     <string name="tapping_inverted_horizontal">Horizontāls</string>
     <string name="tapping_inverted_none">Nav</string>
     <string name="pref_read_with_tapping_inverted">Invertēt spiešanu</string>
-    <string name="channel_backup_restore">Dublēt un atjaunināt</string>
     <string name="channel_ext_updates">Paplašinājumu atjauninājumi</string>
     <string name="channel_new_chapters">Nodaļu atjauninājumi</string>
-    <string name="channel_downloader">Lejuplāders</string>
     <string name="channel_library">Bibliotēka</string>
-    <string name="channel_backup_restore_complete">Pabeigts</string>
-    <string name="channel_backup_restore_progress">Progress</string>
     <string name="download_notifier_download_paused">Lejuplāde pauzēta</string>
     <string name="information_no_downloads">Nav lejuplāžu</string>
     <string name="label_help">Palīdzība</string>

@@ -90,7 +90,6 @@
     <string name="download_notifier_download_paused">Lataus pysäytetty</string>
     <string name="channel_common">Tavallinen</string>
     <string name="channel_library">Kirjasto</string>
-    <string name="channel_downloader">Lataaja</string>
     <string name="label_backup">Varmuuskopio</string>
     <string name="label_migration">Siirrä</string>
     <string name="label_extensions">Laajennukset</string>
@@ -486,7 +485,6 @@
     <string name="confirm_exit">Paina takaisin uudestaan poistuaksesi</string>
     <string name="label_downloaded_only">Ladatut</string>
     <string name="label_sources">Lähteet</string>
-    <string name="channel_backup_restore">Varmuuskopiointi ja palautus</string>
     <string name="updating_library">Päivittää kirjastoa</string>
     <string name="add_tracking">Lisää seuranta</string>
     <string name="in_library">Kirjastossa</string>
@@ -523,8 +521,6 @@
         <item quantity="other">%1$s jäljellä</item>
     </plurals>
     <string name="pref_search_pinned_sources_only">Sisällytä vain kiinnitetyt lähteet</string>
-    <string name="channel_backup_restore_complete">Valmis</string>
-    <string name="channel_backup_restore_progress">Edistyminen</string>
     <string name="gray_background">Harmaa</string>
     <string name="pref_category_for_this_series">Tälle sarjalle</string>
     <plurals name="num_categories">
@@ -602,4 +598,9 @@
         <item quantity="other">%d seurantapalvelinta</item>
     </plurals>
     <string name="no_pinned_sources">Sinulla ei ole kiinnitettyjä lähteitä</string>
+    <string name="group_backup_restore">Varmuuskopiointi ja palautus</string>
+    <string name="group_downloader">Lataukset</string>
+    <string name="channel_complete">Valmis</string>
+    <string name="channel_progress">Edistyminen</string>
+    <string name="download_notifier_download_finish">Lataus valmis</string>
 </resources>

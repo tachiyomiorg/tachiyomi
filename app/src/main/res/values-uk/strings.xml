@@ -373,7 +373,6 @@
     <string name="download_notifier_download_paused">Завантаження призупинено</string>
     <string name="channel_common">Звичайний</string>
     <string name="channel_library">Бібліотека</string>
-    <string name="channel_downloader">Завантажувач</string>
     <string name="pref_read_with_long_tap">Діалог тривалого тицяння</string>
     <string name="action_open_in_web_view">Відкрити у WebView</string>
     <string name="pref_true_color">32-бітний колір</string>
@@ -563,9 +562,6 @@
     <string name="action_display_show_tabs">Показувати вкладки категорій</string>
     <string name="action_display_comfortable_grid">Зручна сітка</string>
     <string name="track_finished_reading_date">Дата завершення читання</string>
-    <string name="channel_backup_restore_complete">Завершено</string>
-    <string name="channel_backup_restore_progress">Поступ</string>
-    <string name="channel_backup_restore">Резервування та відновлення</string>
     <plurals name="notification_update_error">
         <item quantity="one">1 оновлення схалепилось</item>
         <item quantity="few">%1$d оновлень схалепилось</item>
@@ -618,4 +614,5 @@
         <item quantity="many">%d трекерів</item>
         <item quantity="other">%d трекерів</item>
     </plurals>
+    <string name="no_pinned_sources">У вас немає закріплених джерел</string>
 </resources>

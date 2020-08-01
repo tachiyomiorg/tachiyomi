@@ -305,12 +305,8 @@
     <string name="track_finished_reading_date">ಓದಿ ಮುಗಿಸಿದ ದಿನಾಂಕ</string>
     <string name="track_started_reading_date">ಓದಲು ಪ್ರಾರಂಭಿಸಿದ ದಿನಾಂಕ</string>
     <string name="source_requires_login">ಈ ಮೂಲದ ಬಳಕೆಗೆ ಲಾಗಿನ್ ಆಗುವ ಅಗತ್ಯವಿದೆ</string>
-    <string name="channel_backup_restore_complete">ಪೂರ್ಣಗೊಂಡಿದೆ</string>
-    <string name="channel_backup_restore_progress">ಪ್ರಗತಿ</string>
-    <string name="channel_backup_restore">ಬ್ಯಾಕಪ್ ಮಾಡಿ ಮತ್ತು ಮರುಸ್ಥಾಪಿಸಿ</string>
     <string name="channel_ext_updates">ವಿಸ್ತರಣೆ ನವೀಕರಣಗಳು</string>
     <string name="channel_new_chapters">ಅಧ್ಯಾಯ ನವೀಕರಣಗಳು</string>
-    <string name="channel_downloader">ಡೌನ್‌ಲೋಡರ್</string>
     <string name="channel_library">ಗ್ರಂಥಾಲಯ</string>
     <string name="channel_common">ಸಾಮಾನ್ಯ</string>
     <string name="download_notifier_download_paused">ಡೌನ್‌ಲೋಡ್ ವಿರಾಮಗೊಳಿಸಲಾಗಿದೆ</string>
@@ -601,4 +597,9 @@
         <item quantity="other">%d ಟ್ರಾಕರ್ ಗಳು</item>
     </plurals>
     <string name="no_pinned_sources">ಯಾವುದೆ ಪಿನ್ ಮಾಡಿರುವ ಸೋರ್ಸ್ ಗಳು ಇಲ್ಲ</string>
+    <string name="group_backup_restore">ಬ್ಯಾಕಪ್ ಮತ್ತು ಮರುಸ್ಥಾಪನೆ</string>
+    <string name="group_downloader">ಡೌನ್‌ಲೋಡ್‌ಗಳು</string>
+    <string name="channel_complete">ಪೂರ್ಣ</string>
+    <string name="channel_progress">ಪ್ರಗತಿ</string>
+    <string name="download_notifier_download_finish">ಡೌನ್‌ಲೋಡ್ ಪೂರ್ಣಗೊಂಡಿದೆ</string>
 </resources>

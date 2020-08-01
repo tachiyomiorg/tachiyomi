@@ -407,7 +407,6 @@
     <string name="information_empty_category">Không có danh mục. Nhấn vào dấu cộng để tạo một nhóm từ thư viện.</string>
     <string name="channel_common">Thường gặp</string>
     <string name="channel_library">Thư viện</string>
-    <string name="channel_downloader">Trình tải xuống</string>
     <string name="pref_read_with_long_tap">Nhấn giữ mở hộp thoại</string>
     <string name="action_open_in_web_view">Mở bằng WebView</string>
     <string name="pref_true_color">Màu 32-bit</string>

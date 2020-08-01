@@ -374,7 +374,6 @@
     <string name="download_notifier_download_paused">Iscarrigamentu in pàusa</string>
     <string name="channel_common">Comunu</string>
     <string name="channel_library">Biblioteca</string>
-    <string name="channel_downloader">Iscarrigadore</string>
     <string name="action_open_in_web_view">Aberi in sa vista web</string>
     <string name="pref_true_color">Colore a 32 bit</string>
     <string name="pref_skip_read_chapters">Brinca sos capìtulos marcados comente lèghidos</string>
@@ -503,7 +502,6 @@
     <string name="pref_confirm_exit">Cunfirma s\'essida</string>
     <string name="confirm_exit">Incarca in segus torra pro essire</string>
     <string name="label_downloaded_only">Iscarrigados ebbia</string>
-    <string name="channel_backup_restore">Còpia de seguresa e riprìstinu</string>
     <string name="recent_manga_time">Cap. %1$s - %2$s</string>
     <string name="error_invalid_date_supplied">Sa data frunida no est vàlida</string>
     <string name="track_finished_reading_date">Data de acabu de sa leghidura</string>
@@ -523,8 +521,6 @@
         <item quantity="one">Nd\'abarrat 1</item>
         <item quantity="other">Nd\'abarrant %1$s</item>
     </plurals>
-    <string name="channel_backup_restore_progress">Progressu</string>
-    <string name="channel_backup_restore_complete">Acabadu</string>
     <string name="pref_category_for_this_series">Pro custa sèrie</string>
     <string name="gray_background">Murru</string>
     <plurals name="num_categories">
@@ -601,4 +597,10 @@
         <item quantity="one">1 arrastadore</item>
         <item quantity="other">%d arrastadores</item>
     </plurals>
+    <string name="no_pinned_sources">Non tenes mitzas apicadas</string>
+    <string name="group_backup_restore">Còpia de seguresa e riprìstinu</string>
+    <string name="group_downloader">Iscarrigamentos</string>
+    <string name="channel_complete">Acabada</string>
+    <string name="channel_progress">Progressu</string>
+    <string name="download_notifier_download_finish">Iscarrigamentu acabadu</string>
 </resources>

@@ -318,7 +318,6 @@
     <string name="browse">Navegar</string>
     <string name="channel_common">Comum</string>
     <string name="channel_library">Biblioteca</string>
-    <string name="channel_downloader">Fila de download</string>
     <string name="action_display_download_badge">Selos de disponível offline</string>
     <string name="local_source_badge">Local</string>
     <string name="information_empty_category">Você ainda não tem nenhuma categoria. Toque no botão Adicionar para criar uma para organizar a sua biblioteca.</string>
@@ -506,7 +505,6 @@
     <string name="creating_backup_error">Falha no backup</string>
     <string name="backup_in_progress">O backup já está em andamento</string>
     <string name="restore_in_progress">A restauração já está em andamento</string>
-    <string name="channel_backup_restore">Backup e restauração</string>
     <string name="recent_manga_time">Cap. %1$s - %2$s</string>
     <string name="restoring_backup_canceled">Restauração cancelada</string>
     <string name="restoring_backup_error">Falha na restauração do backup</string>
@@ -523,8 +521,6 @@
         <item quantity="other">%1$s restantes</item>
     </plurals>
     <string name="pref_search_pinned_sources_only">Incluir somente as fontes fixadas</string>
-    <string name="channel_backup_restore_complete">Concluído</string>
-    <string name="channel_backup_restore_progress">Progresso</string>
     <string name="gray_background">Cinza</string>
     <string name="viewer">Modo de leitura</string>
     <string name="pref_category_for_this_series">Para esta série</string>
@@ -602,4 +598,9 @@
         <item quantity="other">%d monitoradores</item>
     </plurals>
     <string name="no_pinned_sources">Você não tem nenhuma fonte fixada</string>
+    <string name="download_notifier_download_finish">Download concluído</string>
+    <string name="channel_progress">Andamento</string>
+    <string name="group_backup_restore">Backup e restauração</string>
+    <string name="group_downloader">Downloads</string>
+    <string name="channel_complete">Concluído</string>
 </resources>

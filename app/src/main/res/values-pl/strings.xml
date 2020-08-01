@@ -318,7 +318,6 @@
     <string name="channel_common">Zwykły</string>
     <string name="channel_library">Biblioteka</string>
     <string name="latest">Ostatnie</string>
-    <string name="channel_downloader">Menedżer pobierania</string>
     <string name="action_display_download_badge">Plakietki pobrań</string>
     <string name="local_source_badge">Lokalna</string>
     <string name="information_empty_category">Nie masz żadnych kategorii. Dotknij plusa, aby je utworzyć i zorganizować swoją bibliotekę.</string>
@@ -497,9 +496,6 @@
     <string name="pinned_sources">Przypięte</string>
     <string name="last_used_source">Ostatnio używane</string>
     <string name="tracking_info">Jednorazowa synchronizacja postępu czytania. Aby ustawić automatyczne śledzenie, odwiedź zakładkę \"Śledzenie\" w wybranych mangach.</string>
-    <string name="channel_backup_restore_complete">Ukończono</string>
-    <string name="channel_backup_restore_progress">Postęp</string>
-    <string name="channel_backup_restore">Kopia zapasowa i przywracanie</string>
     <string name="channel_ext_updates">Aktualizacje rozszerzeń</string>
     <string name="information_webview_required">Widok w przeglądarce jest wymagany dla Tachiyomi</string>
     <plurals name="update_check_notification_ext_updates">

@@ -352,7 +352,6 @@
     <string name="browse">Търсене</string>
     <string name="channel_common">Общи</string>
     <string name="channel_library">Библиотека</string>
-    <string name="channel_downloader">Изтегляния</string>
     <string name="action_display_download_badge">Изтегляне на значки</string>
     <string name="local_source_badge">Локална</string>
     <string name="information_empty_category">Нямате категории. Натиснете плюса, за да създадете такава и да организирате библиотеката си.</string>
@@ -440,9 +439,6 @@
     <string name="paused">На пауза</string>
     <string name="want_to_read">Искам да чета</string>
     <string name="secure_screen">Сигурност</string>
-    <string name="channel_backup_restore_complete">Приключено</string>
-    <string name="channel_backup_restore">Съхрани и възстанови</string>
-    <string name="channel_backup_restore_progress">Прогрес</string>
     <string name="channel_ext_updates">Ъпдейти на разширенията</string>
     <string name="channel_new_chapters">Нови глави</string>
     <string name="information_webview_outdated">Моля, обновете WebView за по-добра съвместимост</string>

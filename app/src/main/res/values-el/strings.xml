@@ -373,7 +373,6 @@
     <string name="download_notifier_download_paused">Λήψη σε παύση</string>
     <string name="channel_common">Κοινό</string>
     <string name="channel_library">Βιβλιοθήκη</string>
-    <string name="channel_downloader">Πρόγραμμα λήψης</string>
     <string name="pref_read_with_long_tap">Παράθυρο παρατεταμένου αγγίγματος</string>
     <string name="action_open_in_web_view">Άνοιγμα σε WebView</string>
     <string name="pref_true_color">Χρώμα 32-bit</string>
@@ -509,7 +508,6 @@
     <string name="unlock_app">Ξεκλειδώστε το Tachiyomi</string>
     <string name="label_downloaded_only">Ληφθέντα μόνο</string>
     <string name="label_sources">Πηγές</string>
-    <string name="channel_backup_restore">Δημιουργία αντιγράφων ασφαλείας και επαναφορά</string>
     <string name="action_oldest">Παλαιότερο</string>
     <string name="action_newest">Νεότερο</string>
     <string name="action_reorganize_by">Αναδιάταξη</string>
@@ -523,8 +521,6 @@
         <item quantity="one">1 που απομένει</item>
         <item quantity="other">%1$s που απομένουν</item>
     </plurals>
-    <string name="channel_backup_restore_complete">Ολοκληρώθηκε</string>
-    <string name="channel_backup_restore_progress">Πρόοδος</string>
     <string name="gray_background">Γκρι</string>
     <string name="pref_true_color_summary">Μειώνει το banding, αλλά επηρεάζει την απόδοση</string>
     <string name="viewer">Λειτουργία ανάγνωσης</string>
@@ -602,4 +598,9 @@
         <item quantity="other">%d ιχνηλάτες</item>
     </plurals>
     <string name="no_pinned_sources">Δεν έχετε καρφιτσωμένες πηγές</string>
+    <string name="group_backup_restore">Δημιουργία αντιγράφων ασφαλείας και επαναφορά</string>
+    <string name="group_downloader">Λήψεις</string>
+    <string name="channel_complete">Ολοκληρωμένο</string>
+    <string name="channel_progress">Η λήψη ολοκληρώθηκε</string>
+    <string name="download_notifier_download_finish">Η λήψη ολοκληρώθηκε</string>
 </resources>

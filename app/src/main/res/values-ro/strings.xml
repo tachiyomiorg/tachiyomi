@@ -373,7 +373,6 @@
     <string name="download_notifier_download_paused">Descărcare întreruptă</string>
     <string name="channel_common">General</string>
     <string name="channel_library">Bibliotecă</string>
-    <string name="channel_downloader">Client de descărcare</string>
     <string name="action_open_in_web_view">Deschide în vizualizare web</string>
     <string name="pref_true_color">Culoare 32-bit</string>
     <string name="pref_color_filter_mode">Mod filtru de culoare</string>
@@ -499,7 +498,6 @@
     <string name="add_tracking">Urmărește</string>
     <string name="in_library">În bibliotecă</string>
     <string name="add_to_library">Adaugă în bibliotecă</string>
-    <string name="channel_backup_restore">Creează copie de rezervă și restaurează</string>
     <string name="information_webview_required">WebView este necesar pentru Tachiyomi</string>
     <string name="recent_manga_time">Ch. %1$s - %2$s</string>
     <string name="manga_info_collapse">Mai puțin</string>
@@ -529,8 +527,6 @@
         <item quantity="other">%1$s rămase</item>
     </plurals>
     <string name="pref_search_pinned_sources_only">Includeți numai surse fixate</string>
-    <string name="channel_backup_restore_complete">Terminat</string>
-    <string name="channel_backup_restore_progress">Progresul</string>
     <string name="viewer">Mod de citire</string>
     <string name="pref_category_for_this_series">Pentru această serie</string>
     <string name="gray_background">Gri</string>
