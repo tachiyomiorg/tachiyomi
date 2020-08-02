@@ -191,7 +191,7 @@
     <string name="action_select_inverse">Kiválasztás megfordítása</string>
     <string name="action_sort_last_checked">Utoljára ellenőrizve</string>
     <string name="action_menu">Menü</string>
-    <string name="confirm_exit">A befejezéshez nyomd meg újfent a Vissza gombot!</string>
+    <string name="confirm_exit">A befejezéshez nyomd meg újfent a Vissza gombot</string>
     <string name="unlock_app">Tachiyomi feloldása</string>
     <string name="information_empty_library">A könyvtárad üres. Adj hozzá új sorozatokat a Böngészőből.</string>
     <string name="information_no_recent">Nincs új frissítés</string>
@@ -205,7 +205,7 @@
     <string name="download_notifier_page_error">Egy oldal hiányzik a könyvtárból</string>
     <string name="download_notifier_unknown_error">Egy váratlan hiba miatt nem sikerült letölteni a fejezetet</string>
     <string name="download_notifier_title_error">Hiba</string>
-    <string name="information_webview_outdated">A jobb kompatibilitás érdekében kérlek, frissítsd a WebView alkalmazást!</string>
+    <string name="information_webview_outdated">A jobb kompatibilitás érdekében kérlek, frissítsd a WebView alkalmazást</string>
     <plurals name="update_check_notification_ext_updates">
         <item quantity="one">Egy új bővítményfrissítés érhető el</item>
         <item quantity="other">%d bővítményfrissítés érhető el</item>

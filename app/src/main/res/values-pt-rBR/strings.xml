@@ -603,4 +603,5 @@
     <string name="group_backup_restore">Backup e restauração</string>
     <string name="group_downloader">Downloads</string>
     <string name="channel_complete">Concluído</string>
+    <string name="channel_errors">Erros</string>
 </resources>

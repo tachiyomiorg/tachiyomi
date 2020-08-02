@@ -634,4 +634,5 @@
     <string name="group_downloader">Descargas</string>
     <string name="channel_complete">Completo</string>
     <string name="channel_progress">Progreso</string>
+    <string name="channel_errors">Errores</string>
 </resources>

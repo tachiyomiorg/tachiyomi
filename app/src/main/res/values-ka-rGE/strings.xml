@@ -87,7 +87,7 @@
     <string name="action_webview_back">უკან</string>
     <string name="action_webview_forward">წინ</string>
     <string name="action_webview_refresh">განახლება</string>
-    <string name="loading">იტვირთება...</string>
+    <string name="loading">იტვირთება…</string>
     <string name="app_not_available">აპლიკაცია არ არის ხელმისაწვდომი</string>
     <string name="short_recent_updates">განახლებები</string>
     <string name="pref_category_general">ზოგადი</string>
@@ -302,7 +302,7 @@
     <string name="logout_success">გამოსვლა წარმატებით მოხერხდა</string>
     <string name="invalid_login">შესვლა ვერ მოხერხდა</string>
     <string name="unknown_error">დაფიქსირდა უცნობი შეცდომა</string>
-    <string name="library_search_hint">სათაური ან ავტორი...</string>
+    <string name="library_search_hint">სათაური ან ავტორი…</string>
     <string name="updating_category">კატეგორია ახლდება</string>
     <string name="local_source_badge">ლოკალური</string>
     <string name="confirm_delete_manga">დარწმუნებული ხართ რომ გსურთ წაშალოთ შერჩეული მანგა?</string>
@@ -320,7 +320,7 @@
     <string name="last_used_source">ბოლოს გამოყენებული</string>
     <string name="invalid_combination">ნაგულისხმევის მონიშვნა შეუძლებელია სხვა კატეგორიასთან ერთად</string>
     <string name="added_to_library">მანგა დაემატა თქვენს ბიბლიოთეკას</string>
-    <string name="action_global_search_hint">გლობალური ძებნა...</string>
+    <string name="action_global_search_hint">გლობალური ძებნა…</string>
     <string name="latest">უკანასკნელი</string>
     <string name="browse">დათვალიერება</string>
     <string name="manga_detail_tab">ინფორმაცია</string>
@@ -338,7 +338,8 @@
     <string name="manga_info_expand">მეტი ინფორმაციის ჩვენება</string>
     <string name="manga_info_collapse">ნაკლები ინფორმაციის ჩვენება</string>
     <string name="delete_downloads_for_manga">გადმოწერილი თავების წაშლა</string>
-    <string name="copied_to_clipboard">დაკოპირებულია ბუფერში:\\n%1$s</string>
+    <string name="copied_to_clipboard">დაკოპირებულია ბუფერში:
+\n%1$s</string>
     <string name="source_not_installed">წყარო არ არის დაინსტალირებული: %1$s</string>
     <string name="snack_add_to_library">დავამატო მანგა ბიბლიოთეკაში?</string>
     <string name="manga_chapters_tab">თავები</string>
@@ -392,9 +393,9 @@
     <string name="snack_categories_deleted">კატეგორიები წაიშალა</string>
     <string name="dialog_with_checkbox_remove_description">ეს წაშლის ამ თავის წაკითხვის თარიღს. დარწმუნებული ხართ?</string>
     <string name="picture_saved">სურათი შენახულია</string>
-    <string name="saving_picture">სურათი ინახება...</string>
+    <string name="saving_picture">სურათი ინახება</string>
     <string name="options">პარამეტრები</string>
-    <string name="downloading">გადმოწერა...</string>
+    <string name="downloading">გადმოწერა…</string>
     <string name="download_progress">გადმოწერილია %1$d%%</string>
     <string name="chapter_progress">გვერდი: %1$d</string>
     <string name="chapter_subtitle">თავი: %1$d</string>
@@ -409,7 +410,7 @@
     <string name="transition_previous">წინა:</string>
     <string name="transition_no_next">შემდეგი თავი არ არის</string>
     <string name="transition_no_previous">წინა თავი არ არის</string>
-    <string name="transition_pages_loading">გვერდები იტვირთება...</string>
+    <string name="transition_pages_loading">გვერდები იტვირთება…</string>
     <string name="transition_pages_error">გვერდების ჩატვირთვა ვერ მოხერხდა: %1$s</string>
     <string name="page_list_empty_error">ვერცერთი გვერდი ვერ მოიძევნა</string>
     <string name="updating_library">ბიბლიოთეკის განახლება</string>
@@ -427,7 +428,7 @@
     <string name="notification_chapters_single_and_more">თავი %1$s და %2$d მეტი</string>
     <string name="notification_chapters_multiple">თავები %1$s</string>
     <string name="notification_cover_update_failed">ვერ მოხერხდა ყდის განახლება</string>
-    <string name="notification_first_add_to_library">"გთხოვთ ჯერ დაამატოთ მანგა თქვენს ბიბლიოთეკაში "</string>
+    <string name="notification_first_add_to_library">გთხოვთ ჯერ დაამატოთ მანგა თქვენს ბიბლიოთეკაში</string>
     <string name="notification_not_connected_to_ac_title">სინქრონიზაცია გაუქმებულია</string>
     <string name="notification_no_connection_title">სინქრონიზაცია გაუქმებულია</string>
     <string name="notification_not_connected_to_ac_body">არ არის შეერთებული დენის წყაროსთან</string>
@@ -437,10 +438,10 @@
     <string name="file_select_icon">ამოირჩიე მალსახმობის ნიშნაკი</string>
     <string name="update_check_confirm">გადმოწერა</string>
     <string name="update_check_ignore">დაიგნორება</string>
-    <string name="update_check_no_new_updates">"განახლება ვერ მოიძებნა "</string>
-    <string name="update_check_look_for_updates">განახლების ძებნა...</string>
+    <string name="update_check_no_new_updates">განახლება ვერ მოიძებნა</string>
+    <string name="update_check_look_for_updates">განახლების ძებნა…</string>
     <string name="update_check_notification_file_download">განახლების გადმოწერა</string>
-    <string name="update_check_notification_download_in_progress">გადმოწერა...</string>
+    <string name="update_check_notification_download_in_progress">გადმოწერა…</string>
     <string name="update_check_notification_download_complete">გადმოწერა დასრულებულია</string>
     <string name="update_check_notification_download_error">გადმოწერის შეცდომა</string>
     <string name="update_check_notification_update_available">ხელმისაწვდომია ახალი ვერსია!</string>
@@ -513,10 +514,16 @@
     <string name="download_notifier_page_error">გვერდი გამოტოვებულია დირექტორიაში</string>
     <string name="action_enable_all">ჩართე ყველა</string>
     <string name="action_disable_all">გამორთე ყველა</string>
-    <string name="secure_screen_summary">"აპლიკაციებს შორის გადართვისას შემადგენლობის დამალვა და სკრინშოტების დაბლოკვა "</string>
-    <string name="untrusted_extension_message">ეს დამატება ხელმოწერილია უცნობი სერთიფიკატის მიერ და არ არის აქტივირებული\\n\\nმავნე დამატებას შეუძლია წაიკითხოს შესვლის მონაცემები შენახული ამ აპლიკაციაში ან გაუშვას თავისი კოდი \\n\\nამ სერტიფიკატის ნდობით თქვენ თქვენს თავზე იღებთ რისკებს და პასუხისმგებლობას.</string>
+    <string name="secure_screen_summary">აპლიკაციებს შორის გადართვისას შემადგენლობის დამალვა და სკრინშოტების დაბლოკვა</string>
+    <string name="untrusted_extension_message">ეს დამატება ხელმოწერილია უცნობი სერთიფიკატის მიერ და არ არის აქტივირებული\\n\\nმავნე დამატებას შეუძლია
+\n
+\nწაიკითხოს შესვლის მონაცემები შენახული ამ აპლიკაციაში ან გაუშვას თავისი კოდი \\n\\nამ სერტიფიკატის ნდობით თქვენ
+\n
+\nთქვენს თავზე იღებთ რისკებს და პასუხისმგებლობას.</string>
     <string name="tracking_info">ცალმხრივი სინქრონიზაცია თვალყურის სადევნებელ სერვისებში თავების პროგრესის განსაახლებლად. მიადევნე თვალყური ინდივიდუალურ მანგებს მათი ჩანართებიდან</string>
-    <string name="backup_restore_content">აღდგენა იყენებს წყაროებს მონაცემების გადმოსაწერად.\\n\\nდარწმუნდი რომ გაქვს დაინსტალირებული ყველა საჭირო დამატება და ხარ დალოგინებული წყაროებში და თვალყურის სადევნებელ სერვისებში ააღდგენამდე.</string>
+    <string name="backup_restore_content">აღდგენა იყენებს წყაროებს მონაცემების გადმოსაწერად.\\n\\nდარწმუნდი რომ გაქვს დაინსტალირებული ყველა
+\n
+\nსაჭირო დამატება და ხარ დალოგინებული წყაროებში და თვალყურის სადევნებელ სერვისებში ააღდგენამდე.</string>
     <string name="pref_refresh_library_tracking_summary">ანახლებს სტატუსს, შეფასებას და ბოლო თავს წაკითხულს თვალყურის სადევნებელ სერვისებიდან</string>
     <string name="download_notifier_page_ready_error">გვერდი ვერ ჩაიტვირთა</string>
     <string name="filter_mode_overlay">გადაფარება</string>

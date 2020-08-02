@@ -603,4 +603,5 @@
     <string name="channel_complete">पूर्ण</string>
     <string name="channel_progress">प्रगती</string>
     <string name="download_notifier_download_finish">डाउनलोड सम्पन्न हुआ</string>
+    <string name="channel_errors">त्रुटियाँ</string>
 </resources>

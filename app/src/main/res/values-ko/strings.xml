@@ -283,12 +283,12 @@
     <string name="update_check_confirm">다운로드</string>
     <string name="update_check_ignore">무시</string>
     <string name="update_check_no_new_updates">새로운 업데이트 없음</string>
-    <string name="update_check_look_for_updates">"업데이트를 찾는중 "</string>
+    <string name="update_check_look_for_updates">업데이트를 찾는중…</string>
     <string name="update_check_notification_file_download">업데이트 다운로드</string>
-    <string name="update_check_notification_download_in_progress">다운로드 진행중</string>
+    <string name="update_check_notification_download_in_progress">다운로드 진행중…</string>
     <string name="update_check_notification_download_complete">다운로드 완료됨</string>
     <string name="update_check_notification_download_error">다운로드 오류</string>
-    <string name="update_check_notification_update_available">업데이트 이용 가능</string>
+    <string name="update_check_notification_update_available">업데이트 이용 가능!</string>
     <string name="description_cover">만화 표지</string>
     <string name="information_no_downloads">다운로드 없음</string>
     <string name="information_no_recent">최신 챕터 없음</string>
@@ -339,7 +339,7 @@
     <string name="invalid_combination">기본 카테고리는 다른 카테고리와 함께 선택될 수 없습니다</string>
     <string name="added_to_library">만화가 서재에 추가되었습니다</string>
     <string name="browse">찾아보기</string>
-    <string name="manga_not_in_db">이 만화는 데이터베이스에서 제거되었습니다!</string>
+    <string name="manga_not_in_db">이 만화는 데이터베이스에서 제거되었습니다</string>
     <string name="licensed">판권작</string>
     <string name="copied_to_clipboard">클립보드에 %1$s 복사됨</string>
     <string name="manga_chapter_no_title">제목 없음</string>

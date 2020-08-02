@@ -210,6 +210,7 @@
     <string name="backup_created">Nagawa na ang backup</string>
     <string name="restore_completed">Nakumpleto na ang pagre-restore</string>
     <string name="backup_restore_content">Ginagamit ng pagre-restore ang source para makakuha ng data, maaring magamit ang inyong data.
+\n
 \nSiguraduhin din na ikaw ay maayos na naka-login sa mga source that nangangailangan nito bago mag-restore.</string>
     <string name="pref_color_filter_mode">Blend mode ng color filter</string>
     <string name="filter_mode_default">Default</string>
@@ -264,7 +265,7 @@
     <string name="action_global_search_hint">Pangkalahatang paghahanap…</string>
     <string name="latest">Pinakabago</string>
     <string name="browse">Mag-browse</string>
-    <string name="manga_not_in_db">Ang manga na ito ay tinanggal mula sa database!</string>
+    <string name="manga_not_in_db">Ang manga na ito ay tinanggal mula sa database.</string>
     <string name="manga_detail_tab">Impo</string>
     <string name="description">Paglalarawan</string>
     <string name="ongoing">Nagpapatuloy</string>
@@ -364,7 +365,7 @@
     <string name="update_check_no_new_updates">Walang mga bagong update</string>
     <string name="update_check_look_for_updates">Naghahanap ng mga update…</string>
     <string name="update_check_notification_file_download">Download update</string>
-    <string name="update_check_notification_download_in_progress">Kasalukuyang nagda-download</string>
+    <string name="update_check_notification_download_in_progress">Kasalukuyang nagda-download…</string>
     <string name="update_check_notification_download_complete">Nakumpleto ang pag-download</string>
     <string name="update_check_notification_download_error">Error sa pag-download</string>
     <string name="update_check_notification_update_available">Mayroong update</string>

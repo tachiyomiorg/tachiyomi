@@ -195,7 +195,7 @@
     <string name="update_check_notification_file_download">Stáhnout aktualizaci</string>
     <string name="update_check_notification_download_complete">Stahování dokončeno</string>
     <string name="update_check_notification_download_error">Chyba při stahování</string>
-    <string name="update_check_notification_update_available">Dostupná aktualizace</string>
+    <string name="update_check_notification_update_available">Dostupná aktualizace!</string>
     <string name="information_no_recent">Žádné nedávné kapitoly</string>
     <string name="information_no_recent_manga">Žádné nedávno čtené mangy</string>
     <string name="download_notifier_title_error">Chyba</string>
@@ -349,6 +349,7 @@
     <string name="pref_restore_backup_summ">Obnovit knihovnu ze záložního souboru</string>
     <string name="pref_backup_slots">Maximální automatické zálohování</string>
     <string name="backup_restore_content">Obnovení používá zdroje pro načítání dat, mohou být účtovány poplatky od operátora (v případě použití datového připojení).
+\n
 \nTaké se před obnovením ujistěte, že jste správně přihlášeni do zdrojů, které to vyžadují.</string>
     <string name="choices_reset">Volby dialogu se vynulují</string>
     <string name="login_title">Přihlásit se do %1$s</string>
@@ -401,4 +402,5 @@
     <string name="logout_title">Odhlásit z %1$s\?</string>
     <string name="logout_success">Byl jste odhlášen</string>
     <string name="paused">Pozastaveno</string>
+    <string name="label_more">Více</string>
 </resources>

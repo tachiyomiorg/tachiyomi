@@ -49,7 +49,7 @@
     <string name="action_stop">Стоп</string>
     <string name="action_update">Обновить</string>
     <string name="action_update_library">Обновить библиотеку</string>
-    <string name="all">Всё</string>
+    <string name="all">Все</string>
     <string name="backup">Резервная копия</string>
     <string name="black_background">Черный</string>
     <string name="build_time">Дата сборки</string>
@@ -621,4 +621,5 @@
     <string name="group_downloader">Загрузки</string>
     <string name="channel_complete">Завершено</string>
     <string name="channel_progress">Прогресс</string>
+    <string name="channel_errors">Ошибки</string>
 </resources>

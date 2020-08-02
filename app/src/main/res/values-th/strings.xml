@@ -251,7 +251,7 @@
     <string name="action_global_search_hint">ค้นหาทั้งหมด…</string>
     <string name="latest">ล่าสุด</string>
     <string name="browse">เปิดดู</string>
-    <string name="manga_not_in_db">มังงะนี้ถูกลบออกจากฐานข้อมูล!</string>
+    <string name="manga_not_in_db">มังงะนี้ถูกลบออกจากฐานข้อมูล</string>
     <string name="manga_detail_tab">ข้อมูล</string>
     <string name="description">คำอธิบาย</string>
     <string name="ongoing">ยังดำเนินการอยู่</string>

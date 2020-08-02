@@ -205,21 +205,21 @@
     <string name="creating_backup">Oppretter sikkerhetskopi</string>
     <string name="pref_clear_chapter_cache">Tøm kapittelhurtiglager</string>
     <string name="used_cache">Brukt: %1$s</string>
-    <string name="cache_deleted">Hurtiglager tømt. %1$d filer har blitt slettet.</string>
+    <string name="cache_deleted">Hurtiglager tømt. %1$d filer har blitt slettet</string>
     <string name="cache_delete_error">Feil oppstod under tømming av hurtiglager</string>
     <string name="pref_clear_cookies">Tøm kaker</string>
     <string name="cookies_cleared">Kaker tømt</string>
     <string name="choices_reset">Dialogvinduvalg tilbakestilt</string>
     <string name="pref_clear_database">Tøm database</string>
     <string name="pref_clear_database_summary">Slett manga og kapittel som ikke finnes i biblioteket ditt</string>
-    <string name="clear_database_confirmation">Er du sikker\? Leste kapittel og framdrift for manga som ikke er i biblioteket vil gå tapt.</string>
+    <string name="clear_database_confirmation">Er du sikker\? Leste kapittel og framdrift for manga som ikke er i biblioteket vil gå tapt</string>
     <string name="clear_database_completed">Oppføringer slettet</string>
     <string name="pref_refresh_library_tracking">Gjenopprett sporingsmetadata</string>
     <string name="pref_refresh_library_tracking_summary">Oppdaterer status, poengsum og sist leste kapittel fra sporingstjenestene</string>
     <string name="version">Versjon</string>
     <string name="build_time">Byggtid</string>
     <string name="pref_enable_acra">Send kræsjrapporter</string>
-    <string name="pref_acra_summary">Hjelper til med fiksing av feil. Ingen sensitiv data vil bli sendt.</string>
+    <string name="pref_acra_summary">Hjelper til med fiksing av feil. Ingen sensitiv data vil bli sendt</string>
     <string name="login_title">Innlogging for %1$s</string>
     <string name="username">Brukernavn</string>
     <string name="password">Passord</string>
@@ -295,7 +295,7 @@
     <string name="track_start_date">Startet</string>
     <string name="track_type">Type</string>
     <string name="track_author">Forfatter</string>
-    <string name="error_category_exists">En kategori ved dette navnet finnes allerede.</string>
+    <string name="error_category_exists">En kategori ved dette navnet finnes allerede!</string>
     <string name="snack_categories_deleted">Kategorier slettet</string>
     <string name="dialog_with_checkbox_remove_description">Lesningsdato for dette kapittelet vil bli fjernet. Er du sikker\?</string>
     <string name="dialog_with_checkbox_reset">Tilbakestill alle kapittel for denne mangaen</string>
@@ -348,7 +348,7 @@
 \nForsikre deg om at du har installert alle nødvendige utvidelser og er logget inn i kilder og sporingstjenester før du gjenoppretter.</string>
     <string name="confirm_set_image_as_cover">Bruk dette bildet som omslag\?</string>
     <string name="migration_info">Trykk for å velge kilde å migrere fra</string>
-    <string name="download_queue_error">Kunne ikke laste ned kapitler. Du kan prøve igjen i nedlastingsdelen.</string>
+    <string name="download_queue_error">Kunne ikke laste ned kapitler. Du kan prøve igjen i nedlastingsdelen</string>
     <string name="notification_update_progress">Oppdateringsfremdrift: %1$d/%2$d</string>
     <string name="notification_first_add_to_library">Legg til mangaen i biblioteket ditt før du gjør dette</string>
     <string name="notification_not_connected_to_ac_title">Synkronisering avbrutt</string>
