@@ -2,9 +2,8 @@ package eu.kanade.tachiyomi.ui.browse.source.filter
 
 import android.view.View
 import android.widget.CheckedTextView
-import androidx.core.content.ContextCompat
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.RecyclerView
-import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractSectionableItem
 import eu.davidea.flexibleadapter.items.IFlexible
@@ -36,12 +35,12 @@ class SortItem(val name: String, val group: SortGroup) : AbstractSectionableItem
 
         fun getIcon() = when (filter.state) {
             Filter.Sort.Selection(i, false) ->
-                VectorDrawableCompat.create(view.resources, R.drawable.ic_arrow_down_white_32dp, null)
+                AppCompatResources.getDrawable(view.context, R.drawable.ic_arrow_down_white_32dp)
                     ?.apply { setTint(view.context.getResourceColor(R.attr.colorAccent)) }
             Filter.Sort.Selection(i, true) ->
-                VectorDrawableCompat.create(view.resources, R.drawable.ic_arrow_up_white_32dp, null)
+                AppCompatResources.getDrawable(view.context, R.drawable.ic_arrow_up_white_32dp)
                     ?.apply { setTint(view.context.getResourceColor(R.attr.colorAccent)) }
-            else -> ContextCompat.getDrawable(view.context, R.drawable.empty_drawable_32dp)
+            else -> AppCompatResources.getDrawable(view.context, R.drawable.empty_drawable_32dp)
         }
 
         view.setCompoundDrawablesWithIntrinsicBounds(getIcon(), null, null, null)

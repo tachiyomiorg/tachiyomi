@@ -86,7 +86,7 @@
     <string name="portrait">ঘুরান</string>
     <string name="landscape">আড়াআড়ি ভাবে</string>
     <string name="default_columns">ডিফল্ট</string>
-    <string name="pref_library_update_interval">"মাংগাশালা আপডেট  কাল"</string>
+    <string name="pref_library_update_interval">মাংগাশালা আপডেট কাল</string>
     <string name="update_never">সারগ্রন্থ</string>
     <string name="update_1hour">ঘন্টায়</string>
     <string name="update_2hour">প্রতি ২ ঘন্টায়</string>
@@ -176,10 +176,11 @@
     <string name="pref_backup_service_category">সেবা</string>
     <string name="pref_backup_interval">ব্যাকআপ ফ্রিকোয়েন্সি</string>
     <string name="pref_backup_slots">স্বয়ংক্রিয় ব্যাকআপের উচ্চমাত্রা</string>
-    <string name="source_not_found">উৎস খুঁজে পাওয়া যায়নি</string>
     <string name="backup_created">পুনরুদ্ধার তৈরী হয়েছে</string>
     <string name="restore_completed">পুনরুদ্ধার হয়েছে</string>
-    <string name="backup_restore_content">পুনরুদ্ধারের সন্ধান করার জন্য উৎস ব্যবহার করা হয়, ক্যারিয়ারের খরচগুলি প্রযোজ্য হতে পারে। এছাড়াও নিশ্চিত করুন যে আপনি পুনরুদ্ধারের আগে উৎসগুলোতে যথাযথভাবে লগ-ইন করা আছেন যেখানে প্রোয়জন হয়।</string>
+    <string name="backup_restore_content">পুনরুদ্ধারের সন্ধান করার জন্য উৎস ব্যবহার করা হয়, ক্যারিয়ারের খরচগুলি প্রযোজ্য হতে পারে। এছাড়াও নিশ্চিত করুন যে আপনি
+\n
+\nপুনরুদ্ধারের আগে উৎসগুলোতে যথাযথভাবে লগ-ইন করা আছেন যেখানে প্রোয়জন হয়।</string>
     <string name="backup_choice">আপনি কি ব্যাকআপ করতে ইচ্ছুক?</string>
     <string name="restoring_backup">ব্যাকআপ পুনরুদ্ধার হচ্ছে</string>
     <string name="creating_backup">ব্যাকআপ তৈরী হচ্ছে</string>
@@ -320,7 +321,6 @@
     <string name="download_notifier_download_paused">ডাউনলোড স্থগিত</string>
     <string name="channel_common">সাধারণ</string>
     <string name="channel_library">মাংগাশালা</string>
-    <string name="channel_downloader">ডাউনলোডার</string>
     <string name="label_migration">উৎস পরিবর্তন</string>
     <string name="label_extensions">সংযোজিত অংশ</string>
     <string name="label_extension_info">সংযোজিত অংশ তথ্য</string>
@@ -394,4 +394,5 @@
     <string name="invalid_download_dir">অকার্যকর ডাউনলোড ডিরেক্টরি</string>
     <string name="ext_obsolete">অপ্রচলিত</string>
     <string name="obsolete_extension_message">এই এক্সটেনশন আর পাওয়া যাচ্ছে না ।</string>
+    <string name="email">ইমেল ঠিকানা</string>
 </resources>

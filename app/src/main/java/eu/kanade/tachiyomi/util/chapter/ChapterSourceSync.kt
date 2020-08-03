@@ -36,13 +36,15 @@ fun syncChaptersWithSource(
     // Chapters from db.
     val dbChapters = db.getChapters(manga).executeAsBlocking()
 
-    val sourceChapters = rawSourceChapters.mapIndexed { i, sChapter ->
-        Chapter.create().apply {
-            copyFrom(sChapter)
-            manga_id = manga.id
-            source_order = i
+    val sourceChapters = rawSourceChapters
+        .distinctBy { it.url }
+        .mapIndexed { i, sChapter ->
+            Chapter.create().apply {
+                copyFrom(sChapter)
+                manga_id = manga.id
+                source_order = i
+            }
         }
-    }
 
     // Chapters from the source not in db.
     val toAdd = mutableListOf<Chapter>()

@@ -300,7 +300,6 @@
     <string name="action_rename_category">שנה שם קטגוריה</string>
     <string name="action_edit_categories">ערוך קטגוריות</string>
     <string name="action_add_category">הוסף קטגוריה</string>
-    <string name="changelog">לוג-שינויים</string>
     <string name="notices">הודעות</string>
     <string name="build_time">זמן בנייה</string>
     <string name="version">גרסה</string>
@@ -326,7 +325,6 @@
 \nוודא שהתקנת את כל התוספים הנחוצים והתחרת למקורות ושירותי המעקב לפני השחזור.</string>
     <string name="restore_completed">השחזור הושלם</string>
     <string name="backup_created">גיבוי נוצר</string>
-    <string name="source_not_found">המקור לא נמצא</string>
     <string name="pref_backup_slots">מספר גיבויים אוטומטיים מקסימליים</string>
     <string name="pref_backup_interval">תדירות גיבוי</string>
     <string name="pref_backup_service_category">שירות</string>

@@ -176,7 +176,7 @@
     <string name="rotation_lock">Zaključano</string>
     <string name="rotation_force_portrait">Forsirano vertikalno</string>
     <string name="rotation_force_landscape">Forsirano horizontalno</string>
-    <string name="color_filter_r_value">"R "</string>
+    <string name="color_filter_r_value">R</string>
     <string name="color_filter_g_value">G</string>
     <string name="color_filter_b_value">B</string>
     <string name="color_filter_a_value">A</string>
@@ -203,7 +203,6 @@
     <string name="pref_backup_service_category">Servis</string>
     <string name="pref_backup_interval">Učestalost pravljenja rezernih kopija</string>
     <string name="pref_backup_slots">Maksimalano automatskih rezernih kopija</string>
-    <string name="source_not_found">Izvor nije pronađen</string>
     <string name="backup_created">Rezerna kopija napravljena</string>
     <string name="restore_completed">Vraćanje završeno</string>
     <string name="backup_restore_content">Vraćanja koriste izvore da preuzima podatke, troškovi prenošenja se mogu primeniti.
@@ -450,7 +449,6 @@
     <string name="http_error_hint">Proveri vebsajt u WebView</string>
     <string name="downloaded_only_summary">Filtrira svu mangu u vašoj biblioteci</string>
     <string name="check_for_updates">Proveri ažuriranja</string>
-    <string name="changelog">Šta je novo</string>
     <string name="website">Sajt</string>
     <string name="restoring_backup_canceled">Otkazano vraćanje kopije</string>
     <string name="restoring_backup_error">Greška u vraćanju rezervne kopije</string>

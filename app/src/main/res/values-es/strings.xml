@@ -81,7 +81,7 @@
     <string name="pref_lock_orientation">Bloquear orientación</string>
     <string name="pref_page_transitions">Animar las transiciones de página</string>
     <string name="pref_show_page_number">Mostrar el número de página</string>
-    <string name="pref_custom_brightness">Utilizar brillo personalizado</string>
+    <string name="pref_custom_brightness">Brillo personalizado</string>
     <string name="pref_keep_screen_on">Mantener la pantalla encendida</string>
     <string name="pref_reader_navigation">Navegación</string>
     <string name="pref_read_with_volume_keys">Teclas de volumen</string>
@@ -99,7 +99,7 @@
     <string name="pref_image_scale_type">Tipo de escalado</string>
     <string name="scale_type_fit_screen">Ajustar a la pantalla</string>
     <string name="scale_type_stretch">Estirado</string>
-    <string name="scale_type_fit_width">Ajustar a anchura</string>
+    <string name="scale_type_fit_width">Ajustar ancho</string>
     <string name="scale_type_fit_height">Ajustar a altura</string>
     <string name="scale_type_original_size">Tamaño original</string>
     <string name="scale_type_smart_fit">Ajuste inteligente</string>
@@ -115,7 +115,7 @@
     <string name="rotation_force_landscape">Forzar apaisado</string>
     <!-- Downloads section -->
     <string name="pref_download_directory">Ubicación de descargas</string>
-    <string name="pref_download_only_over_wifi">Descargar solo a través de Wi-Fi</string>
+    <string name="pref_download_only_over_wifi">Descargar sólo a través de Wi-Fi</string>
     <string name="pref_remove_after_marked_as_read">Eliminar cuando esta marcado como leído</string>
     <string name="pref_remove_after_read">Eliminar después de leer</string>
     <string name="custom_dir">Directorio personalizado</string>
@@ -130,7 +130,7 @@
     <string name="pref_clear_cookies">Borrar cookies</string>
     <string name="cookies_cleared">Cookies borradas</string>
     <string name="pref_clear_database">Borrar redundancia de la base de datos</string>
-    <string name="pref_clear_database_summary">Borrar la historia de mangas que no están en la biblioteca guardadas</string>
+    <string name="pref_clear_database_summary">Borrar el historial de mangas que no están guardados en la biblioteca</string>
     <string name="clear_database_confirmation">¿Lo confirma\? Se perderán los capítulos leídos y el progreso de los mangas que no estén en la biblioteca</string>
     <string name="clear_database_completed">Entradas eliminadas</string>
     <!-- About section -->
@@ -216,7 +216,7 @@
     <string name="notification_new_chapters">Nuevos capítulos encontrados</string>
     <string name="notification_first_add_to_library">Añada el manga a la biblioteca antes de hacer esto</string>
     <string name="notification_not_connected_to_ac_title">Sincronización cancelada</string>
-    <string name="notification_not_connected_to_ac_body">El dispositivo no está cargando</string>
+    <string name="notification_not_connected_to_ac_body">El dispositivo no se está cargando</string>
     <string name="notification_no_connection_title">Sincronización cancelada</string>
     <string name="notification_no_connection_body">Conexión no disponible</string>
     <!-- File Picker Titles -->
@@ -285,14 +285,14 @@
     <string name="default_category">Categoría predeterminada</string>
     <string name="default_category_summary">Siempre preguntar</string>
     <string name="pref_crop_borders">Recortar bordes</string>
-    <string name="pref_custom_color_filter">Utilizar filtro de color personalizado</string>
+    <string name="pref_custom_color_filter">Filtro de color personalizado</string>
     <string name="pref_read_with_volume_keys_inverted">Invertir teclas de volumen</string>
     <string name="color_filter_r_value">R</string>
     <string name="color_filter_g_value">G</string>
     <string name="color_filter_b_value">B</string>
     <string name="color_filter_a_value">A</string>
     <string name="disabled">Deshabilitado</string>
-    <string name="last_read_chapter">Ultimo capitulo leído</string>
+    <string name="last_read_chapter">Último capítulo leído</string>
     <string name="second_to_last">Penúltimo capítulo</string>
     <string name="third_to_last">Antepenúltimo capítulo</string>
     <string name="fourth_to_last">Cuarto al último capítulo</string>
@@ -307,7 +307,6 @@
     <string name="pref_backup_service_category">Copias de seguridad automáticas</string>
     <string name="pref_backup_interval">Frecuencia de respaldo</string>
     <string name="pref_backup_slots">Máximas copias de seguridad</string>
-    <string name="source_not_found">Fuente no encontrada</string>
     <string name="backup_created">Copia de seguridad creada</string>
     <string name="restore_completed">Restauración completada</string>
     <string name="backup_restore_content">Restaurar utiliza la fuente para obtener datos, es posible que se apliquen los costos de la operadora. 
@@ -350,10 +349,9 @@
     <string name="other_source">Otros</string>
     <string name="action_global_search_hint">Búsqueda global…</string>
     <string name="latest">Recientes</string>
-    <string name="browse">Busqueda</string>
+    <string name="browse">Explorar</string>
     <string name="channel_common">Común</string>
     <string name="channel_library">Biblioteca</string>
-    <string name="channel_downloader">Descargador</string>
     <string name="information_empty_category">No hay categorías. Pulse el botón «+» para crear una y organizar su biblioteca.</string>
     <string name="label_migration">Migrar</string>
     <string name="label_extensions">Extensiones</string>
@@ -380,10 +378,10 @@
     <string name="transition_no_previous">No hay capítulo anterior</string>
     <string name="migrate">Migrar</string>
     <string name="copy">Copiar</string>
-    <string name="untrusted_extension_message">Esta extensión fue firmada por una fuente no certificada y no fue activada.
-\n
-\nUna extencion maliciosa puede leer cualquier credencial de inicio guardada en Tachiyomi o ejecutar código arbitrario. 
-\n
+    <string name="untrusted_extension_message">Esta extensión fue firmada por una fuente no certificada y no fue activada. 
+\n 
+\nUna extensión maliciosa puede leer cualquier credencial de inicio guardada en Tachiyomi o ejecutar código arbitrario. 
+\n 
 \nConfiando en este certificado aceptas estos riesgos.</string>
     <string name="double_tap_anim_speed_0">Sin animación</string>
     <string name="manga_info_full_title_label">Título</string>
@@ -436,7 +434,7 @@
     <string name="logout_success">Has cerrado sesión</string>
     <string name="currently_reading">Leyendo actualmente</string>
     <string name="paused">En pausa</string>
-    <string name="logout_title">Cerrar sesión de %1$s\?</string>
+    <string name="logout_title">¿Cerrar sesión de %1$s\?</string>
     <string name="want_to_read">Quiero leer</string>
     <string name="label_more">Más</string>
     <string name="action_sort_latest_chapter">Capítulo más reciente</string>
@@ -467,7 +465,7 @@
     <string name="information_webview_outdated">Actualice la aplicación WebView para mejor compatibilidad</string>
     <string name="channel_new_chapters">Capítulos actualizados</string>
     <string name="unlock_app">Desbloquear Tachiyomi</string>
-    <string name="secure_screen_summary">Ocultar el contenido de la aplicación al cambiar de aplicación y al bloquear las capturas de pantalla</string>
+    <string name="secure_screen_summary">Ocultar contenido de la aplicación al cambiar de aplicación y bloquear capturas de pantalla</string>
     <string name="pref_category_display">Monitor</string>
     <plurals name="notification_chapters_generic">
         <item quantity="one">1 nuevo capítulo</item>
@@ -480,7 +478,7 @@
         <item quantity="one">Capítulos %1$s y 1 más</item>
         <item quantity="other">Capítulos %1$s y %2$d más</item>
     </plurals>
-    <string name="hide_notification_content">Ocultar contenido de la notificacion</string>
+    <string name="hide_notification_content">Ocultar contenido de la notificación</string>
     <string name="notification_check_updates">Buscando nuevos capítulos</string>
     <string name="pref_disable_battery_optimization">Desactivar optimización de la batería</string>
     <string name="email">Correo electrónico</string>
@@ -492,7 +490,6 @@
         <item quantity="other">Para %d títulos</item>
     </plurals>
     <string name="notices">Nota de versiones recientes</string>
-    <string name="changelog">Registro de cambios</string>
     <string name="pref_theme_light">Tema claro</string>
     <string name="theme_light_default">Predeterminado</string>
     <string name="theme_light_blue">Azul y blanco</string>
@@ -538,20 +535,17 @@
     <string name="confirm_exit">Pulse Atrás de nuevo para salir</string>
     <string name="label_downloaded_only">Descargados solo</string>
     <string name="recent_manga_time">Caps. %1$s-%2$s</string>
-    <string name="channel_backup_restore">Copia de seguridad y restauración</string>
     <string name="restoring_backup_canceled">Se canceló la restauración</string>
     <string name="restoring_backup_error">Falló de la restauración de la copia de seguridad</string>
     <string name="restore_in_progress">La restauración ya está en curso</string>
     <string name="creating_backup_error">Falló de copia de seguridad</string>
     <string name="backup_in_progress">La copia de seguridad ya está en curso</string>
-    <string name="restore_duration">%02d min, %02d sec</string>
+    <string name="restore_duration">%02d min, %02d seg</string>
     <string name="error_invalid_date_supplied">Fecha indicada invalida</string>
     <string name="track_finished_reading_date">Fecha de finalizacion de lectura</string>
     <string name="track_started_reading_date">Fecha de inicio de lectura</string>
     <string name="last_used_source">Ultímo usado</string>
     <string name="check_for_updates">Comprobar las actualizaciones</string>
-    <string name="channel_backup_restore_complete">Terminado</string>
-    <string name="channel_backup_restore_progress">Progreso</string>
     <string name="local_source_help_guide">Instruccion local de fuente</string>
     <plurals name="download_queue_summary">
         <item quantity="one">Queda 1</item>
@@ -579,7 +573,7 @@
         <item quantity="one">1 actualización fallida</item>
         <item quantity="other">%1$d actualizacónes fallidas</item>
     </plurals>
-    <string name="unofficial_extension_message">Esta extensión no es de la lista oficial de extensiónes de Tachiyomi.</string>
+    <string name="unofficial_extension_message">Esta extensión no es de la lista oficial de extensiones de Tachiyomi.</string>
     <string name="ext_unofficial">No oficial</string>
     <string name="label_data">Datos</string>
     <string name="backup_restore_missing_sources">Fuentes que faltan:</string>
@@ -621,4 +615,24 @@
     <string name="tapping_inverted_none">Ninguno</string>
     <string name="pref_read_with_tapping_inverted">Tapping invertido</string>
     <string name="unknown_author">Autor desconocido</string>
+    <string name="updated_version">Actualizado a v%1$s</string>
+    <string name="whats_new">Qué hay de nuevo</string>
+    <string name="action_download_unread">Descargar los capítulos no leídos</string>
+    <string name="download_insufficient_space">No se pudieron descargar capítulos debido a poco espacio en disco</string>
+    <string name="action_global_search_query">Buscar \"%1$s\" a nivel mundial</string>
+    <string name="pref_category_reading_mode">Modo de lectura</string>
+    <string name="pref_category_locale">Localización</string>
+    <string name="pref_category_theme">Tema</string>
+    <string name="action_sort_date_added">Fecha de añadido</string>
+    <plurals name="num_trackers">
+        <item quantity="one">1 rastreador</item>
+        <item quantity="other">%d rastreadores</item>
+    </plurals>
+    <string name="no_pinned_sources">Usted no tiene fuentes anclados</string>
+    <string name="download_notifier_download_finish">Descarga completada</string>
+    <string name="group_backup_restore">Respaldar y restaurar</string>
+    <string name="group_downloader">Descargas</string>
+    <string name="channel_complete">Completo</string>
+    <string name="channel_progress">Progreso</string>
+    <string name="channel_errors">Errores</string>
 </resources>

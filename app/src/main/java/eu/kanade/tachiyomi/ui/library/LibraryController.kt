@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
 import androidx.appcompat.widget.SearchView
 import androidx.core.graphics.drawable.DrawableCompat
+import androidx.core.view.isVisible
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
 import com.google.android.material.tabs.TabLayout
@@ -36,11 +37,9 @@ import eu.kanade.tachiyomi.ui.main.offsetAppbarHeight
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.toast
-import eu.kanade.tachiyomi.util.view.gone
-import eu.kanade.tachiyomi.util.view.visible
 import kotlinx.android.synthetic.main.main_activity.tabs
-import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.drop
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.view.clicks
@@ -73,7 +72,7 @@ class LibraryController(
     /**
      * Library search query.
      */
-    private var query: String? = ""
+    private var query: String = ""
 
     /**
      * Currently selected mangas.
@@ -130,7 +129,7 @@ class LibraryController(
         retainViewMode = RetainViewMode.RETAIN_DETACH
     }
 
-    private var title: String? = null
+    private var currentTitle: String? = null
         set(value) {
             if (field != value) {
                 field = value
@@ -139,15 +138,15 @@ class LibraryController(
         }
 
     override fun getTitle(): String? {
-        return title ?: resources?.getString(R.string.label_library)
+        return currentTitle ?: resources?.getString(R.string.label_library)
     }
 
     private fun updateTitle() {
         if (preferences.categoryTabs().get()) {
-            title = resources?.getString(R.string.label_library)
+            currentTitle = resources?.getString(R.string.label_library)
         } else {
             adapter?.categories?.get(binding.libraryPager.currentItem)?.let {
-                title = it.name
+                currentTitle = it.name
             }
         }
     }
@@ -195,7 +194,7 @@ class LibraryController(
         }
 
         if (preferences.downloadedOnly().get()) {
-            binding.downloadedOnly.visible()
+            binding.downloadedOnly.isVisible = true
         }
 
         binding.btnGlobalSearch.clicks()
@@ -368,45 +367,47 @@ class LibraryController(
         searchView.maxWidth = Int.MAX_VALUE
         searchItem.fixExpand(onExpand = { invalidateMenuOnExpand() })
 
-        if (!query.isNullOrEmpty()) {
+        if (query.isNotEmpty()) {
             searchItem.expandActionView()
             searchView.setQuery(query, true)
             searchView.clearFocus()
 
-            // If we re-enter the controller with a prior search still active
-            view?.post {
-                performSearch()
-            }
-        }
+            performSearch()
 
-        searchView.queryTextChanges()
-            .distinctUntilChanged()
-            .onEach {
-                query = it.toString()
-                performSearch()
-            }
-            .launchIn(scope)
+            // Workaround for weird behavior where searchview gets empty text change despite
+            // query being set already
+            searchView.postDelayed({ initSearchHandler(searchView) }, 500)
+        } else {
+            initSearchHandler(searchView)
+        }
 
         // Mutate the filter icon because it needs to be tinted and the resource is shared.
         menu.findItem(R.id.action_filter).icon.mutate()
     }
 
-    fun search(query: String?) {
-        // Delay to let contents load first for searches from manga info
-        view?.post {
-            this.query = query
-            performSearch()
-        }
+    fun search(query: String) {
+        this.query = query
+    }
+
+    private fun initSearchHandler(searchView: SearchView) {
+        searchView.queryTextChanges()
+            // Ignore events if this controller isn't at the top to avoid query being reset
+            .filter { router.backstack.lastOrNull()?.controller() == this }
+            .onEach {
+                query = it.toString()
+                performSearch()
+            }
+            .launchIn(scope)
     }
 
     private fun performSearch() {
         searchRelay.call(query)
-        if (!query.isNullOrEmpty()) {
-            binding.btnGlobalSearch.visible()
+        if (query.isNotEmpty()) {
+            binding.btnGlobalSearch.isVisible = true
             binding.btnGlobalSearch.text =
                 resources?.getString(R.string.action_global_search_query, query)
         } else {
-            binding.btnGlobalSearch.gone()
+            binding.btnGlobalSearch.isVisible = false
         }
     }
 

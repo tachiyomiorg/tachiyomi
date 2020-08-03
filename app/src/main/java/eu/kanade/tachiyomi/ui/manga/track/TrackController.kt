@@ -1,11 +1,11 @@
 package eu.kanade.tachiyomi.ui.manga.track
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.LinearLayoutManager
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Manga
@@ -120,7 +120,7 @@ class TrackController :
         val track = adapter?.getItem(position)?.track ?: return
 
         if (track.tracking_url.isNotBlank()) {
-            activity?.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(track.tracking_url)))
+            activity?.startActivity(Intent(Intent.ACTION_VIEW, track.tracking_url.toUri()))
         }
     }
 

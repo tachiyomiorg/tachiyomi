@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -13,8 +14,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.ConcatAdapter
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bluelinelabs.conductor.ControllerChangeHandler
@@ -47,7 +48,7 @@ import eu.kanade.tachiyomi.ui.library.ChangeMangaCoverDialog
 import eu.kanade.tachiyomi.ui.library.LibraryController
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.main.offsetAppbarHeight
-import eu.kanade.tachiyomi.ui.manga.chapter.ChapterHolder
+import eu.kanade.tachiyomi.ui.manga.chapter.ChapterDividerItemDecoration
 import eu.kanade.tachiyomi.ui.manga.chapter.ChapterItem
 import eu.kanade.tachiyomi.ui.manga.chapter.ChaptersAdapter
 import eu.kanade.tachiyomi.ui.manga.chapter.ChaptersSettingsSheet
@@ -61,16 +62,18 @@ import eu.kanade.tachiyomi.ui.recent.history.HistoryController
 import eu.kanade.tachiyomi.ui.recent.updates.UpdatesController
 import eu.kanade.tachiyomi.ui.webview.WebViewActivity
 import eu.kanade.tachiyomi.util.hasCustomCover
+import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.getCoordinates
-import eu.kanade.tachiyomi.util.view.gone
 import eu.kanade.tachiyomi.util.view.shrinkOnScroll
 import eu.kanade.tachiyomi.util.view.snack
-import eu.kanade.tachiyomi.util.view.visible
+import kotlin.math.min
 import kotlinx.android.synthetic.main.main_activity.root_coordinator
+import kotlinx.android.synthetic.main.main_activity.toolbar
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.view.clicks
+import reactivecircus.flowbinding.recyclerview.scrollEvents
 import reactivecircus.flowbinding.swiperefreshlayout.refreshes
 import timber.log.Timber
 import uy.kohesive.injekt.Injekt
@@ -118,6 +121,9 @@ class MangaController :
     private val preferences: PreferencesHelper by injectLazy()
     private val coverCache: CoverCache by injectLazy()
 
+    private val toolbarTextColor by lazy { view!!.context.getResourceColor(R.attr.colorOnPrimary) }
+    private var toolbarTextAlpha = 255
+
     private var mangaInfoAdapter: MangaInfoHeaderAdapter? = null
     private var chaptersHeaderAdapter: MangaChaptersHeaderAdapter? = null
     private var chaptersAdapter: ChaptersAdapter? = null
@@ -149,10 +155,6 @@ class MangaController :
 
     init {
         setHasOptionsMenu(true)
-    }
-
-    override fun getTitle(): String? {
-        return manga?.title
     }
 
     override fun onChangeEnded(handler: ControllerChangeHandler, type: ControllerChangeType) {
@@ -187,7 +189,7 @@ class MangaController :
 
         binding.recycler.adapter = ConcatAdapter(mangaInfoAdapter, chaptersHeaderAdapter, chaptersAdapter)
         binding.recycler.layoutManager = LinearLayoutManager(view.context)
-        binding.recycler.addItemDecoration(DividerItemDecoration(view.context, DividerItemDecoration.VERTICAL))
+        binding.recycler.addItemDecoration(ChapterDividerItemDecoration(view.context))
         binding.recycler.setHasFixedSize(true)
         chaptersAdapter?.fastScroller = binding.fastScroller
 
@@ -198,7 +200,17 @@ class MangaController :
             if (!fromSource && preferences.jumpToChapters()) {
                 (binding.recycler.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(1, 0)
             }
+
+            // Delayed in case we need to jump to chapters
+            binding.recycler.post {
+                updateToolbarTitleAlpha()
+                setTitle(manga?.title)
+            }
         }
+
+        binding.recycler.scrollEvents()
+            .onEach { updateToolbarTitleAlpha() }
+            .launchIn(scope)
 
         binding.swipeRefresh.refreshes()
             .onEach {
@@ -217,6 +229,32 @@ class MangaController :
         }
 
         updateFilterIconState()
+    }
+
+    private fun updateToolbarTitleAlpha(alpha: Int? = null) {
+        val calculatedAlpha = when {
+            // Specific alpha provided
+            alpha != null -> alpha
+
+            // First item isn't in view, full opacity
+            ((binding.recycler.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition() > 0) -> 255
+
+            // Based on scroll amount when first item is in view
+            else -> min(binding.recycler.computeVerticalScrollOffset(), 255)
+        }
+
+        if (calculatedAlpha != toolbarTextAlpha) {
+            toolbarTextAlpha = calculatedAlpha
+
+            activity?.toolbar?.setTitleTextColor(
+                Color.argb(
+                    toolbarTextAlpha,
+                    Color.red(toolbarTextColor),
+                    Color.green(toolbarTextColor),
+                    Color.blue(toolbarTextColor)
+                )
+            )
+        }
     }
 
     private fun updateFilterIconState() {
@@ -268,6 +306,7 @@ class MangaController :
         chaptersHeaderAdapter = null
         chaptersAdapter = null
         settingsSheet = null
+        updateToolbarTitleAlpha(255)
         super.onDestroyView(view)
     }
 
@@ -275,7 +314,7 @@ class MangaController :
         if (view == null) return
 
         // Check if animation view is visible
-        if (binding.revealView.visibility == View.VISIBLE) {
+        if (binding.revealView.isVisible) {
             // Show the unreveal effect
             actionFab?.getCoordinates()?.let { coordinates ->
                 binding.revealView.hideRevealEffect(coordinates.x, coordinates.y, 1920)
@@ -645,11 +684,10 @@ class MangaController :
     }
 
     fun onChapterStatusChange(download: Download) {
-        getHolder(download.chapter)?.notifyStatus(download.status)
-    }
-
-    private fun getHolder(chapter: Chapter): ChapterHolder? {
-        return binding.recycler.findViewHolderForItemId(chapter.id!!) as? ChapterHolder
+        chaptersAdapter?.currentItems?.find { it.id == download.chapter.id }?.let {
+            chaptersAdapter?.updateItem(it)
+            chaptersAdapter?.notifyDataSetChanged()
+        }
     }
 
     fun openChapter(chapter: Chapter, hasAnimation: Boolean = false) {
@@ -763,7 +801,7 @@ class MangaController :
 
             // Hide FAB to avoid interfering with the bottom action toolbar
             // actionFab?.hide()
-            actionFab?.gone()
+            actionFab?.isVisible = false
         }
         return false
     }
@@ -798,7 +836,7 @@ class MangaController :
         // TODO: there seems to be a bug in MaterialComponents where the [ExtendedFloatingActionButton]
         // fails to show up properly
         // actionFab?.show()
-        actionFab?.visible()
+        actionFab?.isVisible = true
     }
 
     override fun onDetach(view: View) {

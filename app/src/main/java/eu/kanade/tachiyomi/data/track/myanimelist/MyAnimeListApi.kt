@@ -1,6 +1,6 @@
 package eu.kanade.tachiyomi.data.track.myanimelist
 
-import android.net.Uri
+import androidx.core.net.toUri
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
@@ -260,13 +260,13 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
 
         private fun mangaUrl(remoteId: Int) = baseMangaUrl + remoteId
 
-        private fun loginUrl() = Uri.parse(baseUrl).buildUpon()
+        private fun loginUrl() = baseUrl.toUri().buildUpon()
             .appendPath("login.php")
             .toString()
 
         private fun searchUrl(query: String): String {
             val col = "c[]"
-            return Uri.parse(baseUrl).buildUpon()
+            return baseUrl.toUri().buildUpon()
                 .appendPath("manga.php")
                 .appendQueryParameter("q", query)
                 .appendQueryParameter(col, "a")
@@ -278,17 +278,17 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
                 .toString()
         }
 
-        private fun exportListUrl() = Uri.parse(baseUrl).buildUpon()
+        private fun exportListUrl() = baseUrl.toUri().buildUpon()
             .appendPath("panel.php")
             .appendQueryParameter("go", "export")
             .toString()
 
-        private fun editPageUrl(mediaId: Int) = Uri.parse(baseModifyListUrl).buildUpon()
+        private fun editPageUrl(mediaId: Int) = baseModifyListUrl.toUri().buildUpon()
             .appendPath(mediaId.toString())
             .appendPath("edit")
             .toString()
 
-        private fun addUrl() = Uri.parse(baseModifyListUrl).buildUpon()
+        private fun addUrl() = baseModifyListUrl.toUri().buildUpon()
             .appendPath("add.json")
             .toString()
 

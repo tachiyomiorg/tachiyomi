@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.data.download
 
 import android.content.Context
+import androidx.core.content.edit
 import com.google.gson.Gson
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Manga
@@ -42,9 +43,9 @@ class DownloadStore(
      * @param downloads the list of downloads to add.
      */
     fun addAll(downloads: List<Download>) {
-        val editor = preferences.edit()
-        downloads.forEach { editor.putString(getKey(it), serialize(it)) }
-        editor.apply()
+        preferences.edit {
+            downloads.forEach { putString(getKey(it), serialize(it)) }
+        }
     }
 
     /**
@@ -53,14 +54,18 @@ class DownloadStore(
      * @param download the download to remove.
      */
     fun remove(download: Download) {
-        preferences.edit().remove(getKey(download)).apply()
+        preferences.edit {
+            remove(getKey(download))
+        }
     }
 
     /**
      * Removes all the downloads from the store.
      */
     fun clear() {
-        preferences.edit().clear().apply()
+        preferences.edit {
+            clear()
+        }
     }
 
     /**

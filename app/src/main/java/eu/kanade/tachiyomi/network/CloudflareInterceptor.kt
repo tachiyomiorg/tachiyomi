@@ -13,6 +13,8 @@ import androidx.webkit.WebViewClientCompat
 import androidx.webkit.WebViewFeature
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.source.online.HttpSource
+import eu.kanade.tachiyomi.util.lang.launchUI
+import eu.kanade.tachiyomi.util.system.WebViewUtil
 import eu.kanade.tachiyomi.util.system.isOutdated
 import eu.kanade.tachiyomi.util.system.setDefaultSettings
 import eu.kanade.tachiyomi.util.system.toast
@@ -43,9 +45,17 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
 
     @Synchronized
     override fun intercept(chain: Interceptor.Chain): Response {
+        val originalRequest = chain.request()
+
+        if (!WebViewUtil.supportsWebView(context)) {
+            launchUI {
+                context.toast(R.string.information_webview_required, Toast.LENGTH_LONG)
+            }
+            return chain.proceed(originalRequest)
+        }
+
         initWebView
 
-        val originalRequest = chain.request()
         val response = chain.proceed(originalRequest)
 
         // Check if Cloudflare anti-bot is on

@@ -3,13 +3,15 @@ package eu.kanade.tachiyomi.ui.main
 import android.app.Activity
 import android.app.SearchManager
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.net.toUri
+import androidx.core.view.isVisible
+import androidx.core.view.updateLayoutParams
 import com.bluelinelabs.conductor.Conductor
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
@@ -43,9 +45,7 @@ import eu.kanade.tachiyomi.ui.recent.updates.UpdatesController
 import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.lang.launchUI
 import eu.kanade.tachiyomi.util.system.toast
-import eu.kanade.tachiyomi.util.view.gone
 import eu.kanade.tachiyomi.util.view.snack
-import eu.kanade.tachiyomi.util.view.visible
 import java.util.Date
 import java.util.concurrent.TimeUnit
 import kotlinx.android.synthetic.main.main_activity.appbar
@@ -349,11 +349,11 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
         }
 
         if (from is FabController) {
-            binding.rootFab.gone()
+            binding.rootFab.isVisible = false
             from.cleanupFab(binding.rootFab)
         }
         if (to is FabController) {
-            binding.rootFab.visible()
+            binding.rootFab.isVisible = true
             to.configureFab(binding.rootFab)
         }
 
@@ -389,21 +389,21 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
         ) {
             setAction(R.string.whats_new) {
                 val url = "https://github.com/inorichi/tachiyomi/releases/tag/v${BuildConfig.VERSION_NAME}"
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                val intent = Intent(Intent.ACTION_VIEW, url.toUri())
                 startActivity(intent)
             }
 
             // Ensure the snackbar sits above the bottom nav
-            val layoutParams = view.layoutParams as CoordinatorLayout.LayoutParams
-            layoutParams.anchorId = binding.bottomNav.id
-            layoutParams.anchorGravity = Gravity.TOP
-            layoutParams.gravity = Gravity.TOP
-            view.layoutParams = layoutParams
+            view.updateLayoutParams<CoordinatorLayout.LayoutParams> {
+                anchorId = binding.bottomNav.id
+                anchorGravity = Gravity.TOP
+                gravity = Gravity.TOP
+            }
         }
 
         // Manually handle dismiss delay since Snackbar.LENGTH_LONG is a too short
         launchIO {
-            delay(5000)
+            delay(10000)
             snack.dismiss()
         }
     }

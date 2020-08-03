@@ -27,7 +27,6 @@ abstract class ViewerConfig(preferences: PreferencesHelper) {
     var volumeKeysEnabled = false
     var volumeKeysInverted = false
     var trueColor = false
-    var imageCropBorders = false
     var alwaysShowChapterTransition = true
 
     init {
@@ -54,9 +53,6 @@ abstract class ViewerConfig(preferences: PreferencesHelper) {
 
         preferences.trueColor()
             .register({ trueColor = it }, { imagePropertyChangedListener?.invoke() })
-
-        preferences.cropBorders()
-            .register({ imageCropBorders = it }, { imagePropertyChangedListener?.invoke() })
 
         preferences.alwaysShowChapterTransition()
             .register({ alwaysShowChapterTransition = it })

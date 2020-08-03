@@ -5,6 +5,8 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.WebtoonLayoutManager
 import eu.kanade.tachiyomi.data.preference.PreferenceValues.TappingInvertMode
@@ -13,8 +15,6 @@ import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.model.ViewerChapters
 import eu.kanade.tachiyomi.ui.reader.viewer.BaseViewer
-import eu.kanade.tachiyomi.util.view.gone
-import eu.kanade.tachiyomi.util.view.visible
 import kotlin.math.max
 import kotlin.math.min
 import rx.subscriptions.CompositeSubscription
@@ -66,7 +66,7 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
     val subscriptions = CompositeSubscription()
 
     init {
-        recycler.gone() // Don't let the recycler layout yet
+        recycler.isVisible = false // Don't let the recycler layout yet
         recycler.layoutParams = ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT)
         recycler.itemAnimator = null
         recycler.layoutManager = layoutManager
@@ -211,11 +211,11 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
         val forceTransition = config.alwaysShowChapterTransition || currentPage is ChapterTransition
         adapter.setChapters(chapters, forceTransition)
 
-        if (recycler.visibility == View.GONE) {
+        if (recycler.isGone) {
             Timber.d("Recycler first layout")
             val pages = chapters.currChapter.pages ?: return
             moveToPage(pages[chapters.currChapter.requestedPage])
-            recycler.visible()
+            recycler.isVisible = true
         }
     }
 

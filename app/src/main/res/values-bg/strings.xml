@@ -326,7 +326,6 @@
     <string name="pref_backup_service_category">Автоматично запазване</string>
     <string name="pref_backup_interval">Честота на запазване</string>
     <string name="pref_backup_slots">Максимален брой копия</string>
-    <string name="source_not_found">Не беше намерен източник</string>
     <string name="backup_created">Резервно копие създадено</string>
     <string name="restore_completed">Възстановяването завършено</string>
     <string name="backup_choice">Какво искате да запазите?</string>
@@ -353,7 +352,6 @@
     <string name="browse">Търсене</string>
     <string name="channel_common">Общи</string>
     <string name="channel_library">Библиотека</string>
-    <string name="channel_downloader">Изтегляния</string>
     <string name="action_display_download_badge">Изтегляне на значки</string>
     <string name="local_source_badge">Локална</string>
     <string name="information_empty_category">Нямате категории. Натиснете плюса, за да създадете такава и да организирате библиотеката си.</string>
@@ -441,9 +439,6 @@
     <string name="paused">На пауза</string>
     <string name="want_to_read">Искам да чета</string>
     <string name="secure_screen">Сигурност</string>
-    <string name="channel_backup_restore_complete">Приключено</string>
-    <string name="channel_backup_restore">Съхрани и възстанови</string>
-    <string name="channel_backup_restore_progress">Прогрес</string>
     <string name="channel_ext_updates">Ъпдейти на разширенията</string>
     <string name="channel_new_chapters">Нови глави</string>
     <string name="information_webview_outdated">Моля, обновете WebView за по-добра съвместимост</string>
@@ -494,7 +489,6 @@
     <string name="check_for_updates">Провери за ъпдейт</string>
     <string name="licenses">Лицензи за отворен код</string>
     <string name="notices">Известия за предвартилени билдове</string>
-    <string name="changelog">Промени</string>
     <string name="website">Уебсайт</string>
     <string name="battery_optimization_disabled">Оптимизацията на батерията е изключена</string>
     <string name="pref_disable_battery_optimization_summary">Помага при фонови обновявания на библиотеката и резервни копия</string>

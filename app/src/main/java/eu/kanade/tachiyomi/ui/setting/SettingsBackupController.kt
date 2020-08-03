@@ -8,6 +8,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import androidx.core.net.toUri
 import androidx.preference.PreferenceScreen
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItemsMultiChoice
@@ -126,7 +127,7 @@ class SettingsBackupController : SettingsController() {
 
                 preferences.backupsDirectory().asFlow()
                     .onEach { path ->
-                        val dir = UniFile.fromUri(context, Uri.parse(path))
+                        val dir = UniFile.fromUri(context, path.toUri())
                         summary = dir.filePath + "/automatic"
                     }
                     .launchIn(scope)

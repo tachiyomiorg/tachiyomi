@@ -195,7 +195,7 @@
     <string name="update_check_notification_file_download">Stáhnout aktualizaci</string>
     <string name="update_check_notification_download_complete">Stahování dokončeno</string>
     <string name="update_check_notification_download_error">Chyba při stahování</string>
-    <string name="update_check_notification_update_available">Dostupná aktualizace</string>
+    <string name="update_check_notification_update_available">Dostupná aktualizace!</string>
     <string name="information_no_recent">Žádné nedávné kapitoly</string>
     <string name="information_no_recent_manga">Žádné nedávno čtené mangy</string>
     <string name="download_notifier_title_error">Chyba</string>
@@ -217,7 +217,7 @@
     <string name="action_update">Aktualizovat</string>
     <string name="action_update_library">Aktualizovat knihovnu</string>
     <string name="action_rename_category">Přejmenovat kategorii</string>
-    <string name="action_move_category">Přesunout do kategorií</string>
+    <string name="action_move_category">Vybrat kategorie</string>
     <string name="action_stop">Stop</string>
     <string name="action_pause">Pauza</string>
     <string name="action_retry">Opakovat</string>
@@ -277,7 +277,6 @@
     <string name="pref_backup_directory">Adresář zálohy</string>
     <string name="pref_backup_service_category">Služba</string>
     <string name="pref_backup_interval">Frekvence zálohy</string>
-    <string name="source_not_found">Zdroj nebyl nalezen</string>
     <string name="backup_created">Záloha vytvořena</string>
     <string name="restore_completed">Obnova kompletní</string>
     <string name="backup_choice">Co chcete zálohovat\?</string>
@@ -311,7 +310,8 @@
     <string name="browse">Procházet</string>
     <string name="unknown">Neznámý</string>
     <string name="licensed">Licencovaný</string>
-    <string name="copied_to_clipboard">%1$s zkopírováno do schránky</string>
+    <string name="copied_to_clipboard">Zkopírováno do schránky:
+\n%1$s</string>
     <string name="chapter_queued">Ve frontě</string>
     <string name="fetch_chapters_error">Chyba při načítání kapitol.</string>
     <string name="sorting_mode">Režim seřazení</string>
@@ -349,6 +349,7 @@
     <string name="pref_restore_backup_summ">Obnovit knihovnu ze záložního souboru</string>
     <string name="pref_backup_slots">Maximální automatické zálohování</string>
     <string name="backup_restore_content">Obnovení používá zdroje pro načítání dat, mohou být účtovány poplatky od operátora (v případě použití datového připojení).
+\n
 \nTaké se před obnovením ujistěte, že jste správně přihlášeni do zdrojů, které to vyžadují.</string>
     <string name="choices_reset">Volby dialogu se vynulují</string>
     <string name="login_title">Přihlásit se do %1$s</string>
@@ -372,7 +373,6 @@
     <string name="information_empty_category">Nemáte žádné kategorie. Klikněte na tlačítko plus a vytvořte nějakou pro organizaci vaší knihovny.</string>
     <string name="download_notifier_downloader_title">Stahovač</string>
     <string name="channel_common">Běžný</string>
-    <string name="channel_downloader">Stahovač</string>
     <string name="label_help">Nápověda</string>
     <string name="action_open_in_web_view">Otevřít ve web view</string>
     <string name="pref_read_with_long_tap">Nabídka při dlouhém podržení</string>
@@ -402,4 +402,5 @@
     <string name="logout_title">Odhlásit z %1$s\?</string>
     <string name="logout_success">Byl jste odhlášen</string>
     <string name="paused">Pozastaveno</string>
+    <string name="label_more">Více</string>
 </resources>

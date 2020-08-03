@@ -2,7 +2,6 @@ package eu.kanade.tachiyomi.ui.reader.viewer.pager
 
 import android.annotation.SuppressLint
 import android.graphics.Typeface
-import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.StyleSpan
 import android.view.Gravity
@@ -14,6 +13,7 @@ import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.text.buildSpannedString
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
@@ -90,7 +90,7 @@ class PagerTransitionHolder(
         val nextChapter = transition.to
 
         textView.text = if (nextChapter != null) {
-            SpannableStringBuilder().apply {
+            buildSpannedString {
                 append(context.getString(R.string.transition_finished))
                 setSpan(StyleSpan(Typeface.BOLD), 0, length, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
                 append("\n${transition.from.chapter.name}\n\n")
@@ -115,7 +115,7 @@ class PagerTransitionHolder(
         val prevChapter = transition.to
 
         textView.text = if (prevChapter != null) {
-            SpannableStringBuilder().apply {
+            buildSpannedString {
                 append(context.getString(R.string.transition_current))
                 setSpan(StyleSpan(Typeface.BOLD), 0, length, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
                 append("\n${transition.from.chapter.name}\n\n")

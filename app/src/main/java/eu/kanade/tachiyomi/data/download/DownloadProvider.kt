@@ -1,7 +1,7 @@
 package eu.kanade.tachiyomi.data.download
 
 import android.content.Context
-import android.net.Uri
+import androidx.core.net.toUri
 import com.hippo.unifile.UniFile
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Chapter
@@ -32,14 +32,14 @@ class DownloadProvider(private val context: Context) {
      * The root directory for downloads.
      */
     private var downloadsDir = preferences.downloadsDirectory().get().let {
-        val dir = UniFile.fromUri(context, Uri.parse(it))
+        val dir = UniFile.fromUri(context, it.toUri())
         DiskUtil.createNoMediaFile(dir, context)
         dir
     }
 
     init {
         preferences.downloadsDirectory().asFlow()
-            .onEach { downloadsDir = UniFile.fromUri(context, Uri.parse(it)) }
+            .onEach { downloadsDir = UniFile.fromUri(context, it.toUri()) }
             .launchIn(scope)
     }
 
@@ -88,7 +88,9 @@ class DownloadProvider(private val context: Context) {
      */
     fun findChapterDir(chapter: Chapter, manga: Manga, source: Source): UniFile? {
         val mangaDir = findMangaDir(manga, source)
-        return mangaDir?.findFile(getChapterDirName(chapter))
+        return getValidChapterDirNames(chapter).asSequence()
+            .mapNotNull { mangaDir?.findFile(it) }
+            .firstOrNull()
     }
 
     /**
@@ -100,7 +102,11 @@ class DownloadProvider(private val context: Context) {
      */
     fun findChapterDirs(chapters: List<Chapter>, manga: Manga, source: Source): List<UniFile> {
         val mangaDir = findMangaDir(manga, source) ?: return emptyList()
-        return chapters.mapNotNull { mangaDir.findFile(getChapterDirName(it)) }
+        return chapters.mapNotNull { chapter ->
+            getValidChapterDirNames(chapter).asSequence()
+                .mapNotNull { mangaDir.findFile(it) }
+                .firstOrNull()
+        }
     }
 
     /**
@@ -127,6 +133,25 @@ class DownloadProvider(private val context: Context) {
      * @param chapter the chapter to query.
      */
     fun getChapterDirName(chapter: Chapter): String {
-        return DiskUtil.buildValidFilename(chapter.name)
+        return DiskUtil.buildValidFilename(
+            when {
+                chapter.scanlator != null -> "${chapter.scanlator}_${chapter.name}"
+                else -> chapter.name
+            }
+        )
+    }
+
+    /**
+     * Returns valid downloaded chapter directory names.
+     *
+     * @param chapter the chapter to query.
+     */
+    fun getValidChapterDirNames(chapter: Chapter): List<String> {
+        return listOf(
+            getChapterDirName(chapter),
+
+            // Legacy chapter directory name used in v0.9.2 and before
+            DiskUtil.buildValidFilename(chapter.name)
+        )
     }
 }

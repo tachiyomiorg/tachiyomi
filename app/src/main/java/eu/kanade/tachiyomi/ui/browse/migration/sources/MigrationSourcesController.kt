@@ -8,8 +8,8 @@ import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.databinding.MigrationSourcesControllerBinding
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
+import eu.kanade.tachiyomi.ui.browse.SourceDividerItemDecoration
 import eu.kanade.tachiyomi.ui.browse.migration.manga.MigrationMangaController
-import eu.kanade.tachiyomi.ui.browse.source.SourceDividerItemDecoration
 
 class MigrationSourcesController :
     NucleusController<MigrationSourcesControllerBinding, MigrationSourcesPresenter>(),

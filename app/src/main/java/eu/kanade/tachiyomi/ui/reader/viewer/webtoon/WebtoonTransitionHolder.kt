@@ -1,7 +1,6 @@
 package eu.kanade.tachiyomi.ui.reader.viewer.webtoon
 
 import android.graphics.Typeface
-import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.StyleSpan
 import android.view.Gravity
@@ -12,11 +11,13 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.text.buildSpannedString
+import androidx.core.view.isNotEmpty
+import androidx.core.view.isVisible
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
 import eu.kanade.tachiyomi.util.system.dpToPx
-import eu.kanade.tachiyomi.util.view.visibleIf
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 
@@ -92,7 +93,7 @@ class WebtoonTransitionHolder(
         val nextChapter = transition.to
 
         textView.text = if (nextChapter != null) {
-            SpannableStringBuilder().apply {
+            buildSpannedString {
                 append(context.getString(R.string.transition_finished))
                 setSpan(StyleSpan(Typeface.BOLD), 0, length, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
                 append("\n${transition.from.chapter.name}\n\n")
@@ -117,7 +118,7 @@ class WebtoonTransitionHolder(
         val prevChapter = transition.to
 
         textView.text = if (prevChapter != null) {
-            SpannableStringBuilder().apply {
+            buildSpannedString {
                 append(context.getString(R.string.transition_current))
                 setSpan(StyleSpan(Typeface.BOLD), 0, length, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
                 append("\n${transition.from.chapter.name}\n\n")
@@ -153,7 +154,7 @@ class WebtoonTransitionHolder(
                     is ReaderChapter.State.Error -> setError(state.error, transition)
                     is ReaderChapter.State.Loaded -> setLoaded()
                 }
-                pagesContainer.visibleIf { pagesContainer.childCount > 0 }
+                pagesContainer.isVisible = pagesContainer.isNotEmpty()
             }
 
         addSubscription(statusSubscription)

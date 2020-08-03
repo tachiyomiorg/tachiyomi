@@ -1,11 +1,10 @@
 package eu.kanade.tachiyomi.ui.browse.source.globalsearch
 
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
-import eu.kanade.tachiyomi.util.view.gone
-import eu.kanade.tachiyomi.util.view.visible
 import kotlinx.android.synthetic.main.global_search_controller_card.no_results_found
 import kotlinx.android.synthetic.main.global_search_controller_card.progress
 import kotlinx.android.synthetic.main.global_search_controller_card.recycler
@@ -58,15 +57,15 @@ class GlobalSearchHolder(view: View, val adapter: GlobalSearchAdapter) :
 
         when {
             results == null -> {
-                progress.visible()
+                progress.isVisible = true
                 showResultsHolder()
             }
             results.isEmpty() -> {
-                progress.gone()
+                progress.isVisible = false
                 showNoResults()
             }
             else -> {
-                progress.gone()
+                progress.isVisible = false
                 showResultsHolder()
             }
         }
@@ -103,12 +102,12 @@ class GlobalSearchHolder(view: View, val adapter: GlobalSearchAdapter) :
     }
 
     private fun showResultsHolder() {
-        no_results_found.gone()
-        source_card.visible()
+        no_results_found.isVisible = false
+        source_card.isVisible = true
     }
 
     private fun showNoResults() {
-        no_results_found.visible()
-        source_card.gone()
+        no_results_found.isVisible = true
+        source_card.isVisible = false
     }
 }

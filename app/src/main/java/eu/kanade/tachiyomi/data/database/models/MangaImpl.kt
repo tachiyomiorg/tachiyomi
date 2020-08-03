@@ -41,11 +41,11 @@ open class MangaImpl : Manga {
         if (other == null || javaClass != other.javaClass) return false
 
         val manga = other as Manga
-
-        return url == manga.url
+        if (url != manga.url) return false
+        return id == manga.id
     }
 
     override fun hashCode(): Int {
-        return url.hashCode()
+        return url.hashCode() + id.hashCode()
     }
 }

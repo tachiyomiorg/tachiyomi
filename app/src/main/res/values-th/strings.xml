@@ -205,7 +205,6 @@
     <string name="pref_backup_service_category">บริการ</string>
     <string name="pref_backup_interval">ความถี่ในการสำรองข้อมูล</string>
     <string name="pref_backup_slots">จำนวนการสำรองข้อมูลอัตโนมัติสูงสุด</string>
-    <string name="source_not_found">ไม่พบแหล่งที่มา</string>
     <string name="backup_created">การสำรองข้อมูลที่สร้างขึ้น</string>
     <string name="restore_completed">การคืนค่าเสร็จสมบูรณ์</string>
     <string name="backup_choice">คุณต้องการสำรองข้อมูลอะไร\?</string>
@@ -252,7 +251,7 @@
     <string name="action_global_search_hint">ค้นหาทั้งหมด…</string>
     <string name="latest">ล่าสุด</string>
     <string name="browse">เปิดดู</string>
-    <string name="manga_not_in_db">มังงะนี้ถูกลบออกจากฐานข้อมูล!</string>
+    <string name="manga_not_in_db">มังงะนี้ถูกลบออกจากฐานข้อมูล</string>
     <string name="manga_detail_tab">ข้อมูล</string>
     <string name="description">คำอธิบาย</string>
     <string name="ongoing">ยังดำเนินการอยู่</string>
@@ -384,7 +383,6 @@
     <string name="download_notifier_download_paused">ดาวน์โหลดหยุดชั่วคราว</string>
     <string name="channel_common">ร่วมกัน</string>
     <string name="channel_library">ห้องสมุด</string>
-    <string name="channel_downloader">การดาวน์โหลด</string>
     <string name="filter_mode_multiply">หลากหลาย</string>
     <string name="filter_mode_darken">มืดมิด</string>
     <string name="migration_selection_prompt">เลือกแหล่งที่มา</string>

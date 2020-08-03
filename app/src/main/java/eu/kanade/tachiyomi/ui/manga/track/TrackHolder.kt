@@ -1,11 +1,10 @@
 package eu.kanade.tachiyomi.ui.manga.track
 
 import android.annotation.SuppressLint
+import androidx.core.view.isVisible
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.databinding.TrackItemBinding
 import eu.kanade.tachiyomi.ui.base.holder.BaseViewHolder
-import eu.kanade.tachiyomi.util.view.gone
-import eu.kanade.tachiyomi.util.view.visibleIf
 import java.text.DateFormat
 import uy.kohesive.injekt.injectLazy
 
@@ -40,10 +39,10 @@ class TrackHolder(private val binding: TrackItemBinding, adapter: TrackAdapter) 
         binding.trackLogo.setImageResource(item.service.getLogo())
         binding.logoContainer.setBackgroundColor(item.service.getLogoColor())
 
-        binding.trackSet.visibleIf { track == null }
-        binding.trackTitle.visibleIf { track != null }
+        binding.trackSet.isVisible = track == null
+        binding.trackTitle.isVisible = track != null
 
-        binding.trackDetails.visibleIf { track != null }
+        binding.trackDetails.isVisible = track != null
         if (track != null) {
             binding.trackTitle.text = track.title
             binding.trackChapters.text = "${track.last_chapter_read}/" +
@@ -57,10 +56,10 @@ class TrackHolder(private val binding: TrackItemBinding, adapter: TrackAdapter) 
                 binding.trackFinishDate.text =
                     if (track.finished_reading_date != 0L) dateFormat.format(track.finished_reading_date) else "-"
             } else {
-                binding.bottomDivider.gone()
-                binding.vertDivider3.gone()
-                binding.trackStartDate.gone()
-                binding.trackFinishDate.gone()
+                binding.bottomDivider.isVisible = false
+                binding.vertDivider3.isVisible = false
+                binding.trackStartDate.isVisible = false
+                binding.trackFinishDate.isVisible = false
             }
         }
     }

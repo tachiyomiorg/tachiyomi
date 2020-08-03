@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/holder"
     style="@style/Theme.Widget.CardView.Item"
     android:padding="0dp">
@@ -19,7 +20,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="h,3:2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@mipmap/ic_launcher" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -38,13 +40,15 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:textAppearance="@style/TextAppearance.Medium" />
+                android:textAppearance="@style/TextAppearance.Medium"
+                tools:text="Title" />
 
             <TextView
                 android:id="@+id/manga_subtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp" />
+                android:layout_marginTop="4dp"
+                tools:text="Subtitle" />
 
         </LinearLayout>
 
@@ -59,7 +63,7 @@
             app:layout_constraintEnd_toStartOf="@+id/resume"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_delete_24dp"
-            app:tint="?attr/colorOnPrimary" />
+            app:tint="?android:attr/textColorPrimary" />
 
         <ImageButton
             android:id="@+id/resume"
@@ -73,7 +77,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_play_arrow_24dp"
-            app:tint="?attr/colorOnPrimary" />
+            app:tint="?android:attr/textColorPrimary" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

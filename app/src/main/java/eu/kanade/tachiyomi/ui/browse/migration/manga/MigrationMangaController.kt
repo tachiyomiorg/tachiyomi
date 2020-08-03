@@ -10,8 +10,8 @@ import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.databinding.MigrationMangaControllerBinding
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
+import eu.kanade.tachiyomi.ui.browse.SourceDividerItemDecoration
 import eu.kanade.tachiyomi.ui.browse.migration.search.SearchController
-import eu.kanade.tachiyomi.ui.browse.source.SourceDividerItemDecoration
 
 class MigrationMangaController :
     NucleusController<MigrationMangaControllerBinding, MigrationMangaPresenter>,

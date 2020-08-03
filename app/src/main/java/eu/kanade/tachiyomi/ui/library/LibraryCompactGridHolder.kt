@@ -1,12 +1,12 @@
 package eu.kanade.tachiyomi.ui.library
 
 import android.view.View
+import androidx.core.view.isVisible
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.util.isLocal
-import eu.kanade.tachiyomi.util.view.visibleIf
 import kotlinx.android.synthetic.main.source_compact_grid_item.badges
 import kotlinx.android.synthetic.main.source_compact_grid_item.card
 import kotlinx.android.synthetic.main.source_compact_grid_item.download_text
@@ -44,16 +44,16 @@ open class LibraryCompactGridHolder(
 
         // Update the unread count and its visibility.
         with(unread_text) {
-            visibleIf { item.unreadCount > 0 }
+            isVisible = item.unreadCount > 0
             text = item.unreadCount.toString()
         }
         // Update the download count and its visibility.
         with(download_text) {
-            visibleIf { item.downloadCount > 0 }
+            isVisible = item.downloadCount > 0
             text = item.downloadCount.toString()
         }
         // set local visibility if its local manga
-        local_text.visibleIf { item.manga.isLocal() }
+        local_text.isVisible = item.manga.isLocal()
 
         // For rounded corners
         card.clipToOutline = true

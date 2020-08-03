@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -40,11 +41,9 @@ import eu.kanade.tachiyomi.ui.webview.WebViewActivity
 import eu.kanade.tachiyomi.util.system.connectivityManager
 import eu.kanade.tachiyomi.util.system.openInBrowser
 import eu.kanade.tachiyomi.util.system.toast
-import eu.kanade.tachiyomi.util.view.gone
 import eu.kanade.tachiyomi.util.view.inflate
 import eu.kanade.tachiyomi.util.view.shrinkOnScroll
 import eu.kanade.tachiyomi.util.view.snack
-import eu.kanade.tachiyomi.util.view.visible
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
 import eu.kanade.tachiyomi.widget.EmptyView
 import kotlinx.coroutines.Job
@@ -141,7 +140,7 @@ open class BrowseSourceController(bundle: Bundle) :
         adapter = FlexibleAdapter(null, this)
         setupRecycler(view)
 
-        binding.progress.visible()
+        binding.progress.isVisible = true
     }
 
     open fun initFilterSheet() {
@@ -167,19 +166,19 @@ open class BrowseSourceController(bundle: Bundle) :
         filterSheet?.setFilters(presenter.filterItems)
 
         // TODO: [ExtendedFloatingActionButton] hide/show methods don't work properly
-        filterSheet?.setOnShowListener { actionFab?.gone() }
-        filterSheet?.setOnDismissListener { actionFab?.visible() }
+        filterSheet?.setOnShowListener { actionFab?.isVisible = false }
+        filterSheet?.setOnDismissListener { actionFab?.isVisible = true }
 
         actionFab?.setOnClickListener { filterSheet?.show() }
 
-        actionFab?.visible()
+        actionFab?.isVisible = true
     }
 
     override fun configureFab(fab: ExtendedFloatingActionButton) {
         actionFab = fab
 
         // Controlled by initFilterSheet()
-        fab.gone()
+        fab.isVisible = false
 
         fab.setText(R.string.action_filter)
         fab.setIconResource(R.drawable.ic_filter_list_24dp)
@@ -515,7 +514,7 @@ open class BrowseSourceController(bundle: Bundle) :
      */
     private fun showProgressBar() {
         binding.emptyView.hide()
-        binding.progress.visible()
+        binding.progress.isVisible = true
         snack?.dismiss()
         snack = null
     }
@@ -525,7 +524,7 @@ open class BrowseSourceController(bundle: Bundle) :
      */
     private fun hideProgressBar() {
         binding.emptyView.hide()
-        binding.progress.gone()
+        binding.progress.isVisible = false
     }
 
     /**

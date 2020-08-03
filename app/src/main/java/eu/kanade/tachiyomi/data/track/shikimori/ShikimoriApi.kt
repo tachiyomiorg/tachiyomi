@@ -1,6 +1,6 @@
 package eu.kanade.tachiyomi.data.track.shikimori
 
-import android.net.Uri
+import androidx.core.net.toUri
 import com.github.salomonbrys.kotson.array
 import com.github.salomonbrys.kotson.jsonObject
 import com.github.salomonbrys.kotson.nullString
@@ -54,7 +54,7 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
     fun updateLibManga(track: Track, user_id: String): Observable<Track> = addLibManga(track, user_id)
 
     fun search(search: String): Observable<List<TrackSearch>> {
-        val url = Uri.parse("$apiUrl/mangas").buildUpon()
+        val url = "$apiUrl/mangas".toUri().buildUpon()
             .appendQueryParameter("order", "popularity")
             .appendQueryParameter("search", search)
             .appendQueryParameter("limit", "20")
@@ -102,7 +102,7 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
     }
 
     fun findLibManga(track: Track, user_id: String): Observable<Track?> {
-        val url = Uri.parse("$apiUrl/v2/user_rates").buildUpon()
+        val url = "$apiUrl/v2/user_rates".toUri().buildUpon()
             .appendQueryParameter("user_id", user_id)
             .appendQueryParameter("target_id", track.media_id.toString())
             .appendQueryParameter("target_type", "Manga")
@@ -112,7 +112,7 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
             .get()
             .build()
 
-        val urlMangas = Uri.parse("$apiUrl/mangas").buildUpon()
+        val urlMangas = "$apiUrl/mangas".toUri().buildUpon()
             .appendPath(track.media_id.toString())
             .build()
         val requestMangas = Request.Builder()
@@ -187,7 +187,7 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
         }
 
         fun authUrl() =
-            Uri.parse(loginUrl).buildUpon()
+            loginUrl.toUri().buildUpon()
                 .appendQueryParameter("client_id", clientId)
                 .appendQueryParameter("redirect_uri", redirectUrl)
                 .appendQueryParameter("response_type", "code")

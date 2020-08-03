@@ -26,6 +26,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.EmptyPreferenceDataStore
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.preference.minusAssign
+import eu.kanade.tachiyomi.data.preference.plusAssign
 import eu.kanade.tachiyomi.databinding.ExtensionDetailControllerBinding
 import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.source.CatalogueSource
@@ -197,15 +199,11 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
     }
 
     private fun toggleSource(source: Source, enable: Boolean) {
-        val current = preferences.disabledSources().get()
-
-        preferences.disabledSources().set(
-            if (enable) {
-                current - source.id.toString()
-            } else {
-                current + source.id.toString()
-            }
-        )
+        if (enable) {
+            preferences.disabledSources() -= source.id.toString()
+        } else {
+            preferences.disabledSources() += source.id.toString()
+        }
     }
 
     private fun openInSettings() {

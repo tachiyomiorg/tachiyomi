@@ -119,7 +119,7 @@
     <string name="update_check_notification_download_complete">Pobieranie ukończone</string>
     <string name="update_check_notification_download_error">Błąd pobierania</string>
     <string name="update_check_notification_update_available">Dostępna nowa wersja!</string>
-    <string name="information_empty_library">Twoja biblioteka jest pusta. Aby dodać nowe pozycje, przejdź do zakładki Przeglądaj</string>
+    <string name="information_empty_library">Twoja biblioteka jest pusta. Aby dodać nowe pozycje, przejdź do zakładki Przeglądaj.</string>
     <string name="download_notifier_title_error">Błąd</string>
     <string name="download_notifier_unknown_error">Podczas pobierania rozdziału wystąpił nieoczekiwany błąd</string>
     <string name="download_notifier_download_paused">Pobieranie wstrzymane</string>
@@ -245,7 +245,6 @@
     <string name="pref_backup_interval">Częstotliwość tworzenia kopii</string>
     <string name="pref_backup_slots">Maks. ilość kopii automatycznych</string>
     <string name="pref_backup_service_category">Automatyczna kopia zapasowa</string>
-    <string name="source_not_found">Nie znaleziono źródła</string>
     <string name="backup_choice">Co zawrzeć w kopii zapasowej?</string>
     <string name="restoring_backup">Przywracanie kopii zapasowej</string>
     <string name="creating_backup">Tworzenie kopii zapasowej</string>
@@ -319,7 +318,6 @@
     <string name="channel_common">Zwykły</string>
     <string name="channel_library">Biblioteka</string>
     <string name="latest">Ostatnie</string>
-    <string name="channel_downloader">Menedżer pobierania</string>
     <string name="action_display_download_badge">Plakietki pobrań</string>
     <string name="local_source_badge">Lokalna</string>
     <string name="information_empty_category">Nie masz żadnych kategorii. Dotknij plusa, aby je utworzyć i zorganizować swoją bibliotekę.</string>
@@ -468,7 +466,6 @@
     <string name="label_downloaded_only">Tylko pobrane</string>
     <string name="check_for_updates">Sprawdź aktualizacje</string>
     <string name="licenses">Licencje open source</string>
-    <string name="changelog">Lista zmian</string>
     <string name="website">Strona WWW</string>
     <string name="battery_optimization_disabled">Oszczędzanie baterii jest już wyłączone</string>
     <string name="pref_disable_battery_optimization_summary">Pomaga z aktualizacjami biblioteki i backupami w tle</string>
@@ -499,9 +496,6 @@
     <string name="pinned_sources">Przypięte</string>
     <string name="last_used_source">Ostatnio używane</string>
     <string name="tracking_info">Jednorazowa synchronizacja postępu czytania. Aby ustawić automatyczne śledzenie, odwiedź zakładkę \"Śledzenie\" w wybranych mangach.</string>
-    <string name="channel_backup_restore_complete">Ukończono</string>
-    <string name="channel_backup_restore_progress">Postęp</string>
-    <string name="channel_backup_restore">Kopia zapasowa i przywracanie</string>
     <string name="channel_ext_updates">Aktualizacje rozszerzeń</string>
     <string name="information_webview_required">Widok w przeglądarce jest wymagany dla Tachiyomi</string>
     <plurals name="update_check_notification_ext_updates">
@@ -596,4 +590,26 @@
     <string name="pref_dns_over_https" translatable="false">DNS przez HTTPS (Cloudflare)</string>
     <string name="label_network">Sieć</string>
     <string name="pref_jump_to_chapters">Przeskocz do rozdziałów przy otwarciu</string>
+    <string name="pref_category_locale">Język</string>
+    <string name="tapping_inverted_both">Obydwa</string>
+    <string name="tapping_inverted_vertical">Wertykalnie</string>
+    <string name="tapping_inverted_horizontal">Horyzontalnie</string>
+    <string name="tapping_inverted_none">Brak</string>
+    <string name="pref_read_with_tapping_inverted">Odwróć kliknięcia</string>
+    <string name="download_insufficient_space">Nie udało się pobrać rozdziałów ponieważ brakuje ci miejsca</string>
+    <plurals name="manga_num_chapters">
+        <item quantity="one">1 rozdział</item>
+        <item quantity="few">%1$s rozdziały</item>
+        <item quantity="many">%1$s rozdziałów</item>
+        <item quantity="other">%1$s rozdziałów</item>
+    </plurals>
+    <string name="unknown_status">Nieznany status</string>
+    <string name="unknown_author">Nieznany autor</string>
+    <string name="action_global_search_query">Szukaj \"%1$s\" globalnie</string>
+    <string name="updated_version">Zaktualizowano do v%1$s</string>
+    <string name="whats_new">Co nowego</string>
+    <string name="pref_category_reading_mode">Tryb czytania</string>
+    <string name="pref_category_theme">Motyw</string>
+    <string name="action_download_unread">Pobierz nieprzeczytane rozdziały</string>
+    <string name="action_sort_date_added">Dane dodane</string>
 </resources>

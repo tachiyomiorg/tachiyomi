@@ -138,8 +138,8 @@
     <string name="pref_double_tap_anim_speed">Viteza de animație pentru apăsare dublă</string>
     <string name="pref_show_page_number">Arată numărul paginii</string>
     <string name="pref_crop_borders">Taie marginile</string>
-    <string name="pref_custom_brightness">Folosește luminozitate personalizată</string>
-    <string name="pref_custom_color_filter">Folosește filtru color personalizat</string>
+    <string name="pref_custom_brightness">Luminozitate personalizată</string>
+    <string name="pref_custom_color_filter">Filtru color personalizat</string>
     <string name="pref_keep_screen_on">Păstrează ecranul pornit</string>
     <string name="pref_reader_navigation">Navigare</string>
     <string name="pref_read_with_volume_keys">Butoane de volum</string>
@@ -203,7 +203,6 @@
     <string name="pref_backup_service_category">Copii de rezervă create automat</string>
     <string name="pref_backup_interval">Frecventă de creere a copiilor de rezervă</string>
     <string name="pref_backup_slots">Numărul maxim de copii de rezervă</string>
-    <string name="source_not_found">Sursa nu a fost găsită</string>
     <string name="backup_created">Copie de rezervă creată</string>
     <string name="restore_completed">Restaurare completă</string>
     <string name="backup_restore_content">Restabilirea utilizează surse pentru a prelua date, se pot aplica costuri de operator.
@@ -337,7 +336,7 @@
     <string name="migration_dialog_what_to_include">Selectați ce date să fie incluse</string>
     <string name="migrate">Migrează</string>
     <string name="copy">Copiază</string>
-    <string name="download_queue_error">Nu s-au putut descărca capitolele. Puteți încerca din nou în secțiunea descărcări</string>
+    <string name="download_queue_error">Nu s-au putut descărca capitole. Puteți încerca din nou în secțiunea descărcări</string>
     <string name="notification_update_progress">Progresul actualizării: %1$d/%2$d</string>
     <string name="notification_new_chapters">Capitole noi găsite</string>
     <string name="notification_cover_update_failed">Actualizarea copertei a eșuat</string>
@@ -374,7 +373,6 @@
     <string name="download_notifier_download_paused">Descărcare întreruptă</string>
     <string name="channel_common">General</string>
     <string name="channel_library">Bibliotecă</string>
-    <string name="channel_downloader">Client de descărcare</string>
     <string name="action_open_in_web_view">Deschide în vizualizare web</string>
     <string name="pref_true_color">Culoare 32-bit</string>
     <string name="pref_color_filter_mode">Mod filtru de culoare</string>
@@ -464,7 +462,6 @@
         <item quantity="other">Pentru %d titluri</item>
     </plurals>
     <string name="notices">Previzualizați notificările de construire</string>
-    <string name="changelog">Jurnal de modificări</string>
     <string name="pref_theme_light">Temă deschisă</string>
     <string name="theme_light_default">Implicit</string>
     <string name="theme_light_blue">Albastru deschis</string>
@@ -501,7 +498,6 @@
     <string name="add_tracking">Urmărește</string>
     <string name="in_library">În bibliotecă</string>
     <string name="add_to_library">Adaugă în bibliotecă</string>
-    <string name="channel_backup_restore">Creează copie de rezervă și restaurează</string>
     <string name="information_webview_required">WebView este necesar pentru Tachiyomi</string>
     <string name="recent_manga_time">Ch. %1$s - %2$s</string>
     <string name="manga_info_collapse">Mai puțin</string>
@@ -531,8 +527,6 @@
         <item quantity="other">%1$s rămase</item>
     </plurals>
     <string name="pref_search_pinned_sources_only">Includeți numai surse fixate</string>
-    <string name="channel_backup_restore_complete">Terminat</string>
-    <string name="channel_backup_restore_progress">Progresul</string>
     <string name="viewer">Mod de citire</string>
     <string name="pref_category_for_this_series">Pentru această serie</string>
     <string name="gray_background">Gri</string>
@@ -600,4 +594,13 @@
     <string name="unknown_status">Stare necunoscută</string>
     <string name="unknown_author">Autor necunoscut</string>
     <string name="pref_jump_to_chapters">Sari la capitole deschise</string>
+    <string name="updated_version">Actualizat la v%1$s</string>
+    <string name="whats_new">Ce este nou</string>
+    <string name="action_download_unread">Descărcați capitolele necitite</string>
+    <string name="download_insufficient_space">Imposibil de descărcat capitole din cauza spațiului-disc redus</string>
+    <string name="action_global_search_query">Căutați „%1$s” la nivel global</string>
+    <string name="pref_category_reading_mode">Mod citire</string>
+    <string name="pref_category_locale">Local</string>
+    <string name="pref_category_theme">Temă</string>
+    <string name="action_sort_date_added">Data adăugării</string>
 </resources>

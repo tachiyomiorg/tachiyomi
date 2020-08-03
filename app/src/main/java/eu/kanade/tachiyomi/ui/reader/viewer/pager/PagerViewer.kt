@@ -5,6 +5,8 @@ import android.view.KeyEvent
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup.LayoutParams
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.viewpager.widget.ViewPager
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferenceValues.TappingInvertMode
@@ -13,8 +15,6 @@ import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.model.ViewerChapters
 import eu.kanade.tachiyomi.ui.reader.viewer.BaseViewer
-import eu.kanade.tachiyomi.util.view.gone
-import eu.kanade.tachiyomi.util.view.visible
 import timber.log.Timber
 
 /**
@@ -66,7 +66,7 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
         }
 
     init {
-        pager.gone() // Don't layout the pager yet
+        pager.isVisible = false // Don't layout the pager yet
         pager.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
         pager.offscreenPageLimit = 1
         pager.id = R.id.reader_pager
@@ -225,11 +225,11 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
         adapter.setChapters(chapters, forceTransition)
 
         // Layout the pager once a chapter is being set
-        if (pager.visibility == View.GONE) {
+        if (pager.isGone) {
             Timber.d("Pager first layout")
             val pages = chapters.currChapter.pages ?: return
             moveToPage(pages[chapters.currChapter.requestedPage])
-            pager.visible()
+            pager.isVisible = true
         }
     }
 

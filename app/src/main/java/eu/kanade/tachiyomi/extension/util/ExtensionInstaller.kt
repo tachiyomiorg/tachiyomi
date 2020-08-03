@@ -7,6 +7,8 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.Uri
 import android.os.Environment
+import androidx.core.content.getSystemService
+import androidx.core.net.toUri
 import com.jakewharton.rxrelay.PublishRelay
 import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.extension.model.InstallStep
@@ -63,7 +65,7 @@ internal class ExtensionInstaller(private val context: Context) {
         // Register the receiver after removing (and unregistering) the previous download
         downloadReceiver.register()
 
-        val downloadUri = Uri.parse(url)
+        val downloadUri = url.toUri()
         val request = DownloadManager.Request(downloadUri)
             .setTitle(extension.name)
             .setMimeType(APK_MIME)
@@ -138,8 +140,7 @@ internal class ExtensionInstaller(private val context: Context) {
      * @param pkgName The package name of the extension to uninstall
      */
     fun uninstallApk(pkgName: String) {
-        val packageUri = Uri.parse("package:$pkgName")
-        val intent = Intent(Intent.ACTION_UNINSTALL_PACKAGE, packageUri)
+        val intent = Intent(Intent.ACTION_UNINSTALL_PACKAGE, "package:$pkgName".toUri())
             .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
         context.startActivity(intent)

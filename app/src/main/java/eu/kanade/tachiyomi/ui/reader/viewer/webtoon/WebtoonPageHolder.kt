@@ -13,6 +13,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.view.isVisible
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
@@ -31,8 +32,6 @@ import eu.kanade.tachiyomi.ui.reader.viewer.ReaderProgressBar
 import eu.kanade.tachiyomi.ui.webview.WebViewActivity
 import eu.kanade.tachiyomi.util.system.ImageUtil
 import eu.kanade.tachiyomi.util.system.dpToPx
-import eu.kanade.tachiyomi.util.view.gone
-import eu.kanade.tachiyomi.util.view.visible
 import java.io.InputStream
 import java.util.concurrent.TimeUnit
 import rx.Observable
@@ -145,9 +144,9 @@ class WebtoonPageHolder(
 
         removeDecodeErrorLayout()
         subsamplingImageView?.recycle()
-        subsamplingImageView?.gone()
+        subsamplingImageView?.isVisible = false
         imageView?.let { GlideApp.with(frame).clear(it) }
-        imageView?.gone()
+        imageView?.isVisible = false
         progressBar.setProgress(0)
     }
 
@@ -238,9 +237,9 @@ class WebtoonPageHolder(
      * Called when the page is queued.
      */
     private fun setQueued() {
-        progressContainer.visible()
-        progressBar.visible()
-        retryContainer?.gone()
+        progressContainer.isVisible = true
+        progressBar.isVisible = true
+        retryContainer?.isVisible = false
         removeDecodeErrorLayout()
     }
 
@@ -248,9 +247,9 @@ class WebtoonPageHolder(
      * Called when the page is loading.
      */
     private fun setLoading() {
-        progressContainer.visible()
-        progressBar.visible()
-        retryContainer?.gone()
+        progressContainer.isVisible = true
+        progressBar.isVisible = true
+        retryContainer?.isVisible = false
         removeDecodeErrorLayout()
     }
 
@@ -258,9 +257,9 @@ class WebtoonPageHolder(
      * Called when the page is downloading
      */
     private fun setDownloading() {
-        progressContainer.visible()
-        progressBar.visible()
-        retryContainer?.gone()
+        progressContainer.isVisible = true
+        progressBar.isVisible = true
+        retryContainer?.isVisible = false
         removeDecodeErrorLayout()
     }
 
@@ -268,10 +267,10 @@ class WebtoonPageHolder(
      * Called when the page is ready.
      */
     private fun setImage() {
-        progressContainer.visible()
-        progressBar.visible()
+        progressContainer.isVisible = true
+        progressBar.isVisible = true
         progressBar.completeAndFadeOut()
-        retryContainer?.gone()
+        retryContainer?.isVisible = false
         removeDecodeErrorLayout()
 
         unsubscribeReadImageHeader()
@@ -290,11 +289,11 @@ class WebtoonPageHolder(
             .doOnNext { isAnimated ->
                 if (!isAnimated) {
                     val subsamplingView = initSubsamplingImageView()
-                    subsamplingView.visible()
+                    subsamplingView.isVisible = true
                     subsamplingView.setImage(ImageSource.inputStream(openStream!!))
                 } else {
                     val imageView = initImageView()
-                    imageView.visible()
+                    imageView.isVisible = true
                     imageView.setImage(openStream!!)
                 }
             }
@@ -310,23 +309,23 @@ class WebtoonPageHolder(
      * Called when the page has an error.
      */
     private fun setError() {
-        progressContainer.gone()
-        initRetryLayout().visible()
+        progressContainer.isVisible = false
+        initRetryLayout().isVisible = true
     }
 
     /**
      * Called when the image is decoded and going to be displayed.
      */
     private fun onImageDecoded() {
-        progressContainer.gone()
+        progressContainer.isVisible = false
     }
 
     /**
      * Called when the image fails to decode.
      */
     private fun onImageDecodeError() {
-        progressContainer.gone()
-        initDecodeErrorLayout().visible()
+        progressContainer.isVisible = false
+        initDecodeErrorLayout().isVisible = true
     }
 
     /**

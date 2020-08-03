@@ -173,6 +173,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
+        android:id="@+id/manga_summary_section"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackground"
@@ -213,7 +214,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/manga_summary"
+            android:id="@+id/manga_summary_text"
             style="@style/TextAppearance.Regular.Body1.Secondary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

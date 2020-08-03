@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.widget.CompoundButton
 import android.widget.Spinner
 import androidx.annotation.ArrayRes
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
+import androidx.core.view.plusAssign
 import androidx.core.widget.NestedScrollView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.tfcporciuncula.flow.Preference
@@ -13,9 +16,6 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.databinding.ReaderSettingsSheetBinding
 import eu.kanade.tachiyomi.ui.reader.viewer.pager.PagerViewer
 import eu.kanade.tachiyomi.ui.reader.viewer.webtoon.WebtoonViewer
-import eu.kanade.tachiyomi.util.view.gone
-import eu.kanade.tachiyomi.util.view.invisible
-import eu.kanade.tachiyomi.util.view.visible
 import eu.kanade.tachiyomi.widget.IgnoreFirstSpinnerListener
 import uy.kohesive.injekt.injectLazy
 
@@ -74,32 +74,38 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
         binding.backgroundColor.bindToIntPreference(preferences.readerTheme(), R.array.reader_themes_values)
         binding.showPageNumber.bindToPreference(preferences.showPageNumber())
         binding.fullscreen.bindToPreference(preferences.fullscreen())
-        binding.cutoutShort.bindToPreference(preferences.cutoutShort())
         binding.keepscreen.bindToPreference(preferences.keepScreenOn())
         binding.longTap.bindToPreference(preferences.readWithLongTap())
         binding.alwaysShowChapterTransition.bindToPreference(preferences.alwaysShowChapterTransition())
-        binding.cropBorders.bindToPreference(preferences.cropBorders())
         binding.pageTransitions.bindToPreference(preferences.pageTransitions())
+
+        // If the preference is explicitly disabled, that means the setting was configured since there is a cutout
+        if (activity.hasCutout || !preferences.cutoutShort().get()) {
+            binding.cutoutShort.isVisible = true
+            binding.cutoutShort.bindToPreference(preferences.cutoutShort())
+        }
     }
 
     /**
      * Init the preferences for the pager reader.
      */
     private fun initPagerPreferences() {
-        binding.webtoonPrefsGroup.invisible()
-        binding.pagerPrefsGroup.visible()
+        binding.webtoonPrefsGroup.isInvisible = true
+        binding.pagerPrefsGroup.isVisible = true
 
         binding.scaleType.bindToPreference(preferences.imageScaleType(), 1)
         binding.zoomStart.bindToPreference(preferences.zoomStart(), 1)
+        binding.cropBorders.bindToPreference(preferences.cropBorders())
     }
 
     /**
      * Init the preferences for the webtoon reader.
      */
     private fun initWebtoonPreferences() {
-        binding.pagerPrefsGroup.invisible()
-        binding.webtoonPrefsGroup.visible()
+        binding.pagerPrefsGroup.isInvisible = true
+        binding.webtoonPrefsGroup.isVisible = true
 
+        binding.cropBordersWebtoon.bindToPreference(preferences.cropBordersWebtoon())
         binding.webtoonSidePadding.bindToIntPreference(preferences.webtoonSidePadding(), R.array.webtoon_side_padding_values)
     }
 
@@ -108,7 +114,7 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
      */
     private fun initNavigationPreferences() {
         if (!preferences.readWithTapping().get()) {
-            binding.navigationPrefsGroup.gone()
+            binding.navigationPrefsGroup.isVisible = false
         }
 
         binding.tappingInverted.bindToPreference(preferences.readWithTappingInverted())

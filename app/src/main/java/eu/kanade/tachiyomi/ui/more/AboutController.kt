@@ -2,9 +2,9 @@ package eu.kanade.tachiyomi.ui.more
 
 import android.app.Dialog
 import android.content.Intent
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import androidx.core.net.toUri
 import androidx.preference.PreferenceScreen
 import com.afollestad.materialdialogs.MaterialDialog
 import com.mikepenz.aboutlibraries.LibsBuilder
@@ -75,7 +75,7 @@ class AboutController : SettingsController() {
                     "https://github.com/inorichi/tachiyomi/releases/tag/v${BuildConfig.VERSION_NAME}"
                 }
 
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                val intent = Intent(Intent.ACTION_VIEW, url.toUri())
                 startActivity(intent)
             }
         }
@@ -84,7 +84,7 @@ class AboutController : SettingsController() {
                 titleRes = R.string.notices
 
                 onClick {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/inorichi/tachiyomi/blob/dev/PREVIEW_RELEASE_NOTES.md"))
+                    val intent = Intent(Intent.ACTION_VIEW, "https://github.com/inorichi/tachiyomi/blob/dev/PREVIEW_RELEASE_NOTES.md".toUri())
                     startActivity(intent)
                 }
             }
@@ -96,7 +96,7 @@ class AboutController : SettingsController() {
                 val url = "https://tachiyomi.org"
                 summary = url
                 onClick {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    val intent = Intent(Intent.ACTION_VIEW, url.toUri())
                     startActivity(intent)
                 }
             }
@@ -105,7 +105,7 @@ class AboutController : SettingsController() {
                 val url = "https://discord.gg/tachiyomi"
                 summary = url
                 onClick {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    val intent = Intent(Intent.ACTION_VIEW, url.toUri())
                     startActivity(intent)
                 }
             }
@@ -114,7 +114,7 @@ class AboutController : SettingsController() {
                 val url = "https://github.com/inorichi/tachiyomi"
                 summary = url
                 onClick {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    val intent = Intent(Intent.ACTION_VIEW, url.toUri())
                     startActivity(intent)
                 }
             }
@@ -123,7 +123,7 @@ class AboutController : SettingsController() {
                 val url = "https://github.com/inorichi/tachiyomi-extensions"
                 summary = url
                 onClick {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    val intent = Intent(Intent.ACTION_VIEW, url.toUri())
                     startActivity(intent)
                 }
             }

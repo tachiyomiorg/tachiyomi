@@ -203,7 +203,6 @@
     <string name="pref_backup_service_category">自动备份</string>
     <string name="pref_backup_interval">备份频率</string>
     <string name="pref_backup_slots">最大备份数</string>
-    <string name="source_not_found">未找到图源</string>
     <string name="backup_created">已创建备份</string>
     <string name="restore_completed">还原完成</string>
     <string name="backup_restore_content">还原备份将会抓取图源数据，需联网。
@@ -337,7 +336,7 @@
     <string name="migration_dialog_what_to_include">选择需要迁移的数据</string>
     <string name="migrate">迁移</string>
     <string name="copy">共存</string>
-    <string name="download_queue_error">该章节下载失败，请重试</string>
+    <string name="download_queue_error">无法下载所选章节。您可以在下载部分再次尝试</string>
     <string name="notification_update_progress">更新中：%1$d/%2$d</string>
     <string name="notification_new_chapters">发现新章节</string>
     <string name="notification_cover_update_failed">封面更新失败</string>
@@ -374,7 +373,6 @@
     <string name="download_notifier_download_paused">下载已暂停</string>
     <string name="channel_common">一般</string>
     <string name="channel_library">书架</string>
-    <string name="channel_downloader">下载</string>
     <string name="pref_read_with_long_tap">长按弹出菜单</string>
     <string name="action_open_in_web_view">在 WebView 中打开</string>
     <string name="pref_true_color">32 位色彩</string>
@@ -459,7 +457,6 @@
     <string name="theme_light_default">默认</string>
     <string name="theme_light_blue">浅蓝</string>
     <string name="notices">预览版本公告</string>
-    <string name="changelog">更新日志</string>
     <string name="action_menu">菜单</string>
     <string name="action_reorganize_by">重新排序</string>
     <string name="action_newest">最新</string>
@@ -505,9 +502,6 @@
     <string name="restoring_backup_error">还原备份失败</string>
     <string name="restore_in_progress">还原已在进行</string>
     <string name="backup_in_progress">备份已在进行</string>
-    <string name="channel_backup_restore">备份与还原</string>
-    <string name="channel_backup_restore_complete">完成</string>
-    <string name="channel_backup_restore_progress">进度</string>
     <string name="recent_manga_time">第 %1$s 章 - %2$s</string>
     <string name="local_source_help_guide">本地图源指南</string>
     <string name="last_used_source">上次浏览</string>
@@ -536,14 +530,14 @@
     <string name="pref_refresh_library_covers">刷新书架漫画封面</string>
     <string name="tracking_info">单向同步以更新同步服务中的章节进度。在「同步」选项卡中为单个漫画设置同步。</string>
     <plurals name="notification_update_error">
-        <item quantity="other">%1$d 升级失败</item>
+        <item quantity="other">%1$d 本漫画更新失败</item>
     </plurals>
     <string name="unofficial_extension_message">此扩展插件的来源不是官方 Tachiyomi 扩展插件列表。</string>
     <string name="ext_unofficial">非官方</string>
     <string name="sort_by_upload_date">按照上传日期</string>
     <string name="label_data">数据</string>
     <string name="backup_restore_missing_sources">缺少图源：</string>
-    <string name="invalid_backup_file_missing_manga">备份不包含任何漫画.</string>
+    <string name="invalid_backup_file_missing_manga">备份不包含任何漫画。</string>
     <string name="invalid_backup_file_missing_data">文件丢失数据。</string>
     <string name="invalid_backup_file">无效的备份文件</string>
     <string name="tracker_not_logged_in">未登录：%1$s</string>
@@ -573,10 +567,29 @@
     <string name="pref_dns_over_https" translatable="false">DNS over HTTPS (Cloudflare)</string>
     <string name="label_network">网络</string>
     <string name="pref_jump_to_chapters">打开时跳转到阅读章节</string>
-    <string name="tapping_inverted_both">水平 +垂直</string>
-    <string name="tapping_inverted_vertical">垂直的</string>
-    <string name="tapping_inverted_horizontal">水平的</string>
+    <string name="tapping_inverted_both">水平 + 垂直</string>
+    <string name="tapping_inverted_vertical">垂直</string>
+    <string name="tapping_inverted_horizontal">水平</string>
     <string name="tapping_inverted_none">无</string>
     <string name="unknown_status">未知状态</string>
     <string name="unknown_author">未知作者</string>
+    <string name="updated_version">已更新到 v%1$s</string>
+    <string name="whats_new">更新日志</string>
+    <string name="action_download_unread">下载未读章节</string>
+    <string name="download_insufficient_space">由于磁盘空间不足，无法下载所选章节</string>
+    <string name="action_global_search_query">全局搜索\"%1$s\"</string>
+    <string name="pref_category_reading_mode">阅读模式</string>
+    <string name="pref_category_locale">语言</string>
+    <string name="pref_category_theme">主题</string>
+    <string name="action_sort_date_added">添加日期</string>
+    <plurals name="num_trackers">
+        <item quantity="other">%d 个漫画同步源</item>
+    </plurals>
+    <string name="pref_read_with_tapping_inverted">反转轻触方向</string>
+    <string name="no_pinned_sources">你没有已置顶的图源</string>
+    <string name="group_backup_restore">备份和还原</string>
+    <string name="group_downloader">下载项</string>
+    <string name="channel_complete">完成</string>
+    <string name="channel_progress">进度</string>
+    <string name="download_notifier_download_finish">下载已完成</string>
 </resources>

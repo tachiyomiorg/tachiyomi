@@ -33,7 +33,11 @@ fun View.getCoordinates() = Point((left + right) / 2, (top + bottom) / 2)
  * @param length the duration of the snack.
  * @param f a function to execute in the snack, allowing for example to define a custom action.
  */
-inline fun View.snack(message: String, length: Int = Snackbar.LENGTH_LONG, f: Snackbar.() -> Unit = {}): Snackbar {
+inline fun View.snack(
+    message: String,
+    length: Int = Snackbar.LENGTH_LONG,
+    f: Snackbar.() -> Unit = {}
+): Snackbar {
     val snack = Snackbar.make(this, message, length)
     snack.f()
     snack.show()
@@ -56,7 +60,11 @@ inline fun View.setTooltip(@StringRes stringRes: Int) {
  * @param initMenu function to execute when the menu after is inflated.
  * @param onMenuItemClick function to execute when a menu item is clicked.
  */
-fun View.popupMenu(@MenuRes menuRes: Int, initMenu: (Menu.() -> Unit)? = null, onMenuItemClick: MenuItem.() -> Boolean) {
+inline fun View.popupMenu(
+    @MenuRes menuRes: Int,
+    noinline initMenu: (Menu.() -> Unit)? = null,
+    noinline onMenuItemClick: MenuItem.() -> Boolean
+) {
     val popup = PopupMenu(context, this, Gravity.NO_GRAVITY, R.attr.actionOverflowMenuStyle, 0)
     popup.menuInflater.inflate(menuRes, popup.menu)
 
@@ -68,32 +76,12 @@ fun View.popupMenu(@MenuRes menuRes: Int, initMenu: (Menu.() -> Unit)? = null, o
     popup.show()
 }
 
-inline fun View.visible() {
-    visibility = View.VISIBLE
-}
-
-inline fun View.invisible() {
-    visibility = View.INVISIBLE
-}
-
-inline fun View.gone() {
-    visibility = View.GONE
-}
-
-inline fun View.visibleIf(block: () -> Boolean) {
-    visibility = if (block()) View.VISIBLE else View.GONE
-}
-
-inline fun View.toggle() {
-    visibleIf { visibility == View.GONE }
-}
-
 /**
  * Shrink an ExtendedFloatingActionButton when the associated RecyclerView is scrolled down.
  *
  * @param recycler [RecyclerView] that the FAB should shrink/extend in response to.
  */
-fun ExtendedFloatingActionButton.shrinkOnScroll(recycler: RecyclerView): RecyclerView.OnScrollListener {
+inline fun ExtendedFloatingActionButton.shrinkOnScroll(recycler: RecyclerView): RecyclerView.OnScrollListener {
     val listener = object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             if (dy <= 0) {
@@ -113,7 +101,10 @@ fun ExtendedFloatingActionButton.shrinkOnScroll(recycler: RecyclerView): Recycle
  * @param items List of strings that are shown as individual chips.
  * @param onClick Optional on click listener for each chip.
  */
-fun ChipGroup.setChips(items: List<String>?, onClick: (item: String) -> Unit = {}) {
+inline fun ChipGroup.setChips(
+    items: List<String>?,
+    noinline onClick: (item: String) -> Unit = {}
+) {
     removeAllViews()
 
     items?.forEach { item ->

@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.ui.library
 
 import android.view.View
+import androidx.core.view.isVisible
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -10,7 +11,6 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.util.isLocal
-import eu.kanade.tachiyomi.util.view.visibleIf
 import kotlinx.android.synthetic.main.source_list_item.badges
 import kotlinx.android.synthetic.main.source_list_item.download_text
 import kotlinx.android.synthetic.main.source_list_item.local_text
@@ -48,16 +48,16 @@ class LibraryListHolder(
 
         // Update the unread count and its visibility.
         with(unread_text) {
-            visibleIf { item.unreadCount > 0 }
+            isVisible = item.unreadCount > 0
             text = item.unreadCount.toString()
         }
         // Update the download count and its visibility.
         with(download_text) {
-            visibleIf { item.downloadCount > 0 }
+            isVisible = item.downloadCount > 0
             text = "${item.downloadCount}"
         }
         // show local text badge if local manga
-        local_text.visibleIf { item.manga.isLocal() }
+        local_text.isVisible = item.manga.isLocal()
 
         // Create thumbnail onclick to simulate long click
         thumbnail.setOnClickListener {

@@ -16,11 +16,14 @@ class TriStateSectionItem(filter: Filter.TriState) : TriStateItem(filter), ISect
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
-        return filter == (other as TriStateSectionItem).filter
+
+        other as TriStateSectionItem
+        if (head != other.head) return false
+        return filter == other.filter
     }
 
     override fun hashCode(): Int {
-        return filter.hashCode()
+        return filter.hashCode() + (head?.hashCode() ?: 0)
     }
 }
 
@@ -37,11 +40,14 @@ class TextSectionItem(filter: Filter.Text) : TextItem(filter), ISectionable<Text
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
-        return filter == (other as TextSectionItem).filter
+
+        other as TextSectionItem
+        if (head != other.head) return false
+        return filter == other.filter
     }
 
     override fun hashCode(): Int {
-        return filter.hashCode()
+        return filter.hashCode() + (head?.hashCode() ?: 0)
     }
 }
 
@@ -58,11 +64,14 @@ class CheckboxSectionItem(filter: Filter.CheckBox) : CheckboxItem(filter), ISect
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
-        return filter == (other as CheckboxSectionItem).filter
+
+        other as CheckboxSectionItem
+        if (head != other.head) return false
+        return filter == other.filter
     }
 
     override fun hashCode(): Int {
-        return filter.hashCode()
+        return filter.hashCode() + (head?.hashCode() ?: 0)
     }
 }
 
@@ -79,10 +88,13 @@ class SelectSectionItem(filter: Filter.Select<*>) : SelectItem(filter), ISection
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
-        return filter == (other as SelectSectionItem).filter
+
+        other as SelectSectionItem
+        if (head != other.head) return false
+        return filter == other.filter
     }
 
     override fun hashCode(): Int {
-        return filter.hashCode()
+        return filter.hashCode() + (head?.hashCode() ?: 0)
     }
 }

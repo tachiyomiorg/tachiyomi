@@ -7,6 +7,7 @@ import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.extension.model.InstallStep
 import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
 import eu.kanade.tachiyomi.ui.base.holder.SlicedHolder
+import eu.kanade.tachiyomi.ui.browse.SourceListItem
 import eu.kanade.tachiyomi.util.system.LocaleHelper
 import io.github.mthli.slice.Slice
 import kotlinx.android.synthetic.main.extension_card_item.card
@@ -19,6 +20,7 @@ import kotlinx.android.synthetic.main.extension_card_item.warning
 
 class ExtensionHolder(view: View, override val adapter: ExtensionAdapter) :
     BaseFlexibleViewHolder(view, adapter),
+    SourceListItem,
     SlicedHolder {
 
     override val slice = Slice(card).apply {

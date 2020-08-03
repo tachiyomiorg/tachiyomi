@@ -13,7 +13,6 @@ import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.graphics.Color
 import android.net.ConnectivityManager
-import android.net.Uri
 import android.os.PowerManager
 import android.view.View
 import android.widget.Toast
@@ -23,6 +22,12 @@ import androidx.annotation.StringRes
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.getSystemService
+import androidx.core.graphics.alpha
+import androidx.core.graphics.blue
+import androidx.core.graphics.green
+import androidx.core.graphics.red
+import androidx.core.net.toUri
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.nononsenseapps.filepicker.FilePickerActivity
 import eu.kanade.tachiyomi.R
@@ -126,11 +131,8 @@ fun Context.hasPermission(permission: String) = ContextCompat.checkSelfPermissio
     typedArray.recycle()
 
     if (alphaFactor < 1f) {
-        val alpha = (Color.alpha(color) * alphaFactor).roundToInt()
-        val red = Color.red(color)
-        val green = Color.green(color)
-        val blue = Color.blue(color)
-        return Color.argb(alpha, red, green, blue)
+        val alpha = (color.alpha * alphaFactor).roundToInt()
+        return Color.argb(alpha, color.red, color.green, color.blue)
     }
 
     return color
@@ -239,11 +241,10 @@ fun Context.isServiceRunning(serviceClass: Class<*>): Boolean {
  */
 fun Context.openInBrowser(url: String) {
     try {
-        val parsedUrl = Uri.parse(url)
         val intent = CustomTabsIntent.Builder()
             .setToolbarColor(getResourceColor(R.attr.colorPrimary))
             .build()
-        intent.launchUrl(this, parsedUrl)
+        intent.launchUrl(this, url.toUri())
     } catch (e: Exception) {
         toast(e.message)
     }

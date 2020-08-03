@@ -454,6 +454,7 @@
     <string name="latest">Latest</string>
     <string name="browse">Browse</string>
     <string name="local_source_help_guide">Local source guide</string>
+    <string name="no_pinned_sources">You have no pinned sources</string>
 
     <!-- Manga activity -->
     <string name="manga_not_in_db">This manga has been removed from the database.</string>
@@ -671,16 +672,18 @@
     <string name="download_notifier_text_only_wifi">No Wi-Fi connection available</string>
     <string name="download_notifier_no_network">No network connection available</string>
     <string name="download_notifier_download_paused">Download paused</string>
+    <string name="download_notifier_download_finish">Download completed</string>
 
     <!-- Notification channels -->
     <string name="channel_common">Common</string>
+    <string name="channel_progress">Progress</string>
+    <string name="channel_complete">Complete</string>
+    <string name="channel_errors">Errors</string>
     <string name="channel_library">Library</string>
-    <string name="channel_downloader">Downloader</string>
+    <string name="group_downloader">Downloads</string>
+    <string name="group_backup_restore">Backup and restore</string>
     <string name="channel_new_chapters">Chapter updates</string>
     <string name="channel_ext_updates">Extension updates</string>
-    <string name="channel_backup_restore">Backup and restore</string>
-    <string name="channel_backup_restore_progress">Progress</string>
-    <string name="channel_backup_restore_complete">Complete</string>
     <string name="pref_read_with_tapping_inverted">Invert tapping</string>
     <string name="tapping_inverted_none">None</string>
     <string name="tapping_inverted_horizontal">Horizontal</string>

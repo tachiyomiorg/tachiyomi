@@ -3,14 +3,13 @@ package eu.kanade.tachiyomi.ui.browse.source.browse
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
 import eu.davidea.flexibleadapter.items.IFlexible
 import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.util.view.gone
-import eu.kanade.tachiyomi.util.view.visible
 
 class ProgressItem : AbstractFlexibleItem<ProgressItem.Holder>() {
 
@@ -25,17 +24,17 @@ class ProgressItem : AbstractFlexibleItem<ProgressItem.Holder>() {
     }
 
     override fun bindViewHolder(adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>, holder: Holder, position: Int, payloads: List<Any?>) {
-        holder.progressBar.gone()
-        holder.progressMessage.gone()
+        holder.progressBar.isVisible = false
+        holder.progressMessage.isVisible = false
 
         if (!adapter.isEndlessScrollEnabled) {
             loadMore = false
         }
 
         if (loadMore) {
-            holder.progressBar.visible()
+            holder.progressBar.isVisible = true
         } else {
-            holder.progressMessage.visible()
+            holder.progressMessage.isVisible = true
         }
     }
 

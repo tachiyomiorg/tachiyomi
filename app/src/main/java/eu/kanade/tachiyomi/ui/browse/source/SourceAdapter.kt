@@ -22,26 +22,15 @@ class SourceAdapter(val controller: SourceController) :
     /**
      * Listener for browse item clicks.
      */
-    val browseClickListener: OnBrowseClickListener = controller
-
-    /**
-     * Listener for latest item clicks.
-     */
-    val latestClickListener: OnLatestClickListener = controller
+    val clickListener: OnSourceClickListener = controller
 
     /**
      * Listener which should be called when user clicks browse.
      * Note: Should only be handled by [SourceController]
      */
-    interface OnBrowseClickListener {
+    interface OnSourceClickListener {
         fun onBrowseClick(position: Int)
-    }
-
-    /**
-     * Listener which should be called when user clicks latest.
-     * Note: Should only be handled by [SourceController]
-     */
-    interface OnLatestClickListener {
         fun onLatestClick(position: Int)
+        fun onPinClick(position: Int)
     }
 }

@@ -11,7 +11,10 @@ import android.view.MenuItem
 import android.webkit.WebChromeClient
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
+import android.widget.Toast
 import androidx.core.graphics.ColorUtils
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.webkit.WebViewClientCompat
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.R
@@ -19,13 +22,11 @@ import eu.kanade.tachiyomi.databinding.WebviewActivityBinding
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
-import eu.kanade.tachiyomi.ui.main.ForceCloseActivity
+import eu.kanade.tachiyomi.util.system.WebViewUtil
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.openInBrowser
 import eu.kanade.tachiyomi.util.system.setDefaultSettings
 import eu.kanade.tachiyomi.util.system.toast
-import eu.kanade.tachiyomi.util.view.invisible
-import eu.kanade.tachiyomi.util.view.visible
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.appcompat.navigationClicks
@@ -42,12 +43,18 @@ class WebViewActivity : BaseActivity<WebviewActivityBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        if (!WebViewUtil.supportsWebView(this)) {
+            toast(R.string.information_webview_required, Toast.LENGTH_LONG)
+            finish()
+        }
+
         try {
             binding = WebviewActivityBinding.inflate(layoutInflater)
             setContentView(binding.root)
         } catch (e: Exception) {
             // Potentially throws errors like "Error inflating class android.webkit.WebView"
-            ForceCloseActivity.closeApp(this)
+            toast(R.string.information_webview_required, Toast.LENGTH_LONG)
+            finish()
         }
 
         title = intent.extras?.getString(TITLE_KEY)
@@ -83,10 +90,10 @@ class WebViewActivity : BaseActivity<WebviewActivityBinding>() {
 
             binding.webview.webChromeClient = object : WebChromeClient() {
                 override fun onProgressChanged(view: WebView?, newProgress: Int) {
-                    binding.progressBar.visible()
+                    binding.progressBar.isVisible = true
                     binding.progressBar.progress = newProgress
                     if (newProgress == 100) {
-                        binding.progressBar.invisible()
+                        binding.progressBar.isInvisible = true
                     }
                     super.onProgressChanged(view, newProgress)
                 }
@@ -120,6 +127,11 @@ class WebViewActivity : BaseActivity<WebviewActivityBinding>() {
         } else {
             binding.webview.restoreState(bundle)
         }
+    }
+
+    override fun onDestroy() {
+        binding.webview?.destroy()
+        super.onDestroy()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

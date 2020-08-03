@@ -93,20 +93,12 @@
         app:layout_constraintTop_toBottomOf="@+id/viewer" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/crop_borders"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/pref_crop_borders"
-        android:textColor="?android:attr/textColorSecondary"
-        app:layout_constraintTop_toBottomOf="@id/general_prefs" />
-
-    <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/page_transitions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/pref_page_transitions"
         android:textColor="?android:attr/textColorSecondary"
-        app:layout_constraintTop_toBottomOf="@id/crop_borders" />
+        app:layout_constraintTop_toBottomOf="@id/general_prefs" />
 
     <!-- General reading mode preferences -->
 
@@ -163,7 +155,9 @@
         android:layout_height="wrap_content"
         android:text="@string/pref_cutout_short"
         android:textColor="?android:attr/textColorSecondary"
-        app:layout_constraintTop_toBottomOf="@id/fullscreen" />
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/fullscreen"
+        tools:visibility="visible" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/keepscreen"
@@ -246,11 +240,20 @@
         app:layout_constraintStart_toEndOf="@id/verticalcenter"
         app:layout_constraintTop_toBottomOf="@id/scale_type" />
 
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/crop_borders"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/pref_crop_borders"
+        android:textColor="?android:attr/textColorSecondary"
+        app:layout_constraintTop_toBottomOf="@id/zoom_start" />
+
     <android.widget.Space
         android:id="@+id/end_paged_preferences"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/zoom_start"
+        app:layout_constraintBottom_toBottomOf="@+id/crop_borders"
         tools:layout_editor_absoluteX="24dp" />
 
     <TextView
@@ -322,6 +325,15 @@
         app:layout_constraintRight_toRightOf="@id/spinner_end"
         app:layout_constraintTop_toBottomOf="@id/webtoon_prefs" />
 
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/crop_borders_webtoon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/pref_crop_borders"
+        android:textColor="?android:attr/textColorSecondary"
+        app:layout_constraintTop_toBottomOf="@id/webtoon_side_padding" />
+
     <!-- Groups of preferences -->
 
     <androidx.constraintlayout.widget.Group
@@ -329,7 +341,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:constraint_referenced_ids="pager_prefs,scale_type_text,scale_type,zoom_start_text,zoom_start"
+        app:constraint_referenced_ids="pager_prefs,scale_type_text,scale_type,zoom_start_text,zoom_start,crop_borders"
         tools:visibility="visible" />
 
     <androidx.constraintlayout.widget.Group
@@ -337,7 +349,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:constraint_referenced_ids="webtoon_prefs,webtoon_side_padding_text,webtoon_side_padding" />
+        app:constraint_referenced_ids="webtoon_prefs,crop_borders_webtoon,webtoon_side_padding_text,webtoon_side_padding" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/verticalcenter"

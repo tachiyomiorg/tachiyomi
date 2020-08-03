@@ -68,11 +68,6 @@ class SettingsReaderController : SettingsController() {
             }
         }
         switchPreference {
-            key = Keys.cropBorders
-            titleRes = R.string.pref_crop_borders
-            defaultValue = false
-        }
-        switchPreference {
             key = Keys.enableTransitions
             titleRes = R.string.pref_page_transitions
             defaultValue = true
@@ -161,6 +156,11 @@ class SettingsReaderController : SettingsController() {
                 defaultValue = "1"
                 summary = "%s"
             }
+            switchPreference {
+                key = Keys.cropBorders
+                titleRes = R.string.pref_crop_borders
+                defaultValue = false
+            }
         }
 
         preferenceCategory {
@@ -179,6 +179,11 @@ class SettingsReaderController : SettingsController() {
                 entryValues = arrayOf("0", "10", "15", "20", "25")
                 defaultValue = "0"
                 summary = "%s"
+            }
+            switchPreference {
+                key = Keys.cropBordersWebtoon
+                titleRes = R.string.pref_crop_borders
+                defaultValue = false
             }
         }
 

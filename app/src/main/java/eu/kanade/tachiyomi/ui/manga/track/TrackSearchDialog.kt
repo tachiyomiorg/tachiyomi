@@ -3,6 +3,8 @@ package eu.kanade.tachiyomi.ui.manga.track
 import android.app.Dialog
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import eu.kanade.tachiyomi.R
@@ -11,8 +13,6 @@ import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
-import eu.kanade.tachiyomi.util.view.invisible
-import eu.kanade.tachiyomi.util.view.visible
 import java.util.concurrent.TimeUnit
 import kotlinx.android.synthetic.main.track_search_dialog.view.progress
 import kotlinx.android.synthetic.main.track_search_dialog.view.track_search
@@ -108,23 +108,23 @@ class TrackSearchDialog : DialogController {
 
     private fun search(query: String) {
         val view = dialogView ?: return
-        view.progress.visible()
-        view.track_search_list.invisible()
+        view.progress.isVisible = true
+        view.track_search_list.isInvisible = true
         trackController.presenter.search(query, service)
     }
 
     fun onSearchResults(results: List<TrackSearch>) {
         selectedItem = null
         val view = dialogView ?: return
-        view.progress.invisible()
-        view.track_search_list.visible()
+        view.progress.isInvisible = true
+        view.track_search_list.isVisible = true
         adapter?.setItems(results)
     }
 
     fun onSearchResultsError() {
         val view = dialogView ?: return
-        view.progress.visible()
-        view.track_search_list.invisible()
+        view.progress.isVisible = true
+        view.track_search_list.isInvisible = true
         adapter?.setItems(emptyList())
     }
 

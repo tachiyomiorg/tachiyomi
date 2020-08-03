@@ -51,6 +51,8 @@ object PreferenceKeys {
 
     const val cropBorders = "crop_borders"
 
+    const val cropBordersWebtoon = "crop_borders_webtoon"
+
     const val readWithTapping = "reader_tap"
 
     const val readWithTappingInverted = "reader_tapping_inverted"

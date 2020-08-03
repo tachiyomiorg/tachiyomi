@@ -1,7 +1,7 @@
 package eu.kanade.tachiyomi.data.backup
 
 import android.content.Context
-import android.net.Uri
+import androidx.core.net.toUri
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
@@ -18,7 +18,7 @@ class BackupCreatorJob(private val context: Context, workerParams: WorkerParamet
     override fun doWork(): Result {
         val preferences = Injekt.get<PreferencesHelper>()
         val backupManager = BackupManager(context)
-        val uri = Uri.parse(preferences.backupsDirectory().get())
+        val uri = preferences.backupsDirectory().get().toUri()
         val flags = BackupCreateService.BACKUP_ALL
         return try {
             backupManager.createBackup(uri, flags, true)
