@@ -96,19 +96,6 @@ object MangaTable {
             "GROUP BY $TABLE.$COL_ID)"
 
     /**
-     * Migrate `viewer` values to `viewer_flags` values.
-     */
-    val updateViewerValues: String
-        get() = "UPDATE $TABLE SET $COL_VIEWER = CASE $COL_VIEWER " +
-            "WHEN 1 THEN ${MangaImpl().apply { readingMode = Manga.READING_L2R }.viewer_flags} " +
-            "WHEN 2 THEN ${MangaImpl().apply { readingMode = Manga.READING_R2L }.viewer_flags} " +
-            "WHEN 3 THEN ${MangaImpl().apply { readingMode = Manga.READING_VERTICAL }.viewer_flags} " +
-            "WHEN 4 THEN ${MangaImpl().apply { readingMode = Manga.READING_WEBTOON }.viewer_flags} " +
-            "WHEN 5 THEN ${MangaImpl().apply { readingMode = Manga.READING_CONT_VERTICAL }.viewer_flags} " +
-            "ELSE ${MangaImpl().apply { readingMode = Manga.READING_DEFAULT }.viewer_flags} " +
-            "END"
-
-    /**
      * Rename columna name `viewer` to `viewer_flags`.
      */
     val renameViewerToViewerFlag: String

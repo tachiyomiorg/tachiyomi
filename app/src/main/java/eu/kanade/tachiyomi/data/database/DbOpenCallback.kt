@@ -84,7 +84,6 @@ class DbOpenCallback : SupportSQLiteOpenHelper.Callback(DATABASE_VERSION) {
         }
 
         if (oldVersion < 12) {
-            db.execSQL(MangaTable.updateViewerValues)
             db.execSQL(MangaTable.renameViewerToViewerFlag)
         }
     }
