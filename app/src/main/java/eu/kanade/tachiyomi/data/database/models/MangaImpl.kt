@@ -26,6 +26,8 @@ open class MangaImpl : Manga {
 
     override var last_update: Long = 0
 
+    override var date_added: Long = 0
+
     override var initialized: Boolean = false
 
     override var viewer: Int = 0
@@ -39,11 +41,11 @@ open class MangaImpl : Manga {
         if (other == null || javaClass != other.javaClass) return false
 
         val manga = other as Manga
-
-        return url == manga.url
+        if (url != manga.url) return false
+        return id == manga.id
     }
 
     override fun hashCode(): Int {
-        return url.hashCode()
+        return url.hashCode() + id.hashCode()
     }
 }

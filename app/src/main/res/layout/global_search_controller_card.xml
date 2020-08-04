@@ -6,30 +6,47 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/title_wrapper"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground">
 
         <TextView
             android:id="@+id/title"
             style="@style/TextAppearance.Regular.SubHeading"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:padding="@dimen/material_component_text_fields_padding_above_and_below_label"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/title_more_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Title" />
 
         <ImageView
+            android:id="@+id/title_more_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
+            android:contentDescription="@string/label_more"
             android:padding="@dimen/material_component_text_fields_padding_above_and_below_label"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_arrow_forward_24dp"
-            app:tint="?android:attr/textColorPrimary"
-            tools:ignore="ContentDescription" />
+            app:tint="?android:attr/textColorPrimary" />
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/no_results_found"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/material_component_text_fields_padding_above_and_below_label"
+        android:paddingEnd="@dimen/material_component_text_fields_padding_above_and_below_label"
+        android:paddingBottom="@dimen/material_component_text_fields_padding_above_and_below_label"
+        android:text="@string/no_results_found"
+        android:visibility="gone" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/source_card"

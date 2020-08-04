@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/Theme.Widget.CardView.Item"
+    android:layout_margin="0dp"
     android:padding="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,10 +17,6 @@
             android:id="@+id/track_search_cover"
             android:layout_width="135dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
             android:contentDescription="@string/description_cover"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -32,7 +29,7 @@
             android:id="@+id/track_search_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:maxLines="3"
@@ -47,7 +44,7 @@
             android:id="@+id/track_search_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:maxLines="1"
             android:text="@string/track_type"
             android:textAppearance="@style/TextAppearance.Regular.Body1.Bold"
@@ -71,7 +68,7 @@
             android:id="@+id/track_search_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:maxLines="1"
             android:text="@string/track_start_date"
             android:textAppearance="@style/TextAppearance.Regular.Body1.Bold"
@@ -95,7 +92,7 @@
             android:id="@+id/track_search_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:maxLines="1"
             android:text="@string/track_status"
             android:textAppearance="@style/TextAppearance.Regular.Body1.Bold"
@@ -119,9 +116,9 @@
             android:id="@+id/track_search_summary"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
             android:ellipsize="end"
             android:maxLines="7"
@@ -134,13 +131,6 @@
             app:layout_constraintTop_toBottomOf="@+id/track_search_status"
             app:layout_constraintVertical_bias="0.333"
             tools:text="This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits " />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="150dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

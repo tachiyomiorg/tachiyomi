@@ -115,6 +115,12 @@
         <item name="android:textColor">?attr/colorOnBackground</item>
     </style>
 
+    <style name="TextAppearance.Widget.Tab" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+
     <!--=======-->
     <!--Widgets-->
     <!--=======-->
@@ -236,17 +242,21 @@
     <style name="Theme.Widget.Button" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:textColor">?attr/colorAccent</item>
         <item name="rippleColor">?attr/colorAccent</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 
     <style name="Theme.Widget.Button.FilledAccent" parent="Widget.MaterialComponents.Button">
         <item name="android:textColor">?attr/colorOnSecondary</item>
         <item name="backgroundTint">?attr/colorAccent</item>
         <item name="rippleColor">?attr/colorAccent</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 
     <style name="Theme.Widget.Button.Icon" parent="Widget.MaterialComponents.Button.OutlinedButton.Icon">
         <item name="android:minHeight">0dp</item>
         <item name="android:paddingBottom">4dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">16dp</item>
 
         <item name="elevation">0dp</item>
 
@@ -254,9 +264,12 @@
         <item name="textAllCaps">false</item>
         <item name="cornerRadius">16dp</item>
 
-        <item name="iconTint">?colorAccent</item>
-        <item name="rippleColor">?colorAccent</item>
+        <item name="iconTint">?attr/colorAccent</item>
+        <item name="rippleColor">?attr/colorAccent</item>
         <item name="android:textColor">?attr/colorOnBackground</item>
+
+        <item name="backgroundTint">@color/outlined_button_bg</item>
+        <item name="strokeColor">@color/outlined_button_stroke</item>
     </style>
 
     <style name="Theme.Widget.Button.Icon.Textless">
@@ -281,6 +294,7 @@
         <item name="tabInlineLabel">true</item>
         <item name="tabMinWidth">75dp</item>
         <item name="tabMode">scrollable</item>
+        <item name="tabTextAppearance">@style/TextAppearance.Widget.Tab</item>
     </style>
 
 

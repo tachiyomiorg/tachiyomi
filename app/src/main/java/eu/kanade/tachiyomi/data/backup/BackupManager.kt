@@ -325,7 +325,7 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
             for (dbCategory in dbCategories) {
                 // If the category is already in the db, assign the id to the file's category
                 // and do nothing
-                if (category.nameLower == dbCategory.nameLower) {
+                if (category.name == dbCategory.name) {
                     category.id = dbCategory.id
                     found = true
                     break
@@ -353,7 +353,7 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
         val mangaCategoriesToUpdate = mutableListOf<MangaCategory>()
         for (backupCategoryStr in categories) {
             for (dbCategory in dbCategories) {
-                if (backupCategoryStr.toLowerCase() == dbCategory.nameLower) {
+                if (backupCategoryStr == dbCategory.name) {
                     mangaCategoriesToUpdate.add(MangaCategory.create(manga, dbCategory))
                     break
                 }

@@ -12,7 +12,7 @@
     <string name="label_recent_updates">Oppdateringer</string>
     <string name="label_categories">Kategorier</string>
     <string name="label_backup">Sikkerhetskopi</string>
-    <string name="label_migration">Flytt</string>
+    <string name="label_migration">Flytte</string>
     <string name="label_extensions">Utvidelser</string>
     <string name="label_extension_info">Utvidelsesinfo</string>
     <string name="action_settings">Innstillinger</string>
@@ -198,7 +198,6 @@
     <string name="pref_backup_service_category">Tjeneste</string>
     <string name="pref_backup_interval">Sikkerhetskopieringsfrekvens</string>
     <string name="pref_backup_slots">Maks antall automatiske sikkerhetskopier</string>
-    <string name="source_not_found">Fant ikke kilden</string>
     <string name="backup_created">Sikkerhetskopi opprettet</string>
     <string name="restore_completed">Gjenoppretting fullført</string>
     <string name="backup_choice">Hva ønsker du å sikkerhetskopiere\?</string>
@@ -206,21 +205,21 @@
     <string name="creating_backup">Oppretter sikkerhetskopi</string>
     <string name="pref_clear_chapter_cache">Tøm kapittelhurtiglager</string>
     <string name="used_cache">Brukt: %1$s</string>
-    <string name="cache_deleted">Hurtiglager tømt. %1$d filer har blitt slettet.</string>
+    <string name="cache_deleted">Hurtiglager tømt. %1$d filer har blitt slettet</string>
     <string name="cache_delete_error">Feil oppstod under tømming av hurtiglager</string>
     <string name="pref_clear_cookies">Tøm kaker</string>
     <string name="cookies_cleared">Kaker tømt</string>
     <string name="choices_reset">Dialogvinduvalg tilbakestilt</string>
     <string name="pref_clear_database">Tøm database</string>
     <string name="pref_clear_database_summary">Slett manga og kapittel som ikke finnes i biblioteket ditt</string>
-    <string name="clear_database_confirmation">Er du sikker\? Leste kapittel og framdrift for manga som ikke er i biblioteket vil gå tapt.</string>
+    <string name="clear_database_confirmation">Er du sikker\? Leste kapittel og framdrift for manga som ikke er i biblioteket vil gå tapt</string>
     <string name="clear_database_completed">Oppføringer slettet</string>
     <string name="pref_refresh_library_tracking">Gjenopprett sporingsmetadata</string>
     <string name="pref_refresh_library_tracking_summary">Oppdaterer status, poengsum og sist leste kapittel fra sporingstjenestene</string>
     <string name="version">Versjon</string>
     <string name="build_time">Byggtid</string>
     <string name="pref_enable_acra">Send kræsjrapporter</string>
-    <string name="pref_acra_summary">Hjelper til med fiksing av feil. Ingen sensitiv data vil bli sendt.</string>
+    <string name="pref_acra_summary">Hjelper til med fiksing av feil. Ingen sensitiv data vil bli sendt</string>
     <string name="login_title">Innlogging for %1$s</string>
     <string name="username">Brukernavn</string>
     <string name="password">Passord</string>
@@ -296,7 +295,7 @@
     <string name="track_start_date">Startet</string>
     <string name="track_type">Type</string>
     <string name="track_author">Forfatter</string>
-    <string name="error_category_exists">En kategori ved dette navnet finnes allerede.</string>
+    <string name="error_category_exists">En kategori ved dette navnet finnes allerede!</string>
     <string name="snack_categories_deleted">Kategorier slettet</string>
     <string name="dialog_with_checkbox_remove_description">Lesningsdato for dette kapittelet vil bli fjernet. Er du sikker\?</string>
     <string name="dialog_with_checkbox_reset">Tilbakestill alle kapittel for denne mangaen</string>
@@ -327,7 +326,6 @@
     <string name="migrate">Migrer</string>
     <string name="copy">Kopier</string>
     <string name="channel_library">Bibliotek</string>
-    <string name="channel_downloader">Nedlaster</string>
     <string name="notification_new_chapters">Nye kapitler funnet</string>
     <string name="notification_cover_update_failed">Klarte ikke å oppdatere omslag</string>
     <string name="update_check_confirm">Last ned</string>
@@ -350,7 +348,7 @@
 \nForsikre deg om at du har installert alle nødvendige utvidelser og er logget inn i kilder og sporingstjenester før du gjenoppretter.</string>
     <string name="confirm_set_image_as_cover">Bruk dette bildet som omslag\?</string>
     <string name="migration_info">Trykk for å velge kilde å migrere fra</string>
-    <string name="download_queue_error">Kunne ikke laste ned kapitler. Du kan prøve igjen i nedlastingsdelen.</string>
+    <string name="download_queue_error">Kunne ikke laste ned kapitler. Du kan prøve igjen i nedlastingsdelen</string>
     <string name="notification_update_progress">Oppdateringsfremdrift: %1$d/%2$d</string>
     <string name="notification_first_add_to_library">Legg til mangaen i biblioteket ditt før du gjør dette</string>
     <string name="notification_not_connected_to_ac_title">Synkronisering avbrutt</string>
@@ -371,7 +369,7 @@
     <string name="information_no_downloads">Ingen nedlastinger</string>
     <string name="information_no_recent">Ingen nylige oppdateringer</string>
     <string name="information_no_recent_manga">Ingenting lest nylig</string>
-    <string name="information_empty_library">Biblioteket ditt er tomt,legg til serier i biblioteket ditt fra katalogene.</string>
+    <string name="information_empty_library">Biblioteket ditt er tomt, legg til serier i biblioteket ditt fra katalogene.</string>
     <string name="information_empty_category">Du har ingen kategorier. Trykk på pluss-knappen for å lage en for å organisere ditt bibliotek.</string>
     <string name="download_notifier_downloader_title">Nedlaster</string>
     <string name="download_notifier_title_error">Feil</string>
@@ -433,7 +431,6 @@
     <string name="email">E-postadresse</string>
     <string name="in_library">I bibliotek</string>
     <string name="add_to_library">Legg til i bibliotek</string>
-    <string name="changelog">Endringslogg</string>
     <string name="webtoon_side_padding_25">25%</string>
     <string name="webtoon_side_padding_20">20%</string>
     <string name="webtoon_side_padding_15">15%</string>
@@ -451,7 +448,6 @@
     <string name="action_sort_last_checked">Sist sjekket</string>
     <string name="action_menu">Meny</string>
     <string name="label_sources">Kilder</string>
-    <string name="channel_backup_restore">Sikkerhetskopier og gjenopprett</string>
     <string name="channel_ext_updates">Utvidelsesoppdateringer</string>
     <string name="information_webview_required">Tachiyomi krever WebView</string>
     <string name="add_tracking">Legg til sporing</string>
@@ -477,8 +473,6 @@
     <string name="ext_unofficial">Uoffisiell</string>
     <string name="error_invalid_date_supplied">Ugyldig dato angitt</string>
     <string name="viewer">Lesemodus</string>
-    <string name="channel_backup_restore_complete">Fullført</string>
-    <string name="channel_backup_restore_progress">Framdrift</string>
     <string name="information_cloudflare_bypass_failure">Klarte ikke å omgå Cloudflare</string>
     <string name="updating_library">Oppdaterer bibliotek</string>
     <string name="page_list_empty_error">Fant ingen sider</string>
@@ -495,4 +489,77 @@
     <string name="action_display_show_tabs">Vis kategorifaner</string>
     <string name="action_display_comfortable_grid">Komfortabelt rutenett</string>
     <string name="action_migrate">Flytt</string>
+    <string name="action_start">Start</string>
+    <string name="tapping_inverted_both">Begge</string>
+    <string name="tapping_inverted_vertical">loddrett</string>
+    <string name="tapping_inverted_horizontal">vannrett</string>
+    <string name="tapping_inverted_none">Ingen</string>
+    <plurals name="notification_update_error">
+        <item quantity="one">1 oppdatering mislyktes</item>
+        <item quantity="other">%1$d oppdateringer mislyktes</item>
+    </plurals>
+    <plurals name="notification_chapters_generic">
+        <item quantity="one">1 nytt kapittel</item>
+        <item quantity="other">1 nye kapitler</item>
+    </plurals>
+    <plurals name="notification_new_chapters_summary">
+        <item quantity="one">For 1 tittel</item>
+        <item quantity="other">For %d titler</item>
+    </plurals>
+    <string name="notification_check_updates">Søker etter nye kapitler</string>
+    <string name="loader_not_implemented_error">Kilden ikke funnet</string>
+    <string name="pref_category_for_this_series">For denne serien</string>
+    <plurals name="manga_num_chapters">
+        <item quantity="one">1 kapittel</item>
+        <item quantity="other">%1$s kapitler</item>
+    </plurals>
+    <string name="unknown_status">Ukjent status</string>
+    <string name="unknown_author">Ukjent forfatter</string>
+    <string name="local_source_help_guide">Lokal kildeguide</string>
+    <string name="http_error_hint">Sjekk nettsted i nettvisning</string>
+    <string name="badges_header">merker</string>
+    <plurals name="download_queue_summary">
+        <item quantity="one">1 gjenstående</item>
+        <item quantity="other">%1$s gjenstående</item>
+    </plurals>
+    <string name="downloaded_only_summary">Filtrerer alt manga i biblioteket ditt</string>
+    <string name="check_for_updates">Se etter oppdateringer</string>
+    <string name="battery_optimization_setting_activity_not_found">Kunne ikke åpne enhetens innstillinger</string>
+    <string name="battery_optimization_disabled">Batterioptimalisering er allerede deaktivert</string>
+    <string name="pref_disable_battery_optimization">Deaktiver batterioptimalisering</string>
+    <string name="label_data">Data</string>
+    <string name="pref_dns_over_https_summary">Krever omstart for å tre i kraft</string>
+    <string name="label_network">Nettverk</string>
+    <string name="restoring_backup_canceled">Avbrutt gjenoppretting</string>
+    <string name="restore_in_progress">Gjenoppretting er allerede i gang</string>
+    <plurals name="restore_completed_message">
+        <item quantity="one">Gjort i %1$s med %2$s feil</item>
+        <item quantity="other">Gjort i %1$s med %2$s feil</item>
+    </plurals>
+    <string name="invalid_backup_file_missing_data">Filen mangler data.</string>
+    <string name="tracker_not_logged_in">Ikke logget inn: %1$s</string>
+    <string name="source_not_found_name">kilde ikke funnet: %1$s</string>
+    <string name="pref_search_pinned_sources_only">Inkluder bare festede kilder</string>
+    <string name="pref_show_reading_mode">Vis lesemodus</string>
+    <string name="unofficial_extension_message">Denne utvidelsen kommer ikke fra den offisielle Tachiyomi-utvidelseslisten.</string>
+    <string name="pref_library_update_error_notification">Vis varsler om oppdateringsfeil</string>
+    <string name="pref_jump_to_chapters">Hopp til kapitler på åpning</string>
+    <string name="action_disable">deaktivere</string>
+    <string name="action_display_unread_badge">ulest merke</string>
+    <string name="action_disable_all">deaktiver alle</string>
+    <string name="action_enable_all">aktiver alle</string>
+    <string name="action_open_in_settings">åpen i innstillinger</string>
+    <string name="action_sort_latest_chapter">Siste kapittel</string>
+    <string name="pref_read_with_tapping_inverted">Inverter trykk</string>
+    <string name="restoring_backup_error">Gjenoppretting av sikkerhetskopi mislyktes</string>
+    <string name="backup_in_progress">Sikkerhetskopiering allerede underveis</string>
+    <string name="invalid_backup_file">Ugyldig sikkerhetskopieringsfil</string>
+    <string name="pref_cutout_short">Vis innhold i utklippsområde</string>
+    <string name="pref_library_update_refresh_metadata_summary">Se etter nye omslag og detaljer ved oppdatering av bibliotek</string>
+    <string name="pref_library_update_refresh_metadata">Gjenoppfrisk metadata automatisk</string>
+    <string name="pref_category_display">Skjerm</string>
+    <string name="pref_category_theme">Drakt</string>
+    <string name="action_sort_descending">Fallende</string>
+    <string name="action_download_unread">Last ned uleste kapittel</string>
+    <string name="action_sort_date_added">Dato lagt til</string>
 </resources>

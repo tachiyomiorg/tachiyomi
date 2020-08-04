@@ -1,6 +1,5 @@
 package eu.kanade.tachiyomi.ui.reader.viewer.webtoon
 
-import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ValueAnimator
 import android.content.Context
@@ -9,6 +8,7 @@ import android.view.HapticFeedbackConstants
 import android.view.MotionEvent
 import android.view.ViewConfiguration
 import android.view.animation.DecelerateInterpolator
+import androidx.core.animation.doOnEnd
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import eu.kanade.tachiyomi.ui.reader.viewer.GestureDetectorWithLongTap
@@ -112,21 +112,10 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
         animatorSet.duration = ANIMATOR_DURATION_TIME.toLong()
         animatorSet.interpolator = DecelerateInterpolator()
         animatorSet.start()
-        animatorSet.addListener(object : Animator.AnimatorListener {
-            override fun onAnimationStart(animation: Animator) {
-            }
-
-            override fun onAnimationEnd(animation: Animator) {
-                isZooming = false
-                currentScale = toRate
-            }
-
-            override fun onAnimationCancel(animation: Animator) {
-            }
-
-            override fun onAnimationRepeat(animation: Animator) {
-            }
-        })
+        animatorSet.doOnEnd {
+            isZooming = false
+            currentScale = toRate
+        }
     }
 
     fun zoomFling(velocityX: Int, velocityY: Int): Boolean {

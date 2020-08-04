@@ -26,7 +26,7 @@ class DevRepoUpdateChecker : UpdateChecker() {
 
     override suspend fun checkForUpdate(): UpdateResult {
         val response = withContext(Dispatchers.IO) {
-            client.newCall(GET(DevRepoRelease.LATEST_URL)).await(assertSuccess = false)
+            client.newCall(GET(DevRepoRelease.LATEST_URL)).await()
         }
 
         // Get latest repo version number from header in format "Location: tachiyomi-r1512.apk"

@@ -6,9 +6,8 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.annotation.StringRes
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.view.isVisible
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.util.view.gone
-import eu.kanade.tachiyomi.util.view.visible
 import kotlin.random.Random
 import kotlinx.android.synthetic.main.common_view_empty.view.actions_container
 import kotlinx.android.synthetic.main.common_view_empty.view.text_face
@@ -25,7 +24,7 @@ class EmptyView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
      * Hide the information view
      */
     fun hide() {
-        this.gone()
+        this.isVisible = false
     }
 
     /**
@@ -57,7 +56,7 @@ class EmptyView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
             }
         }
 
-        this.visible()
+        this.isVisible = true
     }
 
     companion object {

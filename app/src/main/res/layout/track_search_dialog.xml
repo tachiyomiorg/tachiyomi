@@ -52,18 +52,11 @@
             android:footerDividersEnabled="true"
             android:headerDividersEnabled="true"
             android:listSelector="@drawable/list_item_selector"
-            android:paddingTop="4dp"
-            android:paddingBottom="4dp"
             android:scrollbars="none"
             android:visibility="invisible"
             tools:listitem="@layout/track_search_item"
             tools:visibility="visible" />
 
     </FrameLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="?android:attr/divider" />
 
 </LinearLayout>

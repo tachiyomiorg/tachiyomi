@@ -8,10 +8,10 @@ plugins {
 
 allprojects {
     repositories {
+        mavenCentral()
+        jcenter()
         google()
         maven { setUrl("https://www.jitpack.io") }
-        maven { setUrl("https://plugins.gradle.org/m2/") }
-        jcenter()
     }
 }
 

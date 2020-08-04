@@ -2,6 +2,7 @@ package eu.kanade.tachiyomi.ui.browse.migration.search
 
 import android.app.Dialog
 import android.os.Bundle
+import androidx.core.view.isVisible
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItemsMultiChoice
 import eu.kanade.tachiyomi.R
@@ -11,8 +12,6 @@ import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.browse.migration.MigrationFlags
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchController
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchPresenter
-import eu.kanade.tachiyomi.util.view.gone
-import eu.kanade.tachiyomi.util.view.visible
 import uy.kohesive.injekt.injectLazy
 
 class SearchController(
@@ -69,9 +68,9 @@ class SearchController(
 
     fun renderIsReplacingManga(isReplacingManga: Boolean) {
         if (isReplacingManga) {
-            binding.progress.visible()
+            binding.progress.isVisible = true
         } else {
-            binding.progress.gone()
+            binding.progress.isVisible = false
             router.popController(this)
         }
     }

@@ -14,9 +14,9 @@
 * Catalogue requests should be created at https://github.com/inorichi/tachiyomi-extensions#readme, not here
 
 # Bugs
-* Include version (Setting > About > Version)
+* Include version (More > About > Version)
  * If not latest, try updating, it may have already been solved
- * Dev version is equal to the number of commits as seen in the main page
+ * Preview version is equal to the number of commits as seen in the main page
 * Include steps to reproduce (if not obvious from description)
 * Include screenshot (if needed)
 * If it could be device-dependent, try reproducing on another device (if possible)

@@ -5,9 +5,9 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.ViewGroup
 import androidx.annotation.CallSuper
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.util.system.getResourceColor
 
@@ -72,7 +72,7 @@ open class ExtendedNavigationView @JvmOverloads constructor(
              * @param resId the vector resource to load and tint
              */
             fun tintVector(context: Context, resId: Int): Drawable {
-                return VectorDrawableCompat.create(context.resources, resId, context.theme)!!.apply {
+                return AppCompatResources.getDrawable(context, resId)!!.apply {
                     setTint(context.getResourceColor(R.attr.colorAccent))
                 }
             }

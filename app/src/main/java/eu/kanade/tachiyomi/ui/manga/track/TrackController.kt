@@ -1,29 +1,51 @@
 package eu.kanade.tachiyomi.ui.manga.track
 
 import android.content.Intent
-import android.net.Uri
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.LinearLayoutManager
+import eu.kanade.tachiyomi.data.database.DatabaseHelper
+import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.databinding.TrackControllerBinding
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
-import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.system.copyToClipboard
 import eu.kanade.tachiyomi.util.system.toast
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.swiperefreshlayout.refreshes
 import timber.log.Timber
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 
 class TrackController :
-    NucleusController<TrackControllerBinding, TrackPresenter>(),
+    NucleusController<TrackControllerBinding, TrackPresenter>,
     TrackAdapter.OnClickListener,
     SetTrackStatusDialog.Listener,
     SetTrackChaptersDialog.Listener,
     SetTrackScoreDialog.Listener,
     SetTrackReadingDatesDialog.Listener {
+
+    constructor(manga: Manga?) : super(
+        Bundle().apply {
+            putLong(MANGA_EXTRA, manga?.id ?: 0)
+        }
+    ) {
+        this.manga = manga
+    }
+
+    constructor(mangaId: Long) : this(
+        Injekt.get<DatabaseHelper>().getManga(mangaId).executeAsBlocking()
+    )
+
+    @Suppress("unused")
+    constructor(bundle: Bundle) : this(bundle.getLong(MANGA_EXTRA))
+
+    var manga: Manga? = null
+        private set
 
     private var adapter: TrackAdapter? = null
 
@@ -33,8 +55,12 @@ class TrackController :
         setHasOptionsMenu(true)
     }
 
+    override fun getTitle(): String? {
+        return manga?.title
+    }
+
     override fun createPresenter(): TrackPresenter {
-        return TrackPresenter((parentController as MangaController).manga!!)
+        return TrackPresenter(manga!!)
     }
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
@@ -44,6 +70,8 @@ class TrackController :
 
     override fun onViewCreated(view: View) {
         super.onViewCreated(view)
+
+        if (manga == null) return
 
         adapter = TrackAdapter(this)
         binding.trackRecycler.layoutManager = LinearLayoutManager(view.context)
@@ -63,7 +91,6 @@ class TrackController :
         val atLeastOneLink = trackings.any { it.track != null }
         adapter?.items = trackings
         binding.swipeRefresh.isEnabled = atLeastOneLink
-        (parentController as? MangaController)?.setTrackingIcon(atLeastOneLink)
     }
 
     fun onSearchResults(results: List<TrackSearch>) {
@@ -93,7 +120,7 @@ class TrackController :
         val track = adapter?.getItem(position)?.track ?: return
 
         if (track.tracking_url.isNotBlank()) {
-            activity?.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(track.tracking_url)))
+            activity?.startActivity(Intent(Intent.ACTION_VIEW, track.tracking_url.toUri()))
         }
     }
 
@@ -167,6 +194,7 @@ class TrackController :
     }
 
     private companion object {
+        const val MANGA_EXTRA = "manga"
         const val TAG_SEARCH_CONTROLLER = "track_search_controller"
     }
 }

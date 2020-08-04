@@ -174,7 +174,6 @@
     <string name="pref_backup_service_category">서비스</string>
     <string name="pref_backup_interval">백업 주기</string>
     <string name="pref_backup_slots">최대 자동 백업</string>
-    <string name="source_not_found">소스를 찾을 수 없음</string>
     <string name="backup_created">백업 생성됨</string>
     <string name="restore_completed">복원 완료</string>
     <string name="restoring_backup">백업 복원중</string>
@@ -284,12 +283,12 @@
     <string name="update_check_confirm">다운로드</string>
     <string name="update_check_ignore">무시</string>
     <string name="update_check_no_new_updates">새로운 업데이트 없음</string>
-    <string name="update_check_look_for_updates">"업데이트를 찾는중 "</string>
+    <string name="update_check_look_for_updates">업데이트를 찾는중…</string>
     <string name="update_check_notification_file_download">업데이트 다운로드</string>
-    <string name="update_check_notification_download_in_progress">다운로드 진행중</string>
+    <string name="update_check_notification_download_in_progress">다운로드 진행중…</string>
     <string name="update_check_notification_download_complete">다운로드 완료됨</string>
     <string name="update_check_notification_download_error">다운로드 오류</string>
-    <string name="update_check_notification_update_available">업데이트 이용 가능</string>
+    <string name="update_check_notification_update_available">업데이트 이용 가능!</string>
     <string name="description_cover">만화 표지</string>
     <string name="information_no_downloads">다운로드 없음</string>
     <string name="information_no_recent">최신 챕터 없음</string>
@@ -299,7 +298,6 @@
     <string name="download_notifier_unknown_error">챕터 다운로드중에 예기치 않은 오류가 발생하였습니다</string>
     <string name="download_notifier_download_paused">다운로드 일시중지됨</string>
     <string name="channel_library">서재</string>
-    <string name="channel_downloader">다운로더</string>
     <string name="action_display_download_badge">다운로드 배지</string>
     <string name="action_open">열기</string>
     <string name="action_login">로그인</string>
@@ -341,7 +339,7 @@
     <string name="invalid_combination">기본 카테고리는 다른 카테고리와 함께 선택될 수 없습니다</string>
     <string name="added_to_library">만화가 서재에 추가되었습니다</string>
     <string name="browse">찾아보기</string>
-    <string name="manga_not_in_db">이 만화는 데이터베이스에서 제거되었습니다!</string>
+    <string name="manga_not_in_db">이 만화는 데이터베이스에서 제거되었습니다</string>
     <string name="licensed">판권작</string>
     <string name="copied_to_clipboard">클립보드에 %1$s 복사됨</string>
     <string name="manga_chapter_no_title">제목 없음</string>
@@ -385,4 +383,5 @@
     <string name="filter_mode_lighten">닷지 / 밝게하기</string>
     <string name="filter_mode_darken">번 / 어둡게하기</string>
     <string name="label_help">도움</string>
+    <string name="email">이메일 주소</string>
 </resources>

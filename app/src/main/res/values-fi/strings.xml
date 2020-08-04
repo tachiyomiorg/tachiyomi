@@ -90,7 +90,6 @@
     <string name="download_notifier_download_paused">Lataus pysäytetty</string>
     <string name="channel_common">Tavallinen</string>
     <string name="channel_library">Kirjasto</string>
-    <string name="channel_downloader">Lataaja</string>
     <string name="label_backup">Varmuuskopio</string>
     <string name="label_migration">Siirrä</string>
     <string name="label_extensions">Laajennukset</string>
@@ -204,8 +203,8 @@
     <string name="pref_show_page_number">Näytä sivunumero</string>
     <string name="pref_true_color">32-bittinen väri</string>
     <string name="pref_crop_borders">Rajaa reunat</string>
-    <string name="pref_custom_brightness">Käytä mukautettua kirkautta</string>
-    <string name="pref_custom_color_filter">Käytä mukautettua värisuodatinta</string>
+    <string name="pref_custom_brightness">Mukautettu kirkkaus</string>
+    <string name="pref_custom_color_filter">Mukautettu värisuodatin</string>
     <string name="pref_keep_screen_on">Pidä näyttö päällä</string>
     <string name="pref_skip_read_chapters">Ohita luetuksi merkityt luvut</string>
     <string name="pref_reader_navigation">Navigointi</string>
@@ -267,7 +266,6 @@
     <string name="pref_backup_service_category">Automaattiset varmuuskopiot</string>
     <string name="pref_backup_interval">Varmuuskopioinnin tiheys</string>
     <string name="pref_backup_slots">Varmuuskopioiden enimmäismäärä</string>
-    <string name="source_not_found">Lähdettä ei löydy</string>
     <string name="backup_created">Varmuuskopio luotu</string>
     <string name="restore_completed">Palautus valmis</string>
     <string name="backup_restore_content">Palautus käyttää lähdettä noutaakseen tietoja, tämä voi aiheuttaa kustannuksia. 
@@ -460,7 +458,6 @@
         <item quantity="other">%d sarjalle</item>
     </plurals>
     <string name="notices">Esikatsele koontiversion ilmoituksia</string>
-    <string name="changelog">Muutoshistoria</string>
     <string name="pref_theme_light">Vaalea teema</string>
     <string name="theme_light_default">Oletus</string>
     <string name="theme_light_blue">Vaaleansininen</string>
@@ -488,7 +485,6 @@
     <string name="confirm_exit">Paina takaisin uudestaan poistuaksesi</string>
     <string name="label_downloaded_only">Ladatut</string>
     <string name="label_sources">Lähteet</string>
-    <string name="channel_backup_restore">Varmuuskopiointi ja palautus</string>
     <string name="updating_library">Päivittää kirjastoa</string>
     <string name="add_tracking">Lisää seuranta</string>
     <string name="in_library">Kirjastossa</string>
@@ -508,8 +504,8 @@
     <string name="error_invalid_date_supplied">Annettu päivämäärä ei kelpaa</string>
     <string name="track_finished_reading_date">Lopetuspäivämäärä</string>
     <string name="track_started_reading_date">Aloituspäivämäärä</string>
-    <string name="manga_info_collapse">Näytä vähemmän</string>
-    <string name="manga_info_expand">Näytä lisätiedot</string>
+    <string name="manga_info_collapse">Vähemmän</string>
+    <string name="manga_info_expand">Enemmän</string>
     <string name="manga_info_about_label">Tietoa</string>
     <string name="pinned_sources">Kiinnitetyt</string>
     <string name="http_error_hint">Katso sivu WebViewissä</string>
@@ -525,8 +521,6 @@
         <item quantity="other">%1$s jäljellä</item>
     </plurals>
     <string name="pref_search_pinned_sources_only">Sisällytä vain kiinnitetyt lähteet</string>
-    <string name="channel_backup_restore_complete">Valmis</string>
-    <string name="channel_backup_restore_progress">Edistyminen</string>
     <string name="gray_background">Harmaa</string>
     <string name="pref_category_for_this_series">Tälle sarjalle</string>
     <plurals name="num_categories">
@@ -573,4 +567,40 @@
     <string name="action_start">Aloita</string>
     <string name="loader_not_implemented_error">Lähdettä ei löytynyt</string>
     <string name="action_disable">Poista käytöstä</string>
+    <string name="action_sort_descending">Laskeva</string>
+    <plurals name="manga_num_chapters">
+        <item quantity="one">1 luku</item>
+        <item quantity="other">%1$s lukua</item>
+    </plurals>
+    <string name="action_open_in_settings">Avaa Asetuksissa</string>
+    <string name="pref_dns_over_https_summary">Edellyttää sovelluksen käynnistämistä uudelleen</string>
+    <string name="pref_dns_over_https" translatable="false">DNS HTTPS:n kautta (Cloudflare)</string>
+    <string name="label_network">Verkko</string>
+    <string name="pref_jump_to_chapters">Siirry lukuihin avatessa</string>
+    <string name="tapping_inverted_both">Molemmat</string>
+    <string name="tapping_inverted_vertical">Pystysuora</string>
+    <string name="tapping_inverted_horizontal">Vaakasuora</string>
+    <string name="tapping_inverted_none">Ei mitään</string>
+    <string name="pref_read_with_tapping_inverted">Käännä näpäyttäminen</string>
+    <string name="unknown_status">Tuntematon tila</string>
+    <string name="unknown_author">Tuntematon tekijä</string>
+    <string name="updated_version">Päivitetty versioon v%1$s</string>
+    <string name="whats_new">Mitä uutta</string>
+    <string name="action_download_unread">Lataa lukemattomat luvut</string>
+    <string name="download_insufficient_space">Lukuja ei voitu ladata vähäisen tallennustilan vuoksi</string>
+    <string name="action_global_search_query">Etsi \"%1$s\" globaalisesti</string>
+    <string name="pref_category_reading_mode">Lukutila</string>
+    <string name="pref_category_locale">Paikallinen</string>
+    <string name="pref_category_theme">Teema</string>
+    <string name="action_sort_date_added">Lisäyspäivämäärä</string>
+    <plurals name="num_trackers">
+        <item quantity="one">1 seurantapalvelin</item>
+        <item quantity="other">%d seurantapalvelinta</item>
+    </plurals>
+    <string name="no_pinned_sources">Sinulla ei ole kiinnitettyjä lähteitä</string>
+    <string name="group_backup_restore">Varmuuskopiointi ja palautus</string>
+    <string name="group_downloader">Lataukset</string>
+    <string name="channel_complete">Valmis</string>
+    <string name="channel_progress">Edistyminen</string>
+    <string name="download_notifier_download_finish">Lataus valmis</string>
 </resources>

@@ -40,11 +40,6 @@
                 android:resource="@xml/shortcuts" />
         </activity>
         <activity
-            android:name=".ui.main.ForceCloseActivity"
-            android:clearTaskOnLaunch="true"
-            android:noHistory="true"
-            android:theme="@android:style/Theme.NoDisplay" />
-        <activity
             android:name=".ui.main.DeepLinkActivity"
             android:launchMode="singleTask"
             android:theme="@android:style/Theme.NoDisplay">

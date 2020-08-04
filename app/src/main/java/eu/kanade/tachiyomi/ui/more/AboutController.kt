@@ -2,9 +2,9 @@ package eu.kanade.tachiyomi.ui.more
 
 import android.app.Dialog
 import android.content.Intent
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import androidx.core.net.toUri
 import androidx.preference.PreferenceScreen
 import com.afollestad.materialdialogs.MaterialDialog
 import com.mikepenz.aboutlibraries.LibsBuilder
@@ -14,7 +14,6 @@ import eu.kanade.tachiyomi.data.updater.UpdateChecker
 import eu.kanade.tachiyomi.data.updater.UpdateResult
 import eu.kanade.tachiyomi.data.updater.UpdaterService
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
-import eu.kanade.tachiyomi.ui.main.ChangelogDialogController
 import eu.kanade.tachiyomi.ui.setting.SettingsController
 import eu.kanade.tachiyomi.util.lang.launchNow
 import eu.kanade.tachiyomi.util.lang.toDateTimestampString
@@ -67,15 +66,17 @@ class AboutController : SettingsController() {
             }
         }
         preference {
-            titleRes = R.string.changelog
+            titleRes = R.string.whats_new
 
             onClick {
-                if (BuildConfig.DEBUG) {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/inorichi/tachiyomi/commits/dev"))
-                    startActivity(intent)
+                val url = if (BuildConfig.DEBUG) {
+                    "https://github.com/inorichi/tachiyomi/commits/dev"
                 } else {
-                    ChangelogDialogController().showDialog(router)
+                    "https://github.com/inorichi/tachiyomi/releases/tag/v${BuildConfig.VERSION_NAME}"
                 }
+
+                val intent = Intent(Intent.ACTION_VIEW, url.toUri())
+                startActivity(intent)
             }
         }
         if (BuildConfig.DEBUG) {
@@ -83,7 +84,8 @@ class AboutController : SettingsController() {
                 titleRes = R.string.notices
 
                 onClick {
-                    ChangelogDialogController().showDialog(router)
+                    val intent = Intent(Intent.ACTION_VIEW, "https://github.com/inorichi/tachiyomi/blob/dev/PREVIEW_RELEASE_NOTES.md".toUri())
+                    startActivity(intent)
                 }
             }
         }
@@ -94,7 +96,7 @@ class AboutController : SettingsController() {
                 val url = "https://tachiyomi.org"
                 summary = url
                 onClick {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    val intent = Intent(Intent.ACTION_VIEW, url.toUri())
                     startActivity(intent)
                 }
             }
@@ -103,7 +105,7 @@ class AboutController : SettingsController() {
                 val url = "https://discord.gg/tachiyomi"
                 summary = url
                 onClick {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    val intent = Intent(Intent.ACTION_VIEW, url.toUri())
                     startActivity(intent)
                 }
             }
@@ -112,7 +114,7 @@ class AboutController : SettingsController() {
                 val url = "https://github.com/inorichi/tachiyomi"
                 summary = url
                 onClick {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    val intent = Intent(Intent.ACTION_VIEW, url.toUri())
                     startActivity(intent)
                 }
             }
@@ -121,7 +123,7 @@ class AboutController : SettingsController() {
                 val url = "https://github.com/inorichi/tachiyomi-extensions"
                 summary = url
                 onClick {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    val intent = Intent(Intent.ACTION_VIEW, url.toUri())
                     startActivity(intent)
                 }
             }

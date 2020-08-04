@@ -4,11 +4,11 @@ import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.view.View
+import androidx.core.view.isVisible
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
-import eu.kanade.tachiyomi.util.view.visibleIf
 import java.util.Date
 import kotlinx.android.synthetic.main.chapters_item.bookmark_icon
 import kotlinx.android.synthetic.main.chapters_item.chapter_description
@@ -40,7 +40,7 @@ class ChapterHolder(
         chapter_title.setTextColor(chapterColor)
         chapter_description.setTextColor(chapterColor)
 
-        bookmark_icon.visibleIf { chapter.bookmark }
+        bookmark_icon.isVisible = chapter.bookmark
 
         val descriptions = mutableListOf<CharSequence>()
 

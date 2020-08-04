@@ -30,4 +30,11 @@ object PreferenceValues {
         COMFORTABLE_GRID,
         LIST,
     }
+
+    enum class TappingInvertMode {
+        NONE,
+        HORIZONTAL,
+        VERTICAL,
+        BOTH
+    }
 }

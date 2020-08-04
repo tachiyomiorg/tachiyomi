@@ -61,7 +61,7 @@ class MoreController :
                     initDownloadQueueSummary(this)
                 }
 
-                iconRes = R.drawable.ic_file_download_black_24dp
+                iconRes = R.drawable.ic_get_app_24dp
                 iconTint = tintColor
                 onClick {
                     router.pushController(DownloadController().withFadeTransaction())

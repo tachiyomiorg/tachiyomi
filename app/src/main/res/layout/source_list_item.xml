@@ -6,6 +6,8 @@
     android:layout_height="@dimen/material_component_lists_single_line_with_avatar_height"
     android:layout_gravity="center_vertical"
     android:background="@drawable/list_item_selector"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="25dp">
 
@@ -52,14 +54,14 @@
             style="@style/TextAppearance.Regular.Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/pale_green"
+            android:background="@color/green"
             android:maxLines="1"
             android:paddingStart="3dp"
             android:paddingTop="1dp"
             android:paddingEnd="3dp"
             android:paddingBottom="1dp"
             android:text="@string/local_source_badge"
-            android:textColor="@color/md_black_1000"
+            android:textColor="@color/md_white_1000"
             android:visibility="gone"
             tools:visibility="visible" />
 
@@ -68,13 +70,13 @@
             style="@style/TextAppearance.Regular.Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/pale_green"
+            android:background="@color/green"
             android:maxLines="1"
             android:paddingStart="3dp"
             android:paddingTop="1dp"
             android:paddingEnd="3dp"
             android:paddingBottom="1dp"
-            android:textColor="@color/md_black_1000"
+            android:textColor="@color/md_white_1000"
             android:visibility="gone"
             tools:text="122"
             tools:visibility="visible" />

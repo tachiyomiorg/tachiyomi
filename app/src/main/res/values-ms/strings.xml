@@ -114,8 +114,8 @@
     <string name="pref_page_transitions">Menggerakkan peralihan muka surat</string>
     <string name="pref_show_page_number">Tunjuk nombor muka surat</string>
     <string name="pref_crop_borders">Potong pinggiran</string>
-    <string name="pref_custom_brightness">Guna kecerahan tersuai</string>
-    <string name="pref_custom_color_filter">Guna turas warna tersuai</string>
+    <string name="pref_custom_brightness">Kecerahan tersuai</string>
+    <string name="pref_custom_color_filter">Turas warna tersuai</string>
     <string name="pref_keep_screen_on">Tetap nyalakan skrin</string>
     <string name="pref_reader_navigation">Navigasi</string>
     <string name="pref_read_with_volume_keys">Butang volum</string>
@@ -175,7 +175,6 @@
     <string name="pref_backup_service_category">Sandaran automatik</string>
     <string name="pref_backup_interval">Kekerapan sandaran</string>
     <string name="pref_backup_slots">Sandaran maksimum</string>
-    <string name="source_not_found">Sumber tidak ditemui</string>
     <string name="backup_created">Sandaran dibuat</string>
     <string name="restore_completed">Pemulihan selesai</string>
     <string name="backup_restore_content">Pemulihan menggunakan Sambungan untuk memperolehi data, caj telco mungkin dikenakan.
@@ -321,7 +320,6 @@
     <string name="download_notifier_download_paused">Muat turun dihentikan sebentar</string>
     <string name="channel_common">Biasa</string>
     <string name="channel_library">Pustaka</string>
-    <string name="channel_downloader">Pemuat turun</string>
     <string name="label_migration">Pindah sumber</string>
     <string name="label_extensions">Sambungan</string>
     <string name="label_extension_info">Info sambungan</string>
@@ -456,7 +454,6 @@
         <item quantity="other">Untuk %d tajuk</item>
     </plurals>
     <string name="notices">Notis binaan Preview</string>
-    <string name="changelog">Log perubahan</string>
     <string name="pref_theme_light">Tema terang</string>
     <string name="theme_light_default">Lalai</string>
     <string name="theme_light_blue">Biru terang</string>
@@ -481,15 +478,14 @@
     <string name="label_sources">Sumber</string>
     <string name="pref_webtoon_side_padding">Tambahan sisi</string>
     <string name="webtoon_side_padding_10">10%</string>
-    <string name="channel_backup_restore">Sandaran dan memulih</string>
     <string name="information_webview_required">WebView diperlukan untuk Tachiyomi</string>
     <string name="recent_manga_time">Bab %1$s - %2$s</string>
     <string name="error_invalid_date_supplied">Tarikh dimasukkan tidak sah</string>
     <string name="track_finished_reading_date">Tarikh selesai membaca</string>
     <string name="track_started_reading_date">Tarikh mula membaca</string>
     <string name="add_tracking">Tambah penjejakan</string>
-    <string name="manga_info_collapse">Sembunyi info lanjut</string>
-    <string name="manga_info_expand">Tunjuk info lanjut</string>
+    <string name="manga_info_collapse">Tutup</string>
+    <string name="manga_info_expand">Buka</string>
     <string name="manga_info_about_label">Tentang</string>
     <string name="in_library">Dalam pustaka</string>
     <string name="add_to_library">Tambah ke pustaka</string>
@@ -519,8 +515,6 @@
         <item quantity="other">%1$s baki</item>
     </plurals>
     <string name="pref_search_pinned_sources_only">Hanya termasuk sumber yang disematkan</string>
-    <string name="channel_backup_restore_complete">Selesai</string>
-    <string name="channel_backup_restore_progress">Kemajuan</string>
     <string name="gray_background">Kelabu</string>
     <string name="viewer">Mod membaca</string>
     <string name="pref_category_for_this_series">Untuk siri ini</string>
@@ -563,4 +557,39 @@
     <string name="pref_show_reading_mode">Tunjuk mod membaca</string>
     <string name="loader_not_implemented_error">Sumber tidak dijumpai</string>
     <string name="action_start">Mula</string>
+    <string name="action_open_in_settings">Buka di Tetapan</string>
+    <plurals name="manga_num_chapters">
+        <item quantity="other">Jumlah bab: %1$s</item>
+    </plurals>
+    <string name="action_sort_descending">Menurun</string>
+    <string name="action_disable">Matikan</string>
+    <string name="pref_dns_over_https_summary">Mula semula diperlukan untuk berkesan</string>
+    <string name="pref_dns_over_https" translatable="false">DNS melalui HTTPS (Cloudflare)</string>
+    <string name="label_network">Rangkaian</string>
+    <string name="pref_jump_to_chapters">Terus ke bab bila buka</string>
+    <string name="tapping_inverted_both">Kedua-dua</string>
+    <string name="tapping_inverted_vertical">Mod atas bawah</string>
+    <string name="tapping_inverted_horizontal">Mod kanan kiri</string>
+    <string name="tapping_inverted_none">Tidak aktif</string>
+    <string name="pref_read_with_tapping_inverted">Songsangkan tekan skrin</string>
+    <string name="unknown_status">Status tidak diketahui</string>
+    <string name="unknown_author">Pengarang tidak diketahui</string>
+    <string name="action_download_unread">Muat turun bab belum dibaca</string>
+    <string name="updated_version">Dikemaskini ke v%1$s</string>
+    <string name="whats_new">Pembaharuan baharu</string>
+    <string name="action_sort_date_added">Tarikh ditambah</string>
+    <string name="download_insufficient_space">Memuat turun tidak berjaya kerana kekurangan ruang storan</string>
+    <string name="action_global_search_query">Cari untuk \"%1$s\" menggunakan carian keseluruhan</string>
+    <string name="pref_category_reading_mode">Mod membaca</string>
+    <string name="pref_category_locale">Tempat</string>
+    <string name="pref_category_theme">Tema</string>
+    <plurals name="num_trackers">
+        <item quantity="other">%d penjejak</item>
+    </plurals>
+    <string name="no_pinned_sources">Tiada sumber yang disematkan</string>
+    <string name="download_notifier_download_finish">Muat turun selesai</string>
+    <string name="channel_progress">Kemajuan</string>
+    <string name="group_backup_restore">Sandaran dan memulih</string>
+    <string name="group_downloader">Muat turun</string>
+    <string name="channel_complete">Selesai</string>
 </resources>

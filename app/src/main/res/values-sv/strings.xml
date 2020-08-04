@@ -138,8 +138,8 @@
     <string name="pref_double_tap_anim_speed">Animationshastighet för dubbelklick</string>
     <string name="pref_show_page_number">Visa sidnummer</string>
     <string name="pref_crop_borders">Beskär kanter</string>
-    <string name="pref_custom_brightness">Använd egen ljusstyrka</string>
-    <string name="pref_custom_color_filter">Använd eget färgfilter</string>
+    <string name="pref_custom_brightness">Anpassad ljusstyrka</string>
+    <string name="pref_custom_color_filter">Anpassad färgfilter</string>
     <string name="pref_keep_screen_on">Håll skärmen på</string>
     <string name="pref_reader_navigation">Navigering</string>
     <string name="pref_read_with_volume_keys">Volymknapparna</string>
@@ -203,7 +203,6 @@
     <string name="pref_backup_service_category">Automatiska säkerhetskopior</string>
     <string name="pref_backup_interval">Säkerhetskopieringsfrekvens</string>
     <string name="pref_backup_slots">Maximala säkerhetskopior</string>
-    <string name="source_not_found">Källan hittades inte</string>
     <string name="backup_created">Säkerhetskopia skapad</string>
     <string name="restore_completed">Återställning slutförd</string>
     <string name="backup_restore_content">Återställning använder källor för att hämta data, data kostnader kan tillkomma. 
@@ -362,7 +361,7 @@
     <string name="information_no_downloads">Inga nedladdningar</string>
     <string name="information_no_recent">Inga nya uppdateringar</string>
     <string name="information_no_recent_manga">Inget nyligen läst</string>
-    <string name="information_empty_library">Biblioteket är tomt, lägg till serier i ditt bibliotek från \"Bläddra\".</string>
+    <string name="information_empty_library">Biblioteket är tomt. Lägg till serier i ditt bibliotek från \"Bläddra\".</string>
     <string name="information_empty_category">Du har inga kategorier. Tryck på plus-knappen för att skapa en för att organisera ditt bibliotek.</string>
     <string name="download_notifier_downloader_title">Nedladdare</string>
     <string name="download_notifier_title_error">Fel</string>
@@ -374,7 +373,6 @@
     <string name="download_notifier_download_paused">Nedladdning pausad</string>
     <string name="channel_common">Vanlig</string>
     <string name="channel_library">Bibliotek</string>
-    <string name="channel_downloader">Nedladdare</string>
     <string name="action_open_in_web_view">Öppna i WebView</string>
     <string name="pref_true_color">32-bitars färg</string>
     <string name="pref_skip_read_chapters">Skippa lästa kapitel</string>
@@ -453,14 +451,13 @@
     <string name="pref_disable_battery_optimization">Inaktivera batterioptimering</string>
     <string name="pref_disable_battery_optimization_summary">Hjälper till med uppdateringar och säkerhetskopior i bakgrunden</string>
     <string name="battery_optimization_disabled">Batterioptimering är redan inaktiverat</string>
-    <string name="email">E-postaddress</string>
+    <string name="email">E-postadress</string>
     <string name="pref_always_show_chapter_transition">Visa alltid kapitelövergång</string>
     <plurals name="notification_new_chapters_summary">
         <item quantity="one">För 1 titel</item>
         <item quantity="other">För %d titlar</item>
     </plurals>
     <string name="notices">Byggmeddelanden</string>
-    <string name="changelog">Ändringslogg</string>
     <string name="pref_theme_light">Ljust tema</string>
     <string name="theme_light_default">Standard</string>
     <string name="theme_light_blue">Ljusblå</string>
@@ -496,12 +493,11 @@
     <string name="action_unpin">Lossa</string>
     <string name="action_pin">Nåla</string>
     <string name="action_select_inverse">Välj omvänd</string>
-    <string name="manga_info_collapse">Visa mindre info</string>
-    <string name="manga_info_expand">Visa mer info</string>
+    <string name="manga_info_collapse">Mindre</string>
+    <string name="manga_info_expand">Mer</string>
     <string name="manga_info_about_label">Info</string>
     <string name="pref_confirm_exit">Bekräfta utgång</string>
     <string name="confirm_exit">Tryck tillbaka igen för att gå ur</string>
-    <string name="channel_backup_restore">Säkerhetskopiering och återställning</string>
     <string name="information_webview_required">WebView krävs för Tachiyomi</string>
     <string name="recent_manga_time">Kapitel %1$s - %2$s</string>
     <string name="error_invalid_date_supplied">Ogiltigt datum har angetts</string>
@@ -520,8 +516,6 @@
     <string name="restore_duration">%02d minuter, %02d sekunder</string>
     <string name="label_downloaded_only">Endast nedladdat</string>
     <string name="downloaded_only_summary">Filtrerar all manga i ditt bibliotek</string>
-    <string name="channel_backup_restore_complete">Färdig</string>
-    <string name="channel_backup_restore_progress">Förlopp</string>
     <plurals name="download_queue_summary">
         <item quantity="one">1 återstående</item>
         <item quantity="other">%1$s återstående</item>
@@ -562,13 +556,51 @@
     <string name="pref_library_update_refresh_metadata">Uppdatera metadata automatiskt</string>
     <string name="action_migrate">Migrera</string>
     <string name="action_disable_all">Inaktivera alla</string>
-    <string name="page_list_empty_error">Inga sidor hittades</string>
+    <string name="page_list_empty_error">Hittade inga sidor</string>
     <string name="tabs_header">Flikar</string>
-    <string name="badges_header">Märken</string>
+    <string name="badges_header">Emblem</string>
     <string name="pref_show_reading_mode_summary">Visa nuvarande läge när läsaren öppnas</string>
     <string name="pref_show_reading_mode">Visa läsläge</string>
     <string name="action_display_show_tabs">Visa kategoriflikar</string>
-    <string name="action_display_comfortable_grid">Bekvämt rutnät</string>
+    <string name="action_display_comfortable_grid">Komfortabelt rutnät</string>
     <string name="action_enable_all">Aktivera alla</string>
     <string name="action_start">Start</string>
+    <string name="tapping_inverted_both">Både</string>
+    <string name="tapping_inverted_vertical">Vertikal</string>
+    <string name="tapping_inverted_horizontal">Horisontell</string>
+    <string name="tapping_inverted_none">Ingen</string>
+    <string name="pref_read_with_tapping_inverted">Invertera tryck</string>
+    <string name="loader_not_implemented_error">Källan hittades inte</string>
+    <plurals name="manga_num_chapters">
+        <item quantity="one">1 kapitel</item>
+        <item quantity="other">%1$s kapitel</item>
+    </plurals>
+    <string name="unknown_status">Okänd status</string>
+    <string name="unknown_author">Okänd författare</string>
+    <string name="pref_dns_over_https_summary">Kräver omstart av appen för att börja gälla</string>
+    <string name="pref_dns_over_https" translatable="false">DNS över HTTPS (Cloudflare)</string>
+    <string name="label_network">Nätverk</string>
+    <string name="pref_jump_to_chapters">Hoppa till kapitel vid öppning</string>
+    <string name="action_sort_descending">Fallande</string>
+    <string name="action_disable">Inaktivera</string>
+    <string name="action_open_in_settings">Öppna i Inställningar</string>
+    <string name="download_insufficient_space">Det gick inte att ladda ner kapitelt på grund av lågt diskutrymme</string>
+    <string name="action_global_search_query">Sök efter \"%1$s\" globalt</string>
+    <string name="updated_version">Uppdaterad till v%1$s</string>
+    <string name="whats_new">Vad är nytt</string>
+    <string name="pref_category_reading_mode">Läsläge</string>
+    <string name="pref_category_locale">Språk</string>
+    <string name="pref_category_theme">Tema</string>
+    <string name="action_download_unread">Ladda ner olästa kapitel</string>
+    <string name="action_sort_date_added">Datum tillagd</string>
+    <string name="group_backup_restore">Säkerhetskopiering och återställning</string>
+    <string name="group_downloader">Nedladdningar</string>
+    <string name="channel_complete">Färdig</string>
+    <string name="channel_progress">Förlopp</string>
+    <string name="download_notifier_download_finish">Nedladdningen slutförd</string>
+    <plurals name="num_trackers">
+        <item quantity="one">1 tracker</item>
+        <item quantity="other">%d trackers</item>
+    </plurals>
+    <string name="no_pinned_sources">Du har inga fästa källor</string>
 </resources>

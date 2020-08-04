@@ -216,7 +216,6 @@
     <string name="pref_backup_service_category">Služby</string>
     <string name="pref_backup_interval">Frekvencia zálohovania</string>
     <string name="pref_backup_slots">Max. počet automatických záloh</string>
-    <string name="source_not_found">Zdroj sa nenašiel</string>
     <string name="backup_created">Záloha bola vytvorená</string>
     <string name="restore_completed">Obnovenie dokončené</string>
     <string name="backup_restore_content">Obnovenie využíva zdroje na načítanie údajov, môžu sa účtovať poplatky operátora.
@@ -392,7 +391,6 @@
     <string name="download_notifier_download_paused">Sťahovanie bolo pozastavené</string>
     <string name="channel_common">Bežný</string>
     <string name="channel_library">Knižnica</string>
-    <string name="channel_downloader">Sťahovač</string>
     <string name="no_results_found">Neboli nájdené žiadne výsledky</string>
     <string name="migration_selection_prompt">Vyberte zdroj zo ktorého chcete migrovat</string>
     <string name="invalid_download_dir">Neplatný adresár sťahovania</string>

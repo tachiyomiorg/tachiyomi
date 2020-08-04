@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.widget.preference
+package eu.kanade.tachiyomi.ui.setting.track
 
 import android.os.Bundle
 import android.view.View
@@ -7,6 +7,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.util.system.toast
+import eu.kanade.tachiyomi.widget.preference.LoginDialogPreference
 import kotlinx.android.synthetic.main.pref_account_login.view.login
 import kotlinx.android.synthetic.main.pref_account_login.view.password
 import kotlinx.android.synthetic.main.pref_account_login.view.username

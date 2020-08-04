@@ -271,13 +271,8 @@ class BackupRestoreService : Service() {
             if (source != null) {
                 restoreMangaData(manga, source, chapters, categories, history, tracks)
             } else {
-                val message = if (manga.source in sourceMapping) {
-                    getString(R.string.source_not_found_name, sourceMapping[manga.source])
-                } else {
-                    getString(R.string.source_not_found)
-                }
-
-                errors.add(Date() to "${manga.title} - $message")
+                val sourceName = sourceMapping[manga.source] ?: manga.source.toString()
+                errors.add(Date() to "${manga.title} - ${getString(R.string.source_not_found_name, sourceName)}")
             }
         } catch (e: Exception) {
             errors.add(Date() to "${manga.title} - ${e.message}")

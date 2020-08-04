@@ -28,7 +28,6 @@
     <string name="pref_true_color">३२-बिट रंग</string>
     <string name="black_background">काळा</string>
     <string name="channel_common">सामान्य</string>
-    <string name="channel_downloader">डाउनलोडर</string>
     <string name="action_menu">मेनू</string>
     <string name="action_filter_bookmarked">बुकमार्क आहे</string>
     <string name="confirm_exit">अॅप बंद करण्यासाठी बॅक पुन्हा दाबा</string>
@@ -48,7 +47,7 @@
     <string name="label_sources">स्त्रोत</string>
     <string name="label_recent_updates">अद्यतनित करा</string>
     <string name="label_library">संग्रहालय</string>
-    <string name="label_download_queue">डाऊनलोड संख्या</string>
+    <string name="label_download_queue">डाऊनलोड रांग</string>
     <string name="action_restore">पुनर्संचयित करा</string>
     <string name="action_create">बनवा</string>
     <string name="action_open_log">लॉग उघडा</string>

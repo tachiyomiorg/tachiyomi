@@ -101,6 +101,6 @@ class CategoryPresenter(
      * Returns true if a category with the given name already exists.
      */
     private fun categoryExists(name: String): Boolean {
-        return categories.any { it.name.equals(name, true) }
+        return categories.any { it.name == name }
     }
 }

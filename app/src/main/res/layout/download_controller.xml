@@ -14,20 +14,13 @@
         android:paddingBottom="@dimen/fab_list_padding"
         tools:listitem="@layout/download_item" />
 
-    <eu.kanade.tachiyomi.ui.library.MaterialFastScroll
+    <eu.kanade.tachiyomi.widget.MaterialFastScroll
         android:id="@+id/fast_scroller"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="end"
         app:fastScrollerBubbleEnabled="false"
         tools:visibility="visible" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        style="@style/Theme.Widget.FAB"
-        android:visibility="gone"
-        app:layout_anchor="@id/recycler"
-        app:srcCompat="@drawable/ic_pause_24dp" />
 
     <eu.kanade.tachiyomi.widget.EmptyView
         android:id="@+id/empty_view"

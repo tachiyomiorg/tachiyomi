@@ -29,6 +29,7 @@ class NetworkHelper(context: Context) {
             .cache(Cache(cacheDir, cacheSize))
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
+            .addInterceptor(UserAgentInterceptor())
 
         if (BuildConfig.DEBUG) {
             val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
@@ -61,8 +62,9 @@ class NetworkHelper(context: Context) {
         builder.build()
     }
 
-    val cloudflareClient = client.newBuilder()
-        .addInterceptor(UserAgentInterceptor())
-        .addInterceptor(CloudflareInterceptor(context))
-        .build()
+    val cloudflareClient by lazy {
+        client.newBuilder()
+            .addInterceptor(CloudflareInterceptor(context))
+            .build()
+    }
 }

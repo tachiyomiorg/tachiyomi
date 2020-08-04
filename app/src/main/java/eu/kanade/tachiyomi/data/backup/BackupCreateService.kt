@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.IBinder
 import android.os.PowerManager
+import androidx.core.net.toUri
 import com.hippo.unifile.UniFile
 import eu.kanade.tachiyomi.data.notification.Notifications
 import eu.kanade.tachiyomi.util.system.acquireWakeLock
@@ -106,7 +107,7 @@ class BackupCreateService : Service() {
             val backupFlags = intent.getIntExtra(BackupConst.EXTRA_FLAGS, 0)
             backupManager = BackupManager(this)
 
-            val backupFileUri = Uri.parse(backupManager.createBackup(uri, backupFlags, false))
+            val backupFileUri = backupManager.createBackup(uri, backupFlags, false)?.toUri()
             val unifile = UniFile.fromUri(this, backupFileUri)
             notifier.showBackupComplete(unifile)
         } catch (e: Exception) {

@@ -18,6 +18,7 @@ import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.browse.BrowseController
+import eu.kanade.tachiyomi.ui.browse.SourceDividerItemDecoration
 import eu.kanade.tachiyomi.ui.browse.extension.details.ExtensionDetailsController
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
@@ -75,7 +76,7 @@ open class ExtensionController :
         // Create recycler and set adapter.
         binding.recycler.layoutManager = LinearLayoutManager(view.context)
         binding.recycler.adapter = adapter
-        binding.recycler.addItemDecoration(ExtensionDividerItemDecoration(view.context))
+        binding.recycler.addItemDecoration(SourceDividerItemDecoration(view.context))
         adapter?.fastScroller = binding.fastScroller
     }
 
@@ -129,6 +130,9 @@ open class ExtensionController :
         val searchView = searchItem.actionView as SearchView
         searchView.maxWidth = Int.MAX_VALUE
 
+        // Fixes problem with the overflow icon showing up in lieu of search
+        searchItem.fixExpand(onExpand = { invalidateMenuOnExpand() })
+
         if (query.isNotEmpty()) {
             searchItem.expandActionView()
             searchView.setQuery(query, true)
@@ -142,9 +146,6 @@ open class ExtensionController :
                 drawExtensions()
             }
             .launchIn(scope)
-
-        // Fixes problem with the overflow icon showing up in lieu of search
-        searchItem.fixExpand(onExpand = { invalidateMenuOnExpand() })
     }
 
     override fun onItemClick(view: View, position: Int): Boolean {

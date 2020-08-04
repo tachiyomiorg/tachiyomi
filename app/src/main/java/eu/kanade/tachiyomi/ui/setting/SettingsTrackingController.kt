@@ -20,8 +20,8 @@ import eu.kanade.tachiyomi.util.preference.switchPreference
 import eu.kanade.tachiyomi.util.preference.titleRes
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.widget.preference.LoginPreference
-import eu.kanade.tachiyomi.widget.preference.TrackLoginDialog
-import eu.kanade.tachiyomi.widget.preference.TrackLogoutDialog
+import eu.kanade.tachiyomi.ui.setting.track.TrackLoginDialog
+import eu.kanade.tachiyomi.ui.setting.track.TrackLogoutDialog
 import uy.kohesive.injekt.injectLazy
 
 class SettingsTrackingController :

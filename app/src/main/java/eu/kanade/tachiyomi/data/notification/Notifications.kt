@@ -30,8 +30,12 @@ object Notifications {
     /**
      * Notification channel and ids used by the downloader.
      */
-    const val CHANNEL_DOWNLOADER = "downloader_channel"
-    const val ID_DOWNLOAD_CHAPTER = -201
+    private const val GROUP_DOWNLOADER = "group_downloader"
+    const val CHANNEL_DOWNLOADER_PROGRESS = "downloader_progress_channel"
+    const val ID_DOWNLOAD_CHAPTER_PROGRESS = -201
+    const val CHANNEL_DOWNLOADER_COMPLETE = "downloader_complete_channel"
+    const val ID_DOWNLOAD_CHAPTER_COMPLETE = -203
+    const val CHANNEL_DOWNLOADER_ERROR = "downloader_error_channel"
     const val ID_DOWNLOAD_CHAPTER_ERROR = -202
 
     /**
@@ -50,7 +54,7 @@ object Notifications {
     /**
      * Notification channel and ids used by the backup/restore system.
      */
-    private const val GROUP_BACK_RESTORE = "group_backup_restore"
+    private const val GROUP_BACKUP_RESTORE = "group_backup_restore"
     const val CHANNEL_BACKUP_RESTORE_PROGRESS = "backup_restore_progress_channel"
     const val ID_BACKUP_PROGRESS = -501
     const val ID_RESTORE_PROGRESS = -503
@@ -59,6 +63,7 @@ object Notifications {
     const val ID_RESTORE_COMPLETE = -504
 
     private val deprecatedChannels = listOf(
+        "downloader_channel",
         "backup_restore_complete_channel"
     )
 
@@ -70,10 +75,12 @@ object Notifications {
     fun createChannels(context: Context) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return
 
-        val backupRestoreGroup = NotificationChannelGroup(GROUP_BACK_RESTORE, context.getString(R.string.channel_backup_restore))
-        context.notificationManager.createNotificationChannelGroup(backupRestoreGroup)
+        listOf(
+            NotificationChannelGroup(GROUP_BACKUP_RESTORE, context.getString(R.string.group_backup_restore)),
+            NotificationChannelGroup(GROUP_DOWNLOADER, context.getString(R.string.group_downloader))
+        ).forEach(context.notificationManager::createNotificationChannelGroup)
 
-        val channels = listOf(
+        listOf(
             NotificationChannel(
                 CHANNEL_COMMON, context.getString(R.string.channel_common),
                 NotificationManager.IMPORTANCE_LOW
@@ -85,9 +92,24 @@ object Notifications {
                 setShowBadge(false)
             },
             NotificationChannel(
-                CHANNEL_DOWNLOADER, context.getString(R.string.channel_downloader),
+                CHANNEL_DOWNLOADER_PROGRESS, context.getString(R.string.channel_progress),
                 NotificationManager.IMPORTANCE_LOW
             ).apply {
+                group = GROUP_DOWNLOADER
+                setShowBadge(false)
+            },
+            NotificationChannel(
+                CHANNEL_DOWNLOADER_COMPLETE, context.getString(R.string.channel_complete),
+                NotificationManager.IMPORTANCE_LOW
+            ).apply {
+                group = GROUP_DOWNLOADER
+                setShowBadge(false)
+            },
+            NotificationChannel(
+                CHANNEL_DOWNLOADER_ERROR, context.getString(R.string.channel_errors),
+                NotificationManager.IMPORTANCE_LOW
+            ).apply {
+                group = GROUP_DOWNLOADER
                 setShowBadge(false)
             },
             NotificationChannel(
@@ -99,26 +121,23 @@ object Notifications {
                 NotificationManager.IMPORTANCE_DEFAULT
             ),
             NotificationChannel(
-                CHANNEL_BACKUP_RESTORE_PROGRESS, context.getString(R.string.channel_backup_restore_progress),
+                CHANNEL_BACKUP_RESTORE_PROGRESS, context.getString(R.string.channel_progress),
                 NotificationManager.IMPORTANCE_LOW
             ).apply {
-                group = GROUP_BACK_RESTORE
+                group = GROUP_BACKUP_RESTORE
                 setShowBadge(false)
             },
             NotificationChannel(
-                CHANNEL_BACKUP_RESTORE_COMPLETE, context.getString(R.string.channel_backup_restore_complete),
+                CHANNEL_BACKUP_RESTORE_COMPLETE, context.getString(R.string.channel_complete),
                 NotificationManager.IMPORTANCE_HIGH
             ).apply {
-                group = GROUP_BACK_RESTORE
+                group = GROUP_BACKUP_RESTORE
                 setShowBadge(false)
                 setSound(null, null)
             }
-        )
-        context.notificationManager.createNotificationChannels(channels)
+        ).forEach(context.notificationManager::createNotificationChannel)
 
         // Delete old notification channels
-        deprecatedChannels.forEach {
-            context.notificationManager.deleteNotificationChannel(it)
-        }
+        deprecatedChannels.forEach(context.notificationManager::deleteNotificationChannel)
     }
 }

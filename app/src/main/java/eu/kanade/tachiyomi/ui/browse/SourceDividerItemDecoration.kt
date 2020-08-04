@@ -1,13 +1,14 @@
-package eu.kanade.tachiyomi.ui.browse.extension
+package eu.kanade.tachiyomi.ui.browse
 
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.view.View
+import androidx.core.view.marginBottom
 import androidx.recyclerview.widget.RecyclerView
 
-class ExtensionDividerItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
+class SourceDividerItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
 
     private val divider: Drawable
 
@@ -22,11 +23,10 @@ class ExtensionDividerItemDecoration(context: Context) : RecyclerView.ItemDecora
         for (i in 0 until childCount - 1) {
             val child = parent.getChildAt(i)
             val holder = parent.getChildViewHolder(child)
-            if (holder is ExtensionHolder &&
-                parent.getChildViewHolder(parent.getChildAt(i + 1)) is ExtensionHolder
+            if (holder is SourceListItem &&
+                parent.getChildViewHolder(parent.getChildAt(i + 1)) is SourceListItem
             ) {
-                val params = child.layoutParams as RecyclerView.LayoutParams
-                val top = child.bottom + params.bottomMargin
+                val top = child.bottom + child.marginBottom
                 val bottom = top + divider.intrinsicHeight
                 val left = parent.paddingStart + holder.margin
                 val right = parent.width - parent.paddingEnd - holder.margin

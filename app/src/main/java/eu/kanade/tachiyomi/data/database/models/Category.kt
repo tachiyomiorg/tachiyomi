@@ -12,9 +12,6 @@ interface Category : Serializable {
 
     var flags: Int
 
-    val nameLower: String
-        get() = name.toLowerCase()
-
     companion object {
 
         fun create(name: String): Category = CategoryImpl().apply {

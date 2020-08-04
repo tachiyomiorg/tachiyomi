@@ -9,7 +9,7 @@
     <string name="label_download_queue">ダウンロードキュー</string>
     <string name="label_library">ライブラリ</string>
     <string name="label_recent_manga">履歴</string>
-    <string name="label_recent_updates">更新</string>
+    <string name="label_recent_updates">アップデート</string>
     <string name="label_categories">カテゴリ</string>
     <string name="label_backup">バックアップ</string>
     <string name="action_settings">設定</string>
@@ -56,10 +56,10 @@
     <string name="action_display_download_badge">バッジをダウンロードする</string>
     <string name="action_cancel">キャンセル</string>
     <string name="action_share">シェア</string>
-    <string name="action_save">保存する</string>
+    <string name="action_save">保存</string>
     <string name="action_reset">リセット</string>
     <string name="action_open_log">ログを開く</string>
-    <string name="action_create">作成する</string>
+    <string name="action_create">作成</string>
     <string name="action_restore">リストア</string>
     <string name="action_open">開いた</string>
     <string name="action_login">ログイン</string>
@@ -68,9 +68,9 @@
     <string name="pref_category_general">全般</string>
     <string name="pref_category_downloads">ダウンロード</string>
     <string name="pref_category_advanced">その他</string>
-    <string name="pref_category_about">約</string>
-    <string name="portrait">ポートレート</string>
-    <string name="landscape">景観</string>
+    <string name="pref_category_about">アプリについて</string>
+    <string name="portrait">縦向き</string>
+    <string name="landscape">横向き</string>
     <string name="default_columns">デフォルト</string>
     <string name="pref_library_update_interval">ライブラリ更新頻度</string>
     <string name="update_never">マニュアル</string>
@@ -114,12 +114,12 @@
     <string name="pref_page_transitions">ページ遷移エフェクトを表示</string>
     <string name="pref_double_tap_anim_speed">ダブルタップアニメーション速度</string>
     <string name="pref_crop_borders">クロップボーダー</string>
-    <string name="pref_custom_brightness">カスタムの明るさを使う</string>
-    <string name="pref_custom_color_filter">カスタムカラーフィルターを使用</string>
+    <string name="pref_custom_brightness">カスタムの明るさ</string>
+    <string name="pref_custom_color_filter">カスタムカラーフィルター</string>
     <string name="pref_reader_navigation">ナビゲーション</string>
     <string name="pref_read_with_volume_keys">音量キー</string>
     <string name="pref_read_with_volume_keys_inverted">音量キーを反転</string>
-    <string name="pref_read_with_tapping">タッピング</string>
+    <string name="pref_read_with_tapping">タップでページをめくる</string>
     <string name="pref_reader_theme">背景色</string>
     <string name="white_background">白</string>
     <string name="black_background">ブラック</string>
@@ -145,9 +145,9 @@
     <string name="double_tap_anim_speed_normal">通常</string>
     <string name="double_tap_anim_speed_fast">速い</string>
     <string name="pref_rotation_type">回転</string>
-    <string name="rotation_free">無料</string>
+    <string name="rotation_free">自動回転</string>
     <string name="rotation_lock">ロック</string>
-    <string name="rotation_force_portrait">強制肖像画</string>
+    <string name="rotation_force_portrait">横向き画面を強制</string>
     <string name="color_filter_r_value">R</string>
     <string name="color_filter_g_value">ジー</string>
     <string name="color_filter_b_value">B</string>
@@ -155,14 +155,14 @@
     <string name="pref_download_directory">ダウンロードフォルダ</string>
     <string name="pref_download_only_over_wifi">Wi-Fi経由でのみダウンロード</string>
     <string name="pref_remove_after_marked_as_read">既読の章を自動で削除</string>
-    <string name="pref_remove_after_read">読んだ後にすぐに削除</string>
+    <string name="pref_remove_after_read">読んだ後に削除</string>
     <string name="custom_dir">カスタムディレクトリ</string>
     <string name="disabled">無効</string>
     <string name="second_to_last">最後に読んだ章の2番目</string>
     <string name="pref_download_new">新しい章をダウンロード</string>
     <string name="pref_download_new_categories">ダウンロードに含まれるカテゴリ</string>
     <string name="backup">バックアップ</string>
-    <string name="pref_create_backup">バックアップを作成する</string>
+    <string name="pref_create_backup">バックアップを作成</string>
     <string name="pref_create_backup_summ">現在のライブラリを復元するために使用できます</string>
     <string name="pref_restore_backup">バックアップを復元</string>
     <string name="pref_restore_backup_summ">バックアップファイルからライブラリを復元する</string>
@@ -170,7 +170,6 @@
     <string name="pref_backup_service_category">自動バックアップ</string>
     <string name="pref_backup_interval">バックアップ頻度</string>
     <string name="pref_backup_slots">最大バックアップ数</string>
-    <string name="source_not_found">ソースが見つかりません</string>
     <string name="backup_created">バックアップが作成されました</string>
     <string name="pref_clear_chapter_cache">チャプタキャッシュをクリア</string>
     <string name="cache_delete_error">キャッシュの消去中にエラーが発生しました</string>
@@ -350,7 +349,7 @@
     <string name="information_no_downloads">ダウンロードタスクなし</string>
     <string name="information_no_recent">最近の章なし</string>
     <string name="information_no_recent_manga">最近に読んだマンガなし</string>
-    <string name="information_empty_library">ライブラリは空です。カタログから新しいマンガを追加してください。</string>
+    <string name="information_empty_library">ライブラリは空です。「ブラウズ」から新しいマンガシリーズを追加してください。</string>
     <string name="information_empty_category">カテゴリーがありません。「+」をタップしてカテゴリーを追加し、ライブラリを整理できます。</string>
     <string name="download_notifier_downloader_title">ダウンロード</string>
     <string name="download_notifier_title_error">エラー</string>
@@ -362,7 +361,6 @@
     <string name="download_notifier_download_paused">ダウンロード一時停止済み</string>
     <string name="channel_common">一般設定</string>
     <string name="channel_library">ライブラリ</string>
-    <string name="channel_downloader">ダウンロード</string>
     <string name="repeating">読み直している</string>
     <string name="source_not_installed">未インストールのソース：%1$s</string>
     <string name="transition_finished">読み終わった：</string>
@@ -413,15 +411,15 @@
     <string name="theme_dark_blue">濃紺</string>
     <string name="theme_dark_amoled">AMOLEDブラック</string>
     <string name="pref_manage_notifications">通知設定</string>
-    <string name="pref_category_security">安全</string>
+    <string name="pref_category_security">セキュリティ</string>
     <string name="lock_with_biometrics">生体認証</string>
     <string name="lock_when_idle">タイムアウトロック</string>
-    <string name="lock_always">いつも</string>
+    <string name="lock_always">常時</string>
     <string name="lock_never">しない</string>
     <plurals name="lock_after_mins">
         <item quantity="other">後%1$s分</item>
     </plurals>
-    <string name="secure_screen">安全画面</string>
+    <string name="secure_screen">セキュア画面</string>
     <string name="unlock_app">Tachiyomiを開ける</string>
     <plurals name="notification_chapters_generic">
         <item quantity="other">%1$d新しい章</item>
@@ -442,7 +440,6 @@
     <string name="check_for_updates">更新を確認</string>
     <string name="licenses">オープンソースライセンス</string>
     <string name="notices">ビルド通知をプレビュー</string>
-    <string name="changelog">変更履歴</string>
     <string name="website">Webサイト</string>
     <string name="battery_optimization_setting_activity_not_found">デバイス設定を開きませんでした</string>
     <string name="battery_optimization_disabled">バッテリー最適化は既に無効です</string>
@@ -514,11 +511,9 @@
     <string name="action_disable_all">全て無効にする</string>
     <string name="action_enable_all">全て有効にする</string>
     <string name="action_select_inverse">選択を反転</string>
-    <string name="action_sort_last_checked">最近チェック済み</string>
+    <string name="action_sort_last_checked">最近のアクセス日付順</string>
     <string name="action_menu">メニュー</string>
     <string name="confirm_exit">もう一度押して終了します</string>
-    <string name="channel_backup_restore_complete">完了</string>
-    <string name="channel_backup_restore">バックアップと復元</string>
     <string name="channel_new_chapters">章の更新</string>
     <string name="information_webview_outdated">WebViewアプリを更新して互換性を向上させてください</string>
     <string name="information_webview_required">TachiyomiはWebViewを必要としています</string>
@@ -530,8 +525,7 @@
     <string name="viewer">ビューアモード</string>
     <string name="error_invalid_date_supplied">無効な日付です</string>
     <string name="track_started_reading_date">読書開始日付</string>
-    <string name="manga_info_collapse">一部の情報を非表示</string>
-    <string name="channel_backup_restore_progress">進捗</string>
+    <string name="manga_info_collapse">詳細を非表示</string>
     <string name="channel_ext_updates">拡張機能の更新</string>
     <string name="information_cloudflare_bypass_failure">Cloudflareをバイパスできませんでした</string>
     <plurals name="notification_chapters_multiple_and_more">
@@ -553,7 +547,7 @@
     <string name="manga_info_about_label">紹介</string>
     <string name="add_to_library">ライブラリに追加</string>
     <string name="sort_by_upload_date">アップロード日付順</string>
-    <string name="manga_info_expand">情報をもっと表示</string>
+    <string name="manga_info_expand">詳細を表示</string>
     <string name="in_library">ライブラリ内</string>
     <string name="local_source_help_guide">ローカルソースガイド</string>
     <string name="invalid_combination">既定のカテゴリーをその他のカテゴリーと同時に選択できません</string>
@@ -561,4 +555,41 @@
     <string name="last_used_source">最近に使用済み</string>
     <string name="pref_show_reading_mode_summary">現在のビューアモードを、ビューアが立ち上がるとしばらく表示します</string>
     <string name="pref_show_reading_mode">ビューアモードを表示</string>
+    <string name="loader_not_implemented_error">ソースが見つかりませんでした</string>
+    <plurals name="manga_num_chapters">
+        <item quantity="other">%1$s章</item>
+    </plurals>
+    <string name="action_sort_descending">昇順</string>
+    <string name="action_disable">無効化</string>
+    <string name="action_open_in_settings">設定で開く</string>
+    <string name="action_start">開始</string>
+    <string name="tapping_inverted_both">両方</string>
+    <string name="tapping_inverted_vertical">縦</string>
+    <string name="tapping_inverted_horizontal">水平</string>
+    <string name="tapping_inverted_none">なし</string>
+    <string name="unknown_status">不明なステータス</string>
+    <string name="unknown_author">作者不明</string>
+    <string name="pref_dns_over_https_summary">変更を適用するためには再起動してください</string>
+    <string name="label_network">ネットワーク</string>
+    <string name="pref_jump_to_chapters">起動時にチャプターを表示</string>
+    <string name="pref_read_with_tapping_inverted">タップでのページめくりを反転</string>
+    <string name="updated_version">v%1$sに更新しました</string>
+    <string name="whats_new">更新情報</string>
+    <string name="pref_dns_over_https" translatable="false">DNS over HTTPS（Cloudflare）</string>
+    <string name="action_download_unread">未読の章をダウンロード</string>
+    <string name="pref_category_reading_mode">読み方</string>
+    <string name="group_backup_restore">バックアップと復元</string>
+    <string name="group_downloader">ダウンロード</string>
+    <string name="channel_complete">完了</string>
+    <string name="channel_progress">プログレス</string>
+    <string name="download_notifier_download_finish">ダウンロード完了</string>
+    <string name="download_insufficient_space">ディスクスペースは足りないので章のダウンロード失敗しました</string>
+    <plurals name="num_trackers">
+        <item quantity="other">%dトラッカー</item>
+    </plurals>
+    <string name="no_pinned_sources">ピンソースがありません</string>
+    <string name="action_global_search_query">グローバルで「%1$s」を探す</string>
+    <string name="pref_category_locale">ロカール</string>
+    <string name="pref_category_theme">テーマ</string>
+    <string name="action_sort_date_added">日付</string>
 </resources>

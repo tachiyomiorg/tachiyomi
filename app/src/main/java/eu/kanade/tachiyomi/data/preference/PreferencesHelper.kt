@@ -1,8 +1,8 @@
 package eu.kanade.tachiyomi.data.preference
 
 import android.content.Context
-import android.net.Uri
 import android.os.Environment
+import androidx.core.net.toUri
 import androidx.preference.PreferenceManager
 import com.tfcporciuncula.flow.FlowSharedPreferences
 import com.tfcporciuncula.flow.Preference
@@ -27,27 +27,31 @@ fun <T> Preference<T>.asImmediateFlow(block: (value: T) -> Unit): Flow<T> {
         .onEach { block(it) }
 }
 
+operator fun <T> Preference<Set<T>>.plusAssign(item: T) {
+    set(get() + item)
+}
+
+operator fun <T> Preference<Set<T>>.minusAssign(item: T) {
+    set(get() - item)
+}
+
 @OptIn(ExperimentalCoroutinesApi::class)
 class PreferencesHelper(val context: Context) {
 
     private val prefs = PreferenceManager.getDefaultSharedPreferences(context)
     private val flowPrefs = FlowSharedPreferences(prefs)
 
-    private val defaultDownloadsDir = Uri.fromFile(
-        File(
-            Environment.getExternalStorageDirectory().absolutePath + File.separator +
-                context.getString(R.string.app_name),
-            "downloads"
-        )
-    )
+    private val defaultDownloadsDir = File(
+        Environment.getExternalStorageDirectory().absolutePath + File.separator +
+            context.getString(R.string.app_name),
+        "downloads"
+    ).toUri()
 
-    private val defaultBackupDir = Uri.fromFile(
-        File(
-            Environment.getExternalStorageDirectory().absolutePath + File.separator +
-                context.getString(R.string.app_name),
-            "backup"
-        )
-    )
+    private val defaultBackupDir = File(
+        Environment.getExternalStorageDirectory().absolutePath + File.separator +
+            context.getString(R.string.app_name),
+        "backup"
+    ).toUri()
 
     fun startScreen() = prefs.getInt(Keys.startScreen, 1)
 
@@ -121,6 +125,8 @@ class PreferencesHelper(val context: Context) {
 
     fun readWithTapping() = flowPrefs.getBoolean(Keys.readWithTapping, true)
 
+    fun readWithTappingInverted() = flowPrefs.getEnum(Keys.readWithTappingInverted, Values.TappingInvertMode.NONE)
+
     fun readWithLongTap() = flowPrefs.getBoolean(Keys.readWithLongTap, true)
 
     fun readWithVolumeKeys() = flowPrefs.getBoolean(Keys.readWithVolumeKeys, false)
@@ -130,6 +136,8 @@ class PreferencesHelper(val context: Context) {
     fun portraitColumns() = flowPrefs.getInt(Keys.portraitColumns, 0)
 
     fun landscapeColumns() = flowPrefs.getInt(Keys.landscapeColumns, 0)
+
+    fun jumpToChapters() = prefs.getBoolean(Keys.jumpToChapters, false)
 
     fun updateOnlyNonCompleted() = prefs.getBoolean(Keys.updateOnlyNonCompleted, false)
 

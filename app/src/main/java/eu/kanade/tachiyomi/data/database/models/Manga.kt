@@ -12,6 +12,8 @@ interface Manga : SManga {
 
     var last_update: Long
 
+    var date_added: Long
+
     var viewer: Int
 
     var chapter_flags: Int
@@ -22,16 +24,16 @@ interface Manga : SManga {
         setFlags(order, SORT_MASK)
     }
 
-    private fun setFlags(flag: Int, mask: Int) {
-        chapter_flags = chapter_flags and mask.inv() or (flag and mask)
-    }
-
     fun sortDescending(): Boolean {
         return chapter_flags and SORT_MASK == SORT_DESC
     }
 
     fun getGenres(): List<String>? {
         return genre?.split(", ")?.map { it.trim() }
+    }
+
+    private fun setFlags(flag: Int, mask: Int) {
+        chapter_flags = chapter_flags and mask.inv() or (flag and mask)
     }
 
     // Used to display the chapter's title one way or another

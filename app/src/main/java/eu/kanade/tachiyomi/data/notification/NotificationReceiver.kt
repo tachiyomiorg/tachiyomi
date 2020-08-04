@@ -155,7 +155,7 @@ class NotificationReceiver : BroadcastReceiver() {
      * @param mangaId id of manga
      * @param chapterId id of chapter
      */
-    internal fun openChapter(context: Context, mangaId: Long, chapterId: Long) {
+    private fun openChapter(context: Context, mangaId: Long, chapterId: Long) {
         val db = DatabaseHelper(context)
         val manga = db.getManga(mangaId).executeAsBlocking()
         val chapter = db.getChapter(chapterId).executeAsBlocking()

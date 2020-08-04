@@ -6,14 +6,18 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.download.DownloadService
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.databinding.DownloadControllerBinding
 import eu.kanade.tachiyomi.source.model.Page
+import eu.kanade.tachiyomi.ui.base.controller.FabController
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
-import eu.kanade.tachiyomi.ui.main.offsetAppbarHeight
+import eu.kanade.tachiyomi.util.view.shrinkOnScroll
 import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -28,12 +32,16 @@ import rx.android.schedulers.AndroidSchedulers
  */
 class DownloadController :
     NucleusController<DownloadControllerBinding, DownloadPresenter>(),
+    FabController,
     DownloadAdapter.DownloadItemListener {
 
     /**
      * Adapter containing the active downloads.
      */
     private var adapter: DownloadAdapter? = null
+
+    private var actionFab: ExtendedFloatingActionButton? = null
+    private var actionFabScrollListener: RecyclerView.OnScrollListener? = null
 
     /**
      * Map of subscriptions for active downloads.
@@ -78,22 +86,7 @@ class DownloadController :
         binding.recycler.layoutManager = LinearLayoutManager(view.context)
         binding.recycler.setHasFixedSize(true)
 
-        binding.fab.clicks()
-            .onEach {
-                val context = applicationContext ?: return@onEach
-
-                if (isRunning) {
-                    DownloadService.stop(context)
-                    presenter.pauseDownloads()
-                } else {
-                    DownloadService.start(context)
-                }
-
-                setInformationView()
-            }
-            .launchIn(scope)
-
-        binding.fab.offsetAppbarHeight(activity!!)
+        actionFabScrollListener = actionFab?.shrinkOnScroll(binding.recycler)
 
         // Subscribe to changes
         DownloadService.runningRelay
@@ -107,6 +100,29 @@ class DownloadController :
         presenter.getDownloadProgressObservable()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeUntilDestroy { onUpdateDownloadedPages(it) }
+    }
+
+    override fun configureFab(fab: ExtendedFloatingActionButton) {
+        actionFab = fab
+        fab.clicks()
+            .onEach {
+                val context = applicationContext ?: return@onEach
+
+                if (isRunning) {
+                    DownloadService.stop(context)
+                    presenter.pauseDownloads()
+                } else {
+                    DownloadService.start(context)
+                }
+
+                setInformationView()
+            }
+            .launchIn(scope)
+    }
+
+    override fun cleanupFab(fab: ExtendedFloatingActionButton) {
+        actionFabScrollListener?.let { binding.recycler.removeOnScrollListener(it) }
+        actionFab = null
     }
 
     override fun onDestroyView(view: View) {
@@ -267,18 +283,28 @@ class DownloadController :
     private fun setInformationView() {
         if (presenter.downloadQueue.isEmpty()) {
             binding.emptyView.show(R.string.information_no_downloads)
-            binding.fab.hide()
+            actionFab?.isVisible = false
         } else {
             binding.emptyView.hide()
-            binding.fab.show()
+            actionFab?.apply {
+                isVisible = true
 
-            binding.fab.setImageResource(
-                if (isRunning) {
-                    R.drawable.ic_pause_24dp
-                } else {
-                    R.drawable.ic_play_arrow_24dp
-                }
-            )
+                setText(
+                    if (isRunning) {
+                        R.string.action_pause
+                    } else {
+                        R.string.action_resume
+                    }
+                )
+
+                setIconResource(
+                    if (isRunning) {
+                        R.drawable.ic_pause_24dp
+                    } else {
+                        R.drawable.ic_play_arrow_24dp
+                    }
+                )
+            }
         }
     }
 

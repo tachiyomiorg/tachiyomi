@@ -2,8 +2,8 @@ package eu.kanade.tachiyomi.ui.browse.source.filter
 
 import android.view.View
 import android.widget.CheckedTextView
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.RecyclerView
-import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 import com.google.android.material.R
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
@@ -32,15 +32,14 @@ open class TriStateItem(val filter: Filter.TriState) : AbstractFlexibleItem<TriS
         val view = holder.text
         view.text = filter.name
 
-        fun getIcon() = VectorDrawableCompat.create(
-            view.resources,
+        fun getIcon() = AppCompatResources.getDrawable(
+            view.context,
             when (filter.state) {
                 Filter.TriState.STATE_IGNORE -> TR.drawable.ic_check_box_outline_blank_24dp
                 Filter.TriState.STATE_INCLUDE -> TR.drawable.ic_check_box_24dp
                 Filter.TriState.STATE_EXCLUDE -> TR.drawable.ic_check_box_x_24dp
                 else -> throw Exception("Unknown state")
-            },
-            null
+            }
         )?.apply {
             val color = if (filter.state == Filter.TriState.STATE_INCLUDE) {
                 view.context.getResourceColor(R.attr.colorAccent)

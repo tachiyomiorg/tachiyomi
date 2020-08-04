@@ -9,9 +9,8 @@ import android.widget.FrameLayout
 import androidx.annotation.IdRes
 import androidx.annotation.MenuRes
 import androidx.appcompat.view.ActionMode
+import androidx.core.view.isVisible
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.util.view.gone
-import eu.kanade.tachiyomi.util.view.visible
 import kotlinx.android.synthetic.main.common_action_toolbar.view.common_action_menu
 import kotlinx.android.synthetic.main.common_action_toolbar.view.common_action_toolbar
 
@@ -50,7 +49,7 @@ class ActionToolbar @JvmOverloads constructor(context: Context, attrs: Attribute
             common_action_menu.setOnMenuItemClickListener { listener(it) }
         }
 
-        common_action_toolbar.visible()
+        common_action_toolbar.isVisible = true
         val bottomAnimation = AnimationUtils.loadAnimation(context, R.anim.enter_from_bottom)
         common_action_toolbar.startAnimation(bottomAnimation)
     }
@@ -62,7 +61,7 @@ class ActionToolbar @JvmOverloads constructor(context: Context, attrs: Attribute
         val bottomAnimation = AnimationUtils.loadAnimation(context, R.anim.exit_to_bottom)
         bottomAnimation.setAnimationListener(object : SimpleAnimationListener() {
             override fun onAnimationEnd(animation: Animation) {
-                common_action_toolbar.gone()
+                common_action_toolbar.isVisible = false
             }
         })
         common_action_toolbar.startAnimation(bottomAnimation)

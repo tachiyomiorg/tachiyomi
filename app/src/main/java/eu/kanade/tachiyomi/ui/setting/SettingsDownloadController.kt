@@ -4,10 +4,10 @@ import android.app.Activity
 import android.app.Dialog
 import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import androidx.preference.PreferenceScreen
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItemsSingleChoice
@@ -54,7 +54,7 @@ class SettingsDownloadController : SettingsController() {
 
             preferences.downloadsDirectory().asFlow()
                 .onEach { path ->
-                    val dir = UniFile.fromUri(context, Uri.parse(path))
+                    val dir = UniFile.fromUri(context, path.toUri())
                     summary = dir.filePath ?: path
                 }
                 .launchIn(scope)
@@ -153,7 +153,7 @@ class SettingsDownloadController : SettingsController() {
     }
 
     fun predefinedDirectorySelected(selectedDir: String) {
-        val path = Uri.fromFile(File(selectedDir))
+        val path = File(selectedDir).toUri()
         preferences.downloadsDirectory().set(path.toString())
     }
 

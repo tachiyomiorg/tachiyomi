@@ -58,58 +58,8 @@ class SettingsGeneralController : SettingsController() {
         }
 
         preferenceCategory {
-            titleRes = R.string.pref_category_display
+            titleRes = R.string.pref_category_theme
 
-            listPreference {
-                key = Keys.lang
-                titleRes = R.string.pref_language
-
-                val langs = mutableListOf<Pair<String, String>>()
-                langs += Pair("", "${context.getString(R.string.system_default)} (${LocaleHelper.getDisplayName("")})")
-                // Due to compatibility issues:
-                // - Hebrew: `he` is copied into `iw` at build time
-                langs += arrayOf(
-                    "ar", "be", "bg", "bn", "ca", "cs", "de", "el", "es", "es-419", "en-US", "en-GB", "fa", "fi", "fr", "he",
-                    "hi", "hr", "hu", "in", "it", "ja", "ka-rGE", "kn", "ko", "lv", "mr", "ms", "nb-rNO", "nl", "pl", "pt",
-                    "pt-BR", "ro", "ru", "sc", "sk", "sr", "sv", "th", "tl", "tr", "uk", "ur-rPK", "vi", "zh-rCN", "zh-rTW"
-                )
-                    .map {
-                        Pair(it, LocaleHelper.getDisplayName(it))
-                    }
-                    .sortedBy { it.second }
-
-                entryValues = langs.map { it.first }.toTypedArray()
-                entries = langs.map { it.second }.toTypedArray()
-                defaultValue = ""
-                summary = "%s"
-
-                onChange { newValue ->
-                    val activity = activity ?: return@onChange false
-                    val app = activity.application
-                    LocaleHelper.changeLocale(newValue.toString())
-                    LocaleHelper.updateConfiguration(app, app.resources.configuration)
-                    activity.recreate()
-                    true
-                }
-            }
-            listPreference {
-                key = Keys.dateFormat
-                titleRes = R.string.pref_date_format
-                entryValues = arrayOf("", "MM/dd/yy", "dd/MM/yy", "yyyy-MM-dd")
-
-                val now = Date().time
-                entries = entryValues.map { value ->
-                    val formattedDate = preferences.dateFormat(value.toString()).format(now)
-                    if (value == "") {
-                        "${context.getString(R.string.system_default)} ($formattedDate)"
-                    } else {
-                        "$value ($formattedDate)"
-                    }
-                }.toTypedArray()
-
-                defaultValue = ""
-                summary = "%s"
-            }
             listPreference {
                 key = Keys.themeMode
                 titleRes = R.string.pref_theme_mode
@@ -194,6 +144,109 @@ class SettingsGeneralController : SettingsController() {
                     }
                     true
                 }
+            }
+        }
+
+        preferenceCategory {
+            titleRes = R.string.pref_category_locale
+
+            listPreference {
+                key = Keys.lang
+                titleRes = R.string.pref_language
+
+                val langs = mutableListOf<Pair<String, String>>()
+                langs += Pair(
+                    "",
+                    "${context.getString(R.string.system_default)} (${LocaleHelper.getDisplayName("")})"
+                )
+                // Due to compatibility issues:
+                // - Hebrew: `he` is copied into `iw` at build time
+                langs += arrayOf(
+                    "ar",
+                    "be",
+                    "bg",
+                    "bn",
+                    "ca",
+                    "cs",
+                    "cv",
+                    "de",
+                    "el",
+                    "es",
+                    "es-419",
+                    "en-US",
+                    "en-GB",
+                    "fa",
+                    "fi",
+                    "fil",
+                    "fr",
+                    "he",
+                    "hi",
+                    "hr",
+                    "hu",
+                    "in",
+                    "it",
+                    "ja",
+                    "ka-rGE",
+                    "kn",
+                    "ko",
+                    "lv",
+                    "mr",
+                    "ms",
+                    "nb-rNO",
+                    "nl",
+                    "pl",
+                    "pt",
+                    "pt-BR",
+                    "ro",
+                    "ru",
+                    "sc",
+                    "sk",
+                    "sr",
+                    "sv",
+                    "th",
+                    "tr",
+                    "uk",
+                    "ur-rPK",
+                    "vi",
+                    "zh-rCN",
+                    "zh-rTW"
+                )
+                    .map {
+                        Pair(it, LocaleHelper.getDisplayName(it))
+                    }
+                    .sortedBy { it.second }
+
+                entryValues = langs.map { it.first }.toTypedArray()
+                entries = langs.map { it.second }.toTypedArray()
+                defaultValue = ""
+                summary = "%s"
+
+                onChange { newValue ->
+                    val activity = activity ?: return@onChange false
+                    val app = activity.application
+                    LocaleHelper.changeLocale(newValue.toString())
+                    LocaleHelper.updateConfiguration(app, app.resources.configuration)
+                    activity.recreate()
+                    true
+                }
+            }
+            listPreference {
+                key = Keys.dateFormat
+                titleRes = R.string.pref_date_format
+                entryValues = arrayOf("", "MM/dd/yy", "dd/MM/yy", "yyyy-MM-dd")
+
+                val now = Date().time
+                entries = entryValues.map { value ->
+                    val formattedDate = preferences.dateFormat(value.toString()).format(now)
+                    if (value == "") {
+                        "${context.getString(R.string.system_default)} ($formattedDate)"
+                    } else {
+                        "$value ($formattedDate)"
+                    }
+                }.toTypedArray()
+
+                defaultValue = ""
+                summary = "%s"
             }
         }
     }

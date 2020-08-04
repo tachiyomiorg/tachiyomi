@@ -4,14 +4,12 @@ import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import androidx.core.net.toUri
 import androidx.preference.PreferenceScreen
 import com.afollestad.materialdialogs.MaterialDialog
-import com.bluelinelabs.conductor.RouterTransaction
-import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.cache.ChapterCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
@@ -20,7 +18,6 @@ import eu.kanade.tachiyomi.data.library.LibraryUpdateService.Target
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.network.NetworkHelper
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
-import eu.kanade.tachiyomi.ui.library.LibraryController
 import eu.kanade.tachiyomi.util.preference.defaultValue
 import eu.kanade.tachiyomi.util.preference.onClick
 import eu.kanade.tachiyomi.util.preference.preference
@@ -65,7 +62,7 @@ class SettingsAdvancedController : SettingsController() {
                         try {
                             val intent = Intent().apply {
                                 action = Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
-                                data = Uri.parse("package:$packageName")
+                                data = "package:$packageName".toUri()
                             }
                             startActivity(intent)
                         } catch (e: ActivityNotFoundException) {
@@ -101,7 +98,7 @@ class SettingsAdvancedController : SettingsController() {
         }
 
         preferenceCategory {
-            titleRes = R.string.label_data
+            titleRes = R.string.label_network
 
             preference {
                 titleRes = R.string.pref_clear_cookies
@@ -173,12 +170,6 @@ class SettingsAdvancedController : SettingsController() {
     }
 
     private fun clearDatabase() {
-        // Avoid weird behavior by going back to the library.
-        val newBackstack = listOf(RouterTransaction.with(LibraryController())) +
-            router.backstack.drop(1)
-
-        router.setBackstack(newBackstack, FadeChangeHandler())
-
         db.deleteMangasNotInLibrary().executeAsBlocking()
         db.deleteHistoryNoLastRead().executeAsBlocking()
         activity?.toast(R.string.clear_database_completed)

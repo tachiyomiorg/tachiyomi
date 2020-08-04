@@ -1,7 +1,7 @@
 package eu.kanade.tachiyomi.data.download
 
 import android.content.Context
-import android.net.Uri
+import androidx.core.net.toUri
 import com.hippo.unifile.UniFile
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
@@ -59,7 +59,7 @@ class DownloadCache(
      */
     private fun getDirectoryFromPreference(): UniFile {
         val dir = preferences.downloadsDirectory().get()
-        return UniFile.fromUri(context, Uri.parse(dir))
+        return UniFile.fromUri(context, dir.toUri())
     }
 
     /**
@@ -81,7 +81,7 @@ class DownloadCache(
         if (sourceDir != null) {
             val mangaDir = sourceDir.files[provider.getMangaDirName(manga)]
             if (mangaDir != null) {
-                return provider.getChapterDirName(chapter) in mangaDir.files
+                return provider.getValidChapterDirNames(chapter).any { it in mangaDir.files }
             }
         }
         return false
@@ -128,7 +128,7 @@ class DownloadCache(
             .orEmpty()
             .associate { it.name to SourceDirectory(it) }
             .mapNotNullKeys { entry ->
-                onlineSources.find { provider.getSourceDirName(it) == entry.key }?.id
+                onlineSources.find { provider.getSourceDirName(it).toLowerCase() == entry.key?.toLowerCase() }?.id
             }
 
         rootDir.files = sourceDirs
@@ -191,9 +191,10 @@ class DownloadCache(
     fun removeChapter(chapter: Chapter, manga: Manga) {
         val sourceDir = rootDir.files[manga.source] ?: return
         val mangaDir = sourceDir.files[provider.getMangaDirName(manga)] ?: return
-        val chapterDirName = provider.getChapterDirName(chapter)
-        if (chapterDirName in mangaDir.files) {
-            mangaDir.files -= chapterDirName
+        provider.getValidChapterDirNames(chapter).forEach {
+            if (it in mangaDir.files) {
+                mangaDir.files -= it
+            }
         }
     }
 
@@ -208,9 +209,10 @@ class DownloadCache(
         val sourceDir = rootDir.files[manga.source] ?: return
         val mangaDir = sourceDir.files[provider.getMangaDirName(manga)] ?: return
         chapters.forEach { chapter ->
-            val chapterDirName = provider.getChapterDirName(chapter)
-            if (chapterDirName in mangaDir.files) {
-                mangaDir.files -= chapterDirName
+            provider.getValidChapterDirNames(chapter).forEach {
+                if (it in mangaDir.files) {
+                    mangaDir.files -= it
+                }
             }
         }
     }

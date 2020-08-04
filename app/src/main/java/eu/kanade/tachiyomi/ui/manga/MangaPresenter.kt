@@ -1,5 +1,7 @@
-package eu.kanade.tachiyomi.ui.manga.chapter
+package eu.kanade.tachiyomi.ui.manga
 
+import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import com.jakewharton.rxrelay.PublishRelay
 import eu.kanade.tachiyomi.data.cache.CoverCache
@@ -11,14 +13,20 @@ import eu.kanade.tachiyomi.data.database.models.MangaCategory
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.track.TrackManager
+import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
+import eu.kanade.tachiyomi.ui.manga.chapter.ChapterItem
 import eu.kanade.tachiyomi.util.chapter.syncChaptersWithSource
 import eu.kanade.tachiyomi.util.isLocal
 import eu.kanade.tachiyomi.util.lang.isNullOrUnsubscribed
+import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.prepUpdateCover
 import eu.kanade.tachiyomi.util.removeCovers
 import eu.kanade.tachiyomi.util.shouldDownloadNewChapters
+import eu.kanade.tachiyomi.util.updateCoverLastModified
+import java.util.Date
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -27,15 +35,15 @@ import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
-class MangaInfoChaptersPresenter(
+class MangaPresenter(
     val manga: Manga,
     val source: Source,
-    private val mangaFavoriteRelay: PublishRelay<Boolean>,
     val preferences: PreferencesHelper = Injekt.get(),
     private val db: DatabaseHelper = Injekt.get(),
+    private val trackManager: TrackManager = Injekt.get(),
     private val downloadManager: DownloadManager = Injekt.get(),
     private val coverCache: CoverCache = Injekt.get()
-) : BasePresenter<MangaInfoChaptersController>() {
+) : BasePresenter<MangaController>() {
 
     /**
      * Subscription to update the manga from the source.
@@ -77,17 +85,17 @@ class MangaInfoChaptersPresenter(
         // Manga info - start
 
         getMangaObservable()
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribeLatestCache({ view, manga -> view.onNextMangaInfo(manga, source) })
 
-        // Update favorite status
-        mangaFavoriteRelay.observeOn(AndroidSchedulers.mainThread())
-            .subscribe { setFavorite(it) }
-            .apply { add(this) }
+        getTrackingObservable()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeLatestCache(MangaController::onTrackingCount) { _, error -> Timber.e(error) }
 
         // Prepare the relay.
         chaptersRelay.flatMap { applyChapterFilters(it) }
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribeLatestCache(MangaInfoChaptersController::onNextChapters) { _, error -> Timber.e(error) }
+            .subscribeLatestCache(MangaController::onNextChapters) { _, error -> Timber.e(error) }
 
         // Manga info - end
 
@@ -121,7 +129,19 @@ class MangaInfoChaptersPresenter(
 
     private fun getMangaObservable(): Observable<Manga> {
         return db.getManga(manga.url, manga.source).asRxObservable()
-            .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    private fun getTrackingObservable(): Observable<Int> {
+        if (!trackManager.hasLoggedServices()) {
+            return Observable.just(0)
+        }
+
+        return db.getTracks(manga).asRxObservable()
+            .map { tracks ->
+                val loggedServices = trackManager.services.filter { it.isLogged }.map { it.id }
+                tracks.filter { it.sync_id in loggedServices }
+            }
+            .map { it.size }
     }
 
     /**
@@ -143,7 +163,7 @@ class MangaInfoChaptersPresenter(
                 { view, _ ->
                     view.onFetchMangaInfoDone()
                 },
-                MangaInfoChaptersController::onFetchMangaInfoError
+                MangaController::onFetchMangaInfoError
             )
     }
 
@@ -154,18 +174,15 @@ class MangaInfoChaptersPresenter(
      */
     fun toggleFavorite(): Boolean {
         manga.favorite = !manga.favorite
+        manga.date_added = when (manga.favorite) {
+            true -> Date().time
+            false -> 0
+        }
         if (!manga.favorite) {
             manga.removeCovers(coverCache)
         }
         db.insertManga(manga).executeAsBlocking()
         return manga.favorite
-    }
-
-    private fun setFavorite(favorite: Boolean) {
-        if (manga.favorite == favorite) {
-            return
-        }
-        toggleFavorite()
     }
 
     /**
@@ -223,6 +240,48 @@ class MangaInfoChaptersPresenter(
         moveMangaToCategories(manga, listOfNotNull(category))
     }
 
+    /**
+     * Update cover with local file.
+     *
+     * @param manga the manga edited.
+     * @param context Context.
+     * @param data uri of the cover resource.
+     */
+    fun editCover(manga: Manga, context: Context, data: Uri) {
+        Observable
+            .fromCallable {
+                context.contentResolver.openInputStream(data)?.use {
+                    if (manga.isLocal()) {
+                        LocalSource.updateCover(context, manga, it)
+                        manga.updateCoverLastModified(db)
+                    } else if (manga.favorite) {
+                        coverCache.setCustomCoverToCache(manga, it)
+                        manga.updateCoverLastModified(db)
+                    }
+                }
+            }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeFirst(
+                { view, _ -> view.onSetCoverSuccess() },
+                { view, e -> view.onSetCoverError(e) }
+            )
+    }
+
+    fun deleteCustomCover(manga: Manga) {
+        Observable
+            .fromCallable {
+                coverCache.deleteCustomCover(manga)
+                manga.updateCoverLastModified(db)
+            }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeFirst(
+                { view, _ -> view.onSetCoverSuccess() },
+                { view, e -> view.onSetCoverError(e) }
+            )
+    }
+
     // Manga info - end
 
     // Chapters list - start
@@ -233,7 +292,7 @@ class MangaInfoChaptersPresenter(
             .observeOn(AndroidSchedulers.mainThread())
             .filter { download -> download.manga.id == manga.id }
             .doOnNext { onDownloadStatusChange(it) }
-            .subscribeLatestCache(MangaInfoChaptersController::onChapterStatusChange) { _, error ->
+            .subscribeLatestCache(MangaController::onChapterStatusChange) { _, error ->
                 Timber.e(error)
             }
     }
@@ -286,7 +345,7 @@ class MangaInfoChaptersPresenter(
                 { view, _ ->
                     view.onFetchChaptersDone()
                 },
-                MangaInfoChaptersController::onFetchChaptersError
+                MangaController::onFetchChaptersError
             )
     }
 
@@ -366,17 +425,21 @@ class MangaInfoChaptersPresenter(
      * @param read whether to mark chapters as read or unread.
      */
     fun markChaptersRead(selectedChapters: List<ChapterItem>, read: Boolean) {
-        Observable.from(selectedChapters)
-            .doOnNext { chapter ->
-                chapter.read = read
-                if (!read) {
-                    chapter.last_page_read = 0
-                }
+        val chapters = selectedChapters.map { chapter ->
+            chapter.read = read
+            if (!read) {
+                chapter.last_page_read = 0
             }
-            .toList()
-            .flatMap { db.updateChaptersProgress(it).asRxObservable() }
-            .subscribeOn(Schedulers.io())
-            .subscribe()
+            chapter
+        }
+
+        launchIO {
+            db.updateChaptersProgress(chapters).executeAsBlocking()
+
+            if (preferences.removeAfterMarkedAsRead()) {
+                deleteChapters(chapters)
+            }
+        }
     }
 
     /**
@@ -416,7 +479,7 @@ class MangaInfoChaptersPresenter(
                 { view, _ ->
                     view.onChaptersDeleted(chapters)
                 },
-                MangaInfoChaptersController::onChaptersDeletedError
+                MangaController::onChaptersDeletedError
             )
     }
 
@@ -485,24 +548,6 @@ class MangaInfoChaptersPresenter(
         manga.bookmarkedFilter = if (onlyBookmarked) Manga.SHOW_BOOKMARKED else Manga.SHOW_ALL
         db.updateFlags(manga).executeAsBlocking()
         refreshChapters()
-    }
-
-    /**
-     * Removes all filters and requests an UI update.
-     */
-    fun removeFilters() {
-        manga.readFilter = Manga.SHOW_ALL
-        manga.downloadedFilter = Manga.SHOW_ALL
-        manga.bookmarkedFilter = Manga.SHOW_ALL
-        db.updateFlags(manga).executeAsBlocking()
-        refreshChapters()
-    }
-
-    /**
-     * Adds manga to library
-     */
-    fun addToLibrary() {
-        mangaFavoriteRelay.call(true)
     }
 
     /**

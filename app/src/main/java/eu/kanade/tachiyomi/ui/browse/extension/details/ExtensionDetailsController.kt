@@ -19,13 +19,15 @@ import androidx.preference.PreferenceGroupAdapter
 import androidx.preference.PreferenceManager
 import androidx.preference.PreferenceScreen
 import androidx.preference.SwitchPreferenceCompat
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.MergeAdapter
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.EmptyPreferenceDataStore
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.preference.minusAssign
+import eu.kanade.tachiyomi.data.preference.plusAssign
 import eu.kanade.tachiyomi.databinding.ExtensionDetailControllerBinding
 import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.source.CatalogueSource
@@ -86,7 +88,7 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
         val context = view.context
 
         binding.extensionPrefsRecycler.layoutManager = LinearLayoutManager(context)
-        binding.extensionPrefsRecycler.adapter = MergeAdapter(
+        binding.extensionPrefsRecycler.adapter = ConcatAdapter(
             ExtensionDetailsHeaderAdapter(presenter),
             initPreferencesAdapter(context, extension)
         )
@@ -197,15 +199,11 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
     }
 
     private fun toggleSource(source: Source, enable: Boolean) {
-        val current = preferences.disabledSources().get()
-
-        preferences.disabledSources().set(
-            if (enable) {
-                current - source.id.toString()
-            } else {
-                current + source.id.toString()
-            }
-        )
+        if (enable) {
+            preferences.disabledSources() -= source.id.toString()
+        } else {
+            preferences.disabledSources() += source.id.toString()
+        }
     }
 
     private fun openInSettings() {

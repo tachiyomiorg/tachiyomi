@@ -98,7 +98,7 @@ abstract class DialogController : RestoreViewOnCreateController {
     /**
      * Dismiss the dialog and pop this controller
      */
-    fun dismissDialog() {
+    private fun dismissDialog() {
         if (dismissed) {
             return
         }

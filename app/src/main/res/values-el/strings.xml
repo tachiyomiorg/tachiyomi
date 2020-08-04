@@ -138,8 +138,8 @@
     <string name="pref_double_tap_anim_speed">Ταχύτητα κίνησης διπλού αγγίγματος</string>
     <string name="pref_show_page_number">Εμφάνιση αριθμού σελίδας</string>
     <string name="pref_crop_borders">Περικοπή άκρων</string>
-    <string name="pref_custom_brightness">Χρήση εξατομικευμένης φωτεινότητας</string>
-    <string name="pref_custom_color_filter">Χρήση εξατομικευμένου φίλτρου χρωμάτων</string>
+    <string name="pref_custom_brightness">Προσαρμοσμένη φωτεινότητα</string>
+    <string name="pref_custom_color_filter">Προσαρμοσμένο φίλτρο χρώματος</string>
     <string name="pref_keep_screen_on">Να κρατηθεί η οθόνη ανοιχτή</string>
     <string name="pref_reader_navigation">Πλοήγηση</string>
     <string name="pref_read_with_volume_keys">Πλήκτρα ήχου</string>
@@ -203,7 +203,6 @@
     <string name="pref_backup_service_category">Αυτόματα αντίγραφα ασφαλείας</string>
     <string name="pref_backup_interval">Συχνότητα αντίγραφου ασφάλειας</string>
     <string name="pref_backup_slots">Μέγιστα αντίγραφα ασφαλείας</string>
-    <string name="source_not_found">Δεν βρέθηκε πηγή</string>
     <string name="backup_created">Δημιουργήθηκε αντίγραφο ασφαλείας</string>
     <string name="restore_completed">Η επαναφορά ολοκληρώθηκε</string>
     <string name="backup_restore_content">Η επαναφορά χρησιμοποιεί τις πηγές για τη λήψη δεδομένων, ενδέχεται να ισχύουν χρεώσεις φορέα.
@@ -374,7 +373,6 @@
     <string name="download_notifier_download_paused">Λήψη σε παύση</string>
     <string name="channel_common">Κοινό</string>
     <string name="channel_library">Βιβλιοθήκη</string>
-    <string name="channel_downloader">Πρόγραμμα λήψης</string>
     <string name="pref_read_with_long_tap">Παράθυρο παρατεταμένου αγγίγματος</string>
     <string name="action_open_in_web_view">Άνοιγμα σε WebView</string>
     <string name="pref_true_color">Χρώμα 32-bit</string>
@@ -429,8 +427,8 @@
     <string name="want_to_read">Θέλω να διαβάσω</string>
     <string name="paused">Σε παύση</string>
     <string name="currently_reading">Διαβάζετε αυτή τη στιγμή</string>
-    <string name="manga_info_collapse">Εμφάνιση λιγότερων πληροφοριών</string>
-    <string name="manga_info_expand">Εμφάνιση περισσότερων πληροφοριών</string>
+    <string name="manga_info_collapse">Λιγότερα</string>
+    <string name="manga_info_expand">Περισσότερα</string>
     <string name="manga_info_about_label">Περί</string>
     <string name="in_library">Στη βιβλιοθήκη</string>
     <string name="add_to_library">Προσθήκη στη βιβλιοθήκη</string>
@@ -444,10 +442,9 @@
     <string name="logout_success">Έχετε αποσυνδεθεί</string>
     <string name="logout">Αποσύνδεση</string>
     <string name="logout_title">Αποσύνδεση από %1$s;</string>
-    <string name="email">Διεύθυνση email</string>
+    <string name="email">Διεύθυνση ηλεκτ. ταχυδρομείου</string>
     <string name="check_for_updates">Έλεγχος για ενημερώσεις</string>
     <string name="licenses">Άδειες ανοιχτού κώδικα</string>
-    <string name="changelog">Ιστορικό αλλαγών</string>
     <string name="website">Ιστοσελίδα</string>
     <string name="battery_optimization_disabled">Η βελτιστοποίηση μπαταρίας είναι ήδη απενεργοποιημένη</string>
     <string name="pref_disable_battery_optimization_summary">Βοηθά στις ενημερώσεις βιβλιοθήκης και τα αντίγραφα ασφαλείας στο παρασκήνιο</string>
@@ -511,7 +508,6 @@
     <string name="unlock_app">Ξεκλειδώστε το Tachiyomi</string>
     <string name="label_downloaded_only">Ληφθέντα μόνο</string>
     <string name="label_sources">Πηγές</string>
-    <string name="channel_backup_restore">Δημιουργία αντιγράφων ασφαλείας και επαναφορά</string>
     <string name="action_oldest">Παλαιότερο</string>
     <string name="action_newest">Νεότερο</string>
     <string name="action_reorganize_by">Αναδιάταξη</string>
@@ -525,8 +521,6 @@
         <item quantity="one">1 που απομένει</item>
         <item quantity="other">%1$s που απομένουν</item>
     </plurals>
-    <string name="channel_backup_restore_complete">Ολοκληρώθηκε</string>
-    <string name="channel_backup_restore_progress">Πρόοδος</string>
     <string name="gray_background">Γκρι</string>
     <string name="pref_true_color_summary">Μειώνει το banding, αλλά επηρεάζει την απόδοση</string>
     <string name="viewer">Λειτουργία ανάγνωσης</string>
@@ -573,4 +567,40 @@
     <string name="action_start">Έναρξη</string>
     <string name="loader_not_implemented_error">Δεν βρέθηκε πηγή</string>
     <string name="action_disable">Απενεργοποίηση</string>
+    <string name="action_sort_descending">Φθίνουσα</string>
+    <plurals name="manga_num_chapters">
+        <item quantity="one">1 κεφάλαιο</item>
+        <item quantity="other">%1$s κεφάλαια</item>
+    </plurals>
+    <string name="action_open_in_settings">Άνοιγμα στις Ρυθμίσεις</string>
+    <string name="pref_dns_over_https_summary">Απαιτείται επανεκκίνηση της εφαρμογής για να τεθεί σε ισχύ</string>
+    <string name="pref_dns_over_https" translatable="false">DNS μέσω HTTPS (Cloudflare)</string>
+    <string name="label_network">Δίκτυο</string>
+    <string name="pref_jump_to_chapters">Μετάβαση στα κεφάλαια κατά το άνοιγμα</string>
+    <string name="tapping_inverted_both">Και τα δυο</string>
+    <string name="tapping_inverted_vertical">Κάθετα</string>
+    <string name="tapping_inverted_horizontal">Οριζόντια</string>
+    <string name="tapping_inverted_none">Κανένα</string>
+    <string name="pref_read_with_tapping_inverted">Αντιστροφή πατήματος</string>
+    <string name="unknown_status">Άγνωστη κατάσταση</string>
+    <string name="unknown_author">Άγνωστος συγγραφέας</string>
+    <string name="updated_version">Ενημερώθηκε σε v%1$s</string>
+    <string name="whats_new">Τι νέο υπάρχει</string>
+    <string name="action_download_unread">Λήψη μη αναγνωσμένων κεφαλαίων</string>
+    <string name="download_insufficient_space">Δεν ήταν δυνατή η λήψη κεφαλαίων λόγω χαμηλού χώρου στο δίσκο</string>
+    <string name="action_global_search_query">Αναζήτηση του \"%1$s\" καθολικά</string>
+    <string name="pref_category_reading_mode">Λειτουργία ανάγνωσης</string>
+    <string name="pref_category_theme">Θέμα</string>
+    <string name="pref_category_locale">Περιοχή</string>
+    <string name="action_sort_date_added">Ημερομηνία προσθήκης</string>
+    <plurals name="num_trackers">
+        <item quantity="one">1 ιχνηλάτης</item>
+        <item quantity="other">%d ιχνηλάτες</item>
+    </plurals>
+    <string name="no_pinned_sources">Δεν έχετε καρφιτσωμένες πηγές</string>
+    <string name="group_backup_restore">Δημιουργία αντιγράφων ασφαλείας και επαναφορά</string>
+    <string name="group_downloader">Λήψεις</string>
+    <string name="channel_complete">Ολοκληρωμένο</string>
+    <string name="channel_progress">Η λήψη ολοκληρώθηκε</string>
+    <string name="download_notifier_download_finish">Η λήψη ολοκληρώθηκε</string>
 </resources>

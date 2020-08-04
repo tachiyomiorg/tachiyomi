@@ -55,6 +55,8 @@ object PreferenceKeys {
 
     const val readWithTapping = "reader_tap"
 
+    const val readWithTappingInverted = "reader_tapping_inverted"
+
     const val readWithLongTap = "reader_long_tap"
 
     const val readWithVolumeKeys = "reader_volume_keys"
@@ -66,6 +68,8 @@ object PreferenceKeys {
     const val portraitColumns = "pref_library_columns_portrait_key"
 
     const val landscapeColumns = "pref_library_columns_landscape_key"
+
+    const val jumpToChapters = "jump_to_chapters"
 
     const val updateOnlyNonCompleted = "pref_update_only_non_completed_key"
 

@@ -60,7 +60,7 @@
         app:layout_constraintStart_toEndOf="@id/verticalcenter"
         app:layout_constraintTop_toBottomOf="@id/series_prefs" />
 
-    <!-- General preferences -->
+    <!-- General display preferences -->
 
     <TextView
         android:id="@+id/general_prefs"
@@ -72,6 +72,27 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewer" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/page_transitions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pref_page_transitions"
+        android:textColor="?android:attr/textColorSecondary"
+        app:layout_constraintTop_toBottomOf="@id/general_prefs" />
+
+    <!-- General reading mode preferences -->
+
+    <TextView
+        android:id="@+id/display_prefs"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/pref_category_display"
+        android:textColor="?attr/colorAccent"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/page_transitions" />
 
     <TextView
         android:id="@+id/rotation_mode_text"
@@ -91,7 +112,7 @@
         android:entries="@array/rotation_type"
         app:layout_constraintEnd_toEndOf="@id/spinner_end"
         app:layout_constraintStart_toEndOf="@id/verticalcenter"
-        app:layout_constraintTop_toBottomOf="@id/general_prefs" />
+        app:layout_constraintTop_toBottomOf="@id/display_prefs" />
 
     <TextView
         android:id="@+id/background_color_text"
@@ -135,7 +156,9 @@
         android:layout_height="wrap_content"
         android:text="@string/pref_cutout_short"
         android:textColor="?android:attr/textColorSecondary"
-        app:layout_constraintTop_toBottomOf="@id/fullscreen" />
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/fullscreen"
+        tools:visibility="visible" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/keepscreen"
@@ -154,22 +177,12 @@
         app:layout_constraintTop_toBottomOf="@id/keepscreen" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/true_color"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/pref_true_color"
-        android:textColor="?android:attr/textColorSecondary"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/long_tap"
-        tools:visibility="visible" />
-
-    <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/always_show_chapter_transition"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/pref_always_show_chapter_transition"
         android:textColor="?android:attr/textColorSecondary"
-        app:layout_constraintTop_toBottomOf="@id/true_color" />
+        app:layout_constraintTop_toBottomOf="@id/long_tap" />
 
     <android.widget.Space
         android:id="@+id/end_general_preferences"
@@ -188,7 +201,7 @@
         android:textColor="?attr/colorAccent"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/end_general_preferences" />
+        app:layout_constraintTop_toBottomOf="@id/end_navigation_preferences" />
 
     <TextView
         android:id="@+id/scale_type_text"
@@ -237,13 +250,49 @@
         android:textColor="?android:attr/textColorSecondary"
         app:layout_constraintTop_toBottomOf="@id/zoom_start" />
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/page_transitions"
-        android:layout_width="match_parent"
+    <android.widget.Space
+        android:id="@+id/end_paged_preferences"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/crop_borders"
+        tools:layout_editor_absoluteX="24dp" />
+
+    <TextView
+        android:id="@+id/navigation_prefs"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/pref_page_transitions"
-        android:textColor="?android:attr/textColorSecondary"
-        app:layout_constraintTop_toBottomOf="@id/crop_borders" />
+        android:layout_marginTop="24dp"
+        android:text="@string/pref_reader_navigation"
+        android:textColor="?attr/colorAccent"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/end_general_preferences" />
+
+    <TextView
+        android:id="@+id/tapping_inverted_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/pref_read_with_tapping_inverted"
+        app:layout_constraintBaseline_toBaselineOf="@id/tapping_inverted"
+        app:layout_constraintEnd_toStartOf="@id/verticalcenter"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/tapping_inverted"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:entries="@array/invert_tapping_mode"
+        app:layout_constraintEnd_toEndOf="@id/spinner_end"
+        app:layout_constraintStart_toEndOf="@id/verticalcenter"
+        app:layout_constraintTop_toBottomOf="@+id/navigation_prefs" />
+
+    <android.widget.Space
+        android:id="@+id/end_navigation_preferences"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tapping_inverted"
+        tools:layout_editor_absoluteX="24dp" />
 
     <!-- Webtoon preferences -->
 
@@ -251,21 +300,12 @@
         android:id="@+id/webtoon_prefs"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:text="@string/webtoon_viewer"
         android:textColor="?attr/colorAccent"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/end_general_preferences" />
-
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/crop_borders_webtoon"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/pref_crop_borders"
-        android:textColor="?android:attr/textColorSecondary"
-        app:layout_constraintTop_toBottomOf="@id/webtoon_prefs" />
+        app:layout_constraintTop_toBottomOf="@id/end_navigation_preferences" />
 
     <TextView
         android:id="@+id/webtoon_side_padding_text"
@@ -284,7 +324,16 @@
         android:entries="@array/webtoon_side_padding"
         app:layout_constraintLeft_toRightOf="@id/verticalcenter"
         app:layout_constraintRight_toRightOf="@id/spinner_end"
-        app:layout_constraintTop_toBottomOf="@id/crop_borders_webtoon" />
+        app:layout_constraintTop_toBottomOf="@id/webtoon_prefs" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/crop_borders_webtoon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/pref_crop_borders"
+        android:textColor="?android:attr/textColorSecondary"
+        app:layout_constraintTop_toBottomOf="@id/webtoon_side_padding" />
 
     <!-- Groups of preferences -->
 
@@ -293,7 +342,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:constraint_referenced_ids="pager_prefs,scale_type_text,scale_type,zoom_start_text,zoom_start,crop_borders,page_transitions"
+        app:constraint_referenced_ids="pager_prefs,scale_type_text,scale_type,zoom_start_text,zoom_start,crop_borders"
         tools:visibility="visible" />
 
     <androidx.constraintlayout.widget.Group
@@ -309,5 +358,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/navigation_prefs_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="navigation_prefs,tapping_inverted_text,end_navigation_preferences,tapping_inverted"
+        tools:layout_editor_absoluteX="24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

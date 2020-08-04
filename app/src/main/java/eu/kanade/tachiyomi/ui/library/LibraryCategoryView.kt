@@ -168,7 +168,7 @@ class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: Att
      *
      * @param event the event received.
      */
-    fun onNextLibraryManga(event: LibraryMangaEvent) {
+    private fun onNextLibraryManga(event: LibraryMangaEvent) {
         // Get the manga list for this category.
         val mangaForCategory = event.getMangaForCategory(category).orEmpty()
 

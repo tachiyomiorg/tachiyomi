@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.util.system
 import android.content.Context
 import android.content.pm.PackageManager
 import android.webkit.CookieManager
+import android.webkit.WebSettings
 import android.webkit.WebView
 
 object WebViewUtil {
@@ -27,6 +28,18 @@ object WebViewUtil {
 
 fun WebView.isOutdated(): Boolean {
     return getWebViewMajorVersion(this) < WebViewUtil.MINIMUM_WEBVIEW_VERSION
+}
+
+fun WebView.setDefaultSettings() {
+    with(settings) {
+        javaScriptEnabled = true
+        domStorageEnabled = true
+        databaseEnabled = true
+        setAppCacheEnabled(true)
+        useWideViewPort = true
+        loadWithOverviewMode = true
+        cacheMode = WebSettings.LOAD_DEFAULT
+    }
 }
 
 // Based on https://stackoverflow.com/a/29218966

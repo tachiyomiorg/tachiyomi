@@ -117,6 +117,8 @@ class Downloader(
         val pending = queue.filter { it.status != Download.DOWNLOADED }
         pending.forEach { if (it.status != Download.QUEUE) it.status = Download.QUEUE }
 
+        notifier.paused = false
+
         downloadsRelay.call(pending)
         return pending.isNotEmpty()
     }
@@ -135,9 +137,10 @@ class Downloader(
         } else {
             if (notifier.paused) {
                 notifier.paused = false
-                notifier.onDownloadPaused()
+                notifier.onPaused()
             } else {
-                notifier.dismiss()
+                notifier.dismissProgress()
+                notifier.onComplete()
             }
         }
     }
@@ -168,7 +171,7 @@ class Downloader(
                 .forEach { it.status = Download.NOT_DOWNLOADED }
         }
         queue.clear()
-        notifier.dismiss()
+        notifier.dismissProgress()
     }
 
     /**
@@ -229,13 +232,9 @@ class Downloader(
         val wasEmpty = queue.isEmpty()
         // Called in background thread, the operation can be slow with SAF.
         val chaptersWithoutDir = async {
-            val mangaDir = provider.findMangaDir(manga, source)
-
             chapters
-                // Avoid downloading chapters with the same name.
-                .distinctBy { it.name }
                 // Filter out those already downloaded.
-                .filter { mangaDir?.findFile(provider.getChapterDirName(it)) == null }
+                .filter { provider.findChapterDir(it, manga, source) == null }
                 // Add chapters to queue from the start.
                 .sortedByDescending { it.source_order }
         }
@@ -270,6 +269,13 @@ class Downloader(
     private fun downloadChapter(download: Download): Observable<Download> = Observable.defer {
         val chapterDirname = provider.getChapterDirName(download.chapter)
         val mangaDir = provider.getMangaDir(download.manga, download.source)
+
+        if (DiskUtil.getAvailableStorageSpace(mangaDir) < MIN_DISK_SPACE) {
+            download.status = Download.ERROR
+            notifier.onError(context.getString(R.string.download_insufficient_space), download.chapter.name)
+            return@defer Observable.just(download)
+        }
+
         val tmpDir = mangaDir.createDirectory(chapterDirname + TMP_DIR_SUFFIX)
 
         val pageListObservable = if (download.pages == null) {
@@ -487,5 +493,8 @@ class Downloader(
 
     companion object {
         const val TMP_DIR_SUFFIX = "_tmp"
+
+        // Arbitrary minimum required space to start a download: 50 MB
+        const val MIN_DISK_SPACE = 50 * 1024 * 1024
     }
 }

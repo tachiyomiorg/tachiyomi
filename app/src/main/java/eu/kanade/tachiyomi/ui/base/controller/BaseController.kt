@@ -64,8 +64,9 @@ abstract class BaseController<VB : ViewBinding>(bundle: Bundle? = null) :
     override fun onChangeStarted(handler: ControllerChangeHandler, type: ControllerChangeType) {
         if (type.isEnter) {
             setTitle()
+            setHasOptionsMenu(true)
         }
-        setHasOptionsMenu(type.isEnter)
+
         super.onChangeStarted(handler, type)
     }
 
@@ -73,7 +74,7 @@ abstract class BaseController<VB : ViewBinding>(bundle: Bundle? = null) :
         return null
     }
 
-    fun setTitle() {
+    fun setTitle(title: String? = null) {
         var parentController = parentController
         while (parentController != null) {
             if (parentController is BaseController<*> && parentController.getTitle() != null) {
@@ -82,7 +83,7 @@ abstract class BaseController<VB : ViewBinding>(bundle: Bundle? = null) :
             parentController = parentController.parentController
         }
 
-        (activity as? AppCompatActivity)?.supportActionBar?.title = getTitle()
+        (activity as? AppCompatActivity)?.supportActionBar?.title = title ?: getTitle()
     }
 
     private fun Controller.instance(): String {

@@ -72,11 +72,12 @@ class SourcePresenter(
         var sourceItems = byLang.flatMap {
             val langItem = LangItem(it.key)
             it.value.map { source ->
-                if (source.id.toString() in pinnedSourceIds) {
-                    pinnedSources.add(SourceItem(source, LangItem(PINNED_KEY)))
+                val isPinned = source.id.toString() in pinnedSourceIds
+                if (isPinned) {
+                    pinnedSources.add(SourceItem(source, LangItem(PINNED_KEY), isPinned))
                 }
 
-                SourceItem(source, langItem)
+                SourceItem(source, langItem, isPinned)
             }
         }
 
@@ -102,7 +103,10 @@ class SourcePresenter(
     }
 
     private fun updateLastUsedSource(sourceId: Long) {
-        val source = (sourceManager.get(sourceId) as? CatalogueSource)?.let { SourceItem(it) }
+        val source = (sourceManager.get(sourceId) as? CatalogueSource)?.let {
+            val isPinned = it.id.toString() in preferences.pinnedSources().get()
+            SourceItem(it, null, isPinned)
+        }
         source?.let { view?.setLastUsedSource(it) }
     }
 

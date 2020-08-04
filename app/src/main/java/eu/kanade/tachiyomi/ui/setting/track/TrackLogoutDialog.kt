@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.widget.preference
+package eu.kanade.tachiyomi.ui.setting.track
 
 import android.app.Dialog
 import android.os.Bundle

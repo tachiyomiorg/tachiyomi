@@ -5,15 +5,16 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.WebtoonLayoutManager
+import eu.kanade.tachiyomi.data.preference.PreferenceValues.TappingInvertMode
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.model.ViewerChapters
 import eu.kanade.tachiyomi.ui.reader.viewer.BaseViewer
-import eu.kanade.tachiyomi.util.view.gone
-import eu.kanade.tachiyomi.util.view.visible
 import kotlin.math.max
 import kotlin.math.min
 import rx.subscriptions.CompositeSubscription
@@ -65,7 +66,7 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
     val subscriptions = CompositeSubscription()
 
     init {
-        recycler.gone() // Don't let the recycler layout yet
+        recycler.isVisible = false // Don't let the recycler layout yet
         recycler.layoutParams = ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT)
         recycler.itemAnimator = null
         recycler.layoutManager = layoutManager
@@ -92,11 +93,30 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
                 }
             }
         })
-        recycler.tapListener = { event ->
+        recycler.tapListener = f@{ event ->
+            if (!config.tappingEnabled) {
+                activity.toggleMenu()
+                return@f
+            }
+
+            val positionX = event.rawX
             val positionY = event.rawY
+            val topSideTap = positionY < recycler.height * 0.25f
+            val bottomSideTap = positionY > recycler.height * 0.75f
+            val leftSideTap = positionX < recycler.width * 0.33f
+            val rightSideTap = positionX > recycler.width * 0.66f
+
+            val invertMode = config.tappingInverted
+            val invertVertical = invertMode == TappingInvertMode.VERTICAL || invertMode == TappingInvertMode.BOTH
+            val invertHorizontal = invertMode == TappingInvertMode.HORIZONTAL || invertMode == TappingInvertMode.BOTH
+
             when {
-                positionY < recycler.height * 0.33f && config.tappingEnabled -> scrollUp()
-                positionY > recycler.height * 0.66f && config.tappingEnabled -> scrollDown()
+                topSideTap && !invertVertical || bottomSideTap && invertVertical -> scrollUp()
+                bottomSideTap && !invertVertical || topSideTap && invertVertical -> scrollDown()
+
+                leftSideTap && !invertHorizontal || rightSideTap && invertHorizontal -> scrollUp()
+                rightSideTap && !invertHorizontal || leftSideTap && invertHorizontal -> scrollDown()
+
                 else -> activity.toggleMenu()
             }
         }
@@ -204,11 +224,11 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
         val forceTransition = config.alwaysShowChapterTransition || currentPage is ChapterTransition
         adapter.setChapters(chapters, forceTransition)
 
-        if (recycler.visibility == View.GONE) {
+        if (recycler.isGone) {
             Timber.d("Recycler first layout")
             val pages = chapters.currChapter.pages ?: return
             moveToPage(pages[chapters.currChapter.requestedPage])
-            recycler.visible()
+            recycler.isVisible = true
         }
     }
 
@@ -229,14 +249,22 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
      * Scrolls up by [scrollDistance].
      */
     private fun scrollUp() {
-        recycler.smoothScrollBy(0, -scrollDistance)
+        if (config.usePageTransitions) {
+            recycler.smoothScrollBy(0, -scrollDistance)
+        } else {
+            recycler.scrollBy(0, -scrollDistance)
+        }
     }
 
     /**
      * Scrolls down by [scrollDistance].
      */
     private fun scrollDown() {
-        recycler.smoothScrollBy(0, scrollDistance)
+        if (config.usePageTransitions) {
+            recycler.smoothScrollBy(0, scrollDistance)
+        } else {
+            recycler.scrollBy(0, scrollDistance)
+        }
     }
 
     /**

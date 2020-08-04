@@ -42,6 +42,7 @@
     <string name="action_sort_last_read">Last read</string>
     <string name="action_sort_last_checked">Last checked</string>
     <string name="action_sort_latest_chapter">Latest chapter</string>
+    <string name="action_sort_date_added">Date added</string>
     <string name="action_search">Search</string>
     <string name="action_global_search">Global search</string>
     <string name="action_select_all">Select all</string>
@@ -50,6 +51,7 @@
     <string name="action_mark_as_unread">Mark as unread</string>
     <string name="action_mark_previous_as_read">Mark previous as read</string>
     <string name="action_download">Download</string>
+    <string name="action_download_unread">Download unread chapters</string>
     <string name="action_bookmark">Bookmark</string>
     <string name="action_remove_bookmark">Unbookmark</string>
     <string name="action_delete">Delete</string>
@@ -135,6 +137,8 @@
     <string name="pref_category_about">About</string>
 
       <!-- General section -->
+    <string name="pref_category_theme">Theme</string>
+    <string name="pref_category_locale">Locale</string>
     <string name="pref_theme_mode">Dark mode</string>
     <string name="theme_system">Follow system</string>
     <string name="theme_light">Off</string>
@@ -172,6 +176,7 @@
     <string name="portrait">Portrait</string>
     <string name="landscape">Landscape</string>
     <string name="default_columns">Default</string>
+    <string name="pref_jump_to_chapters">Jump to chapters on open</string>
 
     <string name="pref_category_library_update">Updates</string>
     <string name="pref_library_update_interval">Library update frequency</string>
@@ -239,8 +244,8 @@
     <string name="pref_true_color">32-bit color</string>
     <string name="pref_true_color_summary">Reduces banding, but impacts performance</string>
     <string name="pref_crop_borders">Crop borders</string>
-    <string name="pref_custom_brightness">Use custom brightness</string>
-    <string name="pref_custom_color_filter">Use custom color filter</string>
+    <string name="pref_custom_brightness">Custom brightness</string>
+    <string name="pref_custom_color_filter">Custom color filter</string>
     <string name="pref_color_filter_mode">Color filter blend mode</string>
     <string name="filter_mode_default">Default</string>
     <string name="filter_mode_overlay">Overlay</string>
@@ -294,6 +299,7 @@
     <string name="color_filter_b_value">B</string>
     <string name="color_filter_a_value">A</string>
     <string name="pref_always_show_chapter_transition">Always show chapter transition</string>
+    <string name="pref_category_reading_mode">Reading mode</string>
     <string name="pref_category_reading">Reading</string>
     <string name="pref_webtoon_side_padding">Side padding</string>
     <string name="webtoon_side_padding_0">None</string>
@@ -338,7 +344,6 @@
     <string name="pref_backup_service_category">Automatic backups</string>
     <string name="pref_backup_interval">Backup frequency</string>
     <string name="pref_backup_slots">Maximum backups</string>
-    <string name="source_not_found">Source not found</string>
     <string name="source_not_found_name">Source not found: %1$s</string>
     <string name="tracker_not_logged_in">Not logged in: %1$s</string>
     <string name="backup_created">Backup created</string>
@@ -390,10 +395,11 @@
     <string name="website">Website</string>
     <string name="version">Version</string>
     <string name="build_time">Build time</string>
-    <string name="changelog">Changelog</string>
+    <string name="whats_new">What\'s new</string>
     <string name="notices">Preview build notices</string>
     <string name="licenses">Open source licenses</string>
     <string name="check_for_updates">Check for updates</string>
+    <string name="updated_version">Updated to v%1$s</string>
 
     <!-- ACRA -->
     <string name="pref_enable_acra">Send crash reports</string>
@@ -446,9 +452,11 @@
     <string name="invalid_combination">Default can\'t be selected with other categories</string>
     <string name="added_to_library">The manga has been added to your library</string>
     <string name="action_global_search_hint">Global search…</string>
+    <string name="action_global_search_query">Search for \"%1$s\" globally</string>
     <string name="latest">Latest</string>
     <string name="browse">Browse</string>
     <string name="local_source_help_guide">Local source guide</string>
+    <string name="no_pinned_sources">You have no pinned sources</string>
 
     <!-- Manga activity -->
     <string name="manga_not_in_db">This manga has been removed from the database.</string>
@@ -458,6 +466,8 @@
     <string name="description">Description</string>
     <string name="ongoing">Ongoing</string>
     <string name="unknown">Unknown</string>
+    <string name="unknown_author">Unknown author</string>
+    <string name="unknown_status">Unknown status</string>
     <string name="licensed">Licensed</string>
     <string name="add_to_library">Add to library</string>
     <string name="in_library">In library</string>
@@ -507,6 +517,10 @@
 
     <!-- Tracking Screen -->
     <string name="manga_tracking_tab">Tracking</string>
+    <plurals name="num_trackers">
+        <item quantity="one">1 tracker</item>
+        <item quantity="other">%d trackers</item>
+    </plurals>
     <string name="add_tracking">Add tracking</string>
     <string name="reading">Reading</string>
     <string name="currently_reading">Currently reading</string>
@@ -582,7 +596,8 @@
     <string name="copy">Copy</string>
 
     <!-- Downloads activity and service -->
-    <string name="download_queue_error">Could not download chapters. You can try again in the downloads section</string>
+    <string name="download_queue_error">Couldn\'t download chapters. You can try again in the downloads section</string>
+    <string name="download_insufficient_space">Couldn\'t download chapters due to low disk space</string>
 
     <!-- Library update service notifications -->
     <string name="notification_check_updates">Checking for new chapters</string>
@@ -660,15 +675,22 @@
     <string name="download_notifier_text_only_wifi">No Wi-Fi connection available</string>
     <string name="download_notifier_no_network">No network connection available</string>
     <string name="download_notifier_download_paused">Download paused</string>
+    <string name="download_notifier_download_finish">Download completed</string>
 
     <!-- Notification channels -->
     <string name="channel_common">Common</string>
+    <string name="channel_progress">Progress</string>
+    <string name="channel_complete">Complete</string>
+    <string name="channel_errors">Errors</string>
     <string name="channel_library">Library</string>
-    <string name="channel_downloader">Downloader</string>
+    <string name="group_downloader">Downloads</string>
+    <string name="group_backup_restore">Backup and restore</string>
     <string name="channel_new_chapters">Chapter updates</string>
     <string name="channel_ext_updates">Extension updates</string>
-    <string name="channel_backup_restore">Backup and restore</string>
-    <string name="channel_backup_restore_progress">Progress</string>
-    <string name="channel_backup_restore_complete">Complete</string>
+    <string name="pref_read_with_tapping_inverted">Invert tapping</string>
+    <string name="tapping_inverted_none">None</string>
+    <string name="tapping_inverted_horizontal">Horizontal</string>
+    <string name="tapping_inverted_vertical">Vertical</string>
+    <string name="tapping_inverted_both">Both</string>
 
 </resources>

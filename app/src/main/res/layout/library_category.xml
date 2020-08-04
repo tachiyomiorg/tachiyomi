@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <eu.kanade.tachiyomi.ui.library.MaterialFastScroll
+    <eu.kanade.tachiyomi.widget.MaterialFastScroll
         android:id="@+id/fast_scroller"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

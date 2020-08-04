@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.util.preference
 
 import androidx.annotation.StringRes
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.preference.CheckBoxPreference
 import androidx.preference.DialogPreference
@@ -13,7 +14,6 @@ import androidx.preference.PreferenceGroup
 import androidx.preference.PreferenceManager
 import androidx.preference.PreferenceScreen
 import androidx.preference.SwitchPreferenceCompat
-import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.widget.preference.IntListPreference
@@ -138,7 +138,7 @@ var Preference.titleRes: Int
 var Preference.iconRes: Int
     get() = 0 // set only
     set(value) {
-        icon = VectorDrawableCompat.create(context.resources, value, context.theme)
+        icon = AppCompatResources.getDrawable(context, value)
     }
 
 var Preference.summaryRes: Int

@@ -5,6 +5,8 @@ import androidx.preference.CheckBoxPreference
 import androidx.preference.PreferenceGroup
 import androidx.preference.PreferenceScreen
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.preference.minusAssign
+import eu.kanade.tachiyomi.data.preference.plusAssign
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.getPreferenceKey
 import eu.kanade.tachiyomi.source.icon
@@ -54,12 +56,11 @@ class SourceFilterController : SettingsController() {
 
                 onChange { newValue ->
                     val checked = newValue as Boolean
-                    val current = preferences.enabledLanguages().get()
                     if (!checked) {
-                        preferences.enabledLanguages().set(current - lang)
+                        preferences.enabledLanguages() -= lang
                         removeAll()
                     } else {
-                        preferences.enabledLanguages().set(current + lang)
+                        preferences.enabledLanguages() += lang
                         addLanguageSources(this, sources)
                     }
                     true
@@ -97,16 +98,11 @@ class SourceFilterController : SettingsController() {
 
                     onChange { newValue ->
                         val checked = newValue as Boolean
-                        val current = preferences.disabledSources().get()
-
-                        preferences.disabledSources().set(
-                            if (checked) {
-                                current - id
-                            } else {
-                                current + id
-                            }
-                        )
-
+                        if (checked) {
+                            preferences.disabledSources() -= id
+                        } else {
+                            preferences.disabledSources() += id
+                        }
                         true
                     }
                 }

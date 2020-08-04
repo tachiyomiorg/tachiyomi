@@ -17,10 +17,7 @@ class ThemedSwipeRefreshLayout @JvmOverloads constructor(context: Context, attrs
         // Background is controlled with "swipeRefreshLayoutProgressSpinnerBackgroundColor" in XML
 
         // This updates the progress arrow color
-        setColorSchemeColors(
-            ContextCompat.getColor(context, R.color.md_white_1000),
-            ContextCompat.getColor(context, R.color.md_white_1000),
-            ContextCompat.getColor(context, R.color.md_white_1000)
-        )
+        val white = ContextCompat.getColor(context, R.color.md_white_1000)
+        setColorSchemeColors(white, white, white)
     }
 }

@@ -57,10 +57,16 @@ class HistoryHolder(
         manga_title.text = manga.title
 
         // Set chapter number + timestamp
-        val formattedNumber = adapter.decimalFormat.format(chapter.chapter_number.toDouble())
-        manga_subtitle.text = itemView.context.getString(
-            R.string.recent_manga_time, formattedNumber, Date(history.last_read).toTimestampString()
-        )
+        if (chapter.chapter_number > -1f) {
+            val formattedNumber = adapter.decimalFormat.format(chapter.chapter_number.toDouble())
+            manga_subtitle.text = itemView.context.getString(
+                R.string.recent_manga_time,
+                formattedNumber,
+                Date(history.last_read).toTimestampString()
+            )
+        } else {
+            manga_subtitle.text = Date(history.last_read).toTimestampString()
+        }
 
         // Set cover
         GlideApp.with(itemView.context).clear(cover)

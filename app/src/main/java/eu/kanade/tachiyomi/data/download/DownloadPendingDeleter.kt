@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.data.download
 
 import android.content.Context
+import androidx.core.content.edit
 import com.github.salomonbrys.kotson.fromJson
 import com.google.gson.Gson
 import eu.kanade.tachiyomi.data.database.models.Chapter
@@ -22,7 +23,7 @@ class DownloadPendingDeleter(context: Context) {
     /**
      * Preferences used to store the list of chapters to delete.
      */
-    private val prefs = context.getSharedPreferences("chapters_to_delete", Context.MODE_PRIVATE)
+    private val preferences = context.getSharedPreferences("chapters_to_delete", Context.MODE_PRIVATE)
 
     /**
      * Last added chapter, used to avoid decoding from the preference too often.
@@ -49,7 +50,7 @@ class DownloadPendingDeleter(context: Context) {
             // Last entry matches the manga, reuse it to avoid decoding json from preferences
             lastEntry.copy(chapters = newChapters)
         } else {
-            val existingEntry = prefs.getString(manga.id!!.toString(), null)
+            val existingEntry = preferences.getString(manga.id!!.toString(), null)
             if (existingEntry != null) {
                 // Existing entry found on preferences, decode json and add the new chapter
                 val savedEntry = gson.fromJson<Entry>(existingEntry)
@@ -69,7 +70,9 @@ class DownloadPendingDeleter(context: Context) {
 
         // Save current state
         val json = gson.toJson(newEntry)
-        prefs.edit().putString(newEntry.manga.id.toString(), json).apply()
+        preferences.edit {
+            putString(newEntry.manga.id.toString(), json)
+        }
         lastAddedEntry = newEntry
     }
 
@@ -82,7 +85,9 @@ class DownloadPendingDeleter(context: Context) {
     @Synchronized
     fun getPendingChapters(): Map<Manga, List<Chapter>> {
         val entries = decodeAll()
-        prefs.edit().clear().apply()
+        preferences.edit {
+            clear()
+        }
         lastAddedEntry = null
 
         return entries.associate { entry ->
@@ -94,7 +99,7 @@ class DownloadPendingDeleter(context: Context) {
      * Decodes all the chapters from preferences.
      */
     private fun decodeAll(): List<Entry> {
-        return prefs.all.values.mapNotNull { rawEntry ->
+        return preferences.all.values.mapNotNull { rawEntry ->
             try {
                 (rawEntry as? String)?.let { gson.fromJson<Entry>(it) }
             } catch (e: Exception) {
@@ -130,7 +135,8 @@ class DownloadPendingDeleter(context: Context) {
     private data class ChapterEntry(
         val id: Long,
         val url: String,
-        val name: String
+        val name: String,
+        val scanlator: String?
     )
 
     /**
@@ -154,7 +160,7 @@ class DownloadPendingDeleter(context: Context) {
      * Returns a chapter entry from a chapter model.
      */
     private fun Chapter.toEntry(): ChapterEntry {
-        return ChapterEntry(id!!, url, name)
+        return ChapterEntry(id!!, url, name, scanlator)
     }
 
     /**
@@ -174,6 +180,7 @@ class DownloadPendingDeleter(context: Context) {
             it.id = id
             it.url = url
             it.name = name
+            it.scanlator = scanlator
         }
     }
 }

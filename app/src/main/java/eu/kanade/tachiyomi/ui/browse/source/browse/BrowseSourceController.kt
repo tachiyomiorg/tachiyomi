@@ -9,12 +9,14 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItems
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.tfcporciuncula.flow.Preference
 import eu.davidea.flexibleadapter.FlexibleAdapter
@@ -30,22 +32,21 @@ import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.model.FilterList
 import eu.kanade.tachiyomi.source.online.HttpSource
+import eu.kanade.tachiyomi.ui.base.controller.FabController
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.library.ChangeMangaCategoriesDialog
-import eu.kanade.tachiyomi.ui.main.offsetAppbarHeight
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.webview.WebViewActivity
 import eu.kanade.tachiyomi.util.system.connectivityManager
 import eu.kanade.tachiyomi.util.system.openInBrowser
 import eu.kanade.tachiyomi.util.system.toast
-import eu.kanade.tachiyomi.util.view.gone
 import eu.kanade.tachiyomi.util.view.inflate
 import eu.kanade.tachiyomi.util.view.shrinkOnScroll
 import eu.kanade.tachiyomi.util.view.snack
-import eu.kanade.tachiyomi.util.view.visible
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
 import eu.kanade.tachiyomi.widget.EmptyView
+import kotlinx.android.synthetic.main.main_activity.root_coordinator
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.filter
@@ -62,6 +63,7 @@ import uy.kohesive.injekt.injectLazy
  */
 open class BrowseSourceController(bundle: Bundle) :
     NucleusController<SourceControllerBinding, BrowseSourcePresenter>(bundle),
+    FabController,
     FlexibleAdapter.OnItemClickListener,
     FlexibleAdapter.OnItemLongClickListener,
     FlexibleAdapter.EndlessScrollListener,
@@ -83,6 +85,9 @@ open class BrowseSourceController(bundle: Bundle) :
      * Adapter containing the list of manga from the catalogue.
      */
     private var adapter: FlexibleAdapter<IFlexible<*>>? = null
+
+    private var actionFab: ExtendedFloatingActionButton? = null
+    private var actionFabScrollListener: RecyclerView.OnScrollListener? = null
 
     /**
      * Snackbar containing an error message when a request fails.
@@ -136,7 +141,7 @@ open class BrowseSourceController(bundle: Bundle) :
         adapter = FlexibleAdapter(null, this)
         setupRecycler(view)
 
-        binding.progress.visible()
+        binding.progress.isVisible = true
     }
 
     open fun initFilterSheet() {
@@ -162,13 +167,27 @@ open class BrowseSourceController(bundle: Bundle) :
         filterSheet?.setFilters(presenter.filterItems)
 
         // TODO: [ExtendedFloatingActionButton] hide/show methods don't work properly
-        filterSheet?.setOnShowListener { binding.fabFilter.gone() }
-        filterSheet?.setOnDismissListener { binding.fabFilter.visible() }
+        filterSheet?.setOnShowListener { actionFab?.isVisible = false }
+        filterSheet?.setOnDismissListener { actionFab?.isVisible = true }
 
-        binding.fabFilter.setOnClickListener { filterSheet?.show() }
+        actionFab?.setOnClickListener { filterSheet?.show() }
 
-        binding.fabFilter.offsetAppbarHeight(activity!!)
-        binding.fabFilter.visible()
+        actionFab?.isVisible = true
+    }
+
+    override fun configureFab(fab: ExtendedFloatingActionButton) {
+        actionFab = fab
+
+        // Controlled by initFilterSheet()
+        fab.isVisible = false
+
+        fab.setText(R.string.action_filter)
+        fab.setIconResource(R.drawable.ic_filter_list_24dp)
+    }
+
+    override fun cleanupFab(fab: ExtendedFloatingActionButton) {
+        actionFabScrollListener?.let { recycler?.removeOnScrollListener(it) }
+        actionFab = null
     }
 
     override fun onDestroyView(view: View) {
@@ -228,7 +247,7 @@ open class BrowseSourceController(bundle: Bundle) :
             )
             recycler.clipToPadding = false
 
-            binding.fabFilter.shrinkOnScroll(recycler)
+            actionFab?.shrinkOnScroll(recycler)
         }
 
         recycler.setHasFixedSize(true)
@@ -385,7 +404,7 @@ open class BrowseSourceController(bundle: Bundle) :
 
             binding.emptyView.show(message, actions)
         } else {
-            snack = binding.catalogueView.snack(message, Snackbar.LENGTH_INDEFINITE) {
+            snack = activity!!.root_coordinator?.snack(message, Snackbar.LENGTH_INDEFINITE) {
                 setAction(R.string.action_retry, retryAction)
             }
         }
@@ -449,8 +468,9 @@ open class BrowseSourceController(bundle: Bundle) :
         presenter.refreshDisplayMode()
         activity?.invalidateOptionsMenu()
         setupRecycler(view)
-        if (mode == DisplayMode.LIST || !view.context.connectivityManager.isActiveNetworkMetered) {
-            // Initialize mangas if going to grid view or if over wifi when going to list view
+
+        // Initialize mangas if not on a metered connection
+        if (!view.context.connectivityManager.isActiveNetworkMetered) {
             val mangas = (0 until adapter.itemCount).mapNotNull {
                 (adapter.getItem(it) as? SourceItem)?.manga
             }
@@ -495,7 +515,7 @@ open class BrowseSourceController(bundle: Bundle) :
      */
     private fun showProgressBar() {
         binding.emptyView.hide()
-        binding.progress.visible()
+        binding.progress.isVisible = true
         snack?.dismiss()
         snack = null
     }
@@ -505,7 +525,7 @@ open class BrowseSourceController(bundle: Bundle) :
      */
     private fun hideProgressBar() {
         binding.emptyView.hide()
-        binding.progress.gone()
+        binding.progress.isVisible = false
     }
 
     /**

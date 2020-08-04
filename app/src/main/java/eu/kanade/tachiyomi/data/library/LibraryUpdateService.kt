@@ -330,7 +330,7 @@ class LibraryUpdateService(
      * @return a pair of the inserted and removed chapters.
      */
     fun updateManga(manga: Manga): Observable<Pair<List<Chapter>, List<Chapter>>> {
-        val source = sourceManager.get(manga.source) ?: return Observable.empty()
+        val source = sourceManager.getOrStub(manga.source)
 
         // Update manga details metadata in the background
         if (preferences.autoUpdateMetadata()) {
@@ -429,7 +429,8 @@ class LibraryUpdateService(
 
                 destFile.bufferedWriter().use { out ->
                     errors.forEach { (manga, error) ->
-                        out.write("${manga.title}: $error\n")
+                        val source = sourceManager.getOrStub(manga.source)
+                        out.write("${manga.title} ($source): $error\n")
                     }
                 }
                 return destFile

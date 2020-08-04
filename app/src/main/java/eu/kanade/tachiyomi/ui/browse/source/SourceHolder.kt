@@ -1,22 +1,25 @@
 package eu.kanade.tachiyomi.ui.browse.source
 
 import android.view.View
+import androidx.core.view.isVisible
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.icon
 import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
 import eu.kanade.tachiyomi.ui.base.holder.SlicedHolder
-import eu.kanade.tachiyomi.util.view.gone
-import eu.kanade.tachiyomi.util.view.visible
+import eu.kanade.tachiyomi.ui.browse.SourceListItem
+import eu.kanade.tachiyomi.util.system.getResourceColor
+import eu.kanade.tachiyomi.util.view.setVectorCompat
 import io.github.mthli.slice.Slice
 import kotlinx.android.synthetic.main.source_main_controller_card_item.card
 import kotlinx.android.synthetic.main.source_main_controller_card_item.image
-import kotlinx.android.synthetic.main.source_main_controller_card_item.source_browse
+import kotlinx.android.synthetic.main.source_main_controller_card_item.pin
 import kotlinx.android.synthetic.main.source_main_controller_card_item.source_latest
 import kotlinx.android.synthetic.main.source_main_controller_card_item.title
 
-class SourceHolder(view: View, override val adapter: SourceAdapter) :
+class SourceHolder(private val view: View, override val adapter: SourceAdapter) :
     BaseFlexibleViewHolder(view, adapter),
+    SourceListItem,
     SlicedHolder {
 
     override val slice = Slice(card).apply {
@@ -27,12 +30,12 @@ class SourceHolder(view: View, override val adapter: SourceAdapter) :
         get() = card
 
     init {
-        source_browse.setOnClickListener {
-            adapter.browseClickListener.onBrowseClick(bindingAdapterPosition)
+        source_latest.setOnClickListener {
+            adapter.clickListener.onLatestClick(bindingAdapterPosition)
         }
 
-        source_latest.setOnClickListener {
-            adapter.latestClickListener.onLatestClick(bindingAdapterPosition)
+        pin.setOnClickListener {
+            adapter.clickListener.onPinClick(bindingAdapterPosition)
         }
     }
 
@@ -52,11 +55,13 @@ class SourceHolder(view: View, override val adapter: SourceAdapter) :
             }
         }
 
-        source_browse.setText(R.string.browse)
-        if (source.supportsLatest) {
-            source_latest.visible()
+        source_latest.isVisible = source.supportsLatest
+
+        pin.isVisible = true
+        if (item.isPinned) {
+            pin.setVectorCompat(R.drawable.ic_push_pin_filled_24dp, view.context.getResourceColor(R.attr.colorAccent))
         } else {
-            source_latest.gone()
+            pin.setVectorCompat(R.drawable.ic_push_pin_24dp, view.context.getResourceColor(android.R.attr.textColorHint))
         }
     }
 }
