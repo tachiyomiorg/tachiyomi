@@ -27,7 +27,7 @@ import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_STATUS
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_THUMBNAIL_URL
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_TITLE
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_URL
-import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_VIEWER_FLAGS
+import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_VIEWER
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.TABLE
 
 class MangaTypeMapping : SQLiteTypeMapping<Manga>(
@@ -62,8 +62,8 @@ class MangaPutResolver : DefaultPutResolver<Manga>() {
         put(COL_FAVORITE, obj.favorite)
         put(COL_LAST_UPDATE, obj.last_update)
         put(COL_INITIALIZED, obj.initialized)
+        put(COL_VIEWER, obj.viewer_flags)
         put(COL_CHAPTER_FLAGS, obj.chapter_flags)
-        put(COL_VIEWER_FLAGS, obj.viewer_flags)
         put(COL_COVER_LAST_MODIFIED, obj.cover_last_modified)
         put(COL_DATE_ADDED, obj.date_added)
     }
@@ -84,8 +84,8 @@ interface BaseMangaGetResolver {
         favorite = cursor.getInt(cursor.getColumnIndex(COL_FAVORITE)) == 1
         last_update = cursor.getLong(cursor.getColumnIndex(COL_LAST_UPDATE))
         initialized = cursor.getInt(cursor.getColumnIndex(COL_INITIALIZED)) == 1
+        viewer_flags = cursor.getInt(cursor.getColumnIndex(COL_VIEWER))
         chapter_flags = cursor.getInt(cursor.getColumnIndex(COL_CHAPTER_FLAGS))
-        viewer_flags = cursor.getInt(cursor.getColumnIndex(COL_VIEWER_FLAGS))
         cover_last_modified = cursor.getLong(cursor.getColumnIndex(COL_COVER_LAST_MODIFIED))
         date_added = cursor.getLong(cursor.getColumnIndex(COL_DATE_ADDED))
     }

@@ -84,7 +84,7 @@ interface MangaQueries : DbProvider {
 
     fun updateViewerFlags(manga: Manga) = db.put()
         .`object`(manga)
-        .withPutResolver(MangaFlagsPutResolver(MangaTable.COL_VIEWER_FLAGS, Manga::viewer_flags))
+        .withPutResolver(MangaFlagsPutResolver(MangaTable.COL_VIEWER, Manga::viewer_flags))
         .prepare()
 
     fun updateLastUpdated(manga: Manga) = db.put()

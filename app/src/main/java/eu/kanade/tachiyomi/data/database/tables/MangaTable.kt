@@ -1,8 +1,5 @@
 package eu.kanade.tachiyomi.data.database.tables
 
-import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.database.models.MangaImpl
-
 object MangaTable {
 
     const val TABLE = "mangas"
@@ -35,14 +32,9 @@ object MangaTable {
 
     const val COL_INITIALIZED = "initialized"
 
-    @Deprecated(message = "For migration purpose only",
-                replaceWith = ReplaceWith("MangaTable.COL_VIEWER_FLAGS",
-                imports = ["eu.kanade.tachiyomi.data.database.tables.MangaTable"]))
     const val COL_VIEWER = "viewer"
 
     const val COL_CHAPTER_FLAGS = "chapter_flags"
-
-    const val COL_VIEWER_FLAGS = "viewer_flags"
 
     const val COL_UNREAD = "unread"
 
@@ -66,8 +58,8 @@ object MangaTable {
             $COL_FAVORITE INTEGER NOT NULL,
             $COL_LAST_UPDATE LONG,
             $COL_INITIALIZED BOOLEAN NOT NULL,
+            $COL_VIEWER INTEGER NOT NULL,
             $COL_CHAPTER_FLAGS INTEGER NOT NULL,
-            $COL_VIEWER_FLAGS INTEGER NOT NULL,
             $COL_COVER_LAST_MODIFIED LONG NOT NULL,
             $COL_DATE_ADDED LONG NOT NULL
             )"""
@@ -94,10 +86,4 @@ object MangaTable {
             "FROM $TABLE INNER JOIN ${ChapterTable.TABLE} " +
             "ON $TABLE.$COL_ID = ${ChapterTable.TABLE}.${ChapterTable.COL_MANGA_ID} " +
             "GROUP BY $TABLE.$COL_ID)"
-
-    /**
-     * Rename columna name `viewer` to `viewer_flags`.
-     */
-    val renameViewerToViewerFlag: String
-        get() = "ALTER TABLE $TABLE RENAME COLUMN $COL_VIEWER TO $COL_VIEWER_FLAGS"
 }
