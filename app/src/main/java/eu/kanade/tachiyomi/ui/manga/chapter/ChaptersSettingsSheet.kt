@@ -126,9 +126,9 @@ class ChaptersSettingsSheet(
                 }
 
                 source.state =
-                    if (sorting == Manga.SORTING_SOURCE) order else Item.MultiSort.SORT_NONE
+                    if (sorting == Manga.CHAPTER_SORTING_SOURCE) order else Item.MultiSort.SORT_NONE
                 chapterNum.state =
-                    if (sorting == Manga.SORTING_NUMBER) order else Item.MultiSort.SORT_NONE
+                    if (sorting == Manga.CHAPTER_SORTING_NUMBER) order else Item.MultiSort.SORT_NONE
                 uploadDate.state =
                     if (sorting == Manga.SORTING_UPLOAD_DATE) order else Item.MultiSort.SORT_NONE
             }
@@ -149,8 +149,8 @@ class ChaptersSettingsSheet(
                 }
 
                 when (item) {
-                    source -> presenter.setSorting(Manga.SORTING_SOURCE)
-                    chapterNum -> presenter.setSorting(Manga.SORTING_NUMBER)
+                    source -> presenter.setSorting(Manga.CHAPTER_SORTING_SOURCE)
+                    chapterNum -> presenter.setSorting(Manga.CHAPTER_SORTING_NUMBER)
                     uploadDate -> presenter.setSorting(Manga.SORTING_UPLOAD_DATE)
                     else -> throw Exception("Unknown sorting")
                 }
@@ -183,8 +183,8 @@ class ChaptersSettingsSheet(
 
             override fun initModels() {
                 val mode = presenter.manga.displayMode
-                displayTitle.checked = mode == Manga.DISPLAY_NAME
-                displayChapterNum.checked = mode == Manga.DISPLAY_NUMBER
+                displayTitle.checked = mode == Manga.CHAPTER_DISPLAY_NAME
+                displayChapterNum.checked = mode == Manga.CHAPTER_DISPLAY_NUMBER
             }
 
             override fun onItemClicked(item: Item) {
@@ -195,8 +195,8 @@ class ChaptersSettingsSheet(
                 item.checked = true
 
                 when (item) {
-                    displayTitle -> presenter.setDisplayMode(Manga.DISPLAY_NAME)
-                    displayChapterNum -> presenter.setDisplayMode(Manga.DISPLAY_NUMBER)
+                    displayTitle -> presenter.setDisplayMode(Manga.CHAPTER_DISPLAY_NAME)
+                    displayChapterNum -> presenter.setDisplayMode(Manga.CHAPTER_DISPLAY_NUMBER)
                     else -> throw NotImplementedError("Unknown display mode")
                 }
 

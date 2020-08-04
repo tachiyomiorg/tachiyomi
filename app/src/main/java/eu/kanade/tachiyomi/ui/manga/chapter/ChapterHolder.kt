@@ -24,7 +24,7 @@ class ChapterHolder(
         val chapter = item.chapter
 
         chapter_title.text = when (manga.displayMode) {
-            Manga.DISPLAY_NUMBER -> {
+            Manga.CHAPTER_DISPLAY_NUMBER -> {
                 val number = adapter.decimalFormat.format(chapter.chapter_number.toDouble())
                 itemView.context.getString(R.string.display_mode_chapter, number)
             }

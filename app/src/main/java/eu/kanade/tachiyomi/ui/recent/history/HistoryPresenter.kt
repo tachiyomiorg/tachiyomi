@@ -96,8 +96,8 @@ class HistoryPresenter : BasePresenter<HistoryController>() {
         }
 
         val sortFunction: (Chapter, Chapter) -> Int = when (manga.sorting) {
-            Manga.SORTING_SOURCE -> { c1, c2 -> c2.source_order.compareTo(c1.source_order) }
-            Manga.SORTING_NUMBER -> { c1, c2 -> c1.chapter_number.compareTo(c2.chapter_number) }
+            Manga.CHAPTER_SORTING_SOURCE -> { c1, c2 -> c2.source_order.compareTo(c1.source_order) }
+            Manga.CHAPTER_SORTING_NUMBER -> { c1, c2 -> c1.chapter_number.compareTo(c2.chapter_number) }
             Manga.SORTING_UPLOAD_DATE -> { c1, c2 -> c1.date_upload.compareTo(c2.date_upload) }
             else -> throw NotImplementedError("Unknown sorting method")
         }
@@ -107,8 +107,8 @@ class HistoryPresenter : BasePresenter<HistoryController>() {
 
         val currChapterIndex = chapters.indexOfFirst { chapter.id == it.id }
         return when (manga.sorting) {
-            Manga.SORTING_SOURCE -> chapters.getOrNull(currChapterIndex + 1)
-            Manga.SORTING_NUMBER -> {
+            Manga.CHAPTER_SORTING_SOURCE -> chapters.getOrNull(currChapterIndex + 1)
+            Manga.CHAPTER_SORTING_NUMBER -> {
                 val chapterNumber = chapter.chapter_number
 
                 ((currChapterIndex + 1) until chapters.size)

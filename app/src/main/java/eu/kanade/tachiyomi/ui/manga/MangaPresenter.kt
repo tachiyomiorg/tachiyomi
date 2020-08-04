@@ -375,11 +375,11 @@ class MangaPresenter(
             observable = observable.filter { it.bookmark }
         }
         val sortFunction: (Chapter, Chapter) -> Int = when (manga.sorting) {
-            Manga.SORTING_SOURCE -> when (sortDescending()) {
+            Manga.CHAPTER_SORTING_SOURCE -> when (sortDescending()) {
                 true -> { c1, c2 -> c1.source_order.compareTo(c2.source_order) }
                 false -> { c1, c2 -> c2.source_order.compareTo(c1.source_order) }
             }
-            Manga.SORTING_NUMBER -> when (sortDescending()) {
+            Manga.CHAPTER_SORTING_NUMBER -> when (sortDescending()) {
                 true -> { c1, c2 -> c2.chapter_number.compareTo(c1.chapter_number) }
                 false -> { c1, c2 -> c1.chapter_number.compareTo(c2.chapter_number) }
             }
@@ -505,7 +505,7 @@ class MangaPresenter(
      * Reverses the sorting and requests an UI update.
      */
     fun reverseSortOrder() {
-        manga.setChapterOrder(if (sortDescending()) Manga.SORT_ASC else Manga.SORT_DESC)
+        manga.setChapterOrder(if (sortDescending()) Manga.CHAPTER_SORT_ASC else Manga.CHAPTER_SORT_DESC)
         db.updateChapterFlags(manga).executeAsBlocking()
         refreshChapters()
     }
@@ -515,7 +515,7 @@ class MangaPresenter(
      * @param onlyUnread whether to display only unread chapters or all chapters.
      */
     fun setUnreadFilter(onlyUnread: Boolean) {
-        manga.readFilter = if (onlyUnread) Manga.SHOW_UNREAD else Manga.SHOW_ALL
+        manga.readFilter = if (onlyUnread) Manga.CHAPTER_SHOW_UNREAD else Manga.SHOW_ALL
         db.updateChapterFlags(manga).executeAsBlocking()
         refreshChapters()
     }
@@ -525,7 +525,7 @@ class MangaPresenter(
      * @param onlyRead whether to display only read chapters or all chapters.
      */
     fun setReadFilter(onlyRead: Boolean) {
-        manga.readFilter = if (onlyRead) Manga.SHOW_READ else Manga.SHOW_ALL
+        manga.readFilter = if (onlyRead) Manga.CHAPTER_SHOW_READ else Manga.SHOW_ALL
         db.updateChapterFlags(manga).executeAsBlocking()
         refreshChapters()
     }
@@ -535,7 +535,7 @@ class MangaPresenter(
      * @param onlyDownloaded whether to display only downloaded chapters or all chapters.
      */
     fun setDownloadedFilter(onlyDownloaded: Boolean) {
-        manga.downloadedFilter = if (onlyDownloaded) Manga.SHOW_DOWNLOADED else Manga.SHOW_ALL
+        manga.downloadedFilter = if (onlyDownloaded) Manga.CHAPTER_SHOW_DOWNLOADED else Manga.SHOW_ALL
         db.updateChapterFlags(manga).executeAsBlocking()
         refreshChapters()
     }
@@ -545,7 +545,7 @@ class MangaPresenter(
      * @param onlyBookmarked whether to display only bookmarked chapters or all chapters.
      */
     fun setBookmarkedFilter(onlyBookmarked: Boolean) {
-        manga.bookmarkedFilter = if (onlyBookmarked) Manga.SHOW_BOOKMARKED else Manga.SHOW_ALL
+        manga.bookmarkedFilter = if (onlyBookmarked) Manga.CHAPTER_SHOW_BOOKMARKED else Manga.SHOW_ALL
         db.updateChapterFlags(manga).executeAsBlocking()
         refreshChapters()
     }
@@ -580,28 +580,28 @@ class MangaPresenter(
      * Whether the display only downloaded filter is enabled.
      */
     fun onlyDownloaded(): Boolean {
-        return forceDownloaded() || manga.downloadedFilter == Manga.SHOW_DOWNLOADED
+        return forceDownloaded() || manga.downloadedFilter == Manga.CHAPTER_SHOW_DOWNLOADED
     }
 
     /**
      * Whether the display only downloaded filter is enabled.
      */
     fun onlyBookmarked(): Boolean {
-        return manga.bookmarkedFilter == Manga.SHOW_BOOKMARKED
+        return manga.bookmarkedFilter == Manga.CHAPTER_SHOW_BOOKMARKED
     }
 
     /**
      * Whether the display only unread filter is enabled.
      */
     fun onlyUnread(): Boolean {
-        return manga.readFilter == Manga.SHOW_UNREAD
+        return manga.readFilter == Manga.CHAPTER_SHOW_UNREAD
     }
 
     /**
      * Whether the display only read filter is enabled.
      */
     fun onlyRead(): Boolean {
-        return manga.readFilter == Manga.SHOW_READ
+        return manga.readFilter == Manga.CHAPTER_SHOW_READ
     }
 
     /**

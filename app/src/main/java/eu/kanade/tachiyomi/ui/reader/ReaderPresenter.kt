@@ -100,13 +100,13 @@ class ReaderPresenter(
                             return@filter false
                         } else if (preferences.skipFiltered()) {
                             if (
-                                (manga.readFilter == Manga.SHOW_READ && !it.read) ||
-                                (manga.readFilter == Manga.SHOW_UNREAD && it.read) ||
+                                (manga.readFilter == Manga.CHAPTER_SHOW_READ && !it.read) ||
+                                (manga.readFilter == Manga.CHAPTER_SHOW_UNREAD && it.read) ||
                                 (
-                                    manga.downloadedFilter == Manga.SHOW_DOWNLOADED &&
+                                    manga.downloadedFilter == Manga.CHAPTER_SHOW_DOWNLOADED &&
                                         !downloadManager.isChapterDownloaded(it, manga)
                                     ) ||
-                                (manga.bookmarkedFilter == Manga.SHOW_BOOKMARKED && !it.bookmark)
+                                (manga.bookmarkedFilter == Manga.CHAPTER_SHOW_BOOKMARKED && !it.bookmark)
                             ) {
                                 return@filter false
                             }
@@ -126,8 +126,8 @@ class ReaderPresenter(
             }
 
         when (manga.sorting) {
-            Manga.SORTING_SOURCE -> ChapterLoadBySource().get(chaptersForReader)
-            Manga.SORTING_NUMBER -> ChapterLoadByNumber().get(chaptersForReader, selectedChapter)
+            Manga.CHAPTER_SORTING_SOURCE -> ChapterLoadBySource().get(chaptersForReader)
+            Manga.CHAPTER_SORTING_NUMBER -> ChapterLoadByNumber().get(chaptersForReader, selectedChapter)
             Manga.SORTING_UPLOAD_DATE -> ChapterLoadByUploadDate().get(chaptersForReader)
             else -> error("Unknown sorting method")
         }.map(::ReaderChapter)
