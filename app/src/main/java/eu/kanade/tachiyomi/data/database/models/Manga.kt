@@ -1,6 +1,8 @@
 package eu.kanade.tachiyomi.data.database.models
 
 import eu.kanade.tachiyomi.source.model.SManga
+import eu.kanade.tachiyomi.ui.reader.ReadingMode
+import eu.kanade.tachiyomi.ui.reader.RotationType
 
 interface Manga : SManga {
 
@@ -62,12 +64,12 @@ interface Manga : SManga {
         set(sort) = setChapterFlags(sort, SORTING_MASK)
 
     var readingMode: Int
-        get() = viewer_flags and READING_MASK
-        set(readingMode) = setViewerFlags(readingMode, ROTATION_MASK)
+        get() = viewer_flags and ReadingMode.MASK
+        set(readingMode) = setViewerFlags(readingMode, ReadingMode.MASK)
 
     var rotationType: Int
-        get() = viewer_flags and ROTATION_MASK
-        set(rotationType) = setViewerFlags(rotationType, ROTATION_MASK)
+        get() = viewer_flags and RotationType.MASK
+        set(rotationType) = setViewerFlags(rotationType, RotationType.MASK)
 
     companion object {
 

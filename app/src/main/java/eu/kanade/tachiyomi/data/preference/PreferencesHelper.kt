@@ -7,12 +7,13 @@ import androidx.preference.PreferenceManager
 import com.tfcporciuncula.flow.FlowSharedPreferences
 import com.tfcporciuncula.flow.Preference
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.data.preference.PreferenceValues as Values
 import eu.kanade.tachiyomi.data.preference.PreferenceValues.DisplayMode
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.track.anilist.Anilist
+import eu.kanade.tachiyomi.ui.reader.ReadingMode
+import eu.kanade.tachiyomi.ui.reader.RotationType
 import java.io.File
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -106,9 +107,9 @@ class PreferencesHelper(val context: Context) {
 
     fun colorFilterMode() = flowPrefs.getInt(Keys.colorFilterMode, 0)
 
-    fun defaultReadingMode() = prefs.getInt(Keys.defaultReadingMode, Manga.READING_R2L)
+    fun defaultReadingMode() = prefs.getInt(Keys.defaultReadingMode, ReadingMode.RIGHT_TO_LEFT.value)
 
-    fun defaultRotationType() = prefs.getInt(Keys.defaultRotationType, Manga.ROTATION_FREE)
+    fun defaultRotationType() = prefs.getInt(Keys.defaultRotationType, RotationType.FREE.value)
 
     fun imageScaleType() = flowPrefs.getInt(Keys.imageScaleType, 1)
 

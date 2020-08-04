@@ -394,11 +394,11 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
     fun setManga(manga: Manga) {
         val prevViewer = viewer
         val newViewer = when (presenter.getMangaReadingMode()) {
-            Manga.READING_R2L -> R2LPagerViewer(this)
-            Manga.READING_VERTICAL -> VerticalPagerViewer(this)
-            Manga.READING_WEBTOON -> WebtoonViewer(this)
-            Manga.READING_CONT_VERTICAL -> WebtoonViewer(this, isContinuous = false)
-            else /*Manga.READING_L2R*/ -> L2RPagerViewer(this)
+            ReadingMode.RIGHT_TO_LEFT -> R2LPagerViewer(this)
+            ReadingMode.VERTICAL -> VerticalPagerViewer(this)
+            ReadingMode.WEBTOON -> WebtoonViewer(this)
+            ReadingMode.CONTINOUS_VERTICAL -> WebtoonViewer(this, isContinuous = false)
+            else /*ReadingMode.LEFT_TO_RIGHT*/ -> L2RPagerViewer(this)
         }
 
         // Destroy previous viewer if there was one
@@ -424,9 +424,9 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
         setOrientation(presenter.getMangaRotationType())
     }
 
-    private fun showReadingModeSnackbar(mode: Int) {
+    private fun showReadingModeSnackbar(mode: ReadingMode) {
         val strings = resources.getStringArray(R.array.viewers_selector)
-        binding.root.snack(strings[mode], Snackbar.LENGTH_SHORT)
+        binding.root.snack(strings[mode.position], Snackbar.LENGTH_SHORT)
     }
 
     /**
@@ -624,10 +624,10 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
     /**
      * Forces the user preferred [orientation] on the activity.
      */
-    fun setOrientation(orientation: Int) {
+    fun setOrientation(orientation: RotationType) {
         val newOrientation = when (orientation) {
             // Lock in current orientation
-            Manga.ROTATION_LOCK -> {
+            RotationType.LOCK -> {
                 val currentOrientation = resources.configuration.orientation
                 if (currentOrientation == Configuration.ORIENTATION_PORTRAIT) {
                     ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT
@@ -636,9 +636,9 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
                 }
             }
             // Lock in portrait
-            Manga.ROTATION_FORCE_PORTRAIT -> ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT
+            RotationType.FORCE_PORTRAIT -> ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT
             // Lock in landscape
-            Manga.ROTATION_FORCE_LANDSCAPE -> ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
+            RotationType.FORCE_LANDSCAPE -> ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
             // Rotation free
             else -> ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
         }

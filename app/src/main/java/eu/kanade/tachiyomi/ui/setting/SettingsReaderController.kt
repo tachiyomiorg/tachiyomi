@@ -3,10 +3,11 @@ package eu.kanade.tachiyomi.ui.setting
 import android.os.Build
 import androidx.preference.PreferenceScreen
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.data.preference.PreferenceValues.TappingInvertMode
 import eu.kanade.tachiyomi.data.preference.asImmediateFlow
+import eu.kanade.tachiyomi.ui.reader.ReadingMode
+import eu.kanade.tachiyomi.ui.reader.RotationType
 import eu.kanade.tachiyomi.util.preference.defaultValue
 import eu.kanade.tachiyomi.util.preference.entriesRes
 import eu.kanade.tachiyomi.util.preference.intListPreference
@@ -30,8 +31,8 @@ class SettingsReaderController : SettingsController() {
                 R.string.left_to_right_viewer, R.string.right_to_left_viewer,
                 R.string.vertical_viewer, R.string.webtoon_viewer, R.string.vertical_plus_viewer
             )
-            entryValues = arrayOf("1", "2", "3", "4", "5")
-            defaultValue = "2"
+            entryValues = ReadingMode.values().drop(1).map(ReadingMode::value).map(Int::toString).toTypedArray()
+            defaultValue = ReadingMode.RIGHT_TO_LEFT.value.toString()
             summary = "%s"
         }
         intListPreference {
@@ -41,8 +42,8 @@ class SettingsReaderController : SettingsController() {
                 R.string.rotation_free, R.string.rotation_lock,
                 R.string.rotation_force_portrait, R.string.rotation_force_landscape
             )
-            entryValues = arrayOf(Manga.ROTATION_FREE.toString(), Manga.ROTATION_LOCK.toString(), Manga.ROTATION_FORCE_PORTRAIT.toString(), Manga.ROTATION_FORCE_LANDSCAPE.toString())
-            defaultValue = Manga.ROTATION_FREE.toString()
+            entryValues = RotationType.values().drop(1).map(RotationType::value).map(Int::toString).toTypedArray()
+            defaultValue = RotationType.FREE.value.toString()
             summary = "%s"
         }
         intListPreference {

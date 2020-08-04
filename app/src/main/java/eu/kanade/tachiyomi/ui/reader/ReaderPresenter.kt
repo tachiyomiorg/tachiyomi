@@ -462,10 +462,10 @@ class ReaderPresenter(
     /**
      * Returns the viewer position used by this manga or the default one.
      */
-    fun getMangaReadingMode(): Int {
-        val manga = manga ?: return preferences.defaultReadingMode()
-        return if (manga.readingMode == Manga.READING_DEFAULT) preferences.defaultReadingMode() else manga.readingMode
-    }
+    fun getMangaReadingMode() = (
+        if (manga?.readingMode == ReadingMode.DEFAULT.value) preferences.defaultReadingMode()
+        else manga?.readingMode ?: preferences.defaultReadingMode()
+        ).let { ReadingMode.valueOf(it) }
 
     /**
      * Updates the viewer position for the open manga.
@@ -493,10 +493,10 @@ class ReaderPresenter(
     /**
      * Returns the rotation type used by this manga or the default one.
      */
-    fun getMangaRotationType(): Int {
-        val manga = manga ?: return preferences.defaultRotationType()
-        return if (manga.rotationType == Manga.ROTATION_DEFAULT) preferences.defaultRotationType() else manga.rotationType
-    }
+    fun getMangaRotationType() = (
+        if (manga?.rotationType == RotationType.DEFAULT.value) preferences.defaultRotationType()
+        else manga?.rotationType ?: preferences.defaultRotationType()
+        ).let { RotationType.valueOf(it) }
 
     /**
      * Updates the rotation type for the open manga.

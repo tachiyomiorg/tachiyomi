@@ -6,12 +6,10 @@ import android.widget.Spinner
 import androidx.annotation.ArrayRes
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
-import androidx.core.view.plusAssign
 import androidx.core.widget.NestedScrollView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.tfcporciuncula.flow.Preference
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.databinding.ReaderSettingsSheetBinding
 import eu.kanade.tachiyomi.ui.reader.viewer.pager.PagerViewer
@@ -54,22 +52,24 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
      */
     private fun initGeneralPreferences() {
         binding.viewer.onItemSelectedListener = IgnoreFirstSpinnerListener { position ->
-            activity.presenter.setMangaReadingMode(position.let(::positionToReadingMode))
+            val readingMode = ReadingMode.valueAtPosition(position)
+            activity.presenter.setMangaReadingMode(readingMode.value)
 
             val mangaViewer = activity.presenter.getMangaReadingMode()
-            if (mangaViewer == Manga.READING_WEBTOON || mangaViewer == Manga.READING_CONT_VERTICAL) {
+            if (mangaViewer == ReadingMode.WEBTOON || mangaViewer == ReadingMode.CONTINOUS_VERTICAL) {
                 initWebtoonPreferences()
             } else {
                 initPagerPreferences()
             }
         }
-        binding.viewer.setSelection(activity.presenter.manga?.readingMode.let(::readingModeToPosition), false)
+        binding.viewer.setSelection(activity.presenter.manga?.readingMode.let { ReadingMode.valueOf(it).position }, false)
 
         binding.rotationType.onItemSelectedListener = IgnoreFirstSpinnerListener { position ->
-            activity.presenter.setMangaRotationType(position.let(::positionToRotationType))
+            val rotationType = RotationType.valueAtPosition(position)
+            activity.presenter.setMangaRotationType(rotationType.value)
             activity.setOrientation(activity.presenter.getMangaRotationType())
         }
-        binding.rotationType.setSelection(activity.presenter.manga?.rotationType.let(::rotationTypeToPosition), false)
+        binding.rotationType.setSelection(activity.presenter.manga?.rotationType.let { RotationType.valueOf(it).position }, false)
 
         binding.backgroundColor.bindToIntPreference(preferences.readerTheme(), R.array.reader_themes_values)
         binding.showPageNumber.bindToPreference(preferences.showPageNumber())
@@ -162,81 +162,5 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
             pref.set(intValues[position]!!)
         }
         setSelection(intValues.indexOf(pref.get()), false)
-    }
-
-    /**
-     * Map from [position] of [binding#rotationType] to rotation type value.
-     * @throws IllegalArgumentException if selected value is invalid
-     * @see Manga.ROTATION_DEFAULT
-     * @see Manga.ROTATION_FREE
-     * @see Manga.ROTATION_LOCK
-     * @see Manga.ROTATION_FORCE_PORTRAIT
-     * @see Manga.ROTATION_FORCE_LANDSCAPE
-     */
-    private fun positionToRotationType(position: Int) = when (position) {
-        0 -> Manga.ROTATION_DEFAULT
-        1 -> Manga.ROTATION_FREE
-        2 -> Manga.ROTATION_LOCK
-        3 -> Manga.ROTATION_FORCE_PORTRAIT
-        4 -> Manga.ROTATION_FORCE_LANDSCAPE
-        else -> throw IllegalArgumentException() // should not happen
-    }
-
-    /**
-     * Map from [position] of [binding#viewer] to rotation type value.
-     * @throws IllegalArgumentException if selected value is invalid
-     * @see Manga.READING_DEFAULT
-     * @see Manga.READING_L2R
-     * @see Manga.READING_R2L
-     * @see Manga.READING_VERTICAL
-     * @see Manga.READING_WEBTOON
-     * @see Manga.READING_CONT_VERTICAL
-     */
-    private fun positionToReadingMode(position: Int) = when (position) {
-        0 -> Manga.READING_DEFAULT
-        1 -> Manga.READING_L2R
-        2 -> Manga.READING_R2L
-        3 -> Manga.READING_VERTICAL
-        4 -> Manga.READING_WEBTOON
-        5 -> Manga.READING_CONT_VERTICAL
-        else -> throw IllegalArgumentException() // should not happen
-    }
-
-    /**
-     * Map from [rotationType] value to position of [binding#rotationType] spinner.
-     * Return 0 if invalid value.
-     * @see Manga.ROTATION_DEFAULT
-     * @see Manga.ROTATION_FREE
-     * @see Manga.ROTATION_LOCK
-     * @see Manga.ROTATION_FORCE_PORTRAIT
-     * @see Manga.ROTATION_FORCE_LANDSCAPE
-     */
-    private fun rotationTypeToPosition(rotationType: Int?) = when (rotationType) {
-        Manga.ROTATION_DEFAULT -> 0
-        Manga.ROTATION_FREE -> 1
-        Manga.ROTATION_LOCK -> 2
-        Manga.ROTATION_FORCE_PORTRAIT -> 3
-        Manga.ROTATION_FORCE_LANDSCAPE -> 4
-        else -> 0
-    }
-
-    /**
-     * Map from [readingMode] value to position of [binding#viewer] spinner.
-     * Return 0 if invalid value.
-     * @see Manga.READING_DEFAULT
-     * @see Manga.READING_L2R
-     * @see Manga.READING_R2L
-     * @see Manga.READING_VERTICAL
-     * @see Manga.READING_WEBTOON
-     * @see Manga.READING_CONT_VERTICAL
-     */
-    private fun readingModeToPosition(readingMode: Int?) = when (readingMode) {
-        Manga.READING_DEFAULT -> 0
-        Manga.READING_L2R -> 1
-        Manga.READING_R2L -> 2
-        Manga.READING_VERTICAL -> 3
-        Manga.READING_WEBTOON -> 4
-        Manga.READING_CONT_VERTICAL -> 5
-        else -> 0
     }
 }
