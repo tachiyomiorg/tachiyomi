@@ -161,6 +161,18 @@ object PreferenceKeys {
 
     const val enableDoh = "enable_doh"
 
+    const val filterChapterByRead = "filter_chapter_by_read"
+
+    const val filterChapterByDownloaded = "filter_chapter_by_downloaded"
+
+    const val filterChapterByBookmarked = "filter_chapter_by_bookmarked"
+
+    const val sortChapterBySourceOrNumber = "sort_chapter_by_source_or_number"
+
+    const val displayChapterByNameOrNumber = "display_chapter_by_name_or_number"
+
+    const val sortChapterByAscendingOrDescending = "sort_chapter_by_ascending_or_descending"
+
     fun trackUsername(syncId: Int) = "pref_mangasync_username_$syncId"
 
     fun trackPassword(syncId: Int) = "pref_mangasync_password_$syncId"

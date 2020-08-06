@@ -18,4 +18,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <Button
+        android:id="@+id/saveChapterSettingsBtn"
+        style="@style/Theme.Widget.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/set_chapter_settings_as_default"
+        android:visibility="gone" />
+
+    <CheckBox
+        android:id="@+id/applyChapterSettingsToAllCheckBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/chapter_settings_apply_to_library"
+        android:visibility="gone"/>
+
 </LinearLayout>

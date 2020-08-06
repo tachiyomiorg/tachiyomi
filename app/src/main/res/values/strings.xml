@@ -690,5 +690,7 @@
     <string name="tapping_inverted_horizontal">Horizontal</string>
     <string name="tapping_inverted_vertical">Vertical</string>
     <string name="tapping_inverted_both">Both</string>
+    <string name="set_chapter_settings_as_default">Set as Default</string>
+    <string name="chapter_settings_apply_to_library">Apply to all in Library</string>
 
 </resources>

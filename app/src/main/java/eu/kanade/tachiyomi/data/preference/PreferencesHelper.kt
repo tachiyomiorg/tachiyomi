@@ -7,6 +7,7 @@ import androidx.preference.PreferenceManager
 import com.tfcporciuncula.flow.FlowSharedPreferences
 import com.tfcporciuncula.flow.Preference
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.data.preference.PreferenceValues as Values
 import eu.kanade.tachiyomi.data.preference.PreferenceValues.DisplayMode
@@ -244,4 +245,32 @@ class PreferencesHelper(val context: Context) {
     fun trustedSignatures() = flowPrefs.getStringSet("trusted_signatures", emptySet())
 
     fun enableDoh() = prefs.getBoolean(Keys.enableDoh, false)
+
+    fun filterChapterByRead() = prefs.getInt(Keys.filterChapterByRead, Manga.SHOW_ALL)
+
+    fun filterChapterByDownloaded() = prefs.getInt(Keys.filterChapterByDownloaded, Manga.SHOW_ALL)
+
+    fun filterChapterByBookmarked() = prefs.getInt(Keys.filterChapterByBookmarked, Manga.SHOW_ALL)
+
+    fun sortChapterBySourceOrNumber() = prefs.getInt(Keys.sortChapterBySourceOrNumber, Manga.SORTING_SOURCE)
+
+    fun displayChapterByNameOrNumber() = prefs.getInt(Keys.displayChapterByNameOrNumber, Manga.DISPLAY_NAME)
+
+    fun sortChapterByAscendingOrDescending() = prefs.getInt(Keys.sortChapterByAscendingOrDescending, Manga.SORT_DESC)
+
+    fun setChapterSettingsDefault(m: Manga) {
+        val editor = prefs.edit()
+
+        editor
+            .putInt(Keys.filterChapterByRead, m.readFilter)
+            .putInt(Keys.filterChapterByDownloaded, m.downloadedFilter)
+            .putInt(Keys.filterChapterByBookmarked, m.bookmarkedFilter)
+            .putInt(Keys.sortChapterBySourceOrNumber, m.sorting)
+            .putInt(Keys.displayChapterByNameOrNumber, m.displayMode)
+
+        if (m.sortDescending()) editor.putInt(Keys.sortChapterByAscendingOrDescending, Manga.SORT_DESC)
+        else editor.putInt(Keys.sortChapterByAscendingOrDescending, Manga.SORT_ASC)
+
+        editor.apply()
+    }
 }

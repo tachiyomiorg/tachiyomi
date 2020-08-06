@@ -18,6 +18,7 @@ import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import eu.kanade.tachiyomi.ui.manga.chapter.ChapterItem
+import eu.kanade.tachiyomi.util.chapter.ChapterSettingsHelper
 import eu.kanade.tachiyomi.util.chapter.syncChaptersWithSource
 import eu.kanade.tachiyomi.util.isLocal
 import eu.kanade.tachiyomi.util.lang.isNullOrUnsubscribed
@@ -81,6 +82,10 @@ class MangaPresenter(
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
+
+        if (!manga.favorite) {
+            ChapterSettingsHelper.applySettingDefaultsFromPreferences(manga)
+        }
 
         // Manga info - start
 
