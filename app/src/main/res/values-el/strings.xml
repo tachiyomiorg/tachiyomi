@@ -603,4 +603,13 @@
     <string name="channel_complete">Ολοκληρωμένο</string>
     <string name="channel_progress">Η λήψη ολοκληρώθηκε</string>
     <string name="download_notifier_download_finish">Η λήψη ολοκληρώθηκε</string>
+    <string name="channel_errors">Σφάλματα</string>
+    <string name="backup_restore_missing_trackers">Ιχνηλάτες που δεν έχουν συνδεθεί:</string>
+    <string name="pref_allow_nsfw_sources_blocked">Αποκλείστηκε</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Αποκλεισμός πηγής αλλά εμφάνιση στη λίστα επεκτάσεων</string>
+    <string name="pref_allow_nsfw_sources_allowed">Επιτρέπεται</string>
+    <string name="pref_allow_nsfw_sources">Πηγές NSFW</string>
+    <string name="pref_category_delete_chapters">Διαγραφή κεφαλαίων</string>
+    <string name="ext_nsfw_warning">Μπορεί να περιέχει 18+ περιεχόμενο</string>
+    <string name="ext_nsfw_short">18+</string>
 </resources>

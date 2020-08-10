@@ -97,7 +97,7 @@
     <string name="charging">Lading</string>
     <string name="pref_start_screen">Startskjerm</string>
     <string name="pref_language">Språk</string>
-    <string name="system_default">Systemforvalg</string>
+    <string name="system_default">Forvalg</string>
     <string name="default_category">Forvalgt kategori</string>
     <string name="default_category_summary">Alltid spør</string>
     <string name="all_lang">Alle</string>
@@ -116,7 +116,7 @@
     <string name="ext_language_info">Språk: %1$s</string>
     <string name="pref_fullscreen">Fullskjermsvisning</string>
     <string name="pref_lock_orientation">Lås sideretning</string>
-    <string name="pref_page_transitions">Sideoverganger</string>
+    <string name="pref_page_transitions">Sideovergangsanimasjoner</string>
     <string name="pref_show_page_number">Vis sidenummer</string>
     <string name="pref_keep_screen_on">Behold skjerm på</string>
     <string name="pref_reader_navigation">Navigasjon</string>
@@ -335,7 +335,7 @@
     <string name="filter_mode_screen">Skjerm</string>
     <string name="label_help">Hjelp</string>
     <string name="action_display_download_badge">Last ned merker</string>
-    <string name="pref_library_columns">Bibliotekmanga per rad</string>
+    <string name="pref_library_columns">Elementer per rad</string>
     <string name="untrusted_extension_message">Denne utvidelsen ble signert med et usikkert sertifikat, og ble dermed ikke aktivert 
 \n
 \nEn skadelig utvidelse kan lese innloggingsdetaljer lagret i Tachiyomi, eller kjøre ukjent kode.
@@ -562,4 +562,14 @@
     <string name="action_sort_descending">Fallende</string>
     <string name="action_download_unread">Last ned uleste kapittel</string>
     <string name="action_sort_date_added">Dato lagt til</string>
+    <string name="pref_category_locale">Språk</string>
+    <string name="ext_updates_pending">Oppdateringer som venter</string>
+    <string name="pref_category_reading_mode">Lesemodus</string>
+    <string name="pref_show_reading_mode_summary">Sniktitt av nåværende modus når leseren åpnes</string>
+    <string name="group_backup_restore">Sikkerhetskopier og gjenopprett</string>
+    <string name="group_downloader">Nedlastninger</string>
+    <string name="channel_errors">Feil</string>
+    <string name="channel_complete">Fullført</string>
+    <string name="notification_chapters_single_and_more">Kapittel %1$s og %2$s til</string>
+    <string name="no_pinned_sources">Du har ingen festede kilder</string>
 </resources>

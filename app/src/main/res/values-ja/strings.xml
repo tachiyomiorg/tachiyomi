@@ -14,14 +14,14 @@
     <string name="label_backup">バックアップ</string>
     <string name="action_settings">設定</string>
     <string name="action_filter">フィルター</string>
-    <string name="action_filter_downloaded">ダウンロードした</string>
+    <string name="action_filter_downloaded">ダウンロード済み</string>
     <string name="action_filter_bookmarked">お気に入り</string>
     <string name="action_filter_unread">未読</string>
     <string name="action_filter_read">既読</string>
     <string name="action_filter_empty">フィルタを削除</string>
     <string name="action_sort_alpha">アルファベット順</string>
-    <string name="action_sort_total">すべての章</string>
-    <string name="action_sort_last_read">最後に読んだ</string>
+    <string name="action_sort_total">章の数順</string>
+    <string name="action_sort_last_read">最後に読んだ日時順</string>
     <string name="action_search">検索</string>
     <string name="action_global_search">グローバル検索</string>
     <string name="action_select_all">すべて選択</string>
@@ -53,7 +53,7 @@
     <string name="action_open_in_browser">ブラウザで開く</string>
     <string name="action_display_mode">表示モード</string>
     <string name="action_display">表示</string>
-    <string name="action_display_download_badge">バッジをダウンロードする</string>
+    <string name="action_display_download_badge">ダウンロードバッジ</string>
     <string name="action_cancel">キャンセル</string>
     <string name="action_share">シェア</string>
     <string name="action_save">保存</string>
@@ -399,7 +399,7 @@
     <string name="want_to_read">読みたい</string>
     <string name="other_source">他</string>
     <string name="label_more">その他</string>
-    <string name="action_sort_latest_chapter">最新章</string>
+    <string name="action_sort_latest_chapter">最新章の更新日付順</string>
     <string name="action_view_chapters">章を見る</string>
     <string name="action_cancel_all">全てキャンセル</string>
     <string name="pref_theme_mode">ダークモード</string>
@@ -439,7 +439,7 @@
     <string name="label_downloaded_only">ダウンロード済みのみ</string>
     <string name="check_for_updates">更新を確認</string>
     <string name="licenses">オープンソースライセンス</string>
-    <string name="notices">ビルド通知をプレビュー</string>
+    <string name="notices">プレビュービルドの更新情報</string>
     <string name="website">Webサイト</string>
     <string name="battery_optimization_setting_activity_not_found">デバイス設定を開きませんでした</string>
     <string name="battery_optimization_disabled">バッテリー最適化は既に無効です</string>
@@ -591,5 +591,6 @@
     <string name="action_global_search_query">グローバルで「%1$s」を探す</string>
     <string name="pref_category_locale">ロカール</string>
     <string name="pref_category_theme">テーマ</string>
-    <string name="action_sort_date_added">日付</string>
+    <string name="action_sort_date_added">ライブラリへの追加日付順</string>
+    <string name="channel_errors">エラー</string>
 </resources>

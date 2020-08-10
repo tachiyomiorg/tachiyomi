@@ -3,8 +3,8 @@
     <string name="name">Nome</string>
     <!-- Activities and fragments labels (toolbar title) -->
     <string name="label_settings">Impostazioni</string>
-    <string name="label_download_queue">Coda degli scaricamenti</string>
-    <string name="label_library">Collezione</string>
+    <string name="label_download_queue">Coda di download</string>
+    <string name="label_library">Libreria</string>
     <string name="label_recent_manga">Cronologia</string>
     <string name="label_recent_updates">Aggiornamenti</string>
     <string name="label_categories">Categorie</string>
@@ -17,7 +17,7 @@
     <string name="action_filter_unread">Non letti</string>
     <string name="action_filter_read">Letti</string>
     <string name="action_filter_empty">Rimuovi filtri</string>
-    <string name="action_sort_alpha">In ordine alfabetico</string>
+    <string name="action_sort_alpha">Ordine alfabetico</string>
     <string name="action_sort_last_read">Ultimi letti</string>
     <string name="action_search">Ricerca</string>
     <string name="action_select_all">Seleziona tutto</string>
@@ -251,7 +251,7 @@
     <!-- Downloads activity and service -->
     <string name="download_queue_error">Impossibile scaricare i capitoli. Puoi provare di nuovo nella sezione scaricamento</string>
     <!-- Library update service notifications -->
-    <string name="notification_update_progress">Progressione aggiornamento: %1$d/%2$d</string>
+    <string name="notification_update_progress">Progresso dell\'aggiornamento: %1$d/%2$d</string>
     <string name="notification_new_chapters">Nuovi capitoli trovati</string>
     <string name="notification_cover_update_failed">Impossibile aggiornare la copertina</string>
     <string name="notification_first_add_to_library">Prima di compiere questa azione per favore aggiungi il manga alla libreria</string>
@@ -270,15 +270,15 @@
     <string name="update_check_look_for_updates">Ricerca aggiornamenti…</string>
     <!--UpdateCheck Notifications-->
     <string name="update_check_notification_file_download">Scarica aggiornamento</string>
-    <string name="update_check_notification_download_in_progress">Scaricamento…</string>
-    <string name="update_check_notification_download_complete">Scaricamento completato</string>
-    <string name="update_check_notification_download_error">Errore di scaricamento</string>
+    <string name="update_check_notification_download_in_progress">Download in corso…</string>
+    <string name="update_check_notification_download_complete">Download completato</string>
+    <string name="update_check_notification_download_error">Errore di download</string>
     <string name="update_check_notification_update_available">Aggiornamento disponibile!</string>
     <!--Content Description-->
     <string name="description_cover">Copertina del manga</string>
     <!-- Information Text -->
-    <string name="information_no_downloads">Nessuno scaricamento</string>
-    <string name="information_no_recent">Nessun aggiornamento recenti</string>
+    <string name="information_no_downloads">Nessun download in coda</string>
+    <string name="information_no_recent">Nessun aggiornamento recente</string>
     <string name="information_no_recent_manga">Non è stato letto niente di recente</string>
     <string name="information_empty_library">La tua libreria è vuota. Aggiungi dei contenuti alla tua libreria dalle fonti.</string>
     <!-- Download Notification -->
@@ -340,7 +340,7 @@
     <string name="download_notifier_download_paused">Scaricamento in pausa</string>
     <string name="label_migration">Migrazione etichette</string>
     <string name="label_extensions">Estensioni</string>
-    <string name="label_extension_info">Info estensioni</string>
+    <string name="label_extension_info">Info estensione</string>
     <string name="action_global_search">Ricerca globale</string>
     <string name="action_display_download_badge">Indicatore capitoli scaricati</string>
     <string name="action_reset">Reimposta</string>
@@ -630,4 +630,5 @@
         <item quantity="one">1 tracciatore</item>
         <item quantity="other">%d tracciatori</item>
     </plurals>
+    <string name="channel_progress">Progresso</string>
 </resources>

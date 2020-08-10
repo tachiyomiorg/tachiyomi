@@ -2,16 +2,16 @@
 <resources>
     <string name="description_cover">عکس روی جلد مانگا</string>
     <plurals name="update_check_notification_ext_updates">
-        <item quantity="one">بروزرسانی برای یک افرونه موجود است</item>
-        <item quantity="other">بروزرسانی برای %d افرونه موجود است</item>
+        <item quantity="one">آپدیت برای یک افرونه موجود است</item>
+        <item quantity="other">آپدیت برای %d افرونه موجود است</item>
     </plurals>
     <string name="update_check_notification_update_available">نسخه جدید موجود است!</string>
     <string name="update_check_notification_download_error">خطا در دانلود</string>
     <string name="update_check_notification_download_complete">دانلود تکمیل شد</string>
     <string name="update_check_notification_download_in_progress">در حال دانلود…</string>
-    <string name="update_check_notification_file_download">دانلود بروزرسانی</string>
-    <string name="update_check_look_for_updates">در حال جستجوی به روزرسانی ها …</string>
-    <string name="update_check_no_new_updates">هیچ بروزرسانی جدیدی موجود نیست</string>
+    <string name="update_check_notification_file_download">دانلود آپدیت</string>
+    <string name="update_check_look_for_updates">در حال جستجوی آپدیت‌ها …</string>
+    <string name="update_check_no_new_updates">هیچ آپدیت جدیدی موجود نیست</string>
     <string name="update_check_ignore">نادیده گرفتن</string>
     <string name="update_check_confirm">دانلود</string>
     <string name="file_select_icon">آیکون میانبر را انتخاب کنید</string>
@@ -19,7 +19,7 @@
     <string name="file_select_cover">عکس روی جلد را انتخاب کنید</string>
     <string name="notification_no_connection_body">اتصال در دسترس نیست</string>
     <string name="notification_no_connection_title">هم گام سازی کنسل شد</string>
-    <string name="notification_not_connected_to_ac_body">دستگاه به منبع شارژ وصل نیست</string>
+    <string name="notification_not_connected_to_ac_body">دستگاه به شارژر وصل نیست</string>
     <string name="notification_not_connected_to_ac_title">هم گام سازی کنسل شد</string>
     <string name="notification_first_add_to_library">لطفا قبل این کار مانگای موردنظر را به کتابخانه اضافه کنید</string>
     <string name="notification_cover_update_failed">آپدیت عکس روی جلد با خطا مواجه شد</string>
@@ -35,7 +35,7 @@
     <string name="notification_chapters_single_and_more">فصل %1$s و %2$d فصل دیگر</string>
     <string name="notification_chapters_single">فصل %1$s</string>
     <string name="notification_new_chapters">فصل‌های جدید پیدا شدند</string>
-    <string name="notification_update_progress">روند بروزرسانی: %1$d/%2$d</string>
+    <string name="notification_update_progress">روند آپدیت: %1$d/%2$d</string>
     <string name="notification_check_updates">درحال بررسی برای فصل‌های جدید</string>
     <string name="download_queue_error">دانلود فصل‌ها با خطا مواجه شد. با مراجعه به قسمت دانلودها می‌توانید دوباره تلاش کنید</string>
     <string name="copy">کپی</string>
@@ -131,7 +131,7 @@
     <string name="manga_info_full_title_label">عنوان</string>
     <string name="remove_from_library">حذف از کتابخانه</string>
     <string name="in_library">در کتابخانه</string>
-    <string name="pref_refresh_library_tracking_summary">وضعیت خواندن، امتیاز و آخرین فصل خوانده شده را از سایت خدمات ردیابی بروزرسانی می‌کند</string>
+    <string name="pref_refresh_library_tracking_summary">وضعیت خواندن، امتیاز و آخرین فصل خوانده شده را از سایت خدمات ردیابی آپدیت می‌کند</string>
     <string name="pref_refresh_library_tracking">تازه کردن ردیابی</string>
     <string name="tracking_info">همگام سازی یک طرفه برای به روز رسانی اطلاعات خواندن فصل در سایت‌های خدمات ردیابی. برای ردیابی هر مانگا از تب ردیابی اقدام کنید.</string>
     <string name="webtoon_viewer">وب تون(Webtoon)</string>
@@ -144,7 +144,7 @@
     <string name="information_empty_library">کتابخانه خالی است, از قسمت مرور مانگاای اضافه کنید.</string>
     <string name="information_no_recent_manga">هیچ چیز مانگاای به تازگی خوانده شده</string>
     <string name="information_no_recent">هیچ فصل جدیدی یافت نشد</string>
-    <string name="information_no_downloads">بارگیری فعالی وجود ندارد</string>
+    <string name="information_no_downloads">صف خالی است</string>
     <string name="label_help">راهنما</string>
     <string name="label_extension_info">اطلاعات افزونه</string>
     <string name="label_extensions">افزونه‌ها</string>
@@ -153,9 +153,9 @@
     <string name="label_categories">دسته بندی ها</string>
     <string name="label_sources">منابع</string>
     <string name="label_recent_manga">تاریخچه</string>
-    <string name="label_recent_updates">بروزرسانی‌ها</string>
+    <string name="label_recent_updates">آپدیت ها</string>
     <string name="label_library">کتابخانه</string>
-    <string name="label_download_queue">صف بارگیری</string>
+    <string name="label_download_queue">صف دانلود</string>
     <string name="label_settings">تنضیمات</string>
     <string name="label_more">بیشتر</string>
     <string name="name">نام</string>
@@ -198,9 +198,9 @@
     <string name="pref_create_backup">تهیه نسخه پشتیبان</string>
     <string name="backup">پشتیبان گیری</string>
     <string name="pref_search_pinned_sources_only">فقط افزونه‌های پین شده شامل شوند</string>
-    <string name="pref_enable_automatic_extension_updates">بررسی برای به افزونه‌های بروزرسانی شده</string>
+    <string name="pref_enable_automatic_extension_updates">بررسی برای به افزونه‌های آپدیت‌شده</string>
     <string name="services">خدمات</string>
-    <string name="pref_auto_update_manga_sync">بعد از خوانده شدن وضعیت فصل بروزرسانی شود</string>
+    <string name="pref_auto_update_manga_sync">بعد از خوانده‌شدن، وضعیت فصل بروزرسانی شود</string>
     <string name="pref_download_new_categories">دسته بندی هایی که در دانلود شامل می شوند</string>
     <string name="pref_download_new">دانلود فصل‌های جدید</string>
     <string name="fifth_to_last">پنجم به آخرین فصل خوانده شده</string>
@@ -248,7 +248,7 @@
     </plurals>
     <string name="action_bookmark">بوک مارک</string>
     <string name="channel_ext_updates">آپدیت افزونه‌ها</string>
-    <string name="channel_new_chapters">آپدیت فصل ها</string>
+    <string name="channel_new_chapters">آپدیت فصل‌ها</string>
     <string name="channel_library">کتابخانه</string>
     <string name="channel_common">عمومی</string>
     <string name="download_notifier_download_paused">دانلود متوقف شد</string>
@@ -259,7 +259,7 @@
     <string name="download_notifier_unknown_error">به دلیل خطای غیرمنتظره فصل دانلود نشد</string>
     <string name="download_notifier_title_error">خطا</string>
     <string name="download_notifier_downloader_title">سیستم دانلود</string>
-    <string name="information_webview_outdated">لطفا برنامه WebView را برای سازگاری بهتر بروز کنید</string>
+    <string name="information_webview_outdated">لطفا برنامه WebView را برای سازگاری بهتر آپدیت کنید</string>
     <string name="information_webview_required">WebView برای Tachiyomi مورد نیاز است</string>
     <string name="information_cloudflare_bypass_failure">عدم موفقیت در دور زدن Cloudflare</string>
     <string name="color_filter_a_value">opacity</string>
@@ -338,23 +338,23 @@
     <string name="ext_downloading">در حال بارگیری</string>
     <string name="ext_pending">در انتظار</string>
     <string name="ext_obsolete">منسوخ شده</string>
-    <string name="ext_update">بروزرسانی</string>
-    <string name="ext_updates_pending">بروزرسانی‌های در انتظار</string>
+    <string name="ext_update">آپدیت</string>
+    <string name="ext_updates_pending">آپدیت‌های در انتظار</string>
     <string name="all_lang">همه</string>
     <string name="all">همه</string>
-    <string name="pref_library_update_categories">دسته بندی هایی که در به روزرسانی سراسری شامل می شوند</string>
+    <string name="pref_library_update_categories">دسته‌بندی‌هایی که در به آپدیت سراسری شامل می شوند</string>
     <string name="default_category_summary">همیشه بپرس</string>
     <string name="default_category">کاتالوگ پیشفرض</string>
     <string name="pref_category_library_categories">کاتالوگ‌ها</string>
-    <string name="pref_library_update_error_notification">خطاهای بروزرسانی در اعلان ها نمایش داده شود</string>
-    <string name="pref_library_update_refresh_metadata_summary">وقتی کتابخانه بروزآوری می‌شود عکس روی جلد و اطلاعات مانگاها را نیز بروزآوری شود</string>
-    <string name="pref_library_update_refresh_metadata">فراداده فقط به صورت خودکار بروز شود</string>
+    <string name="pref_library_update_error_notification">خطاهای آپدیت در اعلان‌ها نمایش داده شود</string>
+    <string name="pref_library_update_refresh_metadata_summary">هنگام آپدیت عکس روی جلد و اطلاعات مانگا ها (در صورت تغییر) آپدیت شوند</string>
+    <string name="pref_library_update_refresh_metadata">متادیتا فقط به صورت خودکار آپدیت شود</string>
     <string name="pref_update_only_non_completed">فقط مانگاهایی آپدیت شوند که تمام نشده</string>
     <string name="charging">درحال شارژ</string>
     <string name="wifi">وای‌فای</string>
-    <string name="pref_library_update_restriction_summary">فقط وقتی بروز شود که شرایط برآورده می‌شوند</string>
-    <string name="pref_library_update_restriction">محدودیت‌های بروزرسانی کتابخانه</string>
-    <string name="pref_library_update_prioritization">ترتیب بروزرسانی کتابخانه</string>
+    <string name="pref_library_update_restriction_summary">در چه شرایطی کتابخانه آپدیت شود</string>
+    <string name="pref_library_update_restriction">محدودیت‌های آپدیت کتابخانه</string>
+    <string name="pref_library_update_prioritization">ترتیب آپدیت کتابخانه</string>
     <string name="update_monthly">ماهانه</string>
     <string name="update_weekly">هفتگی</string>
     <string name="update_48hour">هر ۴۸ ساعت یکبار</string>
@@ -364,14 +364,14 @@
     <string name="update_6hour">هر ۶ ساعت یکبار</string>
     <string name="update_1hour">یک ساعت یکبار</string>
     <string name="update_never">فقط دستی</string>
-    <string name="pref_library_update_interval">بروزرسانی کتابخانه چند وقت یکبار</string>
-    <string name="pref_category_library_update">بروزرسانی‌ها</string>
+    <string name="pref_library_update_interval">فرکانس آپدیت کتابخانه</string>
+    <string name="pref_category_library_update">آپدیت‌ها</string>
     <string name="default_columns">پیش‌فرض</string>
     <string name="landscape">افقی</string>
     <string name="portrait">عمودی</string>
     <string name="pref_library_columns">موارد در هر ردیف</string>
     <string name="pref_category_display">نمایش</string>
-    <string name="hide_notification_content">مخفی کردن ناتیفیکشن‌ها</string>
+    <string name="hide_notification_content">مخفی کردن اعلان‌ها</string>
     <string name="secure_screen_summary">محتویات برنامه هنگام تعویض برنامه ها مخفی و از عکس گرفتن از صفحه برنامه جلوگیری شود</string>
     <string name="secure_screen">صفحه نمایش امن</string>
     <plurals name="lock_after_mins">
@@ -383,7 +383,7 @@
     <string name="lock_when_idle">قفل صفحه هنگام بیکاری</string>
     <string name="lock_with_biometrics">با بیومتریک قفل کنید</string>
     <string name="pref_category_security">امنیت</string>
-    <string name="pref_manage_notifications">مدیریت ناتیفیکیشن‌ها</string>
+    <string name="pref_manage_notifications">مدیریت اعلان‌ها</string>
     <string name="pref_confirm_exit">هنگام خروج از برنامه تایید گرفته شود</string>
     <string name="pref_date_format">فرمت تاریخ</string>
     <string name="system_default">پیش‌فرض سیستم</string>
@@ -407,7 +407,7 @@
     <string name="pref_category_reader">کتابخوان</string>
     <string name="pref_category_library">کتابخانه</string>
     <string name="pref_category_general">عمومی</string>
-    <string name="short_recent_updates">بروزرسانی‌ها</string>
+    <string name="short_recent_updates">آپدیت‌ها</string>
     <string name="app_not_available">برنامه موجود نیست</string>
     <string name="loading">درحال بارگیری…</string>
     <string name="action_webview_refresh">بازآوری‌</string>
@@ -480,7 +480,7 @@
     <string name="label_downloaded_only">فقط دانلود شده ها</string>
     <string name="pref_acra_summary">به رفع اشکالات برنامه کمک می کند. هیچ گونه داده حساسی ارسال نخواهد شد</string>
     <string name="pref_enable_acra">ارسال گزارش های خرابی</string>
-    <string name="check_for_updates">بررسی برای به روز رسانی</string>
+    <string name="check_for_updates">بررسی برای به آپدیت‌ها</string>
     <string name="licenses">مجوزهای منبع باز</string>
     <string name="notices">اطلاعیه های نسخه پیش نمایش</string>
     <string name="build_time">زمان ساخت</string>
@@ -488,7 +488,7 @@
     <string name="website">وب سایت</string>
     <string name="battery_optimization_setting_activity_not_found">تنظیمات دستگاه باز نشد</string>
     <string name="battery_optimization_disabled">بهینه سازی باتری از قبل غیرفعال شده است</string>
-    <string name="pref_disable_battery_optimization_summary">به بروزرسانی ها و پشتیبان گیری از کتابخانه در حالت پس زمینه کمک می کند</string>
+    <string name="pref_disable_battery_optimization_summary">به بروزرسانی‌ها و پشتیبان‌گیری از کتابخانه در حالت پس زمینه کمک می‌کند</string>
     <string name="pref_disable_battery_optimization">غیر فعال کردن بهینه سازی باتری</string>
     <string name="pref_refresh_library_covers">تازه کردن عکس روی جلد مانگاها</string>
     <string name="clear_database_completed">اطلاعات حذف شدند</string>
@@ -535,8 +535,8 @@
     <string name="action_edit">ویرایش</string>
     <string name="action_disable_all">غیر فعال کردن همه</string>
     <string name="action_enable_all">فعال کردن همه</string>
-    <string name="action_update_library">به روز رسانی کتابخانه</string>
-    <string name="action_update">بروز رسانی</string>
+    <string name="action_update_library">آپدیت کتابخانه</string>
+    <string name="action_update">آپدیت</string>
     <string name="action_delete">پاک کردن</string>
     <string name="action_remove_bookmark">حذف نشان</string>
     <string name="action_download">دانلود شود</string>
@@ -565,4 +565,38 @@
     <string name="chapters">فصل‌ها</string>
     <string name="manga">مانگا</string>
     <string name="categories">کاتالوگ‌ها</string>
+    <string name="group_backup_restore">پشتیبان گیری و بازیابی</string>
+    <string name="group_downloader">دانلودها</string>
+    <string name="channel_errors">خطاها</string>
+    <string name="channel_complete">تکمیل شده</string>
+    <string name="channel_progress">پیشرفت</string>
+    <string name="download_notifier_download_finish">دانلود تکمیل شد</string>
+    <string name="download_insufficient_space">به دلیل فضای کم دیسک امکان دانلود فصل‌ها وجود ندارد</string>
+    <string name="loader_not_implemented_error">منبع یافت نشد</string>
+    <plurals name="num_trackers">
+        <item quantity="one">۱ ردیاب</item>
+        <item quantity="other">%d ردیاب</item>
+    </plurals>
+    <plurals name="manga_num_chapters">
+        <item quantity="one">۱ فصل</item>
+        <item quantity="other">%1$s فصل</item>
+    </plurals>
+    <string name="unknown_status">وضعیت ناشناخته</string>
+    <string name="unknown_author">نویسنده ناشناخته</string>
+    <string name="no_pinned_sources">شما هیچ منبع پین‌شده‌ای ندارید</string>
+    <string name="action_global_search_query">«%1$s» در همه منابع جستجو شود</string>
+    <string name="whats_new">اخبار</string>
+    <string name="pref_dns_over_https_summary">برای اعمال تغییرات برنامه نیاز به راه اندازی مجدد دارد</string>
+    <string name="label_network">شبکه</string>
+    <string name="backup_restore_missing_trackers">ردیابی‌هایی که به سیستم وارد نشده اند:</string>
+    <string name="pref_category_reading_mode">حالت خواندن</string>
+    <string name="pref_jump_to_chapters">برنامه در تب فصل‌ها باز شود</string>
+    <string name="pref_category_locale">محلی</string>
+    <string name="pref_category_theme">تم</string>
+    <string name="action_sort_descending">نزولی</string>
+    <string name="action_disable">غیرفعال کردن</string>
+    <string name="action_open_in_settings">در تنظیمات باز شود</string>
+    <string name="action_download_unread">دانلود فصل‌های خوانده‌نشده</string>
+    <string name="action_sort_date_added">تاریخ اضافه شدن</string>
+    <string name="updated_version">به نسخه v%1$s آپدیت شد</string>
 </resources>

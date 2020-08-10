@@ -192,8 +192,8 @@
     <string name="pref_read_with_volume_keys">Клавиши громкости</string>
     <string name="pref_reader_navigation">Навигация</string>
     <string name="pref_reader_theme">Цвет фона</string>
-    <string name="pref_remove_after_marked_as_read">Удалить когда отмечена как прочитанная</string>
-    <string name="pref_remove_after_read">Удалять после прочтения</string>
+    <string name="pref_remove_after_marked_as_read">После того, как было помечено вручную как прочитано</string>
+    <string name="pref_remove_after_read">После прочтения</string>
     <string name="pref_rotation_type">Ориентация</string>
     <string name="pref_show_page_number">Показывать номер страницы</string>
     <string name="pref_start_screen">Стартовый экран</string>
@@ -622,4 +622,13 @@
     <string name="channel_complete">Завершено</string>
     <string name="channel_progress">Прогресс</string>
     <string name="channel_errors">Ошибки</string>
+    <string name="backup_restore_missing_trackers">Трекеры не авторизованы:</string>
+    <string name="pref_allow_nsfw_sources">NSFW источники</string>
+    <string name="pref_allow_nsfw_sources_blocked">Заблокировано</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Блокировать источник, но отображать его в списке расширений</string>
+    <string name="pref_allow_nsfw_sources_allowed">Разрешено</string>
+    <string name="pref_remove_bookmarked_chapters">Удалить главы с закладками</string>
+    <string name="pref_category_delete_chapters">Удалить главы</string>
+    <string name="ext_nsfw_warning">Может содержать контент 18+</string>
+    <string name="ext_nsfw_short">18+</string>
 </resources>

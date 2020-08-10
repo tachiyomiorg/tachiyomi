@@ -602,4 +602,6 @@
     <string name="group_downloader">Baixades</string>
     <string name="channel_complete">Completada</string>
     <string name="channel_progress">Progrés</string>
+    <string name="channel_errors">Errors</string>
+    <string name="backup_restore_missing_trackers">Seguidors sense sessió iniciada:</string>
 </resources>

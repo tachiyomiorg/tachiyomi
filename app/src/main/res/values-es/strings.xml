@@ -116,8 +116,8 @@
     <!-- Downloads section -->
     <string name="pref_download_directory">Ubicación de descargas</string>
     <string name="pref_download_only_over_wifi">Descargar sólo a través de Wi-Fi</string>
-    <string name="pref_remove_after_marked_as_read">Eliminar cuando esta marcado como leído</string>
-    <string name="pref_remove_after_read">Eliminar después de leer</string>
+    <string name="pref_remove_after_marked_as_read">Despues de marcar manualmente como leído</string>
+    <string name="pref_remove_after_read">Después de leer</string>
     <string name="custom_dir">Directorio personalizado</string>
     <!-- Sources section -->
     <!-- Sync section -->
@@ -635,4 +635,13 @@
     <string name="channel_complete">Completo</string>
     <string name="channel_progress">Progreso</string>
     <string name="channel_errors">Errores</string>
+    <string name="backup_restore_missing_trackers">Rastreadores no conectados:</string>
+    <string name="pref_allow_nsfw_sources">Fuentes NSFW</string>
+    <string name="pref_allow_nsfw_sources_blocked">Bloqueado</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Bloquear fuente pero mostrarlo en la lista de extensiones</string>
+    <string name="pref_allow_nsfw_sources_allowed">Permitido</string>
+    <string name="pref_remove_bookmarked_chapters">Borrar capítulos marcados</string>
+    <string name="pref_category_delete_chapters">Borrar capítulos</string>
+    <string name="ext_nsfw_warning">Puede contener contenido 18+</string>
+    <string name="ext_nsfw_short">18+</string>
 </resources>

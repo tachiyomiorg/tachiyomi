@@ -57,7 +57,7 @@
     <string name="label_migration">Migrar</string>
     <string name="label_recent_updates">Actualizaciones</string>
     <string name="label_library">Biblioteca</string>
-    <string name="label_settings">Configuraciónes</string>
+    <string name="label_settings">Configuraciones</string>
     <string name="name">Nombre</string>
     <string name="label_categories">Categorías</string>
     <string name="label_sources">Fuentes</string>
@@ -597,4 +597,11 @@
         <item quantity="one">Rastreador</item>
         <item quantity="other">Rastreadores</item>
     </plurals>
+    <string name="group_downloader">Descargas</string>
+    <string name="channel_errors">Errores</string>
+    <string name="channel_complete">Completo</string>
+    <string name="channel_progress">Progreso</string>
+    <string name="download_notifier_download_finish">Descarga completada</string>
+    <string name="group_backup_restore">Respaldar y restaurar</string>
+    <string name="no_pinned_sources">No tienes fuentes fijadas</string>
 </resources>

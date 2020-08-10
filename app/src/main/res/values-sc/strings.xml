@@ -603,4 +603,6 @@
     <string name="channel_complete">Acabada</string>
     <string name="channel_progress">Progressu</string>
     <string name="download_notifier_download_finish">Iscarrigamentu acabadu</string>
+    <string name="channel_errors">Errores</string>
+    <string name="backup_restore_missing_trackers">Arrastadores a sos cales no as fatu atzessu:</string>
 </resources>

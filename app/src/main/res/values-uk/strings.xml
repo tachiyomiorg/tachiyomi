@@ -615,4 +615,10 @@
         <item quantity="other">%d трекерів</item>
     </plurals>
     <string name="no_pinned_sources">У вас немає закріплених джерел</string>
+    <string name="group_backup_restore">Бекап та відновлення</string>
+    <string name="group_downloader">Завантаження</string>
+    <string name="channel_errors">Помилки</string>
+    <string name="channel_complete">Завершено</string>
+    <string name="channel_progress">Поступ</string>
+    <string name="download_notifier_download_finish">Завантаження завершено</string>
 </resources>

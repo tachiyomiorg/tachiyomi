@@ -403,4 +403,6 @@
     <string name="logout_success">Byl jste odhlášen</string>
     <string name="paused">Pozastaveno</string>
     <string name="label_more">Více</string>
+    <string name="action_menu">Menu</string>
+    <string name="label_sources">Zdroje</string>
 </resources>

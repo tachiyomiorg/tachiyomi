@@ -182,8 +182,8 @@
     <string name="color_filter_a_value">A</string>
     <string name="pref_download_directory">İndirme konumu</string>
     <string name="pref_download_only_over_wifi">Yalnızca Wi-Fi ile indir</string>
-    <string name="pref_remove_after_marked_as_read">Okunmuş olarak işaretlendiğinde kaldır</string>
-    <string name="pref_remove_after_read">Okunduktan sonra kaldır</string>
+    <string name="pref_remove_after_marked_as_read">Okunmuş olarak işaretlenince</string>
+    <string name="pref_remove_after_read">Okunduktan sonra</string>
     <string name="custom_dir">Özel konum</string>
     <string name="disabled">Devre dışı</string>
     <string name="last_read_chapter">Son okunan bölüm</string>
@@ -603,4 +603,12 @@
     <string name="channel_complete">Tamamlandı</string>
     <string name="channel_progress">İlerleme</string>
     <string name="download_notifier_download_finish">İndirme tamamlandı</string>
+    <string name="channel_errors">Hatalar</string>
+    <string name="backup_restore_missing_trackers">İzleyiciler giriş yapmadı:</string>
+    <string name="pref_allow_nsfw_sources_blocked">Engelli</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Kaynağı engelle, ancak uzantılar listesinde göster</string>
+    <string name="pref_allow_nsfw_sources_allowed">İzinli</string>
+    <string name="pref_allow_nsfw_sources">Uygunsuz kaynaklar</string>
+    <string name="pref_remove_bookmarked_chapters">İşaretli bölümleri sil</string>
+    <string name="pref_category_delete_chapters">Bölümleri sil</string>
 </resources>

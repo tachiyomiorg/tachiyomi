@@ -633,4 +633,6 @@
     <string name="channel_complete">Completo</string>
     <string name="channel_progress">Progresso</string>
     <string name="download_notifier_download_finish">Transferência concluída</string>
+    <string name="channel_errors">Erros</string>
+    <string name="backup_restore_missing_trackers">Monitorizadores sem sessão iniciada:</string>
 </resources>
