@@ -1,7 +1,7 @@
 package eu.kanade.tachiyomi.util.lang
 
-import net.greypanther.natsort.CaseInsensitiveSimpleNaturalComparator
 import kotlin.math.floor
+import net.greypanther.natsort.CaseInsensitiveSimpleNaturalComparator
 
 /**
  * Replaces the given string to have at most [count] characters using [replacement] at its end.

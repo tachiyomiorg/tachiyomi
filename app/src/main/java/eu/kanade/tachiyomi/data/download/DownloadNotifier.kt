@@ -12,8 +12,8 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.util.lang.chop
 import eu.kanade.tachiyomi.util.system.notificationBuilder
 import eu.kanade.tachiyomi.util.system.notificationManager
-import uy.kohesive.injekt.injectLazy
 import java.util.regex.Pattern
+import uy.kohesive.injekt.injectLazy
 
 /**
  * DownloadNotifier is used to show notifications when downloading one or multiple chapters.

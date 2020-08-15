@@ -16,9 +16,9 @@ import eu.kanade.tachiyomi.util.preference.onChange
 import eu.kanade.tachiyomi.util.preference.switchPreferenceCategory
 import eu.kanade.tachiyomi.util.preference.titleRes
 import eu.kanade.tachiyomi.util.system.LocaleHelper
+import java.util.TreeMap
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
-import java.util.TreeMap
 
 class SourceFilterController : SettingsController() {
 

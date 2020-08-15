@@ -56,6 +56,8 @@ import eu.kanade.tachiyomi.util.view.showBar
 import eu.kanade.tachiyomi.util.view.snack
 import eu.kanade.tachiyomi.widget.SimpleAnimationListener
 import eu.kanade.tachiyomi.widget.SimpleSeekBarListener
+import java.io.File
+import kotlin.math.abs
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.drop
@@ -65,8 +67,6 @@ import kotlinx.coroutines.flow.sample
 import nucleus.factory.RequiresPresenter
 import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
-import java.io.File
-import kotlin.math.abs
 
 /**
  * Activity containing the reader of Tachiyomi. This activity is mostly a container of the

@@ -14,10 +14,6 @@ import eu.kanade.tachiyomi.util.lang.compareToCaseInsensitiveNaturalOrder
 import eu.kanade.tachiyomi.util.storage.DiskUtil
 import eu.kanade.tachiyomi.util.storage.EpubFile
 import eu.kanade.tachiyomi.util.system.ImageUtil
-import junrar.Archive
-import junrar.rarfile.FileHeader
-import rx.Observable
-import timber.log.Timber
 import java.io.File
 import java.io.FileInputStream
 import java.io.InputStream
@@ -25,6 +21,10 @@ import java.util.Locale
 import java.util.concurrent.TimeUnit
 import java.util.zip.ZipEntry
 import java.util.zip.ZipFile
+import junrar.Archive
+import junrar.rarfile.FileHeader
+import rx.Observable
+import timber.log.Timber
 
 class LocalSource(private val context: Context) : CatalogueSource {
     companion object {

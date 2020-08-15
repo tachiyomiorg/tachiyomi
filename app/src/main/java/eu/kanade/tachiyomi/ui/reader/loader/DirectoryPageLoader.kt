@@ -4,9 +4,9 @@ import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.util.lang.compareToCaseInsensitiveNaturalOrder
 import eu.kanade.tachiyomi.util.system.ImageUtil
-import rx.Observable
 import java.io.File
 import java.io.FileInputStream
+import rx.Observable
 
 /**
  * Loader used to load a chapter from a directory given on [file].

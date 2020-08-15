@@ -14,8 +14,8 @@ import androidx.work.WorkerParameters
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.notification.Notifications
 import eu.kanade.tachiyomi.util.system.notificationManager
-import kotlinx.coroutines.runBlocking
 import java.util.concurrent.TimeUnit
+import kotlinx.coroutines.runBlocking
 
 class UpdaterJob(private val context: Context, workerParams: WorkerParameters) :
     Worker(context, workerParams) {

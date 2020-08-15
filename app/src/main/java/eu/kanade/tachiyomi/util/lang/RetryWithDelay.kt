@@ -1,10 +1,10 @@
 package eu.kanade.tachiyomi.util.lang
 
+import java.util.concurrent.TimeUnit.MILLISECONDS
 import rx.Observable
 import rx.Scheduler
 import rx.functions.Func1
 import rx.schedulers.Schedulers
-import java.util.concurrent.TimeUnit.MILLISECONDS
 
 class RetryWithDelay(
     private val maxRetries: Int = 1,
