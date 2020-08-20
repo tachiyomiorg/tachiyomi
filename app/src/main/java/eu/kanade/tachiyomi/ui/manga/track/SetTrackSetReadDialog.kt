@@ -8,12 +8,9 @@ import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
 import com.bluelinelabs.conductor.Controller
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.database.models.Chapter
-import eu.kanade.tachiyomi.data.database.models.ChapterImpl
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
-import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
@@ -46,15 +43,9 @@ class SetTrackSetReadDialog<T> : DialogController
             .customView(R.layout.track_set_read_dialog, dialogWrapContent = false)
             .positiveButton(android.R.string.ok) { _ ->
 
-                val chapter = ChapterImpl()
-                chapter.chapter_number = 52.0F
-                chapter.name = "Vol.13 Chapter 52: Krista Lenz"
-                chapter.url = "https://ww1.mangakakalots.com/chapter/kxqh9261558062112/chapter_52"
-                chapter.manga_id = 41
+                val latestTrackedChapter = item.track?.last_chapter_read!!.toFloat()
 
-                val chapters = listOf<Chapter>(chapter)
-                Timber.d("${chapter.chapter_number} was sent to Controller")
-                (targetController as? Listener)?.setRead(chapters)
+                (targetController as? Listener)?.setRead(latestTrackedChapter)
             }
             .negativeButton(android.R.string.cancel)
 
@@ -70,7 +61,7 @@ class SetTrackSetReadDialog<T> : DialogController
     }
 
     interface Listener {
-        fun setRead(chapters: List<Chapter>)
+        fun setRead(latestTrackedChapter: Float)
     }
 
     private companion object {
