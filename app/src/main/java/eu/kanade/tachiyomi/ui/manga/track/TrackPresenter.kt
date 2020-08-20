@@ -2,6 +2,7 @@ package eu.kanade.tachiyomi.ui.manga.track
 
 import android.os.Bundle
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
+import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
@@ -35,8 +36,13 @@ class TrackPresenter(
 
     private var refreshSubscription: Subscription? = null
 
+    private var chapters = emptyList<Chapter>()
+
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
+
+        chapters = db.getChapters(manga).executeAsBlocking()
+
         fetchTrackings()
     }
 
@@ -156,5 +162,14 @@ class TrackPresenter(
         val track = item.track!!
         track.finished_reading_date = date
         updateRemote(track, item.service)
+    }
+
+    fun importChapters() {
+        chapters.map { chapter ->
+            chapter.read = true
+            chapter
+        }
+
+        db.updateChaptersProgress(chapters).executeAsBlocking()
     }
 }
