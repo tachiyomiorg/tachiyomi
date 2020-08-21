@@ -164,18 +164,11 @@ class TrackPresenter(
         updateRemote(track, item.service)
     }
 
-    fun importChapters(latestTrackedChapter: Float) {
+    fun importChapters(latestTrackedChapter: Int) {
         val sortedChapters = chapters.sortedByDescending { it.source_order }
-
-        for (i in sortedChapters) {
-            if (i.chapter_number > latestTrackedChapter) {
-                break
-            }
-            i.read = true
+        for (i in 0..latestTrackedChapter) {
+            sortedChapters[i].read = true
         }
-
         db.updateChaptersProgress(sortedChapters).executeAsBlocking()
-
-        TODO("check logic above to see if theres a cleaner way to iterate im too tired for this rn")
     }
 }
