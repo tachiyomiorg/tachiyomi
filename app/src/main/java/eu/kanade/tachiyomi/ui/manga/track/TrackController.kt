@@ -201,7 +201,7 @@ class TrackController :
         SetTrackSetReadDialog(this, item).showDialog(router)
     }
 
-    override fun setRead(latestTrackedChapter: Float) {
+    override fun setRead(latestTrackedChapter: Int) {
         presenter.importChapters(latestTrackedChapter)
     }
 

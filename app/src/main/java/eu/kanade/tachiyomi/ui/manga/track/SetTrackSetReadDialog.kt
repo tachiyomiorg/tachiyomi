@@ -43,7 +43,7 @@ class SetTrackSetReadDialog<T> : DialogController
             .customView(R.layout.track_set_read_dialog, dialogWrapContent = false)
             .positiveButton(android.R.string.ok) { _ ->
 
-                val latestTrackedChapter = item.track?.last_chapter_read!!.toFloat()
+                val latestTrackedChapter = item.track?.last_chapter_read!!
 
                 (targetController as? Listener)?.setRead(latestTrackedChapter)
             }
@@ -61,7 +61,7 @@ class SetTrackSetReadDialog<T> : DialogController
     }
 
     interface Listener {
-        fun setRead(latestTrackedChapter: Float)
+        fun setRead(latestTrackedChapter: Int)
     }
 
     private companion object {
