@@ -41,9 +41,12 @@ class TrackPresenter(
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
 
-        chapters = db.getChapters(manga).executeAsBlocking()
-
         fetchTrackings()
+    }
+
+    fun getSourceChapters(): List<Chapter> {
+        chapters = db.getChapters(manga).executeAsBlocking()
+        return chapters
     }
 
     fun fetchTrackings() {
@@ -166,7 +169,7 @@ class TrackPresenter(
 
     fun syncChaptersRead(latestTrackedChapter: Int) {
         // sort chapters by source order such that sortedChapters[0] will return the latest source chapter
-        val sortedChapters = chapters.sortedByDescending { it.source_order }
+        val sortedChapters = getSourceChapters().sortedByDescending { it.source_order }
         var i = 0
 
         // reads chapter until latestTrackedChapter or it reaches maximum chapter number

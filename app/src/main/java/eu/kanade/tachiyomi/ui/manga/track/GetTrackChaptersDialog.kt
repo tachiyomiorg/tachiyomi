@@ -8,6 +8,7 @@ import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
 import com.bluelinelabs.conductor.Controller
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
@@ -19,13 +20,16 @@ class GetTrackChaptersDialog<T> : DialogController
 
     private val item: TrackItem
 
-    constructor(target: T, item: TrackItem) : super(
+    private var sourceChapters = emptyList<Chapter>()
+
+    constructor(target: T, item: TrackItem, chapters: List<Chapter>) : super(
         Bundle().apply {
             putSerializable(KEY_ITEM_TRACK, item.track)
         }
     ) {
         targetController = target
         this.item = item
+        sourceChapters = chapters
     }
 
     @Suppress("unused")
@@ -37,24 +41,33 @@ class GetTrackChaptersDialog<T> : DialogController
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         val item = item
-
+        var latestTrackedChapter = item.track?.last_chapter_read!!
         val dialog = MaterialDialog(activity!!)
             .title(R.string.sync_chapters)
             .customView(R.layout.track_get_chapters_dialog, dialogWrapContent = false)
             .positiveButton(android.R.string.ok) { _ ->
-
-                val latestTrackedChapter = item.track?.last_chapter_read!!
-
                 (targetController as? Listener)?.getChaptersRead(latestTrackedChapter)
             }
             .negativeButton(android.R.string.cancel)
 
         val view = dialog.getCustomView()
         val txtView: TextView = view.findViewById(R.id.get_track_chapters_confirm)
+        val confirmMsg: String
 
-        // Set contents of set_read_confirm to include current last read from tracking
-        val confirmMsg = "Mark ${item.track?.last_chapter_read} chapters as read?"
-        // apply to text view
+        // get last chapter number published to source
+        val lastSourceChapter = sourceChapters[0].chapter_number
+
+        // check if tracker last chapter ahead of source last chapter
+        if (latestTrackedChapter > lastSourceChapter) {
+            // set latestTrackedChapter to the latest source chapter
+            latestTrackedChapter = lastSourceChapter.toInt()
+
+            // display message to advise why latestTrackedChapter is now lower
+            confirmMsg = "Tracker is ahead of source!\n\nMark read up to chapter $latestTrackedChapter?"
+        } else {
+            confirmMsg = "Mark read up to chapter $latestTrackedChapter?"
+        }
+        // apply context message to text view
         txtView.text = confirmMsg
 
         return dialog

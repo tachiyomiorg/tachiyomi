@@ -198,7 +198,10 @@ class TrackController :
         val item = adapter?.getItem(position) ?: return
         if (item.track == null) return
 
-        GetTrackChaptersDialog(this, item).showDialog(router)
+        // get list of chapters from source to send to dialog
+        val chapters = presenter.getSourceChapters()
+
+        GetTrackChaptersDialog(this, item, chapters).showDialog(router)
     }
 
     override fun getChaptersRead(latestTrackedChapter: Int) {
