@@ -1,191 +1,212 @@
 package eu.kanade.tachiyomi.ui.manga.track
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.core.net.toUri
+import androidx.recyclerview.widget.LinearLayoutManager
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
-import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.database.models.Track
-import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.track.TrackManager
-import eu.kanade.tachiyomi.data.track.TrackService
-import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
+import eu.kanade.tachiyomi.data.track.model.TrackSearch
+import eu.kanade.tachiyomi.databinding.TrackControllerBinding
+import eu.kanade.tachiyomi.ui.base.controller.NucleusController
+import eu.kanade.tachiyomi.util.system.copyToClipboard
 import eu.kanade.tachiyomi.util.system.toast
-import rx.Observable
-import rx.Subscription
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import reactivecircus.flowbinding.swiperefreshlayout.refreshes
+import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
-class TrackPresenter(
-    val manga: Manga,
-    preferences: PreferencesHelper = Injekt.get(),
-    private val db: DatabaseHelper = Injekt.get(),
-    private val trackManager: TrackManager = Injekt.get()
-) : BasePresenter<TrackController>() {
+class TrackController :
+    NucleusController<TrackControllerBinding, TrackPresenter>,
+    TrackAdapter.OnClickListener,
+    SetTrackStatusDialog.Listener,
+    SetTrackChaptersDialog.Listener,
+    SetTrackScoreDialog.Listener,
+    SetTrackReadingDatesDialog.Listener,
+    SetTrackSetReadDialog.Listener {
 
-    private val context = preferences.context
-
-    private var trackList: List<TrackItem> = emptyList()
-
-    private val loggedServices by lazy { trackManager.services.filter { it.isLogged } }
-
-    private var trackSubscription: Subscription? = null
-
-    private var searchSubscription: Subscription? = null
-
-    private var refreshSubscription: Subscription? = null
-
-    private var chapters = emptyList<Chapter>()
-
-    override fun onCreate(savedState: Bundle?) {
-        super.onCreate(savedState)
-
-        // Get all chapters from source into a list of Chapters from db
-        chapters = db.getChapters(manga).executeAsBlocking()
-
-        fetchTrackings()
+    constructor(manga: Manga?) : super(
+        Bundle().apply {
+            putLong(MANGA_EXTRA, manga?.id ?: 0)
+        }
+    ) {
+        this.manga = manga
     }
 
-    fun fetchTrackings() {
-        trackSubscription?.let { remove(it) }
-        trackSubscription = db.getTracks(manga)
-            .asRxObservable()
-            .map { tracks ->
-                loggedServices.map { service ->
-                    TrackItem(tracks.find { it.sync_id == service.id }, service)
-                }
-            }
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnNext { trackList = it }
-            .subscribeLatestCache(TrackController::onNextTrackings)
+    constructor(mangaId: Long) : this(
+        Injekt.get<DatabaseHelper>().getManga(mangaId).executeAsBlocking()
+    )
+
+    @Suppress("unused")
+    constructor(bundle: Bundle) : this(bundle.getLong(MANGA_EXTRA))
+
+    var manga: Manga? = null
+        private set
+
+    private var adapter: TrackAdapter? = null
+
+    init {
+        // There's no menu, but this avoids a bug when coming from the catalogue, where the menu
+        // disappears if the searchview is expanded
+        setHasOptionsMenu(true)
     }
 
-    fun refresh() {
-        refreshSubscription?.let { remove(it) }
-        refreshSubscription = Observable.from(trackList)
-            .filter { it.track != null }
-            .flatMap { item ->
-                item.service.refresh(item.track!!)
-                    .flatMap { db.insertTrack(it).asRxObservable() }
-                    .map { item }
-                    .onErrorReturn { item }
-            }
-            .toList()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeFirst(
-                { view, _ -> view.onRefreshDone() },
-                TrackController::onRefreshError
-            )
+    override fun getTitle(): String? {
+        return manga?.title
     }
 
-    fun search(query: String, service: TrackService) {
-        searchSubscription?.let { remove(it) }
-        searchSubscription = service.search(query)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeLatestCache(
-                TrackController::onSearchResults,
-                TrackController::onSearchResultsError
-            )
+    override fun createPresenter(): TrackPresenter {
+        return TrackPresenter(manga!!)
     }
 
-    fun registerTracking(item: Track?, service: TrackService) {
-        if (item != null) {
-            item.manga_id = manga.id!!
-            add(
-                service.bind(item)
-                    .flatMap { db.insertTrack(item).asRxObservable() }
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(
-                        { },
-                        { error -> context.toast(error.message) }
-                    )
-            )
-        } else {
-            unregisterTracking(service)
+    override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
+        binding = TrackControllerBinding.inflate(inflater)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View) {
+        super.onViewCreated(view)
+
+        if (manga == null) return
+
+        adapter = TrackAdapter(this)
+        binding.trackRecycler.layoutManager = LinearLayoutManager(view.context)
+        binding.trackRecycler.adapter = adapter
+        binding.swipeRefresh.isEnabled = false
+        binding.swipeRefresh.refreshes()
+            .onEach { presenter.refresh() }
+            .launchIn(scope)
+    }
+
+    override fun onDestroyView(view: View) {
+        adapter = null
+        super.onDestroyView(view)
+    }
+
+    fun onNextTrackings(trackings: List<TrackItem>) {
+        val atLeastOneLink = trackings.any { it.track != null }
+        adapter?.items = trackings
+        binding.swipeRefresh.isEnabled = atLeastOneLink
+    }
+
+    fun onSearchResults(results: List<TrackSearch>) {
+        getSearchDialog()?.onSearchResults(results)
+    }
+
+    @Suppress("UNUSED_PARAMETER")
+    fun onSearchResultsError(error: Throwable) {
+        Timber.e(error)
+        getSearchDialog()?.onSearchResultsError()
+    }
+
+    private fun getSearchDialog(): TrackSearchDialog? {
+        return router.getControllerWithTag(TAG_SEARCH_CONTROLLER) as? TrackSearchDialog
+    }
+
+    fun onRefreshDone() {
+        binding.swipeRefresh.isRefreshing = false
+    }
+
+    fun onRefreshError(error: Throwable) {
+        binding.swipeRefresh.isRefreshing = false
+        activity?.toast(error.message)
+    }
+
+    override fun onLogoClick(position: Int) {
+        val track = adapter?.getItem(position)?.track ?: return
+
+        if (track.tracking_url.isNotBlank()) {
+            activity?.startActivity(Intent(Intent.ACTION_VIEW, track.tracking_url.toUri()))
         }
     }
 
-    fun unregisterTracking(service: TrackService) {
-        db.deleteTrackForManga(manga, service).executeAsBlocking()
+    override fun onSetClick(position: Int) {
+        val item = adapter?.getItem(position) ?: return
+        TrackSearchDialog(this, item.service).showDialog(router, TAG_SEARCH_CONTROLLER)
     }
 
-    private fun updateRemote(track: Track, service: TrackService) {
-        service.update(track)
-            .flatMap { db.insertTrack(track).asRxObservable() }
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeFirst(
-                { view, _ -> view.onRefreshDone() },
-                { view, error ->
-                    view.onRefreshError(error)
-
-                    // Restart on error to set old values
-                    fetchTrackings()
-                }
-            )
-    }
-
-    fun setStatus(item: TrackItem, index: Int) {
-        val track = item.track!!
-        track.status = item.service.getStatusList()[index]
-        if (track.status == item.service.getCompletionStatus() && track.total_chapters != 0) {
-            track.last_chapter_read = track.total_chapters
+    override fun onTitleLongClick(position: Int) {
+        adapter?.getItem(position)?.track?.title?.let {
+            activity?.copyToClipboard(it, it)
         }
-        updateRemote(track, item.service)
     }
 
-    fun setScore(item: TrackItem, index: Int) {
-        val track = item.track!!
-        track.score = item.service.indexToScore(index)
-        updateRemote(track, item.service)
+    override fun onStatusClick(position: Int) {
+        val item = adapter?.getItem(position) ?: return
+        if (item.track == null) return
+
+        SetTrackStatusDialog(this, item).showDialog(router)
     }
 
-    fun setLastChapterRead(item: TrackItem, chapterNumber: Int) {
-        val track = item.track!!
-        track.last_chapter_read = chapterNumber
-        if (track.total_chapters != 0 && track.last_chapter_read == track.total_chapters) {
-            track.status = item.service.getCompletionStatus()
+    override fun onChaptersClick(position: Int) {
+        val item = adapter?.getItem(position) ?: return
+        if (item.track == null) return
+
+        SetTrackChaptersDialog(this, item).showDialog(router)
+    }
+
+    override fun onScoreClick(position: Int) {
+        val item = adapter?.getItem(position) ?: return
+        if (item.track == null) return
+
+        SetTrackScoreDialog(this, item).showDialog(router)
+    }
+
+    override fun onStartDateClick(position: Int) {
+        val item = adapter?.getItem(position) ?: return
+        if (item.track == null) return
+
+        SetTrackReadingDatesDialog(this, SetTrackReadingDatesDialog.ReadingDate.Start, item).showDialog(router)
+    }
+
+    override fun onFinishDateClick(position: Int) {
+        val item = adapter?.getItem(position) ?: return
+        if (item.track == null) return
+
+        SetTrackReadingDatesDialog(this, SetTrackReadingDatesDialog.ReadingDate.Finish, item).showDialog(router)
+    }
+
+    override fun setStatus(item: TrackItem, selection: Int) {
+        presenter.setStatus(item, selection)
+        binding.swipeRefresh.isRefreshing = true
+    }
+
+    override fun setScore(item: TrackItem, score: Int) {
+        presenter.setScore(item, score)
+        binding.swipeRefresh.isRefreshing = true
+    }
+
+    override fun setChaptersRead(item: TrackItem, chaptersRead: Int) {
+        presenter.setLastChapterRead(item, chaptersRead)
+        binding.swipeRefresh.isRefreshing = true
+    }
+
+    override fun setReadingDate(item: TrackItem, type: SetTrackReadingDatesDialog.ReadingDate, date: Long) {
+        when (type) {
+            SetTrackReadingDatesDialog.ReadingDate.Start -> presenter.setStartDate(item, date)
+            SetTrackReadingDatesDialog.ReadingDate.Finish -> presenter.setFinishDate(item, date)
         }
-        updateRemote(track, item.service)
+        binding.swipeRefresh.isRefreshing = true
     }
 
-    fun setStartDate(item: TrackItem, date: Long) {
-        val track = item.track!!
-        track.started_reading_date = date
-        updateRemote(track, item.service)
+    override fun onSetReadClick(position: Int) {
+        val item = adapter?.getItem(position) ?: return
+        if (item.track == null) return
+
+        SetTrackSetReadDialog(this, item).showDialog(router)
     }
 
-    fun setFinishDate(item: TrackItem, date: Long) {
-        val track = item.track!!
-        track.finished_reading_date = date
-        updateRemote(track, item.service)
+    override fun setRead(latestTrackedChapter: Int) {
+        presenter.importChapters(latestTrackedChapter)
     }
 
-    fun importChapters(item: TrackItem, latestTrackedChapter: Int) {
-        // sort chapters by source order such that sortedChapters[0] will return the latest source chapter
-        val sortedChapters = chapters.sortedByDescending { it.source_order }
-        var i: Int = 0
-
-        /*
-        catch ArrayIndexOutOfBoundsException by ensuring counter is always checked against size of array before indexing
-        step through sortedChapters until you reach the latest read chapter on tracker
-         */
-        while (i < sortedChapters.count() && sortedChapters[i].chapter_number <= latestTrackedChapter) {
-            sortedChapters[i].read = true
-            i++
-        }
-        db.updateChaptersProgress(sortedChapters).executeAsBlocking()
-
-        // if tracked chapter count is above available source chapters set latest read on track to the latest source chapter available
-        if (latestTrackedChapter > sortedChapters.count()) {
-            val track = item.track!!
-            track.last_chapter_read = sortedChapters[sortedChapters.count() - 1].chapter_number.toInt()
-
-            updateRemote(track, item.service)
-        }
+    private companion object {
+        const val MANGA_EXTRA = "manga"
+        const val TAG_SEARCH_CONTROLLER = "track_search_controller"
     }
 }
