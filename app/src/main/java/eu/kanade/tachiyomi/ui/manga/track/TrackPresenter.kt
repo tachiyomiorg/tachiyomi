@@ -165,9 +165,19 @@ class TrackPresenter(
     }
 
     fun importChapters(latestTrackedChapter: Int) {
+        // sort chapters by source order such that sortedChapters[0] will return the latest source chapter
         val sortedChapters = chapters.sortedByDescending { it.source_order }
-        for (i in 0..latestTrackedChapter) {
+        var trackUpTo: Int = latestTrackedChapter
+        var i = 0
+
+        // if tracked chapter count is above available source chapters set latest read to the latest source chapter available
+        if (latestTrackedChapter > sortedChapters.count()) {
+            trackUpTo = sortedChapters.count()
+        }
+
+        while (sortedChapters[i].chapter_number < trackUpTo) {
             sortedChapters[i].read = true
+            i++
         }
         db.updateChaptersProgress(sortedChapters).executeAsBlocking()
     }
