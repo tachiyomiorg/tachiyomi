@@ -31,6 +31,7 @@ class TrackHolder(private val binding: TrackItemBinding, adapter: TrackAdapter) 
         binding.trackScore.setOnClickListener { listener.onScoreClick(bindingAdapterPosition) }
         binding.trackStartDate.setOnClickListener { listener.onStartDateClick(bindingAdapterPosition) }
         binding.trackFinishDate.setOnClickListener { listener.onFinishDateClick(bindingAdapterPosition) }
+        binding.getTrackChapters.setOnClickListener { listener.onGetChaptersClick(bindingAdapterPosition) }
     }
 
     @SuppressLint("SetTextI18n")
@@ -49,6 +50,7 @@ class TrackHolder(private val binding: TrackItemBinding, adapter: TrackAdapter) 
                 if (track.total_chapters > 0) track.total_chapters else "-"
             binding.trackStatus.text = item.service.getStatus(track.status)
             binding.trackScore.text = if (track.score == 0f) "-" else item.service.displayScore(track)
+            binding.getTrackChapters.text = "Sync read chapters with Tachiyomi"
 
             if (item.service.supportsReadingDates) {
                 binding.trackStartDate.text =

@@ -27,7 +27,8 @@ class TrackController :
     SetTrackStatusDialog.Listener,
     SetTrackChaptersDialog.Listener,
     SetTrackScoreDialog.Listener,
-    SetTrackReadingDatesDialog.Listener {
+    SetTrackReadingDatesDialog.Listener,
+    GetTrackChaptersDialog.Listener {
 
     constructor(manga: Manga?) : super(
         Bundle().apply {
@@ -191,6 +192,20 @@ class TrackController :
             SetTrackReadingDatesDialog.ReadingDate.Finish -> presenter.setFinishDate(item, date)
         }
         binding.swipeRefresh.isRefreshing = true
+    }
+
+    override fun onGetChaptersClick(position: Int) {
+        val item = adapter?.getItem(position) ?: return
+        if (item.track == null) return
+
+        // get list of chapters from source to send to dialog
+        val chapters = presenter.getSourceChapters()
+
+        GetTrackChaptersDialog(this, item, chapters).showDialog(router)
+    }
+
+    override fun getChaptersRead(latestTrackedChapter: Int) {
+        presenter.syncChaptersRead(latestTrackedChapter)
     }
 
     private companion object {

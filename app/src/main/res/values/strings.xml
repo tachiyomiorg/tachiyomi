@@ -551,6 +551,8 @@
     <string name="track_type">Type</string>
     <string name="track_author">Author</string>
     <string name="error_invalid_date_supplied">Invalid date supplied</string>
+    <string name="track_get_chapters">Sync read chapters with Tachiyomi</string>
+    <string name="sync_chapters">Sync Chapters</string>
 
     <!-- Category activity -->
     <string name="error_category_exists">A category with this name already exists!</string>

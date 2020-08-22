@@ -105,7 +105,7 @@
                 android:layout_marginBottom="8dp"
                 android:alpha="0.25"
                 android:background="?android:attr/textColorHint"
-                app:layout_constraintBottom_toTopOf="@+id/bottom_divider"
+                app:layout_constraintBottom_toTopOf="@+id/middle_divider"
                 app:layout_constraintEnd_toStartOf="@+id/track_chapters"
                 app:layout_constraintStart_toEndOf="@+id/track_status"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -133,7 +133,7 @@
                 android:layout_marginBottom="8dp"
                 android:alpha="0.25"
                 android:background="?android:attr/textColorHint"
-                app:layout_constraintBottom_toTopOf="@+id/bottom_divider"
+                app:layout_constraintBottom_toTopOf="@+id/middle_divider"
                 app:layout_constraintEnd_toStartOf="@+id/track_score"
                 app:layout_constraintStart_toEndOf="@+id/track_chapters"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -153,6 +153,35 @@
                 app:layout_constraintTop_toBottomOf="@+id/top_divider"
                 tools:text="10" />
 
+            <!--Add middle divider and amend references so an extra row can be added-->
+
+            <View
+                android:id="@+id/middle_divider"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:alpha="0.25"
+                android:background="?android:attr/textColorHint"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/track_score" />
+
+            <!--Add row in between Progress and Dates to implement as button later-->
+
+            <TextView
+                android:id="@+id/get_track_chapters"
+                style="@style/TextAppearance.Regular.Body1.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/list_item_selector"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:padding="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/middle_divider"
+                tools:text="@string/track_get_chapters" />
+
             <View
                 android:id="@+id/bottom_divider"
                 android:layout_width="0dp"
@@ -161,7 +190,7 @@
                 android:background="?android:attr/textColorHint"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/track_score" />
+                app:layout_constraintTop_toBottomOf="@+id/get_track_chapters" />
 
             <TextView
                 android:id="@+id/track_start_date"
