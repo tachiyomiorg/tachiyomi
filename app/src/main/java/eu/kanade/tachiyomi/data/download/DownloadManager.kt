@@ -198,14 +198,10 @@ class DownloadManager(private val context: Context) {
      * @param manga the manga of the chapters.
      * @param source the source of the chapters.
      */
-    fun deleteChapters(chapters: List<Chapter>, manga: Manga, source: Source) {
-        queue.remove(chapters)
+    fun deleteChapters(chapters: List<Chapter>, manga: Manga, source: Source): List<Chapter> {
+        val filteredChapters = getChaptersToDelete(chapters)
 
-        val filteredChapters = if (!preferences.removeBookmarkedChapters()) {
-            chapters.filterNot { it.bookmark }
-        } else {
-            chapters
-        }
+        queue.remove(filteredChapters)
 
         val chapterDirs = provider.findChapterDirs(filteredChapters, manga, source)
         chapterDirs.forEach { it.delete() }
@@ -213,6 +209,8 @@ class DownloadManager(private val context: Context) {
         if (cache.getDownloadCount(manga) == 0) { // Delete manga directory if empty
             chapterDirs.firstOrNull()?.parentFile?.delete()
         }
+
+        return filteredChapters
     }
 
     /**
@@ -234,7 +232,7 @@ class DownloadManager(private val context: Context) {
      * @param manga the manga of the chapters.
      */
     fun enqueueDeleteChapters(chapters: List<Chapter>, manga: Manga) {
-        pendingDeleter.addChapters(chapters, manga)
+        pendingDeleter.addChapters(getChaptersToDelete(chapters), manga)
     }
 
     /**
@@ -271,6 +269,14 @@ class DownloadManager(private val context: Context) {
             cache.addChapter(newName, mangaDir, manga)
         } else {
             Timber.e("Could not rename downloaded chapter: %s.", oldNames.joinToString())
+        }
+    }
+
+    private fun getChaptersToDelete(chapters: List<Chapter>): List<Chapter> {
+        return if (!preferences.removeBookmarkedChapters()) {
+            chapters.filterNot { it.bookmark }
+        } else {
+            chapters
         }
     }
 }

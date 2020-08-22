@@ -494,16 +494,11 @@ class MangaPresenter(
      * @param chapters the chapters to delete.
      */
     private fun deleteChaptersInternal(chapters: List<ChapterItem>) {
-        val filteredChapters = if (!preferences.removeBookmarkedChapters()) {
-            chapters.filterNot { it.bookmark }
-        } else {
-            chapters
-        }
-
-        downloadManager.deleteChapters(filteredChapters, manga, source)
-        filteredChapters.forEach {
-            it.status = Download.NOT_DOWNLOADED
-            it.download = null
+        downloadManager.deleteChapters(chapters, manga, source).forEach {
+            if (it is ChapterItem) {
+                it.status = Download.NOT_DOWNLOADED
+                it.download = null
+            }
         }
     }
 

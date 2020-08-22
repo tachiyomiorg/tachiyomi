@@ -1,5 +1,6 @@
 name: Issue closer
 on: [issues]
+
 jobs:
   autoclose:
     runs-on: ubuntu-latest

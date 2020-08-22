@@ -1,9 +1,6 @@
 package eu.kanade.tachiyomi.ui.reader.viewer.pager
 
 import android.annotation.SuppressLint
-import android.graphics.Typeface
-import android.text.Spanned
-import android.text.style.StyleSpan
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +10,7 @@ import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
@@ -91,12 +89,9 @@ class PagerTransitionHolder(
 
         textView.text = if (nextChapter != null) {
             buildSpannedString {
-                append(context.getString(R.string.transition_finished))
-                setSpan(StyleSpan(Typeface.BOLD), 0, length, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
+                bold { append(context.getString(R.string.transition_finished)) }
                 append("\n${transition.from.chapter.name}\n\n")
-                val currSize = length
-                append(context.getString(R.string.transition_next))
-                setSpan(StyleSpan(Typeface.BOLD), currSize, length, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
+                bold { append(context.getString(R.string.transition_next)) }
                 append("\n${nextChapter.chapter.name}\n\n")
             }
         } else {
@@ -116,12 +111,9 @@ class PagerTransitionHolder(
 
         textView.text = if (prevChapter != null) {
             buildSpannedString {
-                append(context.getString(R.string.transition_current))
-                setSpan(StyleSpan(Typeface.BOLD), 0, length, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
+                bold { append(context.getString(R.string.transition_current)) }
                 append("\n${transition.from.chapter.name}\n\n")
-                val currSize = length
-                append(context.getString(R.string.transition_previous))
-                setSpan(StyleSpan(Typeface.BOLD), currSize, length, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
+                bold { append(context.getString(R.string.transition_previous)) }
                 append("\n${prevChapter.chapter.name}\n\n")
             }
         } else {
