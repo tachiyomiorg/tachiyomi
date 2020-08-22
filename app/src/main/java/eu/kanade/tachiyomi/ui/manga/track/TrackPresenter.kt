@@ -164,14 +164,13 @@ class TrackPresenter(
         updateRemote(track, item.service)
     }
 
-    fun importChapters(latestTrackedChapter: Int) {
+    fun syncChaptersRead(latestTrackedChapter: Int) {
         // sort chapters by source order such that sortedChapters[0] will return the latest source chapter
         val sortedChapters = chapters.sortedByDescending { it.source_order }
-        var i: Int = 0
+        var i = 0
 
         // reads chapter until latestTrackedChapter or it reaches maximum chapter number
         while (i < sortedChapters.count() && sortedChapters[i].chapter_number <= latestTrackedChapter) {
-
             sortedChapters[i].read = true
             i++
         }

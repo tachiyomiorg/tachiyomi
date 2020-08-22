@@ -6,10 +6,10 @@
 
 
     <TextView
-        android:id="@+id/set_read_confirm"
+        android:id="@+id/get_track_chapters_confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/import_read"
+        android:text="@string/sync_chapters"
         android:textAlignment="center"/>
 </LinearLayout>

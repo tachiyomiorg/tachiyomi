@@ -168,7 +168,7 @@
             <!--Add row in between Progress and Dates to implement as button later-->
 
             <TextView
-                android:id="@+id/track_set_read"
+                android:id="@+id/get_track_chapters"
                 style="@style/TextAppearance.Regular.Body1.Secondary"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -180,7 +180,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/middle_divider"
-                tools:text="Mark chapters as read up to xx" />
+                tools:text="@string/track_get_chapters" />
 
             <View
                 android:id="@+id/bottom_divider"
@@ -190,7 +190,7 @@
                 android:background="?android:attr/textColorHint"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/track_set_read" />
+                app:layout_constraintTop_toBottomOf="@+id/get_track_chapters" />
 
             <TextView
                 android:id="@+id/track_start_date"

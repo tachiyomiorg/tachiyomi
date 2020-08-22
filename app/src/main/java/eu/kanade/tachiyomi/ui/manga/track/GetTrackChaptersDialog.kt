@@ -14,8 +14,8 @@ import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
-class SetTrackSetReadDialog<T> : DialogController
-        where T : Controller, T : SetTrackSetReadDialog.Listener {
+class GetTrackChaptersDialog<T> : DialogController
+        where T : Controller, T : GetTrackChaptersDialog.Listener {
 
     private val item: TrackItem
 
@@ -39,21 +39,21 @@ class SetTrackSetReadDialog<T> : DialogController
         val item = item
 
         val dialog = MaterialDialog(activity!!)
-            .title(R.string.import_read)
-            .customView(R.layout.track_set_read_dialog, dialogWrapContent = false)
+            .title(R.string.sync_chapters)
+            .customView(R.layout.track_get_chapters_dialog, dialogWrapContent = false)
             .positiveButton(android.R.string.ok) { _ ->
 
                 val latestTrackedChapter = item.track?.last_chapter_read!!
 
-                (targetController as? Listener)?.setRead(latestTrackedChapter)
+                (targetController as? Listener)?.getChaptersRead(latestTrackedChapter)
             }
             .negativeButton(android.R.string.cancel)
 
         val view = dialog.getCustomView()
-        val txtView: TextView = view.findViewById(R.id.set_read_confirm)
+        val txtView: TextView = view.findViewById(R.id.get_track_chapters_confirm)
 
         // Set contents of set_read_confirm to include current last read from tracking
-        val confirmMsg = "Mark " + (item.track?.last_chapter_read) + " chapters read?"
+        val confirmMsg = "Mark ${item.track?.last_chapter_read} chapters as read?"
         // apply to text view
         txtView.text = confirmMsg
 
@@ -61,7 +61,7 @@ class SetTrackSetReadDialog<T> : DialogController
     }
 
     interface Listener {
-        fun setRead(latestTrackedChapter: Int)
+        fun getChaptersRead(latestTrackedChapter: Int)
     }
 
     private companion object {
