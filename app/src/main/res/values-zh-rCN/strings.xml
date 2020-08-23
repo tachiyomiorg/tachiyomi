@@ -51,7 +51,7 @@
     <string name="action_next_chapter">下一章</string>
     <string name="action_retry">重试</string>
     <string name="action_remove">移除</string>
-    <string name="action_resume">继续阅读</string>
+    <string name="action_resume">继续</string>
     <string name="action_move">移动</string>
     <string name="action_open_in_browser">在浏览器中打开</string>
     <string name="action_display_mode">显示模式</string>
