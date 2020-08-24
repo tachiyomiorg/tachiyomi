@@ -7,7 +7,6 @@ import android.view.View
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.ui.manga.MangaPresenter
-import eu.kanade.tachiyomi.util.chapter.ChapterSettingsHelper
 import eu.kanade.tachiyomi.widget.ExtendedNavigationView
 import eu.kanade.tachiyomi.widget.TabbedBottomSheetDialog
 
@@ -15,7 +14,7 @@ class ChaptersSettingsSheet(
     activity: Activity,
     private val presenter: MangaPresenter,
     onGroupClickListener: (ExtendedNavigationView.Group) -> Unit
-) : TabbedBottomSheetDialog(activity) {
+) : TabbedBottomSheetDialog(activity, presenter.manga) {
 
     val filters: Filter
     private val sort: Sort
@@ -30,10 +29,6 @@ class ChaptersSettingsSheet(
 
         display = Display(activity)
         display.onGroupClicked = onGroupClickListener
-
-        toggleSaveChapterSettingsBtnVisibility(presenter.manga)
-
-        setSaveChapterSettingsBtnOnClickListener { ChapterSettingsHelper.setNewSettingDefaults(presenter.manga) }
     }
 
     override fun getTabViews(): List<View> = listOf(
@@ -98,7 +93,6 @@ class ChaptersSettingsSheet(
 
                 initModels()
                 item.group.items.forEach { adapter.notifyItemChanged(it) }
-                toggleSaveChapterSettingsBtnVisibility(presenter.manga)
             }
         }
     }
@@ -164,7 +158,6 @@ class ChaptersSettingsSheet(
                 presenter.reverseSortOrder()
 
                 item.group.items.forEach { adapter.notifyItemChanged(it) }
-                toggleSaveChapterSettingsBtnVisibility(presenter.manga)
             }
         }
     }
@@ -208,7 +201,6 @@ class ChaptersSettingsSheet(
                 }
 
                 item.group.items.forEach { adapter.notifyItemChanged(it) }
-                toggleSaveChapterSettingsBtnVisibility(presenter.manga)
             }
         }
     }

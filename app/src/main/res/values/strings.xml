@@ -663,6 +663,7 @@
     <string name="information_cloudflare_bypass_failure">Failed to bypass Cloudflare</string>
     <string name="information_webview_required">WebView is required for Tachiyomi</string>
     <string name="information_webview_outdated">Please update the WebView app for better compatibility</string>
+    <string name="chapter_settings_updated">Updated default chapter settings</string>
 
     <!-- Download Notification -->
     <string name="download_notifier_downloader_title">Downloader</string>
@@ -691,6 +692,6 @@
     <string name="tapping_inverted_vertical">Vertical</string>
     <string name="tapping_inverted_both">Both</string>
     <string name="set_chapter_settings_as_default">Set as Default</string>
-    <string name="chapter_settings_apply_to_library">Apply to all in Library</string>
+    <string name="chapter_settings_apply_to_library">Apply to all</string>
 
 </resources>

@@ -2,6 +2,7 @@ package eu.kanade.tachiyomi.data.preference
 
 import android.content.Context
 import android.os.Environment
+import androidx.core.content.edit
 import androidx.core.net.toUri
 import androidx.preference.PreferenceManager
 import com.tfcporciuncula.flow.FlowSharedPreferences
@@ -246,31 +247,28 @@ class PreferencesHelper(val context: Context) {
 
     fun enableDoh() = prefs.getBoolean(Keys.enableDoh, false)
 
-    fun filterChapterByRead() = prefs.getInt(Keys.filterChapterByRead, Manga.SHOW_ALL)
+    fun filterChapterByRead() = prefs.getInt(Keys.defaultChapterFilterByRead, Manga.SHOW_ALL)
 
-    fun filterChapterByDownloaded() = prefs.getInt(Keys.filterChapterByDownloaded, Manga.SHOW_ALL)
+    fun filterChapterByDownloaded() = prefs.getInt(Keys.defaultChapterFilterByDownloaded, Manga.SHOW_ALL)
 
-    fun filterChapterByBookmarked() = prefs.getInt(Keys.filterChapterByBookmarked, Manga.SHOW_ALL)
+    fun filterChapterByBookmarked() = prefs.getInt(Keys.defaultChapterFilterByBookmarked, Manga.SHOW_ALL)
 
-    fun sortChapterBySourceOrNumber() = prefs.getInt(Keys.sortChapterBySourceOrNumber, Manga.SORTING_SOURCE)
+    fun sortChapterBySourceOrNumber() = prefs.getInt(Keys.defaultChapterSortBySourceOrNumber, Manga.SORTING_SOURCE)
 
-    fun displayChapterByNameOrNumber() = prefs.getInt(Keys.displayChapterByNameOrNumber, Manga.DISPLAY_NAME)
+    fun displayChapterByNameOrNumber() = prefs.getInt(Keys.defaultChapterDisplayByNameOrNumber, Manga.DISPLAY_NAME)
 
-    fun sortChapterByAscendingOrDescending() = prefs.getInt(Keys.sortChapterByAscendingOrDescending, Manga.SORT_DESC)
+    fun sortChapterByAscendingOrDescending() = prefs.getInt(Keys.defaultChapterSortByAscendingOrDescending, Manga.SORT_DESC)
 
     fun setChapterSettingsDefault(m: Manga) {
-        val editor = prefs.edit()
+        prefs.edit {
+            putInt(Keys.defaultChapterFilterByRead, m.readFilter)
+            putInt(Keys.defaultChapterFilterByDownloaded, m.downloadedFilter)
+            putInt(Keys.defaultChapterFilterByBookmarked, m.bookmarkedFilter)
+            putInt(Keys.defaultChapterSortBySourceOrNumber, m.sorting)
+            putInt(Keys.defaultChapterDisplayByNameOrNumber, m.displayMode)
+        }
 
-        editor
-            .putInt(Keys.filterChapterByRead, m.readFilter)
-            .putInt(Keys.filterChapterByDownloaded, m.downloadedFilter)
-            .putInt(Keys.filterChapterByBookmarked, m.bookmarkedFilter)
-            .putInt(Keys.sortChapterBySourceOrNumber, m.sorting)
-            .putInt(Keys.displayChapterByNameOrNumber, m.displayMode)
-
-        if (m.sortDescending()) editor.putInt(Keys.sortChapterByAscendingOrDescending, Manga.SORT_DESC)
-        else editor.putInt(Keys.sortChapterByAscendingOrDescending, Manga.SORT_ASC)
-
-        editor.apply()
+        if (m.sortDescending()) prefs.edit { putInt(Keys.defaultChapterSortByAscendingOrDescending, Manga.SORT_DESC) }
+        else prefs.edit { putInt(Keys.defaultChapterSortByAscendingOrDescending, Manga.SORT_ASC) }
     }
 }

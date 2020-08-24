@@ -12,49 +12,13 @@ object ChapterSettingsHelper {
     private val db: DatabaseHelper = Injekt.get()
 
     /**
-     * compares manga Chapter Settings to the app's defaults
-     */
-    fun matchesSettingsDefaults(m: Manga): Boolean {
-        val sort = if (m.sortDescending()) Manga.SORT_DESC else Manga.SORT_ASC
-
-        return when {
-            (
-                m.readFilter == Manga.SHOW_ALL &&
-                    m.downloadedFilter == Manga.SHOW_ALL &&
-                    m.bookmarkedFilter == Manga.SHOW_ALL &&
-                    m.sorting == Manga.SORTING_SOURCE &&
-                    m.displayMode == Manga.DISPLAY_NAME &&
-                    sort == Manga.SORT_DESC
-                ) -> true
-            else -> false
-        }
-    }
-
-    /**
-     * compares manga Chapter Settings to the Chapter Settings set in Preferences
-     */
-    fun matchesSettingsDefaultsFromPreferences(m: Manga): Boolean {
-        val sort = if (m.sortDescending()) Manga.SORT_DESC else Manga.SORT_ASC
-
-        return when {
-            (
-                m.readFilter == prefs.filterChapterByRead() &&
-                    m.downloadedFilter == prefs.filterChapterByDownloaded() &&
-                    m.bookmarkedFilter == prefs.filterChapterByBookmarked() &&
-                    m.sorting == prefs.sortChapterBySourceOrNumber() &&
-                    m.displayMode == prefs.displayChapterByNameOrNumber() &&
-                    sort == prefs.sortChapterByAscendingOrDescending()
-                ) -> true
-            else -> false
-        }
-    }
-
-    /**
      * updates the Chapter Settings in Preferences
      */
-    fun setNewSettingDefaults(m: Manga) {
-        prefs.setChapterSettingsDefault(m)
-        db.updateFlags(m).executeAsBlocking()
+    fun setNewSettingDefaults(m: Manga?) {
+        m?.let {
+            prefs.setChapterSettingsDefault(it)
+            db.updateFlags(it).executeAsBlocking()
+        }
     }
 
     /**

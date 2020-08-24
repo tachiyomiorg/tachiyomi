@@ -161,17 +161,17 @@ object PreferenceKeys {
 
     const val enableDoh = "enable_doh"
 
-    const val filterChapterByRead = "filter_chapter_by_read"
+    const val defaultChapterFilterByRead = "default_chapter_filter_by_read"
 
-    const val filterChapterByDownloaded = "filter_chapter_by_downloaded"
+    const val defaultChapterFilterByDownloaded = "default_chapter_filter_by_downloaded"
 
-    const val filterChapterByBookmarked = "filter_chapter_by_bookmarked"
+    const val defaultChapterFilterByBookmarked = "default_chapter_filter_by_bookmarked"
 
-    const val sortChapterBySourceOrNumber = "sort_chapter_by_source_or_number"
+    const val defaultChapterSortBySourceOrNumber = "default_chapter_sort_by_source_or_number" // and upload date
 
-    const val displayChapterByNameOrNumber = "display_chapter_by_name_or_number"
+    const val defaultChapterSortByAscendingOrDescending = "default_chapter_sort_by_ascending_or_descending"
 
-    const val sortChapterByAscendingOrDescending = "sort_chapter_by_ascending_or_descending"
+    const val defaultChapterDisplayByNameOrNumber = "default_chapter_display_by_name_or_number"
 
     fun trackUsername(syncId: Int) = "pref_mangasync_username_$syncId"
 
