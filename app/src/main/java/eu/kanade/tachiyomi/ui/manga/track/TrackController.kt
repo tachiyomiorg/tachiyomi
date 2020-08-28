@@ -3,10 +3,12 @@ package eu.kanade.tachiyomi.ui.manga.track
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.LinearLayoutManager
+import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
@@ -194,11 +196,21 @@ class TrackController :
         binding.swipeRefresh.isRefreshing = true
     }
 
-    override fun onGetChaptersClick(position: Int) {
+    override fun onMenuItemClick(position: Int, menuItem: MenuItem) {
+        when (menuItem.itemId) {
+            R.id.track_get_chapters -> {
+                onGetChaptersClick(position)
+            }
+            R.id.track_remove -> {
+                val item = adapter?.getItem(position) ?: return
+                presenter.unregisterTracking(item.service)
+            }
+        }
+    }
+
+    private fun onGetChaptersClick(position: Int) {
         val item = adapter?.getItem(position) ?: return
         if (item.track == null) return
-
-        // get list of chapters from source to send to dialog
         val chapters = presenter.getSourceChapters()
 
         GetTrackChaptersDialog(this, item, chapters).showDialog(router)
