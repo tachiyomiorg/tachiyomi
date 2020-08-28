@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.ui.manga.track
 
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import eu.kanade.tachiyomi.databinding.TrackItemBinding
@@ -41,11 +42,11 @@ class TrackAdapter(controller: TrackController) : RecyclerView.Adapter<TrackHold
         fun onLogoClick(position: Int)
         fun onSetClick(position: Int)
         fun onTitleLongClick(position: Int)
+        fun onMenuItemClick(position: Int, menuItem: MenuItem)
         fun onStatusClick(position: Int)
         fun onChaptersClick(position: Int)
         fun onScoreClick(position: Int)
         fun onStartDateClick(position: Int)
         fun onFinishDateClick(position: Int)
-        fun onGetChaptersClick(position: Int)
     }
 }
