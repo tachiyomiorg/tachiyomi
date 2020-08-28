@@ -40,7 +40,6 @@ class TrackPresenter(
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
-
         fetchTrackings()
     }
 
@@ -177,7 +176,6 @@ class TrackPresenter(
             sortedChapters[i].read = true
             i++
         }
-        // update database progress
         db.updateChaptersProgress(sortedChapters).executeAsBlocking()
     }
 }
