@@ -36,12 +36,10 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_weight="1">
 
                 <Button
                     android:id="@+id/track_set"
@@ -62,6 +60,24 @@
                     android:maxLines="1"
                     android:padding="16dp"
                     tools:text="Title" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/track_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/track_open_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_more_vert_24dp"
+                    android:tint="?attr/colorOnPrimary"
+                    android:background="@drawable/list_item_selector"
+                    android:padding="8dp"/>
 
             </LinearLayout>
 
@@ -105,7 +121,7 @@
                 android:layout_marginBottom="8dp"
                 android:alpha="0.25"
                 android:background="?android:attr/textColorHint"
-                app:layout_constraintBottom_toTopOf="@+id/middle_divider"
+                app:layout_constraintBottom_toTopOf="@+id/bottom_divider"
                 app:layout_constraintEnd_toStartOf="@+id/track_chapters"
                 app:layout_constraintStart_toEndOf="@+id/track_status"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -133,7 +149,7 @@
                 android:layout_marginBottom="8dp"
                 android:alpha="0.25"
                 android:background="?android:attr/textColorHint"
-                app:layout_constraintBottom_toTopOf="@+id/middle_divider"
+                app:layout_constraintBottom_toTopOf="@+id/bottom_divider"
                 app:layout_constraintEnd_toStartOf="@+id/track_score"
                 app:layout_constraintStart_toEndOf="@+id/track_chapters"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -154,31 +170,6 @@
                 tools:text="10" />
 
             <View
-                android:id="@+id/middle_divider"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:alpha="0.25"
-                android:background="?android:attr/textColorHint"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/track_score" />
-
-            <TextView
-                android:id="@+id/get_track_chapters"
-                style="@style/TextAppearance.Regular.Body1.Secondary"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/list_item_selector"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:maxLines="1"
-                android:padding="16dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/middle_divider"
-                tools:text="@string/track_get_chapters" />
-
-            <View
                 android:id="@+id/bottom_divider"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
@@ -186,7 +177,7 @@
                 android:background="?android:attr/textColorHint"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/get_track_chapters" />
+                app:layout_constraintTop_toBottomOf="@+id/track_score" />
 
             <TextView
                 android:id="@+id/track_start_date"
