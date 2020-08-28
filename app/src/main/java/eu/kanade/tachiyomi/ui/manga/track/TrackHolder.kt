@@ -1,10 +1,14 @@
 package eu.kanade.tachiyomi.ui.manga.track
 
 import android.annotation.SuppressLint
+import android.view.View
 import androidx.core.view.isVisible
+import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.databinding.TrackItemBinding
 import eu.kanade.tachiyomi.ui.base.holder.BaseViewHolder
+import eu.kanade.tachiyomi.util.view.popupMenu
 import java.text.DateFormat
 import uy.kohesive.injekt.injectLazy
 
@@ -16,9 +20,9 @@ class TrackHolder(private val binding: TrackItemBinding, adapter: TrackAdapter) 
         preferences.dateFormat()
     }
 
-    init {
-        val listener = adapter.rowClickListener
+    private val listener = adapter.rowClickListener
 
+    init {
         binding.logoContainer.setOnClickListener { listener.onLogoClick(bindingAdapterPosition) }
         binding.trackSet.setOnClickListener { listener.onSetClick(bindingAdapterPosition) }
         binding.trackTitle.setOnClickListener { listener.onSetClick(bindingAdapterPosition) }
@@ -26,12 +30,12 @@ class TrackHolder(private val binding: TrackItemBinding, adapter: TrackAdapter) 
             listener.onTitleLongClick(bindingAdapterPosition)
             true
         }
+        binding.trackOpenMenu.setOnClickListener { it.post { showPopupMenu(it, adapter.getItem(position)?.track) } }
         binding.trackStatus.setOnClickListener { listener.onStatusClick(bindingAdapterPosition) }
         binding.trackChapters.setOnClickListener { listener.onChaptersClick(bindingAdapterPosition) }
         binding.trackScore.setOnClickListener { listener.onScoreClick(bindingAdapterPosition) }
         binding.trackStartDate.setOnClickListener { listener.onStartDateClick(bindingAdapterPosition) }
         binding.trackFinishDate.setOnClickListener { listener.onFinishDateClick(bindingAdapterPosition) }
-        binding.getTrackChapters.setOnClickListener { listener.onGetChaptersClick(bindingAdapterPosition) }
     }
 
     @SuppressLint("SetTextI18n")
@@ -42,6 +46,7 @@ class TrackHolder(private val binding: TrackItemBinding, adapter: TrackAdapter) 
 
         binding.trackSet.isVisible = track == null
         binding.trackTitle.isVisible = track != null
+        binding.trackMenu.isVisible = track != null
 
         binding.trackDetails.isVisible = track != null
         if (track != null) {
@@ -50,7 +55,6 @@ class TrackHolder(private val binding: TrackItemBinding, adapter: TrackAdapter) 
                 if (track.total_chapters > 0) track.total_chapters else "-"
             binding.trackStatus.text = item.service.getStatus(track.status)
             binding.trackScore.text = if (track.score == 0f) "-" else item.service.displayScore(track)
-            binding.getTrackChapters.text = "Sync read chapters with Tachiyomi"
 
             if (item.service.supportsReadingDates) {
                 binding.trackStartDate.text =
@@ -64,5 +68,20 @@ class TrackHolder(private val binding: TrackItemBinding, adapter: TrackAdapter) 
                 binding.trackFinishDate.isVisible = false
             }
         }
+    }
+
+    private fun showPopupMenu(view: View, track: Track?) {
+        val latestTrackedChapter = track?.last_chapter_read
+        view.popupMenu(
+            R.menu.track,
+            {
+                findItem(R.id.track_get_chapters).isVisible = latestTrackedChapter != 0
+                findItem(R.id.track_remove)
+            },
+            {
+                listener.onMenuItemClick(bindingAdapterPosition, this)
+                true
+            }
+        )
     }
 }
