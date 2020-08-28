@@ -2,10 +2,7 @@ package eu.kanade.tachiyomi.ui.manga.track
 
 import android.app.Dialog
 import android.os.Bundle
-import android.widget.TextView
 import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.customview.customView
-import com.afollestad.materialdialogs.customview.getCustomView
 import com.bluelinelabs.conductor.Controller
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Chapter
@@ -41,36 +38,26 @@ class GetTrackChaptersDialog<T> : DialogController
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         val item = item
-        var latestTrackedChapter = item.track?.last_chapter_read!!
-        val dialog = MaterialDialog(activity!!)
-            .title(R.string.sync_chapters)
-            .customView(R.layout.track_get_chapters_dialog, dialogWrapContent = false)
-            .positiveButton(android.R.string.ok) { _ ->
-                (targetController as? Listener)?.getChaptersRead(latestTrackedChapter)
-            }
-            .negativeButton(android.R.string.cancel)
-
-        val view = dialog.getCustomView()
-        val txtView: TextView = view.findViewById(R.id.get_track_chapters_confirm)
+        var latestTrackedChapter: Int = item.track?.last_chapter_read!!
+        val lastSourceChapter: Float = sourceChapters[0].chapter_number
         val confirmMsg: String
 
         // get last chapter number published to source
-        val lastSourceChapter = sourceChapters[0].chapter_number
-
-        // check if tracker last chapter ahead of source last chapter
         if (latestTrackedChapter > lastSourceChapter) {
-            // set latestTrackedChapter to the latest source chapter
             latestTrackedChapter = lastSourceChapter.toInt()
-
             // display message to advise why latestTrackedChapter is now lower
-            confirmMsg = "Tracker is ahead of source!\n\nMark read up to chapter $latestTrackedChapter?"
+            confirmMsg = this.resources!!.getString(R.string.sync_confirm_tracker_ahead, latestTrackedChapter)
         } else {
-            confirmMsg = "Mark read up to chapter $latestTrackedChapter?"
+            confirmMsg = this.resources!!.getString(R.string.sync_confirm, latestTrackedChapter)
         }
-        // apply context message to text view
-        txtView.text = confirmMsg
 
-        return dialog
+        return MaterialDialog(activity!!)
+            .message(text = confirmMsg)
+            .title(R.string.sync_chapters)
+            .positiveButton(android.R.string.ok) {
+                (targetController as? Listener)?.getChaptersRead(latestTrackedChapter)
+            }
+            .negativeButton(android.R.string.cancel)
     }
 
     interface Listener {
@@ -78,6 +65,6 @@ class GetTrackChaptersDialog<T> : DialogController
     }
 
     private companion object {
-        const val KEY_ITEM_TRACK = "SetTrackSetReadDialog.item.track"
+        const val KEY_ITEM_TRACK = "GetTrackChaptersDialog.item.track"
     }
 }
