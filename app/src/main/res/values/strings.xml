@@ -30,6 +30,7 @@
 
     <!-- Actions -->
     <string name="action_settings">Settings</string>
+    <string name="action_chapter_settings">Chapter Settings</string>
     <string name="action_menu">Menu</string>
     <string name="action_filter">Filter</string>
     <string name="action_filter_downloaded">Downloaded</string>
@@ -513,6 +514,8 @@
     <string name="download_unread">Unread</string>
     <string name="confirm_delete_chapters">Are you sure you want to delete the selected chapters?</string>
     <string name="invalid_download_dir">Invalid download location</string>
+    <string name="confirm_set_chapter_settings">Are you sure you want to save these settings as default?</string>
+    <string name="also_set_chapter_settings_for_library">Also apply to all manga in my Library</string>
 
     <!-- Tracking Screen -->
     <string name="manga_tracking_tab">Tracking</string>
@@ -692,6 +695,4 @@
     <string name="tapping_inverted_vertical">Vertical</string>
     <string name="tapping_inverted_both">Both</string>
     <string name="set_chapter_settings_as_default">Set as Default</string>
-    <string name="chapter_settings_apply_to_library">Apply to all</string>
-
 </resources>

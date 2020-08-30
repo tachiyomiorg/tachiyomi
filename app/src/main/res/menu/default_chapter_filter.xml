@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <item
-        android:id="@+id/apply_to_library"
-        android:checkable="true"
-        android:title="@string/chapter_settings_apply_to_library" />
-
     <item
         android:id="@+id/save_as_default"
         android:title="@string/set_chapter_settings_as_default" />
