@@ -19,7 +19,14 @@ abstract class TabbedBottomSheetDialog(private val activity: Activity, private v
         binding.pager.adapter = adapter
         binding.tabs.setupWithViewPager(binding.pager)
 
-        binding.menu.setOnClickListener { it.post { showPopupMenu(it) } }
+        // currently, we only need to show the overflow menu if this is a ChaptersSettingsSheet
+        if (manga != null) {
+            binding.menu.visibility = View.VISIBLE
+            binding.menu.setOnClickListener { it.post { showPopupMenu(it) } }
+        } else {
+            binding.menu.visibility = View.GONE
+        }
+
         setContentView(binding.root)
     }
 
