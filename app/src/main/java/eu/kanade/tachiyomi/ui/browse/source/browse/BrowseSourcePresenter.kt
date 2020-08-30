@@ -28,6 +28,7 @@ import eu.kanade.tachiyomi.ui.browse.source.filter.TextItem
 import eu.kanade.tachiyomi.ui.browse.source.filter.TextSectionItem
 import eu.kanade.tachiyomi.ui.browse.source.filter.TriStateItem
 import eu.kanade.tachiyomi.ui.browse.source.filter.TriStateSectionItem
+import eu.kanade.tachiyomi.util.chapter.ChapterSettingsHelper
 import eu.kanade.tachiyomi.util.removeCovers
 import java.util.Date
 import kotlinx.coroutines.flow.subscribe
@@ -268,6 +269,8 @@ open class BrowseSourcePresenter(
 
         if (!manga.favorite) {
             manga.removeCovers(coverCache)
+        } else {
+            ChapterSettingsHelper.applySettingDefaultsFromPreferences(manga)
         }
 
         db.insertManga(manga).executeAsBlocking()
