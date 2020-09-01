@@ -29,7 +29,7 @@ class MigrationSourcesPresenter(
         val header = SelectionHeader()
         return library.map { it.source }.toSet()
             .mapNotNull { if (it != LocalSource.ID) sourceManager.getOrStub(it) else null }
-            .sortedBy { it.name }
+            .sortedBy { it.name.toLowerCase() }
             .map { SourceItem(it, header) }
     }
 }

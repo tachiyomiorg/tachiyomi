@@ -42,7 +42,7 @@ class SourceFilterController : SettingsController() {
         )
 
         orderedLangs.forEach { lang ->
-            val sources = sourcesByLang[lang].orEmpty().sortedBy { it.name }
+            val sources = sourcesByLang[lang].orEmpty().sortedBy { it.name.toLowerCase() }
 
             // Create a preference group and set initial state and change listener
             switchPreferenceCategory {
