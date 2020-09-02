@@ -57,12 +57,19 @@ class WebtoonTransitionHolder(
         setLayoutParams(layoutParams)
     }
 
-    /**
-     * Text view used to display the text of the current and next/prev chapters.
-     */
-    private var textView = TextView(context).apply {
+    private var upperTextView: TextView = TextView(context).apply {
+        val layoutParams = LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT)
+        layoutParams.topMargin = 16.dpToPx
+        layoutParams.bottomMargin = 16.dpToPx
+        setLayoutParams(layoutParams)
         textSize = 17.5F
-        wrapContent()
+    }
+
+    private var lowerTextView: TextView = TextView(context).apply {
+        val layoutParams = LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT)
+        layoutParams.bottomMargin = 16.dpToPx
+        setLayoutParams(layoutParams)
+        textSize = 17.5F
     }
 
     /**
@@ -88,9 +95,10 @@ class WebtoonTransitionHolder(
             setMargins(0, childMargins, 0, childMargins)
         }
 
+        layout.addView(upperTextView)
         layout.addView(warningImageView)
         layout.addView(warningTextView)
-        layout.addView(textView, childParams)
+        layout.addView(lowerTextView)
         layout.addView(pagesContainer, childParams)
     }
 
@@ -144,15 +152,19 @@ class WebtoonTransitionHolder(
     private fun bindNextChapterTransition(transition: ChapterTransition.Next) {
         val nextChapter = transition.to
 
-        textView.text = if (nextChapter != null) {
-            buildSpannedString {
+        val hasNextChapter = nextChapter != null
+        lowerTextView.isVisible = hasNextChapter
+        if (hasNextChapter) {
+            upperTextView.text = buildSpannedString {
                 bold { append(context.getString(R.string.transition_finished)) }
-                append("\n${transition.from.chapter.name}\n\n")
+                append("\n${transition.from.chapter.name}")
+            }
+            lowerTextView.text = buildSpannedString {
                 bold { append(context.getString(R.string.transition_next)) }
-                append("\n${nextChapter.chapter.name}\n\n")
+                append("\n${nextChapter!!.chapter.name}")
             }
         } else {
-            context.getString(R.string.transition_no_next)
+            upperTextView.text = context.getString(R.string.transition_no_next)
         }
 
         if (nextChapter != null) {
@@ -166,15 +178,19 @@ class WebtoonTransitionHolder(
     private fun bindPrevChapterTransition(transition: ChapterTransition.Prev) {
         val prevChapter = transition.to
 
-        textView.text = if (prevChapter != null) {
-            buildSpannedString {
+        val hasPrevChapter = prevChapter != null
+        lowerTextView.isVisible = hasPrevChapter
+        if (hasPrevChapter) {
+            upperTextView.text = buildSpannedString {
                 bold { append(context.getString(R.string.transition_current)) }
-                append("\n${transition.from.chapter.name}\n\n")
+                append("\n${transition.from.chapter.name}")
+            }
+            lowerTextView.text = buildSpannedString {
                 bold { append(context.getString(R.string.transition_previous)) }
-                append("\n${prevChapter.chapter.name}\n\n")
+                append("\n${prevChapter!!.chapter.name}")
             }
         } else {
-            context.getString(R.string.transition_no_previous)
+            lowerTextView.text = context.getString(R.string.transition_no_previous)
         }
 
         if (prevChapter != null) {
