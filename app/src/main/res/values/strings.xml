@@ -444,8 +444,9 @@
     <string name="library_search_hint">Title or author…</string>
     <string name="updating_category">Updating category</string>
     <string name="local_source_badge">Local</string>
-    <string name="confirm_delete_manga">Are you sure you want to remove selected manga?</string>
-    <string name="also_delete_chapters">Also delete downloaded chapters</string>
+    <string name="delete_selected_manga">For selected manga delete</string>
+    <string name="it_from_library">it from library</string>
+    <string name="downloaded_chapters">downloaded chapters</string>
     <string name="badges_header">Badges</string>
     <string name="tabs_header">Tabs</string>
 

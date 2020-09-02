@@ -34,12 +34,12 @@ class DeleteLibraryMangasDialog<T>(bundle: Bundle? = null) :
             )
             .positiveButton(android.R.string.ok) {
                 val deleteChapters = view.isChecked()
-                (targetController as? Listener)?.deleteMangasFromLibrary(mangas, deleteChapters)
+                (targetController as? Listener)?.deleteMangas(mangas, deleteChapters, deleteChapters)
             }
             .negativeButton(android.R.string.cancel)
     }
 
     interface Listener {
-        fun deleteMangasFromLibrary(mangas: List<Manga>, deleteChapters: Boolean)
+        fun deleteMangas(mangas: List<Manga>, deleteFromLibrary: Boolean, deleteChapters: Boolean)
     }
 }
