@@ -190,7 +190,7 @@ class WebtoonTransitionHolder(
                 append("\n${prevChapter!!.chapter.name}")
             }
         } else {
-            lowerTextView.text = context.getString(R.string.transition_no_previous)
+            upperTextView.text = context.getString(R.string.transition_no_previous)
         }
 
         if (prevChapter != null) {
