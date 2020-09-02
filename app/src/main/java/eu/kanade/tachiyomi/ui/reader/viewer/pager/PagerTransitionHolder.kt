@@ -96,21 +96,14 @@ class PagerTransitionHolder(
             return
         }
 
-        val higherChapterNumber: Float
-        val lowerChapterNumber: Float
+        val fromChapterNumber: Float = transition.from.chapter.chapter_number
+        val toChapterNumber: Float = transition.to!!.chapter.chapter_number
 
-        when (transition) {
-            is ChapterTransition.Prev -> {
-                higherChapterNumber = transition.from.chapter.chapter_number
-                lowerChapterNumber = transition.to!!.chapter.chapter_number
-            }
-            is ChapterTransition.Next -> {
-                higherChapterNumber = transition.to!!.chapter.chapter_number
-                lowerChapterNumber = transition.from.chapter.chapter_number
-            }
+        val chapterDifference = when (transition) {
+            is ChapterTransition.Prev -> (fromChapterNumber - toChapterNumber)
+            is ChapterTransition.Next -> (toChapterNumber - fromChapterNumber)
         }
 
-        val chapterDifference = (higherChapterNumber - lowerChapterNumber)
         val hasMissingChapters = chapterDifference > 1f
 
         warningTextView.text = resources.getQuantityString(R.plurals.missing_chapters_warning, chapterDifference.toInt(), chapterDifference.toInt())
