@@ -1,8 +1,6 @@
 package eu.kanade.tachiyomi.ui.reader.viewer.pager
 
 import android.annotation.SuppressLint
-import android.content.res.ColorStateList
-import android.graphics.Color
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -17,16 +15,15 @@ import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
 import androidx.core.view.isVisible
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
 import eu.kanade.tachiyomi.util.system.dpToPx
+import eu.kanade.tachiyomi.util.system.getResourceColor
+import eu.kanade.tachiyomi.util.view.setVectorCompat
 import eu.kanade.tachiyomi.widget.ViewPagerAdapter
 import kotlin.math.floor
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
-import uy.kohesive.injekt.Injekt
-import uy.kohesive.injekt.api.get
 
 /**
  * View of the ViewPager that contains a chapter transition.
@@ -34,8 +31,7 @@ import uy.kohesive.injekt.api.get
 @SuppressLint("ViewConstructor")
 class PagerTransitionHolder(
     val viewer: PagerViewer,
-    val transition: ChapterTransition,
-    val preferences: PreferencesHelper = Injekt.get()
+    val transition: ChapterTransition
 ) : LinearLayout(viewer.activity), ViewPagerAdapter.PositionableView {
 
     /**
@@ -49,25 +45,26 @@ class PagerTransitionHolder(
      */
     private var statusSubscription: Subscription? = null
 
+    private var warningContainer: LinearLayout = LinearLayout(context).apply {
+        val layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+        layoutParams.bottomMargin = 16.dpToPx
+        setLayoutParams(layoutParams)
+        orientation = HORIZONTAL
+        gravity = Gravity.CENTER_VERTICAL
+    }
+
     private var warningImageView: ImageView = ImageView(context).apply {
-        val warningDrawable = resources.getDrawable(R.drawable.ic_warning_white_48dp, resources.newTheme())
-        background = warningDrawable
-        val tintColor = when (preferences.readerTheme().get()) {
-            0 -> Color.BLACK // Theme is White
-            else -> Color.WHITE // Theme is Black or Gray
-        }
-        backgroundTintList = ColorStateList.valueOf(tintColor)
+        val tintColor = context.getResourceColor(R.attr.colorOnBackground)
+        setVectorCompat(R.drawable.ic_warning_white_24dp, tintColor)
         wrapContent()
     }
 
     private var warningTextView: TextView = TextView(context).apply {
-        val layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
-        layoutParams.bottomMargin = 16.dpToPx
-        setLayoutParams(layoutParams)
+        wrapContent()
     }
 
     private var upperTextView: TextView = TextView(context).apply {
-        val layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
+        val layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
         layoutParams.bottomMargin = 16.dpToPx
         setLayoutParams(layoutParams)
         textSize = 17.5F
@@ -75,6 +72,7 @@ class PagerTransitionHolder(
 
     private var lowerTextView: TextView = TextView(context).apply {
         textSize = 17.5F
+        wrapContent()
     }
 
     /**
@@ -93,8 +91,9 @@ class PagerTransitionHolder(
         val sidePadding = 64.dpToPx
         setPadding(sidePadding, 0, sidePadding, 0)
         addView(upperTextView)
-        addView(warningImageView)
-        addView(warningTextView)
+        warningContainer.addView(warningImageView)
+        warningContainer.addView(warningTextView)
+        addView(warningContainer)
         addView(lowerTextView)
         addView(pagesContainer)
 
@@ -126,9 +125,9 @@ class PagerTransitionHolder(
         showMissingChapterWarning(hasMissingChapters)
     }
 
-    private fun showMissingChapterWarning(boolean: Boolean) {
-        warningImageView.isVisible = boolean
-        warningTextView.isVisible = boolean
+    private fun showMissingChapterWarning(visible: Boolean) {
+        warningImageView.isVisible = visible
+        warningTextView.isVisible = visible
     }
 
     /**
@@ -149,6 +148,7 @@ class PagerTransitionHolder(
         val hasNextChapter = nextChapter != null
         lowerTextView.isVisible = hasNextChapter
         if (hasNextChapter) {
+            gravity = Gravity.CENTER_VERTICAL
             upperTextView.text = buildSpannedString {
                 bold { append(context.getString(R.string.transition_finished)) }
                 append("\n${transition.from.chapter.name}")
@@ -158,6 +158,7 @@ class PagerTransitionHolder(
                 append("\n${nextChapter!!.chapter.name}")
             }
         } else {
+            gravity = Gravity.CENTER
             upperTextView.text = context.getString(R.string.transition_no_next)
         }
 
@@ -175,6 +176,7 @@ class PagerTransitionHolder(
         val hasPrevChapter = prevChapter != null
         lowerTextView.isVisible = hasPrevChapter
         if (hasPrevChapter) {
+            gravity = Gravity.CENTER_VERTICAL
             upperTextView.text = buildSpannedString {
                 bold { append(context.getString(R.string.transition_current)) }
                 append("\n${transition.from.chapter.name}")
@@ -184,6 +186,7 @@ class PagerTransitionHolder(
                 append("\n${prevChapter!!.chapter.name}")
             }
         } else {
+            gravity = Gravity.CENTER
             upperTextView.text = context.getString(R.string.transition_no_previous)
         }
 
