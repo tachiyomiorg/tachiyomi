@@ -19,6 +19,7 @@ import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
 import eu.kanade.tachiyomi.util.system.dpToPx
 import eu.kanade.tachiyomi.widget.ViewPagerAdapter
+import kotlin.math.floor
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 
@@ -96,15 +97,15 @@ class PagerTransitionHolder(
             return
         }
 
-        val fromChapterNumber: Float = transition.from.chapter.chapter_number
-        val toChapterNumber: Float = transition.to!!.chapter.chapter_number
+        val fromChapterNumber: Float = floor(transition.from.chapter.chapter_number)
+        val toChapterNumber: Float = floor(transition.to!!.chapter.chapter_number)
 
         val chapterDifference = when (transition) {
-            is ChapterTransition.Prev -> (fromChapterNumber - toChapterNumber)
-            is ChapterTransition.Next -> (toChapterNumber - fromChapterNumber)
+            is ChapterTransition.Prev -> fromChapterNumber - toChapterNumber - 1f
+            is ChapterTransition.Next -> toChapterNumber - fromChapterNumber - 1f
         }
 
-        val hasMissingChapters = chapterDifference > 1f
+        val hasMissingChapters = chapterDifference > 0f
 
         warningTextView.text = resources.getQuantityString(R.plurals.missing_chapters_warning, chapterDifference.toInt(), chapterDifference.toInt())
         showMissingChapterWarning(hasMissingChapters)
