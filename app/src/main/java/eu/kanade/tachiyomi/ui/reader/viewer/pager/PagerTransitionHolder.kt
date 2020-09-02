@@ -6,12 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
+import androidx.core.view.isVisible
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
@@ -40,6 +42,18 @@ class PagerTransitionHolder(
      */
     private var statusSubscription: Subscription? = null
 
+    private var warningImageView: ImageView = ImageView(context).apply {
+        val warningDrawable = resources.getDrawable(R.drawable.ic_warning_white_48dp, resources.newTheme())
+        background = warningDrawable
+        wrapContent()
+    }
+
+    private var warningTextView: TextView = TextView(context).apply {
+        val layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+        layoutParams.bottomMargin = 48
+        setLayoutParams(layoutParams)
+    }
+
     /**
      * Text view used to display the text of the current and next/prev chapters.
      */
@@ -63,6 +77,8 @@ class PagerTransitionHolder(
         gravity = Gravity.CENTER
         val sidePadding = 64.dpToPx
         setPadding(sidePadding, 0, sidePadding, 0)
+        addView(warningImageView)
+        addView(warningTextView)
         addView(textView)
         addView(pagesContainer)
 
@@ -70,6 +86,40 @@ class PagerTransitionHolder(
             is ChapterTransition.Prev -> bindPrevChapterTransition()
             is ChapterTransition.Next -> bindNextChapterTransition()
         }
+
+        missingChapterWarning()
+    }
+
+    private fun missingChapterWarning() {
+        if (transition.to == null) {
+            showMissingChapterWarning(false)
+            return
+        }
+
+        val higherChapterNumber: Float
+        val lowerChapterNumber: Float
+
+        when (transition) {
+            is ChapterTransition.Prev -> {
+                higherChapterNumber = transition.from.chapter.chapter_number
+                lowerChapterNumber = transition.to!!.chapter.chapter_number
+            }
+            is ChapterTransition.Next -> {
+                higherChapterNumber = transition.to!!.chapter.chapter_number
+                lowerChapterNumber = transition.from.chapter.chapter_number
+            }
+        }
+
+        val chapterDifference = (higherChapterNumber - lowerChapterNumber)
+        val hasMissingChapters = chapterDifference > 1f
+
+        warningTextView.text = resources.getQuantityString(R.plurals.missing_chapters_warning, chapterDifference.toInt(), chapterDifference.toInt())
+        showMissingChapterWarning(hasMissingChapters)
+    }
+
+    private fun showMissingChapterWarning(boolean: Boolean) {
+        warningImageView.isVisible = boolean
+        warningTextView.isVisible = boolean
     }
 
     /**

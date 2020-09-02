@@ -702,4 +702,8 @@
     <string name="tapping_inverted_vertical">Vertical</string>
     <string name="tapping_inverted_both">Both</string>
 
+    <plurals name="missing_chapters_warning">
+        <item quantity="one">Warning there is %d missing chapter!</item>
+        <item quantity="other">Warning there is %d missing chapters!</item>
+    </plurals>
 </resources>
