@@ -1,8 +1,11 @@
 package eu.kanade.tachiyomi.ui.reader.viewer.webtoon
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.view.Gravity
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -13,24 +16,46 @@ import androidx.core.text.buildSpannedString
 import androidx.core.view.isNotEmpty
 import androidx.core.view.isVisible
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
 import eu.kanade.tachiyomi.util.system.dpToPx
+import kotlin.math.floor
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 
 /**
  * Holder of the webtoon viewer that contains a chapter transition.
  */
 class WebtoonTransitionHolder(
     val layout: LinearLayout,
-    viewer: WebtoonViewer
+    viewer: WebtoonViewer,
+    val preferences: PreferencesHelper = Injekt.get()
 ) : WebtoonBaseHolder(layout, viewer) {
 
     /**
      * Subscription for status changes of the transition page.
      */
     private var statusSubscription: Subscription? = null
+
+    private var warningImageView: ImageView = ImageView(context).apply {
+        val warningDrawable = resources.getDrawable(R.drawable.ic_warning_white_48dp, resources.newTheme())
+        background = warningDrawable
+        val tintColor = when (preferences.readerTheme().get()) {
+            0 -> Color.BLACK // Theme is White
+            else -> Color.WHITE // Theme is Black or Gray
+        }
+        backgroundTintList = ColorStateList.valueOf(tintColor)
+        wrapContent()
+    }
+
+    private var warningTextView: TextView = TextView(context).apply {
+        val layoutParams = LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT)
+        layoutParams.bottomMargin = 16.dpToPx
+        setLayoutParams(layoutParams)
+    }
 
     /**
      * Text view used to display the text of the current and next/prev chapters.
@@ -63,6 +88,8 @@ class WebtoonTransitionHolder(
             setMargins(0, childMargins, 0, childMargins)
         }
 
+        layout.addView(warningImageView)
+        layout.addView(warningTextView)
         layout.addView(textView, childParams)
         layout.addView(pagesContainer, childParams)
     }
@@ -75,6 +102,33 @@ class WebtoonTransitionHolder(
             is ChapterTransition.Prev -> bindPrevChapterTransition(transition)
             is ChapterTransition.Next -> bindNextChapterTransition(transition)
         }
+
+        missingChapterWarning(transition)
+    }
+
+    private fun missingChapterWarning(transition: ChapterTransition) {
+        if (transition.to == null) {
+            showMissingChapterWarning(false)
+            return
+        }
+
+        val fromChapterNumber: Float = floor(transition.from.chapter.chapter_number)
+        val toChapterNumber: Float = floor(transition.to!!.chapter.chapter_number)
+
+        val chapterDifference = when (transition) {
+            is ChapterTransition.Prev -> fromChapterNumber - toChapterNumber - 1f
+            is ChapterTransition.Next -> toChapterNumber - fromChapterNumber - 1f
+        }
+
+        val hasMissingChapters = chapterDifference > 0f
+
+        warningTextView.text = itemView.resources.getQuantityString(R.plurals.missing_chapters_warning, chapterDifference.toInt(), chapterDifference.toInt())
+        showMissingChapterWarning(hasMissingChapters)
+    }
+
+    private fun showMissingChapterWarning(boolean: Boolean) {
+        warningImageView.isVisible = boolean
+        warningTextView.isVisible = boolean
     }
 
     /**
