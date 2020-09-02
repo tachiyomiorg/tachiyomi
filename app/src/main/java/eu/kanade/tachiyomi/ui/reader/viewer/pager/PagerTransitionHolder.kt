@@ -1,6 +1,8 @@
 package eu.kanade.tachiyomi.ui.reader.viewer.pager
 
 import android.annotation.SuppressLint
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +17,7 @@ import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
 import androidx.core.view.isVisible
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
 import eu.kanade.tachiyomi.util.system.dpToPx
@@ -22,6 +25,8 @@ import eu.kanade.tachiyomi.widget.ViewPagerAdapter
 import kotlin.math.floor
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 
 /**
  * View of the ViewPager that contains a chapter transition.
@@ -29,7 +34,8 @@ import rx.android.schedulers.AndroidSchedulers
 @SuppressLint("ViewConstructor")
 class PagerTransitionHolder(
     val viewer: PagerViewer,
-    val transition: ChapterTransition
+    val transition: ChapterTransition,
+    val preferences: PreferencesHelper = Injekt.get()
 ) : LinearLayout(viewer.activity), ViewPagerAdapter.PositionableView {
 
     /**
@@ -46,6 +52,11 @@ class PagerTransitionHolder(
     private var warningImageView: ImageView = ImageView(context).apply {
         val warningDrawable = resources.getDrawable(R.drawable.ic_warning_white_48dp, resources.newTheme())
         background = warningDrawable
+        val tintColor = when (preferences.readerTheme().get()) {
+            0 -> Color.BLACK // Theme is White
+            else -> Color.WHITE // Theme is Black or Gray
+        }
+        backgroundTintList = ColorStateList.valueOf(tintColor)
         wrapContent()
     }
 
