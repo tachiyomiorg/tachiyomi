@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.isVisible
 import androidx.preference.PreferenceDialogController
@@ -54,6 +55,8 @@ import timber.log.Timber
 
 class MainActivity : BaseActivity<MainActivityBinding>() {
 
+    private var hideOnScroll: Boolean = true
+
     private lateinit var router: Router
 
     private val startScreenId by lazy {
@@ -90,6 +93,9 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
         bottomNavAnimator = ViewHeightAnimator(binding.bottomNav)
 
         // Set behavior of bottom nav
+        val layoutParams = binding.bottomNav.layoutParams as CoordinatorLayout.LayoutParams
+        layoutParams.behavior = if (hideOnScroll) HideBottomViewOnScrollBehavior<ConstraintLayout>() else null
+
         binding.bottomNav.setOnNavigationItemSelectedListener { item ->
             val id = item.itemId
 
@@ -371,19 +377,19 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
 
     fun showBottomNav(visible: Boolean, collapse: Boolean = false) {
         val layoutParams = binding.bottomNav.layoutParams as CoordinatorLayout.LayoutParams
-        val bottomViewNavigationBehavior = layoutParams.behavior as HideBottomViewOnScrollBehavior
+        val bottomViewNavigationBehavior: HideBottomViewOnScrollBehavior<View>? = layoutParams.behavior as? HideBottomViewOnScrollBehavior
         if (visible) {
             if (collapse) {
                 bottomNavAnimator.expand()
             }
 
-            bottomViewNavigationBehavior.slideUp(binding.bottomNav)
+            bottomViewNavigationBehavior?.slideUp(binding.bottomNav)
         } else {
             if (collapse) {
                 bottomNavAnimator.collapse()
             }
 
-            bottomViewNavigationBehavior.slideDown(binding.bottomNav)
+            bottomViewNavigationBehavior?.slideDown(binding.bottomNav)
         }
     }
 
