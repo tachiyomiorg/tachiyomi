@@ -5,11 +5,11 @@ import kotlin.math.floor
 
 object MissingChapters {
 
-    fun hasMissingChapters(highChapter: Chapter, lowerChapter: Chapter): Boolean {
-        return hasMissingChapters(highChapter.chapter_number, lowerChapter.chapter_number)
+    fun hasMissingChapters(higher: Chapter, lower: Chapter): Boolean {
+        return hasMissingChapters(higher.chapter_number, lower.chapter_number)
     }
 
-    fun hasMissingChapters(highChapterNumber: Float, lowerChapterNumber: Float): Boolean {
-        return floor(highChapterNumber) - floor(lowerChapterNumber) - 1f > 0f
+    fun hasMissingChapters(higherChapterNumber: Float, lowerChapterNumber: Float): Boolean {
+        return floor(higherChapterNumber) - floor(lowerChapterNumber) - 1f > 0f
     }
 }
