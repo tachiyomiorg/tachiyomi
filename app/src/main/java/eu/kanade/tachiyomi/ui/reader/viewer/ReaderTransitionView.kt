@@ -92,7 +92,10 @@ class ReaderTransitionView @JvmOverloads constructor(context: Context, attrs: At
             is ChapterTransition.Next -> toChapterNumber - fromChapterNumber - 1f
         }
 
-        val hasMissingChapters = chapterDifference > 0f
+        val hasMissingChapters = when (transition) {
+            is ChapterTransition.Prev -> MissingChapters.hasMissingChapters(fromChapterNumber, toChapterNumber)
+            is ChapterTransition.Next -> MissingChapters.hasMissingChapters(toChapterNumber, fromChapterNumber)
+        }
 
         warning_text.text = resources.getQuantityString(R.plurals.missing_chapters_warning, chapterDifference.toInt(), chapterDifference.toInt())
         warning.isVisible = hasMissingChapters
