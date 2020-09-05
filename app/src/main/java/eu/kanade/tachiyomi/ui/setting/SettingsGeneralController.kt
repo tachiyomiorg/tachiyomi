@@ -45,6 +45,11 @@ class SettingsGeneralController : SettingsController() {
             titleRes = R.string.pref_confirm_exit
             defaultValue = false
         }
+        switchPreference {
+            key = Keys.hideNavbar
+            titleRes = R.string.pref_hide_navbar_on_scroll
+            defaultValue = true
+        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             preference {
                 titleRes = R.string.pref_manage_notifications

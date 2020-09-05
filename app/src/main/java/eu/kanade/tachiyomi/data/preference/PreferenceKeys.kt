@@ -13,6 +13,8 @@ object PreferenceKeys {
 
     const val confirmExit = "pref_confirm_exit"
 
+    const val hideNavbar = "pref_hide_navbar_on_scroll"
+
     const val rotation = "pref_rotation_type_key"
 
     const val enableTransitions = "pref_enable_transitions_key"

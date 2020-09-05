@@ -55,8 +55,6 @@ import timber.log.Timber
 
 class MainActivity : BaseActivity<MainActivityBinding>() {
 
-    private var hideOnScroll: Boolean = true
-
     private lateinit var router: Router
 
     private val startScreenId by lazy {
@@ -93,9 +91,7 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
         bottomNavAnimator = ViewHeightAnimator(binding.bottomNav)
 
         // Set behavior of bottom nav
-        val layoutParams = binding.bottomNav.layoutParams as CoordinatorLayout.LayoutParams
-        layoutParams.behavior = if (hideOnScroll) HideBottomViewOnScrollBehavior<ConstraintLayout>() else null
-
+        setBottomNavbarBehaviorOnScroll()
         binding.bottomNav.setOnNavigationItemSelectedListener { item ->
             val id = item.itemId
 
@@ -311,6 +307,11 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
             !isConfirmingExit
     }
 
+    private fun setBottomNavbarBehaviorOnScroll() {
+        val layoutParams = binding.bottomNav.layoutParams as CoordinatorLayout.LayoutParams
+        layoutParams.behavior = if (preferences.hideNavbar().get()) HideBottomViewOnScrollBehavior<ConstraintLayout>() else null
+    }
+
     fun setSelectedNavItem(itemId: Int) {
         if (!isFinishing) {
             binding.bottomNav.selectedItemId = itemId
@@ -340,6 +341,7 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
         if (to is RootController) {
             // Always show bottom nav again when returning to a RootController
             showBottomNav(visible = true, collapse = from !is RootController)
+            setBottomNavbarBehaviorOnScroll()
         }
 
         if (from is TabbedController) {
