@@ -46,8 +46,8 @@ class SettingsGeneralController : SettingsController() {
             defaultValue = false
         }
         switchPreference {
-            key = Keys.hideNavbar
-            titleRes = R.string.pref_hide_navbar_on_scroll
+            key = Keys.hideBottomBar
+            titleRes = R.string.pref_hide_bottom_bar_on_scroll
             defaultValue = true
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

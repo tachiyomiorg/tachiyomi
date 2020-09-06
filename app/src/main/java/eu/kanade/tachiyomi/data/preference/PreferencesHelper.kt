@@ -58,7 +58,7 @@ class PreferencesHelper(val context: Context) {
 
     fun confirmExit() = prefs.getBoolean(Keys.confirmExit, false)
 
-    fun hideNavbar() = flowPrefs.getBoolean(Keys.hideNavbar, true)
+    fun hideBottomBar() = flowPrefs.getBoolean(Keys.hideBottomBar, true)
 
     fun useBiometricLock() = flowPrefs.getBoolean(Keys.useBiometricLock, false)
 
