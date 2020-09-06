@@ -35,7 +35,7 @@ class WebtoonAdapter(val viewer: WebtoonViewer) : RecyclerView.Adapter<RecyclerV
             // selected as the current chapter when one of those pages is selected.
             val prevPages = chapters.prevChapter.pages
             if (prevPages != null) {
-                newItems.addAll(prevPages.takeLast(2))
+                newItems.addAll(prevPages.takeLast(3))
             }
         }
 
@@ -62,7 +62,7 @@ class WebtoonAdapter(val viewer: WebtoonViewer) : RecyclerView.Adapter<RecyclerV
             // swap more pages.
             val nextPages = chapters.nextChapter.pages
             if (nextPages != null) {
-                newItems.addAll(nextPages.take(2))
+                newItems.addAll(nextPages.take(3))
             }
         }
 
