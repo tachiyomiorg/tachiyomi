@@ -20,6 +20,7 @@ import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.SeekBar
+import android.widget.Toast
 import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
 import androidx.core.view.setPadding
@@ -525,6 +526,14 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
         // Set seekbar progress
         binding.pageSeekbar.max = pages.lastIndex
         binding.pageSeekbar.progress = page.index
+    }
+
+    /**
+     * Called every time images are to small to trigger a chapter change
+     **/
+    fun forceChapterChange(currentChapter: ReaderChapter?, any: Any) {
+        Toast.makeText(this, "Warning! The images seams to be small, are you using the right reading mode? Reader will not operate properly", Toast.LENGTH_LONG).show()
+        presenter.forceChapterChange(currentChapter, any)
     }
 
     /**

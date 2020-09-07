@@ -9,6 +9,7 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.WebtoonLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import eu.kanade.tachiyomi.data.preference.PreferenceValues.TappingInvertMode
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
@@ -24,6 +25,8 @@ import timber.log.Timber
  * Implementation of a [BaseViewer] to display pages with a [RecyclerView].
  */
 class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = true) : BaseViewer {
+
+    private val swipeRefreshLayout = SwipeRefreshLayout(activity)
 
     /**
      * Recycler view used by this viewer.
@@ -66,6 +69,7 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
     val subscriptions = CompositeSubscription()
 
     init {
+        swipeRefreshLayout.layoutParams = ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT)
         recycler.isVisible = false // Don't let the recycler layout yet
         recycler.layoutParams = ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT)
         recycler.itemAnimator = null
@@ -139,8 +143,15 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
             refreshAdapter()
         }
 
+        swipeRefreshLayout.addView(recycler)
+
         frame.layoutParams = ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT)
-        frame.addView(recycler)
+        frame.addView(swipeRefreshLayout)
+
+        // Forces an chapter change when images are to small to trigger onPageSelected chapter change
+        swipeRefreshLayout.setOnRefreshListener {
+            activity.forceChapterChange(adapter.currentChapter, adapter.items[0])
+        }
     }
 
     private fun checkAllowPreload(page: ReaderPage?): Boolean {
@@ -229,6 +240,11 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
             val pages = chapters.currChapter.pages ?: return
             moveToPage(pages[chapters.currChapter.requestedPage])
             recycler.isVisible = true
+        }
+
+        if (swipeRefreshLayout.isRefreshing) {
+            swipeRefreshLayout.isRefreshing = false
+            moveToPage(chapters.currChapter.pages?.last()!!)
         }
     }
 

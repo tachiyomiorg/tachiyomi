@@ -371,6 +371,14 @@ class ReaderPresenter(
     }
 
     /**
+     * Called every time images are to small to trigger a chapter change
+     **/
+    fun forceChapterChange(currentChapter: ReaderChapter?, any: Any) {
+        onChapterChanged(currentChapter!!)
+        loadNewChapter((any as ReaderPage).chapter)
+    }
+
+    /**
      * Determines if deleting option is enabled and nth to last chapter actually exists.
      * If both conditions are satisfied enqueues chapter for delete
      * @param currentChapter current chapter, which is going to be marked as read.
