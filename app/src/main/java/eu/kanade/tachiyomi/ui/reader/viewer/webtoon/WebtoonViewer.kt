@@ -143,14 +143,23 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
             refreshAdapter()
         }
 
-        swipeRefreshLayout.addView(recycler)
-
         frame.layoutParams = ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT)
+        swipeRefreshLayout.addView(recycler)
         frame.addView(swipeRefreshLayout)
 
         // Forces an chapter change when images are to small to trigger onPageSelected chapter change
         swipeRefreshLayout.setOnRefreshListener {
-            activity.forceChapterChange(adapter.currentChapter, adapter.items[0])
+            val item = adapter.items.getOrNull(0)
+            val currentChapter = adapter.currentChapter
+            item?.let { item ->
+                if (item is ReaderPage) {
+                    currentChapter?.let { chapter ->
+                        if (item != chapter.pages?.firstOrNull()) {
+                            activity.forceChapterChange(item)
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -234,6 +243,8 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
         Timber.d("setChapters")
         val forceTransition = config.alwaysShowChapterTransition || currentPage is ChapterTransition
         adapter.setChapters(chapters, forceTransition)
+
+        swipeRefreshLayout.isEnabled = chapters.prevChapter != null
 
         if (recycler.isGone) {
             Timber.d("Recycler first layout")

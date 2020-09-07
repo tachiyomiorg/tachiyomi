@@ -531,9 +531,9 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
     /**
      * Called every time images are to small to trigger a chapter change
      **/
-    fun forceChapterChange(currentChapter: ReaderChapter?, any: Any) {
-        Toast.makeText(this, "Warning! The images seams to be small, are you using the right reading mode? Reader will not operate properly", Toast.LENGTH_LONG).show()
-        presenter.forceChapterChange(currentChapter, any)
+    fun forceChapterChange(page: ReaderPage) {
+        Toast.makeText(this, getString(R.string.reader_manual_chapter_change_warning), Toast.LENGTH_LONG).show()
+        presenter.forceChapterChange(page)
     }
 
     /**

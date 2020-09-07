@@ -705,4 +705,5 @@
     <string name="tapping_inverted_horizontal">Horizontal</string>
     <string name="tapping_inverted_vertical">Vertical</string>
     <string name="tapping_inverted_both">Both</string>
+    <string name="reader_manual_chapter_change_warning">Warning! You are either to zoomed out or there are small images in the chapter. Reader experience may wary!</string>
 </resources>

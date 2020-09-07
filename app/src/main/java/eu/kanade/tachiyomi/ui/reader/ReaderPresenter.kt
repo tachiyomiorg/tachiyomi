@@ -373,9 +373,8 @@ class ReaderPresenter(
     /**
      * Called every time images are to small to trigger a chapter change
      **/
-    fun forceChapterChange(currentChapter: ReaderChapter?, any: Any) {
-        onChapterChanged(currentChapter!!)
-        loadNewChapter((any as ReaderPage).chapter)
+    fun forceChapterChange(page: ReaderPage) {
+        onPageSelected(page)
     }
 
     /**
