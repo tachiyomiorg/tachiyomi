@@ -358,7 +358,7 @@ class LibraryPresenter(
     }
 
     /**
-     * Remove the selected manga from the library.
+     * Remove the selected manga.
      *
      * @param mangas the list of manga to delete.
      * @param deleteFromLibrary whether to delete manga from library.
