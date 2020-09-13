@@ -181,8 +181,8 @@
     <string name="color_filter_a_value">A</string>
     <string name="pref_download_directory">Ubicació de les baixades</string>
     <string name="pref_download_only_over_wifi">Baixa només amb Wi-Fi</string>
-    <string name="pref_remove_after_marked_as_read">Elimina en marcar com a llegit</string>
-    <string name="pref_remove_after_read">Elimina després de llegir</string>
+    <string name="pref_remove_after_marked_as_read">Després de marcar-los manualment com a llegits</string>
+    <string name="pref_remove_after_read">Després de llegir-los</string>
     <string name="pref_double_tap_anim_speed">Velocitat de l\'animació del doble toc</string>
     <string name="custom_dir">Ubicació personalitzada</string>
     <string name="disabled">Desactivat</string>
@@ -347,7 +347,6 @@
     <string name="notification_no_connection_body">Connexió no disponible</string>
     <string name="file_select_cover">Seleccioneu la imatge de portada</string>
     <string name="file_select_backup">Seleccioneu el fitxer de còpia de seguretat</string>
-    <string name="file_select_icon">Seleccioneu la icona de la drecera</string>
     <string name="update_check_confirm">Baixa</string>
     <string name="update_check_ignore">Ignora</string>
     <string name="update_check_no_new_updates">No hi ha cap nova actualització disponible</string>
@@ -535,7 +534,7 @@
         <item quantity="other">%d categories</item>
     </plurals>
     <string name="action_display_unread_badge">Icones de no llegit</string>
-    <string name="tracking_info">Sincronització unidireccional per a actualitzar el progrés dels capítols als serveis de seguiment. Configureu el seguiment d\'entrades individuals de manga a les seves pestanyes de seguiment.</string>
+    <string name="tracking_info">Sincronització unidireccional per a actualitzar el progrés dels capítols als serveis de seguiment. Configureu el seguiment d\'entrades individuals de manga al seu botó de seguiment.</string>
     <string name="pref_refresh_library_covers">Refresca les portades del manga de la biblioteca</string>
     <plurals name="notification_update_error">
         <item quantity="one">Ha fallat 1 actualització</item>
@@ -604,4 +603,19 @@
     <string name="channel_progress">Progrés</string>
     <string name="channel_errors">Errors</string>
     <string name="backup_restore_missing_trackers">Seguidors sense sessió iniciada:</string>
+    <string name="pref_remove_bookmarked_chapters">Suprimeix els capítols preferits</string>
+    <string name="pref_category_delete_chapters">Suprimeix capítols</string>
+    <string name="ext_nsfw_warning">Pot contenir contingut +18</string>
+    <string name="ext_nsfw_short">+18</string>
+    <string name="parental_controls_info">Això no evita que les extensions no oficials o possiblement mal etiquetades puguin mostrar contingut +18 a l\'aplicació.</string>
+    <string name="pref_allow_nsfw_sources_blocked">Blocat</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Bloca la navegació de les fonts però les mostra a la llista d\'extensions</string>
+    <string name="pref_allow_nsfw_sources_allowed">Permès</string>
+    <string name="pref_allow_nsfw_sources">Fonts +18</string>
+    <string name="pref_category_parental_controls">Control parental</string>
+    <plurals name="missing_chapters_warning">
+        <item quantity="one">Hi manca 1 capítol</item>
+        <item quantity="other">Hi manquen %d capítols</item>
+    </plurals>
+    <string name="no_chapters_error">No s\'ha trobat cap capítol</string>
 </resources>

@@ -10,7 +10,7 @@
     <string name="label_library">Bibliothek</string>
     <string name="label_recent_manga">Verlauf</string>
     <string name="label_categories">Kategorien</string>
-    <string name="label_backup">Sicherung</string>
+    <string name="label_backup">Backup</string>
     <string name="action_settings">Einstellungen</string>
     <string name="action_filter">Filter</string>
     <string name="action_filter_downloaded">Heruntergeladen</string>
@@ -161,23 +161,23 @@
     <string name="pref_download_new">Neue Kapitel herunterladen</string>
     <string name="pref_download_new_categories">Kategorien, die heruntergeladen werden sollen</string>
     <string name="services">Anbieter</string>
-    <string name="backup">Sicherung</string>
-    <string name="pref_create_backup">Sicherung erstellen</string>
+    <string name="backup">Backup</string>
+    <string name="pref_create_backup">Backup erstellen</string>
     <string name="pref_create_backup_summ">Kann benutzt werden, um die aktuelle Bibliothek wiederherzustellen</string>
-    <string name="pref_restore_backup">Sicherung wiederherstellen</string>
-    <string name="pref_restore_backup_summ">Bibliothek mit Hilfe einer Sicherung wiederherstellen</string>
-    <string name="pref_backup_directory">Sicherung-Speicherort</string>
-    <string name="pref_backup_service_category">Automatische Sicherungen</string>
-    <string name="pref_backup_interval">Sicherunghäufigkeit</string>
-    <string name="pref_backup_slots">Maximale Sicherungen</string>
-    <string name="backup_created">Sicherung erstellt</string>
+    <string name="pref_restore_backup">Backup wiederherstellen</string>
+    <string name="pref_restore_backup_summ">Bibliothek mit Hilfe eines Backups wiederherstellen</string>
+    <string name="pref_backup_directory">Backup-Speicherort</string>
+    <string name="pref_backup_service_category">Automatische Backups</string>
+    <string name="pref_backup_interval">Backuphäufigkeit</string>
+    <string name="pref_backup_slots">Maximale Backups</string>
+    <string name="backup_created">Backup erstellt</string>
     <string name="restore_completed">Wiederherstellen abgeschlossen</string>
-    <string name="backup_restore_content">Beim Wiederherstellen eines Backups werden Daten von den Quellen abgerufen, wodurch Mobilfunkkosten enstehen können. 
-\n 
-\nVergewissern Sie sich zudem, dass Sie alle benötigen Seitenlogins bereitgestellt haben, bevor Sie mit dem Wiederherstellen beginnen.</string>
+    <string name="backup_restore_content">Beim Wiederherstellen eines Backups werden Daten von den Quellen abgerufen, wodurch Mobilfunkkosten enstehen können.
+\n
+\nVergewissere dich zudem, dass du alle benötigten Seitenlogins bereitgestellt hast, bevor du mit dem Wiederherstellen beginnst.</string>
     <string name="backup_choice">Was möchtest du sichern\?</string>
-    <string name="restoring_backup">Sicherung wird wiederhergestellt</string>
-    <string name="creating_backup">Erstelle Sicherung</string>
+    <string name="restoring_backup">Backup wird wiederhergestellt</string>
+    <string name="creating_backup">Erstelle Backup</string>
     <string name="pref_clear_chapter_cache">Kapitel-Zwischenspeicher leeren</string>
     <string name="used_cache">Belegt: %1$s</string>
     <string name="cache_deleted">Zwischenspeicher geleert. %1$d Dateien wurden gelöscht</string>
@@ -283,8 +283,7 @@
     <string name="notification_no_connection_title">Synchronisation abgebrochen</string>
     <string name="notification_no_connection_body">Keine Verbindung möglich</string>
     <string name="file_select_cover">Wähle ein Vorschaubild</string>
-    <string name="file_select_backup">Wähle eine Sicherungsdatei</string>
-    <string name="file_select_icon">Wähle ein Verknüpfungssymbol</string>
+    <string name="file_select_backup">Wähle eine Backup-Datei</string>
     <string name="update_check_confirm">Herunterladen</string>
     <string name="update_check_ignore">Ignorieren</string>
     <string name="update_check_no_new_updates">Kein neues Update verfügbar</string>
@@ -449,7 +448,7 @@
     <string name="hide_notification_content">Benachrichtigungsinhalt verbergen</string>
     <string name="notification_check_updates">Überprüfe auf neue Kapitel</string>
     <string name="pref_disable_battery_optimization">Akkuverbrauch-Optimierung deaktivieren</string>
-    <string name="pref_disable_battery_optimization_summary">Hilft bei Bibliotheksaktualisierungen und Sicherungen im Hintergrund</string>
+    <string name="pref_disable_battery_optimization_summary">Hilft bei Bibliotheksaktualisierungen und Backups im Hintergrund</string>
     <string name="battery_optimization_disabled">Akkuverbrauch-Optimierung ist bereits deaktiviert</string>
     <string name="email">E-Mail-Adresse</string>
     <string name="pref_always_show_chapter_transition">Kapitelübergang immer anzeigen</string>
@@ -503,11 +502,11 @@
     <string name="pref_confirm_exit">Beenden bestätigen</string>
     <string name="label_downloaded_only">Nur Heruntergeladenes</string>
     <string name="recent_manga_time">Kap. %1$s - %2$s</string>
-    <string name="restoring_backup_error">Sicherungswiederherstellung fehlgeschlagen</string>
-    <string name="creating_backup_error">Sicherung fehlgeschlagen</string>
+    <string name="restoring_backup_error">Backup-Wiederherstellung fehlgeschlagen</string>
+    <string name="creating_backup_error">Backup fehlgeschlagen</string>
     <string name="restoring_backup_canceled">Wiederherstellung abgebrochen</string>
     <string name="restore_in_progress">Wiederherstellung wird bereits durchgeführt</string>
-    <string name="backup_in_progress">Sicherung wird bereits durchgeführt</string>
+    <string name="backup_in_progress">Backup wird bereits durchgeführt</string>
     <string name="error_invalid_date_supplied">Ungültiges Datum angegeben</string>
     <string name="track_finished_reading_date">Datum des Leseendes</string>
     <string name="track_started_reading_date">Datum des Lesebeginns</string>
@@ -535,7 +534,7 @@
         <item quantity="other">Erledigt in %1$s mit %2$s Fehlern</item>
     </plurals>
     <string name="action_display_unread_badge">Ungelesenzähler</string>
-    <string name="tracking_info">Einweg-Synchronisation zum Aktualisieren der Kapitelfortschritte in den Trackingdiensten. Richte Tracking für einzelne Manga über deren jeweiligen Tracking-Reiter ein.</string>
+    <string name="tracking_info">Einweg-Synchronisation zum Aktualisieren der Kapitelfortschritte in den Trackingdiensten. Richte Tracking für einzelne Manga über deren jeweiligen Tracking-Button ein.</string>
     <string name="pref_refresh_library_covers">Bibliotheksmangacover aktualisieren</string>
     <plurals name="notification_update_error">
         <item quantity="one">Eine Aktualisierung fehlgeschlagen</item>
@@ -546,9 +545,9 @@
     <string name="sort_by_upload_date">Nach Uploaddatum</string>
     <string name="label_data">Daten</string>
     <string name="backup_restore_missing_sources">Fehlende Quellen:</string>
-    <string name="invalid_backup_file_missing_manga">Sicherung beinhaltet keinerlei Manga.</string>
+    <string name="invalid_backup_file_missing_manga">Backup beinhaltet keinerlei Manga.</string>
     <string name="invalid_backup_file_missing_data">Der Datei fehlen Daten.</string>
-    <string name="invalid_backup_file">Ungültige Sicherungdatei</string>
+    <string name="invalid_backup_file">Ungültige Backupdatei</string>
     <string name="tracker_not_logged_in">Nicht angemeldet: %1$s</string>
     <string name="source_not_found_name">Quelle nicht gefunden: %1$s</string>
     <string name="pref_library_update_error_notification">Aktualisierungsfehler-Benachrichtigungen anzeigen</string>
@@ -605,12 +604,19 @@
     <string name="channel_progress">Fortschritt</string>
     <string name="channel_errors">Fehler</string>
     <string name="backup_restore_missing_trackers">Nicht-eingeloggte Tracker:</string>
-    <string name="pref_allow_nsfw_sources">NSFW-Quellen</string>
+    <string name="pref_allow_nsfw_sources">18+ Quellen</string>
     <string name="pref_allow_nsfw_sources_blocked">Blockiert</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Quelle blockieren, aber in der Erweiterungsliste anzeigen</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Stöbern der Quelle blockieren, aber in der Erweiterungsliste anzeigen</string>
     <string name="pref_allow_nsfw_sources_allowed">Erlaubt</string>
     <string name="pref_remove_bookmarked_chapters">Mit Lesezeichen versehene Kapitel löschen</string>
     <string name="pref_category_delete_chapters">Kapitel löschen</string>
     <string name="ext_nsfw_warning">Kann 18+ Inhalte enthalten</string>
     <string name="ext_nsfw_short">18+</string>
+    <string name="parental_controls_info">Dies verhindert nicht, dass inoffizielle oder möglicherweise falsch gekennzeichnete Erweiterungen 18+ Inhalte in der App anzeigen.</string>
+    <string name="pref_category_parental_controls">Kindersicherung</string>
+    <plurals name="missing_chapters_warning">
+        <item quantity="one">Es gibt 1 fehlendes Kapitel</item>
+        <item quantity="other">Es gibt %d fehlende Kapitel</item>
+    </plurals>
+    <string name="no_chapters_error">Keine Kapitel gefunden</string>
 </resources>

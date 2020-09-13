@@ -31,7 +31,6 @@
     <string name="update_check_no_new_updates">אין עדכונים חדשים זמינים</string>
     <string name="update_check_ignore">התעלם</string>
     <string name="update_check_confirm">הורד</string>
-    <string name="file_select_icon">בחר סמל קיצור דרך</string>
     <string name="file_select_backup">בחר קובץ גיבוי</string>
     <string name="file_select_cover">בחר תמונת כריכה</string>
     <string name="notification_no_connection_body">החיבור אינו זמין</string>

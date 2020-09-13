@@ -203,4 +203,9 @@
     <string name="action_move_to_bottom">Pārvietot uz leju</string>
     <string name="action_move_to_top">Pārvietot uz augšu</string>
     <string name="action_oldest">Vecākais</string>
+    <string name="action_display_download_badge">Lejuplādes žetoni</string>
+    <string name="action_display_unread_badge">Nelasīti žetoni</string>
+    <string name="pref_allow_nsfw_sources_allowed">Atļauti</string>
+    <string name="pref_allow_nsfw_sources">18+ avoti</string>
+    <string name="pref_category_parental_controls">Vecāku kontrole</string>
 </resources>

@@ -435,7 +435,6 @@
     <string name="notification_no_connection_body">კავშირი არ არის ხელმისაწვდომი</string>
     <string name="file_select_cover">ამოირჩიე ყდის სურათი</string>
     <string name="file_select_backup">ამოირჩიე რეზერვის ფაილი</string>
-    <string name="file_select_icon">ამოირჩიე მალსახმობის ნიშნაკი</string>
     <string name="update_check_confirm">გადმოწერა</string>
     <string name="update_check_ignore">დაიგნორება</string>
     <string name="update_check_no_new_updates">განახლება ვერ მოიძებნა</string>

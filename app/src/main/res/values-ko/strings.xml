@@ -279,7 +279,6 @@
     <string name="notification_no_connection_body">연결되지 않음</string>
     <string name="file_select_cover">표지 이미지 선택</string>
     <string name="file_select_backup">백업 파일 선택</string>
-    <string name="file_select_icon">바로가기 아이콘 선택</string>
     <string name="update_check_confirm">다운로드</string>
     <string name="update_check_ignore">무시</string>
     <string name="update_check_no_new_updates">새로운 업데이트 없음</string>

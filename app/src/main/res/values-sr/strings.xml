@@ -490,7 +490,6 @@
     <string name="update_check_no_new_updates">Nisu dostupne nove ispravke</string>
     <string name="update_check_ignore">Ignoriši</string>
     <string name="update_check_confirm">Preuzmi</string>
-    <string name="file_select_icon">Izaberite ikonu prečice</string>
     <string name="file_select_backup">Izaberite datoteku rezervne kopije</string>
     <string name="file_select_cover">Izaberite naslovnu sliku</string>
     <string name="notification_no_connection_body">Veza nije dostupna</string>

@@ -182,8 +182,8 @@
     <string name="color_filter_a_value">A</string>
     <string name="pref_download_directory">Locația descărcărilor</string>
     <string name="pref_download_only_over_wifi">Descarcă doar prin Wi-Fi</string>
-    <string name="pref_remove_after_marked_as_read">Elimina când este marcat ca citit</string>
-    <string name="pref_remove_after_read">Elimină după ce a fost citit</string>
+    <string name="pref_remove_after_marked_as_read">După ce a fost marcat manual ca citit</string>
+    <string name="pref_remove_after_read">După citit</string>
     <string name="custom_dir">Locație personalizată</string>
     <string name="disabled">Deactivat</string>
     <string name="last_read_chapter">Ultimul capitol citit</string>
@@ -347,7 +347,6 @@
     <string name="notification_no_connection_body">Conexiune indisponibilă</string>
     <string name="file_select_cover">Selectează imagine de copertă</string>
     <string name="file_select_backup">Selectează fișierul de rezervă</string>
-    <string name="file_select_icon">Selectează pictogramă pentru scurtătură</string>
     <string name="update_check_confirm">Descarcă</string>
     <string name="update_check_ignore">Ignoră</string>
     <string name="update_check_no_new_updates">Nu sunt exista actualizări noi</string>
@@ -543,7 +542,7 @@
         <item quantity="other">Gata în %1$s cu %2$s erori</item>
     </plurals>
     <string name="action_display_unread_badge">Insigne pentru necitite</string>
-    <string name="tracking_info">Sincronizare într-un singur sens pentru a actualiza progresul capitolului în serviciile de urmărire. Configurați urmărirea pentru intrările manga individuale din filele lor de urmărire.</string>
+    <string name="tracking_info">Sincronizare unidirecțională pentru a actualiza progresul capitolului în serviciile de urmărire. Configurați urmărirea pentru intrările individuale de manga din butonul lor de urmărire.</string>
     <string name="pref_refresh_library_covers">Actualizează coperțile manga-urilor din bibliotecă</string>
     <string name="sort_by_upload_date">După data încărcării</string>
     <string name="backup_restore_missing_sources">Surse lipsă:</string>
@@ -603,4 +602,33 @@
     <string name="pref_category_locale">Local</string>
     <string name="pref_category_theme">Temă</string>
     <string name="action_sort_date_added">Data adăugării</string>
+    <string name="group_backup_restore">Creează copie de rezervă și restaurează</string>
+    <string name="group_downloader">Descărcări</string>
+    <string name="channel_errors">Erori</string>
+    <string name="channel_complete">Terminat</string>
+    <string name="channel_progress">Progresul</string>
+    <string name="download_notifier_download_finish">Descărcare terminată</string>
+    <plurals name="num_trackers">
+        <item quantity="one">Un tracker</item>
+        <item quantity="few">Câteva trackere</item>
+        <item quantity="other">Câteva trackere</item>
+    </plurals>
+    <string name="backup_restore_missing_trackers">Trackerele nu sunt conectate la:</string>
+    <string name="pref_remove_bookmarked_chapters">Ștergeți capitolele marcate</string>
+    <string name="pref_category_delete_chapters">Ștergeți capitole</string>
+    <string name="ext_nsfw_warning">Poate conține conținut 18+</string>
+    <string name="ext_nsfw_short">Peste 18</string>
+    <string name="parental_controls_info">Acest lucru nu împiedică extensiile neoficiale sau potențial semnalizate incorect să iasă la suprafață cu conținut 18+ în cadrul aplicației.</string>
+    <string name="pref_allow_nsfw_sources_blocked">Blocat</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Blocați sursele de navigare, dar se afișează în lista de extensii</string>
+    <string name="pref_allow_nsfw_sources_allowed">Permis</string>
+    <string name="pref_allow_nsfw_sources">Surse 18+</string>
+    <string name="pref_category_parental_controls">Control parental</string>
+    <string name="no_pinned_sources">Nu aveți surse fixate</string>
+    <string name="no_chapters_error">Nu a fost găsit niciun capitol</string>
+    <plurals name="missing_chapters_warning">
+        <item quantity="one">Lipsește un capitol</item>
+        <item quantity="few">Lipsesc %d capitole</item>
+        <item quantity="other">Lipsesc %d capitole</item>
+    </plurals>
 </resources>

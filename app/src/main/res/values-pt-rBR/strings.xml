@@ -109,7 +109,7 @@
     <string name="pref_fullscreen">Tela cheia</string>
     <string name="pref_lock_orientation">Bloquear a orientação</string>
     <string name="pref_page_transitions">Animar as transições de página</string>
-    <string name="pref_show_page_number">Mostrar o número de página</string>
+    <string name="pref_show_page_number">Mostrar o número da página</string>
     <string name="pref_crop_borders">Aparar as bordas</string>
     <string name="pref_custom_brightness">Brilho personalizado</string>
     <string name="pref_custom_color_filter">Filtro de cor personalizado</string>
@@ -229,7 +229,7 @@
     <string name="chapter_downloaded">Disponível offline</string>
     <string name="chapter_queued">Na fila</string>
     <string name="chapter_downloading">Download em andamento</string>
-    <string name="chapter_downloading_progress">Download em andamento (%1$d/%2$d)</string>
+    <string name="chapter_downloading_progress">Fazendo download (%1$d/%2$d)</string>
     <string name="chapter_error">Erro</string>
     <string name="chapter_paused">Pausado</string>
     <string name="fetch_chapters_error">Não foi possível obter os capítulos</string>
@@ -266,8 +266,8 @@
     <string name="set_as_cover">Usar como capa</string>
     <string name="cover_updated">Capa atualizada</string>
     <string name="page_downloaded">Página copiada para %1$s</string>
-    <string name="downloading">Download em andamento…</string>
-    <string name="download_progress">Fazendo download (%1$d%%)</string>
+    <string name="downloading">Fazendo download…</string>
+    <string name="download_progress">%1$d%% disponível offline</string>
     <string name="chapter_progress">Página: %1$d</string>
     <string name="chapter_subtitle">Capítulo %1$s</string>
     <string name="no_next_chapter">Próximo capítulo não encontrado</string>
@@ -285,13 +285,12 @@
     <string name="notification_no_connection_body">Conexão indisponível</string>
     <string name="file_select_cover">Selecionar imagem de capa</string>
     <string name="file_select_backup">Selecionar arquivo de backup</string>
-    <string name="file_select_icon">Selecionar ícone do atalho</string>
     <string name="update_check_confirm">Fazer download</string>
     <string name="update_check_ignore">Ignorar</string>
     <string name="update_check_no_new_updates">Sem atualizações disponíveis</string>
     <string name="update_check_look_for_updates">Procurando por atualizações…</string>
     <string name="update_check_notification_file_download">Fazer download da atualização</string>
-    <string name="update_check_notification_download_in_progress">Download em andamento…</string>
+    <string name="update_check_notification_download_in_progress">Fazendo download…</string>
     <string name="update_check_notification_download_complete">Download concluído</string>
     <string name="update_check_notification_download_error">Erro ao fazer download</string>
     <string name="update_check_notification_update_available">Nova versão disponível!</string>
@@ -331,7 +330,7 @@
     <string name="ext_downloading">Fazendo download</string>
     <string name="ext_installing">Instalando</string>
     <string name="ext_installed">Instalada</string>
-    <string name="ext_trust">Confiabilidade</string>
+    <string name="ext_trust">Confiar</string>
     <string name="ext_untrusted">Não confiável</string>
     <string name="ext_uninstall">Desinstalar</string>
     <string name="ext_available">Disponível</string>
@@ -390,7 +389,7 @@
     <string name="action_webview_forward">Avançar</string>
     <string name="action_webview_refresh">Recarregar</string>
     <string name="pref_category_library">Biblioteca</string>
-    <string name="ext_obsolete">Obsoleto</string>
+    <string name="ext_obsolete">Obsoleta</string>
     <string name="obsolete_extension_message">Esta extensão não está mais disponível.</string>
     <string name="no_results_found">Nenhum resultado encontrado</string>
     <string name="migration_selection_prompt">Selecione uma fonte da qual migrar</string>
@@ -407,7 +406,7 @@
     <string name="label_more">Mais</string>
     <string name="action_sort_latest_chapter">Último capítulo</string>
     <string name="action_view_chapters">Visualizar os capítulos</string>
-    <string name="action_cancel_all">Cancelar tudo</string>
+    <string name="action_cancel_all">Cancelar todos</string>
     <string name="pref_theme_mode">Modo noturno</string>
     <string name="theme_light">Desligado</string>
     <string name="theme_dark">Ligado</string>
@@ -467,7 +466,7 @@
     <string name="action_oldest">Mais antigos</string>
     <string name="action_move_to_top">Mover para o topo</string>
     <string name="action_move_to_bottom">Mover para o final</string>
-    <string name="action_sort_last_checked">Último verificado</string>
+    <string name="action_sort_last_checked">Verificado por último</string>
     <string name="pref_enable_automatic_extension_updates">Procurar por atualizações de extensão</string>
     <plurals name="update_check_notification_ext_updates">
         <item quantity="one">Atualização de extensão disponível</item>
@@ -498,7 +497,7 @@
     <string name="manga_info_about_label">Sobre</string>
     <string name="pref_confirm_exit">Confirmar ao sair</string>
     <string name="confirm_exit">Pressione voltar novamente para sair</string>
-    <string name="information_webview_required">O WebView é necessário para o Tachiyomi</string>
+    <string name="information_webview_required">A WebView é necessária para o Tachiyomi</string>
     <string name="licenses">Licenças de código aberto</string>
     <string name="website">Site</string>
     <string name="label_downloaded_only">Somente disponíveis offline</string>
@@ -507,7 +506,7 @@
     <string name="restore_in_progress">A restauração já está em andamento</string>
     <string name="recent_manga_time">Cap. %1$s - %2$s</string>
     <string name="restoring_backup_canceled">Restauração cancelada</string>
-    <string name="restoring_backup_error">Falha na restauração do backup</string>
+    <string name="restoring_backup_error">Falha ao restaurar o backup</string>
     <string name="track_finished_reading_date">Data de término da leitura</string>
     <string name="track_started_reading_date">Data de início da leitura</string>
     <string name="error_invalid_date_supplied">Data inválida fornecida</string>
@@ -535,7 +534,7 @@
         <item quantity="other">Concluído em %1$s com %2$s erros</item>
     </plurals>
     <string name="action_display_unread_badge">Selos de não lido</string>
-    <string name="tracking_info">Sincronização unidirecional para atualizar o progresso dos capítulos nos serviços de monitoramento. Configure o monitoramento para entradas individuais dos mangás em suas abas de monitoramento.</string>
+    <string name="tracking_info">Sincronização unidirecional para atualizar o progresso dos capítulos nos serviços de monitoramento. Configure o monitoramento para entradas individuais dos mangás a partir de seus botões de monitoramento.</string>
     <string name="pref_refresh_library_covers">Atualizar as capas dos mangás da biblioteca</string>
     <plurals name="notification_update_error">
         <item quantity="one">1 atualização falhou</item>
@@ -547,7 +546,7 @@
     <string name="label_data">Dados</string>
     <string name="backup_restore_missing_sources">Fontes faltando:</string>
     <string name="invalid_backup_file_missing_manga">O backup não possui nenhum mangá.</string>
-    <string name="invalid_backup_file_missing_data">Dados faltando no arquivo.</string>
+    <string name="invalid_backup_file_missing_data">Faltam dados no arquivo.</string>
     <string name="invalid_backup_file">Arquivo de backup inválido</string>
     <string name="tracker_not_logged_in">Login não realizado: %1$s</string>
     <string name="source_not_found_name">Fonte não encontrada: %1$s</string>
@@ -560,8 +559,8 @@
     <string name="action_display_show_tabs">Mostrar abas de categoria</string>
     <string name="tabs_header">Abas</string>
     <string name="page_list_empty_error">Nenhuma página encontrada</string>
-    <string name="action_disable_all">Desativar todos</string>
-    <string name="action_enable_all">Ativar todos</string>
+    <string name="action_disable_all">Desativar todas</string>
+    <string name="action_enable_all">Ativar todas</string>
     <string name="pref_show_reading_mode_summary">Mostra de forma resumida o modo atual quando o leitor for aberto</string>
     <string name="pref_show_reading_mode">Mostrar o modo de leitura</string>
     <string name="action_start">Iniciar</string>
@@ -605,12 +604,19 @@
     <string name="channel_complete">Concluído</string>
     <string name="channel_errors">Erros</string>
     <string name="backup_restore_missing_trackers">Monitoradores sem login realizado:</string>
-    <string name="pref_allow_nsfw_sources">Fontes NSFW</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Bloquear fonte, mas exibi-la na lista de extensões</string>
+    <string name="pref_allow_nsfw_sources">Fontes +18</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Bloquear a navegação nas fontes, mas exibi-las na lista de extensões</string>
     <string name="pref_allow_nsfw_sources_blocked">Bloqueado</string>
     <string name="pref_allow_nsfw_sources_allowed">Permitido</string>
     <string name="pref_remove_bookmarked_chapters">Excluir capítulos favoritos</string>
     <string name="pref_category_delete_chapters">Excluir capítulos</string>
-    <string name="ext_nsfw_warning">Pode haver conteúdo para maiores de 18 anos</string>
-    <string name="ext_nsfw_short">18+</string>
+    <string name="ext_nsfw_warning">Pode haver conteúdo +18</string>
+    <string name="ext_nsfw_short">+18</string>
+    <string name="pref_category_parental_controls">Controles parentais</string>
+    <string name="parental_controls_info">Isso não impede que extensões não oficiais ou potencialmente sinalizadas de maneira incorreta apresentem conteúdo +18 no aplicativo.</string>
+    <plurals name="missing_chapters_warning">
+        <item quantity="one">Há 1 capítulo faltando</item>
+        <item quantity="other">Há %d capítulos faltando</item>
+    </plurals>
+    <string name="no_chapters_error">Nenhum capítulo encontrado</string>
 </resources>

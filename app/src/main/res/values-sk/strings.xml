@@ -365,7 +365,6 @@
     <string name="notification_no_connection_body">Pripojenie nie je k dispozícii</string>
     <string name="file_select_cover">Vyberte obrázok obalu</string>
     <string name="file_select_backup">Vyberte záložný súbor</string>
-    <string name="file_select_icon">Vyberte ikonu zástupca</string>
     <string name="update_check_confirm">Stiahnuť</string>
     <string name="update_check_ignore">Ignorovať</string>
     <string name="update_check_no_new_updates">Žiadné nové aktualizácie</string>
