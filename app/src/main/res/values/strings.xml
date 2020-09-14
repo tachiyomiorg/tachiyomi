@@ -446,6 +446,7 @@
     <string name="local_source_badge">Local</string>
     <string name="manga_from_library">Manga from library</string>
     <string name="downloaded_chapters">Downloaded chapters</string>
+    <string name="both">Both</string>
     <string name="badges_header">Badges</string>
     <string name="tabs_header">Tabs</string>
 
