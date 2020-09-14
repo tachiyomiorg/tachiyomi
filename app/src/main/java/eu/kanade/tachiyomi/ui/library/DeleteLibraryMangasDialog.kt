@@ -23,7 +23,8 @@ class DeleteLibraryMangasDialog<T>(bundle: Bundle? = null) :
         return MaterialDialog(activity!!)
             .title(R.string.action_remove)
             .listItemsMultiChoice(
-                R.array.delete_selected_mangas
+                R.array.delete_selected_mangas,
+                initialSelection = intArrayOf(0)
             ) { _, selections, _ ->
                 val deleteFromLibrary = 0 in selections
                 val deleteChapters = 1 in selections
