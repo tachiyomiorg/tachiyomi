@@ -9,7 +9,7 @@ labels: "bug"
 
 I acknowledge that:
 
-- I have updated to the latest version of the app (stable is v0.10.3)
+- I have updated to the latest version of the app (stable is v0.10.5)
 - I have updated all extensions
 - If this is an issue with an extension, that I should be opening an issue in https://github.com/inorichi/tachiyomi-extensions
 
@@ -17,7 +17,7 @@ I acknowledge that:
 
 ---
 
-### Device information
+## Device information
 * Tachiyomi version: ?
 * Android version: ?
 * Device: ?
@@ -32,5 +32,5 @@ This should happen.
 ### Actual behavior
 This happened instead.
 
-### Other details
+## Other details
 Additional details and attachments.

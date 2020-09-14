@@ -357,7 +357,6 @@
     <string name="notification_no_connection_body">การเชื่อมต่อไม่พร้อม</string>
     <string name="file_select_cover">เลือกภาพหน้าปก</string>
     <string name="file_select_backup">เลือกไฟล์สำรองข้อมูล</string>
-    <string name="file_select_icon">เลือกไอคอนทางลัด</string>
     <string name="update_check_confirm">ดาวน์โหลด</string>
     <string name="update_check_ignore">ไม่สนใจ</string>
     <string name="update_check_no_new_updates">ไม่มีการอัปเดตใหม่</string>

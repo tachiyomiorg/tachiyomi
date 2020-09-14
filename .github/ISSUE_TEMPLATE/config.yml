@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Tachiyomi help website
+    url: https://tachiyomi.org/help/
+    about: Common questions are answered here.
+  - name: Tachiyomi extensions GitHub repository
+    url: https://github.com/inorichi/tachiyomi-extensions
+    about: Issues about an extension/source/catalogue should be opened here instead.

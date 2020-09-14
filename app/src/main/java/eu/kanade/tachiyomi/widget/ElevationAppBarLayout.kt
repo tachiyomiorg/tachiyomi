@@ -18,8 +18,9 @@ class ElevationAppBarLayout @JvmOverloads constructor(
         origStateAnimator = stateListAnimator
     }
 
-    fun enableElevation() {
+    fun enableElevation(liftOnScroll: Boolean) {
         stateListAnimator = origStateAnimator
+        isLiftOnScroll = liftOnScroll
     }
 
     fun disableElevation() {

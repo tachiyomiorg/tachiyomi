@@ -18,7 +18,9 @@ class NegativeSeekBar @JvmOverloads constructor(context: Context, attrs: Attribu
     init {
         val styledAttributes = context.obtainStyledAttributes(
             attrs,
-            R.styleable.NegativeSeekBar, 0, 0
+            R.styleable.NegativeSeekBar,
+            0,
+            0
         )
 
         try {
@@ -28,19 +30,21 @@ class NegativeSeekBar @JvmOverloads constructor(context: Context, attrs: Attribu
             styledAttributes.recycle()
         }
 
-        super.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar?, value: Int, fromUser: Boolean) {
-                listener?.onProgressChanged(seekBar, minValue + value, fromUser)
-            }
+        super.setOnSeekBarChangeListener(
+            object : OnSeekBarChangeListener {
+                override fun onProgressChanged(seekBar: SeekBar?, value: Int, fromUser: Boolean) {
+                    listener?.onProgressChanged(seekBar, minValue + value, fromUser)
+                }
 
-            override fun onStartTrackingTouch(p0: SeekBar?) {
-                listener?.onStartTrackingTouch(p0)
-            }
+                override fun onStartTrackingTouch(p0: SeekBar?) {
+                    listener?.onStartTrackingTouch(p0)
+                }
 
-            override fun onStopTrackingTouch(p0: SeekBar?) {
-                listener?.onStopTrackingTouch(p0)
+                override fun onStopTrackingTouch(p0: SeekBar?) {
+                    listener?.onStopTrackingTouch(p0)
+                }
             }
-        })
+        )
     }
 
     override fun setProgress(progress: Int) {

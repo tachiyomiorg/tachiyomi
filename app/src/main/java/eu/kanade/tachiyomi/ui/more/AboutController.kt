@@ -10,9 +10,9 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.mikepenz.aboutlibraries.LibsBuilder
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.updater.UpdateChecker
 import eu.kanade.tachiyomi.data.updater.UpdateResult
 import eu.kanade.tachiyomi.data.updater.UpdaterService
+import eu.kanade.tachiyomi.data.updater.github.GithubUpdateChecker
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.setting.SettingsController
 import eu.kanade.tachiyomi.util.lang.launchNow
@@ -23,19 +23,19 @@ import eu.kanade.tachiyomi.util.preference.preferenceCategory
 import eu.kanade.tachiyomi.util.preference.titleRes
 import eu.kanade.tachiyomi.util.system.copyToClipboard
 import eu.kanade.tachiyomi.util.system.toast
+import timber.log.Timber
 import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
-import timber.log.Timber
 
 class AboutController : SettingsController() {
 
     /**
      * Checks for new releases
      */
-    private val updateChecker by lazy { UpdateChecker.getUpdateChecker() }
+    private val updateChecker by lazy { GithubUpdateChecker() }
 
     private val dateFormat: DateFormat = preferences.dateFormat()
 
@@ -224,7 +224,9 @@ class AboutController : SettingsController() {
             val buildTime = inputDf.parse(BuildConfig.BUILD_TIME)
 
             val outputDf = DateFormat.getDateTimeInstance(
-                DateFormat.MEDIUM, DateFormat.SHORT, Locale.getDefault()
+                DateFormat.MEDIUM,
+                DateFormat.SHORT,
+                Locale.getDefault()
             )
             outputDf.timeZone = TimeZone.getDefault()
 

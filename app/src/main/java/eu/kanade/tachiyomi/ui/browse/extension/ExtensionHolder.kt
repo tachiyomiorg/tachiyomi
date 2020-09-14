@@ -44,11 +44,12 @@ class ExtensionHolder(view: View, override val adapter: ExtensionAdapter) :
         version.text = extension.versionName
         lang.text = LocaleHelper.getSourceDisplayName(extension.lang, itemView.context)
         warning.text = when {
-            extension is Extension.Untrusted -> itemView.context.getString(R.string.ext_untrusted).toUpperCase()
-            extension is Extension.Installed && extension.isObsolete -> itemView.context.getString(R.string.ext_obsolete).toUpperCase()
-            extension is Extension.Installed && extension.isUnofficial -> itemView.context.getString(R.string.ext_unofficial).toUpperCase()
-            else -> null
-        }
+            extension is Extension.Untrusted -> itemView.context.getString(R.string.ext_untrusted)
+            extension is Extension.Installed && extension.isObsolete -> itemView.context.getString(R.string.ext_obsolete)
+            extension is Extension.Installed && extension.isUnofficial -> itemView.context.getString(R.string.ext_unofficial)
+            extension.isNsfw -> itemView.context.getString(R.string.ext_nsfw_short)
+            else -> ""
+        }.toUpperCase()
 
         GlideApp.with(itemView.context).clear(image)
         if (extension is Extension.Available) {

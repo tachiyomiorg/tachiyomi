@@ -472,6 +472,8 @@ class LibraryController(
         when (item.itemId) {
             R.id.action_move_to_category -> showChangeMangaCategoriesDialog()
             R.id.action_download_unread -> downloadUnreadChapters()
+            R.id.action_mark_as_read -> markReadStatus(true)
+            R.id.action_mark_as_unread -> markReadStatus(false)
             R.id.action_delete -> showDeleteMangaDialog()
             R.id.action_select_all -> selectAllCategoryManga()
             R.id.action_select_inverse -> selectInverseCategoryManga()
@@ -551,6 +553,12 @@ class LibraryController(
     private fun downloadUnreadChapters() {
         val mangas = selectedMangas.toList()
         presenter.downloadUnreadChapters(mangas)
+        destroyActionModeIfNeeded()
+    }
+
+    private fun markReadStatus(read: Boolean) {
+        val mangas = selectedMangas.toList()
+        presenter.markReadStatus(mangas, read)
         destroyActionModeIfNeeded()
     }
 

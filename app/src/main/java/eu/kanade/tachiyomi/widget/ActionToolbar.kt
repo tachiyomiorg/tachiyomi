@@ -59,11 +59,13 @@ class ActionToolbar @JvmOverloads constructor(context: Context, attrs: Attribute
      */
     fun hide() {
         val bottomAnimation = AnimationUtils.loadAnimation(context, R.anim.exit_to_bottom)
-        bottomAnimation.setAnimationListener(object : SimpleAnimationListener() {
-            override fun onAnimationEnd(animation: Animation) {
-                common_action_toolbar.isVisible = false
+        bottomAnimation.setAnimationListener(
+            object : SimpleAnimationListener() {
+                override fun onAnimationEnd(animation: Animation) {
+                    common_action_toolbar.isVisible = false
+                }
             }
-        })
+        )
         common_action_toolbar.startAnimation(bottomAnimation)
     }
 }

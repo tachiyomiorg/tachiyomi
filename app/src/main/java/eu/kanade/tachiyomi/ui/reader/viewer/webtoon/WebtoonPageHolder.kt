@@ -32,12 +32,12 @@ import eu.kanade.tachiyomi.ui.reader.viewer.ReaderProgressBar
 import eu.kanade.tachiyomi.ui.webview.WebViewActivity
 import eu.kanade.tachiyomi.util.system.ImageUtil
 import eu.kanade.tachiyomi.util.system.dpToPx
-import java.io.InputStream
-import java.util.concurrent.TimeUnit
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
+import java.io.InputStream
+import java.util.concurrent.TimeUnit
 
 /**
  * Holder of the webtoon reader for a single page of a chapter.
@@ -362,15 +362,17 @@ class WebtoonPageHolder(
             setMinimumDpi(90)
             setMinimumTileDpi(180)
             setCropBorders(config.imageCropBorders)
-            setOnImageEventListener(object : SubsamplingScaleImageView.DefaultOnImageEventListener() {
-                override fun onReady() {
-                    onImageDecoded()
-                }
+            setOnImageEventListener(
+                object : SubsamplingScaleImageView.DefaultOnImageEventListener() {
+                    override fun onReady() {
+                        onImageDecoded()
+                    }
 
-                override fun onImageLoadError(e: Exception) {
-                    onImageDecodeError()
+                    override fun onImageLoadError(e: Exception) {
+                        onImageDecodeError()
+                    }
                 }
-            })
+            )
         }
         frame.addView(subsamplingImageView, MATCH_PARENT, MATCH_PARENT)
         return subsamplingImageView!!
@@ -492,31 +494,33 @@ class WebtoonPageHolder(
             .skipMemoryCache(true)
             .diskCacheStrategy(DiskCacheStrategy.NONE)
             .transition(DrawableTransitionOptions.with(NoTransition.getFactory()))
-            .listener(object : RequestListener<Drawable> {
-                override fun onLoadFailed(
-                    e: GlideException?,
-                    model: Any?,
-                    target: Target<Drawable>?,
-                    isFirstResource: Boolean
-                ): Boolean {
-                    onImageDecodeError()
-                    return false
-                }
-
-                override fun onResourceReady(
-                    resource: Drawable?,
-                    model: Any?,
-                    target: Target<Drawable>?,
-                    dataSource: DataSource?,
-                    isFirstResource: Boolean
-                ): Boolean {
-                    if (resource is GifDrawable) {
-                        resource.setLoopCount(GifDrawable.LOOP_INTRINSIC)
+            .listener(
+                object : RequestListener<Drawable> {
+                    override fun onLoadFailed(
+                        e: GlideException?,
+                        model: Any?,
+                        target: Target<Drawable>?,
+                        isFirstResource: Boolean
+                    ): Boolean {
+                        onImageDecodeError()
+                        return false
                     }
-                    onImageDecoded()
-                    return false
+
+                    override fun onResourceReady(
+                        resource: Drawable?,
+                        model: Any?,
+                        target: Target<Drawable>?,
+                        dataSource: DataSource?,
+                        isFirstResource: Boolean
+                    ): Boolean {
+                        if (resource is GifDrawable) {
+                            resource.setLoopCount(GifDrawable.LOOP_INTRINSIC)
+                        }
+                        onImageDecoded()
+                        return false
+                    }
                 }
-            })
+            )
             .into(this)
     }
 }

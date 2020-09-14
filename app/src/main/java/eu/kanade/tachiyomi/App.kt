@@ -13,7 +13,6 @@ import eu.kanade.tachiyomi.data.notification.Notifications
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.security.SecureActivityDelegate
 import eu.kanade.tachiyomi.util.system.LocaleHelper
-import java.security.Security
 import org.acra.ACRA
 import org.acra.annotation.AcraCore
 import org.acra.annotation.AcraHttpSender
@@ -24,6 +23,7 @@ import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.InjektScope
 import uy.kohesive.injekt.injectLazy
 import uy.kohesive.injekt.registry.default.DefaultRegistrar
+import java.security.Security
 
 @AcraCore(
     buildConfigClass = BuildConfig::class,

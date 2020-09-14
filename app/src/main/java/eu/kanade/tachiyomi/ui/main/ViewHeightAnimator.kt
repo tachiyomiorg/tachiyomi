@@ -6,7 +6,7 @@ import android.view.ViewTreeObserver
 import android.view.animation.DecelerateInterpolator
 import androidx.annotation.Keep
 
-class ViewHeightAnimator(val view: View) {
+class ViewHeightAnimator(val view: View, val duration: Long = 250L) {
 
     /**
      * The default height of the view. It's unknown until the view is layout.
@@ -23,7 +23,7 @@ class ViewHeightAnimator(val view: View) {
      */
     private val animation by lazy {
         ObjectAnimator.ofInt(this, "height", height).apply {
-            duration = 250L
+            duration = this@ViewHeightAnimator.duration
             interpolator = DecelerateInterpolator()
         }
     }

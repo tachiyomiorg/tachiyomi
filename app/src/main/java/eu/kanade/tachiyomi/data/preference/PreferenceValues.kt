@@ -37,4 +37,10 @@ object PreferenceValues {
         VERTICAL,
         BOTH
     }
+
+    enum class NsfwAllowance {
+        ALLOWED,
+        PARTIAL,
+        BLOCKED
+    }
 }

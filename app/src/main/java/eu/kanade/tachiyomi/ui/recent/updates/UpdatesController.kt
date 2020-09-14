@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.SelectableAdapter
@@ -89,7 +88,6 @@ class UpdatesController :
         // Init RecyclerView and adapter
         val layoutManager = LinearLayoutManager(view.context)
         binding.recycler.layoutManager = layoutManager
-        binding.recycler.addItemDecoration(DividerItemDecoration(view.context, DividerItemDecoration.VERTICAL))
         binding.recycler.setHasFixedSize(true)
         adapter = UpdatesAdapter(this@UpdatesController)
         binding.recycler.adapter = adapter

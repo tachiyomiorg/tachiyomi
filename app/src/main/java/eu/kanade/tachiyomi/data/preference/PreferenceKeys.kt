@@ -97,6 +97,8 @@ object PreferenceKeys {
 
     const val removeAfterMarkedAsRead = "pref_remove_after_marked_as_read_key"
 
+    const val removeBookmarkedChapters = "pref_remove_bookmarked"
+
     const val libraryUpdateInterval = "pref_library_update_interval_key"
 
     const val libraryUpdateRestriction = "library_update_restriction"
@@ -116,6 +118,8 @@ object PreferenceKeys {
     const val librarySortingMode = "library_sorting_mode"
 
     const val automaticExtUpdates = "automatic_ext_updates"
+
+    const val allowNsfwSource = "allow_nsfw_source"
 
     const val startScreen = "start_screen"
 

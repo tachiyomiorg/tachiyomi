@@ -2,6 +2,8 @@ package eu.kanade.tachiyomi.util.storage
 
 import eu.kanade.tachiyomi.source.model.SChapter
 import eu.kanade.tachiyomi.source.model.SManga
+import org.jsoup.Jsoup
+import org.jsoup.nodes.Document
 import java.io.Closeable
 import java.io.File
 import java.io.InputStream
@@ -10,8 +12,6 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.zip.ZipEntry
 import java.util.zip.ZipFile
-import org.jsoup.Jsoup
-import org.jsoup.nodes.Document
 
 /**
  * Wrapper over ZipFile to load files in epub format.

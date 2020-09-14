@@ -9,9 +9,9 @@ import androidx.work.WorkManager
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import java.util.concurrent.TimeUnit
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import java.util.concurrent.TimeUnit
 
 class LibraryUpdateJob(private val context: Context, workerParams: WorkerParameters) :
     Worker(context, workerParams) {
@@ -45,8 +45,10 @@ class LibraryUpdateJob(private val context: Context, workerParams: WorkerParamet
                     .build()
 
                 val request = PeriodicWorkRequestBuilder<LibraryUpdateJob>(
-                    interval.toLong(), TimeUnit.HOURS,
-                    10, TimeUnit.MINUTES
+                    interval.toLong(),
+                    TimeUnit.HOURS,
+                    10,
+                    TimeUnit.MINUTES
                 )
                     .addTag(TAG)
                     .setConstraints(constraints)

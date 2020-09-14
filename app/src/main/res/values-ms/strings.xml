@@ -154,8 +154,8 @@
     <string name="color_filter_a_value">A</string>
     <string name="pref_download_directory">Lokasi muat turun</string>
     <string name="pref_download_only_over_wifi">Hanya muat turun melalui Wi-Fi</string>
-    <string name="pref_remove_after_marked_as_read">Padam apabila ditandakan sebagai dibaca</string>
-    <string name="pref_remove_after_read">Padam setelah dibaca</string>
+    <string name="pref_remove_after_marked_as_read">Selepas ditandakan sebagai dibaca secara manual</string>
+    <string name="pref_remove_after_read">Setelah membaca</string>
     <string name="custom_dir">Lokasi tersuai</string>
     <string name="disabled">Dinyahaktifkan</string>
     <string name="last_read_chapter">Bab terakhir dibaca</string>
@@ -295,7 +295,6 @@
     <string name="notification_no_connection_body">Sambungan tidak tersedia</string>
     <string name="file_select_cover">Pilih imej muka hadapan</string>
     <string name="file_select_backup">Pilih fail sandaran</string>
-    <string name="file_select_icon">Pilih ikon pintasan</string>
     <string name="update_check_confirm">Muat turun</string>
     <string name="update_check_ignore">Abaikan</string>
     <string name="update_check_no_new_updates">Tiada versi baharu tersedia</string>
@@ -527,7 +526,7 @@
         <item quantity="other">Selesai dalam %1$s dengan %2$s ralat</item>
     </plurals>
     <string name="action_display_unread_badge">Penanda tidak dibaca</string>
-    <string name="tracking_info">Sinkron satu hala untuk kemas kini bab kemajuan dalam sistem penjejakan. Sediakan penjejakan untuk penyertaan manga persendirian dari tab penjejakan mereka.</string>
+    <string name="tracking_info">Sinkron satu hala untuk kemas kini bab kemajuan dalam sistem penjejakan. Sediakan penjejakan untuk penyertaan manga persendirian dari butang penjejakan mereka.</string>
     <string name="pref_refresh_library_covers">Segar semula muka hadapan manga pustaka</string>
     <plurals name="notification_update_error">
         <item quantity="other">%1$d gagal kemas kini</item>
@@ -592,4 +591,20 @@
     <string name="group_backup_restore">Sandaran dan memulih</string>
     <string name="group_downloader">Muat turun</string>
     <string name="channel_complete">Selesai</string>
+    <string name="channel_errors">Ralat</string>
+    <string name="backup_restore_missing_trackers">Penjejak yang tidak dilog masuk:</string>
+    <string name="pref_allow_nsfw_sources">Sumber 18+ tahun keatas</string>
+    <string name="pref_allow_nsfw_sources_blocked">Disekat</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Sekat melayari sumber tetapi tunjuk dalam senarai sambungan</string>
+    <string name="pref_allow_nsfw_sources_allowed">Dibenarkan</string>
+    <string name="pref_remove_bookmarked_chapters">Padam bab yang ditanda</string>
+    <string name="pref_category_delete_chapters">Padam bab</string>
+    <string name="ext_nsfw_warning">Mungkin mengandungi kandungan 18+ tahun keatas</string>
+    <string name="ext_nsfw_short">18+</string>
+    <string name="pref_category_parental_controls">Kawalan ibu bapa</string>
+    <string name="parental_controls_info">Ini tidak menghalang sambungan yang tidak rasmi atau berpotensi tidak menggunakan tetapan yang betul daripada menayangkan kandungan 18+ tahun keatas dalam aplikasi.</string>
+    <plurals name="missing_chapters_warning">
+        <item quantity="other">Ada %d bab yang hilang</item>
+    </plurals>
+    <string name="no_chapters_error">Tiada bab dijumpai</string>
 </resources>

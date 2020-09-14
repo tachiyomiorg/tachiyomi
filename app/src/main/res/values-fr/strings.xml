@@ -137,7 +137,7 @@
     <!-- Downloads section -->
     <string name="pref_download_directory">Répertoire de téléchargement</string>
     <string name="pref_download_only_over_wifi">Télécharger uniquement via Wi-Fi</string>
-    <string name="pref_remove_after_read">Supprimer après avoir lu</string>
+    <string name="pref_remove_after_read">Après avoir lu</string>
     <string name="disabled">Désactivé</string>
     <string name="last_read_chapter">Dernier chapitre lu</string>
     <string name="second_to_last">Avant-dernier chapitre lu</string>
@@ -255,7 +255,6 @@
     <!-- File Picker Titles -->
     <string name="file_select_cover">Sélectionner l\'image de couverture</string>
     <string name="file_select_backup">Sélectionner fichier de sauvegarde</string>
-    <string name="file_select_icon">Sélectionner une icône de raccourci</string>
     <!--UpdateCheck-->
     <string name="update_check_confirm">Télécharger</string>
     <string name="update_check_ignore">Ignorer</string>
@@ -292,7 +291,7 @@
     <string name="manga_chapter_no_title">Pas de titre</string>
     <string name="notification_not_connected_to_ac_title">Synchronisation annulée</string>
     <string name="pref_clear_chapter_cache">Effacer le cache des chapitres</string>
-    <string name="pref_remove_after_marked_as_read">Supprimer quand marqué comme lu</string>
+    <string name="pref_remove_after_marked_as_read">Après avoir été marqué comme lu</string>
     <string name="sort_by_source">Par source</string>
     <string name="system_default">Par défaut</string>
     <string name="updating_category">Mise à jour de la catégorie</string>
@@ -570,7 +569,7 @@
     <string name="battery_optimization_setting_activity_not_found">Impossible d\'ouvrir les paramètres de l\'appareil</string>
     <string name="action_display_unread_badge">Badges des non lus</string>
     <string name="pref_refresh_library_covers">Actualiser les couvertures des séries de la bibliothèque</string>
-    <string name="tracking_info">Permet de synchroniser automatiquement les chapitres lus avec les services externes proposés. Allez dans l\'onglet « Suivi » d\'une série pour activer son suivi.</string>
+    <string name="tracking_info">Permet de synchroniser automatiquement les chapitres lus avec les services externes proposés. Allez dans le bouton « Suivi » d\'une série pour activer son suivi.</string>
     <string name="unofficial_extension_message">Cette extension ne fait pas partie de la liste des extensions officielles de Tachiyomi.</string>
     <string name="ext_unofficial">Non officiel</string>
     <plurals name="notification_update_error">
@@ -632,9 +631,26 @@
         <item quantity="other">%d traqueurs</item>
     </plurals>
     <string name="no_pinned_sources">Vous n\'avez aucune source épinglée</string>
-    <string name="group_downloader">Téléchargés</string>
+    <string name="group_downloader">Téléchargement</string>
     <string name="group_backup_restore">Sauvegarde et restauration</string>
     <string name="channel_complete">Compléter</string>
     <string name="channel_progress">Progression</string>
     <string name="download_notifier_download_finish">Téléchargement terminé</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Bloquer les sources de navigation mais afficher dans la liste des extensions</string>
+    <string name="channel_errors">Erreurs</string>
+    <string name="backup_restore_missing_trackers">Trackers non connectés:</string>
+    <string name="pref_remove_bookmarked_chapters">Supprimer les chapitres favoris</string>
+    <string name="pref_category_delete_chapters">Supprimer des chapitres</string>
+    <string name="ext_nsfw_warning">Peut contenir du contenus +18</string>
+    <string name="ext_nsfw_short">18+</string>
+    <string name="parental_controls_info">Cela n\'empêche pas les extensions non officielles ou potentiellement incorrectement signalées de faire apparaître du contenu 18+ dans l\'application.</string>
+    <string name="pref_allow_nsfw_sources_blocked">Bloqué</string>
+    <string name="pref_allow_nsfw_sources_allowed">Autorisé</string>
+    <string name="pref_allow_nsfw_sources">Sources 18+</string>
+    <string name="pref_category_parental_controls">contrôle parental</string>
+    <plurals name="missing_chapters_warning">
+        <item quantity="one">Il manque 1 chapitre</item>
+        <item quantity="other">Il manque %d chapitres</item>
+    </plurals>
+    <string name="no_chapters_error">Aucun chapitre trouvé</string>
 </resources>

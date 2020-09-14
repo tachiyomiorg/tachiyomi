@@ -9,9 +9,9 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
-import java.util.Calendar
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import java.util.Calendar
 
 class SetTrackReadingDatesDialog<T> : DialogController
         where T : Controller, T : SetTrackReadingDatesDialog.Listener {

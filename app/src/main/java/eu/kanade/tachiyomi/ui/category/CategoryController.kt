@@ -198,8 +198,11 @@ class CategoryController :
             R.id.action_delete -> {
                 undoHelper = UndoHelper(adapter, this)
                 undoHelper?.start(
-                    adapter.selectedPositions, activity!!.root_coordinator,
-                    R.string.snack_categories_deleted, R.string.action_undo, 3000
+                    adapter.selectedPositions,
+                    activity!!.root_coordinator,
+                    R.string.snack_categories_deleted,
+                    R.string.action_undo,
+                    3000
                 )
 
                 mode.finish()

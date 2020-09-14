@@ -45,7 +45,9 @@ class LibraryItem(val manga: LibraryManga, private val libraryDisplayMode: Prefe
                 view.apply {
                     card.layoutParams = FrameLayout.LayoutParams(MATCH_PARENT, coverHeight)
                     gradient.layoutParams = FrameLayout.LayoutParams(
-                        MATCH_PARENT, coverHeight / 2, Gravity.BOTTOM
+                        MATCH_PARENT,
+                        coverHeight / 2,
+                        Gravity.BOTTOM
                     )
                 }
                 LibraryCompactGridHolder(view, adapter)
@@ -55,7 +57,8 @@ class LibraryItem(val manga: LibraryManga, private val libraryDisplayMode: Prefe
                 val coverHeight = parent.itemWidth / 3 * 4
                 view.apply {
                     card.layoutParams = ConstraintLayout.LayoutParams(
-                        MATCH_PARENT, coverHeight
+                        MATCH_PARENT,
+                        coverHeight
                     )
                 }
                 LibraryComfortableGridHolder(view, adapter)

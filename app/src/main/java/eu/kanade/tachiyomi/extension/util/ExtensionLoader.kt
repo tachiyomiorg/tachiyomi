@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import dalvik.system.PathClassLoader
+import eu.kanade.tachiyomi.annoations.Nsfw
+import eu.kanade.tachiyomi.data.preference.PreferenceValues
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.extension.model.LoadResult
@@ -15,8 +17,7 @@ import eu.kanade.tachiyomi.util.lang.Hash
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 import timber.log.Timber
-import uy.kohesive.injekt.Injekt
-import uy.kohesive.injekt.api.get
+import uy.kohesive.injekt.injectLazy
 
 /**
  * Class that handles the loading of the extensions installed in the system.
@@ -24,8 +25,14 @@ import uy.kohesive.injekt.api.get
 @SuppressLint("PackageManagerGetSignatures")
 internal object ExtensionLoader {
 
+    private val preferences: PreferencesHelper by injectLazy()
+    private val allowNsfwSource by lazy {
+        preferences.allowNsfwSource().get()
+    }
+
     private const val EXTENSION_FEATURE = "tachiyomi.extension"
     private const val METADATA_SOURCE_CLASS = "tachiyomi.extension.class"
+    private const val METADATA_NSFW = "tachiyomi.extension.nsfw"
     const val LIB_VERSION_MIN = 1.2
     const val LIB_VERSION_MAX = 1.2
 
@@ -36,8 +43,7 @@ internal object ExtensionLoader {
     /**
      * List of the trusted signatures.
      */
-    var trustedSignatures = mutableSetOf<String>() +
-        Injekt.get<PreferencesHelper>().trustedSignatures().get() + officialSignature
+    var trustedSignatures = mutableSetOf<String>() + preferences.trustedSignatures().get() + officialSignature
 
     /**
      * Return a list of all the installed extensions initialized concurrently.
@@ -125,6 +131,11 @@ internal object ExtensionLoader {
             return LoadResult.Untrusted(extension)
         }
 
+        val isNsfw = appInfo.metaData.getInt(METADATA_NSFW) == 1
+        if (allowNsfwSource == PreferenceValues.NsfwAllowance.BLOCKED && isNsfw) {
+            return LoadResult.Error("NSFW extension $pkgName not allowed")
+        }
+
         val classLoader = PathClassLoader(appInfo.sourceDir, null, context.classLoader)
 
         val sources = appInfo.metaData.getString(METADATA_SOURCE_CLASS)!!
@@ -141,7 +152,13 @@ internal object ExtensionLoader {
                 try {
                     when (val obj = Class.forName(it, false, classLoader).newInstance()) {
                         is Source -> listOf(obj)
-                        is SourceFactory -> obj.createSources()
+                        is SourceFactory -> {
+                            if (isSourceNsfw(obj)) {
+                                emptyList()
+                            } else {
+                                obj.createSources()
+                            }
+                        }
                         else -> throw Exception("Unknown source class type! ${obj.javaClass}")
                     }
                 } catch (e: Throwable) {
@@ -149,10 +166,11 @@ internal object ExtensionLoader {
                     return LoadResult.Error(e)
                 }
             }
+            .filter { !isSourceNsfw(it) }
+
         val langs = sources.filterIsInstance<CatalogueSource>()
             .map { it.lang }
             .toSet()
-
         val lang = when (langs.size) {
             0 -> ""
             1 -> langs.first()
@@ -160,7 +178,13 @@ internal object ExtensionLoader {
         }
 
         val extension = Extension.Installed(
-            extName, pkgName, versionName, versionCode, sources, lang,
+            extName,
+            pkgName,
+            versionName,
+            versionCode,
+            lang,
+            isNsfw,
+            sources,
             isUnofficial = signatureHash != officialSignature
         )
         return LoadResult.Success(extension)
@@ -187,5 +211,23 @@ internal object ExtensionLoader {
         } else {
             null
         }
+    }
+
+    /**
+     * Checks whether a Source or SourceFactory is annotated with @Nsfw.
+     */
+    private fun isSourceNsfw(clazz: Any): Boolean {
+        if (allowNsfwSource == PreferenceValues.NsfwAllowance.ALLOWED) {
+            return false
+        }
+
+        if (clazz !is Source && clazz !is SourceFactory) {
+            return false
+        }
+
+        // Annotations are proxied, hence this janky way of checking for them
+        return clazz.javaClass.annotations
+            .flatMap { it.javaClass.interfaces.map { it.simpleName } }
+            .firstOrNull { it == Nsfw::class.java.simpleName } != null
     }
 }

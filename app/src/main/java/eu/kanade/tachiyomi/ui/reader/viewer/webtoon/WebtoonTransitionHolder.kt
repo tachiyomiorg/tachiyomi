@@ -1,22 +1,18 @@
 package eu.kanade.tachiyomi.ui.reader.viewer.webtoon
 
-import android.graphics.Typeface
-import android.text.Spanned
-import android.text.style.StyleSpan
 import android.view.Gravity
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.LinearLayout
 import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.text.buildSpannedString
 import androidx.core.view.isNotEmpty
 import androidx.core.view.isVisible
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
+import eu.kanade.tachiyomi.ui.reader.viewer.ReaderTransitionView
 import eu.kanade.tachiyomi.util.system.dpToPx
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -34,13 +30,7 @@ class WebtoonTransitionHolder(
      */
     private var statusSubscription: Subscription? = null
 
-    /**
-     * Text view used to display the text of the current and next/prev chapters.
-     */
-    private var textView = TextView(context).apply {
-        textSize = 17.5F
-        wrapContent()
-    }
+    private val transitionView = ReaderTransitionView(context)
 
     /**
      * View container of the current status of the transition page. Child views will be added
@@ -65,7 +55,7 @@ class WebtoonTransitionHolder(
             setMargins(0, childMargins, 0, childMargins)
         }
 
-        layout.addView(textView, childParams)
+        layout.addView(transitionView)
         layout.addView(pagesContainer, childParams)
     }
 
@@ -73,10 +63,9 @@ class WebtoonTransitionHolder(
      * Binds the given [transition] with this view holder, subscribing to its state.
      */
     fun bind(transition: ChapterTransition) {
-        when (transition) {
-            is ChapterTransition.Prev -> bindPrevChapterTransition(transition)
-            is ChapterTransition.Next -> bindNextChapterTransition(transition)
-        }
+        transitionView.bind(transition)
+
+        transition.to?.let { observeStatus(it, transition) }
     }
 
     /**
@@ -84,56 +73,6 @@ class WebtoonTransitionHolder(
      */
     override fun recycle() {
         unsubscribeStatus()
-    }
-
-    /**
-     * Binds a next chapter transition on this view and subscribes to the load status.
-     */
-    private fun bindNextChapterTransition(transition: ChapterTransition.Next) {
-        val nextChapter = transition.to
-
-        textView.text = if (nextChapter != null) {
-            buildSpannedString {
-                append(context.getString(R.string.transition_finished))
-                setSpan(StyleSpan(Typeface.BOLD), 0, length, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
-                append("\n${transition.from.chapter.name}\n\n")
-                val currSize = length
-                append(context.getString(R.string.transition_next))
-                setSpan(StyleSpan(Typeface.BOLD), currSize, length, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
-                append("\n${nextChapter.chapter.name}\n\n")
-            }
-        } else {
-            context.getString(R.string.transition_no_next)
-        }
-
-        if (nextChapter != null) {
-            observeStatus(nextChapter, transition)
-        }
-    }
-
-    /**
-     * Binds a previous chapter transition on this view and subscribes to the page load status.
-     */
-    private fun bindPrevChapterTransition(transition: ChapterTransition.Prev) {
-        val prevChapter = transition.to
-
-        textView.text = if (prevChapter != null) {
-            buildSpannedString {
-                append(context.getString(R.string.transition_current))
-                setSpan(StyleSpan(Typeface.BOLD), 0, length, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
-                append("\n${transition.from.chapter.name}\n\n")
-                val currSize = length
-                append(context.getString(R.string.transition_previous))
-                setSpan(StyleSpan(Typeface.BOLD), currSize, length, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
-                append("\n${prevChapter.chapter.name}\n\n")
-            }
-        } else {
-            context.getString(R.string.transition_no_previous)
-        }
-
-        if (prevChapter != null) {
-            observeStatus(prevChapter, transition)
-        }
     }
 
     /**

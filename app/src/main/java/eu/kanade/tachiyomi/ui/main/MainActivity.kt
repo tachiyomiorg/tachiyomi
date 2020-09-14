@@ -31,6 +31,7 @@ import eu.kanade.tachiyomi.ui.base.controller.FabController
 import eu.kanade.tachiyomi.ui.base.controller.NoToolbarElevationController
 import eu.kanade.tachiyomi.ui.base.controller.RootController
 import eu.kanade.tachiyomi.ui.base.controller.TabbedController
+import eu.kanade.tachiyomi.ui.base.controller.ToolbarLiftOnScrollController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.browse.BrowseController
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchController
@@ -43,13 +44,13 @@ import eu.kanade.tachiyomi.ui.recent.updates.UpdatesController
 import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.lang.launchUI
 import eu.kanade.tachiyomi.util.system.toast
-import java.util.Date
-import java.util.concurrent.TimeUnit
 import kotlinx.android.synthetic.main.main_activity.appbar
 import kotlinx.android.synthetic.main.main_activity.tabs
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import timber.log.Timber
+import java.util.Date
+import java.util.concurrent.TimeUnit
 
 class MainActivity : BaseActivity<MainActivityBinding>() {
 
@@ -85,7 +86,7 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
 
         setSupportActionBar(binding.toolbar)
 
-        tabAnimator = ViewHeightAnimator(binding.tabs)
+        tabAnimator = ViewHeightAnimator(binding.tabs, 0L)
         bottomNavAnimator = ViewHeightAnimator(binding.bottomNav)
 
         // Set behavior of bottom nav
@@ -125,26 +126,28 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
             onBackPressed()
         }
 
-        router.addChangeListener(object : ControllerChangeHandler.ControllerChangeListener {
-            override fun onChangeStarted(
-                to: Controller?,
-                from: Controller?,
-                isPush: Boolean,
-                container: ViewGroup,
-                handler: ControllerChangeHandler
-            ) {
-                syncActivityViewWithController(to, from)
-            }
+        router.addChangeListener(
+            object : ControllerChangeHandler.ControllerChangeListener {
+                override fun onChangeStarted(
+                    to: Controller?,
+                    from: Controller?,
+                    isPush: Boolean,
+                    container: ViewGroup,
+                    handler: ControllerChangeHandler
+                ) {
+                    syncActivityViewWithController(to, from)
+                }
 
-            override fun onChangeCompleted(
-                to: Controller?,
-                from: Controller?,
-                isPush: Boolean,
-                container: ViewGroup,
-                handler: ControllerChangeHandler
-            ) {
+                override fun onChangeCompleted(
+                    to: Controller?,
+                    from: Controller?,
+                    isPush: Boolean,
+                    container: ViewGroup,
+                    handler: ControllerChangeHandler
+                ) {
+                }
             }
-        })
+        )
 
         syncActivityViewWithController(router.backstack.lastOrNull()?.controller())
 
@@ -311,7 +314,7 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
     }
 
     private fun setRoot(controller: Controller, id: Int) {
-        router.setRoot(RouterTransaction.with(controller).tag(id.toString()))
+        router.setRoot(controller.withFadeTransaction().tag(id.toString()))
     }
 
     private fun syncActivityViewWithController(to: Controller?, from: Controller? = null) {
@@ -355,10 +358,16 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
             to.configureFab(binding.rootFab)
         }
 
-        if (to is NoToolbarElevationController) {
-            binding.appbar.disableElevation()
-        } else {
-            binding.appbar.enableElevation()
+        when (to) {
+            is NoToolbarElevationController -> {
+                binding.appbar.disableElevation()
+            }
+            is ToolbarLiftOnScrollController -> {
+                binding.appbar.enableElevation(true)
+            }
+            else -> {
+                binding.appbar.enableElevation(false)
+            }
         }
     }
 

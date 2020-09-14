@@ -4,14 +4,14 @@ import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.util.lang.compareToCaseInsensitiveNaturalOrder
 import eu.kanade.tachiyomi.util.system.ImageUtil
+import junrar.Archive
+import junrar.rarfile.FileHeader
+import rx.Observable
 import java.io.File
 import java.io.InputStream
 import java.io.PipedInputStream
 import java.io.PipedOutputStream
 import java.util.concurrent.Executors
-import junrar.Archive
-import junrar.rarfile.FileHeader
-import rx.Observable
 
 /**
  * Loader used to load a chapter from a .rar or .cbr file.

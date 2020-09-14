@@ -9,10 +9,10 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.extension.model.LoadResult
 import eu.kanade.tachiyomi.extension.util.ExtensionLoader
-import java.util.Date
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import uy.kohesive.injekt.injectLazy
+import java.util.Date
 
 internal class ExtensionGithubApi {
 
@@ -64,9 +64,10 @@ internal class ExtensionGithubApi {
                 val versionName = element["version"].string
                 val versionCode = element["code"].int
                 val lang = element["lang"].string
+                val nsfw = element["nsfw"].int == 1
                 val icon = "$REPO_URL_PREFIX/icon/${apkName.replace(".apk", ".png")}"
 
-                Extension.Available(name, pkgName, versionName, versionCode, lang, apkName, icon)
+                Extension.Available(name, pkgName, versionName, versionCode, lang, nsfw, apkName, icon)
             }
     }
 

@@ -128,12 +128,6 @@ class MangaInfoHeaderAdapter(
                     .onEach { controller.openMangaInWebView() }
                     .launchIn(scope)
                 binding.btnWebview.setTooltip(R.string.action_open_in_web_view)
-
-                binding.btnShare.isVisible = true
-                binding.btnShare.clicks()
-                    .onEach { controller.shareManga() }
-                    .launchIn(scope)
-                binding.btnShare.setTooltip(R.string.action_share)
             }
 
             binding.mangaFullTitle.longClicks()

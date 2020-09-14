@@ -16,10 +16,10 @@ import eu.kanade.tachiyomi.data.notification.Notifications
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.extension.api.ExtensionGithubApi
 import eu.kanade.tachiyomi.util.system.notification
-import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.coroutineScope
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import java.util.concurrent.TimeUnit
 
 class ExtensionUpdateJob(private val context: Context, workerParams: WorkerParameters) :
     CoroutineWorker(context, workerParams) {
@@ -73,8 +73,10 @@ class ExtensionUpdateJob(private val context: Context, workerParams: WorkerParam
                     .build()
 
                 val request = PeriodicWorkRequestBuilder<ExtensionUpdateJob>(
-                    12, TimeUnit.HOURS,
-                    1, TimeUnit.HOURS
+                    12,
+                    TimeUnit.HOURS,
+                    1,
+                    TimeUnit.HOURS
                 )
                     .addTag(TAG)
                     .setConstraints(constraints)

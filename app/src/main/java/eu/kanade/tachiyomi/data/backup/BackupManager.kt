@@ -50,10 +50,10 @@ import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.util.chapter.syncChaptersWithSource
-import kotlin.math.max
 import rx.Observable
 import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
+import kotlin.math.max
 
 class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
 

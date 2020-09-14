@@ -70,6 +70,21 @@
             tools:text="Language: English" />
 
         <TextView
+            android:id="@+id/extension_nsfw"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:elevation="3dp"
+            android:gravity="center"
+            android:text="@string/ext_nsfw_warning"
+            android:textColor="?attr/colorError"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@id/extension_title"
+            app:layout_constraintTop_toBottomOf="@id/extension_lang"
+            tools:visibility="visible" />
+
+        <TextView
             android:id="@+id/extension_pkg"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -78,7 +93,7 @@
             android:singleLine="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/extension_title"
-            app:layout_constraintTop_toBottomOf="@id/extension_lang"
+            app:layout_constraintTop_toBottomOf="@id/extension_nsfw"
             tools:text="eu.kanade.tachiyomi.extension.en.myext" />
 
         <Button
@@ -86,12 +101,12 @@
             style="@style/Theme.Widget.Button.FilledAccent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="8dp"
             android:paddingStart="32dp"
             android:paddingEnd="32dp"
             android:text="@string/ext_uninstall"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/extension_lang" />
+            app:layout_constraintTop_toBottomOf="@id/extension_pkg" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

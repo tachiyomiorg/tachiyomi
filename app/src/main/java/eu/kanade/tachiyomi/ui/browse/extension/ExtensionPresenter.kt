@@ -3,18 +3,19 @@ package eu.kanade.tachiyomi.ui.browse.extension
 import android.app.Application
 import android.os.Bundle
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.preference.PreferenceValues
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.extension.ExtensionManager
 import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.extension.model.InstallStep
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import eu.kanade.tachiyomi.util.system.LocaleHelper
-import java.util.concurrent.TimeUnit
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import java.util.concurrent.TimeUnit
 
 private typealias ExtensionTuple =
     Triple<List<Extension.Installed>, List<Extension.Untrusted>, List<Extension.Available>>
@@ -55,20 +56,22 @@ open class ExtensionPresenter(
     private fun toItems(tuple: ExtensionTuple): List<ExtensionItem> {
         val context = Injekt.get<Application>()
         val activeLangs = preferences.enabledLanguages().get()
+        val showNsfwExtensions = preferences.allowNsfwSource().get() != PreferenceValues.NsfwAllowance.BLOCKED
 
         val (installed, untrusted, available) = tuple
 
         val items = mutableListOf<ExtensionItem>()
 
-        val updatesSorted = installed.filter { it.hasUpdate }.sortedBy { it.pkgName }
-        val installedSorted = installed.filter { !it.hasUpdate }.sortedWith(compareBy({ !it.isObsolete }, { it.pkgName }))
+        val updatesSorted = installed.filter { it.hasUpdate && (showNsfwExtensions || !it.isNsfw) }.sortedBy { it.pkgName }
+        val installedSorted = installed.filter { !it.hasUpdate && (showNsfwExtensions || !it.isNsfw) }.sortedWith(compareBy({ !it.isObsolete }, { it.pkgName }))
         val untrustedSorted = untrusted.sortedBy { it.pkgName }
         val availableSorted = available
             // Filter out already installed extensions and disabled languages
             .filter { avail ->
                 installed.none { it.pkgName == avail.pkgName } &&
                     untrusted.none { it.pkgName == avail.pkgName } &&
-                    (avail.lang in activeLangs || avail.lang == "all")
+                    (avail.lang in activeLangs || avail.lang == "all") &&
+                    (showNsfwExtensions || !avail.isNsfw)
             }
             .sortedBy { it.pkgName }
 

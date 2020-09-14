@@ -7,7 +7,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Handler
-import eu.kanade.tachiyomi.BuildConfig.APPLICATION_ID as ID
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.backup.BackupRestoreService
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
@@ -26,10 +25,11 @@ import eu.kanade.tachiyomi.util.storage.DiskUtil
 import eu.kanade.tachiyomi.util.storage.getUriCompat
 import eu.kanade.tachiyomi.util.system.notificationManager
 import eu.kanade.tachiyomi.util.system.toast
-import java.io.File
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import uy.kohesive.injekt.injectLazy
+import java.io.File
+import eu.kanade.tachiyomi.BuildConfig.APPLICATION_ID as ID
 
 /**
  * Global [BroadcastReceiver] that runs on UI thread
@@ -56,19 +56,22 @@ class NotificationReceiver : BroadcastReceiver() {
             // Launch share activity and dismiss notification
             ACTION_SHARE_IMAGE ->
                 shareImage(
-                    context, intent.getStringExtra(EXTRA_FILE_LOCATION),
+                    context,
+                    intent.getStringExtra(EXTRA_FILE_LOCATION),
                     intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1)
                 )
             // Delete image from path and dismiss notification
             ACTION_DELETE_IMAGE ->
                 deleteImage(
-                    context, intent.getStringExtra(EXTRA_FILE_LOCATION),
+                    context,
+                    intent.getStringExtra(EXTRA_FILE_LOCATION),
                     intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1)
                 )
             // Share backup file
             ACTION_SHARE_BACKUP ->
                 shareBackup(
-                    context, intent.getParcelableExtra(EXTRA_URI),
+                    context,
+                    intent.getParcelableExtra(EXTRA_URI),
                     intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1)
                 )
             ACTION_CANCEL_RESTORE -> cancelRestore(
@@ -80,7 +83,8 @@ class NotificationReceiver : BroadcastReceiver() {
             // Open reader activity
             ACTION_OPEN_CHAPTER -> {
                 openChapter(
-                    context, intent.getLongExtra(EXTRA_MANGA_ID, -1),
+                    context,
+                    intent.getLongExtra(EXTRA_MANGA_ID, -1),
                     intent.getLongExtra(EXTRA_CHAPTER_ID, -1)
                 )
             }

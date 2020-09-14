@@ -171,6 +171,13 @@
     <string name="secure_screen_summary">Hide app contents when switching apps and block screenshots</string>
     <string name="hide_notification_content">Hide notification content</string>
 
+    <string name="pref_category_parental_controls">Parental controls</string>
+    <string name="pref_allow_nsfw_sources">18+ sources</string>
+    <string name="pref_allow_nsfw_sources_allowed">Allowed</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Block browsing sources but show in extensions list</string>
+    <string name="pref_allow_nsfw_sources_blocked">Blocked</string>
+    <string name="parental_controls_info">This does not prevent unofficial or potentially incorrectly flagged extensions from surfacing 18+ content within the app.</string>
+
       <!-- Library section -->
     <string name="pref_category_display">Display</string>
     <string name="pref_library_columns">Items per row</string>
@@ -232,6 +239,8 @@
     <string name="unofficial_extension_message">This extension is not from the official Tachiyomi extensions list.</string>
     <string name="ext_version_info">Version: %1$s</string>
     <string name="ext_language_info">Language: %1$s</string>
+    <string name="ext_nsfw_short">18+</string>
+    <string name="ext_nsfw_warning">May contain 18+ content</string>
 
       <!-- Reader section -->
     <string name="pref_fullscreen">Fullscreen</string>
@@ -312,8 +321,10 @@
       <!-- Downloads section -->
     <string name="pref_download_directory">Download location</string>
     <string name="pref_download_only_over_wifi">Only download over Wi-Fi</string>
-    <string name="pref_remove_after_marked_as_read">Remove when marked as read</string>
-    <string name="pref_remove_after_read">Remove after read</string>
+    <string name="pref_category_delete_chapters">Delete chapters</string>
+    <string name="pref_remove_after_marked_as_read">After manually marked as read</string>
+    <string name="pref_remove_after_read">After reading</string>
+    <string name="pref_remove_bookmarked_chapters">Delete bookmarked chapters</string>
     <string name="custom_dir">Custom location</string>
     <string name="disabled">Disabled</string>
     <string name="last_read_chapter">Last read chapter</string>
@@ -327,7 +338,7 @@
       <!-- Tracking section -->
     <string name="pref_auto_update_manga_sync">Update chapter progress after reading</string>
     <string name="services">Services</string>
-    <string name="tracking_info">One-way sync to update the chapter progress in tracking services. Set up tracking for individual manga entries from their tracking tabs.</string>
+    <string name="tracking_info">One-way sync to update the chapter progress in tracking services. Set up tracking for individual manga entries from their tracking button.</string>
 
       <!-- Browse section -->
     <string name="pref_enable_automatic_extension_updates">Check for extension updates</string>
@@ -516,6 +527,8 @@
     <string name="invalid_download_dir">Invalid download location</string>
     <string name="confirm_set_chapter_settings">Are you sure you want to save these settings as default?</string>
     <string name="also_set_chapter_settings_for_library">Also apply to all manga in my Library</string>
+    <string name="set_chapter_settings_as_default">Set as Default</string>
+    <string name="no_chapters_error">No chapters found</string>
 
     <!-- Tracking Screen -->
     <string name="manga_tracking_tab">Tracking</string>
@@ -582,6 +595,10 @@
     <string name="transition_pages_error">Failed to load pages: %1$s</string>
     <string name="page_list_empty_error">No pages found</string>
     <string name="loader_not_implemented_error">Source not found</string>
+    <plurals name="missing_chapters_warning">
+        <item quantity="one">There is 1 missing chapter</item>
+        <item quantity="other">There are %d missing chapters</item>
+    </plurals>
 
     <!-- Updates fragment -->
     <string name="updating_library">Updating library</string>
@@ -633,7 +650,6 @@
     <!-- File Picker Titles -->
     <string name="file_select_cover">Select cover image</string>
     <string name="file_select_backup">Select backup file</string>
-    <string name="file_select_icon">Select shortcut icon</string>
 
     <!--UpdateCheck-->
     <string name="update_check_confirm">Download</string>
@@ -694,5 +710,5 @@
     <string name="tapping_inverted_horizontal">Horizontal</string>
     <string name="tapping_inverted_vertical">Vertical</string>
     <string name="tapping_inverted_both">Both</string>
-    <string name="set_chapter_settings_as_default">Set as Default</string>
+ 
 </resources>

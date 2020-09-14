@@ -5,6 +5,7 @@ import com.jakewharton.rxrelay.BehaviorRelay
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Category
+import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.database.models.MangaCategory
 import eu.kanade.tachiyomi.data.download.DownloadManager
@@ -18,14 +19,14 @@ import eu.kanade.tachiyomi.util.lang.combineLatest
 import eu.kanade.tachiyomi.util.lang.isNullOrUnsubscribed
 import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.removeCovers
-import java.util.Collections
-import java.util.Comparator
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import java.util.Collections
+import java.util.Comparator
 
 /**
  * Class containing library information.
@@ -323,6 +324,36 @@ class LibraryPresenter(
 
                 downloadManager.downloadChapters(manga, chapters)
             }
+        }
+    }
+
+    /**
+     * Marks mangas' chapters read status.
+     *
+     * @param mangas the list of manga.
+     */
+    fun markReadStatus(mangas: List<Manga>, read: Boolean) {
+        mangas.forEach { manga ->
+            launchIO {
+                val chapters = db.getChapters(manga).executeAsBlocking()
+                chapters.forEach {
+                    it.read = read
+                    if (!read) {
+                        it.last_page_read = 0
+                    }
+                }
+                db.updateChaptersProgress(chapters).executeAsBlocking()
+
+                if (preferences.removeAfterMarkedAsRead()) {
+                    deleteChapters(manga, chapters)
+                }
+            }
+        }
+    }
+
+    private fun deleteChapters(manga: Manga, chapters: List<Chapter>) {
+        sourceManager.get(manga.source)?.let { source ->
+            downloadManager.deleteChapters(chapters, manga, source)
         }
     }
 
