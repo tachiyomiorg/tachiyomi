@@ -90,6 +90,5 @@
     <string-array name="delete_selected_mangas">
         <item>@string/manga_from_library</item>
         <item>@string/downloaded_chapters</item>
-        <item>@string/both</item>
     </string-array>
 </resources>

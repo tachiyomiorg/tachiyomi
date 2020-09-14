@@ -3,7 +3,7 @@ package eu.kanade.tachiyomi.ui.library
 import android.app.Dialog
 import android.os.Bundle
 import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.list.listItemsSingleChoice
+import com.afollestad.materialdialogs.list.listItemsMultiChoice
 import com.bluelinelabs.conductor.Controller
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
@@ -22,12 +22,12 @@ class DeleteLibraryMangasDialog<T>(bundle: Bundle? = null) :
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         return MaterialDialog(activity!!)
             .title(R.string.action_remove)
-            .listItemsSingleChoice(
+            .listItemsMultiChoice(
                 R.array.delete_selected_mangas,
-                initialSelection = 0
-            ) { _, index, _ ->
-                val deleteFromLibrary = index == 0 || index == 2
-                val deleteChapters = index == 1 || index == 2
+                initialSelection = intArrayOf(0)
+            ) { _, selections, _ ->
+                val deleteFromLibrary = 0 in selections
+                val deleteChapters = 1 in selections
                 (targetController as? Listener)?.deleteMangas(mangas, deleteFromLibrary, deleteChapters)
             }
             .positiveButton(android.R.string.ok)
