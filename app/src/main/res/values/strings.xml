@@ -444,10 +444,8 @@
     <string name="library_search_hint">Title or author…</string>
     <string name="updating_category">Updating category</string>
     <string name="local_source_badge">Local</string>
-    <string-array name="delete_selected_mangas">
-        <item>Manga from library</item>
-        <item>Downloaded chapters</item>
-    </string-array>
+    <string name="manga_from_library">Manga from library</string>
+    <string name="downloaded_chapters">Downloaded chapters</string>
     <string name="badges_header">Badges</string>
     <string name="tabs_header">Tabs</string>
 
