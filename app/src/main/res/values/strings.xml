@@ -712,5 +712,9 @@
     <string name="tapping_inverted_horizontal">Horizontal</string>
     <string name="tapping_inverted_vertical">Vertical</string>
     <string name="tapping_inverted_both">Both</string>
+    <string name="clear_history_completed">History deleted</string>
+    <string name="clear_history_confirmation">Are you sure? All history will be lost</string>
+    <string name="pref_clear_history">Clear history</string>
+    <string name="pref_clear_history_summary">Delete history for all manga</string>
 
 </resources>
