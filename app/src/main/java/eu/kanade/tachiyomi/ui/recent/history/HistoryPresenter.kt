@@ -13,7 +13,6 @@ import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import uy.kohesive.injekt.injectLazy
 import java.util.Calendar
-import java.util.Comparator
 import java.util.Date
 import java.util.TreeMap
 
@@ -29,26 +28,67 @@ class HistoryPresenter : BasePresenter<HistoryController>() {
      */
     val db: DatabaseHelper by injectLazy()
 
+    private var lastCount = 25
+    private var lastSearch = ""
+
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
 
         // Used to get a list of recently read manga
-        getRecentMangaObservable()
-            .subscribeLatestCache(HistoryController::onNextManga)
+        updateList()
+    }
+
+    fun requestNext(offset: Int, search: String = "") {
+        lastCount = offset
+        lastSearch = search
+        getRecentMangaObservable(offset, search)
+            .subscribeLatestCache(
+                { view, mangas ->
+                    view.onNextManga(mangas)
+                },
+                HistoryController::onAddPageError
+            )
     }
 
     /**
      * Get recent manga observable
      * @return list of history
      */
-    fun getRecentMangaObservable(): Observable<List<HistoryItem>> {
+    /**
+     * Get recent manga observable
+     * @return list of history
+     */
+    private fun getRecentMangaObservable(offset: Int = 0, search: String = ""): Observable<List<HistoryItem>> {
         // Set date limit for recent manga
         val cal = Calendar.getInstance().apply {
             time = Date()
-            add(Calendar.MONTH, -3)
+            add(Calendar.YEAR, -50)
         }
 
-        return db.getRecentManga(cal.time).asRxObservable()
+        return db.getRecentManga(cal.time, offset, search).asRxObservable()
+            .map { recents ->
+                val map = TreeMap<Date, MutableList<MangaChapterHistory>> { d1, d2 -> d2.compareTo(d1) }
+                val byDay = recents
+                    .groupByTo(map, { it.history.last_read.toDateKey() })
+                byDay.flatMap { entry ->
+                    val dateItem = DateSectionItem(entry.key)
+                    entry.value.map { HistoryItem(it, dateItem) }
+                }
+            }
+            .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    /**
+     * Get recent manga observable
+     * @return list of history
+     */
+    private fun getRecentMangaLimitObservable(search: String = ""): Observable<List<HistoryItem>> {
+        // Set limit for recent manga
+        val cal = Calendar.getInstance()
+        cal.time = Date()
+        cal.add(Calendar.YEAR, -50)
+
+        return db.getRecentMangaLimit(cal.time, lastCount, search).asRxObservable()
             .map { recents ->
                 val map = TreeMap<Date, MutableList<MangaChapterHistory>> { d1, d2 -> d2.compareTo(d1) }
                 val byDay = recents
@@ -69,6 +109,17 @@ class HistoryPresenter : BasePresenter<HistoryController>() {
         history.last_read = 0L
         db.updateHistoryLastRead(history).asRxObservable()
             .subscribe()
+    }
+
+    fun updateList(search: String? = null) {
+        lastSearch = search ?: lastSearch
+        getRecentMangaLimitObservable(lastSearch).take(1)
+            .subscribeLatestCache(
+                { view, mangas ->
+                    view.onNextManga(mangas, true)
+                },
+                HistoryController::onAddPageError
+            )
     }
 
     /**
@@ -103,7 +154,7 @@ class HistoryPresenter : BasePresenter<HistoryController>() {
         }
 
         val chapters = db.getChapters(manga).executeAsBlocking()
-            .sortedWith(Comparator { c1, c2 -> sortFunction(c1, c2) })
+            .sortedWith { c1, c2 -> sortFunction(c1, c2) }
 
         val currChapterIndex = chapters.indexOfFirst { chapter.id == it.id }
         return when (manga.sorting) {

@@ -22,11 +22,28 @@ interface HistoryQueries : DbProvider {
      * Returns history of recent manga containing last read chapter
      * @param date recent date range
      */
-    fun getRecentManga(date: Date) = db.get()
+    fun getRecentManga(date: Date, offset: Int = 0, search: String = "") = db.get()
         .listOfObjects(MangaChapterHistory::class.java)
         .withQuery(
             RawQuery.builder()
-                .query(getRecentMangasQuery())
+                .query(getRecentMangasQuery(offset, search))
+                .args(date.time)
+                .observesTables(HistoryTable.TABLE)
+                .build()
+        )
+        .withGetResolver(MangaChapterHistoryGetResolver.INSTANCE)
+        .prepare()
+
+    /**
+     * Returns history of recent manga containing last read chapter in 25s
+     * @param date recent date range
+     * @offset offset the db by
+     */
+    fun getRecentMangaLimit(date: Date, limit: Int = 0, search: String = "") = db.get()
+        .listOfObjects(MangaChapterHistory::class.java)
+        .withQuery(
+            RawQuery.builder()
+                .query(getRecentMangasLimitQuery(limit, search))
                 .args(date.time)
                 .observesTables(HistoryTable.TABLE)
                 .build()
