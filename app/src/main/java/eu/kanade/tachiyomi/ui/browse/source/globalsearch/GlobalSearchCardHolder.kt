@@ -7,6 +7,7 @@ import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
 import eu.kanade.tachiyomi.widget.StateImageViewTarget
+import kotlinx.android.synthetic.main.global_search_controller_card_item.card
 import kotlinx.android.synthetic.main.global_search_controller_card_item.itemImage
 import kotlinx.android.synthetic.main.global_search_controller_card_item.progress
 import kotlinx.android.synthetic.main.global_search_controller_card_item.tvTitle
@@ -32,6 +33,8 @@ class GlobalSearchCardHolder(view: View, adapter: GlobalSearchCardAdapter) :
     }
 
     fun bind(manga: Manga) {
+        card.clipToOutline = true
+
         tvTitle.text = manga.title
         // Set alpha of thumbnail.
         itemImage.alpha = if (manga.favorite) 0.3f else 1.0f

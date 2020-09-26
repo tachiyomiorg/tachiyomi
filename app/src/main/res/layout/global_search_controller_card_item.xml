@@ -5,47 +5,57 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/list_item_selector"
-    android:orientation="vertical"
-    android:paddingStart="4dp"
-    android:paddingTop="8dp"
-    android:paddingEnd="4dp"
-    android:paddingBottom="8dp">
+    android:layout_marginStart="4dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="4dp"
+    android:layout_marginBottom="8dp">
 
-    <ProgressBar
-        android:id="@+id/progress"
-        style="?android:attr/progressBarStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/itemImage"
+    <FrameLayout
+        android:id="@+id/card"
         android:layout_width="112dp"
-        android:layout_height="112dp"
-        android:paddingBottom="8dp"
-        android:scaleType="fitCenter"
+        android:layout_height="0dp"
+        android:background="@drawable/rounded_rectangle"
+        app:layout_constraintDimensionRatio="h,5:7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription"
-        tools:src="@mipmap/ic_launcher" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/itemImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/colorSurface"
+            android:scaleType="centerCrop"
+            tools:ignore="ContentDescription"
+            tools:src="@mipmap/ic_launcher" />
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/tvTitle"
-        style="@style/TextAppearance.Regular.Caption"
-        android:layout_width="104dp"
+        style="@style/TextAppearance.Regular.Body1"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
+        android:background="?attr/colorSurface"
         android:ellipsize="end"
-        android:gravity="center"
-        android:maxLines="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemImage"
-        tools:text="Sample title" />
+        android:fontFamily="@font/ptsans_narrow_bold"
+        android:lineSpacingExtra="-4dp"
+        android:maxLines="2"
+        android:padding="4dp"
+        android:shadowColor="@color/textColorPrimaryLight"
+        app:layout_constraintEnd_toEndOf="@+id/card"
+        app:layout_constraintStart_toStartOf="@+id/card"
+        app:layout_constraintTop_toBottomOf="@+id/card"
+        tools:text="Sample name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
