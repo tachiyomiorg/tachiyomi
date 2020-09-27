@@ -13,12 +13,12 @@ import com.google.gson.JsonParser
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.network.asObservableSuccess
-import java.util.Calendar
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import rx.Observable
+import java.util.Calendar
 
 class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
 
@@ -271,9 +271,14 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
         }
 
         return ALManga(
-            struct["id"].asInt, struct["title"]["romaji"].asString, struct["coverImage"]["large"].asString,
-            struct["description"].nullString.orEmpty(), struct["type"].asString, struct["status"].nullString.orEmpty(),
-            date, struct["chapters"].nullInt ?: 0
+            struct["id"].asInt,
+            struct["title"]["romaji"].asString,
+            struct["coverImage"]["large"].asString,
+            struct["description"].nullString.orEmpty(),
+            struct["type"].asString,
+            struct["status"].nullString.orEmpty(),
+            date,
+            struct["chapters"].nullInt ?: 0
         )
     }
 

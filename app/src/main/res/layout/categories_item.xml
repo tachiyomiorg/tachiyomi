@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/material_component_lists_single_line_with_avatar_height"
-    android:background="@drawable/list_item_selector">
+    android:background="@drawable/list_item_selector_background">
 
     <ImageView
         android:id="@+id/reorder"

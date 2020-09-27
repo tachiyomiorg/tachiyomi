@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/material_component_lists_single_line_with_avatar_height"
     android:layout_gravity="center_vertical"
-    android:background="@drawable/list_item_selector"
+    android:background="@drawable/list_item_selector_background"
     android:paddingStart="8dp"
     android:paddingEnd="8dp"
     tools:layout_editor_absoluteX="0dp"

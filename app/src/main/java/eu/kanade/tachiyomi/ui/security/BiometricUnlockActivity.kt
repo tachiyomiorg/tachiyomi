@@ -5,9 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricPrompt
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import uy.kohesive.injekt.injectLazy
 import java.util.Date
 import java.util.concurrent.Executors
-import uy.kohesive.injekt.injectLazy
 
 /**
  * Blank activity with a BiometricPrompt.
@@ -21,7 +21,8 @@ class BiometricUnlockActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val biometricPrompt = BiometricPrompt(
-            this, executor,
+            this,
+            executor,
             object : BiometricPrompt.AuthenticationCallback() {
                 override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
                     super.onAuthenticationError(errorCode, errString)

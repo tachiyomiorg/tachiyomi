@@ -1,94 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="64dp"
+    android:background="@drawable/list_item_selector_background">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/card"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:background="@drawable/list_item_selector">
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription"
+        tools:src="@mipmap/ic_launcher_round" />
 
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:padding="12dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="h,1:1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@mipmap/ic_launcher_round" />
+    <TextView
+        android:id="@+id/ext_title"
+        style="@style/TextAppearance.Regular"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAppearance="@style/TextAppearance.Regular.SubHeading"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@id/lang"
+        app:layout_constraintEnd_toStartOf="@id/ext_button"
+        app:layout_constraintStart_toEndOf="@id/image"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Batoto" />
 
-        <TextView
-            android:id="@+id/ext_title"
-            style="@style/TextAppearance.Regular"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textAppearance="@style/TextAppearance.Regular.SubHeading"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@id/lang"
-            app:layout_constraintEnd_toStartOf="@id/ext_button"
-            app:layout_constraintStart_toEndOf="@id/image"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed"
-            tools:text="Batoto" />
+    <TextView
+        android:id="@+id/lang"
+        style="@style/TextAppearance.Regular.Body1.Secondary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/image"
+        app:layout_constraintTop_toBottomOf="@+id/ext_title"
+        tools:text="English"
+        tools:visibility="visible" />
 
-        <TextView
-            android:id="@+id/lang"
-            style="@style/TextAppearance.Regular.Body1.Secondary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/image"
-            app:layout_constraintTop_toBottomOf="@+id/ext_title"
-            tools:text="English"
-            tools:visibility="visible" />
+    <TextView
+        android:id="@+id/version"
+        style="@style/TextAppearance.Regular.Body1.Secondary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:maxLines="1"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@id/lang"
+        app:layout_constraintTop_toBottomOf="@+id/ext_title"
+        tools:text="Version" />
 
-        <TextView
-            android:id="@+id/version"
-            style="@style/TextAppearance.Regular.Body1.Secondary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:maxLines="1"
-            android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@id/lang"
-            app:layout_constraintTop_toBottomOf="@+id/ext_title"
-            tools:text="Version" />
+    <TextView
+        android:id="@+id/warning"
+        style="@style/TextAppearance.Regular.Body1.Secondary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:maxLines="1"
+        android:textColor="?attr/colorError"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@id/version"
+        app:layout_constraintTop_toBottomOf="@+id/ext_title"
+        tools:text="Warning" />
 
-        <TextView
-            android:id="@+id/warning"
-            style="@style/TextAppearance.Regular.Body1.Secondary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:maxLines="1"
-            android:textColor="?attr/colorError"
-            android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@id/version"
-            app:layout_constraintTop_toBottomOf="@+id/ext_title"
-            tools:text="Warning" />
+    <Button
+        android:id="@+id/ext_button"
+        style="@style/Theme.Widget.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Details" />
 
-        <Button
-            android:id="@+id/ext_button"
-            style="@style/Theme.Widget.Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Details" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</FrameLayout>
-
+</androidx.constraintlayout.widget.ConstraintLayout>

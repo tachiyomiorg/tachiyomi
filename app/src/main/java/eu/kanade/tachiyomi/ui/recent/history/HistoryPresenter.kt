@@ -9,13 +9,13 @@ import eu.kanade.tachiyomi.data.database.models.MangaChapterHistory
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import eu.kanade.tachiyomi.ui.recent.DateSectionItem
 import eu.kanade.tachiyomi.util.lang.toDateKey
+import rx.Observable
+import rx.android.schedulers.AndroidSchedulers
+import uy.kohesive.injekt.injectLazy
 import java.util.Calendar
 import java.util.Comparator
 import java.util.Date
 import java.util.TreeMap
-import rx.Observable
-import rx.android.schedulers.AndroidSchedulers
-import uy.kohesive.injekt.injectLazy
 
 /**
  * Presenter of HistoryFragment.

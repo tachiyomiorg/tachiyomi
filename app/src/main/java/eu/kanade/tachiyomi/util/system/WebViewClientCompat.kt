@@ -61,8 +61,11 @@ abstract class WebViewClientCompat : WebViewClient() {
         error: WebResourceError
     ) {
         onReceivedErrorCompat(
-            view, error.errorCode, error.description?.toString(),
-            request.url.toString(), request.isForMainFrame
+            view,
+            error.errorCode,
+            error.description?.toString(),
+            request.url.toString(),
+            request.isForMainFrame
         )
     }
 
@@ -82,7 +85,9 @@ abstract class WebViewClientCompat : WebViewClient() {
         error: WebResourceResponse
     ) {
         onReceivedErrorCompat(
-            view, error.statusCode, error.reasonPhrase,
+            view,
+            error.statusCode,
+            error.reasonPhrase,
             request.url
                 .toString(),
             request.isForMainFrame

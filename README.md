@@ -1,6 +1,6 @@
 | Build | Stable | Weekly Preview | Contribute | Support Server |
 |-------|----------|---------|------------|---------|
-| [![Travis](https://img.shields.io/travis/inorichi/tachiyomi.svg)](https://travis-ci.org/inorichi/tachiyomi) | [![stable release](https://img.shields.io/github/release/inorichi/tachiyomi.svg?maxAge=3600&label=download)](https://github.com/inorichi/tachiyomi/releases) | [![latest weekly build](https://img.shields.io/badge/download-latest%20build-blue.svg)](http://tachiyomi.kanade.eu/latest) | [![Translation status](https://hosted.weblate.org/widgets/tachiyomi/-/svg-badge.svg)](https://hosted.weblate.org/engage/tachiyomi/?utm_source=widget) | [![Discord](https://img.shields.io/discord/349436576037732353.svg)](https://discord.gg/tachiyomi) |
+| ![Build check](https://github.com/inorichi/tachiyomi/workflows/Build%20check/badge.svg?branch=dev&event=push) | [![stable release](https://img.shields.io/github/release/inorichi/tachiyomi.svg?maxAge=3600&label=download)](https://github.com/inorichi/tachiyomi/releases) | [![latest weekly build](https://img.shields.io/github/v/release/tachiyomiorg/android-app-preview.svg?maxAge=3600&label=download)](https://github.com/tachiyomiorg/android-app-preview/releases) | [![Translation status](https://hosted.weblate.org/widgets/tachiyomi/-/svg-badge.svg)](https://hosted.weblate.org/engage/tachiyomi/?utm_source=widget) | [![Discord](https://img.shields.io/discord/349436576037732353.svg)](https://discord.gg/tachiyomi) |
 
 
 # ![app icon](./.github/readme-images/app-icon.png)Tachiyomi
@@ -23,7 +23,7 @@ Features include:
 ## Download
 Get the app from our [releases page](https://github.com/inorichi/tachiyomi/releases).
 
-If you want to try new features before they get to the stable release, you can download the preview version [here](http://tachiyomi.kanade.eu/latest).
+If you want to try new features before they get to the stable release, you can download the preview version [here](https://github.com/tachiyomiorg/android-app-preview/releases).
 
 ## Issues, Feature Requests and Contributing
 

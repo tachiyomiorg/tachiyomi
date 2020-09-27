@@ -139,7 +139,7 @@
     <string name="color_filter_a_value">A</string>
     <string name="pref_download_directory">下載位置</string>
     <string name="pref_download_only_over_wifi">僅透過 Wi-Fi 下載</string>
-    <string name="pref_remove_after_marked_as_read">刪除標示為已讀的章節</string>
+    <string name="pref_remove_after_marked_as_read">手動標示為已讀後</string>
     <string name="custom_dir">自訂位置</string>
     <string name="disabled">停用</string>
     <string name="pref_download_new">自動下載新章節</string>
@@ -303,7 +303,6 @@
     <string name="notification_not_connected_to_ac_body">尚未接上電源</string>
     <string name="notification_no_connection_title">已取消同步</string>
     <string name="file_select_backup">選擇備份檔案</string>
-    <string name="file_select_icon">選擇捷徑圖示</string>
     <string name="description_cover">漫畫封面</string>
     <string name="information_empty_category">尚無任何分類，輕觸新增按鈕即可建立分類以組織你的書櫃。</string>
     <string name="download_notifier_downloader_title">下載管理員</string>
@@ -333,7 +332,7 @@
     <string name="transition_next">接下來：</string>
     <string name="notification_new_chapters">發現新章節</string>
     <string name="pref_skip_read_chapters">略過已讀的章節</string>
-    <string name="pref_remove_after_read">閱畢後刪除</string>
+    <string name="pref_remove_after_read">翻閱過後</string>
     <string name="page_downloaded">已複製頁面至「%1$s」</string>
     <string name="transition_no_next">以下空白</string>
     <string name="transition_no_previous">已達盡頭</string>
@@ -424,7 +423,7 @@
     <string name="lock_always">立即</string>
     <string name="lock_when_idle">閒置時鎖定</string>
     <string name="unlock_app">解除鎖定 Tachiyomi</string>
-    <string name="lock_with_biometrics">使用生物辨識鎖定</string>
+    <string name="lock_with_biometrics">生物特徵辨識鎖定</string>
     <string name="secure_screen_summary">在切換應用程式時隱藏預覽，並禁止擷取螢幕畫面</string>
     <string name="secure_screen">防窺畫面</string>
     <string name="pref_category_security">隱私</string>
@@ -526,7 +525,7 @@
     <plurals name="manga_num_chapters">
         <item quantity="other">共 %1$s 章</item>
     </plurals>
-    <string name="tracking_info">將章節進度單向同步至閱讀歷程平台，請逕行前往個別作品的「歷程」頁籤以設置。</string>
+    <string name="tracking_info">將章節進度單向同步至閱讀歷程平台，請逕行前往個別作品的「歷程」頁面以設置。</string>
     <plurals name="num_categories">
         <item quantity="other">%d 個分類</item>
     </plurals>
@@ -586,9 +585,18 @@
     <string name="backup_restore_missing_trackers">尚未登入至歷程平台：</string>
     <string name="channel_progress">進度</string>
     <string name="channel_errors">錯誤</string>
-    <string name="channel_complete">完成</string>
-    <string name="pref_allow_nsfw_sources_blocked">已封鎖</string>
-    <string name="pref_allow_nsfw_sources_allowed">已允許</string>
+    <string name="channel_complete">作業完成</string>
+    <string name="pref_allow_nsfw_sources_blocked">禁止顯示</string>
+    <string name="pref_allow_nsfw_sources_allowed">允許顯示</string>
     <string name="download_notifier_download_finish">下載完成</string>
     <string name="group_downloader">下載</string>
+    <string name="ext_nsfw_short">18+</string>
+    <string name="pref_category_parental_controls">監護</string>
+    <string name="parental_controls_info">即使啟用監護限制，還是可能有漏網之魚。使用者仍可藉由非官方或未正確標幟的擴充套件在本應用程式中瀏覽未滿十八歲之人不宜觀賞的內容。</string>
+    <string name="ext_nsfw_warning">可能包含未滿十八歲之人不宜觀賞的內容</string>
+    <string name="pref_allow_nsfw_sources">未滿十八歲之人不宜瀏覽的來源</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">禁止顯示，但仍可見於擴充套件清單</string>
+    <string name="invalid_backup_file_missing_manga">備份檔並未包含任何漫畫</string>
+    <string name="pref_remove_bookmarked_chapters">刪除有書籤的章節</string>
+    <string name="pref_category_delete_chapters">刪除章節</string>
 </resources>

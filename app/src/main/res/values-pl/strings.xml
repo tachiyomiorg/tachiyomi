@@ -299,7 +299,6 @@
     <string name="notification_cover_update_failed">Nie udało się zaktualizować okładki</string>
     <string name="notification_first_add_to_library">Zanim to zrobisz, dodaj tę mangę do biblioteki</string>
     <string name="file_select_backup">Wybierz plik kopii zapasowej</string>
-    <string name="file_select_icon">Wybierz ikonę skrótu</string>
     <string name="description_cover">Okładka mangi</string>
     <string name="information_no_downloads">Brak pobieranych rozdziałów</string>
     <string name="information_no_recent">Brak ostatnio zaktualizowanych</string>
@@ -612,4 +611,8 @@
     <string name="pref_category_theme">Motyw</string>
     <string name="action_download_unread">Pobierz nieprzeczytane rozdziały</string>
     <string name="action_sort_date_added">Dane dodane</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Zablokuj przeglądanie ale wyświetlaj na liście rozszerzeń</string>
+    <string name="pref_allow_nsfw_sources_allowed">Dozwolone</string>
+    <string name="pref_allow_nsfw_sources">Źródła 18+</string>
+    <string name="pref_category_parental_controls">Kontrola rodzicielska</string>
 </resources>

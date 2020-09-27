@@ -1,34 +1,39 @@
 package eu.kanade.tachiyomi.ui.manga.chapter
 
-import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
+import androidx.core.view.isVisible
+import com.bluelinelabs.conductor.Router
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.ui.manga.MangaPresenter
+import eu.kanade.tachiyomi.util.view.popupMenu
 import eu.kanade.tachiyomi.widget.ExtendedNavigationView
 import eu.kanade.tachiyomi.widget.TabbedBottomSheetDialog
 
 class ChaptersSettingsSheet(
-    activity: Activity,
+    private val router: Router,
     private val presenter: MangaPresenter,
     onGroupClickListener: (ExtendedNavigationView.Group) -> Unit
-) : TabbedBottomSheetDialog(activity) {
+) : TabbedBottomSheetDialog(router) {
 
     val filters: Filter
     private val sort: Sort
     private val display: Display
 
     init {
-        filters = Filter(activity)
+        filters = Filter(router.activity!!)
         filters.onGroupClicked = onGroupClickListener
 
-        sort = Sort(activity)
+        sort = Sort(router.activity!!)
         sort.onGroupClicked = onGroupClickListener
 
-        display = Display(activity)
+        display = Display(router.activity!!)
         display.onGroupClicked = onGroupClickListener
+
+        binding.menu.isVisible = true
+        binding.menu.setOnClickListener { it.post { showPopupMenu(it) } }
     }
 
     override fun getTabViews(): List<View> = listOf(
@@ -42,6 +47,23 @@ class ChaptersSettingsSheet(
         R.string.action_sort,
         R.string.action_display
     )
+
+    private fun showPopupMenu(view: View) {
+        view.popupMenu(
+            R.menu.default_chapter_filter,
+            {
+            },
+            {
+                when (this.itemId) {
+                    R.id.set_as_default -> {
+                        SetChapterSettingsDialog(presenter.manga).showDialog(router)
+                        true
+                    }
+                    else -> true
+                }
+            }
+        )
+    }
 
     /**
      * Filters group (unread, downloaded, ...).

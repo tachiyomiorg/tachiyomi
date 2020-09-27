@@ -118,8 +118,8 @@
     <!-- Downloads section -->
     <string name="pref_download_directory">Localização das Transferências</string>
     <string name="pref_download_only_over_wifi">Apenas transferir por Wi-Fi</string>
-    <string name="pref_remove_after_marked_as_read">Eliminar ao marcar como lido</string>
-    <string name="pref_remove_after_read">Eliminar depois de ler</string>
+    <string name="pref_remove_after_marked_as_read">Depois de marcado como lido</string>
+    <string name="pref_remove_after_read">Depois de lido</string>
     <string name="custom_dir">Localização personalizada</string>
     <string name="disabled">Desativado</string>
     <string name="last_read_chapter">Último capítulo</string>
@@ -400,7 +400,6 @@
     <string name="migrate">Migrar</string>
     <string name="copy">Copiar</string>
     <string name="notification_cover_update_failed">Erro ao atualizar a capa</string>
-    <string name="file_select_icon">Selecionar ícone do atalho</string>
     <string name="information_empty_category">Não tem nenhuma categoria. Pressione o botão (+) para criar uma e organizar a sua biblioteca.</string>
     <string name="download_notifier_downloader_title">Gestor de transferências</string>
     <string name="download_notifier_no_network">Conexão à rede indisponível</string>
@@ -566,7 +565,7 @@
         <item quantity="other">Concluído em %1$s com %2$s erros</item>
     </plurals>
     <string name="pref_refresh_library_covers">Atualizar capas das mangás da biblioteca</string>
-    <string name="tracking_info">Sincronização unidirecional para atualizar o progresso dos capítulos nos serviços de monitorização. Defina a monitorização para entradas individuais das mangás nas suas abas de monitorização.</string>
+    <string name="tracking_info">Sincronização unidirecional para atualizar o progresso dos capítulos nos serviços de monitorização. Defina a monitorização para entradas individuais das mangás no seu botão de monitorização.</string>
     <string name="unofficial_extension_message">Esta extensão não vem da lista oficial de extensões do Tachiyomi.</string>
     <string name="pref_show_reading_mode_summary">Mostra brevemente o modo atual quando o leitor é aberto</string>
     <string name="page_list_empty_error">Nenhuma página encontrada</string>
@@ -635,4 +634,19 @@
     <string name="download_notifier_download_finish">Transferência concluída</string>
     <string name="channel_errors">Erros</string>
     <string name="backup_restore_missing_trackers">Monitorizadores sem sessão iniciada:</string>
+    <string name="pref_remove_bookmarked_chapters">Eliminar capítulos marcados</string>
+    <string name="pref_category_delete_chapters">Eliminar capítulos</string>
+    <string name="ext_nsfw_warning">Pode conter conteúdo 18+</string>
+    <string name="ext_nsfw_short">18+</string>
+    <string name="parental_controls_info">Isto não impede que extensões não oficiais ou potencialmente marcadas de forma incorreta surjam com conteúdos de 18+ dentro da aplicação.</string>
+    <string name="pref_allow_nsfw_sources_blocked">Bloqueado</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Bloquear fontes de navegação mas mostrar na lista de extensões</string>
+    <string name="pref_allow_nsfw_sources_allowed">Permitido</string>
+    <string name="pref_allow_nsfw_sources">fontes 18+</string>
+    <string name="pref_category_parental_controls">Controlos parentais</string>
+    <plurals name="missing_chapters_warning">
+        <item quantity="one">Há 1 capítulo em falta</item>
+        <item quantity="other">Há %d capítulos em falta</item>
+    </plurals>
+    <string name="no_chapters_error">Nenhum capítulo encontrado</string>
 </resources>

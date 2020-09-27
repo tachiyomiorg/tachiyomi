@@ -8,17 +8,18 @@ import androidx.core.text.buildSpannedString
 import androidx.core.view.isVisible
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
-import kotlin.math.floor
 import kotlinx.android.synthetic.main.reader_transition_view.view.lower_text
 import kotlinx.android.synthetic.main.reader_transition_view.view.upper_text
 import kotlinx.android.synthetic.main.reader_transition_view.view.warning
 import kotlinx.android.synthetic.main.reader_transition_view.view.warning_text
+import kotlin.math.floor
 
 class ReaderTransitionView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
     LinearLayout(context, attrs) {
 
     init {
         inflate(context, R.layout.reader_transition_view, this)
+        layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
     }
 
     fun bind(transition: ChapterTransition) {
@@ -92,7 +93,10 @@ class ReaderTransitionView @JvmOverloads constructor(context: Context, attrs: At
             is ChapterTransition.Next -> toChapterNumber - fromChapterNumber - 1f
         }
 
-        val hasMissingChapters = chapterDifference > 0f
+        val hasMissingChapters = when (transition) {
+            is ChapterTransition.Prev -> MissingChapters.hasMissingChapters(fromChapterNumber, toChapterNumber)
+            is ChapterTransition.Next -> MissingChapters.hasMissingChapters(toChapterNumber, fromChapterNumber)
+        }
 
         warning_text.text = resources.getQuantityString(R.plurals.missing_chapters_warning, chapterDifference.toInt(), chapterDifference.toInt())
         warning.isVisible = hasMissingChapters

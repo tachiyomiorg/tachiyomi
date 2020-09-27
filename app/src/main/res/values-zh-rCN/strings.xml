@@ -51,7 +51,7 @@
     <string name="action_next_chapter">下一章</string>
     <string name="action_retry">重试</string>
     <string name="action_remove">移除</string>
-    <string name="action_resume">继续阅读</string>
+    <string name="action_resume">继续</string>
     <string name="action_move">移动</string>
     <string name="action_open_in_browser">在浏览器中打开</string>
     <string name="action_display_mode">显示模式</string>
@@ -347,7 +347,6 @@
     <string name="notification_no_connection_body">连接不可用</string>
     <string name="file_select_cover">选择封面图片</string>
     <string name="file_select_backup">选择备份文件</string>
-    <string name="file_select_icon">选择快捷方式图标</string>
     <string name="update_check_confirm">下载</string>
     <string name="update_check_ignore">忽略</string>
     <string name="update_check_no_new_updates">没有可用的更新</string>
@@ -528,7 +527,7 @@
     <string name="pref_true_color_summary">减少色彩带，但会降低性能</string>
     <string name="action_display_unread_badge">未读标记</string>
     <string name="pref_refresh_library_covers">刷新书架漫画封面</string>
-    <string name="tracking_info">单向同步以更新同步服务中的章节进度。在「同步」选项卡中为单个漫画设置同步。</string>
+    <string name="tracking_info">单向同步以更新跟踪服务的章节进度。通过跟踪按钮设置对单个漫画条目的跟踪。</string>
     <plurals name="notification_update_error">
         <item quantity="other">%1$d 本漫画更新失败</item>
     </plurals>
@@ -595,9 +594,17 @@
     <string name="channel_errors">错误</string>
     <string name="backup_restore_missing_trackers">未登录的同步源：</string>
     <string name="pref_allow_nsfw_sources_blocked">拦截的</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">拦截源但显示在扩展列表中</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">阻止浏览源但显示在扩展列表中</string>
     <string name="pref_allow_nsfw_sources_allowed">允许的</string>
-    <string name="pref_allow_nsfw_sources">NSFW 源</string>
+    <string name="pref_allow_nsfw_sources">仅适合18岁以上人士的源</string>
     <string name="pref_remove_bookmarked_chapters">删除添加为书签的章节</string>
     <string name="pref_category_delete_chapters">删除章节</string>
+    <string name="ext_nsfw_warning">可能包含仅适合18岁以上人士的内容</string>
+    <string name="ext_nsfw_short">18+</string>
+    <string name="parental_controls_info">这不会阻止非官方的或可能被错误标记的扩展程序在应用程序中显示仅适合18岁以上人士的内容。</string>
+    <string name="pref_category_parental_controls">家长控制</string>
+    <plurals name="missing_chapters_warning">
+        <item quantity="other">有 %d 章缺失</item>
+    </plurals>
+    <string name="no_chapters_error">未找到章节</string>
 </resources>

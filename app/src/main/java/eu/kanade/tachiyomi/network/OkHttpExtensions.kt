@@ -1,9 +1,5 @@
 package eu.kanade.tachiyomi.network
 
-import java.io.IOException
-import java.util.concurrent.atomic.AtomicBoolean
-import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
 import kotlinx.coroutines.suspendCancellableCoroutine
 import okhttp3.Call
 import okhttp3.Callback
@@ -13,6 +9,10 @@ import okhttp3.Response
 import rx.Observable
 import rx.Producer
 import rx.Subscription
+import java.io.IOException
+import java.util.concurrent.atomic.AtomicBoolean
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
 
 fun Call.asObservable(): Observable<Response> {
     return Observable.unsafeCreate { subscriber ->
@@ -54,22 +54,24 @@ fun Call.asObservable(): Observable<Response> {
 // Based on https://github.com/gildor/kotlin-coroutines-okhttp
 suspend fun Call.await(assertSuccess: Boolean = false): Response {
     return suspendCancellableCoroutine { continuation ->
-        enqueue(object : Callback {
-            override fun onResponse(call: Call, response: Response) {
-                if (assertSuccess && !response.isSuccessful) {
-                    continuation.resumeWithException(Exception("HTTP error ${response.code}"))
-                    return
+        enqueue(
+            object : Callback {
+                override fun onResponse(call: Call, response: Response) {
+                    if (assertSuccess && !response.isSuccessful) {
+                        continuation.resumeWithException(Exception("HTTP error ${response.code}"))
+                        return
+                    }
+
+                    continuation.resume(response)
                 }
 
-                continuation.resume(response)
+                override fun onFailure(call: Call, e: IOException) {
+                    // Don't bother with resuming the continuation if it is already cancelled.
+                    if (continuation.isCancelled) return
+                    continuation.resumeWithException(e)
+                }
             }
-
-            override fun onFailure(call: Call, e: IOException) {
-                // Don't bother with resuming the continuation if it is already cancelled.
-                if (continuation.isCancelled) return
-                continuation.resumeWithException(e)
-            }
-        })
+        )
 
         continuation.invokeOnCancellation {
             try {

@@ -50,10 +50,10 @@ import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.util.chapter.syncChaptersWithSource
-import kotlin.math.max
 import rx.Observable
 import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
+import kotlin.math.max
 
 class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
 
@@ -84,7 +84,6 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
     }
 
     private fun initParser(): Gson = when (version) {
-        1 -> GsonBuilder().create()
         2 ->
             GsonBuilder()
                 .registerTypeAdapter<MangaImpl>(MangaTypeAdapter.build())
@@ -93,7 +92,7 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
                 .registerTypeAdapter<DHistory>(HistoryTypeAdapter.build())
                 .registerTypeHierarchyAdapter<TrackImpl>(TrackTypeAdapter.build())
                 .create()
-        else -> throw Exception("Json version unknown")
+        else -> throw Exception("Unknown backup version")
     }
 
     /**

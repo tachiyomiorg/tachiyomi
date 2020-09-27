@@ -15,7 +15,6 @@ import com.hippo.unifile.UniFile
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Category
-import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.asImmediateFlow
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
@@ -29,18 +28,19 @@ import eu.kanade.tachiyomi.util.preference.preferenceCategory
 import eu.kanade.tachiyomi.util.preference.switchPreference
 import eu.kanade.tachiyomi.util.preference.titleRes
 import eu.kanade.tachiyomi.util.system.getFilePicker
-import java.io.File
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import uy.kohesive.injekt.injectLazy
+import java.io.File
+import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 
 class SettingsDownloadController : SettingsController() {
 
     private val db: DatabaseHelper by injectLazy()
 
-    override fun setupPreferenceScreen(screen: PreferenceScreen) = with(screen) {
+    override fun setupPreferenceScreen(screen: PreferenceScreen) = screen.apply {
         titleRes = R.string.pref_category_downloads
 
         preference {
@@ -76,8 +76,11 @@ class SettingsDownloadController : SettingsController() {
                 key = Keys.removeAfterReadSlots
                 titleRes = R.string.pref_remove_after_read
                 entriesRes = arrayOf(
-                    R.string.disabled, R.string.last_read_chapter,
-                    R.string.second_to_last, R.string.third_to_last, R.string.fourth_to_last,
+                    R.string.disabled,
+                    R.string.last_read_chapter,
+                    R.string.second_to_last,
+                    R.string.third_to_last,
+                    R.string.fourth_to_last,
                     R.string.fifth_to_last
                 )
                 entryValues = arrayOf("-1", "0", "1", "2", "3", "4")

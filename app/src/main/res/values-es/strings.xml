@@ -81,7 +81,7 @@
     <string name="pref_lock_orientation">Bloquear orientación</string>
     <string name="pref_page_transitions">Animar las transiciones de página</string>
     <string name="pref_show_page_number">Mostrar el número de página</string>
-    <string name="pref_custom_brightness">Brillo personalizado</string>
+    <string name="pref_custom_brightness">Utilizar brillo personalizado</string>
     <string name="pref_keep_screen_on">Mantener la pantalla encendida</string>
     <string name="pref_reader_navigation">Navegación</string>
     <string name="pref_read_with_volume_keys">Teclas de volumen</string>
@@ -238,7 +238,7 @@
     <!-- Information Text -->
     <string name="information_no_downloads">No hay descargas</string>
     <string name="information_no_recent">No hay actualizaciones recientes</string>
-    <string name="information_no_recent_manga">Nada leeído recientemente</string>
+    <string name="information_no_recent_manga">Nada leído recientemente</string>
     <string name="information_empty_library">La biblioteca está vacía. Añádale series a partir de la Busqueda.</string>
     <!-- Download Notification -->
     <string name="download_notifier_title_error">Error</string>
@@ -338,7 +338,6 @@
     <string name="cover_updated">Cubierta actualizada</string>
     <string name="page_downloaded">Página copiada a %1$s</string>
     <string name="notification_cover_update_failed">Error al actualizar la portada</string>
-    <string name="file_select_icon">Seleccionar icono de acceso directo</string>
     <string name="download_notifier_downloader_title">Descargador</string>
     <string name="invalid_combination">Predefinido no puede ser seleccionada con otras categorías</string>
     <string name="action_global_search">Búsqueda global</string>
@@ -567,7 +566,7 @@
         <item quantity="one">Hecho %1$s con %2$s error</item>
         <item quantity="other">Hecho %1$s con %2$s errores</item>
     </plurals>
-    <string name="tracking_info">Sincronización unidireccional para actualizar el progreso del capítulo en los servicios de rastreo. Configurar el seguimiento de las entradas de manga individuales desde sus pestañas de seguimiento.</string>
+    <string name="tracking_info">Sincronización unidireccional para actualizar el progreso del capítulo en los servicios de rastreo. Configurar el seguimiento de las entradas de manga individuales desde sus botones de seguimiento.</string>
     <string name="action_display_unread_badge">Icono de no leídas</string>
     <plurals name="notification_update_error">
         <item quantity="one">1 actualización fallida</item>
@@ -636,12 +635,19 @@
     <string name="channel_progress">Progreso</string>
     <string name="channel_errors">Errores</string>
     <string name="backup_restore_missing_trackers">Rastreadores no conectados:</string>
-    <string name="pref_allow_nsfw_sources">Fuentes NSFW</string>
+    <string name="pref_allow_nsfw_sources">Fuentes 18+</string>
     <string name="pref_allow_nsfw_sources_blocked">Bloqueado</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Bloquear fuente pero mostrarlo en la lista de extensiones</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Bloquear fuentes de navegación pero mostrarlas en la lista de extensiones</string>
     <string name="pref_allow_nsfw_sources_allowed">Permitido</string>
     <string name="pref_remove_bookmarked_chapters">Borrar capítulos marcados</string>
     <string name="pref_category_delete_chapters">Borrar capítulos</string>
     <string name="ext_nsfw_warning">Puede contener contenido 18+</string>
     <string name="ext_nsfw_short">18+</string>
+    <string name="parental_controls_info">Esto no evita que las extensiones no oficiales o potencialmente marcadas incorrectamente muestren contenido para mayores de 18 años dentro de la aplicación.</string>
+    <string name="pref_category_parental_controls">Controles parentales</string>
+    <plurals name="missing_chapters_warning">
+        <item quantity="one">Falta 1 capítulo</item>
+        <item quantity="other">Faltan %d capítulos</item>
+    </plurals>
+    <string name="no_chapters_error">No hay capítulos</string>
 </resources>

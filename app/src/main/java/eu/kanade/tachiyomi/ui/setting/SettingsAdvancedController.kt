@@ -15,7 +15,6 @@ import eu.kanade.tachiyomi.data.cache.ChapterCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService.Target
-import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.network.NetworkHelper
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.util.preference.defaultValue
@@ -31,9 +30,9 @@ import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import uy.kohesive.injekt.injectLazy
+import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 
 class SettingsAdvancedController : SettingsController() {
-
     private val network: NetworkHelper by injectLazy()
 
     private val chapterCache: ChapterCache by injectLazy()
@@ -41,9 +40,8 @@ class SettingsAdvancedController : SettingsController() {
     private val db: DatabaseHelper by injectLazy()
 
     @SuppressLint("BatteryLife")
-    override fun setupPreferenceScreen(screen: PreferenceScreen) = with(screen) {
+    override fun setupPreferenceScreen(screen: PreferenceScreen) = screen.apply {
         titleRes = R.string.pref_category_advanced
-
         switchPreference {
             key = "acra.enable"
             titleRes = R.string.pref_enable_acra
@@ -53,6 +51,7 @@ class SettingsAdvancedController : SettingsController() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             preference {
+                key = "pref_disable_battery_optimization"
                 titleRes = R.string.pref_disable_battery_optimization
                 summaryRes = R.string.pref_disable_battery_optimization_summary
 
@@ -86,6 +85,7 @@ class SettingsAdvancedController : SettingsController() {
                 onClick { clearChapterCache() }
             }
             preference {
+                key = "pref_clear_database"
                 titleRes = R.string.pref_clear_database
                 summaryRes = R.string.pref_clear_database_summary
 
@@ -101,6 +101,7 @@ class SettingsAdvancedController : SettingsController() {
             titleRes = R.string.label_network
 
             preference {
+                key = "pref_clear_cookies"
                 titleRes = R.string.pref_clear_cookies
 
                 onClick {
@@ -120,11 +121,13 @@ class SettingsAdvancedController : SettingsController() {
             titleRes = R.string.label_library
 
             preference {
+                key = "pref_refresh_library_covers"
                 titleRes = R.string.pref_refresh_library_covers
 
                 onClick { LibraryUpdateService.start(context, target = Target.COVERS) }
             }
             preference {
+                key = "pref_refresh_library_tracking"
                 titleRes = R.string.pref_refresh_library_tracking
                 summaryRes = R.string.pref_refresh_library_tracking_summary
 

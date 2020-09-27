@@ -1,16 +1,16 @@
 package eu.kanade.tachiyomi.widget
 
-import android.app.Activity
 import android.view.View
 import android.view.ViewGroup
+import com.bluelinelabs.conductor.Router
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import eu.kanade.tachiyomi.databinding.CommonTabbedSheetBinding
 
-abstract class TabbedBottomSheetDialog(private val activity: Activity) : BottomSheetDialog(activity) {
+abstract class TabbedBottomSheetDialog(private val router: Router) : BottomSheetDialog(router.activity!!) {
+
+    val binding: CommonTabbedSheetBinding = CommonTabbedSheetBinding.inflate(router.activity!!.layoutInflater)
 
     init {
-        val binding: CommonTabbedSheetBinding = CommonTabbedSheetBinding.inflate(activity.layoutInflater)
-
         val adapter = LibrarySettingsSheetAdapter()
         binding.pager.offscreenPageLimit = 2
         binding.pager.adapter = adapter
@@ -34,7 +34,7 @@ abstract class TabbedBottomSheetDialog(private val activity: Activity) : BottomS
         }
 
         override fun getPageTitle(position: Int): CharSequence {
-            return activity.resources!!.getString(getTabTitles()[position])
+            return router.activity!!.resources!!.getString(getTabTitles()[position])
         }
     }
 }

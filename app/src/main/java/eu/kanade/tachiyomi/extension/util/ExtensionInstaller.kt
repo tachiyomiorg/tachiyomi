@@ -13,11 +13,11 @@ import com.jakewharton.rxrelay.PublishRelay
 import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.extension.model.InstallStep
 import eu.kanade.tachiyomi.util.storage.getUriCompat
-import java.io.File
-import java.util.concurrent.TimeUnit
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import timber.log.Timber
+import java.io.File
+import java.util.concurrent.TimeUnit
 
 /**
  * The installer which installs, updates and uninstalls the extensions.

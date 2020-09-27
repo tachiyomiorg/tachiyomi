@@ -19,7 +19,6 @@ import eu.kanade.tachiyomi.data.backup.BackupCreatorJob
 import eu.kanade.tachiyomi.data.backup.BackupRestoreService
 import eu.kanade.tachiyomi.data.backup.BackupRestoreValidator
 import eu.kanade.tachiyomi.data.backup.models.Backup
-import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.data.preference.asImmediateFlow
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.base.controller.requestPermissionsSafe
@@ -36,6 +35,7 @@ import eu.kanade.tachiyomi.util.system.getFilePicker
 import eu.kanade.tachiyomi.util.system.toast
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 
 class SettingsBackupController : SettingsController() {
 
@@ -49,10 +49,11 @@ class SettingsBackupController : SettingsController() {
         requestPermissionsSafe(arrayOf(WRITE_EXTERNAL_STORAGE), 500)
     }
 
-    override fun setupPreferenceScreen(screen: PreferenceScreen) = with(screen) {
+    override fun setupPreferenceScreen(screen: PreferenceScreen) = screen.apply {
         titleRes = R.string.backup
 
         preference {
+            key = "pref_create_backup"
             titleRes = R.string.pref_create_backup
             summaryRes = R.string.pref_create_backup_summ
 
@@ -67,6 +68,7 @@ class SettingsBackupController : SettingsController() {
             }
         }
         preference {
+            key = "pref_restore_backup"
             titleRes = R.string.pref_restore_backup
             summaryRes = R.string.pref_restore_backup_summ
 
@@ -90,9 +92,12 @@ class SettingsBackupController : SettingsController() {
                 key = Keys.backupInterval
                 titleRes = R.string.pref_backup_interval
                 entriesRes = arrayOf(
-                    R.string.update_never, R.string.update_6hour,
-                    R.string.update_12hour, R.string.update_24hour,
-                    R.string.update_48hour, R.string.update_weekly
+                    R.string.update_never,
+                    R.string.update_6hour,
+                    R.string.update_12hour,
+                    R.string.update_24hour,
+                    R.string.update_48hour,
+                    R.string.update_weekly
                 )
                 entryValues = arrayOf("0", "6", "12", "24", "48", "168")
                 defaultValue = "0"
@@ -211,8 +216,11 @@ class SettingsBackupController : SettingsController() {
         override fun onCreateDialog(savedViewState: Bundle?): Dialog {
             val activity = activity!!
             val options = arrayOf(
-                R.string.manga, R.string.categories, R.string.chapters,
-                R.string.track, R.string.history
+                R.string.manga,
+                R.string.categories,
+                R.string.chapters,
+                R.string.track,
+                R.string.history
             )
                 .map { activity.getString(it) }
 

@@ -249,7 +249,7 @@
     <string name="backup_restore_missing_sources">Ҫук ҫӑл куҫсем:</string>
     <string name="pref_search_pinned_sources_only">Ҫакнӑ ҫӑл куҫсене ҫеҫ кӗрт</string>
     <string name="pref_enable_automatic_extension_updates">Хушмасем валли ҫӗнетӳ пуррине тӗрӗслемелле</string>
-    <string name="tracking_info">Сӑнану сервиссенче сыпӑкӑн ӳсӗмне ҫӗнетме пӗр енлӗ пӗрлӗхлени пур. Манкӑн уйрӑм ҫыравӗсемпе вӗсен сӑнану кантӑксем валли сӑнану ӗнерле.</string>
+    <string name="tracking_info">Сӑнану сервиссенче сыпӑкӑн ӳсӗмне ҫӗнетме пӗр енлӗ пӗрлӗхлени. Манкӑн уйрӑм ҫыравӗсемпе вӗсен сӑнану пускӑчсем валли сӑнану ӗнерле.</string>
     <string name="pref_auto_update_manga_sync">Вуланӑ хыҫҫӑн сыпӑксен ӳсӗме ҫӗнет</string>
     <string name="pref_download_new_categories">Тиенекенсем патне кӗртмелли пухмӑшсем</string>
     <string name="fifth_to_last">Вуланӑ сыпӑкран пиллӗкмӗшӗ</string>
@@ -328,7 +328,7 @@
         <item quantity="one">%1$s,%2$s йӑнӑшпа тӑвӑннӑ</item>
         <item quantity="other">%1$s, %2$s йӑнӑшпа тӑвӑннӑ</item>
     </plurals>
-    <string name="backup_restore_content">Пӗлӗмсене тавӑрнӑ чух ҫӑл куҫсем усӑ курӑнаҫҫӗ, ҫакӑ вара пысӑк трафик тӑкакӗсене кӳме пултарать.
+    <string name="backup_restore_content">Пӗлӗмсене тавӑрнӑ чух ҫӑл куҫсем усӑ курӑнаҫҫӗ, ҫакӑ вара пысӑк траффик тӑкакӗсене кӳме пултарать.
 \n
 \nТавӑрас умӗн кирлӗ хушмасене тата сӑнану сервиссене лартнине, тата вӗсене кӗнине тӗрӗсле.</string>
     <string name="add_tracking">Сӑнану хуш</string>
@@ -371,7 +371,6 @@
     <string name="update_check_look_for_updates">Ҫӗнетӳсем шырани…</string>
     <string name="update_check_no_new_updates">Ҫӗнетӳсем тупӑнман</string>
     <string name="update_check_confirm">Тиесе ил</string>
-    <string name="file_select_icon">Ярлӑк суйла</string>
     <string name="file_select_cover">Хуплашка суйла</string>
     <string name="notification_no_connection_body">Ҫыхӑну кӗме май ҫук</string>
     <string name="notification_no_connection_title">Пӗрлӗхлени пӑрахӑҫланӑ</string>
@@ -571,7 +570,7 @@
     <string name="creating_backup_error">Янтӑвлани йӑнӑшӗ</string>
     <string name="creating_backup">Янтӑв тӑвӑнать</string>
     <string name="backup_choice">Мӗн эсӗ янтӑвласшӑн\?</string>
-    <string name="backup_in_progress">Янтӑв пурнӑҫланать ӗнтӗ</string>
+    <string name="backup_in_progress">Янтӑ пурнӑҫланать ӗнтӗ</string>
     <string name="restore_completed">Тавӑрни вӗҫленнӗ</string>
     <string name="tracker_not_logged_in">Кӗмен: %1$s</string>
     <string name="pref_create_backup_summ">Хальхи вулавăша тавӑрма усӑ курма пулать</string>
@@ -606,10 +605,19 @@
     <string name="download_notifier_download_finish">Тиев вӗҫленӗ</string>
     <string name="channel_errors">Йӑнӑшсем</string>
     <string name="backup_restore_missing_trackers">Кӗмен сӑнанусем:</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Ҫӑл куҫа чарса ларт, анчах хушмасен ят-йышӗнче кӑтарт</string>
-    <string name="pref_allow_nsfw_sources">NSFW ҫӑл куҫсем</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Ҫӑл куҫа пӑхма чарса ларт, анчах хушмасен ят-йышӗнче кӑтарт</string>
+    <string name="pref_allow_nsfw_sources">18+ ҫӑл куҫсем</string>
     <string name="pref_allow_nsfw_sources_allowed">Ирӗк панӑ</string>
     <string name="pref_allow_nsfw_sources_blocked">Чарса лартнӑ</string>
     <string name="pref_remove_bookmarked_chapters">Картнӑ сыпӑксене катерт</string>
     <string name="pref_category_delete_chapters">Сыпӑксене катерт</string>
+    <string name="ext_nsfw_warning">18+ шалаш пулма пултарать</string>
+    <string name="ext_nsfw_short">18+</string>
+    <string name="parental_controls_info">Ҫакӑ хушӑмӑн официаллӑ мар е тӗрӗс мар палӑртнӑ хушмасен 18+ шалашне кӑтартма чӑрмантармасть.</string>
+    <string name="pref_category_parental_controls">Атте-анне тӗрӗслевӗ</string>
+    <plurals name="missing_chapters_warning">
+        <item quantity="one">1 сыпӑк ҫук</item>
+        <item quantity="other">%d сыпӑк ҫук</item>
+    </plurals>
+    <string name="no_chapters_error">Сыпӑксем ҫук</string>
 </resources>

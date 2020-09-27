@@ -136,8 +136,8 @@
     <!-- Downloads section -->
     <string name="pref_download_directory">Posizione dello scaricamento</string>
     <string name="pref_download_only_over_wifi">Scarica solo tramite Wi-Fi</string>
-    <string name="pref_remove_after_marked_as_read">Rimuovi quando indicato come letto</string>
-    <string name="pref_remove_after_read">Rimuovi dopo lettura</string>
+    <string name="pref_remove_after_marked_as_read">Dopo aver contrassegnato manualmente come letto</string>
+    <string name="pref_remove_after_read">Dopo la lettura</string>
     <string name="custom_dir">Posizione personalizzata</string>
     <string name="disabled">Disabilitato</string>
     <string name="last_read_chapter">Ultimo capitolo letto</string>
@@ -262,7 +262,6 @@
     <!-- File Picker Titles -->
     <string name="file_select_cover">Seleziona immagine copertina</string>
     <string name="file_select_backup">Seleziona il file di backup</string>
-    <string name="file_select_icon">Seleziona l\'icona della scorciatoia</string>
     <!--UpdateCheck-->
     <string name="update_check_confirm">Scarica</string>
     <string name="update_check_ignore">Ignora</string>
@@ -562,7 +561,7 @@
     </plurals>
     <string name="restore_duration">%02d min %02d sec</string>
     <string name="pref_search_pinned_sources_only">Includi solo le fonti fissate</string>
-    <string name="tracking_info">Sincronizzazione a senso unico per aggiornare l\'avanzamento del capitolo sui servizi di monitoraggio. Imposta il monitoraggio per le singole voci del manga dalle loro schede di monitoraggio.</string>
+    <string name="tracking_info">Sincronizzazione a senso unico per aggiornare l\'avanzamento del capitolo sui servizi di monitoraggio. Imposta il monitoraggio per le singole voci del manga dai loro pulsanti di monitoraggio.</string>
     <string name="pref_true_color_summary">Riduce l\'uso della banda, ma influisce sulle prestazioni</string>
     <plurals name="num_categories">
         <item quantity="one">%d categoria</item>
@@ -631,4 +630,26 @@
         <item quantity="other">%d tracciatori</item>
     </plurals>
     <string name="channel_progress">Progresso</string>
+    <string name="pref_allow_nsfw_sources_allowed">Permesso</string>
+    <string name="group_backup_restore">Backup e ripristino</string>
+    <string name="group_downloader">Scaricamenti</string>
+    <string name="channel_errors">Errori</string>
+    <string name="channel_complete">Completo</string>
+    <string name="download_notifier_download_finish">Scaricamento completato</string>
+    <string name="no_pinned_sources">Non hai fonti fissate</string>
+    <string name="pref_remove_bookmarked_chapters">Elimina capitoli contrassegnati</string>
+    <string name="pref_category_delete_chapters">Elimina capitoli</string>
+    <string name="ext_nsfw_warning">Potrebbe contenere materiale 18+</string>
+    <string name="ext_nsfw_short">18+</string>
+    <string name="pref_allow_nsfw_sources">Fonti 18+</string>
+    <string name="pref_category_parental_controls">Filtro famiglia</string>
+    <plurals name="missing_chapters_warning">
+        <item quantity="one">C\'è un capitolo mancante</item>
+        <item quantity="other">Ci sono %d capitoli mancanti</item>
+    </plurals>
+    <string name="backup_restore_missing_trackers">Trackers non collegati:</string>
+    <string name="no_chapters_error">Nessun capitolo trovato</string>
+    <string name="parental_controls_info">Questo non impedisce a estensioni non ufficiali o potenzialmente segnalate in modo errato di far mostrare contenuti 18+ all\'interno dell\'app.</string>
+    <string name="pref_allow_nsfw_sources_blocked">Bloccato</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Blocca le fonti di navigazione ma mostrale nell\'elenco delle estensioni</string>
 </resources>

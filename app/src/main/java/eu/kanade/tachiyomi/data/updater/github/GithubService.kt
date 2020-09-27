@@ -4,11 +4,12 @@ import eu.kanade.tachiyomi.network.NetworkHelper
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
 /**
- * Used to connect with the GitHub API.
+ * Used to connect with the GitHub API to get the latest release version from a repo.
  */
 interface GithubService {
 
@@ -24,6 +25,6 @@ interface GithubService {
         }
     }
 
-    @GET("/repos/inorichi/tachiyomi/releases/latest")
-    suspend fun getLatestVersion(): GithubRelease
+    @GET("/repos/{repo}/releases/latest")
+    suspend fun getLatestVersion(@Path("repo", encoded = true) repo: String): GithubRelease
 }

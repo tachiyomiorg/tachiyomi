@@ -357,7 +357,6 @@
     <string name="notification_no_connection_body">Tilkobling ikke tilgjengelig</string>
     <string name="file_select_cover">Velg omslagsbilde</string>
     <string name="file_select_backup">Velg sikkerhetskopifil</string>
-    <string name="file_select_icon">Velg snarveisikon</string>
     <string name="update_check_no_new_updates">Ingen nye oppdateringer tilgjengelige</string>
     <string name="update_check_look_for_updates">Ser etter oppdateringer…</string>
     <string name="update_check_notification_file_download">Last ned oppdatering</string>
@@ -572,4 +571,16 @@
     <string name="channel_complete">Fullført</string>
     <string name="notification_chapters_single_and_more">Kapittel %1$s og %2$s til</string>
     <string name="no_pinned_sources">Du har ingen festede kilder</string>
+    <string name="channel_progress">Framdrift</string>
+    <string name="download_notifier_download_finish">Nedlastet</string>
+    <string name="pref_remove_bookmarked_chapters">Slett bokmerkede kapittel</string>
+    <string name="pref_category_delete_chapters">Slett kapittel</string>
+    <string name="ext_nsfw_warning">Kan inneholde innhold for 18+</string>
+    <string name="ext_nsfw_short">18+</string>
+    <string name="parental_controls_info">Dette forhindrer ikke uoffisielle eller potensielt feilaktig kategoriserte tillegg fra å vise innhold for 18+ i programmet.</string>
+    <string name="pref_allow_nsfw_sources_blocked">Blokkert</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Blokker surfing av kilder, men vis i tilleggslisten</string>
+    <string name="pref_allow_nsfw_sources_allowed">Tillatt</string>
+    <string name="pref_allow_nsfw_sources">Kilder for 18+</string>
+    <string name="pref_category_parental_controls">Foreldrekontroll</string>
 </resources>

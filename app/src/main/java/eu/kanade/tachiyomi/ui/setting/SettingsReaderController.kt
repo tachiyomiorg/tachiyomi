@@ -3,7 +3,6 @@ package eu.kanade.tachiyomi.ui.setting
 import android.os.Build
 import androidx.preference.PreferenceScreen
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.data.preference.PreferenceValues.TappingInvertMode
 import eu.kanade.tachiyomi.data.preference.asImmediateFlow
 import eu.kanade.tachiyomi.util.preference.defaultValue
@@ -16,18 +15,22 @@ import eu.kanade.tachiyomi.util.preference.switchPreference
 import eu.kanade.tachiyomi.util.preference.titleRes
 import eu.kanade.tachiyomi.util.system.hasDisplayCutout
 import kotlinx.coroutines.flow.launchIn
+import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 
 class SettingsReaderController : SettingsController() {
 
-    override fun setupPreferenceScreen(screen: PreferenceScreen) = with(screen) {
+    override fun setupPreferenceScreen(screen: PreferenceScreen) = screen.apply {
         titleRes = R.string.pref_category_reader
 
         intListPreference {
             key = Keys.defaultViewer
             titleRes = R.string.pref_viewer_type
             entriesRes = arrayOf(
-                R.string.left_to_right_viewer, R.string.right_to_left_viewer,
-                R.string.vertical_viewer, R.string.webtoon_viewer, R.string.vertical_plus_viewer
+                R.string.left_to_right_viewer,
+                R.string.right_to_left_viewer,
+                R.string.vertical_viewer,
+                R.string.webtoon_viewer,
+                R.string.vertical_plus_viewer
             )
             entryValues = arrayOf("1", "2", "3", "4", "5")
             defaultValue = "2"
@@ -68,8 +71,10 @@ class SettingsReaderController : SettingsController() {
                 key = Keys.rotation
                 titleRes = R.string.pref_rotation_type
                 entriesRes = arrayOf(
-                    R.string.rotation_free, R.string.rotation_lock,
-                    R.string.rotation_force_portrait, R.string.rotation_force_landscape
+                    R.string.rotation_free,
+                    R.string.rotation_lock,
+                    R.string.rotation_force_portrait,
+                    R.string.rotation_force_landscape
                 )
                 entryValues = arrayOf("1", "2", "3", "4")
                 defaultValue = "1"
@@ -136,9 +141,12 @@ class SettingsReaderController : SettingsController() {
                 key = Keys.imageScaleType
                 titleRes = R.string.pref_image_scale_type
                 entriesRes = arrayOf(
-                    R.string.scale_type_fit_screen, R.string.scale_type_stretch,
-                    R.string.scale_type_fit_width, R.string.scale_type_fit_height,
-                    R.string.scale_type_original_size, R.string.scale_type_smart_fit
+                    R.string.scale_type_fit_screen,
+                    R.string.scale_type_stretch,
+                    R.string.scale_type_fit_width,
+                    R.string.scale_type_fit_height,
+                    R.string.scale_type_original_size,
+                    R.string.scale_type_smart_fit
                 )
                 entryValues = arrayOf("1", "2", "3", "4", "5", "6")
                 defaultValue = "1"
@@ -148,8 +156,10 @@ class SettingsReaderController : SettingsController() {
                 key = Keys.zoomStart
                 titleRes = R.string.pref_zoom_start
                 entriesRes = arrayOf(
-                    R.string.zoom_start_automatic, R.string.zoom_start_left,
-                    R.string.zoom_start_right, R.string.zoom_start_center
+                    R.string.zoom_start_automatic,
+                    R.string.zoom_start_left,
+                    R.string.zoom_start_right,
+                    R.string.zoom_start_center
                 )
                 entryValues = arrayOf("1", "2", "3", "4")
                 defaultValue = "1"

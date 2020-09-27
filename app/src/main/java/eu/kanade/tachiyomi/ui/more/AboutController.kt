@@ -10,9 +10,9 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.mikepenz.aboutlibraries.LibsBuilder
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.updater.UpdateChecker
 import eu.kanade.tachiyomi.data.updater.UpdateResult
 import eu.kanade.tachiyomi.data.updater.UpdaterService
+import eu.kanade.tachiyomi.data.updater.github.GithubUpdateChecker
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.setting.SettingsController
 import eu.kanade.tachiyomi.util.lang.launchNow
@@ -23,28 +23,29 @@ import eu.kanade.tachiyomi.util.preference.preferenceCategory
 import eu.kanade.tachiyomi.util.preference.titleRes
 import eu.kanade.tachiyomi.util.system.copyToClipboard
 import eu.kanade.tachiyomi.util.system.toast
+import timber.log.Timber
 import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
-import timber.log.Timber
 
 class AboutController : SettingsController() {
 
     /**
      * Checks for new releases
      */
-    private val updateChecker by lazy { UpdateChecker.getUpdateChecker() }
+    private val updateChecker by lazy { GithubUpdateChecker() }
 
     private val dateFormat: DateFormat = preferences.dateFormat()
 
     private val isUpdaterEnabled = BuildConfig.INCLUDE_UPDATER
 
-    override fun setupPreferenceScreen(screen: PreferenceScreen) = with(screen) {
+    override fun setupPreferenceScreen(screen: PreferenceScreen) = screen.apply {
         titleRes = R.string.pref_category_about
 
         preference {
+            key = "pref_about_version"
             titleRes = R.string.version
             summary = if (BuildConfig.DEBUG) {
                 "Preview r${BuildConfig.COMMIT_COUNT} (${BuildConfig.COMMIT_SHA})"
@@ -55,17 +56,20 @@ class AboutController : SettingsController() {
             onClick { copyDebugInfo() }
         }
         preference {
+            key = "pref_about_build_time"
             titleRes = R.string.build_time
             summary = getFormattedBuildTime()
         }
         if (isUpdaterEnabled) {
             preference {
+                key = "pref_about_check_for_updates"
                 titleRes = R.string.check_for_updates
 
                 onClick { checkVersion() }
             }
         }
         preference {
+            key = "pref_about_whats_new"
             titleRes = R.string.whats_new
 
             onClick {
@@ -81,6 +85,7 @@ class AboutController : SettingsController() {
         }
         if (BuildConfig.DEBUG) {
             preference {
+                key = "pref_about_notices"
                 titleRes = R.string.notices
 
                 onClick {
@@ -92,6 +97,7 @@ class AboutController : SettingsController() {
 
         preferenceCategory {
             preference {
+                key = "pref_about_website"
                 titleRes = R.string.website
                 val url = "https://tachiyomi.org"
                 summary = url
@@ -101,6 +107,7 @@ class AboutController : SettingsController() {
                 }
             }
             preference {
+                key = "pref_about_discord"
                 title = "Discord"
                 val url = "https://discord.gg/tachiyomi"
                 summary = url
@@ -110,6 +117,7 @@ class AboutController : SettingsController() {
                 }
             }
             preference {
+                key = "pref_about_github"
                 title = "GitHub"
                 val url = "https://github.com/inorichi/tachiyomi"
                 summary = url
@@ -119,6 +127,7 @@ class AboutController : SettingsController() {
                 }
             }
             preference {
+                key = "pref_about_label_extensions"
                 titleRes = R.string.label_extensions
                 val url = "https://github.com/inorichi/tachiyomi-extensions"
                 summary = url
@@ -128,6 +137,7 @@ class AboutController : SettingsController() {
                 }
             }
             preference {
+                key = "pref_about_licenses"
                 titleRes = R.string.licenses
 
                 onClick {
@@ -224,7 +234,9 @@ class AboutController : SettingsController() {
             val buildTime = inputDf.parse(BuildConfig.BUILD_TIME)
 
             val outputDf = DateFormat.getDateTimeInstance(
-                DateFormat.MEDIUM, DateFormat.SHORT, Locale.getDefault()
+                DateFormat.MEDIUM,
+                DateFormat.SHORT,
+                Locale.getDefault()
             )
             outputDf.timeZone = TimeZone.getDefault()
 

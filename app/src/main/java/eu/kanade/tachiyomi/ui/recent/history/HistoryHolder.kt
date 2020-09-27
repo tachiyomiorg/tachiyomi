@@ -8,13 +8,13 @@ import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
 import eu.kanade.tachiyomi.util.lang.toTimestampString
-import java.util.Date
 import kotlinx.android.synthetic.main.history_item.cover
 import kotlinx.android.synthetic.main.history_item.holder
 import kotlinx.android.synthetic.main.history_item.manga_subtitle
 import kotlinx.android.synthetic.main.history_item.manga_title
 import kotlinx.android.synthetic.main.history_item.remove
 import kotlinx.android.synthetic.main.history_item.resume
+import java.util.Date
 
 /**
  * Holder that contains recent manga item

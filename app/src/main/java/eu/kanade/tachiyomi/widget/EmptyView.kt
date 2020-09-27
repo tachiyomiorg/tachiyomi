@@ -8,10 +8,10 @@ import androidx.annotation.StringRes
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.view.isVisible
 import eu.kanade.tachiyomi.R
-import kotlin.random.Random
 import kotlinx.android.synthetic.main.common_view_empty.view.actions_container
 import kotlinx.android.synthetic.main.common_view_empty.view.text_face
 import kotlinx.android.synthetic.main.common_view_empty.view.text_label
+import kotlin.random.Random
 
 class EmptyView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
     RelativeLayout(context, attrs) {

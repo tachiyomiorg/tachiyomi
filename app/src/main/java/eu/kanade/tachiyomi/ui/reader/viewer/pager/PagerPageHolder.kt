@@ -35,12 +35,12 @@ import eu.kanade.tachiyomi.ui.webview.WebViewActivity
 import eu.kanade.tachiyomi.util.system.ImageUtil
 import eu.kanade.tachiyomi.util.system.dpToPx
 import eu.kanade.tachiyomi.widget.ViewPagerAdapter
-import java.io.InputStream
-import java.util.concurrent.TimeUnit
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
+import java.io.InputStream
+import java.util.concurrent.TimeUnit
 
 /**
  * View of the ViewPager that contains a page of a chapter.
@@ -307,20 +307,22 @@ class PagerPageHolder(
             setMinimumDpi(90)
             setMinimumTileDpi(180)
             setCropBorders(config.imageCropBorders)
-            setOnImageEventListener(object : SubsamplingScaleImageView.DefaultOnImageEventListener() {
-                override fun onReady() {
-                    when (config.imageZoomType) {
-                        ZoomType.Left -> setScaleAndCenter(scale, PointF(0f, 0f))
-                        ZoomType.Right -> setScaleAndCenter(scale, PointF(sWidth.toFloat(), 0f))
-                        ZoomType.Center -> setScaleAndCenter(scale, center.also { it?.y = 0f })
+            setOnImageEventListener(
+                object : SubsamplingScaleImageView.DefaultOnImageEventListener() {
+                    override fun onReady() {
+                        when (config.imageZoomType) {
+                            ZoomType.Left -> setScaleAndCenter(scale, PointF(0f, 0f))
+                            ZoomType.Right -> setScaleAndCenter(scale, PointF(sWidth.toFloat(), 0f))
+                            ZoomType.Center -> setScaleAndCenter(scale, center.also { it?.y = 0f })
+                        }
+                        onImageDecoded()
                     }
-                    onImageDecoded()
-                }
 
-                override fun onImageLoadError(e: Exception) {
-                    onImageDecodeError()
+                    override fun onImageLoadError(e: Exception) {
+                        onImageDecodeError()
+                    }
                 }
-            })
+            )
         }
         addView(subsamplingImageView)
         return subsamplingImageView!!
@@ -338,16 +340,18 @@ class PagerPageHolder(
             setZoomTransitionDuration(viewer.config.doubleTapAnimDuration)
             setScaleLevels(1f, 2f, 3f)
             // Force 2 scale levels on double tap
-            setOnDoubleTapListener(object : GestureDetector.SimpleOnGestureListener() {
-                override fun onDoubleTap(e: MotionEvent): Boolean {
-                    if (scale > 1f) {
-                        setScale(1f, e.x, e.y, true)
-                    } else {
-                        setScale(2f, e.x, e.y, true)
+            setOnDoubleTapListener(
+                object : GestureDetector.SimpleOnGestureListener() {
+                    override fun onDoubleTap(e: MotionEvent): Boolean {
+                        if (scale > 1f) {
+                            setScale(1f, e.x, e.y, true)
+                        } else {
+                            setScale(2f, e.x, e.y, true)
+                        }
+                        return true
                     }
-                    return true
                 }
-            })
+            )
         }
         addView(imageView)
         return imageView!!
@@ -437,31 +441,33 @@ class PagerPageHolder(
             .skipMemoryCache(true)
             .diskCacheStrategy(DiskCacheStrategy.NONE)
             .transition(DrawableTransitionOptions.with(NoTransition.getFactory()))
-            .listener(object : RequestListener<Drawable> {
-                override fun onLoadFailed(
-                    e: GlideException?,
-                    model: Any?,
-                    target: Target<Drawable>?,
-                    isFirstResource: Boolean
-                ): Boolean {
-                    onImageDecodeError()
-                    return false
-                }
-
-                override fun onResourceReady(
-                    resource: Drawable?,
-                    model: Any?,
-                    target: Target<Drawable>?,
-                    dataSource: DataSource?,
-                    isFirstResource: Boolean
-                ): Boolean {
-                    if (resource is GifDrawable) {
-                        resource.setLoopCount(GifDrawable.LOOP_INTRINSIC)
+            .listener(
+                object : RequestListener<Drawable> {
+                    override fun onLoadFailed(
+                        e: GlideException?,
+                        model: Any?,
+                        target: Target<Drawable>?,
+                        isFirstResource: Boolean
+                    ): Boolean {
+                        onImageDecodeError()
+                        return false
                     }
-                    onImageDecoded()
-                    return false
+
+                    override fun onResourceReady(
+                        resource: Drawable?,
+                        model: Any?,
+                        target: Target<Drawable>?,
+                        dataSource: DataSource?,
+                        isFirstResource: Boolean
+                    ): Boolean {
+                        if (resource is GifDrawable) {
+                            resource.setLoopCount(GifDrawable.LOOP_INTRINSIC)
+                        }
+                        onImageDecoded()
+                        return false
+                    }
                 }
-            })
+            )
             .into(this)
     }
 }

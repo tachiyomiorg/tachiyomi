@@ -66,7 +66,7 @@ class MangaChaptersHeaderAdapter(
             } else {
                 view.context.getResourceColor(R.attr.colorOnPrimary)
             }
-            DrawableCompat.setTint(binding.btnChaptersFilter.icon, filterColor)
+            DrawableCompat.setTint(binding.btnChaptersFilter.drawable, filterColor)
 
             merge(view.clicks(), binding.btnChaptersFilter.clicks())
                 .onEach { controller.showSettingsSheet() }

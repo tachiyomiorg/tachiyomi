@@ -25,7 +25,11 @@ class RevealAnimationView @JvmOverloads constructor(context: Context, attrs: Att
 
         // Create the animation (the final radius is zero).
         val anim = ViewAnimationUtils.createCircularReveal(
-            this, centerX, centerY, initialRadius.toFloat(), 0f
+            this,
+            centerX,
+            centerY,
+            initialRadius.toFloat(),
+            0f
         )
 
         // Set duration of animation.
@@ -55,7 +59,11 @@ class RevealAnimationView @JvmOverloads constructor(context: Context, attrs: Att
 
         // Create animation
         val anim = ViewAnimationUtils.createCircularReveal(
-            this, centerX, centerY, 0f, height.toFloat()
+            this,
+            centerX,
+            centerY,
+            0f,
+            height.toFloat()
         )
 
         // Set duration of animation

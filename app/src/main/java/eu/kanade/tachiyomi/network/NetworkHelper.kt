@@ -3,15 +3,15 @@ package eu.kanade.tachiyomi.network
 import android.content.Context
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import java.io.File
-import java.net.InetAddress
-import java.util.concurrent.TimeUnit
 import okhttp3.Cache
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.dnsoverhttps.DnsOverHttps
 import okhttp3.logging.HttpLoggingInterceptor
 import uy.kohesive.injekt.injectLazy
+import java.io.File
+import java.net.InetAddress
+import java.util.concurrent.TimeUnit
 
 class NetworkHelper(context: Context) {
 

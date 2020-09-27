@@ -44,6 +44,7 @@
     <string name="action_sort_latest_chapter">Latest chapter</string>
     <string name="action_sort_date_added">Date added</string>
     <string name="action_search">Search</string>
+    <string name="action_search_settings">Search settings</string>
     <string name="action_global_search">Global search</string>
     <string name="action_select_all">Select all</string>
     <string name="action_select_inverse">Select inverse</string>
@@ -83,6 +84,7 @@
     <string name="action_move">Move</string>
     <string name="action_open_in_browser">Open in browser</string>
     <string name="action_open_in_web_view">Open in WebView</string>
+    <string name="action_web_view">WebView</string>
     <string name="action_open_in_settings">Open in Settings</string>
     <string name="action_migrate">Migrate</string>
     <string name="action_display_mode">Display mode</string>
@@ -444,8 +446,8 @@
     <string name="library_search_hint">Title or author…</string>
     <string name="updating_category">Updating category</string>
     <string name="local_source_badge">Local</string>
-    <string name="confirm_delete_manga">Are you sure you want to remove selected manga?</string>
-    <string name="also_delete_chapters">Also delete downloaded chapters</string>
+    <string name="manga_from_library">Manga from library</string>
+    <string name="downloaded_chapters">Downloaded chapters</string>
     <string name="badges_header">Badges</string>
     <string name="tabs_header">Tabs</string>
 
@@ -486,7 +488,6 @@
     <string name="manga_info_full_title_label">Title</string>
     <string name="manga_added_library">Added to library</string>
     <string name="manga_removed_library">Removed from library</string>
-    <string name="manga_info_about_label">About</string>
     <string name="manga_info_expand">More</string>
     <string name="manga_info_collapse">Less</string>
     <plurals name="manga_num_chapters">
@@ -525,6 +526,10 @@
     <string name="download_unread">Unread</string>
     <string name="confirm_delete_chapters">Are you sure you want to delete the selected chapters?</string>
     <string name="invalid_download_dir">Invalid download location</string>
+    <string name="chapter_settings">Chapter settings</string>
+    <string name="confirm_set_chapter_settings">Are you sure you want to save these settings as default?</string>
+    <string name="also_set_chapter_settings_for_library">Also apply to all manga in my library</string>
+    <string name="set_chapter_settings_as_default">Set as default</string>
     <string name="no_chapters_error">No chapters found</string>
 
     <!-- Tracking Screen -->
@@ -571,6 +576,7 @@
     <string name="custom_filter">Custom filter</string>
     <string name="set_as_cover">Set as cover</string>
     <string name="cover_updated">Cover updated</string>
+    <string name="share_page_info">%1$s: %2$s, page %3$d</string>
     <string name="page_downloaded">Page copied to %1$s</string>
     <string name="downloading">Downloading…</string>
     <string name="download_progress">Downloaded %1$d%%</string>
@@ -679,6 +685,7 @@
     <string name="information_cloudflare_bypass_failure">Failed to bypass Cloudflare</string>
     <string name="information_webview_required">WebView is required for Tachiyomi</string>
     <string name="information_webview_outdated">Please update the WebView app for better compatibility</string>
+    <string name="chapter_settings_updated">Updated default chapter settings</string>
 
     <!-- Download Notification -->
     <string name="download_notifier_downloader_title">Downloader</string>
@@ -706,4 +713,5 @@
     <string name="tapping_inverted_horizontal">Horizontal</string>
     <string name="tapping_inverted_vertical">Vertical</string>
     <string name="tapping_inverted_both">Both</string>
+
 </resources>

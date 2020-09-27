@@ -63,9 +63,12 @@ class ReaderProgressBar @JvmOverloads constructor(
      */
     private val rotationAnimation by lazy {
         RotateAnimation(
-            0f, 360f,
-            Animation.RELATIVE_TO_SELF, 0.5f,
-            Animation.RELATIVE_TO_SELF, 0.5f
+            0f,
+            360f,
+            Animation.RELATIVE_TO_SELF,
+            0.5f,
+            Animation.RELATIVE_TO_SELF,
+            0.5f
         ).apply {
             interpolator = LinearInterpolator()
             repeatCount = Animation.INFINITE
