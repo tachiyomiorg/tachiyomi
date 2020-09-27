@@ -409,11 +409,13 @@ class ReaderPresenter(
      * Saves this [chapter] last read history.
      */
     private fun saveChapterHistory(chapter: ReaderChapter) {
-        val history = History.create(chapter.chapter).apply { last_read = Date().time }
-        db.updateHistoryLastRead(history).asRxCompletable()
-            .onErrorComplete()
-            .subscribeOn(Schedulers.io())
-            .subscribe()
+        if (preferences.saveChapterHistory()) {
+            val history = History.create(chapter.chapter).apply { last_read = Date().time }
+            db.updateHistoryLastRead(history).asRxCompletable()
+                    .onErrorComplete()
+                    .subscribeOn(Schedulers.io())
+                    .subscribe()
+        }
     }
 
     /**

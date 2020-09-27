@@ -235,6 +235,11 @@ class SettingsReaderController : SettingsController() {
                 defaultValue = false
             }
             switchPreference {
+                key = Keys.saveChapterHistory
+                titleRes = R.string.save_chapter_history
+                defaultValue = true
+            }
+            switchPreference {
                 key = Keys.readWithVolumeKeysInverted
                 titleRes = R.string.pref_read_with_volume_keys_inverted
                 defaultValue = false
