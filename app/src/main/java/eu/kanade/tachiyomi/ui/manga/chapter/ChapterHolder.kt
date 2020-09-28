@@ -32,13 +32,19 @@ class ChapterHolder(
         }
 
         // Set correct text color
-        val chapterColor = when {
+        val chapterTitleColor = when {
             chapter.read -> adapter.readColor
             chapter.bookmark -> adapter.bookmarkedColor
             else -> adapter.unreadColor
         }
-        chapter_title.setTextColor(chapterColor)
-        chapter_description.setTextColor(chapterColor)
+        chapter_title.setTextColor(chapterTitleColor)
+
+        val chapterDescriptionColor = when {
+            chapter.read -> adapter.readColor
+            chapter.bookmark -> adapter.bookmarkedColor
+            else -> adapter.unreadColorSecondary
+        }
+        chapter_description.setTextColor(chapterDescriptionColor)
 
         bookmark_icon.isVisible = chapter.bookmark
 
