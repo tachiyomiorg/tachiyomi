@@ -91,6 +91,8 @@ object PreferenceKeys {
 
     const val downloadOnlyOverWifi = "pref_download_only_over_wifi_key"
 
+    const val deleteFromQueue = "pref_delete_from_queue"
+
     const val numberOfBackups = "backup_slots"
 
     const val backupInterval = "backup_interval"

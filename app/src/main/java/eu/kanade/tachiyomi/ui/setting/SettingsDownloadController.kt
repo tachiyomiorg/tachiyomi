@@ -92,6 +92,11 @@ class SettingsDownloadController : SettingsController() {
                 titleRes = R.string.pref_remove_bookmarked_chapters
                 defaultValue = false
             }
+            switchPreference {
+                key = Keys.deleteFromQueue
+                titleRes = R.string.pref_delete_from_queue
+                defaultValue = false
+            }
         }
 
         val dbCategories = db.getCategories().executeAsBlocking()

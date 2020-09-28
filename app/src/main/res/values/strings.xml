@@ -718,5 +718,6 @@
     <string name="tapping_inverted_horizontal">Horizontal</string>
     <string name="tapping_inverted_vertical">Vertical</string>
     <string name="tapping_inverted_both">Both</string>
+    <string name="pref_delete_from_queue">From queue after marked as read</string>
 
 </resources>

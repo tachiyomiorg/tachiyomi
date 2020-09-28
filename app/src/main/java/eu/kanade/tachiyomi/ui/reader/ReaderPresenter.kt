@@ -361,12 +361,25 @@ class ReaderPresenter(
             selectedChapter.chapter.read = true
             updateTrackChapterRead(selectedChapter)
             deleteChapterIfNeeded(selectedChapter)
+            deleteChapterFromDownloadQueue(currentChapters.currChapter)
         }
 
         if (selectedChapter != currentChapters.currChapter) {
             Timber.d("Setting ${selectedChapter.chapter.url} as active")
             onChapterChanged(currentChapters.currChapter)
             loadNewChapter(selectedChapter)
+        }
+    }
+
+    /**
+     * Removes [currentChapter] from download queue
+     * if setting is enabled and [currentChapter] is queued for download
+     */
+    private fun deleteChapterFromDownloadQueue(currentChapter: ReaderChapter) {
+        if (preferences.deleteFromQueue()) {
+            downloadManager.getChapterDownloadOrNull(currentChapter.chapter)?.let {
+                downloadManager.deletePendingDownload(it)
+            }
         }
     }
 
