@@ -242,15 +242,5 @@ class SettingsReaderController : SettingsController() {
                 preferences.readWithVolumeKeys().asImmediateFlow { isVisible = it }.launchIn(scope)
             }
         }
-        preferenceCategory {
-            titleRes = R.string.more_category_header
-
-            switchPreference {
-                key = Keys.incognitoMode
-                summaryRes = R.string.pref_incognito_mode_summary
-                titleRes = R.string.pref_incognito_mode
-                defaultValue = false
-            }
-        }
     }
 }

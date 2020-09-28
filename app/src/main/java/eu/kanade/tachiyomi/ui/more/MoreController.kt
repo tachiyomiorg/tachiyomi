@@ -14,15 +14,7 @@ import eu.kanade.tachiyomi.ui.category.CategoryController
 import eu.kanade.tachiyomi.ui.download.DownloadController
 import eu.kanade.tachiyomi.ui.setting.SettingsController
 import eu.kanade.tachiyomi.ui.setting.SettingsMainController
-import eu.kanade.tachiyomi.util.preference.add
-import eu.kanade.tachiyomi.util.preference.iconRes
-import eu.kanade.tachiyomi.util.preference.iconTint
-import eu.kanade.tachiyomi.util.preference.onClick
-import eu.kanade.tachiyomi.util.preference.preference
-import eu.kanade.tachiyomi.util.preference.preferenceCategory
-import eu.kanade.tachiyomi.util.preference.summaryRes
-import eu.kanade.tachiyomi.util.preference.switchPreference
-import eu.kanade.tachiyomi.util.preference.titleRes
+import eu.kanade.tachiyomi.util.preference.*
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.openInBrowser
 import rx.android.schedulers.AndroidSchedulers
@@ -51,6 +43,15 @@ class MoreController :
             summaryRes = R.string.downloaded_only_summary
             iconRes = R.drawable.ic_cloud_off_24dp
             iconTint = tintColor
+        }
+
+        switchPreference {
+            key = Keys.incognitoMode
+            summaryRes = R.string.pref_incognito_mode_summary
+            titleRes = R.string.pref_incognito_mode
+            iconRes = R.drawable.ic_glasses_black_24dp
+            iconTint = tintColor
+            defaultValue = false
         }
 
         preferenceCategory {
