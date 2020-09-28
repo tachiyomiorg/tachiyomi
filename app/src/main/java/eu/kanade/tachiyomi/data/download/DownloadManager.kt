@@ -180,12 +180,8 @@ class DownloadManager(private val context: Context) {
      * @param chapter the chapter to check.
      */
     fun getChapterDownloadOrNull(chapter: Chapter): Download? {
-        for (download in downloader.queue) {
-            if (download.chapter == chapter) {
-                return download
-            }
-        }
-        return null
+        return downloader.queue
+            .firstOrNull { it.chapter.id == chapter.id && it.chapter.manga_id == chapter.manga_id }
     }
 
     /**
