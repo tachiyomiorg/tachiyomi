@@ -269,7 +269,7 @@ class PreferencesHelper(val context: Context) {
 
     fun sortChapterByAscendingOrDescending() = prefs.getInt(Keys.defaultChapterSortByAscendingOrDescending, Manga.SORT_DESC)
 
-    fun saveChapterHistory() = prefs.getBoolean(Keys.saveChapterHistory, true)
+    fun incognitoMode() = prefs.getBoolean(Keys.incognitoMode, false)
 
     fun setChapterSettingsDefault(manga: Manga) {
         prefs.edit {
