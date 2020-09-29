@@ -33,12 +33,12 @@
         android:max="255"
         android:padding="@dimen/material_component_text_fields_floating_label_padding_between_label_and_input_text"
         app:layout_constraintEnd_toStartOf="@id/txt_color_filter_red_value"
-        app:layout_constraintStart_toEndOf="@id/txt_color_filter_red_symbol"
+        app:layout_constraintStart_toEndOf="@id/color_filter_symbols_barrier"
         app:layout_constraintTop_toBottomOf="@id/switch_color_filter" />
 
     <TextView
         android:id="@+id/txt_color_filter_red_symbol"
-        android:layout_width="10dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/color_filter_r_value"
         android:textAppearance="@style/TextAppearance.Medium.SubHeading"
@@ -67,12 +67,12 @@
         android:max="255"
         android:padding="@dimen/material_component_text_fields_floating_label_padding_between_label_and_input_text"
         app:layout_constraintEnd_toStartOf="@id/txt_color_filter_green_value"
-        app:layout_constraintStart_toEndOf="@id/txt_color_filter_green_symbol"
+        app:layout_constraintStart_toEndOf="@id/color_filter_symbols_barrier"
         app:layout_constraintTop_toBottomOf="@id/seekbar_color_filter_red" />
 
     <TextView
         android:id="@+id/txt_color_filter_green_symbol"
-        android:layout_width="10dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/color_filter_g_value"
         android:textAppearance="@style/TextAppearance.Medium.SubHeading"
@@ -101,12 +101,12 @@
         android:max="255"
         android:padding="@dimen/material_component_text_fields_floating_label_padding_between_label_and_input_text"
         app:layout_constraintEnd_toStartOf="@id/txt_color_filter_blue_value"
-        app:layout_constraintStart_toEndOf="@id/txt_color_filter_blue_symbol"
+        app:layout_constraintStart_toEndOf="@id/color_filter_symbols_barrier"
         app:layout_constraintTop_toBottomOf="@id/seekbar_color_filter_green" />
 
     <TextView
         android:id="@+id/txt_color_filter_blue_symbol"
-        android:layout_width="10dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/color_filter_b_value"
         android:textAppearance="@style/TextAppearance.Medium.SubHeading"
@@ -135,12 +135,12 @@
         android:max="255"
         android:padding="@dimen/material_component_text_fields_floating_label_padding_between_label_and_input_text"
         app:layout_constraintEnd_toStartOf="@id/txt_color_filter_alpha_value"
-        app:layout_constraintStart_toEndOf="@id/txt_color_filter_alpha_symbol"
+        app:layout_constraintStart_toEndOf="@id/color_filter_symbols_barrier"
         app:layout_constraintTop_toBottomOf="@id/seekbar_color_filter_blue" />
 
     <TextView
         android:id="@+id/txt_color_filter_alpha_symbol"
-        android:layout_width="10dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/color_filter_a_value"
         android:textAppearance="@style/TextAppearance.Medium.SubHeading"
@@ -223,6 +223,13 @@
         app:layout_constraintBottom_toBottomOf="@id/brightness_seekbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/brightness_seekbar" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/color_filter_symbols_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="end"
+        app:constraint_referenced_ids="txt_color_filter_alpha_symbol,txt_color_filter_blue_symbol,txt_color_filter_red_symbol,txt_color_filter_green_symbol" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/verticalcenter"
