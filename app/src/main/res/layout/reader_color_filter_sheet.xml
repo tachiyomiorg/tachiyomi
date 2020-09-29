@@ -38,7 +38,7 @@
 
     <TextView
         android:id="@+id/txt_color_filter_red_symbol"
-        android:layout_width="wrap_content"
+        android:layout_width="10dp"
         android:layout_height="wrap_content"
         android:text="@string/color_filter_r_value"
         android:textAppearance="@style/TextAppearance.Medium.SubHeading"
@@ -72,7 +72,7 @@
 
     <TextView
         android:id="@+id/txt_color_filter_green_symbol"
-        android:layout_width="wrap_content"
+        android:layout_width="10dp"
         android:layout_height="wrap_content"
         android:text="@string/color_filter_g_value"
         android:textAppearance="@style/TextAppearance.Medium.SubHeading"
@@ -106,7 +106,7 @@
 
     <TextView
         android:id="@+id/txt_color_filter_blue_symbol"
-        android:layout_width="wrap_content"
+        android:layout_width="10dp"
         android:layout_height="wrap_content"
         android:text="@string/color_filter_b_value"
         android:textAppearance="@style/TextAppearance.Medium.SubHeading"
@@ -140,7 +140,7 @@
 
     <TextView
         android:id="@+id/txt_color_filter_alpha_symbol"
-        android:layout_width="wrap_content"
+        android:layout_width="10dp"
         android:layout_height="wrap_content"
         android:text="@string/color_filter_a_value"
         android:textAppearance="@style/TextAppearance.Medium.SubHeading"
@@ -175,7 +175,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:entries="@array/color_filter_modes"
-        app:layout_constraintEnd_toEndOf="@id/spinner_end"
+        app:layout_constraintEnd_toStartOf="@id/spinner_end"
         app:layout_constraintStart_toEndOf="@id/verticalcenter"
         app:layout_constraintTop_toBottomOf="@id/seekbar_color_filter_alpha" />
 
