@@ -139,6 +139,10 @@ class PreferencesHelper(val context: Context) {
 
     fun readWithVolumeKeysInverted() = flowPrefs.getBoolean(Keys.readWithVolumeKeysInverted, false)
 
+    fun navigationModePager() = flowPrefs.getInt(Keys.navigationModePager, 0)
+
+    fun navigationModeWebtoon() = flowPrefs.getInt(Keys.navigationModeWebtoon, 0)
+
     fun portraitColumns() = flowPrefs.getInt(Keys.portraitColumns, 0)
 
     fun landscapeColumns() = flowPrefs.getInt(Keys.landscapeColumns, 0)

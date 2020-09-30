@@ -87,6 +87,7 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
         binding.webtoonPrefsGroup.isInvisible = true
         binding.pagerPrefsGroup.isVisible = true
 
+        binding.pagerNav.bindToPreference(preferences.navigationModePager())
         binding.scaleType.bindToPreference(preferences.imageScaleType(), 1)
         binding.zoomStart.bindToPreference(preferences.zoomStart(), 1)
         binding.cropBorders.bindToPreference(preferences.cropBorders())
@@ -99,6 +100,7 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
         binding.pagerPrefsGroup.isInvisible = true
         binding.webtoonPrefsGroup.isVisible = true
 
+        binding.webtoonNav.bindToPreference(preferences.navigationModePager())
         binding.cropBordersWebtoon.bindToPreference(preferences.cropBordersWebtoon())
         binding.webtoonSidePadding.bindToIntPreference(preferences.webtoonSidePadding(), R.array.webtoon_side_padding_values)
     }

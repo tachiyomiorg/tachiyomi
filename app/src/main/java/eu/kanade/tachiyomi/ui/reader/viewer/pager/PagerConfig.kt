@@ -2,6 +2,9 @@ package eu.kanade.tachiyomi.ui.reader.viewer.pager
 
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.reader.viewer.ViewerConfig
+import eu.kanade.tachiyomi.ui.reader.viewer.ViewerNavigation
+import eu.kanade.tachiyomi.ui.reader.viewer.navigation.KindlishNavigation
+import eu.kanade.tachiyomi.ui.reader.viewer.navigation.LNavigation
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
@@ -20,6 +23,9 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
     var imageCropBorders = false
         private set
 
+    var navigationMode: ViewerNavigation = PagerDefaultNavigation()
+        private set
+
     init {
         preferences.imageScaleType()
             .register({ imageScaleType = it }, { imagePropertyChangedListener?.invoke() })
@@ -29,6 +35,17 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
 
         preferences.cropBorders()
             .register({ imageCropBorders = it }, { imagePropertyChangedListener?.invoke() })
+
+        preferences.navigationModePager()
+                .register({
+                    navigationMode = when (it) {
+                        0 -> PagerDefaultNavigation()
+                        1 -> LNavigation()
+                        2 -> KindlishNavigation()
+
+                        else -> PagerDefaultNavigation()
+                    }
+                })
     }
 
     private fun zoomTypeFromPreference(value: Int) {

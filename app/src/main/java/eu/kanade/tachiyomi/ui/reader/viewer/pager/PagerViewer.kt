@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.ui.reader.viewer.pager
 
+import android.graphics.PointF
 import android.view.InputDevice
 import android.view.KeyEvent
 import android.view.MotionEvent
@@ -9,12 +10,12 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.viewpager.widget.ViewPager
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.preference.PreferenceValues.TappingInvertMode
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.model.ViewerChapters
 import eu.kanade.tachiyomi.ui.reader.viewer.BaseViewer
+import eu.kanade.tachiyomi.ui.reader.viewer.ViewerNavigation
 import timber.log.Timber
 
 /**
@@ -88,33 +89,14 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
                 return@f
             }
 
-            val positionX = event.x
-            val positionY = event.y
-            val topSideTap = positionY < pager.height * 0.25f
-            val bottomSideTap = positionY > pager.height * 0.75f
-            val leftSideTap = positionX < pager.width * 0.33f
-            val rightSideTap = positionX > pager.width * 0.66f
-
-            val invertMode = config.tappingInverted
-            val invertVertical = invertMode == TappingInvertMode.VERTICAL || invertMode == TappingInvertMode.BOTH
-            val invertHorizontal = invertMode == TappingInvertMode.HORIZONTAL || invertMode == TappingInvertMode.BOTH
-
-            if (this is VerticalPagerViewer) {
-                when {
-                    topSideTap && !invertVertical || bottomSideTap && invertVertical -> moveLeft()
-                    bottomSideTap && !invertVertical || topSideTap && invertVertical -> moveRight()
-
-                    leftSideTap && !invertHorizontal || rightSideTap && invertHorizontal -> moveLeft()
-                    rightSideTap && !invertHorizontal || leftSideTap && invertHorizontal -> moveRight()
-
-                    else -> activity.toggleMenu()
-                }
-            } else {
-                when {
-                    leftSideTap && !invertHorizontal || rightSideTap && invertHorizontal -> moveLeft()
-                    rightSideTap && !invertHorizontal || leftSideTap && invertHorizontal -> moveRight()
-
-                    else -> activity.toggleMenu()
+            val pos = PointF(event.rawX / pager.width, event.rawY / pager.height)
+            if (!config.tappingEnabled) activity.toggleMenu()
+            else {
+                val navigator = config.navigationMode
+                when (navigator.getAction(pos)) {
+                    ViewerNavigation.NavigationRegion.MENU -> activity.toggleMenu()
+                    ViewerNavigation.NavigationRegion.NEXT -> moveRight()
+                    ViewerNavigation.NavigationRegion.PREV -> moveLeft()
                 }
             }
         }
