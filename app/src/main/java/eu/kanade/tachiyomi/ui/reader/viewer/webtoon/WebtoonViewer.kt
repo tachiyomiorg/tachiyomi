@@ -105,7 +105,7 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
             val pos = PointF(event.rawX / recycler.width, event.rawY / recycler.height)
             if (!config.tappingEnabled) activity.toggleMenu()
             else {
-                val navigator = config.navigationMode
+                val navigator = config.navigator
                 when (navigator.getAction(pos)) {
                     ViewerNavigation.NavigationRegion.MENU -> activity.toggleMenu()
                     ViewerNavigation.NavigationRegion.NEXT -> scrollDown()

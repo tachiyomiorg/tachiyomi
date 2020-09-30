@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.ui.reader.viewer.pager
 
+import eu.kanade.tachiyomi.data.preference.PreferenceValues.TappingInvertMode
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.reader.viewer.ViewerConfig
 import eu.kanade.tachiyomi.ui.reader.viewer.ViewerNavigation
@@ -23,8 +24,7 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
     var imageCropBorders = false
         private set
 
-    var navigationMode: ViewerNavigation = PagerDefaultNavigation()
-        private set
+    override var navigator: ViewerNavigation = defaultViewerNavigation()
 
     init {
         preferences.imageScaleType()
@@ -37,15 +37,7 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
             .register({ imageCropBorders = it }, { imagePropertyChangedListener?.invoke() })
 
         preferences.navigationModePager()
-                .register({
-                    navigationMode = when (it) {
-                        0 -> PagerDefaultNavigation()
-                        1 -> LNavigation()
-                        2 -> KindlishNavigation()
-
-                        else -> PagerDefaultNavigation()
-                    }
-                })
+            .register({ navigationMode = it }, { viewerNavigation(it, tappingInverted) })
     }
 
     private fun zoomTypeFromPreference(value: Int) {
@@ -62,6 +54,26 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
             3 -> ZoomType.Right
             // Center
             else -> ZoomType.Center
+        }
+    }
+
+    override fun defaultViewerNavigation(invertHorizontal: Boolean, invertVertical: Boolean): ViewerNavigation {
+        return when (viewer) {
+            is VerticalPagerViewer -> VerticalPagerDefaultNavigation(invertHorizontal, invertVertical)
+            else -> PagerDefaultNavigation(invertHorizontal)
+        }
+    }
+
+    override fun viewerNavigation(navigationMode: Int, invertMode: TappingInvertMode) {
+        val invertHorizontal = invertMode.invertHorizontal()
+        val invertVertical = invertMode.invertVertical()
+
+        navigator = when (navigationMode) {
+            0 -> defaultViewerNavigation(invertHorizontal, invertVertical)
+            1 -> LNavigation(invertHorizontal, invertVertical)
+            2 -> KindlishNavigation()
+
+            else -> defaultViewerNavigation(invertHorizontal, invertVertical)
         }
     }
 

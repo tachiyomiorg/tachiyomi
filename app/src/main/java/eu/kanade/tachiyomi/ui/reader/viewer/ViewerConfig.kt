@@ -17,6 +17,13 @@ abstract class ViewerConfig(preferences: PreferencesHelper) {
 
     private val scope = CoroutineScope(Job() + Dispatchers.Main)
 
+    abstract fun defaultViewerNavigation(invertHorizontal: Boolean = false, invertVertical: Boolean = false): ViewerNavigation
+
+    abstract fun viewerNavigation(navigationMode: Int, invertMode: TappingInvertMode)
+
+    abstract var navigator: ViewerNavigation
+        protected set
+
     var imagePropertyChangedListener: (() -> Unit)? = null
 
     var tappingEnabled = true
@@ -28,13 +35,15 @@ abstract class ViewerConfig(preferences: PreferencesHelper) {
     var volumeKeysInverted = false
     var trueColor = false
     var alwaysShowChapterTransition = true
+    var navigationMode = 0
+        protected set
 
     init {
         preferences.readWithTapping()
             .register({ tappingEnabled = it })
 
         preferences.readWithTappingInverted()
-            .register({ tappingInverted = it })
+            .register({ tappingInverted = it }, { viewerNavigation(navigationMode, it) })
 
         preferences.readWithLongTap()
             .register({ longTapEnabled = it })

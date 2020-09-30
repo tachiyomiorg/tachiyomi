@@ -1,11 +1,11 @@
 package eu.kanade.tachiyomi.ui.reader.viewer.webtoon
 
+import eu.kanade.tachiyomi.data.preference.PreferenceValues.TappingInvertMode
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.reader.viewer.ViewerConfig
 import eu.kanade.tachiyomi.ui.reader.viewer.ViewerNavigation
 import eu.kanade.tachiyomi.ui.reader.viewer.navigation.KindlishNavigation
 import eu.kanade.tachiyomi.ui.reader.viewer.navigation.LNavigation
-import eu.kanade.tachiyomi.ui.reader.viewer.pager.PagerDefaultNavigation
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
@@ -20,8 +20,7 @@ class WebtoonConfig(preferences: PreferencesHelper = Injekt.get()) : ViewerConfi
     var sidePadding = 0
         private set
 
-    var navigationMode: ViewerNavigation = WebtoonDefaultNavigation()
-        private set
+    override var navigator: ViewerNavigation = defaultViewerNavigation()
 
     init {
         preferences.cropBordersWebtoon()
@@ -31,14 +30,23 @@ class WebtoonConfig(preferences: PreferencesHelper = Injekt.get()) : ViewerConfi
             .register({ sidePadding = it }, { imagePropertyChangedListener?.invoke() })
 
         preferences.navigationModeWebtoon()
-                .register({
-                    navigationMode = when (it) {
-                        0 -> WebtoonDefaultNavigation()
-                        1 -> LNavigation()
-                        2 -> KindlishNavigation()
+            .register({ navigationMode = it }, { viewerNavigation(it, tappingInverted) })
+    }
 
-                        else -> WebtoonDefaultNavigation()
-                    }
-                })
+    override fun defaultViewerNavigation(invertHorizontal: Boolean, invertVertical: Boolean): ViewerNavigation {
+        return WebtoonDefaultNavigation(invertHorizontal, invertVertical)
+    }
+
+    override fun viewerNavigation(navigationMode: Int, invertMode: TappingInvertMode) {
+        val invertHorizontal = invertMode.invertHorizontal()
+        val invertVertical = invertMode.invertVertical()
+
+        this.navigator = when (navigationMode) {
+            0 -> defaultViewerNavigation(invertHorizontal, invertVertical)
+            1 -> LNavigation(invertHorizontal, invertVertical)
+            2 -> KindlishNavigation()
+
+            else -> defaultViewerNavigation(invertHorizontal, invertVertical)
+        }
     }
 }

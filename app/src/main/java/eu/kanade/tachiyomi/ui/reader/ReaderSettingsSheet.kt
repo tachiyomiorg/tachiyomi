@@ -6,7 +6,6 @@ import android.widget.Spinner
 import androidx.annotation.ArrayRes
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
-import androidx.core.view.plusAssign
 import androidx.core.widget.NestedScrollView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.tfcporciuncula.flow.Preference
@@ -100,7 +99,7 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
         binding.pagerPrefsGroup.isInvisible = true
         binding.webtoonPrefsGroup.isVisible = true
 
-        binding.webtoonNav.bindToPreference(preferences.navigationModePager())
+        binding.webtoonNav.bindToPreference(preferences.navigationModeWebtoon())
         binding.cropBordersWebtoon.bindToPreference(preferences.cropBordersWebtoon())
         binding.webtoonSidePadding.bindToIntPreference(preferences.webtoonSidePadding(), R.array.webtoon_side_padding_values)
     }
