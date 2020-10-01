@@ -55,20 +55,6 @@ deploy:
     on:
       tags: true
       repo: inorichi/tachiyomi
-  - provider: script
-    script: ".travis/deploy.sh"
-    skip_cleanup: true
-    on:
-      branch: master
-      condition: "-z $TRAVIS_TAG"
-      repo: inorichi/tachiyomi
-  - provider: script
-    script: ".travis/deploy.sh"
-    skip_cleanup: true
-    on:
-      branch: dev
-      condition: "-z $TRAVIS_TAG"
-      repo: inorichi/tachiyomi
 
 env:
   global:
