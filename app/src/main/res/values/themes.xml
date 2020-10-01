@@ -78,6 +78,9 @@
         <item name="colorLibrarySelection">?attr/colorAccent</item>
         <item name="colorLibrarySelectionActive">@color/selectorColorLight</item>
         <item name="colorFilterActive">@color/filterColorDark</item>
+
+        <!-- BottomSheet -->
+        <item name="bottomSheetDialogTheme">@style/Theme.BottomSheet</item>
     </style>
 
     <!--===========-->
@@ -245,6 +248,14 @@
         <item name="android:windowBackground">@drawable/splash_background</item>
         <item name="android:statusBarColor">?attr/colorBackgroundSplash</item>
         <item name="android:navigationBarColor">?attr/colorBackgroundSplash</item>
+    </style>
+
+    <!--===============-->
+    <!-- BottomSheet -->
+    <!--===============-->
+
+    <style name="Theme.BottomSheet" parent="Theme.MaterialComponents.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
     </style>
 
 </resources>
