@@ -73,9 +73,12 @@ class HistoryPresenter : BasePresenter<HistoryController>() {
      * Reset last read of chapter to 0L
      * @param history history belonging to chapter
      */
-    fun removeFromHistory(history: History) {
+    fun removeFromHistory(history: History, currentSearch: String = "") {
         history.last_read = 0L
         db.updateHistoryLastRead(history).asRxObservable()
+            .doOnNext {
+                updateList(currentSearch)
+            }
             .subscribe()
     }
 
@@ -97,11 +100,12 @@ class HistoryPresenter : BasePresenter<HistoryController>() {
      * Removes all chapters belonging to manga from history.
      * @param mangaId id of manga
      */
-    fun removeAllFromHistory(mangaId: Long) {
+    fun removeAllFromHistory(mangaId: Long, currentSearch: String = "") {
         db.getHistoryByMangaId(mangaId).asRxSingle()
             .map { list ->
                 list.forEach { it.last_read = 0L }
                 db.updateHistoryLastRead(list).executeAsBlocking()
+                updateList(currentSearch)
             }
             .subscribe()
     }
