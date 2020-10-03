@@ -15,7 +15,6 @@
     <string name="action_filter_downloaded">Изтеглени</string>
     <string name="action_filter_bookmarked">Отбелязани</string>
     <string name="action_filter_unread">Непрочетени</string>
-    <string name="action_filter_read">Прочетени</string>
     <string name="action_filter_empty">Премахни филтрирането</string>
     <string name="action_sort_alpha">Азбучен ред</string>
     <string name="action_sort_last_read">Последно четене</string>
@@ -182,7 +181,6 @@
     <!-- Library fragment -->
     <string name="library_search_hint">Заглавие или автор…</string>
     <string name="updating_category">Обновяване на категорията</string>
-    <string name="confirm_delete_manga">Сигурни ли сте, че желаете да премахнете избраната манга?</string>
     <!-- Catalogue fragment -->
     <string name="source_requires_login">Източникът изисква от вас да въведете име и парола</string>
     <string name="select_source">Изберете източник</string>
@@ -332,7 +330,6 @@
     <string name="creating_backup">Създаване на резервно копие</string>
     <string name="pref_refresh_library_tracking">Обнови проследяването</string>
     <string name="pref_refresh_library_tracking_summary">Обновява статус, оценка и последно прочетена глава от услугите за проследяване</string>
-    <string name="also_delete_chapters">Също изтрий изтеглените глави</string>
     <string name="local_source">Локални</string>
     <string name="invalid_combination">\"По подразбиране\" не може да се избира с други категории</string>
     <string name="added_to_library">Мангата беше добавена към библиотеката Ви</string>
@@ -471,7 +468,6 @@
     <string name="add_tracking">Добави проследяване</string>
     <string name="manga_info_collapse">По-малко</string>
     <string name="manga_info_expand">Повече</string>
-    <string name="manga_info_about_label">Инфо</string>
     <string name="in_library">В библиотеката</string>
     <string name="add_to_library">Добави към библиотеката</string>
     <string name="local_source_help_guide">Помощ за локални източници</string>

@@ -97,7 +97,6 @@
     <string name="action_filter_downloaded">Ladattu</string>
     <string name="action_filter_bookmarked">Kirjanmerkki</string>
     <string name="action_filter_unread">Lukemattomat</string>
-    <string name="action_filter_read">Luettu</string>
     <string name="action_filter_empty">Poista suodattimet</string>
     <string name="action_sort_alpha">Aakkosjärjestyksessä</string>
     <string name="action_search">Haku</string>
@@ -301,7 +300,6 @@
     <string name="library_search_hint">Nimike tai kirjailija…</string>
     <string name="updating_category">Päivitetään kategoriaa</string>
     <string name="local_source_badge">Paikallinen</string>
-    <string name="confirm_delete_manga">Oletko varma että haluat poistaa valitut sarjat\?</string>
     <string name="source_requires_login">Tämä lähde vaatii sisäänkirjautumisen</string>
     <string name="no_valid_sources">Ota käyttöön vähintään yksi lähde</string>
     <string name="no_more_results">Ei enempää tuloksia</string>
@@ -344,7 +342,6 @@
     <string name="pref_create_backup">Luo varmuuskopio</string>
     <string name="pref_restore_backup">Palauta varmuuskopio</string>
     <string name="pref_backup_directory">Varmuuskopio kansio</string>
-    <string name="also_delete_chapters">Poista myös ladatut luvut</string>
     <string name="select_source">Valitse lähde</string>
     <string name="local_source">Paikalliset lähteet</string>
     <string name="other_source">Muut</string>
@@ -505,7 +502,6 @@
     <string name="track_started_reading_date">Aloituspäivämäärä</string>
     <string name="manga_info_collapse">Vähemmän</string>
     <string name="manga_info_expand">Enemmän</string>
-    <string name="manga_info_about_label">Tietoa</string>
     <string name="pinned_sources">Kiinnitetyt</string>
     <string name="http_error_hint">Katso sivu WebViewissä</string>
     <string name="webtoon_side_padding_0">Ei yhtään</string>
@@ -619,4 +615,15 @@
         <item quantity="other">%d puuttuvaa lukua</item>
     </plurals>
     <string name="no_chapters_error">Lukuja ei löytynyt</string>
+    <string name="chapter_settings_updated">Päivitetyt luvun oletusasetukset</string>
+    <string name="set_chapter_settings_as_default">Aseta oletukseksi</string>
+    <string name="also_set_chapter_settings_for_library">Koskee myös kaikkia kirjastoni mangoja</string>
+    <string name="confirm_set_chapter_settings">Haluatko varmasti tallentaa nämä asetukset oletuksena\?</string>
+    <string name="chapter_settings">Luvun asetukset</string>
+    <string name="action_web_view">WebView</string>
+    <string name="share_page_info">%1$s: %2$s, sivu %3$d</string>
+    <string name="action_search_settings">Hakuasetukset</string>
+    <string name="downloaded_chapters">Ladatut luvut</string>
+    <string name="manga_from_library">Manga kirjastosta</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Piilota alapalkki selatessa</string>
 </resources>

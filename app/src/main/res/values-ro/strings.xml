@@ -21,7 +21,6 @@
     <string name="action_filter_downloaded">Descărcate</string>
     <string name="action_filter_bookmarked">Marcate</string>
     <string name="action_filter_unread">Necitite</string>
-    <string name="action_filter_read">Citite</string>
     <string name="action_filter_empty">Șterge filtru</string>
     <string name="action_sort_alpha">Alfabetic</string>
     <string name="action_sort_total">Capitole totale</string>
@@ -239,8 +238,6 @@
     <string name="library_search_hint">Titlul sau autorul…</string>
     <string name="updating_category">Categorie in curs de actualizare</string>
     <string name="local_source_badge">Local</string>
-    <string name="confirm_delete_manga">Ești sigur ca vrei să elimini manga-ul selectat\?</string>
-    <string name="also_delete_chapters">Șterge și capitolele descărcate</string>
     <string name="source_requires_login">Această sursă necesită să te autentifici</string>
     <string name="select_source">Selectează o sursă</string>
     <string name="no_valid_sources">Te rugăm să activezi cel puțin o sursă validă</string>
@@ -501,7 +498,6 @@
     <string name="recent_manga_time">Ch. %1$s - %2$s</string>
     <string name="manga_info_collapse">Mai puțin</string>
     <string name="manga_info_expand">Mai mult</string>
-    <string name="manga_info_about_label">Despre</string>
     <string name="licenses">Licențele open source</string>
     <string name="website">Pagină web</string>
     <string name="restoring_backup_error">Restaurarea copiei de rezervă a eșuat</string>
@@ -631,4 +627,15 @@
         <item quantity="few">Lipsesc %d capitole</item>
         <item quantity="other">Lipsesc %d capitole</item>
     </plurals>
+    <string name="chapter_settings_updated">S-au actualizat setările implicite ale capitolului</string>
+    <string name="share_page_info">%1$s: %2$s, pagina %3$d</string>
+    <string name="set_chapter_settings_as_default">Setați ca implicit</string>
+    <string name="also_set_chapter_settings_for_library">De asemenea, se aplică la toate manga în biblioteca mea</string>
+    <string name="confirm_set_chapter_settings">Sigur doriți să salvați aceste setări ca implicite\?</string>
+    <string name="chapter_settings">Setările capitolului</string>
+    <string name="downloaded_chapters">Capitole descărcate</string>
+    <string name="manga_from_library">Manga din bibliotecă</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Ascundeți bara de jos când faceți scroll</string>
+    <string name="action_web_view">Webview</string>
+    <string name="action_search_settings">Setări de căutare</string>
 </resources>

@@ -188,7 +188,6 @@
     <string name="action_sort_total">Ukupan broj poglavlja</string>
     <string name="action_sort_alpha">Abecednim redom</string>
     <string name="action_filter_empty">Ukloni filtar</string>
-    <string name="action_filter_read">Pročitano</string>
     <string name="action_filter_unread">Napročitano</string>
     <string name="action_filter_bookmarked">Zabilježeno</string>
     <string name="action_filter">Filtar</string>
@@ -385,7 +384,7 @@
     <string name="on_hold">Na čekanju</string>
     <string name="dropped">Ispušteno</string>
     <string name="completed">Završeno</string>
-    <string name="currently_reading">Trenutačno čitaš</string>
+    <string name="currently_reading">Trenutačno se čita</string>
     <string name="reading">Čitanje</string>
     <string name="add_tracking">Dodaj praćenje</string>
     <string name="manga_tracking_tab">Praćenje</string>
@@ -421,7 +420,6 @@
     <string name="delete_downloads_for_manga">Izbrisati preuzeta poglavlja\?</string>
     <string name="manga_info_collapse">Manje</string>
     <string name="manga_info_expand">Više</string>
-    <string name="manga_info_about_label">Podaci</string>
     <string name="manga_removed_library">Uklonjeno iz biblioteke</string>
     <string name="manga_added_library">Dodano u biblioteku</string>
     <string name="manga_info_full_title_label">Naslov</string>
@@ -450,8 +448,6 @@
     <string name="no_valid_sources">Aktiviraj barem jedan ispravan izvor</string>
     <string name="select_source">Odaberi izvor</string>
     <string name="source_requires_login">Ovaj izvor zahtijeva prijavu</string>
-    <string name="also_delete_chapters">Također izbriši preuzeta poglavlja</string>
-    <string name="confirm_delete_manga">Stvarno želiš ukloniti odabrani manga\?</string>
     <string name="local_source_badge">Lokalno</string>
     <string name="updating_category">Ažuriranje kategorije</string>
     <string name="library_search_hint">Naslov ili autor …</string>
@@ -486,8 +482,8 @@
     <string name="battery_optimization_disabled">Optimiranje baterije je već isključeno</string>
     <string name="pref_disable_battery_optimization_summary">Pomaže pri ažuriranju biblioteke u pozadini i sigurnosnim kopijama</string>
     <string name="pref_disable_battery_optimization">Deaktiviraj optimiranje baterije</string>
-    <string name="pref_refresh_library_tracking_summary">Ažurirat će se stanje, ocjena i zadnje pročitano poglavlje iz usluga za praćenje</string>
-    <string name="pref_refresh_library_tracking">Osvježi praćenje</string>
+    <string name="pref_refresh_library_tracking_summary">Aktualizira stanje, ocjenu i zadnje pročitano poglavlje iz usluga za praćenje</string>
+    <string name="pref_refresh_library_tracking">Aktualiziraj praćenje</string>
     <string name="clear_database_completed">Unosi su izbrisani</string>
     <string name="clear_database_confirmation">Sigurno\? Pročitana poglavlja i napredak manga koji nisu u biblioteci, bit će izgubljeni</string>
     <string name="pref_clear_database_summary">Izbriši povijest manga koji se ne nalaze u tvojoj biblioteci</string>
@@ -550,7 +546,7 @@
     <string name="invalid_backup_file">Neispravna datoteka sigurnosne kopije</string>
     <string name="tracker_not_logged_in">Neprijavljeno: %1$s</string>
     <string name="source_not_found_name">Izvor nije pronađen: %1$s</string>
-    <string name="tracking_info">Jednosmjerna sinkronizacija za ažuriranje napretka poglavlja u usluzi praćenja. Postavi praćenje pojedinačnih unosa manga putem gumba za praćenje.</string>
+    <string name="tracking_info">Jednosmjerna sinkronizacija za aktualiziranje napretka poglavlja u usluzi praćenja. Postavi praćenje pojedinačnih unosa manga putem gumba za praćenje.</string>
     <string name="unofficial_extension_message">Ovo proširenje nije sa službenog tachiyomi popisa proširenja.</string>
     <string name="ext_unofficial">Neslužbeno</string>
     <string name="pref_library_update_error_notification">Pokaži obavijesti o greškama pri ažuriranju</string>
@@ -603,9 +599,9 @@
     <string name="pref_category_theme">Tema</string>
     <string name="action_sort_date_added">Datum dodan</string>
     <plurals name="num_trackers">
-        <item quantity="one">1 lokator</item>
-        <item quantity="few">%d lokatora</item>
-        <item quantity="other">%d lokatora</item>
+        <item quantity="one">1 pratilac</item>
+        <item quantity="few">%d pratioca</item>
+        <item quantity="other">%d pratilaca</item>
     </plurals>
     <string name="no_pinned_sources">Nemaš prikvačenih izvora</string>
     <string name="group_backup_restore">Sigurnosna kopija i obnavljanje</string>
@@ -631,4 +627,15 @@
         <item quantity="other">Nedostaje %d poglavlja</item>
     </plurals>
     <string name="no_chapters_error">Nema poglavlja</string>
+    <string name="chapter_settings_updated">Standardne postavke poglavlja su aktualizirane</string>
+    <string name="share_page_info">%1$s: %2$s, %3$d. stranica</string>
+    <string name="set_chapter_settings_as_default">Postavi kao standardno</string>
+    <string name="also_set_chapter_settings_for_library">Također primijeni na sve mange u mojoj biblioteci</string>
+    <string name="confirm_set_chapter_settings">Stvarno želiš spremiti ove postavke kao standardne\?</string>
+    <string name="chapter_settings">Postavke poglavlja</string>
+    <string name="action_web_view">WebView</string>
+    <string name="action_search_settings">Postavke pretrage</string>
+    <string name="manga_from_library">Manga iz biblioteke</string>
+    <string name="downloaded_chapters">Preuzeta poglavlja</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Sakrij donju traku pri klizanju</string>
 </resources>

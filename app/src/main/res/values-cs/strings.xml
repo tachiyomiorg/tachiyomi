@@ -16,7 +16,6 @@
     <string name="action_filter">Filtr</string>
     <string name="action_filter_downloaded">Staženo</string>
     <string name="action_filter_unread">Nepřečteno</string>
-    <string name="action_filter_read">Přečteno</string>
     <string name="action_filter_empty">Odstranit filtr</string>
     <string name="action_sort_alpha">Abecedně</string>
     <string name="action_sort_last_read">Naposledy čteno</string>
@@ -117,7 +116,6 @@
     <string name="login_success">Přihlášení proběhlo úspěšně</string>
     <string name="invalid_login">Chyba při přihlašování</string>
     <string name="unknown_error">Neznámá chyba</string>
-    <string name="confirm_delete_manga">Opravdu chcete odstranit vybrané mangy\?</string>
     <string name="no_more_results">Žádné další výsledky</string>
     <string name="added_to_library">Manga byla přidána do vaší knihovny</string>
     <string name="action_global_search_hint">Globální vyhledávání…</string>
@@ -299,7 +297,6 @@
     <string name="pref_acra_summary">Pomáhá opravit chyby. Nebudou odeslány žádné citlivé údaje</string>
     <string name="updating_category">Aktualizace kategorie</string>
     <string name="local_source_badge">Lokální</string>
-    <string name="also_delete_chapters">Odstranit také stažené kapitoly</string>
     <string name="source_requires_login">Tento zdroj vyžaduje přihlášení</string>
     <string name="select_source">Vybrat zdroj</string>
     <string name="no_valid_sources">Povolte prosím aspoň jeden platný zdroj</string>

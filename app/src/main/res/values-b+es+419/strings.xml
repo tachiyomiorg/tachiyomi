@@ -57,14 +57,13 @@
     <string name="label_migration">Migrar</string>
     <string name="label_recent_updates">Actualizaciones</string>
     <string name="label_library">Biblioteca</string>
-    <string name="label_settings">Configuraciones</string>
+    <string name="label_settings">Configuración</string>
     <string name="name">Nombre</string>
     <string name="label_categories">Categorías</string>
     <string name="label_sources">Fuentes</string>
     <string name="action_remove_bookmark">Quitar marcador</string>
     <string name="action_bookmark">Añadir marcador</string>
     <string name="action_sort_last_checked">Último verificado</string>
-    <string name="action_filter_read">Leído</string>
     <string name="action_filter_unread">No leído</string>
     <string name="action_filter_bookmarked">Marcado</string>
     <string name="label_download_queue">Lista de descargas</string>
@@ -403,8 +402,6 @@
     <string name="source_requires_login">Este fuente requiere que inicies sesión</string>
     <string name="tabs_header">Pestañas</string>
     <string name="badges_header">Insignias</string>
-    <string name="also_delete_chapters">También eliminar capítulos descargados</string>
-    <string name="confirm_delete_manga">¿Eliminar los mangas seleccionados\?</string>
     <string name="local_source_badge">Local</string>
     <string name="updating_category">Actualizando categoría</string>
     <string name="library_search_hint">Título o autor…</string>
@@ -489,7 +486,6 @@
     </plurals>
     <string name="manga_info_collapse">Menos</string>
     <string name="manga_info_expand">Más</string>
-    <string name="manga_info_about_label">Acerca de</string>
     <string name="manga_removed_library">Eliminado de la biblioteca</string>
     <string name="manga_added_library">Añadido a la biblioteca</string>
     <string name="manga_info_full_title_label">Título</string>
@@ -614,4 +610,20 @@
     <string name="pref_allow_nsfw_sources_allowed">Permitidas</string>
     <string name="pref_allow_nsfw_sources">Fuentes +18</string>
     <string name="pref_category_parental_controls">Controles parentales</string>
+    <plurals name="missing_chapters_warning">
+        <item quantity="one">Falta un capítulo</item>
+        <item quantity="other">Faltan %d capítulos</item>
+    </plurals>
+    <string name="share_page_info">%1$s: %2$s, página %3$d</string>
+    <string name="chapter_settings_updated">Las configuraciones predeterminadas del capítulo han sido actualizadas</string>
+    <string name="no_chapters_error">No se encontraron capitulos</string>
+    <string name="set_chapter_settings_as_default">Establecer predeterminado</string>
+    <string name="also_set_chapter_settings_for_library">Aplicar también a todos los mangas en mi biblioteca</string>
+    <string name="confirm_set_chapter_settings">¿Estás seguro de que quieres guardar como predeterminadas estas configuraciones\?</string>
+    <string name="chapter_settings">Ajustes del capítulo</string>
+    <string name="action_web_view">Vista de la web</string>
+    <string name="downloaded_chapters">Capítulos descargardos</string>
+    <string name="manga_from_library">Manga de la biblioteca</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Ocultar la barra inferior al desplazar</string>
+    <string name="action_search_settings">Opciones de búsqueda</string>
 </resources>

@@ -18,7 +18,6 @@
     <string name="action_filter_downloaded">Telah dimuat turun</string>
     <string name="action_filter_bookmarked">Ditanda</string>
     <string name="action_filter_unread">Belum dibaca</string>
-    <string name="action_filter_read">Sudah dibaca</string>
     <string name="action_filter_empty">Kosongkan tapisan</string>
     <string name="action_sort_alpha">Abjad</string>
     <string name="action_sort_total">Jumlah bab</string>
@@ -211,8 +210,6 @@
     <string name="library_search_hint">Tajuk atau pengarang…</string>
     <string name="updating_category">Kemaskini kategori dalam progres</string>
     <string name="local_source_badge">Setempat</string>
-    <string name="confirm_delete_manga">Adakah anda pasti mahu keluarkan manga yang dipilih?</string>
-    <string name="also_delete_chapters">Juga padamkan bab yang telah dimuat turun</string>
     <string name="source_requires_login">Sumber ini mengharuskan anda log masuk</string>
     <string name="select_source">Pilih sumber</string>
     <string name="no_valid_sources">Sila aktifkan sekurang-kurangnya satu sumber yang sah</string>
@@ -485,7 +482,6 @@
     <string name="add_tracking">Tambah penjejakan</string>
     <string name="manga_info_collapse">Tutup</string>
     <string name="manga_info_expand">Buka</string>
-    <string name="manga_info_about_label">Tentang</string>
     <string name="in_library">Dalam pustaka</string>
     <string name="add_to_library">Tambah ke pustaka</string>
     <string name="pinned_sources">Disematkan</string>
@@ -607,4 +603,15 @@
         <item quantity="other">Ada %d bab yang hilang</item>
     </plurals>
     <string name="no_chapters_error">Tiada bab dijumpai</string>
+    <string name="action_web_view">WebView</string>
+    <string name="chapter_settings_updated">Tetapan bab lalai dikemaskini</string>
+    <string name="set_chapter_settings_as_default">Tetapkan sebagai lalai</string>
+    <string name="also_set_chapter_settings_for_library">Gunakan juga untuk semua manga dalam pustaka</string>
+    <string name="confirm_set_chapter_settings">Adakah anda pasti ingin simpan tetapan ini sebagai lalai\?</string>
+    <string name="chapter_settings">Tetapan bab</string>
+    <string name="share_page_info">%1$s: %2$s, halaman %3$d</string>
+    <string name="action_search_settings">Carian tetapan</string>
+    <string name="downloaded_chapters">Bab dimuat turun</string>
+    <string name="manga_from_library">Manga dari pustaka</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Sembunyi bar bawah bila skrol</string>
 </resources>

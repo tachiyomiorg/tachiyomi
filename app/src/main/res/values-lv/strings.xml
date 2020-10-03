@@ -18,7 +18,6 @@
     <string name="action_filter_downloaded">Lejupieladēts</string>
     <string name="action_filter_bookmarked">Ar grāmatzīmēm</string>
     <string name="action_filter_unread">Neizlasītie</string>
-    <string name="action_filter_read">Izlasītie</string>
     <string name="action_filter_empty">Dzēst filtru</string>
     <string name="action_sort_alpha">Alfabētiski</string>
     <string name="action_sort_total">Nodaļu daudzums</string>

@@ -21,7 +21,6 @@
     <string name="action_filter_downloaded">Preuzeto</string>
     <string name="action_filter_bookmarked">Zabilježeno</string>
     <string name="action_filter_unread">Nepročitano</string>
-    <string name="action_filter_read">Pročitano</string>
     <string name="action_filter_empty">Ukloni filter</string>
     <string name="action_sort_alpha">Alfabetno</string>
     <string name="action_sort_total">Ukupno poglavlja</string>
@@ -239,8 +238,6 @@
     <string name="library_search_hint">Ime ili autor…</string>
     <string name="updating_category">Ažuriranje kategorije</string>
     <string name="local_source_badge">Lokalno</string>
-    <string name="confirm_delete_manga">Da li ste sigurni da želite da uklonite označenu mangu\?</string>
-    <string name="also_delete_chapters">Takođe obriši preuzeta poglavlja</string>
     <string name="source_requires_login">Na ovom izvoru je potrebno prijaviti se</string>
     <string name="select_source">Izaberi izvor</string>
     <string name="no_valid_sources">Molimo izaberite bar jedan validan izvor</string>
@@ -440,7 +437,6 @@
     <string name="snack_add_to_library">Dodati mangu u biblioteku\?</string>
     <string name="manga_info_collapse">Prikazi manje informacija</string>
     <string name="manga_info_expand">Prikazi više informacija</string>
-    <string name="manga_info_about_label">Info</string>
     <string name="in_library">U biblioteci</string>
     <string name="add_to_library">Dodaj u biblioteku</string>
     <string name="local_source_help_guide">Vodič za lokalni izvor</string>

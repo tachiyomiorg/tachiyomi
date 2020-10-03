@@ -91,7 +91,6 @@
     <string name="action_filter_downloaded">Letöltve</string>
     <string name="action_filter_bookmarked">Könyvjelzőzve</string>
     <string name="action_filter_unread">Olvasatlan</string>
-    <string name="action_filter_read">Olvasott</string>
     <string name="action_filter_empty">Szűrők eltávolítása</string>
     <string name="action_sort_alpha">Betűrendben</string>
     <string name="action_sort_total">Összes fejezet</string>

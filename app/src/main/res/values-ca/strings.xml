@@ -21,7 +21,6 @@
     <string name="action_filter_downloaded">Baixats</string>
     <string name="action_filter_bookmarked">Marcats</string>
     <string name="action_filter_unread">No llegits</string>
-    <string name="action_filter_read">Llegits</string>
     <string name="action_filter_empty">Elimina el filtre</string>
     <string name="action_sort_alpha">Alfabèticament</string>
     <string name="action_sort_total">Capítols en total</string>
@@ -239,8 +238,6 @@
     <string name="library_search_hint">Títol o autor…</string>
     <string name="updating_category">S\'està actualitzant la categoria</string>
     <string name="local_source_badge">Local</string>
-    <string name="confirm_delete_manga">Esteu segur que voleu eliminar el manga seleccionat\?</string>
-    <string name="also_delete_chapters">Suprimeix també els capítols baixats</string>
     <string name="source_requires_login">Aquesta font requereix iniciar la sessió</string>
     <string name="select_source">Seleccioneu una font</string>
     <string name="no_valid_sources">Activeu almenys una font vàlida</string>
@@ -495,7 +492,6 @@
     <string name="information_webview_required">El Tachiyomi requereix el WebView</string>
     <string name="manga_info_collapse">Menys</string>
     <string name="manga_info_expand">Més</string>
-    <string name="manga_info_about_label">Quant a</string>
     <string name="licenses">Llicències de codi obert</string>
     <string name="website">Lloc web</string>
     <string name="pref_confirm_exit">Confirma la sortida</string>
@@ -618,4 +614,15 @@
         <item quantity="other">Hi manquen %d capítols</item>
     </plurals>
     <string name="no_chapters_error">No s\'ha trobat cap capítol</string>
+    <string name="chapter_settings_updated">S\'ha actualitzat la configuració per defecte dels capítols</string>
+    <string name="set_chapter_settings_as_default">Estableix com a per defecte</string>
+    <string name="also_set_chapter_settings_for_library">Aplica-ho també a tot el manga de la biblioteca</string>
+    <string name="confirm_set_chapter_settings">Esteu segur que voleu desar aquesta configuració com a configuració per defecte\?</string>
+    <string name="chapter_settings">Configuració dels capítols</string>
+    <string name="action_web_view">Visualització web</string>
+    <string name="share_page_info">%1$s: %2$s, pàgina %3$d</string>
+    <string name="action_search_settings">Configuració de la cerca</string>
+    <string name="downloaded_chapters">Capítols baixats</string>
+    <string name="manga_from_library">Manga de la biblioteca</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Amaga la barra inferior en desplaçar</string>
 </resources>

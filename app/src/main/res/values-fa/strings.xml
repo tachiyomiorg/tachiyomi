@@ -124,7 +124,6 @@
     <string name="delete_downloads_for_manga">فصلهای بارگیری شده را نیز حذف شوند؟</string>
     <string name="manga_info_collapse">نمایش اطلاعات کمتر</string>
     <string name="manga_info_expand">نمایش اطلاعات بیشتر</string>
-    <string name="manga_info_about_label">درباره</string>
     <string name="manga_removed_library">از کتابخانه حذف شد</string>
     <string name="manga_added_library">به کتابخانه اضافه شد</string>
     <string name="manga_info_full_title_label">عنوان</string>
@@ -183,8 +182,6 @@
     <string name="source_requires_login">این منبع نیاز به ورود به سیستم دارد</string>
     <string name="tabs_header">تب ها</string>
     <string name="badges_header">تعداد</string>
-    <string name="also_delete_chapters">حذف فصل های دانلود شده نیز پاک شوند</string>
-    <string name="confirm_delete_manga">آیا مطمئنید که می خواهید مانگای انتخاب شده را حذف کنید ؟</string>
     <string name="tracker_not_logged_in">وارد سیستم نشده اید: %1$s</string>
     <string name="source_not_found_name">منبع یافت نشد: %1$s</string>
     <string name="pref_backup_slots">حداکثر تعداد نسخه‌های پشتیبان</string>
@@ -552,7 +549,6 @@
     <string name="action_sort_total">کل فصل‌ها</string>
     <string name="action_sort_alpha">الفبا</string>
     <string name="action_filter_empty">حذف فیلتر</string>
-    <string name="action_filter_read">خوانده شده</string>
     <string name="action_filter_unread">خوانده ‌نشده</string>
     <string name="action_filter_bookmarked">بوک مارک شده</string>
     <string name="action_filter_downloaded">دانلود شده</string>

@@ -15,7 +15,6 @@
     <string name="action_filter_downloaded">Téléchargés</string>
     <string name="action_filter_bookmarked">Signets</string>
     <string name="action_filter_unread">Non lus</string>
-    <string name="action_filter_read">Lus</string>
     <string name="action_filter_empty">Enlever le filtre</string>
     <string name="action_sort_alpha">Alphabétiquement</string>
     <string name="action_sort_last_read">Dernier lu</string>
@@ -172,7 +171,6 @@
     <string name="unknown_error">Erreur inconnue</string>
     <!-- Library fragment -->
     <string name="library_search_hint">Titre ou auteur…</string>
-    <string name="confirm_delete_manga">Êtes-vous sûr·e de vouloir supprimer les mangas sélectionnés \?</string>
     <!-- Catalogue fragment -->
     <string name="source_requires_login">Cette source demande de vous identifier</string>
     <string name="select_source">Sélectionner une source</string>
@@ -335,7 +333,6 @@
     <string name="creating_backup">Création de sauvegarde en cours</string>
     <string name="pref_refresh_library_tracking">Actualiser les métadonnées de suivi</string>
     <string name="pref_refresh_library_tracking_summary">Actualise le statut, appréciation et dernier chapitre lu des services de suivi</string>
-    <string name="also_delete_chapters">Efface aussi les chapitres téléchargés</string>
     <string name="default_category_summary">Toujours demander</string>
     <string name="pref_read_with_volume_keys_inverted">Inverser les boutons de volume</string>
     <string name="pref_crop_borders">Rogner les bordures</string>
@@ -534,7 +531,6 @@
     <string name="backup_in_progress">Sauvegarde déjà en cours</string>
     <string name="manga_info_collapse">Moins</string>
     <string name="manga_info_expand">Plus</string>
-    <string name="manga_info_about_label">À propos</string>
     <string name="website">Site web</string>
     <string name="pref_confirm_exit">Confirmer la sortie</string>
     <string name="recent_manga_time">Ch. %1$s – %2$s</string>
@@ -653,4 +649,14 @@
         <item quantity="other">Il manque %d chapitres</item>
     </plurals>
     <string name="no_chapters_error">Aucun chapitre trouvé</string>
+    <string name="confirm_set_chapter_settings">Appliquer ce paramétrage par défaut \?</string>
+    <string name="chapter_settings">Paramètres du chapitre</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Cacher la barre inférieure lors du défilement</string>
+    <string name="action_web_view">Navigateur intégré</string>
+    <string name="also_set_chapter_settings_for_library">Appliquer à ma librairie</string>
+    <string name="set_chapter_settings_as_default">Appliquer par défaut</string>
+    <string name="share_page_info">%1$s: %2$s, page %3$d</string>
+    <string name="downloaded_chapters">Chapitres téléchargés</string>
+    <string name="manga_from_library">Manga de la bibliothèque</string>
+    <string name="action_search_settings">Paramètres de recherche</string>
 </resources>
