@@ -65,8 +65,8 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
     }
 
     override fun viewerNavigation(navigationMode: Int, invertMode: TappingInvertMode) {
-        val invertHorizontal = invertMode.invertHorizontal()
-        val invertVertical = invertMode.invertVertical()
+        val invertHorizontal = invertMode.shouldInvertHorizontal()
+        val invertVertical = invertMode.shouldInvertVertical()
 
         navigator = when (navigationMode) {
             0 -> defaultViewerNavigation(invertHorizontal, invertVertical)

@@ -5,6 +5,7 @@ import eu.kanade.tachiyomi.ui.reader.viewer.ViewerNavigation
 import eu.kanade.tachiyomi.ui.reader.viewer.navigation.LNavigation
 
 /**
+ * Visualization of default state without any inversion
  * +---+---+---+
  * | N | M | P |   P: Previous
  * +---+---+---+
@@ -13,7 +14,7 @@ import eu.kanade.tachiyomi.ui.reader.viewer.navigation.LNavigation
  * | N | M | P |   N: Next
  * +---+---+---+
  */
-class PagerDefaultNavigation(invertHorizontal: Boolean) : ViewerNavigation() {
+class PagerDefaultNavigation(invertHorizontal: Boolean = false) : ViewerNavigation() {
     override var nextRegion = listOf(
         when (invertHorizontal) {
             false -> RectF(0.66f, 0f, 1f, 1f)
@@ -28,4 +29,4 @@ class PagerDefaultNavigation(invertHorizontal: Boolean) : ViewerNavigation() {
     )
 }
 
-class VerticalPagerDefaultNavigation(invertHorizontal: Boolean, invertVertical: Boolean) : LNavigation(invertHorizontal, invertVertical)
+class VerticalPagerDefaultNavigation(invertHorizontal: Boolean = false, invertVertical: Boolean = false) : LNavigation(invertHorizontal, invertVertical)

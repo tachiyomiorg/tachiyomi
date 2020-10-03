@@ -38,8 +38,8 @@ class WebtoonConfig(preferences: PreferencesHelper = Injekt.get()) : ViewerConfi
     }
 
     override fun viewerNavigation(navigationMode: Int, invertMode: TappingInvertMode) {
-        val invertHorizontal = invertMode.invertHorizontal()
-        val invertVertical = invertMode.invertVertical()
+        val invertHorizontal = invertMode.shouldInvertHorizontal()
+        val invertVertical = invertMode.shouldInvertVertical()
 
         this.navigator = when (navigationMode) {
             0 -> defaultViewerNavigation(invertHorizontal, invertVertical)

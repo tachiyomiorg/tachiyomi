@@ -13,7 +13,7 @@ import eu.kanade.tachiyomi.ui.reader.viewer.ViewerNavigation
  * | P | P | P |   N: Next
  * +---+---+---+
  */
-open class LNavigation(invertHorizontal: Boolean = false, invertVertical: Boolean = true) : ViewerNavigation() {
+open class LNavigation(invertHorizontal: Boolean = false, invertVertical: Boolean = false) : ViewerNavigation() {
 
     override var nextRegion = listOf(
         when (invertHorizontal) {

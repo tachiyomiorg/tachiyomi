@@ -37,8 +37,8 @@ object PreferenceValues {
         VERTICAL,
         BOTH;
 
-        fun invertHorizontal() = this == HORIZONTAL || this == BOTH
-        fun invertVertical() = this == VERTICAL || this == BOTH
+        fun shouldInvertHorizontal() = this == HORIZONTAL || this == BOTH
+        fun shouldInvertVertical() = this == VERTICAL || this == BOTH
     }
 
     enum class NsfwAllowance {
