@@ -14,6 +14,14 @@
         <item name="tint">?attr/colorOnPrimary</item>
     </style>
 
+    <style name="Theme.ActionMode" parent="Base.Widget.AppCompat.ActionMode">
+        <item name="background">?attr/colorPrimary</item>
+    </style>
+
+    <style name="Theme.ActionMode.CloseButton" parent="Base.Widget.AppCompat.ActionButton.CloseMode">
+        <item name="android:tint">?attr/colorOnPrimary</item>
+    </style>
+
 
     <!--===========-->
     <!--AlertDialog-->
@@ -72,15 +80,7 @@
     </style>
 
     <style name="TextAppearance.Regular.SubHeading">
-        <item name="android:textSize">16sp</item>
-    </style>
-
-    <style name="TextAppearance.Regular.SubHeading.Upper">
-        <item name="android:textAllCaps">true</item>
-    </style>
-
-    <style name="TextAppearance.Regular.SubHeading.Secondary">
-        <item name="android:textColor">?android:attr/textColorSecondary</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="TextAppearance.Medium">
@@ -88,15 +88,7 @@
     </style>
 
     <style name="TextAppearance.Medium.Title">
-        <item name="android:textSize">20sp</item>
-    </style>
-
-    <style name="TextAppearance.Medium.Title.Upper">
-        <item name="android:textAllCaps">true</item>
-    </style>
-
-    <style name="TextAppearance.Medium.Title.Secondary">
-        <item name="android:textColor">?android:attr/textColorSecondary</item>
+        <item name="android:textSize">24sp</item>
     </style>
 
     <style name="TextAppearance.Medium.Body2">
@@ -105,6 +97,12 @@
 
     <style name="TextAppearance.Medium.Body2.Hint">
         <item name="android:textColor">?android:attr/textColorHint</item>
+    </style>
+
+    <style name="TextAppearance.Medium.SubHeading">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="TextAppearance.Widget.Button" parent="TextAppearance.MaterialComponents.Button">
@@ -252,34 +250,34 @@
         <item name="android:textAllCaps">false</item>
     </style>
 
-    <style name="Theme.Widget.Button.Icon" parent="Widget.MaterialComponents.Button.OutlinedButton.Icon">
-        <item name="android:minHeight">0dp</item>
-        <item name="android:paddingBottom">4dp</item>
-        <item name="android:paddingStart">8dp</item>
-        <item name="android:paddingEnd">16dp</item>
-
+    <style name="Theme.Widget.Button.Action" parent="Widget.MaterialComponents.Button.Icon">
         <item name="elevation">0dp</item>
 
         <item name="android:textSize">12sp</item>
-        <item name="textAllCaps">false</item>
-        <item name="cornerRadius">16dp</item>
 
-        <item name="iconTint">?attr/colorAccent</item>
+        <item name="drawableTint">?attr/colorOnBackground</item>
+        <item name="android:drawablePadding">4dp</item>
         <item name="rippleColor">?attr/colorAccent</item>
         <item name="android:textColor">?attr/colorOnBackground</item>
 
         <item name="backgroundTint">@color/outlined_button_bg</item>
-        <item name="strokeColor">@color/outlined_button_stroke</item>
     </style>
 
-    <style name="Theme.Widget.Button.Icon.Textless">
+    <style name="Theme.Widget.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:letterSpacing">0.0</item>
+        <item name="android:textColor">?attr/colorAccent</item>
+        <item name="android:textAllCaps">false</item>
+
+        <item name="android:minHeight">0dp</item>
         <item name="android:minWidth">0dp</item>
-        <item name="android:paddingLeft">8dp</item>
-        <item name="android:paddingRight">8dp</item>
-        <item name="android:paddingStart">8dp</item>
-        <item name="android:paddingEnd">8dp</item>
-        <item name="iconPadding">0dp</item>
-        <item name="strokeWidth">0dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+
+        <item name="android:background">?android:attr/colorBackground</item>
+        <item name="backgroundTint">@null</item>
+        <item name="rippleColor">@null</item>
     </style>
 
 
@@ -289,6 +287,8 @@
     <style name="Theme.Widget.Tabs" parent="Widget.MaterialComponents.TabLayout.Colored">
         <item name="tabGravity">center</item>
         <item name="tabIndicator">@drawable/tab_indicator</item>
+        <item name="tabIndicatorColor">?attr/colorAccentOnPrimary</item>
+        <item name="tabTextColor">@color/tabs_selector</item>
         <item name="tabIndicatorFullWidth">false</item>
         <item name="tabIndicatorHeight">3dp</item>
         <item name="tabInlineLabel">true</item>

@@ -17,6 +17,7 @@
         <!-- Theme colors -->
         <item name="colorPrimary">@color/md_white_1000</item>
         <item name="colorOnPrimary">@color/md_black_1000</item>
+        <item name="colorAccentOnPrimary">@color/colorAccentLight</item>
         <item name="colorPrimaryVariant">@color/md_white_1000</item>
         <item name="colorSecondary">@color/colorAccentLight</item>
         <item name="colorOnSecondary">@color/md_white_1000</item>
@@ -47,6 +48,9 @@
         <item name="android:navigationBarColor">?attr/colorPrimary</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="elevationOverlayEnabled">false</item>
+        <item name="actionModeStyle">@style/Theme.ActionMode</item>
+        <item name="actionModeCloseButtonStyle">@style/Theme.ActionMode.CloseButton</item>
+        <item name="actionModeCloseDrawable">@drawable/ic_close_24dp</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.MaterialComponents</item>
         <item name="toolbarNavigationButtonStyle">@style/Theme.Toolbar.Navigation</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
@@ -89,6 +93,7 @@
     <style name="Theme.Tachiyomi.LightBlue" parent="Theme.Base">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorOnPrimary">@color/textColorPrimaryDark</item>
+        <item name="colorAccentOnPrimary">@color/textColorPrimaryDark</item>
         <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
 
         <item name="actionBarTheme">@style/Theme.Toolbar.Light</item>
@@ -101,6 +106,7 @@
         <!-- Theme colors -->
         <item name="colorPrimary">@color/colorDarkPrimary</item>
         <item name="colorOnPrimary">@color/textColorPrimaryDark</item>
+        <item name="colorAccentOnPrimary">@color/colorAccentDark</item>
         <item name="colorPrimaryVariant">@color/colorDarkPrimary</item>
         <item name="colorSecondary">@color/colorAccentDark</item>
         <item name="colorOnSecondary">@color/textColorPrimaryDark</item>
@@ -131,6 +137,9 @@
         <item name="android:navigationBarColor">?attr/colorPrimary</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="elevationOverlayEnabled">false</item>
+        <item name="actionModeStyle">@style/Theme.ActionMode</item>
+        <item name="actionModeCloseButtonStyle">@style/Theme.ActionMode.CloseButton</item>
+        <item name="actionModeCloseDrawable">@drawable/ic_close_24dp</item>
         <item name="actionBarTheme">@style/ThemeOverlay.MaterialComponents.Dark.ActionBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.MaterialComponents</item>
         <item name="toolbarNavigationButtonStyle">@style/Theme.Toolbar.Navigation</item>
@@ -166,6 +175,7 @@
 
     <style name="Theme.Tachiyomi.DarkBlue" parent="Theme.Base.Dark">
         <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccentOnPrimary">@color/textColorPrimaryDark</item>
         <item name="colorPrimaryVariant">@color/colorPrimary</item>
     </style>
 

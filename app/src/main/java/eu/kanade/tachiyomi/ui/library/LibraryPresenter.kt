@@ -19,14 +19,15 @@ import eu.kanade.tachiyomi.util.lang.combineLatest
 import eu.kanade.tachiyomi.util.lang.isNullOrUnsubscribed
 import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.removeCovers
-import java.util.Collections
-import java.util.Comparator
+import eu.kanade.tachiyomi.widget.ExtendedNavigationView.Item.TriStateGroup.State
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import java.util.Collections
+import java.util.Comparator
 
 /**
  * Class containing library information.
@@ -110,34 +111,45 @@ class LibraryPresenter(
      * @param map the map to filter.
      */
     private fun applyFilters(map: LibraryMap): LibraryMap {
-        val filterDownloaded = preferences.downloadedOnly().get() || preferences.filterDownloaded().get()
+        val downloadedOnly = preferences.downloadedOnly().get()
+        val filterDownloaded = preferences.filterDownloaded().get()
         val filterUnread = preferences.filterUnread().get()
         val filterCompleted = preferences.filterCompleted().get()
 
-        val filterFn: (LibraryItem) -> Boolean = f@{ item ->
-            // Filter when there isn't unread chapters.
-            if (filterUnread && item.manga.unread == 0) {
-                return@f false
+        val filterFnUnread: (LibraryItem) -> Boolean = unread@{ item ->
+            if (filterUnread == State.IGNORE.value) return@unread true
+            val isUnread = item.manga.unread != 0
+
+            return@unread if (filterUnread == State.INCLUDE.value) isUnread
+            else !isUnread
+        }
+
+        val filterFnCompleted: (LibraryItem) -> Boolean = completed@{ item ->
+            if (filterCompleted == State.IGNORE.value) return@completed true
+            val isCompleted = item.manga.status == SManga.COMPLETED
+
+            return@completed if (filterCompleted == State.INCLUDE.value) isCompleted
+            else !isCompleted
+        }
+
+        val filterFnDownloaded: (LibraryItem) -> Boolean = downloaded@{ item ->
+            if (!downloadedOnly && filterDownloaded == State.IGNORE.value) return@downloaded true
+            val isDownloaded = when {
+                item.manga.isLocal() -> true
+                item.downloadCount != -1 -> item.downloadCount > 0
+                else -> downloadManager.getDownloadCount(item.manga) > 0
             }
 
-            if (filterCompleted && item.manga.status != SManga.COMPLETED) {
-                return@f false
-            }
+            return@downloaded if (downloadedOnly || filterDownloaded == State.INCLUDE.value) isDownloaded
+            else !isDownloaded
+        }
 
-            // Filter when there are no downloads.
-            if (filterDownloaded) {
-                // Local manga are always downloaded
-                if (item.manga.isLocal()) {
-                    return@f true
-                }
-                // Don't bother with directory checking if download count has been set.
-                if (item.downloadCount != -1) {
-                    return@f item.downloadCount > 0
-                }
-
-                return@f downloadManager.getDownloadCount(item.manga) > 0
-            }
-            true
+        val filterFn: (LibraryItem) -> Boolean = filter@{ item ->
+            return@filter !(
+                !filterFnUnread(item) ||
+                    !filterFnCompleted(item) ||
+                    !filterFnDownloaded(item)
+                )
         }
 
         return map.mapValues { entry -> entry.value.filter(filterFn) }
@@ -358,20 +370,23 @@ class LibraryPresenter(
     }
 
     /**
-     * Remove the selected manga from the library.
+     * Remove the selected manga.
      *
      * @param mangas the list of manga to delete.
-     * @param deleteChapters whether to also delete downloaded chapters.
+     * @param deleteFromLibrary whether to delete manga from library.
+     * @param deleteChapters whether to delete downloaded chapters.
      */
-    fun removeMangaFromLibrary(mangas: List<Manga>, deleteChapters: Boolean) {
+    fun removeMangas(mangas: List<Manga>, deleteFromLibrary: Boolean, deleteChapters: Boolean) {
         launchIO {
             val mangaToDelete = mangas.distinctBy { it.id }
 
-            mangaToDelete.forEach {
-                it.favorite = false
-                it.removeCovers(coverCache)
+            if (deleteFromLibrary) {
+                mangaToDelete.forEach {
+                    it.favorite = false
+                    it.removeCovers(coverCache)
+                }
+                db.insertMangas(mangaToDelete).executeAsBlocking()
             }
-            db.insertMangas(mangaToDelete).executeAsBlocking()
 
             if (deleteChapters) {
                 mangaToDelete.forEach { manga ->

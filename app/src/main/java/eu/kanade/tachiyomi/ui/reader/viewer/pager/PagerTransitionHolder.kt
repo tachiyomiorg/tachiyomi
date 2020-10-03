@@ -8,13 +8,11 @@ import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.LinearLayout
 import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.text.bold
-import androidx.core.text.buildSpannedString
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
+import eu.kanade.tachiyomi.ui.reader.viewer.ReaderTransitionView
 import eu.kanade.tachiyomi.util.system.dpToPx
 import eu.kanade.tachiyomi.widget.ViewPagerAdapter
 import rx.Subscription
@@ -41,14 +39,6 @@ class PagerTransitionHolder(
     private var statusSubscription: Subscription? = null
 
     /**
-     * Text view used to display the text of the current and next/prev chapters.
-     */
-    private var textView = TextView(context).apply {
-        textSize = 17.5F
-        wrapContent()
-    }
-
-    /**
      * View container of the current status of the transition page. Child views will be added
      * dynamically.
      */
@@ -63,13 +53,14 @@ class PagerTransitionHolder(
         gravity = Gravity.CENTER
         val sidePadding = 64.dpToPx
         setPadding(sidePadding, 0, sidePadding, 0)
-        addView(textView)
+
+        val transitionView = ReaderTransitionView(context)
+        addView(transitionView)
         addView(pagesContainer)
 
-        when (transition) {
-            is ChapterTransition.Prev -> bindPrevChapterTransition()
-            is ChapterTransition.Next -> bindNextChapterTransition()
-        }
+        transitionView.bind(transition)
+
+        transition.to?.let { observeStatus(it) }
     }
 
     /**
@@ -79,50 +70,6 @@ class PagerTransitionHolder(
         super.onDetachedFromWindow()
         statusSubscription?.unsubscribe()
         statusSubscription = null
-    }
-
-    /**
-     * Binds a next chapter transition on this view and subscribes to the load status.
-     */
-    private fun bindNextChapterTransition() {
-        val nextChapter = transition.to
-
-        textView.text = if (nextChapter != null) {
-            buildSpannedString {
-                bold { append(context.getString(R.string.transition_finished)) }
-                append("\n${transition.from.chapter.name}\n\n")
-                bold { append(context.getString(R.string.transition_next)) }
-                append("\n${nextChapter.chapter.name}\n\n")
-            }
-        } else {
-            context.getString(R.string.transition_no_next)
-        }
-
-        if (nextChapter != null) {
-            observeStatus(nextChapter)
-        }
-    }
-
-    /**
-     * Binds a previous chapter transition on this view and subscribes to the page load status.
-     */
-    private fun bindPrevChapterTransition() {
-        val prevChapter = transition.to
-
-        textView.text = if (prevChapter != null) {
-            buildSpannedString {
-                bold { append(context.getString(R.string.transition_current)) }
-                append("\n${transition.from.chapter.name}\n\n")
-                bold { append(context.getString(R.string.transition_previous)) }
-                append("\n${prevChapter.chapter.name}\n\n")
-            }
-        } else {
-            context.getString(R.string.transition_no_previous)
-        }
-
-        if (prevChapter != null) {
-            observeStatus(prevChapter)
-        }
     }
 
     /**

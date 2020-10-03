@@ -6,6 +6,7 @@ import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.model.ViewerChapters
+import eu.kanade.tachiyomi.ui.reader.viewer.MissingChapters
 import eu.kanade.tachiyomi.widget.ViewPagerAdapter
 import timber.log.Timber
 
@@ -33,6 +34,10 @@ class PagerViewerAdapter(private val viewer: PagerViewer) : ViewPagerAdapter() {
     fun setChapters(chapters: ViewerChapters, forceTransition: Boolean) {
         val newItems = mutableListOf<Any>()
 
+        // Forces chapter transition if there is missing chapters
+        val prevHasMissingChapters = if (chapters.prevChapter != null) MissingChapters.hasMissingChapters(chapters.currChapter.chapter, chapters.prevChapter.chapter) else false
+        val nextHasMissingChapters = if (chapters.nextChapter != null) MissingChapters.hasMissingChapters(chapters.nextChapter.chapter, chapters.currChapter.chapter) else false
+
         // Add previous chapter pages and transition.
         if (chapters.prevChapter != null) {
             // We only need to add the last few pages of the previous chapter, because it'll be
@@ -44,7 +49,7 @@ class PagerViewerAdapter(private val viewer: PagerViewer) : ViewPagerAdapter() {
         }
 
         // Skip transition page if the chapter is loaded & current page is not a transition page
-        if (forceTransition || chapters.prevChapter?.state !is ReaderChapter.State.Loaded) {
+        if (prevHasMissingChapters || forceTransition || chapters.prevChapter?.state !is ReaderChapter.State.Loaded) {
             newItems.add(ChapterTransition.Prev(chapters.currChapter, chapters.prevChapter))
         }
 
@@ -59,7 +64,7 @@ class PagerViewerAdapter(private val viewer: PagerViewer) : ViewPagerAdapter() {
         // Add next chapter transition and pages.
         nextTransition = ChapterTransition.Next(chapters.currChapter, chapters.nextChapter)
             .also {
-                if (forceTransition ||
+                if (nextHasMissingChapters || forceTransition ||
                     chapters.nextChapter?.state !is ReaderChapter.State.Loaded
                 ) {
                     newItems.add(it)

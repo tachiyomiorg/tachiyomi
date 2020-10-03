@@ -64,9 +64,9 @@ class MangaChaptersHeaderAdapter(
             val filterColor = if (hasActiveFilters) {
                 view.context.getResourceColor(R.attr.colorFilterActive)
             } else {
-                view.context.getResourceColor(R.attr.colorOnPrimary)
+                view.context.getResourceColor(R.attr.colorOnBackground)
             }
-            DrawableCompat.setTint(binding.btnChaptersFilter.icon, filterColor)
+            DrawableCompat.setTint(binding.btnChaptersFilter.drawable, filterColor)
 
             merge(view.clicks(), binding.btnChaptersFilter.clicks())
                 .onEach { controller.showSettingsSheet() }

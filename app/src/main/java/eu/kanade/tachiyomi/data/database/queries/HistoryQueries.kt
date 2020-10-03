@@ -21,12 +21,15 @@ interface HistoryQueries : DbProvider {
     /**
      * Returns history of recent manga containing last read chapter
      * @param date recent date range
+     * @param limit the limit of manga to grab
+     * @param offset offset the db by
+     * @param search what to search in the db history
      */
-    fun getRecentManga(date: Date) = db.get()
+    fun getRecentManga(date: Date, limit: Int = 25, offset: Int = 0, search: String = "") = db.get()
         .listOfObjects(MangaChapterHistory::class.java)
         .withQuery(
             RawQuery.builder()
-                .query(getRecentMangasQuery())
+                .query(getRecentMangasQuery(limit, offset, search))
                 .args(date.time)
                 .observesTables(HistoryTable.TABLE)
                 .build()

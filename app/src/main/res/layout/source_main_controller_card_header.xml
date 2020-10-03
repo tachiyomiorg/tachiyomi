@@ -6,7 +6,7 @@
 
     <TextView
         android:id="@+id/title"
-        style="@style/TextAppearance.Regular.SubHeading"
+        style="@style/TextAppearance.Medium.SubHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/material_component_text_fields_padding_above_and_below_label"

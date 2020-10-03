@@ -16,15 +16,15 @@ import eu.kanade.tachiyomi.util.preference.onChange
 import eu.kanade.tachiyomi.util.preference.switchPreferenceCategory
 import eu.kanade.tachiyomi.util.preference.titleRes
 import eu.kanade.tachiyomi.util.system.LocaleHelper
-import java.util.TreeMap
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import java.util.TreeMap
 
 class SourceFilterController : SettingsController() {
 
     private val onlineSources by lazy { Injekt.get<SourceManager>().getOnlineSources() }
 
-    override fun setupPreferenceScreen(screen: PreferenceScreen) = with(screen) {
+    override fun setupPreferenceScreen(screen: PreferenceScreen) = screen.apply {
         titleRes = R.string.label_sources
 
         // Get the list of active language codes.
@@ -42,11 +42,11 @@ class SourceFilterController : SettingsController() {
         )
 
         orderedLangs.forEach { lang ->
-            val sources = sourcesByLang[lang].orEmpty().sortedBy { it.name }
+            val sources = sourcesByLang[lang].orEmpty().sortedBy { it.name.toLowerCase() }
 
             // Create a preference group and set initial state and change listener
             switchPreferenceCategory {
-                preferenceScreen.addPreference(this)
+                this@apply.addPreference(this)
                 title = LocaleHelper.getSourceDisplayName(lang, context)
                 isPersistent = false
                 if (lang in activeLangsCodes) {

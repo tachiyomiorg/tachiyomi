@@ -1,7 +1,5 @@
 package eu.kanade.tachiyomi.ui.manga.info
 
-import android.content.Context
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -105,13 +103,27 @@ class MangaInfoHeaderAdapter(
                     isVisible = true
 
                     if (trackCount > 0) {
-                        setIconResource(R.drawable.ic_done_24dp)
-                        text = view.context.resources.getQuantityString(R.plurals.num_trackers, trackCount, trackCount)
-                        isChecked = true
+                        setCompoundDrawablesWithIntrinsicBounds(
+                            null,
+                            ContextCompat.getDrawable(context, R.drawable.ic_done_24dp),
+                            null,
+                            null
+                        )
+                        text = view.context.resources.getQuantityString(
+                            R.plurals.num_trackers,
+                            trackCount,
+                            trackCount
+                        )
+                        isSelected = true
                     } else {
-                        setIconResource(R.drawable.ic_sync_24dp)
+                        setCompoundDrawablesWithIntrinsicBounds(
+                            null,
+                            ContextCompat.getDrawable(context, R.drawable.ic_sync_24dp),
+                            null,
+                            null
+                        )
                         text = view.context.getString(R.string.manga_tracking_tab)
-                        isChecked = false
+                        isSelected = false
                     }
 
                     clicks()
@@ -128,12 +140,6 @@ class MangaInfoHeaderAdapter(
                     .onEach { controller.openMangaInWebView() }
                     .launchIn(scope)
                 binding.btnWebview.setTooltip(R.string.action_open_in_web_view)
-
-                binding.btnShare.isVisible = true
-                binding.btnShare.clicks()
-                    .onEach { controller.shareManga() }
-                    .launchIn(scope)
-                binding.btnShare.setTooltip(R.string.action_share)
             }
 
             binding.mangaFullTitle.longClicks()
@@ -285,20 +291,32 @@ class MangaInfoHeaderAdapter(
 
                 // Update genres list
                 if (!manga.genre.isNullOrBlank()) {
-                    binding.mangaGenresTagsCompactChips.setChips(manga.getGenres(), controller::performSearch)
-                    binding.mangaGenresTagsFullChips.setChips(manga.getGenres(), controller::performSearch)
+                    binding.mangaGenresTagsCompactChips.setChips(
+                        manga.getGenres(),
+                        controller::performSearch
+                    )
+                    binding.mangaGenresTagsFullChips.setChips(
+                        manga.getGenres(),
+                        controller::performSearch
+                    )
                 } else {
-                    binding.mangaGenresTagsWrapper.isVisible = false
+                    binding.mangaGenresTagsCompactChips.isVisible = false
+                    binding.mangaGenresTagsFullChips.isVisible = false
                 }
 
                 // Handle showing more or less info
-                merge(binding.mangaSummarySection.clicks(), binding.mangaSummaryText.clicks(), binding.mangaInfoToggle.clicks())
-                    .onEach { toggleMangaInfo(view.context) }
+                merge(
+                    binding.mangaSummarySection.clicks(),
+                    binding.mangaSummaryText.clicks(),
+                    binding.mangaInfoToggleMore.clicks(),
+                    binding.mangaInfoToggleLess.clicks()
+                )
+                    .onEach { toggleMangaInfo() }
                     .launchIn(scope)
 
                 // Expand manga info if navigated from source listing
                 if (initialLoad && fromSource) {
-                    toggleMangaInfo(view.context)
+                    toggleMangaInfo()
                     initialLoad = false
                 }
             }
@@ -308,42 +326,21 @@ class MangaInfoHeaderAdapter(
             binding.mangaSummarySection.isVisible = visible
         }
 
-        private fun toggleMangaInfo(context: Context) {
-            val isExpanded =
-                binding.mangaInfoToggle.text == context.getString(R.string.manga_info_collapse)
+        private fun toggleMangaInfo() {
+            val isCurrentlyExpanded = binding.mangaSummaryText.maxLines != 2
 
-            with(binding.mangaInfoToggle) {
-                text = if (isExpanded) {
-                    context.getString(R.string.manga_info_expand)
-                } else {
-                    context.getString(R.string.manga_info_collapse)
-                }
+            binding.mangaInfoToggleMoreScrim.isVisible = isCurrentlyExpanded
+            binding.mangaInfoToggleMore.isVisible = isCurrentlyExpanded
+            binding.mangaInfoToggleLess.isVisible = !isCurrentlyExpanded
 
-                icon = if (isExpanded) {
-                    context.getDrawable(R.drawable.ic_baseline_expand_more_24dp)
-                } else {
-                    context.getDrawable(R.drawable.ic_baseline_expand_less_24dp)
-                }
+            binding.mangaSummaryText.maxLines = if (isCurrentlyExpanded) {
+                2
+            } else {
+                Int.MAX_VALUE
             }
 
-            with(binding.mangaSummaryText) {
-                maxLines =
-                    if (isExpanded) {
-                        2
-                    } else {
-                        Int.MAX_VALUE
-                    }
-
-                ellipsize =
-                    if (isExpanded) {
-                        TextUtils.TruncateAt.END
-                    } else {
-                        null
-                    }
-            }
-
-            binding.mangaGenresTagsCompact.isVisible = isExpanded
-            binding.mangaGenresTagsFullChips.isVisible = !isExpanded
+            binding.mangaGenresTagsCompact.isVisible = isCurrentlyExpanded
+            binding.mangaGenresTagsFullChips.isVisible = !isCurrentlyExpanded
         }
 
         /**
@@ -355,13 +352,18 @@ class MangaInfoHeaderAdapter(
             // Set the Favorite drawable to the correct one.
             // Border drawable if false, filled drawable if true.
             binding.btnFavorite.apply {
-                icon = ContextCompat.getDrawable(
-                    context,
-                    if (isFavorite) R.drawable.ic_favorite_24dp else R.drawable.ic_favorite_border_24dp
+                setCompoundDrawablesWithIntrinsicBounds(
+                    null,
+                    ContextCompat.getDrawable(
+                        context,
+                        if (isFavorite) R.drawable.ic_favorite_24dp else R.drawable.ic_favorite_border_24dp
+                    ),
+                    null,
+                    null
                 )
                 text =
                     context.getString(if (isFavorite) R.string.in_library else R.string.add_to_library)
-                isChecked = isFavorite
+                isSelected = isFavorite
             }
         }
     }

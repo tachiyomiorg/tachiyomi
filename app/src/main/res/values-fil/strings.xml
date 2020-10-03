@@ -313,7 +313,7 @@
     <string name="backup">Pag-backup</string>
     <string name="pref_search_pinned_sources_only">Isama lamang ang mga naka-pin</string>
     <string name="pref_enable_automatic_extension_updates">Tumingin ng update sa dugtong</string>
-    <string name="tracking_info">Isahang pagsabay (sync) para ma-update ang bilang ng nabásang kabanata sa mga tagasubaybay (tracking services). Isaayos ang Pagsubaybay para sa mga manga sa kanilang mga tab ng Pagsubaybay.</string>
+    <string name="tracking_info">Isahang pagsabay (sync) para ma-update ang bilang ng nabásang kabanata sa mga tagasubaybay (tracking services). Isaayos ang pagsubaybay sa mga ito sa Pagsubaybay na makikita sa iskrin nila.</string>
     <string name="services">Mga Serbisyo</string>
     <string name="pref_auto_update_manga_sync">I-update ang bahagdang nabása pagkabása</string>
     <string name="pref_download_new_categories">Mga kategoryang kasama sa download</string>
@@ -359,7 +359,6 @@
     <string name="update_check_no_new_updates">Walang bagong update</string>
     <string name="update_check_ignore">Balewalain</string>
     <string name="update_check_confirm">I-download</string>
-    <string name="file_select_icon">Pumili ng shortcut icon</string>
     <string name="file_select_backup">Pumili ng backup</string>
     <string name="file_select_cover">Pumili ng pabalat</string>
     <string name="notification_no_connection_body">Walang koneksyon</string>
@@ -605,10 +604,19 @@
     <string name="channel_progress">Takbo</string>
     <string name="download_notifier_download_finish">Tapos na sa pag-download</string>
     <string name="backup_restore_missing_trackers">Di naka-login sa (mga) tagasubaybay:</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Harangan pero ipakita sa Mga Dugtong</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Harangan ang mga pinagkukunan pero ipakita sa Mga Dugtong</string>
     <string name="pref_allow_nsfw_sources_blocked">Harangan</string>
     <string name="pref_allow_nsfw_sources_allowed">Payagan</string>
-    <string name="pref_allow_nsfw_sources">Mga NSFW</string>
+    <string name="pref_allow_nsfw_sources">Pinagkukunang 18+</string>
     <string name="pref_remove_bookmarked_chapters">Burahin ang mga tinandaan</string>
     <string name="pref_category_delete_chapters">Magbura ng kabanata</string>
+    <string name="parental_controls_info">Hindi naiiwasan nito ang pagpakita ng mga 18+ ng mga di-opisyal o posibleng maling naka-flag na dugtong sa loob ng app.</string>
+    <string name="ext_nsfw_warning">Maaaring maglaman ng pang-18+</string>
+    <string name="ext_nsfw_short">18+</string>
+    <string name="pref_category_parental_controls">Kontrol ng Magulang</string>
+    <plurals name="missing_chapters_warning">
+        <item quantity="one">May isang nawawalang kabanata</item>
+        <item quantity="other">May %d (na) nawawalang kabanata</item>
+    </plurals>
+    <string name="no_chapters_error">Walang nakitang kabanata</string>
 </resources>

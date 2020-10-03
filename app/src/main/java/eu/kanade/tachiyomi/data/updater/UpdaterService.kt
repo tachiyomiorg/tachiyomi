@@ -20,9 +20,9 @@ import eu.kanade.tachiyomi.util.storage.getUriCompat
 import eu.kanade.tachiyomi.util.storage.saveTo
 import eu.kanade.tachiyomi.util.system.acquireWakeLock
 import eu.kanade.tachiyomi.util.system.isServiceRunning
-import java.io.File
 import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
+import java.io.File
 
 class UpdaterService : Service() {
 

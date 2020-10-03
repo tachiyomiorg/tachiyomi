@@ -178,7 +178,13 @@ internal object ExtensionLoader {
         }
 
         val extension = Extension.Installed(
-            extName, pkgName, versionName, versionCode, lang, isNsfw, sources,
+            extName,
+            pkgName,
+            versionName,
+            versionCode,
+            lang,
+            isNsfw,
+            sources,
             isUnofficial = signatureHash != officialSignature
         )
         return LoadResult.Success(extension)

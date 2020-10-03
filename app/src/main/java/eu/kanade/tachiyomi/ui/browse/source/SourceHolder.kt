@@ -6,28 +6,15 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.icon
 import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
-import eu.kanade.tachiyomi.ui.base.holder.SlicedHolder
-import eu.kanade.tachiyomi.ui.browse.SourceListItem
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.view.setVectorCompat
-import io.github.mthli.slice.Slice
-import kotlinx.android.synthetic.main.source_main_controller_card_item.card
 import kotlinx.android.synthetic.main.source_main_controller_card_item.image
 import kotlinx.android.synthetic.main.source_main_controller_card_item.pin
 import kotlinx.android.synthetic.main.source_main_controller_card_item.source_latest
 import kotlinx.android.synthetic.main.source_main_controller_card_item.title
 
-class SourceHolder(private val view: View, override val adapter: SourceAdapter) :
-    BaseFlexibleViewHolder(view, adapter),
-    SourceListItem,
-    SlicedHolder {
-
-    override val slice = Slice(card).apply {
-        setColor(adapter.cardBackground)
-    }
-
-    override val viewToSlice: View
-        get() = card
+class SourceHolder(private val view: View, val adapter: SourceAdapter) :
+    BaseFlexibleViewHolder(view, adapter) {
 
     init {
         source_latest.setOnClickListener {
@@ -41,7 +28,6 @@ class SourceHolder(private val view: View, override val adapter: SourceAdapter) 
 
     fun bind(item: SourceItem) {
         val source = item.source
-        setCardEdges(item)
 
         // Set source name
         title.text = source.name

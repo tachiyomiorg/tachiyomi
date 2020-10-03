@@ -1,33 +1,34 @@
 package eu.kanade.tachiyomi.ui.library
 
-import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
+import com.bluelinelabs.conductor.Router
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferenceValues.DisplayMode
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.widget.ExtendedNavigationView
+import eu.kanade.tachiyomi.widget.ExtendedNavigationView.Item.TriStateGroup.State
 import eu.kanade.tachiyomi.widget.TabbedBottomSheetDialog
 import uy.kohesive.injekt.injectLazy
 
 class LibrarySettingsSheet(
-    activity: Activity,
+    router: Router,
     onGroupClickListener: (ExtendedNavigationView.Group) -> Unit
-) : TabbedBottomSheetDialog(activity) {
+) : TabbedBottomSheetDialog(router) {
 
     val filters: Filter
     private val sort: Sort
     private val display: Display
 
     init {
-        filters = Filter(activity)
+        filters = Filter(router.activity!!)
         filters.onGroupClicked = onGroupClickListener
 
-        sort = Sort(activity)
+        sort = Sort(router.activity!!)
         sort.onGroupClicked = onGroupClickListener
 
-        display = Display(activity)
+        display = Display(router.activity!!)
         display.onGroupClicked = onGroupClickListener
     }
 
@@ -59,33 +60,43 @@ class LibrarySettingsSheet(
          * Returns true if there's at least one filter from [FilterGroup] active.
          */
         fun hasActiveFilters(): Boolean {
-            return filterGroup.items.any { it.checked }
+            return filterGroup.items.any { it.state != State.IGNORE.value }
         }
 
         inner class FilterGroup : Group {
 
-            private val downloaded = Item.CheckboxGroup(R.string.action_filter_downloaded, this)
-            private val unread = Item.CheckboxGroup(R.string.action_filter_unread, this)
-            private val completed = Item.CheckboxGroup(R.string.completed, this)
+            private val downloaded = Item.TriStateGroup(R.string.action_filter_downloaded, this)
+            private val unread = Item.TriStateGroup(R.string.action_filter_unread, this)
+            private val completed = Item.TriStateGroup(R.string.completed, this)
 
             override val header = null
             override val items = listOf(downloaded, unread, completed)
             override val footer = null
 
             override fun initModels() {
-                downloaded.checked = preferences.downloadedOnly().get() || preferences.filterDownloaded().get()
-                downloaded.enabled = !preferences.downloadedOnly().get()
-                unread.checked = preferences.filterUnread().get()
-                completed.checked = preferences.filterCompleted().get()
+                if (preferences.downloadedOnly().get()) {
+                    downloaded.state = State.INCLUDE.value
+                    downloaded.enabled = false
+                } else {
+                    downloaded.state = preferences.filterDownloaded().get()
+                }
+                unread.state = preferences.filterUnread().get()
+                completed.state = preferences.filterCompleted().get()
             }
 
             override fun onItemClicked(item: Item) {
-                item as Item.CheckboxGroup
-                item.checked = !item.checked
+                item as Item.TriStateGroup
+                val newState = when (item.state) {
+                    State.IGNORE.value -> State.INCLUDE.value
+                    State.INCLUDE.value -> State.EXCLUDE.value
+                    State.EXCLUDE.value -> State.IGNORE.value
+                    else -> throw Exception("Unknown State")
+                }
+                item.state = newState
                 when (item) {
-                    downloaded -> preferences.filterDownloaded().set(item.checked)
-                    unread -> preferences.filterUnread().set(item.checked)
-                    completed -> preferences.filterCompleted().set(item.checked)
+                    downloaded -> preferences.filterDownloaded().set(newState)
+                    unread -> preferences.filterUnread().set(newState)
+                    completed -> preferences.filterCompleted().set(newState)
                 }
 
                 adapter.notifyItemChanged(item)

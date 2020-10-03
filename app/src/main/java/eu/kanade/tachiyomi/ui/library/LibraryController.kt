@@ -183,7 +183,7 @@ class LibraryController(
             createActionModeIfNeeded()
         }
 
-        settingsSheet = LibrarySettingsSheet(activity!!) { group ->
+        settingsSheet = LibrarySettingsSheet(router) { group ->
             when (group) {
                 is LibrarySettingsSheet.Filter.FilterGroup -> onFilterChanged()
                 is LibrarySettingsSheet.Sort.SortGroup -> onSortChanged()
@@ -571,8 +571,8 @@ class LibraryController(
         destroyActionModeIfNeeded()
     }
 
-    override fun deleteMangasFromLibrary(mangas: List<Manga>, deleteChapters: Boolean) {
-        presenter.removeMangaFromLibrary(mangas, deleteChapters)
+    override fun deleteMangas(mangas: List<Manga>, deleteFromLibrary: Boolean, deleteChapters: Boolean) {
+        presenter.removeMangas(mangas, deleteFromLibrary, deleteChapters)
         destroyActionModeIfNeeded()
     }
 

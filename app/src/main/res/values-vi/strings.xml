@@ -6,8 +6,8 @@
     <string name="label_download_queue">Hàng chờ tải xuống</string>
     <string name="label_library">Thư Viện</string>
     <string name="label_recent_manga">Lịch Sử</string>
-    <string name="label_recent_updates">Mới Cập Nhật</string>
-    <string name="label_categories">Hạng mục</string>
+    <string name="label_recent_updates">Mới</string>
+    <string name="label_categories">Danh mục</string>
     <string name="label_backup">Sao lưu</string>
     <!-- Actions -->
     <string name="action_settings">Cài đặt</string>
@@ -273,7 +273,6 @@
     <!-- File Picker Titles -->
     <string name="file_select_cover">Chọn ảnh bìa</string>
     <string name="file_select_backup">Chọn file sao lưu</string>
-    <string name="file_select_icon">Chọn biểu tượng phím tắt</string>
     <!--UpdateCheck-->
     <string name="update_check_confirm">Tải xuống</string>
     <string name="update_check_ignore">Bỏ qua</string>
@@ -306,8 +305,8 @@
     <string name="track">Theo dõi</string>
     <string name="history">Lịch sử</string>
     <string name="label_migration">Di chuyển</string>
-    <string name="label_extensions">Tiện ích bổ sung</string>
-    <string name="label_extension_info">Thông tin về tiện ích bổ sung</string>
+    <string name="label_extensions">Phần mở rộng</string>
+    <string name="label_extension_info">Thông tin về phần mở rộng</string>
     <string name="action_sort_total">Toàn bộ các chương</string>
     <string name="action_global_search">tìm kiếm toàn cầu</string>
     <string name="action_close">Đóng</string>
@@ -541,4 +540,14 @@
     <string name="invalid_backup_file_missing_manga">Backup không chứa manga nào.</string>
     <string name="invalid_backup_file">File backup không hợp lệ</string>
     <string name="add_to_library">Thêm vào thư viện</string>
+    <string name="ext_nsfw_warning">Có thể chứa nội dung 18+</string>
+    <string name="ext_nsfw_short">18+</string>
+    <string name="pref_library_update_refresh_metadata">Tự động làm mới metadata</string>
+    <string name="pref_jump_to_chapters">Chuyển đến các chương khi mở</string>
+    <string name="parental_controls_info">Điều này không ngăn các tiện ích không chính thức hoặc có khả năng bị gắn cờ không chính xác hiển thị nội dung 18+ trong ứng dụng.</string>
+    <string name="pref_allow_nsfw_sources_blocked">Đã chặn</string>
+    <string name="pref_allow_nsfw_sources_allowed">Đã cho phép</string>
+    <string name="pref_allow_nsfw_sources">Nguồn 18+</string>
+    <string name="pref_category_parental_controls">Kiểm soát của phụ huynh</string>
+    <string name="label_downloaded_only">Chỉ hiện truyện đã tải</string>
 </resources>

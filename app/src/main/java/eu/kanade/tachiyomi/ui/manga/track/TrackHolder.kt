@@ -11,6 +11,7 @@ import eu.kanade.tachiyomi.ui.base.holder.BaseViewHolder
 import eu.kanade.tachiyomi.util.view.popupMenu
 import java.text.DateFormat
 import uy.kohesive.injekt.injectLazy
+import java.text.DateFormat
 
 class TrackHolder(private val binding: TrackItemBinding, adapter: TrackAdapter) : BaseViewHolder(binding.root) {
 

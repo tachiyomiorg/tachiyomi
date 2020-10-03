@@ -20,8 +20,6 @@ import androidx.preference.PreferenceManager
 import androidx.preference.PreferenceScreen
 import androidx.preference.SwitchPreferenceCompat
 import androidx.recyclerview.widget.ConcatAdapter
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.EmptyPreferenceDataStore
@@ -92,7 +90,6 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
             ExtensionDetailsHeaderAdapter(presenter),
             initPreferencesAdapter(context, extension)
         )
-        binding.extensionPrefsRecycler.addItemDecoration(DividerItemDecoration(context, VERTICAL))
     }
 
     private fun initPreferencesAdapter(context: Context, extension: Extension.Installed): PreferenceGroupAdapter {
@@ -112,7 +109,7 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
                 .forEach {
                     val preferenceBlock = {
                         it.value
-                            .sortedWith(compareBy({ !it.isEnabled() }, { it.name }))
+                            .sortedWith(compareBy({ !it.isEnabled() }, { it.name.toLowerCase() }))
                             .forEach { source ->
                                 val sourcePrefs = mutableListOf<Preference>()
 

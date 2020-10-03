@@ -19,8 +19,6 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceGroupAdapter
 import androidx.preference.PreferenceManager
 import androidx.preference.PreferenceScreen
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.EmptyPreferenceDataStore
@@ -86,7 +84,6 @@ class SourcePreferencesController(bundle: Bundle? = null) :
 
         binding.recycler.layoutManager = LinearLayoutManager(context)
         binding.recycler.adapter = PreferenceGroupAdapter(screen)
-        binding.recycler.addItemDecoration(DividerItemDecoration(context, VERTICAL))
     }
 
     override fun onDestroyView(view: View) {

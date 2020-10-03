@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="?android:attr/listPreferredItemHeight"
-    android:background="@drawable/list_item_selector"
+    android:background="@drawable/list_item_selector_background"
     android:paddingStart="16dp"
     android:paddingEnd="16dp">
 

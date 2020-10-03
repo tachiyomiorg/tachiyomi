@@ -1,11 +1,15 @@
 package eu.kanade.tachiyomi
 
+import androidx.core.content.edit
+import androidx.preference.PreferenceManager
 import eu.kanade.tachiyomi.data.backup.BackupCreatorJob
 import eu.kanade.tachiyomi.data.library.LibraryUpdateJob
+import eu.kanade.tachiyomi.data.preference.PreferenceKeys
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.updater.UpdaterJob
 import eu.kanade.tachiyomi.extension.ExtensionUpdateJob
 import eu.kanade.tachiyomi.ui.library.LibrarySort
+import eu.kanade.tachiyomi.widget.ExtendedNavigationView
 import java.io.File
 
 object Migrations {
@@ -87,6 +91,25 @@ object Migrations {
                 // Reset sorting preference if using removed sort by source
                 if (preferences.librarySortingMode().get() == LibrarySort.SOURCE) {
                     preferences.librarySortingMode().set(LibrarySort.ALPHA)
+                }
+            }
+            if (oldVersion < 52) {
+                // Migrate library filters to tri-state versions
+                val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+                fun convertBooleanPrefToTriState(key: String): Int {
+                    val oldPrefValue = prefs.getBoolean(key, false)
+                    return if (oldPrefValue) ExtendedNavigationView.Item.TriStateGroup.State.INCLUDE.value
+                    else ExtendedNavigationView.Item.TriStateGroup.State.IGNORE.value
+                }
+                prefs.edit {
+                    putInt(PreferenceKeys.filterDownloaded, convertBooleanPrefToTriState("pref_filter_downloaded_key"))
+                    remove("pref_filter_downloaded_key")
+
+                    putInt(PreferenceKeys.filterUnread, convertBooleanPrefToTriState("pref_filter_unread_key"))
+                    remove("pref_filter_unread_key")
+
+                    putInt(PreferenceKeys.filterCompleted, convertBooleanPrefToTriState("pref_filter_completed_key"))
+                    remove("pref_filter_completed_key")
                 }
             }
             return true

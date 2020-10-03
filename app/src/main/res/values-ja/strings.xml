@@ -2,7 +2,7 @@
 <resources>
     <string name="name">名前</string>
     <string name="categories">カテゴリ</string>
-    <string name="manga">漫画</string>
+    <string name="manga">マンガ</string>
     <string name="chapters">章</string>
     <string name="history">履歴</string>
     <string name="label_settings">設定</string>
@@ -21,7 +21,7 @@
     <string name="action_filter_empty">フィルタを削除</string>
     <string name="action_sort_alpha">アルファベット順</string>
     <string name="action_sort_total">章の数順</string>
-    <string name="action_sort_last_read">最後に読んだ日時順</string>
+    <string name="action_sort_last_read">最後に読んだ順</string>
     <string name="action_search">検索</string>
     <string name="action_global_search">グローバル検索</string>
     <string name="action_select_all">すべて選択</string>
@@ -36,7 +36,7 @@
     <string name="label_extension_info">拡張機能の情報</string>
     <string name="label_migration">移行</string>
     <string name="action_mark_as_read">既読にする</string>
-    <string name="action_mark_as_unread">未読としてマーク</string>
+    <string name="action_mark_as_unread">未読にする</string>
     <string name="action_delete">削除する</string>
     <string name="action_update">更新</string>
     <string name="action_update_library">ライブラリを更新する</string>
@@ -49,7 +49,7 @@
     <string name="action_previous_chapter">前の章</string>
     <string name="action_next_chapter">次の章</string>
     <string name="action_retry">リトライ</string>
-    <string name="action_resume">続きから読む</string>
+    <string name="action_resume">再開</string>
     <string name="action_open_in_browser">ブラウザで開く</string>
     <string name="action_display_mode">表示モード</string>
     <string name="action_display">表示</string>
@@ -74,7 +74,7 @@
     <string name="default_columns">デフォルト</string>
     <string name="pref_library_update_interval">ライブラリ更新頻度</string>
     <string name="update_never">マニュアル</string>
-    <string name="update_1hour">毎時</string>
+    <string name="update_1hour">毎時間</string>
     <string name="update_2hour">2時間ごと</string>
     <string name="update_3hour">3時間ごと</string>
     <string name="update_6hour">6時間ごと</string>
@@ -132,7 +132,7 @@
     <string name="pager_viewer">ページの表示</string>
     <string name="pref_image_decoder">画像デコーダ</string>
     <string name="pref_image_scale_type">スケールの種類</string>
-    <string name="scale_type_fit_screen">フィット画面</string>
+    <string name="scale_type_fit_screen">画面サイズに合わせる</string>
     <string name="scale_type_stretch">ストレッチ</string>
     <string name="scale_type_fit_width">幅に合わせる</string>
     <string name="scale_type_original_size">オリジナルサイズ</string>
@@ -149,13 +149,13 @@
     <string name="rotation_lock">ロック</string>
     <string name="rotation_force_portrait">横向き画面を強制</string>
     <string name="color_filter_r_value">R</string>
-    <string name="color_filter_g_value">ジー</string>
+    <string name="color_filter_g_value">G</string>
     <string name="color_filter_b_value">B</string>
     <string name="color_filter_a_value">A</string>
     <string name="pref_download_directory">ダウンロードフォルダ</string>
     <string name="pref_download_only_over_wifi">Wi-Fi経由でのみダウンロード</string>
-    <string name="pref_remove_after_marked_as_read">既読の章を自動で削除</string>
-    <string name="pref_remove_after_read">読んだ後に削除</string>
+    <string name="pref_remove_after_marked_as_read">既読とマークした後</string>
+    <string name="pref_remove_after_read">読んだ後</string>
     <string name="custom_dir">カスタムディレクトリ</string>
     <string name="disabled">無効</string>
     <string name="second_to_last">最後に読んだ章の2番目</string>
@@ -185,17 +185,17 @@
     <string name="login">ログイン</string>
     <string name="login_success">ログインしました</string>
     <string name="action_add">追加</string>
-    <string name="action_rename_category">カテゴリー名を変更</string>
+    <string name="action_rename_category">カテゴリー名を編集</string>
     <string name="action_move_category">カテゴリーを設定</string>
     <string name="action_sort_up">昇順に並べ替え</string>
     <string name="action_sort_down">降順に並べ替え</string>
-    <string name="action_show_downloaded">ダウンロード終了</string>
+    <string name="action_show_downloaded">ダウンロード完了</string>
     <string name="action_stop">停止</string>
     <string name="action_remove">削除</string>
     <string name="action_install">インストール</string>
     <string name="action_undo">取り消し</string>
     <string name="label_help">ヘルプ</string>
-    <string name="action_mark_previous_as_read">前に読んだ章を既読にする</string>
+    <string name="action_mark_previous_as_read">前の章を既読にする</string>
     <string name="action_next_unread">次の未読</string>
     <string name="action_move">移動</string>
     <string name="action_open_in_web_view">WebViewで開く</string>
@@ -276,7 +276,7 @@
     <string name="show_title">ソースタイトル</string>
     <string name="show_chapter_number">章の数</string>
     <string name="sorting_mode">並べ替えモード</string>
-    <string name="sort_by_source">ソース順</string>
+    <string name="sort_by_source">ソースに基づいた順</string>
     <string name="sort_by_number">章番号順</string>
     <string name="manga_download">ダウンロード</string>
     <string name="custom_download">カスタムの数でダウンロード</string>
@@ -289,7 +289,7 @@
     <string name="confirm_delete_chapters">選択した章を削除してもよろしいですか？</string>
     <string name="manga_tracking_tab">同期</string>
     <string name="reading">読書中</string>
-    <string name="completed">読書済み</string>
+    <string name="completed">完結済み</string>
     <string name="dropped">放棄済み</string>
     <string name="on_hold">保留中</string>
     <string name="plan_to_read">計画済み</string>
@@ -335,7 +335,6 @@
     <string name="notification_no_connection_body">接続していません</string>
     <string name="file_select_cover">カバー画像を選択</string>
     <string name="file_select_backup">バックアップファイルを選択</string>
-    <string name="file_select_icon">ショートカットアイコンを選択</string>
     <string name="update_check_confirm">ダウンロード</string>
     <string name="update_check_ignore">無視</string>
     <string name="update_check_no_new_updates">新しいバージョンがありません</string>
@@ -346,7 +345,7 @@
     <string name="update_check_notification_download_error">ダウンロード中にエラー発生</string>
     <string name="update_check_notification_update_available">アップデート利用可能！</string>
     <string name="description_cover">マンガカバー</string>
-    <string name="information_no_downloads">ダウンロードタスクなし</string>
+    <string name="information_no_downloads">ダウンロードタスクが空です</string>
     <string name="information_no_recent">最近の章なし</string>
     <string name="information_no_recent_manga">最近に読んだマンガなし</string>
     <string name="information_empty_library">ライブラリは空です。「ブラウズ」から新しいマンガシリーズを追加してください。</string>
@@ -363,7 +362,7 @@
     <string name="channel_library">ライブラリ</string>
     <string name="repeating">読み直している</string>
     <string name="source_not_installed">未インストールのソース：%1$s</string>
-    <string name="transition_finished">読み終わった：</string>
+    <string name="transition_finished">読み終わりました：</string>
     <string name="transition_current">読んでいます：</string>
     <string name="transition_next">次：</string>
     <string name="transition_previous">前：</string>
@@ -374,7 +373,7 @@
     <string name="pref_read_with_long_tap">コンテキストメニュー（長押し）</string>
     <string name="pref_true_color">32ビットカラー</string>
     <string name="pref_skip_read_chapters">読み終わった章をスキップ</string>
-    <string name="pref_color_filter_mode">カラー フィルター ブレンド モード</string>
+    <string name="pref_color_filter_mode">ｶﾗｰﾌｨﾙﾀｰﾌﾞﾚﾝﾄﾞﾓｰﾄﾞ</string>
     <string name="filter_mode_default">既定</string>
     <string name="filter_mode_overlay">オーバーレイ</string>
     <string name="filter_mode_screen">スクリーン</string>
@@ -399,7 +398,7 @@
     <string name="want_to_read">読みたい</string>
     <string name="other_source">他</string>
     <string name="label_more">その他</string>
-    <string name="action_sort_latest_chapter">最新章の更新日付順</string>
+    <string name="action_sort_latest_chapter">最新章の更新順</string>
     <string name="action_view_chapters">章を見る</string>
     <string name="action_cancel_all">全てキャンセル</string>
     <string name="pref_theme_mode">ダークモード</string>
@@ -420,7 +419,7 @@
         <item quantity="other">後%1$s分</item>
     </plurals>
     <string name="secure_screen">セキュア画面</string>
-    <string name="unlock_app">Tachiyomiを開ける</string>
+    <string name="unlock_app">Tachiyomiのロックを解除する</string>
     <plurals name="notification_chapters_generic">
         <item quantity="other">%1$d新しい章</item>
     </plurals>
@@ -464,7 +463,7 @@
     <string name="source_not_found_name">ソース%1$sが見つかりません</string>
     <string name="pref_search_pinned_sources_only">ピン留め済みのソースのみで検索</string>
     <string name="pref_enable_automatic_extension_updates">拡張機能の更新を確認</string>
-    <string name="tracking_info">一方に同期して追跡サービスにある章の読書進捗を更新します。個別のマンガの「同期」タブで追跡サービスを設定してください。</string>
+    <string name="tracking_info">一方同期の追跡サービスにある章の読書進捗を更新します。個別のマンガの「同期」ボタンで追跡サービスを設定してください。</string>
     <string name="webtoon_side_padding_25">25%</string>
     <string name="webtoon_side_padding_20">20%</string>
     <string name="webtoon_side_padding_15">15%</string>
@@ -490,7 +489,7 @@
     <string name="pref_library_update_error_notification">更新エラーを通知で表示</string>
     <string name="pref_library_update_refresh_metadata_summary">ライブラリを更新時、新しい表紙と情報を確認します</string>
     <string name="pref_library_update_refresh_metadata">メタデータを自動で更新</string>
-    <string name="pref_library_columns">行毎のアイテム数</string>
+    <string name="pref_library_columns">行あたりのアイテム数</string>
     <string name="pref_category_display">画面</string>
     <string name="hide_notification_content">通知コンテンツを非表示</string>
     <string name="secure_screen_summary">スクリーンショットを無効化し、「最近使ったアプリ」画面にアプリの内容を非表示します</string>
@@ -511,7 +510,7 @@
     <string name="action_disable_all">全て無効にする</string>
     <string name="action_enable_all">全て有効にする</string>
     <string name="action_select_inverse">選択を反転</string>
-    <string name="action_sort_last_checked">最近のアクセス日付順</string>
+    <string name="action_sort_last_checked">最近のアクセス順</string>
     <string name="action_menu">メニュー</string>
     <string name="confirm_exit">もう一度押して終了します</string>
     <string name="channel_new_chapters">章の更新</string>
@@ -541,7 +540,7 @@
     </plurals>
     <string name="recent_manga_time">第%1$s章 - %2$s</string>
     <string name="page_list_empty_error">ページが見つかりません</string>
-    <string name="pref_category_for_this_series">このシリーズについて</string>
+    <string name="pref_category_for_this_series">このシリーズでは</string>
     <string name="track_finished_reading_date">読み終わった日付</string>
     <string name="add_tracking">追跡サービスを追加</string>
     <string name="manga_info_about_label">紹介</string>
@@ -593,4 +592,19 @@
     <string name="pref_category_theme">テーマ</string>
     <string name="action_sort_date_added">ライブラリへの追加日付順</string>
     <string name="channel_errors">エラー</string>
+    <string name="pref_category_parental_controls">ペアレンタル‐コントロール</string>
+    <string name="backup_restore_missing_trackers">ログインしていないトラッカー：</string>
+    <string name="pref_remove_bookmarked_chapters">ブックマークした章を削除</string>
+    <string name="pref_category_delete_chapters">章を削除</string>
+    <string name="ext_nsfw_warning">成人向けのコンテンツをが含まれる可能性があります</string>
+    <string name="ext_nsfw_short">18禁</string>
+    <string name="parental_controls_info">非公式や誤ってフラグ付けされた可能性のある拡張機能の18禁コンテンツはこれからも表示される恐れがあります。</string>
+    <string name="pref_allow_nsfw_sources_blocked">ブロック済み</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">ソースのブラウズをブロックするが、拡張機能リストに表示する</string>
+    <string name="pref_allow_nsfw_sources_allowed">許可済み</string>
+    <string name="pref_allow_nsfw_sources">18禁ソース</string>
+    <plurals name="missing_chapters_warning">
+        <item quantity="other">%d章が欠けています</item>
+    </plurals>
+    <string name="no_chapters_error">章が見つかりません</string>
 </resources>

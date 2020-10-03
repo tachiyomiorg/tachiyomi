@@ -38,10 +38,13 @@ class SourceItem(val manga: Manga, private val displayMode: Preference<DisplayMo
                 val coverHeight = parent.itemWidth / 3 * 4
                 view.apply {
                     card.layoutParams = FrameLayout.LayoutParams(
-                        MATCH_PARENT, coverHeight
+                        MATCH_PARENT,
+                        coverHeight
                     )
                     gradient.layoutParams = FrameLayout.LayoutParams(
-                        MATCH_PARENT, coverHeight / 2, Gravity.BOTTOM
+                        MATCH_PARENT,
+                        coverHeight / 2,
+                        Gravity.BOTTOM
                     )
                 }
                 SourceGridHolder(view, adapter)
@@ -51,7 +54,8 @@ class SourceItem(val manga: Manga, private val displayMode: Preference<DisplayMo
                 val coverHeight = parent.itemWidth / 3 * 4
                 view.apply {
                     card.layoutParams = ConstraintLayout.LayoutParams(
-                        MATCH_PARENT, coverHeight
+                        MATCH_PARENT,
+                        coverHeight
                     )
                 }
                 SourceComfortableGridHolder(view, adapter)

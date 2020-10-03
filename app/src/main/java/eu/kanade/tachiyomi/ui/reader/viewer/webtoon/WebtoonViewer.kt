@@ -15,10 +15,10 @@ import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.model.ViewerChapters
 import eu.kanade.tachiyomi.ui.reader.viewer.BaseViewer
-import kotlin.math.max
-import kotlin.math.min
 import rx.subscriptions.CompositeSubscription
 import timber.log.Timber
+import kotlin.math.max
+import kotlin.math.min
 
 /**
  * Implementation of a [BaseViewer] to display pages with a [RecyclerView].
@@ -71,28 +71,30 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
         recycler.itemAnimator = null
         recycler.layoutManager = layoutManager
         recycler.adapter = adapter
-        recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                val position = layoutManager.findLastEndVisibleItemPosition()
-                val item = adapter.items.getOrNull(position)
-                val allowPreload = checkAllowPreload(item as? ReaderPage)
-                if (item != null && currentPage != item) {
-                    currentPage = item
-                    when (item) {
-                        is ReaderPage -> onPageSelected(item, allowPreload)
-                        is ChapterTransition -> onTransitionSelected(item)
+        recycler.addOnScrollListener(
+            object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    val position = layoutManager.findLastEndVisibleItemPosition()
+                    val item = adapter.items.getOrNull(position)
+                    val allowPreload = checkAllowPreload(item as? ReaderPage)
+                    if (item != null && currentPage != item) {
+                        currentPage = item
+                        when (item) {
+                            is ReaderPage -> onPageSelected(item, allowPreload)
+                            is ChapterTransition -> onTransitionSelected(item)
+                        }
                     }
-                }
 
-                if (dy < 0) {
-                    val firstIndex = layoutManager.findFirstVisibleItemPosition()
-                    val firstItem = adapter.items.getOrNull(firstIndex)
-                    if (firstItem is ChapterTransition.Prev && firstItem.to != null) {
-                        activity.requestPreloadChapter(firstItem.to)
+                    if (dy < 0) {
+                        val firstIndex = layoutManager.findFirstVisibleItemPosition()
+                        val firstItem = adapter.items.getOrNull(firstIndex)
+                        if (firstItem is ChapterTransition.Prev && firstItem.to != null) {
+                            activity.requestPreloadChapter(firstItem.to)
+                        }
                     }
                 }
             }
-        })
+        )
         recycler.tapListener = f@{ event ->
             if (!config.tappingEnabled) {
                 activity.toggleMenu()

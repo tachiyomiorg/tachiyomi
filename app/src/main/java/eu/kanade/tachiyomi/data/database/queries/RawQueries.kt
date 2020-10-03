@@ -49,9 +49,8 @@ fun getRecentsQuery() =
  * The max_last_read table contains the most recent chapters grouped by manga
  * The select statement returns all information of chapters that have the same id as the chapter in max_last_read
  * and are read after the given time period
- * @return return limit is 25
  */
-fun getRecentMangasQuery() =
+fun getRecentMangasQuery(limit: Int = 25, offset: Int = 0, search: String = "") =
     """
     SELECT ${Manga.TABLE}.${Manga.COL_URL} as mangaUrl, ${Manga.TABLE}.*, ${Chapter.TABLE}.*, ${History.TABLE}.*
     FROM ${Manga.TABLE}
@@ -65,9 +64,11 @@ fun getRecentMangasQuery() =
     ON ${Chapter.TABLE}.${Chapter.COL_ID} = ${History.TABLE}.${History.COL_CHAPTER_ID}
     GROUP BY ${Chapter.TABLE}.${Chapter.COL_MANGA_ID}) AS max_last_read
     ON ${Chapter.TABLE}.${Chapter.COL_MANGA_ID} = max_last_read.${Chapter.COL_MANGA_ID}
-    WHERE ${History.TABLE}.${History.COL_LAST_READ} > ? AND max_last_read.${History.COL_CHAPTER_ID} = ${History.TABLE}.${History.COL_CHAPTER_ID}
+    WHERE ${History.TABLE}.${History.COL_LAST_READ} > ?
+    AND max_last_read.${History.COL_CHAPTER_ID} = ${History.TABLE}.${History.COL_CHAPTER_ID}
+    AND lower(${Manga.TABLE}.${Manga.COL_TITLE}) LIKE '%$search%'
     ORDER BY max_last_read.${History.COL_LAST_READ} DESC
-    LIMIT 25
+    LIMIT $limit OFFSET $offset
 """
 
 fun getHistoryByMangaId() =

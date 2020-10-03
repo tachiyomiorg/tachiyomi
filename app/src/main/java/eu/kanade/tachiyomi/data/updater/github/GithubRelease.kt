@@ -28,5 +28,5 @@ class GithubRelease(
      * Assets class containing download url.
      * @param downloadLink download url.
      */
-    inner class Assets(@SerializedName("browser_download_url") val downloadLink: String)
+    class Assets(@SerializedName("browser_download_url") val downloadLink: String)
 }

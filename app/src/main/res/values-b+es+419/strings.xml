@@ -67,7 +67,7 @@
     <string name="action_filter_read">Leído</string>
     <string name="action_filter_unread">No leído</string>
     <string name="action_filter_bookmarked">Marcado</string>
-    <string name="label_download_queue">Cola de descarga</string>
+    <string name="label_download_queue">Lista de descargas</string>
     <string name="label_more">Más</string>
     <string name="track">Siguiendo</string>
     <string name="action_undo">Deshacer</string>
@@ -103,7 +103,7 @@
     <string name="backup">Copia de seguridad</string>
     <string name="pref_search_pinned_sources_only">Solamente incluir fuentes fijados</string>
     <string name="pref_enable_automatic_extension_updates">Buscar actualizaciones de extensiones</string>
-    <string name="tracking_info">Sincronización unidireccional para actualizar el progreso del capítulo en los servicios de rastreo. Configura el seguimiento de las entradas de manga individuales desde sus pestañas de seguimiento.</string>
+    <string name="tracking_info">Sincronización unidireccional para actualizar el progreso del capítulo en los servicios de seguimiento. Configure el seguimiento de las entradas de manga individuales desde su botón de seguimiento.</string>
     <string name="services">Servicios</string>
     <string name="pref_auto_update_manga_sync">Actualizar el progreso del capítulo después de la lectura</string>
     <string name="pref_download_new_categories">Categorías a incluir en la descarga</string>
@@ -115,8 +115,8 @@
     <string name="last_read_chapter">Último capítulo leído</string>
     <string name="disabled">Deshabilitado</string>
     <string name="custom_dir">Directorio personalizado</string>
-    <string name="pref_remove_after_read">Eliminar después de leer</string>
-    <string name="pref_remove_after_marked_as_read">Eliminar cuando se marque como leído</string>
+    <string name="pref_remove_after_read">Despues de leer</string>
+    <string name="pref_remove_after_marked_as_read">Después de marcar manualmente como leído</string>
     <string name="pref_download_only_over_wifi">Sólo descargar con Wi-Fi</string>
     <string name="pref_download_directory">Ubicación de descargas</string>
     <string name="webtoon_side_padding_25">25%</string>
@@ -505,7 +505,6 @@
     <string name="update_check_no_new_updates">No hay nuevas actualizaciones disponibles</string>
     <string name="update_check_ignore">Ignorar</string>
     <string name="update_check_confirm">Descargar</string>
-    <string name="file_select_icon">Seleccionar icono de acceso directo</string>
     <string name="file_select_backup">Seleccione el archivo de copia de seguridad</string>
     <string name="file_select_cover">Seleccione la imagen de portada</string>
     <string name="notification_no_connection_body">Conexión no disponible</string>
@@ -589,7 +588,7 @@
     <string name="want_to_read">Lo quiero leer</string>
     <string name="pref_category_locale">Local</string>
     <string name="action_global_search_query">Buscar \"%1$s\" Globalmente</string>
-    <string name="action_sort_date_added">Fecha de añadido</string>
+    <string name="action_sort_date_added">Fecha de agregado</string>
     <string name="download_insufficient_space">No se pudieron descargar capítulos debido al poco espacio en el disco</string>
     <string name="pref_category_reading_mode">Modo de lectura</string>
     <string name="pref_category_theme">Tema</string>
@@ -604,4 +603,15 @@
     <string name="download_notifier_download_finish">Descarga completada</string>
     <string name="group_backup_restore">Respaldar y restaurar</string>
     <string name="no_pinned_sources">No tienes fuentes fijadas</string>
+    <string name="backup_restore_missing_trackers">Páginas de seguimiento donde no has iniciado sesion:</string>
+    <string name="pref_remove_bookmarked_chapters">Eliminar capítulos marcados</string>
+    <string name="pref_category_delete_chapters">Eliminar capítulos</string>
+    <string name="ext_nsfw_warning">Puede contener contenido para mayores de 18 años</string>
+    <string name="ext_nsfw_short">18+</string>
+    <string name="parental_controls_info">Esto no evita que las extensiones no oficiales o potencialmente marcadas incorrectamente muestren contenido para mayores de 18 años dentro de la aplicación.</string>
+    <string name="pref_allow_nsfw_sources_blocked">Bloquear</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Bloquear fuente, mostrar en la lista de extensiones</string>
+    <string name="pref_allow_nsfw_sources_allowed">Permitidas</string>
+    <string name="pref_allow_nsfw_sources">Fuentes +18</string>
+    <string name="pref_category_parental_controls">Controles parentales</string>
 </resources>

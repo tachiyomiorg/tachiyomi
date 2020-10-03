@@ -1,34 +1,40 @@
 package eu.kanade.tachiyomi.ui.manga.chapter
 
-import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
+import androidx.core.view.isVisible
+import com.bluelinelabs.conductor.Router
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.ui.manga.MangaPresenter
+import eu.kanade.tachiyomi.util.view.popupMenu
 import eu.kanade.tachiyomi.widget.ExtendedNavigationView
+import eu.kanade.tachiyomi.widget.ExtendedNavigationView.Item.TriStateGroup.State
 import eu.kanade.tachiyomi.widget.TabbedBottomSheetDialog
 
 class ChaptersSettingsSheet(
-    activity: Activity,
+    private val router: Router,
     private val presenter: MangaPresenter,
     onGroupClickListener: (ExtendedNavigationView.Group) -> Unit
-) : TabbedBottomSheetDialog(activity) {
+) : TabbedBottomSheetDialog(router) {
 
     val filters: Filter
     private val sort: Sort
     private val display: Display
 
     init {
-        filters = Filter(activity)
+        filters = Filter(router.activity!!)
         filters.onGroupClicked = onGroupClickListener
 
-        sort = Sort(activity)
+        sort = Sort(router.activity!!)
         sort.onGroupClicked = onGroupClickListener
 
-        display = Display(activity)
+        display = Display(router.activity!!)
         display.onGroupClicked = onGroupClickListener
+
+        binding.menu.isVisible = true
+        binding.menu.setOnClickListener { it.post { showPopupMenu(it) } }
     }
 
     override fun getTabViews(): List<View> = listOf(
@@ -42,6 +48,23 @@ class ChaptersSettingsSheet(
         R.string.action_sort,
         R.string.action_display
     )
+
+    private fun showPopupMenu(view: View) {
+        view.popupMenu(
+            R.menu.default_chapter_filter,
+            {
+            },
+            {
+                when (this.itemId) {
+                    R.id.set_as_default -> {
+                        SetChapterSettingsDialog(presenter.manga).showDialog(router)
+                        true
+                    }
+                    else -> true
+                }
+            }
+        )
+    }
 
     /**
      * Filters group (unread, downloaded, ...).
@@ -59,36 +82,43 @@ class ChaptersSettingsSheet(
          * Returns true if there's at least one filter from [FilterGroup] active.
          */
         fun hasActiveFilters(): Boolean {
-            return filterGroup.items.any { it.checked }
+            return filterGroup.items.any { it.state != State.IGNORE.value }
         }
 
         inner class FilterGroup : Group {
 
-            private val read = Item.CheckboxGroup(R.string.action_filter_read, this)
-            private val unread = Item.CheckboxGroup(R.string.action_filter_unread, this)
-            private val downloaded = Item.CheckboxGroup(R.string.action_filter_downloaded, this)
-            private val bookmarked = Item.CheckboxGroup(R.string.action_filter_bookmarked, this)
+            private val unread = Item.TriStateGroup(R.string.action_filter_unread, this)
+            private val downloaded = Item.TriStateGroup(R.string.action_filter_downloaded, this)
+            private val bookmarked = Item.TriStateGroup(R.string.action_filter_bookmarked, this)
 
             override val header = null
-            override val items = listOf(read, unread, downloaded, bookmarked)
+            override val items = listOf(unread, downloaded, bookmarked)
             override val footer = null
 
             override fun initModels() {
-                read.checked = presenter.onlyRead()
-                unread.checked = presenter.onlyUnread()
-                downloaded.checked = presenter.onlyDownloaded()
-                downloaded.enabled = !presenter.forceDownloaded()
-                bookmarked.checked = presenter.onlyBookmarked()
+                if (presenter.forceDownloaded()) {
+                    downloaded.state = State.INCLUDE.value
+                    downloaded.enabled = false
+                } else {
+                    downloaded.state = presenter.onlyDownloaded().value
+                }
+                unread.state = presenter.onlyUnread().value
+                bookmarked.state = presenter.onlyBookmarked().value
             }
 
             override fun onItemClicked(item: Item) {
-                item as Item.CheckboxGroup
-                item.checked = !item.checked
+                item as Item.TriStateGroup
+                val newState = when (item.state) {
+                    State.IGNORE.value -> State.INCLUDE
+                    State.INCLUDE.value -> State.EXCLUDE
+                    State.EXCLUDE.value -> State.IGNORE
+                    else -> throw Exception("Unknown State")
+                }
+                item.state = newState.value
                 when (item) {
-                    read -> presenter.setReadFilter(item.checked)
-                    unread -> presenter.setUnreadFilter(item.checked)
-                    downloaded -> presenter.setDownloadedFilter(item.checked)
-                    bookmarked -> presenter.setBookmarkedFilter(item.checked)
+                    downloaded -> presenter.setDownloadedFilter(newState)
+                    unread -> presenter.setUnreadFilter(newState)
+                    bookmarked -> presenter.setBookmarkedFilter(newState)
                 }
 
                 initModels()

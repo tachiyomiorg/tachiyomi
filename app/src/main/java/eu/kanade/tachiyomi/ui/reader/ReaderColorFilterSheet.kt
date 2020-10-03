@@ -74,45 +74,55 @@ class ReaderColorFilterSheet(private val activity: ReaderActivity) : BottomSheet
         }
         binding.colorFilterMode.setSelection(preferences.colorFilterMode().get(), false)
 
-        binding.seekbarColorFilterAlpha.setOnSeekBarChangeListener(object : SimpleSeekBarListener() {
-            override fun onProgressChanged(seekBar: SeekBar, value: Int, fromUser: Boolean) {
-                if (fromUser) {
-                    setColorValue(value, ALPHA_MASK, 24)
+        binding.seekbarColorFilterAlpha.setOnSeekBarChangeListener(
+            object : SimpleSeekBarListener() {
+                override fun onProgressChanged(seekBar: SeekBar, value: Int, fromUser: Boolean) {
+                    if (fromUser) {
+                        setColorValue(value, ALPHA_MASK, 24)
+                    }
                 }
             }
-        })
+        )
 
-        binding.seekbarColorFilterRed.setOnSeekBarChangeListener(object : SimpleSeekBarListener() {
-            override fun onProgressChanged(seekBar: SeekBar, value: Int, fromUser: Boolean) {
-                if (fromUser) {
-                    setColorValue(value, RED_MASK, 16)
+        binding.seekbarColorFilterRed.setOnSeekBarChangeListener(
+            object : SimpleSeekBarListener() {
+                override fun onProgressChanged(seekBar: SeekBar, value: Int, fromUser: Boolean) {
+                    if (fromUser) {
+                        setColorValue(value, RED_MASK, 16)
+                    }
                 }
             }
-        })
+        )
 
-        binding.seekbarColorFilterGreen.setOnSeekBarChangeListener(object : SimpleSeekBarListener() {
-            override fun onProgressChanged(seekBar: SeekBar, value: Int, fromUser: Boolean) {
-                if (fromUser) {
-                    setColorValue(value, GREEN_MASK, 8)
+        binding.seekbarColorFilterGreen.setOnSeekBarChangeListener(
+            object : SimpleSeekBarListener() {
+                override fun onProgressChanged(seekBar: SeekBar, value: Int, fromUser: Boolean) {
+                    if (fromUser) {
+                        setColorValue(value, GREEN_MASK, 8)
+                    }
                 }
             }
-        })
+        )
 
-        binding.seekbarColorFilterBlue.setOnSeekBarChangeListener(object : SimpleSeekBarListener() {
-            override fun onProgressChanged(seekBar: SeekBar, value: Int, fromUser: Boolean) {
-                if (fromUser) {
-                    setColorValue(value, BLUE_MASK, 0)
+        binding.seekbarColorFilterBlue.setOnSeekBarChangeListener(
+            object : SimpleSeekBarListener() {
+                override fun onProgressChanged(seekBar: SeekBar, value: Int, fromUser: Boolean) {
+                    if (fromUser) {
+                        setColorValue(value, BLUE_MASK, 0)
+                    }
                 }
             }
-        })
+        )
 
-        binding.brightnessSeekbar.setOnSeekBarChangeListener(object : SimpleSeekBarListener() {
-            override fun onProgressChanged(seekBar: SeekBar, value: Int, fromUser: Boolean) {
-                if (fromUser) {
-                    preferences.customBrightnessValue().set(value)
+        binding.brightnessSeekbar.setOnSeekBarChangeListener(
+            object : SimpleSeekBarListener() {
+                override fun onProgressChanged(seekBar: SeekBar, value: Int, fromUser: Boolean) {
+                    if (fromUser) {
+                        preferences.customBrightnessValue().set(value)
+                    }
                 }
             }
-        })
+        )
     }
 
     override fun onStart() {

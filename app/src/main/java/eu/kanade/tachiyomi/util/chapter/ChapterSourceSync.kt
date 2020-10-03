@@ -7,10 +7,10 @@ import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.model.SChapter
 import eu.kanade.tachiyomi.source.online.HttpSource
-import java.util.Date
-import java.util.TreeSet
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import java.util.Date
+import java.util.TreeSet
 
 /**
  * Helper method for syncing the list of chapters from the source with the ones from the database.
@@ -28,7 +28,7 @@ fun syncChaptersWithSource(
     source: Source
 ): Pair<List<Chapter>, List<Chapter>> {
     if (rawSourceChapters.isEmpty()) {
-        throw Exception("No chapters found")
+        throw NoChaptersException()
     }
 
     val downloadManager: DownloadManager = Injekt.get()

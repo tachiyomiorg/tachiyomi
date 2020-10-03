@@ -283,7 +283,7 @@
     <string name="manga_removed_library">Odstránené z knižnice</string>
     <string name="delete_downloads_for_manga">Odstrániť stiahnuté kapitoly\?</string>
     <string name="copied_to_clipboard">%1$s bol skopírovaný do schránky</string>
-    <string name="source_not_installed">Zdroj nie je nainštalovaný</string>
+    <string name="source_not_installed">Zdroj nie je nainštalovaný: %1$s</string>
     <string name="manga_chapters_tab">Kapitoly</string>
     <string name="manga_chapter_no_title">Bez názvu</string>
     <string name="display_mode_chapter">Kapitola %1$s</string>
@@ -365,7 +365,6 @@
     <string name="notification_no_connection_body">Pripojenie nie je k dispozícii</string>
     <string name="file_select_cover">Vyberte obrázok obalu</string>
     <string name="file_select_backup">Vyberte záložný súbor</string>
-    <string name="file_select_icon">Vyberte ikonu zástupca</string>
     <string name="update_check_confirm">Stiahnuť</string>
     <string name="update_check_ignore">Ignorovať</string>
     <string name="update_check_no_new_updates">Žiadné nové aktualizácie</string>

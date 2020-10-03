@@ -1,11 +1,15 @@
 package eu.kanade.tachiyomi.ui.recent.history
 
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.backup.BackupRestoreService
 import eu.kanade.tachiyomi.data.database.models.History
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.databinding.HistoryControllerBinding
@@ -13,9 +17,14 @@ import eu.kanade.tachiyomi.ui.base.controller.NoToolbarElevationController
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.RootController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
+import eu.kanade.tachiyomi.ui.browse.source.browse.ProgressItem
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.util.system.toast
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import reactivecircus.flowbinding.appcompat.queryTextChanges
 
 /**
  * Fragment that shows recently read manga.
@@ -27,6 +36,7 @@ class HistoryController :
     RootController,
     NoToolbarElevationController,
     FlexibleAdapter.OnUpdateListener,
+    FlexibleAdapter.EndlessScrollListener,
     HistoryAdapter.OnRemoveClickListener,
     HistoryAdapter.OnResumeClickListener,
     HistoryAdapter.OnItemClickListener,
@@ -37,6 +47,16 @@ class HistoryController :
      */
     var adapter: HistoryAdapter? = null
         private set
+
+    /**
+     * Endless loading item.
+     */
+    private var progressItem: ProgressItem? = null
+
+    /**
+     * Search query.
+     */
+    private var query = ""
 
     override fun getTitle(): String? {
         return resources?.getString(R.string.label_recent_manga)
@@ -77,8 +97,23 @@ class HistoryController :
      *
      * @param mangaHistory list of manga history
      */
-    fun onNextManga(mangaHistory: List<HistoryItem>) {
-        adapter?.updateDataSet(mangaHistory)
+    fun onNextManga(mangaHistory: List<HistoryItem>, cleanBatch: Boolean = false) {
+        if (adapter?.itemCount ?: 0 == 0 || cleanBatch) {
+            resetProgressItem()
+        }
+        if (cleanBatch) {
+            adapter?.updateDataSet(mangaHistory)
+        } else {
+            adapter?.onLoadMoreComplete(mangaHistory)
+        }
+    }
+
+    /**
+     * Safely error if next page load fails
+     */
+    fun onAddPageError(error: Throwable) {
+        adapter?.onLoadMoreComplete(null)
+        adapter?.endlessTargetCount = 1
     }
 
     override fun onUpdateEmptyView(size: Int) {
@@ -89,9 +124,30 @@ class HistoryController :
         }
     }
 
+    /**
+     * Sets a new progress item and reenables the scroll listener.
+     */
+    private fun resetProgressItem() {
+        progressItem = ProgressItem()
+        adapter?.endlessTargetCount = 0
+        adapter?.setEndlessScrollListener(this, progressItem!!)
+    }
+
+    override fun onLoadMore(lastPosition: Int, currentPage: Int) {
+        val view = view ?: return
+        if (BackupRestoreService.isRunning(view.context.applicationContext)) {
+            onAddPageError(Throwable())
+            return
+        }
+        val adapter = adapter ?: return
+        presenter.requestNext(adapter.itemCount, query)
+    }
+
+    override fun noMoreLoad(newItemsSize: Int) {}
+
     override fun onResumeClick(position: Int) {
         val activity = activity ?: return
-        val (manga, chapter, _) = adapter?.getItem(position)?.mch ?: return
+        val (manga, chapter, _) = (adapter?.getItem(position) as? HistoryItem)?.mch ?: return
 
         val nextChapter = presenter.getNextChapter(chapter, manga)
         if (nextChapter != null) {
@@ -103,22 +159,46 @@ class HistoryController :
     }
 
     override fun onRemoveClick(position: Int) {
-        val (manga, _, history) = adapter?.getItem(position)?.mch ?: return
+        val (manga, _, history) = (adapter?.getItem(position) as? HistoryItem)?.mch ?: return
         RemoveHistoryDialog(this, manga, history).showDialog(router)
     }
 
     override fun onItemClick(position: Int) {
-        val manga = adapter?.getItem(position)?.mch?.manga ?: return
+        val manga = (adapter?.getItem(position) as? HistoryItem)?.mch?.manga ?: return
         router.pushController(MangaController(manga).withFadeTransaction())
     }
 
     override fun removeHistory(manga: Manga, history: History, all: Boolean) {
         if (all) {
             // Reset last read of chapter to 0L
-            presenter.removeAllFromHistory(manga.id!!)
+            presenter.removeAllFromHistory(manga.id!!, query)
         } else {
             // Remove all chapters belonging to manga from library
-            presenter.removeFromHistory(history)
+            presenter.removeFromHistory(history, query)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.history, menu)
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchView = searchItem.actionView as SearchView
+        searchView.maxWidth = Int.MAX_VALUE
+        if (query.isNotEmpty()) {
+            searchItem.expandActionView()
+            searchView.setQuery(query, true)
+            searchView.clearFocus()
+        }
+        searchView.queryTextChanges()
+            .filter { router.backstack.lastOrNull()?.controller() == this }
+            .onEach {
+                query = it.toString()
+                presenter.updateList(query)
+            }
+            .launchIn(scope)
+
+        // Fixes problem with the overflow icon showing up in lieu of search
+        searchItem.fixExpand(
+            onExpand = { invalidateMenuOnExpand() }
+        )
     }
 }

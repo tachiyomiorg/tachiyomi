@@ -9,13 +9,12 @@ import eu.kanade.tachiyomi.data.database.models.MangaChapterHistory
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import eu.kanade.tachiyomi.ui.recent.DateSectionItem
 import eu.kanade.tachiyomi.util.lang.toDateKey
-import java.util.Calendar
-import java.util.Comparator
-import java.util.Date
-import java.util.TreeMap
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import uy.kohesive.injekt.injectLazy
+import java.util.Calendar
+import java.util.Date
+import java.util.TreeMap
 
 /**
  * Presenter of HistoryFragment.
@@ -33,22 +32,31 @@ class HistoryPresenter : BasePresenter<HistoryController>() {
         super.onCreate(savedState)
 
         // Used to get a list of recently read manga
-        getRecentMangaObservable()
-            .subscribeLatestCache(HistoryController::onNextManga)
+        updateList()
+    }
+
+    fun requestNext(offset: Int, search: String = "") {
+        getRecentMangaObservable(offset = offset, search = search)
+            .subscribeLatestCache(
+                { view, mangas ->
+                    view.onNextManga(mangas)
+                },
+                HistoryController::onAddPageError
+            )
     }
 
     /**
      * Get recent manga observable
      * @return list of history
      */
-    fun getRecentMangaObservable(): Observable<List<HistoryItem>> {
+    private fun getRecentMangaObservable(limit: Int = 25, offset: Int = 0, search: String = ""): Observable<List<HistoryItem>> {
         // Set date limit for recent manga
         val cal = Calendar.getInstance().apply {
             time = Date()
-            add(Calendar.MONTH, -3)
+            add(Calendar.YEAR, -50)
         }
 
-        return db.getRecentManga(cal.time).asRxObservable()
+        return db.getRecentManga(cal.time, limit, offset, search).asRxObservable()
             .map { recents ->
                 val map = TreeMap<Date, MutableList<MangaChapterHistory>> { d1, d2 -> d2.compareTo(d1) }
                 val byDay = recents
@@ -65,21 +73,39 @@ class HistoryPresenter : BasePresenter<HistoryController>() {
      * Reset last read of chapter to 0L
      * @param history history belonging to chapter
      */
-    fun removeFromHistory(history: History) {
+    fun removeFromHistory(history: History, currentSearch: String = "") {
         history.last_read = 0L
         db.updateHistoryLastRead(history).asRxObservable()
+            .doOnNext {
+                updateList(currentSearch)
+            }
             .subscribe()
+    }
+
+    /**
+     * Pull a list of history from the db
+     * @param search a search query to use for filtering
+     */
+    fun updateList(search: String = "") {
+        getRecentMangaObservable(search = search).take(1)
+            .subscribeLatestCache(
+                { view, mangas ->
+                    view.onNextManga(mangas, true)
+                },
+                HistoryController::onAddPageError
+            )
     }
 
     /**
      * Removes all chapters belonging to manga from history.
      * @param mangaId id of manga
      */
-    fun removeAllFromHistory(mangaId: Long) {
+    fun removeAllFromHistory(mangaId: Long, currentSearch: String = "") {
         db.getHistoryByMangaId(mangaId).asRxSingle()
             .map { list ->
                 list.forEach { it.last_read = 0L }
                 db.updateHistoryLastRead(list).executeAsBlocking()
+                updateList(currentSearch)
             }
             .subscribe()
     }
@@ -103,7 +129,7 @@ class HistoryPresenter : BasePresenter<HistoryController>() {
         }
 
         val chapters = db.getChapters(manga).executeAsBlocking()
-            .sortedWith(Comparator { c1, c2 -> sortFunction(c1, c2) })
+            .sortedWith { c1, c2 -> sortFunction(c1, c2) }
 
         val currChapterIndex = chapters.indexOfFirst { chapter.id == it.id }
         return when (manga.sorting) {

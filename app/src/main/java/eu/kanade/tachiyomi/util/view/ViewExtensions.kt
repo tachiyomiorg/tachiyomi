@@ -64,7 +64,7 @@ inline fun View.popupMenu(
     @MenuRes menuRes: Int,
     noinline initMenu: (Menu.() -> Unit)? = null,
     noinline onMenuItemClick: MenuItem.() -> Boolean
-) {
+): PopupMenu {
     val popup = PopupMenu(context, this, Gravity.NO_GRAVITY, R.attr.actionOverflowMenuStyle, 0)
     popup.menuInflater.inflate(menuRes, popup.menu)
 
@@ -74,6 +74,7 @@ inline fun View.popupMenu(
     popup.setOnMenuItemClickListener { it.onMenuItemClick() }
 
     popup.show()
+    return popup
 }
 
 /**

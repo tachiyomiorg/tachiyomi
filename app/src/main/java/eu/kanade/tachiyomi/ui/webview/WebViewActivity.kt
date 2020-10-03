@@ -70,13 +70,14 @@ class WebViewActivity : BaseActivity<WebviewActivityBinding>() {
 
         if (bundle == null) {
             val url = intent.extras!!.getString(URL_KEY) ?: return
-            var headers = emptyMap<String, String>()
 
+            var headers = mutableMapOf<String, String>()
             val source = sourceManager.get(intent.extras!!.getLong(SOURCE_KEY)) as? HttpSource
             if (source != null) {
-                headers = source.headers.toMultimap().mapValues { it.value.getOrNull(0) ?: "" }
+                headers = source.headers.toMultimap().mapValues { it.value.getOrNull(0) ?: "" }.toMutableMap()
                 binding.webview.settings.userAgentString = source.headers["User-Agent"]
             }
+            headers["X-Requested-With"] = WebViewUtil.REQUESTED_WITH
 
             binding.webview.setDefaultSettings()
 
@@ -100,7 +101,7 @@ class WebViewActivity : BaseActivity<WebviewActivityBinding>() {
 
             binding.webview.webViewClient = object : WebViewClientCompat() {
                 override fun shouldOverrideUrlCompat(view: WebView, url: String): Boolean {
-                    view.loadUrl(url)
+                    view.loadUrl(url, headers)
                     return true
                 }
 

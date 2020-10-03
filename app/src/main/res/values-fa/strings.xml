@@ -14,7 +14,6 @@
     <string name="update_check_no_new_updates">هیچ آپدیت جدیدی موجود نیست</string>
     <string name="update_check_ignore">نادیده گرفتن</string>
     <string name="update_check_confirm">دانلود</string>
-    <string name="file_select_icon">آیکون میانبر را انتخاب کنید</string>
     <string name="file_select_backup">فایل پشتیبان را انتخاب کنید</string>
     <string name="file_select_cover">عکس روی جلد را انتخاب کنید</string>
     <string name="notification_no_connection_body">اتصال در دسترس نیست</string>

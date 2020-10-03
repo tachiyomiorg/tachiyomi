@@ -187,7 +187,6 @@
     <string name="notification_no_connection_title">Synchronizace zrušena</string>
     <string name="notification_no_connection_body">Připojení není k dispozici</string>
     <string name="file_select_backup">Vybrat záložní soubor</string>
-    <string name="file_select_icon">Vybrat ikonu zástupce</string>
     <string name="update_check_confirm">Stáhnout</string>
     <string name="update_check_ignore">Ignorovat</string>
     <string name="update_check_no_new_updates">Žádné nové aktualizace</string>

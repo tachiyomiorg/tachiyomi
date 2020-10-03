@@ -13,6 +13,8 @@ object PreferenceKeys {
 
     const val confirmExit = "pref_confirm_exit"
 
+    const val hideBottomBar = "pref_hide_bottom_bar_on_scroll"
+
     const val rotation = "pref_rotation_type_key"
 
     const val enableTransitions = "pref_enable_transitions_key"
@@ -109,11 +111,11 @@ object PreferenceKeys {
 
     const val downloadedOnly = "pref_downloaded_only"
 
-    const val filterDownloaded = "pref_filter_downloaded_key"
+    const val filterDownloaded = "pref_filter_library_downloaded"
 
-    const val filterUnread = "pref_filter_unread_key"
+    const val filterUnread = "pref_filter_library_unread"
 
-    const val filterCompleted = "pref_filter_completed_key"
+    const val filterCompleted = "pref_filter_library_completed"
 
     const val librarySortingMode = "library_sorting_mode"
 
@@ -164,6 +166,20 @@ object PreferenceKeys {
     const val searchPinnedSourcesOnly = "search_pinned_sources_only"
 
     const val enableDoh = "enable_doh"
+
+    const val defaultChapterFilterByRead = "default_chapter_filter_by_read"
+
+    const val defaultChapterFilterByDownloaded = "default_chapter_filter_by_downloaded"
+
+    const val defaultChapterFilterByBookmarked = "default_chapter_filter_by_bookmarked"
+
+    const val defaultChapterSortBySourceOrNumber = "default_chapter_sort_by_source_or_number" // and upload date
+
+    const val defaultChapterSortByAscendingOrDescending = "default_chapter_sort_by_ascending_or_descending"
+
+    const val defaultChapterDisplayByNameOrNumber = "default_chapter_display_by_name_or_number"
+
+    const val incognitoMode = "incognito_mode"
 
     fun trackUsername(syncId: Int) = "pref_mangasync_username_$syncId"
 

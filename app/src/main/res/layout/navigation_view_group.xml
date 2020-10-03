@@ -3,9 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="?attr/listPreferredItemHeightSmall"
-    android:background="?attr/colorPrimary"
-    android:elevation="2dp"
     android:gravity="center_vertical"
+    android:background="?android:attr/colorBackground"
     android:orientation="horizontal"
     android:paddingStart="?attr/listPreferredItemPaddingStart"
     android:paddingEnd="?attr/listPreferredItemPaddingEnd">
@@ -17,8 +16,7 @@
         android:layout_weight="1"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="?attr/colorOnPrimary"
+        android:textAppearance="@style/TextAppearance.Medium.SubHeading"
         tools:text="Header" />
 
     <ImageView

@@ -18,8 +18,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.R
 import com.google.android.material.internal.ScrimInsetsFrameLayout
 import com.google.android.material.textfield.TextInputLayout
-import eu.kanade.tachiyomi.R as TR
 import eu.kanade.tachiyomi.util.view.inflate
+import eu.kanade.tachiyomi.R as TR
 
 @Suppress("LeakingThis")
 @SuppressLint("PrivateResource", "RestrictedApi")
@@ -37,20 +37,24 @@ open class SimpleNavigationView @JvmOverloads constructor(
     init {
         // Custom attributes
         val a = TintTypedArray.obtainStyledAttributes(
-            context, attrs,
-            R.styleable.NavigationView, defStyleAttr,
+            context,
+            attrs,
+            R.styleable.NavigationView,
+            defStyleAttr,
             R.style.Widget_Design_NavigationView
         )
 
         ViewCompat.setBackground(
-            this, a.getDrawable(R.styleable.NavigationView_android_background)
+            this,
+            a.getDrawable(R.styleable.NavigationView_android_background)
         )
 
         if (a.hasValue(R.styleable.NavigationView_elevation)) {
             ViewCompat.setElevation(
                 this,
                 a.getDimensionPixelSize(
-                    R.styleable.NavigationView_elevation, 0
+                    R.styleable.NavigationView_elevation,
+                    0
                 ).toFloat()
             )
         }

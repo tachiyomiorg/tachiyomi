@@ -86,4 +86,9 @@
         <item>@string/tapping_inverted_vertical</item>
         <item>@string/tapping_inverted_both</item>
     </string-array>
+
+    <string-array name="delete_selected_mangas">
+        <item>@string/manga_from_library</item>
+        <item>@string/downloaded_chapters</item>
+    </string-array>
 </resources>

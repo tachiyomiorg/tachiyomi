@@ -1,10 +1,11 @@
 package eu.kanade.tachiyomi.ui.recent.history
 
 import eu.davidea.flexibleadapter.FlexibleAdapter
+import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.source.SourceManager
+import uy.kohesive.injekt.injectLazy
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
-import uy.kohesive.injekt.injectLazy
 
 /**
  * Adapter of HistoryHolder.
@@ -15,7 +16,7 @@ import uy.kohesive.injekt.injectLazy
  * @constructor creates an instance of the adapter.
  */
 class HistoryAdapter(controller: HistoryController) :
-    FlexibleAdapter<HistoryItem>(null, controller, true) {
+    FlexibleAdapter<IFlexible<*>>(null, controller, true) {
 
     val sourceManager by injectLazy<SourceManager>()
 

@@ -334,7 +334,6 @@
     <string name="update_check_no_new_updates">ಹೊಸ ನವೀಕರಣಗಳು ಲಭ್ಯವಿಲ್ಲ</string>
     <string name="update_check_ignore">ನಿರ್ಲಕ್ಷಿಸಿ</string>
     <string name="update_check_confirm">ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ</string>
-    <string name="file_select_icon">ಶಾರ್ಟ್ಕಟ್ ಐಕಾನ್ ಆಯ್ಕೆಮಾಡಿ</string>
     <string name="file_select_backup">ಬ್ಯಾಕಪ್ ಫೈಲ್ ಆಯ್ಕೆಮಾಡಿ</string>
     <string name="file_select_cover">ಕವರ್ ಇಮೇಜ್ ಆಯ್ಕೆಮಾಡಿ</string>
     <string name="notification_no_connection_body">ಸಂಪರ್ಕ ಲಭ್ಯವಿಲ್ಲ</string>

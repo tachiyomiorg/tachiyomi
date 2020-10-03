@@ -18,6 +18,7 @@ import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import eu.kanade.tachiyomi.ui.manga.chapter.ChapterItem
+import eu.kanade.tachiyomi.util.chapter.ChapterSettingsHelper
 import eu.kanade.tachiyomi.util.chapter.syncChaptersWithSource
 import eu.kanade.tachiyomi.util.isLocal
 import eu.kanade.tachiyomi.util.lang.isNullOrUnsubscribed
@@ -26,7 +27,7 @@ import eu.kanade.tachiyomi.util.prepUpdateCover
 import eu.kanade.tachiyomi.util.removeCovers
 import eu.kanade.tachiyomi.util.shouldDownloadNewChapters
 import eu.kanade.tachiyomi.util.updateCoverLastModified
-import java.util.Date
+import eu.kanade.tachiyomi.widget.ExtendedNavigationView.Item.TriStateGroup.State
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -34,6 +35,7 @@ import rx.schedulers.Schedulers
 import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import java.util.Date
 
 class MangaPresenter(
     val manga: Manga,
@@ -81,6 +83,10 @@ class MangaPresenter(
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
+
+        if (!manga.favorite) {
+            ChapterSettingsHelper.applySettingDefaults(manga)
+        }
 
         // Manga info - start
 
@@ -363,17 +369,28 @@ class MangaPresenter(
      */
     private fun applyChapterFilters(chapters: List<ChapterItem>): Observable<List<ChapterItem>> {
         var observable = Observable.from(chapters).subscribeOn(Schedulers.io())
-        if (onlyUnread()) {
+
+        val unreadFilter = onlyUnread()
+        if (unreadFilter == State.INCLUDE) {
             observable = observable.filter { !it.read }
-        } else if (onlyRead()) {
+        } else if (unreadFilter == State.EXCLUDE) {
             observable = observable.filter { it.read }
         }
-        if (onlyDownloaded()) {
+
+        val downloadedFilter = onlyDownloaded()
+        if (downloadedFilter == State.INCLUDE) {
             observable = observable.filter { it.isDownloaded || it.manga.isLocal() }
+        } else if (downloadedFilter == State.EXCLUDE) {
+            observable = observable.filter { !it.isDownloaded && !it.manga.isLocal() }
         }
-        if (onlyBookmarked()) {
+
+        val bookmarkedFilter = onlyBookmarked()
+        if (bookmarkedFilter == State.INCLUDE) {
             observable = observable.filter { it.bookmark }
+        } else if (bookmarkedFilter == State.EXCLUDE) {
+            observable = observable.filter { !it.bookmark }
         }
+
         val sortFunction: (Chapter, Chapter) -> Int = when (manga.sorting) {
             Manga.SORTING_SOURCE -> when (sortDescending()) {
                 true -> { c1, c2 -> c1.source_order.compareTo(c2.source_order) }
@@ -389,6 +406,7 @@ class MangaPresenter(
             }
             else -> throw NotImplementedError("Unimplemented sorting method")
         }
+
         return observable.toSortedList(sortFunction)
     }
 
@@ -407,7 +425,7 @@ class MangaPresenter(
         }
 
         // Force UI update if downloaded filter active and download finished.
-        if (onlyDownloaded() && download.status == Download.DOWNLOADED) {
+        if (onlyDownloaded() != State.IGNORE && download.status == Download.DOWNLOADED) {
             refreshChapters()
         }
     }
@@ -472,7 +490,7 @@ class MangaPresenter(
     fun deleteChapters(chapters: List<ChapterItem>) {
         Observable.just(chapters)
             .doOnNext { deleteChaptersInternal(chapters) }
-            .doOnNext { if (onlyDownloaded()) refreshChapters() }
+            .doOnNext { if (onlyDownloaded() != State.IGNORE) refreshChapters() }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeFirst(
@@ -513,40 +531,42 @@ class MangaPresenter(
 
     /**
      * Sets the read filter and requests an UI update.
-     * @param onlyUnread whether to display only unread chapters or all chapters.
+     * @param state whether to display only unread chapters or all chapters.
      */
-    fun setUnreadFilter(onlyUnread: Boolean) {
-        manga.readFilter = if (onlyUnread) Manga.SHOW_UNREAD else Manga.SHOW_ALL
-        db.updateFlags(manga).executeAsBlocking()
-        refreshChapters()
-    }
-
-    /**
-     * Sets the read filter and requests an UI update.
-     * @param onlyRead whether to display only read chapters or all chapters.
-     */
-    fun setReadFilter(onlyRead: Boolean) {
-        manga.readFilter = if (onlyRead) Manga.SHOW_READ else Manga.SHOW_ALL
+    fun setUnreadFilter(state: State) {
+        manga.readFilter = when (state) {
+            State.IGNORE -> Manga.SHOW_ALL
+            State.INCLUDE -> Manga.SHOW_UNREAD
+            State.EXCLUDE -> Manga.SHOW_READ
+        }
         db.updateFlags(manga).executeAsBlocking()
         refreshChapters()
     }
 
     /**
      * Sets the download filter and requests an UI update.
-     * @param onlyDownloaded whether to display only downloaded chapters or all chapters.
+     * @param state whether to display only downloaded chapters or all chapters.
      */
-    fun setDownloadedFilter(onlyDownloaded: Boolean) {
-        manga.downloadedFilter = if (onlyDownloaded) Manga.SHOW_DOWNLOADED else Manga.SHOW_ALL
+    fun setDownloadedFilter(state: State) {
+        manga.downloadedFilter = when (state) {
+            State.IGNORE -> Manga.SHOW_ALL
+            State.INCLUDE -> Manga.SHOW_DOWNLOADED
+            State.EXCLUDE -> Manga.SHOW_NOT_DOWNLOADED
+        }
         db.updateFlags(manga).executeAsBlocking()
         refreshChapters()
     }
 
     /**
      * Sets the bookmark filter and requests an UI update.
-     * @param onlyBookmarked whether to display only bookmarked chapters or all chapters.
+     * @param state whether to display only bookmarked chapters or all chapters.
      */
-    fun setBookmarkedFilter(onlyBookmarked: Boolean) {
-        manga.bookmarkedFilter = if (onlyBookmarked) Manga.SHOW_BOOKMARKED else Manga.SHOW_ALL
+    fun setBookmarkedFilter(state: State) {
+        manga.bookmarkedFilter = when (state) {
+            State.IGNORE -> Manga.SHOW_ALL
+            State.INCLUDE -> Manga.SHOW_BOOKMARKED
+            State.EXCLUDE -> Manga.SHOW_NOT_BOOKMARKED
+        }
         db.updateFlags(manga).executeAsBlocking()
         refreshChapters()
     }
@@ -580,29 +600,37 @@ class MangaPresenter(
     /**
      * Whether the display only downloaded filter is enabled.
      */
-    fun onlyDownloaded(): Boolean {
-        return forceDownloaded() || manga.downloadedFilter == Manga.SHOW_DOWNLOADED
+    fun onlyDownloaded(): State {
+        if (forceDownloaded()) {
+            return State.INCLUDE
+        }
+        return when (manga.downloadedFilter) {
+            Manga.SHOW_DOWNLOADED -> State.INCLUDE
+            Manga.SHOW_NOT_DOWNLOADED -> State.EXCLUDE
+            else -> State.IGNORE
+        }
     }
 
     /**
      * Whether the display only downloaded filter is enabled.
      */
-    fun onlyBookmarked(): Boolean {
-        return manga.bookmarkedFilter == Manga.SHOW_BOOKMARKED
+    fun onlyBookmarked(): State {
+        return when (manga.bookmarkedFilter) {
+            Manga.SHOW_BOOKMARKED -> State.INCLUDE
+            Manga.SHOW_NOT_BOOKMARKED -> State.EXCLUDE
+            else -> State.IGNORE
+        }
     }
 
     /**
      * Whether the display only unread filter is enabled.
      */
-    fun onlyUnread(): Boolean {
-        return manga.readFilter == Manga.SHOW_UNREAD
-    }
-
-    /**
-     * Whether the display only read filter is enabled.
-     */
-    fun onlyRead(): Boolean {
-        return manga.readFilter == Manga.SHOW_READ
+    fun onlyUnread(): State {
+        return when (manga.readFilter) {
+            Manga.SHOW_UNREAD -> State.INCLUDE
+            Manga.SHOW_READ -> State.EXCLUDE
+            else -> State.IGNORE
+        }
     }
 
     /**

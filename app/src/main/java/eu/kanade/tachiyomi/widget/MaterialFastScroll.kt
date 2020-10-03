@@ -12,7 +12,9 @@ class MaterialFastScroll @JvmOverloads constructor(context: Context, attrs: Attr
 
     init {
         setViewsToUse(
-            R.layout.material_fastscroll, R.id.fast_scroller_bubble, R.id.fast_scroller_handle
+            R.layout.material_fastscroll,
+            R.id.fast_scroller_bubble,
+            R.id.fast_scroller_handle
         )
         autoHideEnabled = true
         ignoreTouchesOutsideHandle = true

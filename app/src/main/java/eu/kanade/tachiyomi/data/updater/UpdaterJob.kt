@@ -13,9 +13,10 @@ import androidx.work.Worker
 import androidx.work.WorkerParameters
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.notification.Notifications
+import eu.kanade.tachiyomi.data.updater.github.GithubUpdateChecker
 import eu.kanade.tachiyomi.util.system.notificationManager
-import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.runBlocking
+import java.util.concurrent.TimeUnit
 
 class UpdaterJob(private val context: Context, workerParams: WorkerParameters) :
     Worker(context, workerParams) {
@@ -23,7 +24,7 @@ class UpdaterJob(private val context: Context, workerParams: WorkerParameters) :
     override fun doWork(): Result {
         return runBlocking {
             try {
-                val result = UpdateChecker.getUpdateChecker().checkForUpdate()
+                val result = GithubUpdateChecker().checkForUpdate()
 
                 if (result is UpdateResult.NewUpdate<*>) {
                     val url = result.release.downloadLink
@@ -65,8 +66,10 @@ class UpdaterJob(private val context: Context, workerParams: WorkerParameters) :
                 .build()
 
             val request = PeriodicWorkRequestBuilder<UpdaterJob>(
-                3, TimeUnit.DAYS,
-                3, TimeUnit.HOURS
+                3,
+                TimeUnit.DAYS,
+                3,
+                TimeUnit.HOURS
             )
                 .addTag(TAG)
                 .setConstraints(constraints)

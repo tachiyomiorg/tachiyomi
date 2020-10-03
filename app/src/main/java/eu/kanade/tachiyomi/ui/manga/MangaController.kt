@@ -52,7 +52,6 @@ import eu.kanade.tachiyomi.ui.library.ChangeMangaCoverDialog
 import eu.kanade.tachiyomi.ui.library.LibraryController
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.main.offsetAppbarHeight
-import eu.kanade.tachiyomi.ui.manga.chapter.ChapterDividerItemDecoration
 import eu.kanade.tachiyomi.ui.manga.chapter.ChapterItem
 import eu.kanade.tachiyomi.ui.manga.chapter.ChaptersAdapter
 import eu.kanade.tachiyomi.ui.manga.chapter.ChaptersSettingsSheet
@@ -65,13 +64,13 @@ import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.ui.recent.history.HistoryController
 import eu.kanade.tachiyomi.ui.recent.updates.UpdatesController
 import eu.kanade.tachiyomi.ui.webview.WebViewActivity
+import eu.kanade.tachiyomi.util.chapter.NoChaptersException
 import eu.kanade.tachiyomi.util.hasCustomCover
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.getCoordinates
 import eu.kanade.tachiyomi.util.view.shrinkOnScroll
 import eu.kanade.tachiyomi.util.view.snack
-import kotlin.math.min
 import kotlinx.android.synthetic.main.main_activity.root_coordinator
 import kotlinx.android.synthetic.main.main_activity.toolbar
 import kotlinx.coroutines.flow.launchIn
@@ -83,6 +82,7 @@ import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import uy.kohesive.injekt.injectLazy
+import kotlin.math.min
 
 class MangaController :
     NucleusController<MangaControllerBinding, MangaPresenter>,
@@ -207,7 +207,6 @@ class MangaController :
 
         binding.recycler.adapter = ConcatAdapter(mangaInfoAdapter, chaptersHeaderAdapter, chaptersAdapter)
         binding.recycler.layoutManager = LinearLayoutManager(view.context)
-        binding.recycler.addItemDecoration(ChapterDividerItemDecoration(view.context))
         binding.recycler.setHasFixedSize(true)
         chaptersAdapter?.fastScroller = binding.fastScroller
 
@@ -238,7 +237,7 @@ class MangaController :
 
         binding.actionToolbar.offsetAppbarHeight(activity!!)
 
-        settingsSheet = ChaptersSettingsSheet(activity!!, presenter) { group ->
+        settingsSheet = ChaptersSettingsSheet(router, presenter) { group ->
             if (group is ChaptersSettingsSheet.Filter.FilterGroup) {
                 updateFilterIconState()
                 chaptersAdapter?.notifyDataSetChanged()
@@ -292,10 +291,10 @@ class MangaController :
                     // Get coordinates and start animation
                     actionFab?.getCoordinates()?.let { coordinates ->
                         if (!binding.revealView.showRevealEffect(
-                            coordinates.x,
-                            coordinates.y,
-                            revealAnimationListener
-                        )
+                                coordinates.x,
+                                coordinates.y,
+                                revealAnimationListener
+                            )
                         ) {
                             openChapter(item.chapter)
                         }
@@ -343,7 +342,8 @@ class MangaController :
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
-        // Hide download options for local manga
+        // Hide options for local manga
+        menu.findItem(R.id.action_share).isVisible = !isLocalSource
         menu.findItem(R.id.download_group).isVisible = !isLocalSource
 
         // Hide options for non-library manga
@@ -354,6 +354,7 @@ class MangaController :
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.action_share -> shareManga()
             R.id.download_next, R.id.download_next_5, R.id.download_next_10,
             R.id.download_custom, R.id.download_unread, R.id.download_all
             -> downloadChapters(item.itemId)
@@ -694,7 +695,11 @@ class MangaController :
     fun onFetchChaptersError(error: Throwable) {
         isRefreshingChapters = false
         updateRefreshing()
-        activity?.toast(error.message)
+        if (error is NoChaptersException) {
+            activity?.toast(activity?.getString(R.string.no_chapters_error))
+        } else {
+            activity?.toast(error.message)
+        }
     }
 
     fun onChapterStatusChange(download: Download) {

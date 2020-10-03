@@ -11,7 +11,6 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.library.LibraryUpdateJob
-import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.asImmediateFlow
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
@@ -35,12 +34,13 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 
 class SettingsLibraryController : SettingsController() {
 
     private val db: DatabaseHelper = Injekt.get()
 
-    override fun setupPreferenceScreen(screen: PreferenceScreen) = with(screen) {
+    override fun setupPreferenceScreen(screen: PreferenceScreen) = screen.apply {
         titleRes = R.string.pref_category_library
 
         val dbCategories = db.getCategories().executeAsBlocking()
@@ -50,6 +50,7 @@ class SettingsLibraryController : SettingsController() {
             titleRes = R.string.pref_category_display
 
             preference {
+                key = "pref_library_columns"
                 titleRes = R.string.pref_library_columns
                 onClick {
                     LibraryColumnsDialog().showDialog(router)
@@ -83,6 +84,7 @@ class SettingsLibraryController : SettingsController() {
             titleRes = R.string.pref_category_library_categories
 
             preference {
+                key = "pref_action_edit_categories"
                 titleRes = R.string.action_edit_categories
 
                 val catCount = dbCategories.size
@@ -121,9 +123,14 @@ class SettingsLibraryController : SettingsController() {
                 key = Keys.libraryUpdateInterval
                 titleRes = R.string.pref_library_update_interval
                 entriesRes = arrayOf(
-                    R.string.update_never, R.string.update_1hour,
-                    R.string.update_2hour, R.string.update_3hour, R.string.update_6hour,
-                    R.string.update_12hour, R.string.update_24hour, R.string.update_48hour
+                    R.string.update_never,
+                    R.string.update_1hour,
+                    R.string.update_2hour,
+                    R.string.update_3hour,
+                    R.string.update_6hour,
+                    R.string.update_12hour,
+                    R.string.update_24hour,
+                    R.string.update_48hour
                 )
                 entryValues = arrayOf("0", "1", "2", "3", "6", "12", "24", "48")
                 defaultValue = "24"
