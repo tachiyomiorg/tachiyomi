@@ -122,7 +122,11 @@ class LibraryController(
 
     private var tabsVisibilityRelay: BehaviorRelay<Boolean> = BehaviorRelay.create(false)
 
+    private var mangaCountVisibilityRelay: BehaviorRelay<Boolean> = BehaviorRelay.create(false)
+
     private var tabsVisibilitySubscription: Subscription? = null
+
+    private var mangaCountVisibilitySubscription: Subscription? = null
 
     init {
         setHasOptionsMenu(true)
@@ -138,33 +142,29 @@ class LibraryController(
         }
 
     override fun getTitle(): String? {
-        val mangaCountString = if (libraryMangaRelay.hasValue()) {
-            libraryMangaRelay.value.mangas.let { mangaMap ->
-                if (!tabsVisibilityRelay.value) {
-                    if (mangaMap.containsKey(0)) {
-                        " (${mangaMap[activeCategory]?.size ?: 0})"
-                    } else {
-                        // If the default category doesn't contain any manga, we have to index from 1
-                        " (${mangaMap[activeCategory + 1]?.size ?: 0})"
-                    }
-                } else if (adapter?.categories?.size == 1) {
-                    // special case for if there are no categories
-                    " (${mangaMap[0]?.size ?: 0})"
-                }
-                // otherwise it's the responsibility of tabs to display this information
-                else null
-            } ?: ""
-        } else ""
-
-        return (currentTitle ?: resources?.getString(R.string.label_library)) + mangaCountString
+        return currentTitle ?: resources?.getString(R.string.label_library)
     }
 
     private fun updateTitle() {
-        if (preferences.categoryTabs().get()) {
+        val categoryTabs = preferences.categoryTabs().get()
+        val currentCategory = adapter?.categories?.get(binding.libraryPager.currentItem)
+
+        if (categoryTabs) {
             currentTitle = resources?.getString(R.string.label_library)
         } else {
-            adapter?.categories?.get(binding.libraryPager.currentItem)?.let {
+            currentCategory?.let {
                 currentTitle = it.name
+            }
+        }
+
+        if (preferences.categoryNumberOfItems().get() && libraryMangaRelay.hasValue()) {
+            libraryMangaRelay.value.mangas.let { mangaMap ->
+                if (!categoryTabs) {
+                    currentTitle += " (${mangaMap[currentCategory?.id]?.size ?: 0})"
+                } else if (adapter?.categories?.size == 1) {
+                    // special case for if there are no categories
+                    currentTitle += " (${mangaMap[0]?.size ?: 0})"
+                }
             }
         }
     }
@@ -259,6 +259,10 @@ class LibraryController(
                 tabAnimator?.collapse()
             }
         }
+        mangaCountVisibilitySubscription?.unsubscribe()
+        mangaCountVisibilitySubscription = mangaCountVisibilityRelay.subscribe {
+            adapter?.notifyDataSetChanged()
+        }
     }
 
     override fun cleanupTabs(tabs: TabLayout) {
@@ -310,8 +314,8 @@ class LibraryController(
         // Send the manga map to child fragments after the adapter is updated.
         libraryMangaRelay.call(LibraryMangaEvent(mangaMap))
 
-        // Finally set the title to include series count
-        setTitle(getTitle())
+        // Finally update the title
+        updateTitle()
     }
 
     /**
@@ -338,6 +342,7 @@ class LibraryController(
 
     private fun onTabsSettingsChanged() {
         tabsVisibilityRelay.call(preferences.categoryTabs().get() && adapter?.categories?.size ?: 0 > 1)
+        mangaCountVisibilityRelay.call(preferences.categoryNumberOfItems().get())
         updateTitle()
     }
 

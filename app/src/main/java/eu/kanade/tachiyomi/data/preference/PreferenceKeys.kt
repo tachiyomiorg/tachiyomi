@@ -161,6 +161,8 @@ object PreferenceKeys {
 
     const val categoryTabs = "display_category_tabs"
 
+    const val categoryNumberOfItems = "display_number_of_items"
+
     const val alwaysShowChapterTransition = "always_show_chapter_transition"
 
     const val searchPinnedSourcesOnly = "search_pinned_sources_only"

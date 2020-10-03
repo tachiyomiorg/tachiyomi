@@ -260,20 +260,23 @@ class LibrarySettingsSheet(
 
         inner class TabsGroup : Group {
             private val showTabs = Item.CheckboxGroup(R.string.action_display_show_tabs, this)
+            private val showNumberOfItems = Item.CheckboxGroup(R.string.action_display_show_number_of_items, this)
 
             override val header = Item.Header(R.string.tabs_header)
-            override val items = listOf(showTabs)
+            override val items = listOf(showTabs, showNumberOfItems)
             override val footer = null
 
             override fun initModels() {
                 showTabs.checked = preferences.categoryTabs().get()
+                showNumberOfItems.checked = preferences.categoryNumberOfItems().get()
             }
 
             override fun onItemClicked(item: Item) {
                 item as Item.CheckboxGroup
                 item.checked = !item.checked
                 when (item) {
-                    showTabs -> preferences.categoryTabs().set((item.checked))
+                    showTabs -> preferences.categoryTabs().set(item.checked)
+                    showNumberOfItems -> preferences.categoryNumberOfItems().set(item.checked)
                 }
                 adapter.notifyItemChanged(item)
             }
