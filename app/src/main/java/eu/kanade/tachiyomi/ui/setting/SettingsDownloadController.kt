@@ -128,12 +128,6 @@ class SettingsDownloadController : SettingsController() {
                     }
                     .launchIn(scope)
             }
-            switchPreference {
-                key = Keys.deleteFromQueue
-                titleRes = R.string.pref_delete_from_queue
-                summary = resources?.getString(R.string.pref_delete_from_queue_summary)
-                defaultValue = false
-            }
         }
     }
 

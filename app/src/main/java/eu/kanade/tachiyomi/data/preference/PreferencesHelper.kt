@@ -271,8 +271,6 @@ class PreferencesHelper(val context: Context) {
 
     fun incognitoMode() = flowPrefs.getBoolean(Keys.incognitoMode, false)
 
-    fun deleteFromQueue(): Boolean = prefs.getBoolean(Keys.deleteFromQueue, false)
-
     fun setChapterSettingsDefault(manga: Manga) {
         prefs.edit {
             putInt(Keys.defaultChapterFilterByRead, manga.readFilter)
