@@ -138,7 +138,25 @@ class LibraryController(
         }
 
     override fun getTitle(): String? {
-        return currentTitle ?: resources?.getString(R.string.label_library)
+        val mangaCountString = if (libraryMangaRelay.hasValue()) {
+            libraryMangaRelay.value.mangas.let { mangaMap ->
+                if (!tabsVisibilityRelay.value) {
+                    if (mangaMap.containsKey(0)) {
+                        " (${mangaMap[activeCategory]?.size ?: 0})"
+                    } else {
+                        // If the default category doesn't contain any manga, we have to index from 1
+                        " (${mangaMap[activeCategory + 1]?.size ?: 0})"
+                    }
+                } else if (adapter?.categories?.size == 1) {
+                    // special case for if there are no categories
+                    " (${mangaMap[0]?.size ?: 0})"
+                }
+                // otherwise it's the responsibility of tabs to display this information
+                else null
+            } ?: ""
+        } else ""
+
+        return (currentTitle ?: resources?.getString(R.string.label_library)) + mangaCountString
     }
 
     private fun updateTitle() {
@@ -272,6 +290,9 @@ class LibraryController(
 
         // Set the categories
         adapter.categories = categories
+        adapter.mangaCountPerCategory = adapter.categories.map {
+            Pair(it.id ?: -1, mangaMap[it.id]?.size ?: 0)
+        }.toMap()
 
         // Restore active category.
         binding.libraryPager.setCurrentItem(activeCat, false)
@@ -288,6 +309,9 @@ class LibraryController(
 
         // Send the manga map to child fragments after the adapter is updated.
         libraryMangaRelay.call(LibraryMangaEvent(mangaMap))
+
+        // Finally set the title to include series count
+        setTitle(getTitle())
     }
 
     /**

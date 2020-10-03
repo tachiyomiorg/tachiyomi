@@ -26,6 +26,17 @@ class LibraryAdapter(private val controller: LibraryController) : RecyclerViewPa
             }
         }
 
+    /**
+     * The number of manga in each category.
+     */
+    var mangaCountPerCategory: Map<Int, Int> = emptyMap()
+        set(value) {
+            if (field !== value) {
+                field = value
+                notifyDataSetChanged()
+            }
+        }
+
     private var boundViews = arrayListOf<View>()
 
     /**
@@ -77,7 +88,7 @@ class LibraryAdapter(private val controller: LibraryController) : RecyclerViewPa
      * @return the title to display.
      */
     override fun getPageTitle(position: Int): CharSequence {
-        return categories[position].name
+        return categories[position].let { "${it.name} (${mangaCountPerCategory[it.id]})" }
     }
 
     /**
