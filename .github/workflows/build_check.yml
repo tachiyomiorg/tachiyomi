@@ -20,16 +20,6 @@ jobs:
       - name: Copy CI gradle.properties
         run: mkdir -p ~/.gradle ; cp .github/ci-gradle.properties ~/.gradle/gradle.properties
 
-      - name: Cache NDK
-        id: ndk-cache
-        uses: actions/cache@v2
-        with:
-          path: /usr/local/lib/android/sdk/ndk
-          key: ndk-cache-21.0.6113669
-      - name: Install NDK
-        if: steps.ndk-cache.outputs.cache-hit != 'true'
-        run: sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;21.0.6113669" &> /dev/null
-
       - name: Generate Gradle cache key
         run: ./checksum.sh checksum.txt
       - name: Cache gradle dependencies
