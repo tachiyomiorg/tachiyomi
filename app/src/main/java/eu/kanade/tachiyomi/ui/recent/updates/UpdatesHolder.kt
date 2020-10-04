@@ -31,7 +31,6 @@ class UpdatesHolder(private val view: View, private val adapter: UpdatesAdapter)
 
     private var readColor = view.context.getResourceColor(R.attr.colorOnSurface, 0.38f)
     private var unreadColor = view.context.getResourceColor(R.attr.colorOnSurface)
-    private var unreadColorSecondary = view.context.getResourceColor(R.attr.colorOnSurface, 0.62f)
 
     /**
      * Currently bound item.
@@ -63,7 +62,7 @@ class UpdatesHolder(private val view: View, private val adapter: UpdatesAdapter)
             chapter_title.setTextColor(readColor)
             manga_title.setTextColor(readColor)
         } else {
-            chapter_title.setTextColor(unreadColorSecondary)
+            chapter_title.setTextColor(unreadColor)
             manga_title.setTextColor(unreadColor)
         }
 
