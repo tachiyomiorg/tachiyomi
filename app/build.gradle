@@ -34,6 +34,7 @@ ext {
 android {
     compileSdkVersion AndroidConfig.compileSdk
     buildToolsVersion AndroidConfig.buildTools
+    ndkVersion AndroidConfig.ndk
 
     defaultConfig {
         applicationId "eu.kanade.tachiyomi"
