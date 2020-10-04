@@ -20,7 +20,6 @@
     <string name="action_filter_downloaded">Nedlastet</string>
     <string name="action_filter_bookmarked">Bokmerket</string>
     <string name="action_filter_unread">Ulest</string>
-    <string name="action_filter_read">Les</string>
     <string name="action_filter_empty">Fjern filter</string>
     <string name="action_sort_alpha">Alfabetisk</string>
     <string name="action_sort_total">Totale kapittel</string>
@@ -231,8 +230,6 @@
     <string name="library_search_hint">Tittel eller forfatter…</string>
     <string name="updating_category">Oppdaterer kategori</string>
     <string name="local_source_badge">Lokal</string>
-    <string name="confirm_delete_manga">Er du sikker på at du vil fjerne valgt manga\?</string>
-    <string name="also_delete_chapters">Slett også nedlastede kapittel</string>
     <string name="source_requires_login">Denne kilden krever at du logger inn</string>
     <string name="select_source">Velg en kilde</string>
     <string name="no_valid_sources">Skru på minst én gyldig kilde</string>
@@ -452,7 +449,6 @@
     <string name="add_tracking">Legg til sporing</string>
     <string name="manga_info_collapse">Vis mindre info</string>
     <string name="manga_info_expand">Vis mer info</string>
-    <string name="manga_info_about_label">Om</string>
     <string name="pinned_sources">Festet</string>
     <string name="notices">Merknader</string>
     <string name="website">Nettside</string>
@@ -583,4 +579,6 @@
     <string name="pref_allow_nsfw_sources_allowed">Tillatt</string>
     <string name="pref_allow_nsfw_sources">Kilder for 18+</string>
     <string name="pref_category_parental_controls">Foreldrekontroll</string>
+    <string name="recent_manga_time">Kap. %1$s - %2$s</string>
+    <string name="share_page_info">%1$s: %2$s, side %3$d</string>
 </resources>

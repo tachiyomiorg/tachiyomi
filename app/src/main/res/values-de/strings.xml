@@ -16,7 +16,6 @@
     <string name="action_filter_downloaded">Heruntergeladen</string>
     <string name="action_filter_bookmarked">Lesezeichen</string>
     <string name="action_filter_unread">Ungelesen</string>
-    <string name="action_filter_read">Gelesen</string>
     <string name="action_filter_empty">Filter löschen</string>
     <string name="action_sort_alpha">Alphabetisch</string>
     <string name="action_sort_total">Kapitelanzahl</string>
@@ -205,8 +204,6 @@
     <string name="unknown_error">Unbekannter Fehler</string>
     <string name="library_search_hint">Titel oder Autor…</string>
     <string name="updating_category">Kategorie wird aktualisiert</string>
-    <string name="confirm_delete_manga">Bist du sicher, dass du diesen Manga entfernen willst\?</string>
-    <string name="also_delete_chapters">Auch heruntergeladene Kapitel löschen</string>
     <string name="source_requires_login">Für diese Quelle musst du dich anmelden</string>
     <string name="select_source">Wähle eine Quelle</string>
     <string name="no_valid_sources">Bitte wähle mindestens eine gültige Quelle</string>
@@ -492,7 +489,6 @@
     <string name="add_tracking">Tracking hinzufügen</string>
     <string name="manga_info_collapse">Weniger</string>
     <string name="manga_info_expand">Mehr</string>
-    <string name="manga_info_about_label">Inhalt</string>
     <string name="in_library">In der Bibliothek</string>
     <string name="add_to_library">Zur Bibliothek hinzufügen</string>
     <string name="confirm_exit">Zum Beenden nochmal die Zurück-Taste drücken</string>
@@ -619,4 +615,21 @@
         <item quantity="other">Es gibt %d fehlende Kapitel</item>
     </plurals>
     <string name="no_chapters_error">Keine Kapitel gefunden</string>
+    <string name="action_web_view">WebView</string>
+    <string name="chapter_settings_updated">Standard-Kapiteleinstellungen aktualisiert</string>
+    <string name="set_chapter_settings_as_default">Als Standard setzen</string>
+    <string name="also_set_chapter_settings_for_library">Auch für alle Manga in meiner Bibliothek anwenden</string>
+    <string name="confirm_set_chapter_settings">Bist du sicher, dass du diese Einstellungen als Standard speichern willst\?</string>
+    <string name="chapter_settings">Kapiteleinstellungen</string>
+    <string name="share_page_info">%1$s: %2$s, Seite %3$d</string>
+    <string name="action_search_settings">Sucheinstellungen</string>
+    <string name="downloaded_chapters">Heruntergeladene Kapitel</string>
+    <string name="manga_from_library">Manga aus der Bibliothek</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Untere Leiste beim Scrollen ausblenden</string>
+    <string name="pref_incognito_mode_summary">Leseverlauf pausieren</string>
+    <string name="pref_incognito_mode">Inkognito-Modus</string>
+    <string name="pref_clear_history_summary">Leseverlauf für alle Manga löschen</string>
+    <string name="pref_clear_history">Verlauf löschen</string>
+    <string name="clear_history_confirmation">Bist du sicher\? Der gesamte Verlauf wird verloren sein.</string>
+    <string name="clear_history_completed">Verlauf gelöscht</string>
 </resources>

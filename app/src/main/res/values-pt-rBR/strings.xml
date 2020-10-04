@@ -18,7 +18,6 @@
     <string name="action_filter_downloaded">Disponível offline</string>
     <string name="action_filter_bookmarked">Favorito</string>
     <string name="action_filter_unread">Não lido</string>
-    <string name="action_filter_read">Lido</string>
     <string name="action_filter_empty">Remover filtros</string>
     <string name="action_sort_alpha">Alfabeticamente</string>
     <string name="action_sort_total">Total de capítulos</string>
@@ -207,8 +206,6 @@
     <string name="unknown_error">Erro desconhecido</string>
     <string name="library_search_hint">Título ou autor…</string>
     <string name="updating_category">Atualizando categoria</string>
-    <string name="confirm_delete_manga">Você tem certeza de que deseja remover os mangás selecionados\?</string>
-    <string name="also_delete_chapters">Também excluir os capítulos disponíveis offline</string>
     <string name="source_requires_login">Esta fonte requer que você faça login</string>
     <string name="select_source">Selecione uma fonte</string>
     <string name="no_valid_sources">Por favor, ative pelo menos uma fonte válida</string>
@@ -494,7 +491,6 @@
     <string name="in_library">Na biblioteca</string>
     <string name="manga_info_collapse">Menos</string>
     <string name="manga_info_expand">Mais</string>
-    <string name="manga_info_about_label">Sobre</string>
     <string name="pref_confirm_exit">Confirmar ao sair</string>
     <string name="confirm_exit">Pressione voltar novamente para sair</string>
     <string name="information_webview_required">A WebView é necessária para o Tachiyomi</string>
@@ -619,4 +615,21 @@
         <item quantity="other">Há %d capítulos faltando</item>
     </plurals>
     <string name="no_chapters_error">Nenhum capítulo encontrado</string>
+    <string name="action_web_view">WebView</string>
+    <string name="chapter_settings_updated">Configurações padrões de capítulo atualizadas</string>
+    <string name="set_chapter_settings_as_default">Definir como padrão</string>
+    <string name="also_set_chapter_settings_for_library">Também aplicar a todos os mangás na minha biblioteca</string>
+    <string name="confirm_set_chapter_settings">Você tem certeza que quer salvar como padrão essas configurações\?</string>
+    <string name="chapter_settings">Configurações de capítulo</string>
+    <string name="share_page_info">%1$s: %2$s, página %3$d</string>
+    <string name="action_search_settings">Pesquisar configurações</string>
+    <string name="manga_from_library">Mangás da biblioteca</string>
+    <string name="downloaded_chapters">Capítulos disponíveis offline</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Ocultar a barra inferior durante a rolagem</string>
+    <string name="pref_incognito_mode_summary">Pausa o histórico de leitura</string>
+    <string name="pref_incognito_mode">Modo anônimo</string>
+    <string name="pref_clear_history_summary">Exclui o histórico de leitura para todos os mangás</string>
+    <string name="pref_clear_history">Limpar o histórico</string>
+    <string name="clear_history_confirmation">Você tem certeza\? Todo o histórico será perdido.</string>
+    <string name="clear_history_completed">Histórico excluído</string>
 </resources>

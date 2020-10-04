@@ -17,7 +17,6 @@
     <string name="action_filter_downloaded">Terunduh</string>
     <string name="action_filter_bookmarked">Tertandai</string>
     <string name="action_filter_unread">Belum dibaca</string>
-    <string name="action_filter_read">Baca</string>
     <string name="action_filter_empty">Hapus filter</string>
     <string name="action_sort_alpha">Menurut abjad</string>
     <string name="action_sort_total">Total bab</string>
@@ -207,8 +206,6 @@
     <string name="unknown_error">Terdapat suatu kesalahan</string>
     <string name="library_search_hint">Judul atau penulis…</string>
     <string name="updating_category">Memperbarui kategori</string>
-    <string name="confirm_delete_manga">Yakin ingin menghapus manga yang terpilih\?</string>
-    <string name="also_delete_chapters">Hapus juga bab yang telah diunduh</string>
     <string name="source_requires_login">Sumber ini mengharuskan anda untuk login</string>
     <string name="select_source">Pilih sumber</string>
     <string name="no_valid_sources">Mohon aktifkan setidaknya satu sumber yang valid</string>
@@ -306,7 +303,7 @@
     <string name="download_notifier_page_error">Sebuah halaman tidak dapat ditemukan di folder</string>
     <string name="download_notifier_page_ready_error">Halaman belum termuat</string>
     <string name="download_notifier_text_only_wifi">Tidak terhubung dengan Wi-Fi</string>
-    <string name="download_notifier_no_network">Tidak terhubung jaringan seluler</string>
+    <string name="download_notifier_no_network">Tidak ada koneksi jaringan yang tersedia</string>
     <string name="download_notifier_download_paused">Pengunduhan dijeda</string>
     <string name="action_global_search">Pencarian Global</string>
     <string name="action_display_download_badge">Penanda unduhan</string>
@@ -476,7 +473,6 @@
     <string name="add_tracking">Tambahkan pelacak</string>
     <string name="manga_info_collapse">Lebih sedikit</string>
     <string name="manga_info_expand">Selengkapnya</string>
-    <string name="manga_info_about_label">Tentang</string>
     <string name="in_library">Dalam koleksi</string>
     <string name="add_to_library">Tambahkan ke koleksi</string>
     <string name="http_error_hint">Cek halaman web dalam tampilan web</string>
@@ -607,4 +603,12 @@
         <item quantity="other">Ada %d bab yang hilang</item>
     </plurals>
     <string name="no_chapters_error">Bab tidak ditemukan</string>
+    <string name="chapter_settings_updated">Pengaturan bab default diperbarui</string>
+    <string name="set_chapter_settings_as_default">Ditetapkan sebagai default</string>
+    <string name="also_set_chapter_settings_for_library">Juga terapkan untuk semua manga di perpustakaan saya</string>
+    <string name="confirm_set_chapter_settings">Apakah anda yakin ingin menyimpan pengaturan ini sebagai default\?</string>
+    <string name="chapter_settings">Pengaturan bab</string>
+    <string name="action_web_view">Tampilan Web</string>
+    <string name="share_page_info">%1$s: %2$s, halaman %3$d</string>
+    <string name="action_search_settings">Cari pengaturan</string>
 </resources>

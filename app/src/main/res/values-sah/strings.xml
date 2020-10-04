@@ -25,7 +25,6 @@
     <string name="action_sort_total">Түһүмэх ахсаанынан</string>
     <string name="action_sort_alpha">Алпаабыт бэрээдэгинэн</string>
     <string name="action_filter_empty">Биилтирэни ылыы</string>
-    <string name="action_filter_read">Ааҕыллыбыт</string>
     <string name="action_filter_unread">Ааҕыллыбатах</string>
     <string name="action_filter_bookmarked">Кыбытыы</string>
     <string name="action_filter_downloaded">Хачайдаммыт</string>
@@ -390,8 +389,6 @@
     <string name="source_requires_login">Бу төрүт киирини көрдүүр</string>
     <string name="tabs_header">Кыбытыктар</string>
     <string name="badges_header">Бэлиэлэр</string>
-    <string name="also_delete_chapters">Хачайдаммыт түһүмэхтэри эмиэ соттор</string>
-    <string name="confirm_delete_manga">Талыллыбыт маанганы сотторорго эрэллээххин дуо\?</string>
     <string name="local_source_badge">Локальнай</string>
     <string name="updating_category">Бөлөх саҥардыыта</string>
     <string name="library_search_hint">Айымньы эбэтэр суручааччы аата…</string>
@@ -420,7 +417,6 @@
     </plurals>
     <string name="manga_info_collapse">Кырата</string>
     <string name="manga_info_expand">Эбии</string>
-    <string name="manga_info_about_label">Маанга туһунан</string>
     <string name="manga_removed_library">Бэбэлэтиэкэттэн ылылынна</string>
     <string name="manga_added_library">Бэбэлэтиэкэҕэ киирдэ</string>
     <string name="manga_info_full_title_label">Айымньы аата</string>

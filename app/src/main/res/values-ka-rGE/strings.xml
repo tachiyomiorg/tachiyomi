@@ -19,7 +19,6 @@
     <string name="action_filter_downloaded">გადმოწერილი</string>
     <string name="action_filter_bookmarked">მონიშნული</string>
     <string name="action_filter_unread">წაუკითხავი</string>
-    <string name="action_filter_read">წაკითხული</string>
     <string name="action_filter_empty">ფილტრის წაშლა</string>
     <string name="action_sort_alpha">ანბანის მიხედვით</string>
     <string name="action_sort_total">თავების რაოდენობა</string>
@@ -305,8 +304,6 @@
     <string name="library_search_hint">სათაური ან ავტორი…</string>
     <string name="updating_category">კატეგორია ახლდება</string>
     <string name="local_source_badge">ლოკალური</string>
-    <string name="confirm_delete_manga">დარწმუნებული ხართ რომ გსურთ წაშალოთ შერჩეული მანგა?</string>
-    <string name="also_delete_chapters">ასევე წაშალე გადმოწერილი თავები</string>
     <string name="badges_header">ნიშნაკები</string>
     <string name="tabs_header">ჩანართები</string>
     <string name="source_requires_login">ამ წყაროსთვის აუცილებელია შესვლა</string>
@@ -496,7 +493,6 @@
     <string name="licenses">ღია კოდის ლიცენზია</string>
     <string name="pinned_sources">მიმაგრებული</string>
     <string name="local_source_help_guide">ლოკალური წყაროს გიდი</string>
-    <string name="manga_info_about_label">შემადგენლობა</string>
     <string name="dialog_with_checkbox_reset">ამ მანგას ყველა თავის წაკითხვა</string>
     <string name="custom_filter">პრესონიფიცირებული ფილტრი</string>
     <string name="set_as_cover">ყდად დაყენება</string>

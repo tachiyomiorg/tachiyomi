@@ -158,8 +158,6 @@
     <string name="no_valid_sources">אנא אפשר לפחות מקור חוקי אחד</string>
     <string name="select_source">בחר מקור</string>
     <string name="source_requires_login">מקור זה מחייב אותך להתחבר</string>
-    <string name="also_delete_chapters">‬מחק גם פרקים שהורדת</string>
-    <string name="confirm_delete_manga">האם אתה בטוח שברצונך להסיר את המאנגה שנבחרה\?</string>
     <string name="local_source_badge">מקומי</string>
     <string name="updating_category">מעדכן קטגוריה</string>
     <string name="library_search_hint">כותרת או מחבר…</string>
@@ -426,7 +424,6 @@
     <string name="action_sort_total">סך פרקים</string>
     <string name="action_sort_alpha">אלפביתית</string>
     <string name="action_filter_empty">הסר את הסנן</string>
-    <string name="action_filter_read">נקרא</string>
     <string name="action_filter_unread">לא נקרא</string>
     <string name="action_filter">סנן</string>
     <string name="action_menu">תפריט</string>

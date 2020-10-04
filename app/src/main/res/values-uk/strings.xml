@@ -21,7 +21,6 @@
     <string name="action_filter_downloaded">Завантажені</string>
     <string name="action_filter_bookmarked">Закладки</string>
     <string name="action_filter_unread">Непрочитані</string>
-    <string name="action_filter_read">Читати</string>
     <string name="action_filter_empty">Видалити фільтр</string>
     <string name="action_sort_alpha">В алфавітному порядку</string>
     <string name="action_sort_total">За кількістю глав</string>
@@ -239,8 +238,6 @@
     <string name="library_search_hint">Назва чи автор…</string>
     <string name="updating_category">Оновлення категорії</string>
     <string name="local_source_badge">Локальна</string>
-    <string name="confirm_delete_manga">Ви впевнені, що бажаєте видалити вибрані манги\?</string>
-    <string name="also_delete_chapters">Також видалити завантажені глави</string>
     <string name="source_requires_login">Цей каталог потребує авторизації</string>
     <string name="select_source">Оберіть каталог</string>
     <string name="no_valid_sources">Будь ласка увімкніть хоча б одне джерело</string>
@@ -499,7 +496,6 @@
     <string name="add_to_library">Додати в бібліотеку</string>
     <string name="manga_info_collapse">Менше</string>
     <string name="manga_info_expand">Більше</string>
-    <string name="manga_info_about_label">Про мангу</string>
     <string name="information_webview_required">WebView необхідний для Tachiyomi</string>
     <string name="licenses">Ліцензії з відкритим кодом</string>
     <string name="website">Сторінка</string>
@@ -638,4 +634,15 @@
         <item quantity="other">Відсутні %d глав</item>
     </plurals>
     <string name="no_chapters_error">Немає глав</string>
+    <string name="chapter_settings_updated">Оновлено налаштування глави за замовчуванням</string>
+    <string name="share_page_info">%1$s: %2$s, сторінка %3$d</string>
+    <string name="set_chapter_settings_as_default">За замовчуванням</string>
+    <string name="also_set_chapter_settings_for_library">Також застосувати для усієї манги в моїй бібліотеці</string>
+    <string name="confirm_set_chapter_settings">Ви впевнені, що бажаєте зберегти ці налаштування за замовчуванням\?</string>
+    <string name="chapter_settings">Налаштування глави</string>
+    <string name="action_web_view">WebView</string>
+    <string name="downloaded_chapters">Завантажені глави</string>
+    <string name="manga_from_library">Манга з бібліотеки</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Приховати нижню панель при прокручуванні</string>
+    <string name="action_search_settings">Налаштування пошуку</string>
 </resources>

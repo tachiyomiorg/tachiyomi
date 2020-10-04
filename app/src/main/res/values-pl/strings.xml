@@ -11,7 +11,6 @@
     <string name="action_filter">Filtrowanie</string>
     <string name="action_filter_downloaded">Pobrane</string>
     <string name="action_filter_unread">Nieprzeczytane</string>
-    <string name="action_filter_read">Przeczytane</string>
     <string name="action_search">Szukaj</string>
     <string name="action_select_all">Zaznacz wszystko</string>
     <string name="label_library">Biblioteka</string>
@@ -138,8 +137,6 @@
     <string name="library_search_hint">Tytuł lub autor…</string>
     <string name="source_requires_login">To źródło wymaga zalogowania</string>
     <string name="select_source">Wybierz źródło</string>
-    <string name="confirm_delete_manga">Czy na pewno chcesz usunąć wybrane mangi?</string>
-    <string name="also_delete_chapters">Usuń też pobrane rozdziały</string>
     <string name="updating_category">Aktualizowanie kategorii</string>
     <string name="no_valid_sources">Włącz co najmniej jedno poprawne źródło</string>
     <string name="invalid_combination">Domyślna kategoria nie może być wybrana razem z innymi</string>
@@ -527,7 +524,6 @@
     <string name="viewer">Tryb czytania</string>
     <string name="track_finished_reading_date">Data zakończenia czytania</string>
     <string name="track_started_reading_date">Data rozpoczęcia czytania</string>
-    <string name="manga_info_about_label">Opis</string>
     <string name="local_source_help_guide">Przeglądarka lokalnych źródeł</string>
     <plurals name="download_queue_summary">
         <item quantity="one">Pozostał %1$s</item>

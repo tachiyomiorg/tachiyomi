@@ -15,7 +15,6 @@
     <string name="action_filter">Filter</string>
     <string name="action_filter_downloaded">Gedownload</string>
     <string name="action_filter_unread">Ongelezen</string>
-    <string name="action_filter_read">Gelezen</string>
     <string name="action_filter_empty">Verwijder filter</string>
     <string name="action_sort_alpha">Alfabetisch</string>
     <string name="action_sort_last_read">Laatst gelezen</string>
@@ -157,8 +156,6 @@
     <string name="unknown_error">Onbekende fout</string>
     <string name="library_search_hint">Titel of auteur…</string>
     <string name="updating_category">Categorie bijwerken</string>
-    <string name="confirm_delete_manga">Weet je zeker dat je de geselecteerde manga wilt verwijderen\?</string>
-    <string name="also_delete_chapters">Verwijder ook gedownloade hoofdstukken</string>
     <string name="select_source">Selecteer een bron</string>
     <string name="no_valid_sources">Gelieve ten minste één geldige bron te kiezen</string>
     <string name="no_more_results">Geen verdere resultaten</string>
@@ -476,7 +473,6 @@
     <string name="add_tracking">Tracking toevoegen</string>
     <string name="manga_info_collapse">Minder</string>
     <string name="manga_info_expand">Meer</string>
-    <string name="manga_info_about_label">Over</string>
     <string name="in_library">In bibliotheek</string>
     <string name="add_to_library">Toevoegen aan bibliotheek</string>
     <string name="local_source_help_guide">Hulp bij lokale bronnen</string>
@@ -619,4 +615,12 @@
         <item quantity="other">Er zijn %d missende hoofstukken</item>
     </plurals>
     <string name="no_chapters_error">Geen hoofdstukken gevonden</string>
+    <string name="chapter_settings_updated">Standaard hoofdstukinstellingen bijgewerkt</string>
+    <string name="set_chapter_settings_as_default">Instellen als standaard</string>
+    <string name="also_set_chapter_settings_for_library">Ook toepassen op alle manga in mijn bibliotheek</string>
+    <string name="confirm_set_chapter_settings">Weet je zeker dat je deze instellingen als standaardinstellingen wilt opslaan\?</string>
+    <string name="chapter_settings">Hoofdstukinstellingen</string>
+    <string name="action_web_view">WebView</string>
+    <string name="share_page_info">%1$s: %2$s, pagina %3$d</string>
+    <string name="action_search_settings">Zoekinstellingen</string>
 </resources>

@@ -80,7 +80,6 @@
     <string name="action_sort_total">Dami ng kabanata</string>
     <string name="action_sort_alpha">Pa-alpabeto</string>
     <string name="action_filter_empty">Tanggalin ang pagsalâ</string>
-    <string name="action_filter_read">Nabása</string>
     <string name="action_filter_unread">Babasáhin</string>
     <string name="action_filter_bookmarked">Tinandaan</string>
     <string name="action_filter_downloaded">Na-download</string>
@@ -487,7 +486,6 @@
     </plurals>
     <string name="manga_info_expand">Palawakin</string>
     <string name="manga_info_collapse">Bawasan</string>
-    <string name="manga_info_about_label">Patungkol</string>
     <string name="manga_removed_library">Tinanggal sa Aklatan</string>
     <string name="manga_added_library">Dinagdag sa Aklatan</string>
     <string name="manga_info_full_title_label">Pamagat</string>
@@ -521,8 +519,6 @@
     <string name="source_requires_login">Kinakailangang naka-login ka sa bukal na ito</string>
     <string name="tabs_header">Mga Tab</string>
     <string name="badges_header">Mga Panukoy</string>
-    <string name="confirm_delete_manga">Sigurado ka bang gusto mong burahin ang (mga) napiling manga\?</string>
-    <string name="also_delete_chapters">Burahin din ang mga na-download na kabanata</string>
     <string name="local_source_badge">Lokál</string>
     <string name="updating_category">Ina-update ang kategorya</string>
     <string name="library_search_hint">Pamagat o may-akda…</string>
@@ -619,4 +615,15 @@
         <item quantity="other">May %d (na) nawawalang kabanata</item>
     </plurals>
     <string name="no_chapters_error">Walang nakitang kabanata</string>
+    <string name="confirm_set_chapter_settings">Gusto mo bang i-save at ipagpaubaya ang pagsasaayos na ito\?</string>
+    <string name="set_chapter_settings_as_default">Ipagpaubaya</string>
+    <string name="chapter_settings_updated">Nai-update ang pinagpaubayang pagsasaayos</string>
+    <string name="share_page_info">%1$s: %2$s, pahina %3$d</string>
+    <string name="also_set_chapter_settings_for_library">Gawin din sa lahat ng mga manga sa Aklatan ko</string>
+    <string name="chapter_settings">Pagsasaayos ng Kabanata</string>
+    <string name="action_web_view">Webview</string>
+    <string name="downloaded_chapters">Mga naka-download na kabanata</string>
+    <string name="manga_from_library">Manga mula sa Aklatan</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Itago ang bottom bar pagka-scroll</string>
+    <string name="action_search_settings">Paghahanap</string>
 </resources>

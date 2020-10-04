@@ -151,7 +151,6 @@
     <!-- Library fragment -->
     <string name="library_search_hint">Título o autor…</string>
     <string name="updating_category">Actualizando categoría</string>
-    <string name="confirm_delete_manga">¿Estás seguro de eliminar las mangas seleccionados\?</string>
     <!-- Catalogue fragment -->
     <string name="source_requires_login">Este fuente requiere que inicies sesión</string>
     <string name="select_source">Selecciona una fuente</string>
@@ -251,7 +250,6 @@
     <string name="track">Seguimiento</string>
     <string name="history">Historial</string>
     <string name="action_filter_bookmarked">Con marcador</string>
-    <string name="action_filter_read">Leídos</string>
     <string name="action_sort_alpha">Alfabéticamente</string>
     <string name="action_sort_total">Total de capítulos</string>
     <string name="action_sort_last_read">Último leído</string>
@@ -318,7 +316,6 @@
     <string name="choices_reset">Reiniciar opciones de diálogo</string>
     <string name="pref_refresh_library_tracking">Refrescar el seguimiento</string>
     <string name="pref_refresh_library_tracking_summary">Actualización de estado, puntuación y último capítulo leído en los servicios de seguimiento</string>
-    <string name="also_delete_chapters">También eliminar capítulos descargados</string>
     <string name="no_valid_sources">Por favor habilita al menos una fuente válida</string>
     <string name="no_more_results">No hay más resultados</string>
     <string name="local_source">Fuente local</string>
@@ -527,7 +524,6 @@
     <string name="information_webview_required">Tachiyomi necesita WebView</string>
     <string name="manga_info_collapse">Menos</string>
     <string name="manga_info_expand">Más</string>
-    <string name="manga_info_about_label">Acerca de</string>
     <string name="licenses">Licencias de código abierto</string>
     <string name="website">Sitio web</string>
     <string name="pref_confirm_exit">Confirmar salida</string>
@@ -650,4 +646,21 @@
         <item quantity="other">Faltan %d capítulos</item>
     </plurals>
     <string name="no_chapters_error">No hay capítulos</string>
+    <string name="action_web_view">WebView</string>
+    <string name="chapter_settings_updated">Actualizado los ajustes del capítulo por defecto</string>
+    <string name="set_chapter_settings_as_default">Establecer como predeterminado</string>
+    <string name="also_set_chapter_settings_for_library">Aplicar también a toda la manga de mi biblioteca</string>
+    <string name="confirm_set_chapter_settings">¿Está seguro de que desea guardar esta configuración como predeterminada\?</string>
+    <string name="chapter_settings">Configuración de capítulo</string>
+    <string name="share_page_info">%1$s: %2$s, página %3$d</string>
+    <string name="action_search_settings">Opciones de búsqueda</string>
+    <string name="downloaded_chapters">Capítulos descargados</string>
+    <string name="manga_from_library">Manga de la biblioteca</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Ocultar la barra inferior al desplazar</string>
+    <string name="pref_incognito_mode_summary">Pausar historial de lectura</string>
+    <string name="pref_incognito_mode">Modo incognito</string>
+    <string name="pref_clear_history_summary">Eliminar el historial de lectura para toda la manga</string>
+    <string name="pref_clear_history">Borrar historial</string>
+    <string name="clear_history_confirmation">¿Está seguro\? Toda la historia se perderá.</string>
+    <string name="clear_history_completed">Historial eliminado</string>
 </resources>

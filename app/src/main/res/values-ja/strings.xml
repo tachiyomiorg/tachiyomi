@@ -13,11 +13,10 @@
     <string name="label_categories">カテゴリ</string>
     <string name="label_backup">バックアップ</string>
     <string name="action_settings">設定</string>
-    <string name="action_filter">フィルター</string>
+    <string name="action_filter">絞り込む</string>
     <string name="action_filter_downloaded">ダウンロード済み</string>
     <string name="action_filter_bookmarked">お気に入り</string>
     <string name="action_filter_unread">未読</string>
-    <string name="action_filter_read">既読</string>
     <string name="action_filter_empty">フィルタを削除</string>
     <string name="action_sort_alpha">アルファベット順</string>
     <string name="action_sort_total">章の数順</string>
@@ -53,7 +52,7 @@
     <string name="action_open_in_browser">ブラウザで開く</string>
     <string name="action_display_mode">表示モード</string>
     <string name="action_display">表示</string>
-    <string name="action_display_download_badge">ダウンロードバッジ</string>
+    <string name="action_display_download_badge">ダウンロードした章の数</string>
     <string name="action_cancel">キャンセル</string>
     <string name="action_share">シェア</string>
     <string name="action_save">保存</string>
@@ -154,7 +153,7 @@
     <string name="color_filter_a_value">A</string>
     <string name="pref_download_directory">ダウンロードフォルダ</string>
     <string name="pref_download_only_over_wifi">Wi-Fi経由でのみダウンロード</string>
-    <string name="pref_remove_after_marked_as_read">既読とマークした後</string>
+    <string name="pref_remove_after_marked_as_read">既読にした後</string>
     <string name="pref_remove_after_read">読んだ後</string>
     <string name="custom_dir">カスタムディレクトリ</string>
     <string name="disabled">無効</string>
@@ -240,8 +239,6 @@
     <string name="library_search_hint">タイトル又は作者…</string>
     <string name="updating_category">カテゴリーを更新中</string>
     <string name="local_source_badge">ローカル</string>
-    <string name="confirm_delete_manga">選択したマンガを削除してもよろしいですか？</string>
-    <string name="also_delete_chapters">ダウンロードした章も削除</string>
     <string name="source_requires_login">このソースを使用するにはログインが必要です</string>
     <string name="select_source">ソースを選択</string>
     <string name="no_valid_sources">有効なソースを少なくとも一つONにしてください</string>
@@ -429,7 +426,7 @@
     <string name="local_source">ローカルソース</string>
     <string name="http_error_hint">WebViewでサイトを開く</string>
     <string name="tabs_header">タブ</string>
-    <string name="badges_header">バッジ</string>
+    <string name="badges_header">カウンター</string>
     <string name="email">メールアドレス</string>
     <plurals name="download_queue_summary">
         <item quantity="other">残り%1$s件</item>
@@ -489,7 +486,7 @@
     <string name="pref_library_update_error_notification">更新エラーを通知で表示</string>
     <string name="pref_library_update_refresh_metadata_summary">ライブラリを更新時、新しい表紙と情報を確認します</string>
     <string name="pref_library_update_refresh_metadata">メタデータを自動で更新</string>
-    <string name="pref_library_columns">行あたりのアイテム数</string>
+    <string name="pref_library_columns">行あたりの項目数</string>
     <string name="pref_category_display">画面</string>
     <string name="hide_notification_content">通知コンテンツを非表示</string>
     <string name="secure_screen_summary">スクリーンショットを無効化し、「最近使ったアプリ」画面にアプリの内容を非表示します</string>
@@ -504,7 +501,7 @@
     <string name="action_unpin">ピン留めを外す</string>
     <string name="action_pin">ピン留め</string>
     <string name="action_display_show_tabs">カテゴリータブを表示</string>
-    <string name="action_display_unread_badge">未読バッジ</string>
+    <string name="action_display_unread_badge">未読の章の数</string>
     <string name="action_display_comfortable_grid">快適グリッド</string>
     <string name="action_migrate">移行</string>
     <string name="action_disable_all">全て無効にする</string>
@@ -543,7 +540,6 @@
     <string name="pref_category_for_this_series">このシリーズでは</string>
     <string name="track_finished_reading_date">読み終わった日付</string>
     <string name="add_tracking">追跡サービスを追加</string>
-    <string name="manga_info_about_label">紹介</string>
     <string name="add_to_library">ライブラリに追加</string>
     <string name="sort_by_upload_date">アップロード日付順</string>
     <string name="manga_info_expand">詳細を表示</string>
@@ -592,7 +588,7 @@
     <string name="pref_category_theme">テーマ</string>
     <string name="action_sort_date_added">ライブラリへの追加日付順</string>
     <string name="channel_errors">エラー</string>
-    <string name="pref_category_parental_controls">ペアレンタル‐コントロール</string>
+    <string name="pref_category_parental_controls">ペアレンタル コントロール</string>
     <string name="backup_restore_missing_trackers">ログインしていないトラッカー：</string>
     <string name="pref_remove_bookmarked_chapters">ブックマークした章を削除</string>
     <string name="pref_category_delete_chapters">章を削除</string>
@@ -607,4 +603,21 @@
         <item quantity="other">%d章が欠けています</item>
     </plurals>
     <string name="no_chapters_error">章が見つかりません</string>
+    <string name="chapter_settings_updated">デフォルトの章設定を更新しました</string>
+    <string name="share_page_info">%1$s：%2$s、第%3$dページ</string>
+    <string name="set_chapter_settings_as_default">デフォルトとして設定</string>
+    <string name="also_set_chapter_settings_for_library">ライブラリにあるすべてのマンガにも適用</string>
+    <string name="confirm_set_chapter_settings">デフォルト設定として保存しますか？</string>
+    <string name="chapter_settings">章の設定</string>
+    <string name="action_web_view">WebView</string>
+    <string name="action_search_settings">検索設定</string>
+    <string name="downloaded_chapters">ダウンロードした章</string>
+    <string name="manga_from_library">ライブラリからのマンガ</string>
+    <string name="pref_hide_bottom_bar_on_scroll">スクロール時ボトムバーを非表示</string>
+    <string name="pref_incognito_mode_summary">閲覧履歴の記録を一時停止します</string>
+    <string name="pref_incognito_mode">シークレット モード</string>
+    <string name="pref_clear_history_summary">すべてのマンガの閲覧履歴を削除</string>
+    <string name="pref_clear_history">履歴を全消去</string>
+    <string name="clear_history_confirmation">履歴がすべて失われます。続行しますか？</string>
+    <string name="clear_history_completed">履歴を削除しました</string>
 </resources>

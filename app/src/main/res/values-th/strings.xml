@@ -18,7 +18,6 @@
     <string name="label_categories">ประเภท</string>
     <string name="action_filter_downloaded">ดาวน์โหลดแล้ว</string>
     <string name="action_filter_unread">ยังไม่ได้อ่าน</string>
-    <string name="action_filter_read">อ่าน</string>
     <string name="action_filter_empty">ลบตัวกรอง</string>
     <string name="action_sort_alpha">ตามตัวอักษร</string>
     <string name="action_sort_total">จำนวนตอน</string>
@@ -238,8 +237,6 @@
     <string name="library_search_hint">ชื่อเรื่องหรือผู้เขียน …</string>
     <string name="updating_category">กำลังอัพเดตประเภท</string>
     <string name="local_source_badge">ท้องถิ่น</string>
-    <string name="confirm_delete_manga">คุณแน่ใจหรือไม่ว่าคุณต้องการเอามังงะที่เลือกออก\?</string>
-    <string name="also_delete_chapters">ลบบทที่ดาวน์โหลดด้วย</string>
     <string name="source_requires_login">แหล่งที่มานี้ต้องการให้คุณเข้าสู่ระบบ</string>
     <string name="select_source">เลือกแหล่งที่มา</string>
     <string name="no_valid_sources">กรุณาเปิดใช้งานอย่างน้อยหนึ่งแหล่งที่ถูกต้อง</string>

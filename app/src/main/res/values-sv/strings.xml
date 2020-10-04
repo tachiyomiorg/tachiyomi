@@ -21,7 +21,6 @@
     <string name="action_filter_downloaded">Nedladdat</string>
     <string name="action_filter_bookmarked">Bokmärkt</string>
     <string name="action_filter_unread">Oläst</string>
-    <string name="action_filter_read">Läst</string>
     <string name="action_filter_empty">Ta bort filtret</string>
     <string name="action_sort_alpha">Alfabetiskt</string>
     <string name="action_sort_total">Totalt kapitel</string>
@@ -239,8 +238,6 @@
     <string name="library_search_hint">Titel eller författare…</string>
     <string name="updating_category">Uppdaterar kategori</string>
     <string name="local_source_badge">Lokal</string>
-    <string name="confirm_delete_manga">Är du säker på att du vill ta bort vald manga\?</string>
-    <string name="also_delete_chapters">Radera även nedladdade kapitel</string>
     <string name="source_requires_login">Denna källan kräver att du loggar in</string>
     <string name="select_source">Välj en källa</string>
     <string name="no_valid_sources">Vänligen aktivera minst en giltig källa</string>
@@ -494,7 +491,6 @@
     <string name="action_select_inverse">Välj omvänd</string>
     <string name="manga_info_collapse">Mindre</string>
     <string name="manga_info_expand">Mer</string>
-    <string name="manga_info_about_label">Info</string>
     <string name="pref_confirm_exit">Bekräfta utgång</string>
     <string name="confirm_exit">Tryck tillbaka igen för att gå ur</string>
     <string name="information_webview_required">WebView krävs för Tachiyomi</string>
@@ -614,4 +610,26 @@
     <string name="parental_controls_info">Detta förhindrar inte inofficiella eller potentiellt felaktigt flaggade tillägg från att visa 18+ innehåll i appen.</string>
     <string name="pref_category_parental_controls">Föräldrakontroll</string>
     <string name="channel_errors">Fel</string>
+    <string name="chapter_settings_updated">Uppdaterade standardinställningar för kapitel</string>
+    <string name="confirm_set_chapter_settings">Vill du spara de här inställningarna som standard\?</string>
+    <plurals name="missing_chapters_warning">
+        <item quantity="one">Det saknas 1 kapitel</item>
+        <item quantity="other">Det saknas %d kapitel</item>
+    </plurals>
+    <string name="share_page_info">%1$s: %2$s, sida %3$d</string>
+    <string name="no_chapters_error">Inga kapitel hittades</string>
+    <string name="set_chapter_settings_as_default">Ange som standard</string>
+    <string name="also_set_chapter_settings_for_library">Gäller även all manga i biblioteket</string>
+    <string name="chapter_settings">Kapitelinställningar</string>
+    <string name="action_web_view">WebView</string>
+    <string name="downloaded_chapters">Nedladdade kapitel</string>
+    <string name="manga_from_library">Manga från biblioteket</string>
+    <string name="pref_incognito_mode_summary">Pausar läshistoriken</string>
+    <string name="pref_incognito_mode">Inkognitoläge</string>
+    <string name="pref_clear_history_summary">Radera läshistorik för all manga</string>
+    <string name="pref_clear_history">Rensa historik</string>
+    <string name="clear_history_confirmation">Är du säker\? All historik kommer att försvinna.</string>
+    <string name="clear_history_completed">Historiken har tagits bort</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Dölj navigationsfältet vid scroll</string>
+    <string name="action_search_settings">Sök inställningar</string>
 </resources>

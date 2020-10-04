@@ -21,7 +21,6 @@
     <string name="action_filter_downloaded">İndirilen</string>
     <string name="action_filter_bookmarked">İşaretli</string>
     <string name="action_filter_unread">Okunmamış</string>
-    <string name="action_filter_read">Okunmuş</string>
     <string name="action_filter_empty">Filtreyi kaldır</string>
     <string name="action_sort_alpha">Alfabetik</string>
     <string name="action_sort_total">Toplam bölüm</string>
@@ -239,8 +238,6 @@
     <string name="library_search_hint">Başlık veya yazar…</string>
     <string name="updating_category">Kategori güncelleniyor</string>
     <string name="local_source_badge">Yerel</string>
-    <string name="confirm_delete_manga">Seçilen mangayı kaldırmak istediğinizden emin misiniz?</string>
-    <string name="also_delete_chapters">İndirilen bölümleri de sil</string>
     <string name="source_requires_login">Bu kaynak giriş yapmanızı gerektirir</string>
     <string name="select_source">Bir kaynak seç</string>
     <string name="no_valid_sources">Lütfen en az bir geçerli kaynağı etkinleştirin</string>
@@ -494,7 +491,6 @@
     <string name="add_to_library">Kitaplığa ekle</string>
     <string name="manga_info_collapse">Daha az</string>
     <string name="manga_info_expand">Daha fazla</string>
-    <string name="manga_info_about_label">Hakkında</string>
     <string name="website">Web sitesi</string>
     <string name="information_webview_required">WebView, Tachiyomi için gereklidir</string>
     <string name="licenses">Açık kaynak lisansları</string>
@@ -619,4 +615,21 @@
         <item quantity="other">%d eksik bölüm var</item>
     </plurals>
     <string name="no_chapters_error">Bölüm bulunamadı</string>
+    <string name="chapter_settings_updated">Öntanımlı bölüm ayarları güncellendi</string>
+    <string name="set_chapter_settings_as_default">Öntanımlı olarak ayarla</string>
+    <string name="also_set_chapter_settings_for_library">Kitaplığımdaki tüm mangalara da uygula</string>
+    <string name="confirm_set_chapter_settings">Bu ayarları öntanımlı olarak kaydetmek istediğinizden emin misiniz\?</string>
+    <string name="chapter_settings">Bölüm ayarları</string>
+    <string name="action_web_view">WebView</string>
+    <string name="share_page_info">%1$s: %2$s, sayfa %3$d</string>
+    <string name="action_search_settings">Arama ayarları</string>
+    <string name="downloaded_chapters">İndirilen bölümler</string>
+    <string name="manga_from_library">Kitaplıktan manga</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Kaydırmada alt çubuğu gizle</string>
+    <string name="pref_incognito_mode_summary">Okuma geçmişini duraklatır</string>
+    <string name="pref_incognito_mode">Gizli kip</string>
+    <string name="pref_clear_history_summary">Tüm mangaların okuma geçmişini sil</string>
+    <string name="pref_clear_history">Geçmişi temizle</string>
+    <string name="clear_history_confirmation">Emin misiniz\? Tüm geçmiş kaybolacak.</string>
+    <string name="clear_history_completed">Geçmiş silindi</string>
 </resources>

@@ -19,7 +19,6 @@
     <string name="action_filter_downloaded">已下载</string>
     <string name="action_filter_bookmarked">已添加书签</string>
     <string name="action_filter_unread">未读</string>
-    <string name="action_filter_read">已读</string>
     <string name="action_filter_empty">取消筛选</string>
     <string name="action_sort_alpha">名称</string>
     <string name="action_sort_total">章节数</string>
@@ -239,8 +238,6 @@
     <string name="library_search_hint">标题或作者…</string>
     <string name="updating_category">正在更新分类</string>
     <string name="local_source_badge">本地</string>
-    <string name="confirm_delete_manga">确定要删除选中的漫画吗？</string>
-    <string name="also_delete_chapters">同时删除已下载章节</string>
     <string name="source_requires_login">此图源需要登录</string>
     <string name="select_source">选择图源</string>
     <string name="no_valid_sources">请至少启用一个有效图源</string>
@@ -488,7 +485,6 @@
     <string name="information_webview_required">Tachiyomi 依赖于 WebView</string>
     <string name="manga_info_collapse">显示更少</string>
     <string name="manga_info_expand">显示更多</string>
-    <string name="manga_info_about_label">关于</string>
     <string name="licenses">开源许可证</string>
     <string name="website">官网</string>
     <string name="confirm_exit">再按一次退出</string>
@@ -607,4 +603,21 @@
         <item quantity="other">有 %d 章缺失</item>
     </plurals>
     <string name="no_chapters_error">未找到章节</string>
+    <string name="chapter_settings_updated">更新了默认章节设置</string>
+    <string name="set_chapter_settings_as_default">设为默认</string>
+    <string name="also_set_chapter_settings_for_library">也适用到我图书馆中的所有漫画</string>
+    <string name="confirm_set_chapter_settings">您确定要将这些设置保存为默认设置吗？</string>
+    <string name="chapter_settings">章节设置</string>
+    <string name="action_web_view">WebView</string>
+    <string name="share_page_info">%1$s: %2$s, 第%3$d 页</string>
+    <string name="action_search_settings">搜索设定</string>
+    <string name="downloaded_chapters">已下载的章节</string>
+    <string name="manga_from_library">来自图书馆的漫画</string>
+    <string name="pref_hide_bottom_bar_on_scroll">滚动时隐藏底部栏</string>
+    <string name="pref_incognito_mode_summary">暂停记录阅读历史</string>
+    <string name="pref_incognito_mode">隐身模式</string>
+    <string name="pref_clear_history_summary">删除所有漫画的阅读历史</string>
+    <string name="pref_clear_history">清除历史</string>
+    <string name="clear_history_confirmation">你确定吗\?所有的历史都将丢失。</string>
+    <string name="clear_history_completed">历史已删除</string>
 </resources>

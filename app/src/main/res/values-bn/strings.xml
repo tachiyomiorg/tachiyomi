@@ -18,7 +18,6 @@
     <string name="action_filter_downloaded">ডাউনলোড করা</string>
     <string name="action_filter_bookmarked">বুকমার্ক</string>
     <string name="action_filter_unread">অপঠিত</string>
-    <string name="action_filter_read">পড়ুন</string>
     <string name="action_filter_empty">বাছাইকৃতগুলো সরান</string>
     <string name="action_sort_alpha">বর্ণানুসারে</string>
     <string name="action_sort_total">মোট অধ্যায়</string>
@@ -212,8 +211,6 @@
     <string name="library_search_hint">লেখকের নাম…</string>
     <string name="updating_category">ধরণ আপডেট হচ্ছে</string>
     <string name="local_source_badge">স্থানীয়</string>
-    <string name="confirm_delete_manga">আপনি কি নিশ্চিত যে আপনি নির্বাচিত মাংগা মুছে ফেলতে চাচ্ছেন?</string>
-    <string name="also_delete_chapters">ডাউনলোডকৃত অধ্যায়গুলোও মুছে ফেলুন</string>
     <string name="source_requires_login">এই উৎসের জন্য আপনাকে লগ ইন করতে হবে</string>
     <string name="select_source">একটি উৎস নির্বাচন করুন</string>
     <string name="no_valid_sources">দয়া করে কমপক্ষে একটি বৈধ উৎস বছে নিন</string>
@@ -398,7 +395,6 @@
     <string name="in_library">লাইব্রেরিতে</string>
     <string name="add_to_library">মাংগাশালায় যোগ করা হয়েছে</string>
     <string name="manga_info_expand">আরও</string>
-    <string name="manga_info_about_label">পরিচয়</string>
     <string name="manga_info_collapse">কম</string>
     <string name="action_select_inverse">বিপরীত নির্বাচন কর</string>
     <string name="action_sort_date_added">তারিখ যোগ করা হয়েছে</string>

@@ -21,7 +21,6 @@
     <string name="action_filter_downloaded">Iscarrigados</string>
     <string name="action_filter_bookmarked">Sinnados</string>
     <string name="action_filter_unread">Non lèghidos</string>
-    <string name="action_filter_read">Lèghidos</string>
     <string name="action_filter_empty">Boga su filtru</string>
     <string name="action_sort_alpha">Alfabeticamente</string>
     <string name="action_sort_total">Capìtulos totales</string>
@@ -240,8 +239,6 @@
     <string name="library_search_hint">Tìtulu o autore…</string>
     <string name="updating_category">Agiornende sa categoria</string>
     <string name="local_source_badge">Locale</string>
-    <string name="confirm_delete_manga">Ses seguru de chèrrere bogare sos manga ischertados\?</string>
-    <string name="also_delete_chapters">Iscantzella fintzas sos capìtulos iscarrigados</string>
     <string name="source_requires_login">Custa mitza ti pedit de fàghere s\'atzessu</string>
     <string name="select_source">Ischerta una mitza</string>
     <string name="no_valid_sources">Pro praghere abìlita a su mancu una mitza vàlida</string>
@@ -494,7 +491,6 @@
     <string name="add_to_library">Annanghe a sa biblioteca</string>
     <string name="manga_info_collapse">De mancu</string>
     <string name="manga_info_expand">De prus</string>
-    <string name="manga_info_about_label">Informatziones</string>
     <string name="information_webview_required">Pro Tachiyomi b\'at bisòngiu de WebView</string>
     <string name="licenses">Litzèntzias a mitza aberta</string>
     <string name="website">Situ web</string>
@@ -619,4 +615,21 @@
         <item quantity="other">Mancant %d capìtulos</item>
     </plurals>
     <string name="no_chapters_error">Perunu capìtulu agatadu</string>
+    <string name="chapter_settings_updated">Impostatziones predefinidas de sos capìtulos agiornadas</string>
+    <string name="set_chapter_settings_as_default">Imposta comente predefinidu</string>
+    <string name="also_set_chapter_settings_for_library">Àplica fintzas a totu sos manga in sa biblioteca mea</string>
+    <string name="confirm_set_chapter_settings">Ses seguru de chèrrere sarvare custas informatziones comente predefinidas\?</string>
+    <string name="chapter_settings">Impostatziones de sos capìtulos</string>
+    <string name="action_web_view">Vista web</string>
+    <string name="share_page_info">%1$s: %2$s, pàgina %3$d</string>
+    <string name="action_search_settings">Impostatziones de chirca</string>
+    <string name="downloaded_chapters">Capìtulos iscarrigados</string>
+    <string name="manga_from_library">Manga dae sa biblioteca</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Cua sa barra inferiore in s\'iscurridura</string>
+    <string name="pref_incognito_mode_summary">Ponet in pàusa sa registratzione de sa cronologia de leghidura</string>
+    <string name="pref_incognito_mode">Modalidade anònima</string>
+    <string name="pref_clear_history_summary">Iscantzella totu sa cronologia de leghidura pro totu sos manga</string>
+    <string name="pref_clear_history">Isbòida sa cronologia</string>
+    <string name="clear_history_confirmation">Seguru ses\? As a pèrdere totu sa cronologia.</string>
+    <string name="clear_history_completed">Cronologia iscantzellada</string>
 </resources>

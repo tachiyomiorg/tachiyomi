@@ -19,9 +19,8 @@
     <string name="action_settings">Ρυθμίσεις</string>
     <string name="action_filter">Φίλτρο</string>
     <string name="action_filter_downloaded">Λήψεις</string>
-    <string name="action_filter_bookmarked">Σελιδοδείκτες</string>
+    <string name="action_filter_bookmarked">Στους Σελιδοδείκτες</string>
     <string name="action_filter_unread">Μη αναγνωσμένα</string>
-    <string name="action_filter_read">Αναγνωσμένα</string>
     <string name="action_filter_empty">Αφαίρεση φίλτρου</string>
     <string name="action_sort_alpha">Αλφαβητικά</string>
     <string name="action_sort_total">Σύνολο κεφαλαίων</string>
@@ -239,8 +238,6 @@
     <string name="library_search_hint">Τίτλος ή συγγραφέας…</string>
     <string name="updating_category">Ενημέρωση κατηγορίας</string>
     <string name="local_source_badge">Τοπικό</string>
-    <string name="confirm_delete_manga">Είστε βέβαιοι ότι θέλετε να καταργήσετε τα επιλεγμένα manga;</string>
-    <string name="also_delete_chapters">Επίσης, διαγραφή κεφαλαίων που έχουν ληφθεί</string>
     <string name="source_requires_login">Αυτή η πηγή απαιτεί να συνδεθείτε</string>
     <string name="select_source">Επιλέξτε πηγή</string>
     <string name="no_valid_sources">Ενεργοποιήστε τουλάχιστον μία έγκυρη πηγή</string>
@@ -428,7 +425,6 @@
     <string name="currently_reading">Διαβάζετε αυτή τη στιγμή</string>
     <string name="manga_info_collapse">Λιγότερα</string>
     <string name="manga_info_expand">Περισσότερα</string>
-    <string name="manga_info_about_label">Περί</string>
     <string name="in_library">Στη βιβλιοθήκη</string>
     <string name="add_to_library">Προσθήκη στη βιβλιοθήκη</string>
     <string name="local_source_help_guide">Οδηγός τοπικής πηγής</string>
@@ -619,4 +615,21 @@
         <item quantity="other">Λείπουν %d κεφάλαια</item>
     </plurals>
     <string name="no_chapters_error">Δεν βρέθηκαν κεφάλαια</string>
+    <string name="chapter_settings_updated">Ενημερώθηκαν οι προεπιλεγμένες ρυθμίσεις κεφαλαίου</string>
+    <string name="set_chapter_settings_as_default">Ορισμός ως προεπιλογή</string>
+    <string name="also_set_chapter_settings_for_library">Εφαρμογή επίσης σε όλα τα manga στη βιβλιοθήκη μου</string>
+    <string name="confirm_set_chapter_settings">Είστε βέβαιοι ότι θέλετε να αποθηκεύσετε αυτές τις ρυθμίσεις ως προεπιλεγμένες;</string>
+    <string name="chapter_settings">Ρυθμίσεις κεφαλαίου</string>
+    <string name="action_web_view">WebView</string>
+    <string name="share_page_info">%1$s: %2 $s, σελίδα %3$d</string>
+    <string name="action_search_settings">Αναζήτηση ρυθμίσεων</string>
+    <string name="downloaded_chapters">Κεφάλαια που έχουν ληφθεί</string>
+    <string name="manga_from_library">Manga από τη βιβλιοθήκη</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Απόκρυψη της κάτω μπάρας κατά την κύλιση</string>
+    <string name="pref_incognito_mode_summary">Παύει το ιστορικό ανάγνωσης</string>
+    <string name="pref_incognito_mode">Λειτουργία ανώνυμης περιήγησης</string>
+    <string name="pref_clear_history_summary">Διαγραφή ιστορικού ανάγνωσης για όλα τα manga</string>
+    <string name="pref_clear_history">Διαγραφή ιστορικού</string>
+    <string name="clear_history_confirmation">Είστε σίγουροι\? Όλο το ιστορικό θα χαθεί.</string>
+    <string name="clear_history_completed">Το ιστορικό διαγράφηκε</string>
 </resources>

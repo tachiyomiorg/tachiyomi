@@ -15,7 +15,6 @@
     <string name="action_filter_downloaded">Đã tải xuống</string>
     <string name="action_filter_bookmarked">Đã đánh dấu</string>
     <string name="action_filter_unread">Chưa đọc</string>
-    <string name="action_filter_read">Đã đọc</string>
     <string name="action_filter_empty">Bỏ bộ lọc</string>
     <string name="action_sort_alpha">Theo bảng chữ cái</string>
     <string name="action_sort_last_read">Đã đọc gần nhất</string>
@@ -182,7 +181,6 @@
     <!-- Library fragment -->
     <string name="library_search_hint">Tiêu đề truyện hoặc tên tác giả…</string>
     <string name="updating_category">Cập nhật danh mục</string>
-    <string name="confirm_delete_manga">Bạn có chắc là muốn xóa truyện đã chọn không\?</string>
     <!-- Catalogue fragment -->
     <string name="source_requires_login">Nguồn truyện này yêu cầu đăng nhập</string>
     <string name="select_source">Chọn một nguồn truyện</string>
@@ -369,7 +367,6 @@
     <string name="pref_refresh_library_tracking">Làm mới theo dõi</string>
     <string name="pref_refresh_library_tracking_summary">Cập nhật trạng thái, điểm số và chương cuối đã đọc từ dịch vụ theo dõi</string>
     <string name="local_source_badge">Địa phương</string>
-    <string name="also_delete_chapters">Đồng thời xóa các chương đã tải</string>
     <string name="local_source">Nguồn cuc bộ</string>
     <string name="other_source">Khác</string>
     <string name="invalid_combination">Danh mục mặc định không thể chọn với các danh mục khác</string>

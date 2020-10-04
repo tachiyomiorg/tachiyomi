@@ -17,7 +17,6 @@
     <string name="action_filter_bookmarked">Закладка</string>
     <string name="action_filter_downloaded">Загружено</string>
     <string name="action_filter_empty">Удалить фильтр</string>
-    <string name="action_filter_read">Прочитано</string>
     <string name="action_filter_unread">Не прочитано</string>
     <string name="action_install">Установить</string>
     <string name="action_mark_as_read">Отметить как прочитанное</string>
@@ -73,7 +72,6 @@
     <string name="color_filter_b_value">B</string>
     <string name="completed">Завершено</string>
     <string name="confirm_delete_chapters">Вы уверены что хотите удалить выбранн(ые/ую) глав(ы/у)\?</string>
-    <string name="confirm_delete_manga">Вы уверены, что хотите удалить выбранную мангу\?</string>
     <string name="confirm_set_image_as_cover">Использовать эту картинку как обложку\?</string>
     <string name="cookies_cleared">Куки удалены</string>
     <string name="cover_updated">Обложка обновлена</string>
@@ -267,7 +265,6 @@
     <string name="action_restore">Восстановить</string>
     <string name="action_undo">Отменить</string>
     <string name="added_to_library">Манга была добавлена в библиотеку</string>
-    <string name="also_delete_chapters">Также удалить загруженные главы</string>
     <string name="backup_choice">Что вы хотите бэкапить\?</string>
     <string name="backup_created">Бэкап создан</string>
     <string name="backup_restore_content">При восстановлении используются данные из источников, что может вызвать большой расход трафика.
@@ -503,7 +500,6 @@
     <string name="information_webview_required">Для Tachiyomi необходим WebView</string>
     <string name="manga_info_collapse">Меньше</string>
     <string name="manga_info_expand">Больше</string>
-    <string name="manga_info_about_label">Описание</string>
     <string name="in_library">В библиотеке</string>
     <string name="add_to_library">Добавить в библиотеку</string>
     <string name="licenses">Лицензии открытого кода</string>
@@ -641,4 +637,21 @@
         <item quantity="other">Отсутствуют %d глав</item>
     </plurals>
     <string name="no_chapters_error">Нет глав</string>
+    <string name="chapter_settings_updated">Обновлены настройки главы по умолчанию</string>
+    <string name="set_chapter_settings_as_default">По умолчанию</string>
+    <string name="also_set_chapter_settings_for_library">Также применить для всей манги в моей библиотеке</string>
+    <string name="confirm_set_chapter_settings">Вы уверены, что хотите сохранить эти настройки по умолчанию\?</string>
+    <string name="chapter_settings">Настройки главы</string>
+    <string name="action_web_view">WebView</string>
+    <string name="share_page_info">%1$s: %2$s, страница %3$d</string>
+    <string name="action_search_settings">Настройки поиска</string>
+    <string name="downloaded_chapters">Загруженные главы</string>
+    <string name="manga_from_library">Манга из библиотеки</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Скрыть нижнюю панель при прокрутке</string>
+    <string name="pref_incognito_mode_summary">Приостанавливает историю прочтения</string>
+    <string name="pref_incognito_mode">Режим инкогнито</string>
+    <string name="pref_clear_history_summary">Удалить историю прочтения для всей манги</string>
+    <string name="pref_clear_history">Очистить историю</string>
+    <string name="clear_history_confirmation">Вы уверены\? Вся история будет удалена.</string>
+    <string name="clear_history_completed">История удалена</string>
 </resources>

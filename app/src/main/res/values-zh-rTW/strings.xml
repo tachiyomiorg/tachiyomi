@@ -20,7 +20,6 @@
     <string name="action_filter_downloaded">已下載</string>
     <string name="action_filter_bookmarked">已新增書籤</string>
     <string name="action_filter_unread">未讀</string>
-    <string name="action_filter_read">閱畢</string>
     <string name="action_filter_empty">清除篩選器</string>
     <string name="action_sort_alpha">題名</string>
     <string name="action_sort_total">章節數</string>
@@ -166,8 +165,6 @@
     <string name="login">登入</string>
     <string name="login_success">已登入</string>
     <string name="invalid_login">登入失敗</string>
-    <string name="confirm_delete_manga">確定要移除所選的漫畫嗎？</string>
-    <string name="also_delete_chapters">將下載的章節一併刪除</string>
     <string name="manga_added_library">已收藏至書櫃</string>
     <string name="manga_removed_library">已從書櫃中移除</string>
     <string name="copied_to_clipboard">已複製至剪貼簿：
@@ -450,7 +447,6 @@
     <string name="updating_library">正在更新書櫃</string>
     <string name="add_to_library">加入書櫃</string>
     <string name="pref_library_update_error_notification">顯示更新錯誤通知</string>
-    <string name="manga_info_about_label">概要</string>
     <string name="logout_success">你已登出</string>
     <string name="logout">登出</string>
     <string name="last_used_source">最近使用</string>
@@ -599,4 +595,14 @@
     <string name="invalid_backup_file_missing_manga">備份檔並未包含任何漫畫</string>
     <string name="pref_remove_bookmarked_chapters">刪除有書籤的章節</string>
     <string name="pref_category_delete_chapters">刪除章節</string>
+    <string name="chapter_settings_updated">已更新章節設定預設值</string>
+    <plurals name="missing_chapters_warning">
+        <item quantity="other">此處有 %d 篇章節散佚</item>
+    </plurals>
+    <string name="action_search_settings">搜尋設定</string>
+    <string name="chapter_settings">章節設定</string>
+    <string name="also_set_chapter_settings_for_library">同時套用至其餘在書櫃中的漫畫</string>
+    <string name="confirm_set_chapter_settings">確定要將目前的選項保存為預設值嗎？</string>
+    <string name="no_chapters_error">沒有章節</string>
+    <string name="set_chapter_settings_as_default">保存為預設值</string>
 </resources>

@@ -15,7 +15,6 @@
     <string name="action_filter_downloaded">Scaricati</string>
     <string name="action_filter_bookmarked">Contrassegnati</string>
     <string name="action_filter_unread">Non letti</string>
-    <string name="action_filter_read">Letti</string>
     <string name="action_filter_empty">Rimuovi filtri</string>
     <string name="action_sort_alpha">Ordine alfabetico</string>
     <string name="action_sort_last_read">Ultimi letti</string>
@@ -177,7 +176,6 @@
     <!-- Library fragment -->
     <string name="library_search_hint">Titolo o autore…</string>
     <string name="updating_category">Aggiornamento categoria</string>
-    <string name="confirm_delete_manga">Sei sicuro/a di voler rimuovere i manga selezionati\?</string>
     <!-- Catalogue fragment -->
     <string name="source_requires_login">Questa fonte richiede credenziali di accesso</string>
     <string name="select_source">Selezionare una fonte</string>
@@ -328,7 +326,6 @@
     <string name="creating_backup">Creazione backup</string>
     <string name="pref_refresh_library_tracking">Aggiorna monitoraggio</string>
     <string name="pref_refresh_library_tracking_summary">Aggiorna stato, voto e ultimo capitolo letto dalla funzione segna progresso</string>
-    <string name="also_delete_chapters">Elimina anche i capitoli scaricati</string>
     <string name="no_more_results">Non ci sono altri risultati</string>
     <string name="local_source">Fonti locali</string>
     <string name="added_to_library">Il manga è stato aggiunto alla tua libreria</string>
@@ -531,7 +528,6 @@
     <string name="track_started_reading_date">Data inizio lettura</string>
     <string name="manga_info_collapse">Meno</string>
     <string name="manga_info_expand">Più</string>
-    <string name="manga_info_about_label">Informazioni</string>
     <string name="licenses">Licenze open source</string>
     <string name="website">Sito web</string>
     <string name="restoring_backup_canceled">Ripristino cancellato</string>
@@ -652,4 +648,15 @@
     <string name="parental_controls_info">Questo non impedisce a estensioni non ufficiali o potenzialmente segnalate in modo errato di far mostrare contenuti 18+ all\'interno dell\'app.</string>
     <string name="pref_allow_nsfw_sources_blocked">Bloccato</string>
     <string name="pref_allow_nsfw_sources_allowed_multisource">Blocca le fonti di navigazione ma mostrale nell\'elenco delle estensioni</string>
+    <string name="chapter_settings_updated">Impostazioni predefinite del capitolo aggiornate</string>
+    <string name="share_page_info">%1$s: %2$s, pagina %3$d</string>
+    <string name="set_chapter_settings_as_default">Imposta come predefinito</string>
+    <string name="also_set_chapter_settings_for_library">Si applica anche a tutti i manga nella mia libreria</string>
+    <string name="confirm_set_chapter_settings">Sei sicuro di voler salvare queste impostazioni come predefinite\?</string>
+    <string name="chapter_settings">Impostazioni del capitolo</string>
+    <string name="action_web_view">Visualizzazione web</string>
+    <string name="action_search_settings">Ricerca impostazioni</string>
+    <string name="downloaded_chapters">Capitoli scaricati</string>
+    <string name="manga_from_library">Manga dalla libreria</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Nascondi la barra in basso allo scorrimento</string>
 </resources>

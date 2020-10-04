@@ -18,7 +18,6 @@
     <string name="action_filter_downloaded">डाउनलोड किया हुआ</string>
     <string name="action_filter_bookmarked">पृष्ठ स्मृति करा हुआ</string>
     <string name="action_filter_unread">अपठित</string>
-    <string name="action_filter_read">पठित</string>
     <string name="action_filter_empty">फिल्टर हटाए</string>
     <string name="action_sort_alpha">वर्णक्रमानुसार</string>
     <string name="action_sort_total">कुल अध्याय</string>
@@ -212,8 +211,6 @@
     <string name="library_search_hint">शीर्षक या लेखक …</string>
     <string name="updating_category">श्रेणी अपडेट कर रहा है</string>
     <string name="local_source_badge">लोकल</string>
-    <string name="confirm_delete_manga">क्या आप वाकई चयनित मंगा को हटाना चाहते हैं?</string>
-    <string name="also_delete_chapters">डाउनलोड किए गए अध्याय भी हटाएं</string>
     <string name="source_requires_login">इस स्रोत के लिए आपको प्रवेश करना होगा</string>
     <string name="select_source">किसी स्रोत का चयन करें</string>
     <string name="no_valid_sources">कृपया कम से कम एक वैध स्रोत सक्षम करें</string>
@@ -494,7 +491,6 @@
     <string name="add_to_library">पुस्तकालय में जोड़ें</string>
     <string name="manga_info_collapse">कम</string>
     <string name="manga_info_expand">अधिक</string>
-    <string name="manga_info_about_label">के बारे में</string>
     <string name="information_webview_required">WebView के लिए आवश्यक है Tachiyomi</string>
     <string name="licenses">ओपन सोर्स लाइसेंस</string>
     <string name="website">वेबसाइट</string>
@@ -618,4 +614,16 @@
         <item quantity="one">1 लापता अध्याय है</item>
         <item quantity="other">%d लापता अध्याय हैं</item>
     </plurals>
+    <string name="chapter_settings_updated">अपडेट किए गए डिफ़ॉल्ट अध्याय सेटिंग्स</string>
+    <string name="no_chapters_error">कोई अध्याय नहीं मिला</string>
+    <string name="set_chapter_settings_as_default">डिफ़ॉल्ट के रूप में सेट करें</string>
+    <string name="also_set_chapter_settings_for_library">मेरी लाइब्रेरी में सभी मंगा पर भी लागू करें</string>
+    <string name="confirm_set_chapter_settings">क्या आप वाकई इन सेटिंग्स को डिफ़ॉल्ट के रूप में सहेजना चाहते हैं\?</string>
+    <string name="chapter_settings">अध्याय सेटिंग्स</string>
+    <string name="action_web_view">वेबव्यू</string>
+    <string name="share_page_info">%1$s: %2$s, पृष्ठ %3$d</string>
+    <string name="downloaded_chapters">डाउनलोड किए गए अध्याय</string>
+    <string name="manga_from_library">पुस्तकालय से मंगा</string>
+    <string name="pref_hide_bottom_bar_on_scroll">स्क्रॉल पर नीचे बार छिपाएं</string>
+    <string name="action_search_settings">खोज सेंटिंग</string>
 </resources>
