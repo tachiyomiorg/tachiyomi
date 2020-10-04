@@ -17,6 +17,9 @@ jobs:
         with:
           java-version: 1.8
 
+      - name: Copy CI gradle.properties
+        run: mkdir -p ~/.gradle ; cp .github/ci-gradle.properties ~/.gradle/gradle.properties
+
       - name: Cache NDK
         id: ndk-cache
         uses: actions/cache@v2
