@@ -8,6 +8,7 @@ on:
 
 jobs:
   build:
+    if: "!startsWith(github.event.head_commit.message, '[SKIP CI]')"
     runs-on: ubuntu-latest
 
     steps:
