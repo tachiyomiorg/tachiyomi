@@ -22,7 +22,7 @@ class ChaptersAdapter(
 
     val readColor = context.getResourceColor(R.attr.colorOnSurface, 0.38f)
     val unreadColor = context.getResourceColor(R.attr.colorOnSurface)
-    val unreadColorSecondary = context.getResourceColor(R.attr.colorOnSurface, 0.62f)
+    val unreadColorSecondary = context.getResourceColor(android.R.attr.textColorSecondary)
 
     val bookmarkedColor = context.getResourceColor(R.attr.colorAccent)
 
