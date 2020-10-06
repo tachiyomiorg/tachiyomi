@@ -1,4 +1,4 @@
-name: Build check
+name: CI
 on:
   push:
     branches:
@@ -7,7 +7,8 @@ on:
   pull_request:
 
 jobs:
-  check:
+  check_wrapper:
+    name: Validate Gradle Wrapper
     runs-on: ubuntu-latest
 
     steps:
@@ -18,7 +19,8 @@ jobs:
         uses: gradle/wrapper-validation-action@v1
 
   build:
-    needs: check
+    name: Build app
+    needs: check_wrapper
     if: "!startsWith(github.event.head_commit.message, '[SKIP CI]')"
     runs-on: ubuntu-latest
 
