@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.ui.recent.history
 
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -90,6 +91,11 @@ class HistoryController :
     override fun onDestroyView(view: View) {
         adapter = null
         super.onDestroyView(view)
+    }
+
+    override fun onActivityResumed(activity: Activity) {
+        super.onActivityResumed(activity)
+        presenter.updateList(query)
     }
 
     /**
