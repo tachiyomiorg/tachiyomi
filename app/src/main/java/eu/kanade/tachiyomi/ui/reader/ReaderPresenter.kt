@@ -151,11 +151,7 @@ class ReaderPresenter(
     override fun onDestroy() {
         super.onDestroy()
         val currentChapters = viewerChaptersRelay.value
-        if (currentChapters != null) {
-            currentChapters.unref()
-            saveChapterProgress(currentChapters.currChapter)
-            saveChapterHistory(currentChapters.currChapter)
-        }
+        currentChapters?.unref()
     }
 
     /**
@@ -168,6 +164,8 @@ class ReaderPresenter(
         if (currentChapter != null) {
             currentChapter.requestedPage = currentChapter.chapter.last_page_read
             state.putLong(::chapterId.name, currentChapter.chapter.id!!)
+            saveChapterProgress(currentChapter)
+            saveChapterHistory(currentChapter)
         }
     }
 
