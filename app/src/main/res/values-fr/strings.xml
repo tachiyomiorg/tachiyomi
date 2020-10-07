@@ -145,16 +145,6 @@
     <string name="pref_download_new">Télécharger les nouveaux chapitres</string>
     <!-- Sync section -->
     <string name="services">Services</string>
-    <!-- Advanced section -->
-    <string name="used_cache">Utilisé : %1$s</string>
-    <string name="cache_deleted">Cache effacé. %1$d fichiers ont été supprimés</string>
-    <string name="cache_delete_error">Une erreur est survenue lors de l\'effacement du cache</string>
-    <string name="pref_clear_cookies">Effacer les cookies</string>
-    <string name="cookies_cleared">Cookies effacés</string>
-    <string name="choices_reset">Réinitialiser les choix</string>
-    <string name="pref_clear_database">Effacer la base de données</string>
-    <string name="pref_clear_database_summary">Supprimer l\'historique des séries qui ne sont pas dans la bibliothèque</string>
-    <string name="clear_database_completed">Entrées supprimées</string>
     <!-- About section -->
     <string name="version">Version</string>
     <string name="build_time">Date de compilation</string>
@@ -279,7 +269,6 @@
     <string name="download_notifier_text_only_wifi">Aucune connexion disponible</string>
     <string name="download_notifier_no_network">Aucune connexion disponible</string>
     <string name="pref_language">Langue</string>
-    <string name="clear_database_confirmation">Êtes-vous sûr·e \? Les chapitres lus et la progression des mangas non présents dans la bibliothèque seront perdus</string>
     <string name="confirm_delete_chapters">Supprimer les chapitres sélectionnés \?</string>
     <string name="custom_dir">Répertoire personnalisé</string>
     <string name="download_10">10 prochains chapitres</string>
@@ -331,14 +320,12 @@
     <string name="backup_created">Sauvegarde créée</string>
     <string name="restoring_backup">Restauration de sauvegarde en cours</string>
     <string name="creating_backup">Création de sauvegarde en cours</string>
-    <string name="pref_refresh_library_tracking">Actualiser les métadonnées de suivi</string>
-    <string name="pref_refresh_library_tracking_summary">Actualise le statut, appréciation et dernier chapitre lu des services de suivi</string>
     <string name="default_category_summary">Toujours demander</string>
     <string name="pref_read_with_volume_keys_inverted">Inverser les boutons de volume</string>
     <string name="pref_crop_borders">Rogner les bordures</string>
     <string name="backup_restore_content">La restauration utilise des sources pour obtenir les données, des frais d\'opérateur peuvent s\'appliquer.
-\n
-\nAssurez-vous d\'avoir installé toutes les extensions nécessaires et d\'être connecté aux sources et services de suivi avant de commencer la restauration.</string>
+        \n
+        \nAssurez-vous d\'avoir installé toutes les extensions nécessaires et d\'être connecté aux sources et services de suivi avant de commencer la restauration.</string>
     <string name="action_global_search">Recherche globale</string>
     <string name="action_open">Ouvrir</string>
     <string name="action_login">Se connecter</string>
@@ -361,11 +348,11 @@
     <string name="ext_uninstall">Désinstaller</string>
     <string name="ext_available">Disponible</string>
     <string name="untrusted_extension">Extension non reconnue</string>
-    <string name="untrusted_extension_message">Cette extension a été signé avec un certificat non reconnu et n\'a pas été activée. 
-\n 
-\nUne extension malveillante peut lire les identifiants de connexion sauvegardés sur Tachiyomi ou exécuter du code malicieux. 
-\n 
-\nEn faisant confiance à ce certificat vous acceptez ces risques.</string>
+    <string name="untrusted_extension_message">Cette extension a été signé avec un certificat non reconnu et n\'a pas été activée.
+        \n
+        \nUne extension malveillante peut lire les identifiants de connexion sauvegardés sur Tachiyomi ou exécuter du code malicieux.
+        \n
+        \nEn faisant confiance à ce certificat vous acceptez ces risques.</string>
     <string name="ext_version_info">Version : %1$s</string>
     <string name="ext_language_info">Langue : %1$s</string>
     <string name="pref_double_tap_anim_speed">Vitesse d\'animation du double-clic</string>
@@ -376,7 +363,7 @@
     <string name="manga_added_library">Ajouté à la bibliothèque</string>
     <string name="manga_removed_library">Supprimé de la bibliothèque</string>
     <string name="copied_to_clipboard">%1$s
-\na été copié dans le presse papier</string>
+        \na été copié dans le presse papier</string>
     <string name="source_not_installed">Sources non installées : %1$s</string>
     <string name="custom_download">Télécharger une quantité personnalisée</string>
     <string name="download_custom">Personnalisé</string>
@@ -478,9 +465,6 @@
     </plurals>
     <string name="hide_notification_content">Cacher le contenu des notifications</string>
     <string name="notification_check_updates">Recherche de nouveaux chapitres</string>
-    <string name="pref_disable_battery_optimization">Désactiver la fonction Optimisation utilisation batterie</string>
-    <string name="pref_disable_battery_optimization_summary">Aide aux mises à jour et sauvegardes de la bibliothèque en arrière-plan</string>
-    <string name="battery_optimization_disabled">La fonction Optimisation utilisation batterie est déjà désactivée</string>
     <string name="email">Adresse courriel</string>
     <string name="pref_always_show_chapter_transition">Toujours afficher la transition entre les chapitres</string>
     <plurals name="notification_new_chapters_summary">
@@ -526,7 +510,6 @@
     <string name="restoring_backup_canceled">Restauration de sauvegarde annulée</string>
     <string name="restoring_backup_error">Échec de la restauration de sauvegarde</string>
     <string name="restore_in_progress">Restauration déjà en cours</string>
-    <string name="label_downloaded_only">Téléchargés uniquement</string>
     <string name="creating_backup_error">Échec de la sauvegarde</string>
     <string name="backup_in_progress">Sauvegarde déjà en cours</string>
     <string name="manga_info_collapse">Moins</string>
@@ -544,11 +527,6 @@
     <string name="restore_duration">%02d min, %02d s</string>
     <string name="information_webview_required">WebView est requis par Tachiyomi</string>
     <string name="local_source_help_guide">Guide des sources locales</string>
-    <plurals name="download_queue_summary">
-        <item quantity="one">1 restant</item>
-        <item quantity="other">%1$s restants</item>
-    </plurals>
-    <string name="downloaded_only_summary">Filtrer tous les mangas dans la bibliothèque</string>
     <string name="pref_search_pinned_sources_only">N\'inclure que les sources épinglés</string>
     <string name="gray_background">Gris</string>
     <string name="pref_category_for_this_series">Pour cette série</string>
@@ -564,7 +542,6 @@
     </plurals>
     <string name="battery_optimization_setting_activity_not_found">Impossible d\'ouvrir les paramètres de l\'appareil</string>
     <string name="action_display_unread_badge">Badges des non lus</string>
-    <string name="pref_refresh_library_covers">Actualiser les couvertures des séries de la bibliothèque</string>
     <string name="tracking_info">Permet de synchroniser automatiquement les chapitres lus avec les services externes proposés. Allez dans le bouton « Suivi » d\'une série pour activer son suivi.</string>
     <string name="unofficial_extension_message">Cette extension ne fait pas partie de la liste des extensions officielles de Tachiyomi.</string>
     <string name="ext_unofficial">Non officiel</string>
@@ -575,7 +552,6 @@
     <string name="tracker_not_logged_in">Non connecté à : %1$s</string>
     <string name="pref_library_update_refresh_metadata_summary">Vérifier s\'il y a une nouvelle couverture ou synopsis lors des mises à jour de la bibliothèque</string>
     <string name="sort_by_upload_date">Par date de téléversement</string>
-    <string name="label_data">Donnée</string>
     <string name="backup_restore_missing_sources">Sources manquantes :</string>
     <string name="invalid_backup_file_missing_manga">La sauvegarde ne contient aucune série.</string>
     <string name="invalid_backup_file_missing_data">Données manquante dans le fichier.</string>
@@ -602,8 +578,6 @@
     <string name="action_sort_descending">Décroissant</string>
     <string name="action_disable">Désactiver</string>
     <string name="action_open_in_settings">Ouvrir dans les paramètres</string>
-    <string name="pref_dns_over_https_summary">Nécessite un redémarrage de l\'application pour prendre effet</string>
-    <string name="pref_dns_over_https" translatable="false">DNS sur HTTPS (Cloudflare)</string>
     <string name="label_network">Réseau</string>
     <string name="tapping_inverted_both">Les deux</string>
     <string name="tapping_inverted_vertical">Vertical</string>
@@ -659,4 +633,39 @@
     <string name="downloaded_chapters">Chapitres téléchargés</string>
     <string name="manga_from_library">Manga de la bibliothèque</string>
     <string name="action_search_settings">Paramètres de recherche</string>
+
+    <!-- Advanced section -->
+    <string name="pref_dns_over_https_summary">Nécessite un redémarrage de l\'application pour prendre effet</string>
+    <string name="pref_dns_over_https" translatable="false">DNS sur HTTPS (Cloudflare)</string>
+    <string name="label_data">Donnée</string>
+    <string name="used_cache">Utilisé : %1$s</string>
+    <string name="cache_deleted">Cache effacé. %1$d fichiers ont été supprimés</string>
+    <string name="cache_delete_error">Une erreur est survenue lors de l\'effacement du cache</string>
+    <string name="pref_clear_cookies">Effacer les cookies</string>
+    <string name="cookies_cleared">Cookies effacés</string>
+    <string name="choices_reset">Réinitialiser les choix</string>
+    <string name="pref_clear_database">Effacer la base de données</string>
+    <string name="pref_clear_database_summary">Supprimer l\'historique des séries qui ne sont pas dans la bibliothèque</string>
+    <string name="clear_database_completed">Entrées supprimées</string>
+    <string name="clear_database_confirmation">Êtes-vous sûr·e \? Les chapitres lus et la progression des mangas non présents dans la bibliothèque seront perdus</string>
+    <string name="pref_refresh_library_covers">Actualiser les couvertures des séries de la bibliothèque</string>
+    <string name="pref_refresh_library_tracking">Actualiser les métadonnées de suivi</string>
+    <string name="pref_refresh_library_tracking_summary">Actualise le statut, appréciation et dernier chapitre lu des services de suivi</string>
+    <string name="pref_disable_battery_optimization">Désactiver la fonction Optimisation utilisation batterie</string>
+    <string name="pref_disable_battery_optimization_summary">Aide aux mises à jour et sauvegardes de la bibliothèque en arrière-plan</string>
+    <string name="battery_optimization_disabled">La fonction Optimisation utilisation batterie est déjà désactivée</string>
+    <string name="pref_clear_history">Effacé l\'historique</string>
+    <string name="pref_clear_history_summary">Supprimer l\'historique de lecture pour tous les mangas</string>
+    <string name="clear_history_completed">Historique supprimé</string>
+    <string name="clear_history_confirmation">En êtes-vous sûr ? Tout l\'historique sera perdu.</string>
+
+    <!-- More -->
+    <string name="label_downloaded_only">Téléchargés uniquement</string>
+    <string name="pref_incognito_mode">Mode incognito </string>
+    <string name="pref_incognito_mode_summary">Pause dans la lecture de l\'histoire</string>
+    <string name="downloaded_only_summary">Filtrer tous les mangas dans la bibliothèque</string>
+    <plurals name="download_queue_summary">
+        <item quantity="one">1 restant</item>
+        <item quantity="other">%1$s restants</item>
+    </plurals>
 </resources>
