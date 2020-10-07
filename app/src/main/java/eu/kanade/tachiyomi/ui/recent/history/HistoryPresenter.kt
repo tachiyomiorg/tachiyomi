@@ -36,7 +36,7 @@ class HistoryPresenter : BasePresenter<HistoryController>() {
     }
 
     fun requestNext(offset: Int, search: String = "") {
-        getRecentMangaObservable(offset = offset, search = search)
+        getRecentMangaObservable(offset = offset, search = search).take(1)
             .subscribeLatestCache(
                 { view, mangas ->
                     view.onNextManga(mangas)
