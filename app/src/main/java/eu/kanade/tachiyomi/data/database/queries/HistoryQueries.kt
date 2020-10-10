@@ -29,8 +29,8 @@ interface HistoryQueries : DbProvider {
         .listOfObjects(MangaChapterHistory::class.java)
         .withQuery(
             RawQuery.builder()
-                .query(getRecentMangasQuery(limit, offset, search))
-                .args(date.time)
+                .query(getRecentMangasQuery(search))
+                .args(date.time, limit, offset)
                 .observesTables(HistoryTable.TABLE)
                 .build()
         )

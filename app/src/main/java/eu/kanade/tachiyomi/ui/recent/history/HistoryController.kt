@@ -171,10 +171,10 @@ class HistoryController :
     override fun removeHistory(manga: Manga, history: History, all: Boolean) {
         if (all) {
             // Reset last read of chapter to 0L
-            presenter.removeAllFromHistory(manga.id!!, query)
+            presenter.removeAllFromHistory(manga.id!!)
         } else {
             // Remove all chapters belonging to manga from library
-            presenter.removeFromHistory(history, query)
+            presenter.removeFromHistory(history)
         }
     }
 
