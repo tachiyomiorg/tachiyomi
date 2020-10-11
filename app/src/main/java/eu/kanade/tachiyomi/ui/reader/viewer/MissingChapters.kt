@@ -16,6 +16,7 @@ fun hasMissingChapters(higher: Chapter?, lower: Chapter?): Boolean {
 }
 
 fun hasMissingChapters(higherChapterNumber: Float, lowerChapterNumber: Float): Boolean {
+    if (higherChapterNumber == 0f || lowerChapterNumber == 0f) return false
     return floor(higherChapterNumber) - floor(lowerChapterNumber) - 1f > 0f
 }
 
@@ -31,5 +32,6 @@ fun calculateChapterDifference(higher: Chapter?, lower: Chapter?): Float {
 }
 
 fun calculateChapterDifference(higherChapterNumber: Float, lowerChapterNumber: Float): Float {
+    if (higherChapterNumber == 0f || lowerChapterNumber == 0f) return 0f
     return floor(higherChapterNumber) - floor(lowerChapterNumber) - 1f
 }
