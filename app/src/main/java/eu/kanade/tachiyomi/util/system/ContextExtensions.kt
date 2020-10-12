@@ -64,7 +64,7 @@ fun Context.toast(text: String?, duration: Int = Toast.LENGTH_SHORT) {
 fun Context.copyToClipboard(label: String, content: String) {
     if (content.isBlank()) return
 
-    val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+    val clipboard = getSystemService<ClipboardManager>()!!
     clipboard.setPrimaryClip(ClipData.newPlainText(label, content))
 
     toast(getString(R.string.copied_to_clipboard, content.truncateCenter(50)))

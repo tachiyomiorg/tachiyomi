@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.res.Configuration
 import android.os.Build
 import android.view.ContextThemeWrapper
+import androidx.core.os.ConfigurationCompat
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.browse.source.SourcePresenter
@@ -110,10 +111,10 @@ object LocaleHelper {
      */
     fun updateConfiguration(app: Application, config: Configuration, configChange: Boolean = false) {
         if (systemLocale == null) {
-            systemLocale = getConfigLocale(config)
+            systemLocale = ConfigurationCompat.getLocales(config)[0]
         }
         if (configChange) {
-            val configLocale = getConfigLocale(config)
+            val configLocale = ConfigurationCompat.getLocales(config)[0]
             if (currentLocale == configLocale) {
                 return
             }
@@ -125,17 +126,6 @@ object LocaleHelper {
         resources.updateConfiguration(newConfig, resources.displayMetrics)
 
         Locale.setDefault(currentLocale)
-    }
-
-    /**
-     * Returns the locale applied in the given configuration.
-     */
-    private fun getConfigLocale(config: Configuration): Locale {
-        return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-            config.locale
-        } else {
-            config.locales[0]
-        }
     }
 
     /**
