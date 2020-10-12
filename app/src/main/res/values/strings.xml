@@ -347,14 +347,26 @@
 
       <!-- Backup section -->
     <string name="backup">Backup</string>
-    <string name="pref_create_backup">Create backup</string>
-    <string name="pref_create_backup_summ">Can be used to restore current library</string>
-    <string name="pref_restore_backup">Restore backup</string>
-    <string name="pref_restore_backup_summ">Restore library from backup file</string>
+    <string name="legacy_backup">Legacy Backup</string>
+    <string name="pref_create_full_backup">Create full backup</string>
+    <string name="pref_create_full_backup_summary">Can be used to restore current library</string>
+    <string name="pref_restore_full_backup">Restore full backup</string>
+    <string name="pref_restore_full_backup_summary">Restore library from backup file, only use this if your backup is a full type backup, this can be restored offline as well as online</string>
+    <string name="pref_create_backup">Create legacy backup</string>
+    <string name="pref_create_backup_summ">Can be used to restore current library in older versions of Tachiyomi</string>
+    <string name="pref_restore_backup">Restore legacy backup</string>
+    <string name="pref_restore_backup_summ">Restore library from a legacy backup file</string>
+    <string name="pref_backup_auto_create_legacy">Create legacy backup</string>
+    <string name="pref_backup_auto_create_legacy_summary">Creates a legacy backup alongside the full backup</string>
     <string name="pref_backup_directory">Backup location</string>
     <string name="pref_backup_service_category">Automatic backups</string>
     <string name="pref_backup_interval">Backup frequency</string>
     <string name="pref_backup_slots">Maximum backups</string>
+    <string name="full_restore_mode">Network Mode</string>
+    <string name="full_restore_online">Restore online, slower but gives you more updated info and chapters</string>
+    <string name="full_restore_offline">Restore offline, finishes quickly but contains only what you backup has</string>
+    <string name="create_backup">Create backup</string>
+    <string name="restore_backup">Restore backup</string>
     <string name="source_not_found_name">Source not found: %1$s</string>
     <string name="tracker_not_logged_in">Not logged in: %1$s</string>
     <string name="backup_created">Backup created</string>

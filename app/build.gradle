@@ -182,7 +182,9 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava:$retrofit_version"
 
     // JSON
-    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.0"
+    final kotlin_serialization_version = '1.0.0'
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlin_serialization_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-protobuf:$kotlin_serialization_version"
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.github.salomonbrys.kotson:kotson:2.5.0'
 

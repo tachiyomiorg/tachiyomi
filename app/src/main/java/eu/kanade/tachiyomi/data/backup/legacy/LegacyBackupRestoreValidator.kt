@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.data.backup
+package eu.kanade.tachiyomi.data.backup.legacy
 
 import android.content.Context
 import android.net.Uri
@@ -6,23 +6,17 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.google.gson.stream.JsonReader
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.backup.models.Backup
-import eu.kanade.tachiyomi.data.track.TrackManager
-import eu.kanade.tachiyomi.source.SourceManager
-import uy.kohesive.injekt.injectLazy
+import eu.kanade.tachiyomi.data.backup.legacy.models.Backup
+import eu.kanade.tachiyomi.data.backup.models.AbstractBackupRestoreValidator
 
-object BackupRestoreValidator {
-
-    private val sourceManager: SourceManager by injectLazy()
-    private val trackManager: TrackManager by injectLazy()
-
+class LegacyBackupRestoreValidator : AbstractBackupRestoreValidator() {
     /**
      * Checks for critical backup file data.
      *
      * @throws Exception if version or manga cannot be found.
      * @return List of missing sources or missing trackers.
      */
-    fun validate(context: Context, uri: Uri): Results {
+    override fun validate(context: Context, uri: Uri): Results {
         val reader = JsonReader(context.contentResolver.openInputStream(uri)!!.bufferedReader())
         val json = JsonParser.parseReader(reader).asJsonObject
 
@@ -57,16 +51,16 @@ object BackupRestoreValidator {
         return Results(missingSources, missingTrackers)
     }
 
-    fun getSourceMapping(json: JsonObject): Map<Long, String> {
-        val extensionsMapping = json.get(Backup.EXTENSIONS) ?: return emptyMap()
+    companion object {
+        fun getSourceMapping(json: JsonObject): Map<Long, String> {
+            val extensionsMapping = json.get(Backup.EXTENSIONS) ?: return emptyMap()
 
-        return extensionsMapping.asJsonArray
-            .map {
-                val items = it.asString.split(":")
-                items[0].toLong() to items[1]
-            }
-            .toMap()
+            return extensionsMapping.asJsonArray
+                .map {
+                    val items = it.asString.split(":")
+                    items[0].toLong() to items[1]
+                }
+                .toMap()
+        }
     }
-
-    data class Results(val missingSources: List<String>, val missingTrackers: List<String>)
 }

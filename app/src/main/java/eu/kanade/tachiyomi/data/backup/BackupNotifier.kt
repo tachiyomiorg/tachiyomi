@@ -15,7 +15,7 @@ import uy.kohesive.injekt.injectLazy
 import java.io.File
 import java.util.concurrent.TimeUnit
 
-internal class BackupNotifier(private val context: Context) {
+class BackupNotifier(private val context: Context) {
 
     private val preferences: PreferencesHelper by injectLazy()
 

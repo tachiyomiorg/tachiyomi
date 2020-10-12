@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.data.backup.models
+package eu.kanade.tachiyomi.data.backup.legacy.models
 
 import java.text.SimpleDateFormat
 import java.util.Date

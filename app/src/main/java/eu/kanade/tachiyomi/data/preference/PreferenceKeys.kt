@@ -181,6 +181,8 @@ object PreferenceKeys {
 
     const val incognitoMode = "incognito_mode"
 
+    const val createLegacyBackup = "create_legacy_backup"
+
     fun trackUsername(syncId: Int) = "pref_mangasync_username_$syncId"
 
     fun trackPassword(syncId: Int) = "pref_mangasync_password_$syncId"

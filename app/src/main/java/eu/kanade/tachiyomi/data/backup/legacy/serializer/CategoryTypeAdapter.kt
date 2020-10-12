@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.data.backup.serializer
+package eu.kanade.tachiyomi.data.backup.legacy.serializer
 
 import com.github.salomonbrys.kotson.typeAdapter
 import com.google.gson.TypeAdapter

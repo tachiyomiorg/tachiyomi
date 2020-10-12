@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.data.backup
+package eu.kanade.tachiyomi.data.backup.legacy
 
 import android.content.Context
 import android.net.Uri
@@ -20,20 +20,21 @@ import eu.kanade.tachiyomi.data.backup.BackupCreateService.Companion.BACKUP_HIST
 import eu.kanade.tachiyomi.data.backup.BackupCreateService.Companion.BACKUP_HISTORY_MASK
 import eu.kanade.tachiyomi.data.backup.BackupCreateService.Companion.BACKUP_TRACK
 import eu.kanade.tachiyomi.data.backup.BackupCreateService.Companion.BACKUP_TRACK_MASK
-import eu.kanade.tachiyomi.data.backup.models.Backup
-import eu.kanade.tachiyomi.data.backup.models.Backup.CATEGORIES
-import eu.kanade.tachiyomi.data.backup.models.Backup.CHAPTERS
-import eu.kanade.tachiyomi.data.backup.models.Backup.CURRENT_VERSION
-import eu.kanade.tachiyomi.data.backup.models.Backup.EXTENSIONS
-import eu.kanade.tachiyomi.data.backup.models.Backup.HISTORY
-import eu.kanade.tachiyomi.data.backup.models.Backup.MANGA
-import eu.kanade.tachiyomi.data.backup.models.Backup.TRACK
-import eu.kanade.tachiyomi.data.backup.models.DHistory
-import eu.kanade.tachiyomi.data.backup.serializer.CategoryTypeAdapter
-import eu.kanade.tachiyomi.data.backup.serializer.ChapterTypeAdapter
-import eu.kanade.tachiyomi.data.backup.serializer.HistoryTypeAdapter
-import eu.kanade.tachiyomi.data.backup.serializer.MangaTypeAdapter
-import eu.kanade.tachiyomi.data.backup.serializer.TrackTypeAdapter
+import eu.kanade.tachiyomi.data.backup.legacy.models.Backup
+import eu.kanade.tachiyomi.data.backup.legacy.models.Backup.CATEGORIES
+import eu.kanade.tachiyomi.data.backup.legacy.models.Backup.CHAPTERS
+import eu.kanade.tachiyomi.data.backup.legacy.models.Backup.CURRENT_VERSION
+import eu.kanade.tachiyomi.data.backup.legacy.models.Backup.EXTENSIONS
+import eu.kanade.tachiyomi.data.backup.legacy.models.Backup.HISTORY
+import eu.kanade.tachiyomi.data.backup.legacy.models.Backup.MANGA
+import eu.kanade.tachiyomi.data.backup.legacy.models.Backup.TRACK
+import eu.kanade.tachiyomi.data.backup.legacy.models.DHistory
+import eu.kanade.tachiyomi.data.backup.legacy.serializer.CategoryTypeAdapter
+import eu.kanade.tachiyomi.data.backup.legacy.serializer.ChapterTypeAdapter
+import eu.kanade.tachiyomi.data.backup.legacy.serializer.HistoryTypeAdapter
+import eu.kanade.tachiyomi.data.backup.legacy.serializer.MangaTypeAdapter
+import eu.kanade.tachiyomi.data.backup.legacy.serializer.TrackTypeAdapter
+import eu.kanade.tachiyomi.data.backup.models.AbstractBackupManager
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.CategoryImpl
 import eu.kanade.tachiyomi.data.database.models.Chapter
@@ -55,7 +56,7 @@ import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
 import kotlin.math.max
 
-class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
+class LegacyBackupManager(val context: Context, version: Int = CURRENT_VERSION) : AbstractBackupManager() {
 
     internal val databaseHelper: DatabaseHelper by injectLazy()
     internal val sourceManager: SourceManager by injectLazy()
@@ -101,7 +102,7 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
      * @param uri path of Uri
      * @param isJob backup called from job
      */
-    fun createBackup(uri: Uri, flags: Int, isJob: Boolean): String? {
+    override fun createBackup(uri: Uri, flags: Int, isJob: Boolean): String? {
         // Create root object
         val root = JsonObject()
 
