@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.ui.setting.track
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.StringRes
+import androidx.core.os.bundleOf
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.TrackService
@@ -28,7 +29,7 @@ class TrackLoginDialog(
     constructor(service: TrackService) : this(service, null)
 
     constructor(service: TrackService, @StringRes usernameLabelRes: Int?) :
-        this(R.string.login_title, service.name, usernameLabelRes, Bundle().apply { putInt("key", service.id) })
+        this(R.string.login_title, service.name, usernameLabelRes, bundleOf("key" to service.id))
 
     override fun setCredentialsOnView(view: View) = with(view) {
         username.setText(service.getUsername())

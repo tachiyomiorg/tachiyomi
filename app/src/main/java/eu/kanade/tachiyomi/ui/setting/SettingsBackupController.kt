@@ -9,6 +9,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.core.net.toUri
+import androidx.core.os.bundleOf
 import androidx.preference.PreferenceScreen
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItemsMultiChoice
@@ -251,9 +252,7 @@ class SettingsBackupController : SettingsController() {
 
     class RestoreBackupDialog(bundle: Bundle? = null) : DialogController(bundle) {
         constructor(uri: Uri) : this(
-            Bundle().apply {
-                putParcelable(KEY_URI, uri)
-            }
+                bundleOf(KEY_URI to uri)
         )
 
         override fun onCreateDialog(savedViewState: Bundle?): Dialog {

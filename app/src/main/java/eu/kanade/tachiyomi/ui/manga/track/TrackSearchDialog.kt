@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.ui.manga.track
 import android.app.Dialog
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import com.afollestad.materialdialogs.MaterialDialog
@@ -41,9 +42,7 @@ class TrackSearchDialog : DialogController {
         get() = targetController as TrackController
 
     constructor(target: TrackController, service: TrackService) : super(
-        Bundle().apply {
-            putInt(KEY_SERVICE, service.id)
-        }
+            bundleOf(KEY_SERVICE to service.id)
     ) {
         targetController = target
         this.service = service

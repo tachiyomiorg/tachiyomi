@@ -77,7 +77,7 @@ class PreferencesHelper(val context: Context) {
 
     fun showLibraryUpdateErrors() = prefs.getBoolean(Keys.showLibraryUpdateErrors, false)
 
-    fun clear() = prefs.edit().clear().apply()
+    fun clear() = prefs.edit { clear() }
 
     fun themeMode() = flowPrefs.getEnum(Keys.themeMode, Values.ThemeMode.system)
 
@@ -164,10 +164,10 @@ class PreferencesHelper(val context: Context) {
     fun trackPassword(sync: TrackService) = prefs.getString(Keys.trackPassword(sync.id), "")
 
     fun setTrackCredentials(sync: TrackService, username: String, password: String) {
-        prefs.edit()
-            .putString(Keys.trackUsername(sync.id), username)
-            .putString(Keys.trackPassword(sync.id), password)
-            .apply()
+        prefs.edit {
+            putString(Keys.trackUsername(sync.id), username)
+            putString(Keys.trackPassword(sync.id), password)
+        }
     }
 
     fun trackToken(sync: TrackService) = flowPrefs.getString(Keys.trackToken(sync.id), "")

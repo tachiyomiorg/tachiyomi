@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import androidx.core.net.toUri
+import androidx.core.os.bundleOf
 import androidx.preference.PreferenceScreen
 import com.afollestad.materialdialogs.MaterialDialog
 import com.mikepenz.aboutlibraries.LibsBuilder
@@ -184,10 +185,7 @@ class AboutController : SettingsController() {
     class NewUpdateDialogController(bundle: Bundle? = null) : DialogController(bundle) {
 
         constructor(body: String, url: String) : this(
-            Bundle().apply {
-                putString(BODY_KEY, body)
-                putString(URL_KEY, url)
-            }
+                bundleOf(BODY_KEY to body, URL_KEY to url)
         )
 
         override fun onCreateDialog(savedViewState: Bundle?): Dialog {

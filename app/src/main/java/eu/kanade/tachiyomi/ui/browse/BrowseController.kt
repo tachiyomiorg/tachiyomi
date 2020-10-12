@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
@@ -31,9 +32,7 @@ class BrowseController :
     TabbedController {
 
     constructor(toExtensions: Boolean = false) : super(
-        Bundle().apply {
-            putBoolean(TO_EXTENSIONS_EXTRA, toExtensions)
-        }
+            bundleOf(TO_EXTENSIONS_EXTRA to toExtensions)
     )
 
     @Suppress("unused")

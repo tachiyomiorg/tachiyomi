@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.net.toUri
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Manga
@@ -30,9 +31,7 @@ class TrackController :
     SetTrackReadingDatesDialog.Listener {
 
     constructor(manga: Manga?) : super(
-        Bundle().apply {
-            putLong(MANGA_EXTRA, manga?.id ?: 0)
-        }
+            bundleOf(MANGA_EXTRA to (manga?.id ?: 0))
     ) {
         this.manga = manga
     }

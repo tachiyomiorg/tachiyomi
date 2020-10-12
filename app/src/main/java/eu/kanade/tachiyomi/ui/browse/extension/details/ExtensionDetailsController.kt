@@ -14,6 +14,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.view.ContextThemeWrapper
+import androidx.core.os.bundleOf
 import androidx.preference.Preference
 import androidx.preference.PreferenceGroupAdapter
 import androidx.preference.PreferenceManager
@@ -55,9 +56,7 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
     private var preferenceScreen: PreferenceScreen? = null
 
     constructor(pkgName: String) : this(
-        Bundle().apply {
-            putString(PKGNAME_KEY, pkgName)
-        }
+            bundleOf(PKGNAME_KEY to pkgName)
     )
 
     init {

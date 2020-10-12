@@ -2,6 +2,7 @@ package eu.kanade.tachiyomi.ui.manga.track
 
 import android.app.Dialog
 import android.os.Bundle
+import androidx.core.os.bundleOf
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItemsSingleChoice
 import com.bluelinelabs.conductor.Controller
@@ -18,9 +19,7 @@ class SetTrackStatusDialog<T> : DialogController
     private val item: TrackItem
 
     constructor(target: T, item: TrackItem) : super(
-        Bundle().apply {
-            putSerializable(KEY_ITEM_TRACK, item.track)
-        }
+            bundleOf(KEY_ITEM_TRACK to item.track)
     ) {
         targetController = target
         this.item = item
