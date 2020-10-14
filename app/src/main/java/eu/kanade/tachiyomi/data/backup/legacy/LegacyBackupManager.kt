@@ -57,12 +57,6 @@ import uy.kohesive.injekt.injectLazy
 import kotlin.math.max
 
 class LegacyBackupManager(val context: Context, version: Int = CURRENT_VERSION) : AbstractBackupManager() {
-
-    internal val databaseHelper: DatabaseHelper by injectLazy()
-    internal val sourceManager: SourceManager by injectLazy()
-    internal val trackManager: TrackManager by injectLazy()
-    private val preferences: PreferencesHelper by injectLazy()
-
     /**
      * Version of parser
      */

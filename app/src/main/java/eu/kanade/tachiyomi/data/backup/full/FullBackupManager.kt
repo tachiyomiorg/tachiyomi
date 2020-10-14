@@ -44,16 +44,9 @@ import kotlin.math.max
 
 @OptIn(ExperimentalSerializationApi::class)
 class FullBackupManager(val context: Context) : AbstractBackupManager() {
-
-    internal val databaseHelper: DatabaseHelper by injectLazy()
-    internal val sourceManager: SourceManager by injectLazy()
-    internal val trackManager: TrackManager by injectLazy()
-    private val preferences: PreferencesHelper by injectLazy()
-
     /**
      * Parser
      */
-
     val parser = ProtoBuf
 
     /**
@@ -407,6 +400,15 @@ class FullBackupManager(val context: Context) : AbstractBackupManager() {
                 val dbChapter = dbChapters[pos]
                 chapter.id = dbChapter.id
                 chapter.copyFrom(dbChapter)
+                if (dbChapter.read && !chapter.read) {
+                    chapter.read = dbChapter.read
+                    chapter.last_page_read = dbChapter.last_page_read
+                } else if (chapter.last_page_read == 0 && dbChapter.last_page_read != 0) {
+                    chapter.last_page_read = dbChapter.last_page_read
+                }
+                if (!chapter.bookmark && dbChapter.bookmark) {
+                    chapter.bookmark = dbChapter.bookmark
+                }
             }
         }
         // Filter the chapters that couldn't be found.
@@ -426,6 +428,15 @@ class FullBackupManager(val context: Context) : AbstractBackupManager() {
                 val dbChapter = dbChapters[pos]
                 chapter.id = dbChapter.id
                 chapter.copyFrom(dbChapter)
+                if (dbChapter.read && !chapter.read) {
+                    chapter.read = dbChapter.read
+                    chapter.last_page_read = dbChapter.last_page_read
+                } else if (chapter.last_page_read == 0 && dbChapter.last_page_read != 0) {
+                    chapter.last_page_read = dbChapter.last_page_read
+                }
+                if (!chapter.bookmark && dbChapter.bookmark) {
+                    chapter.bookmark = dbChapter.bookmark
+                }
             }
         }
         chapters.map { it.manga_id = manga.id }
