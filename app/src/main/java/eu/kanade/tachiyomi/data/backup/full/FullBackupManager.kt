@@ -292,13 +292,14 @@ class FullBackupManager(val context: Context) : AbstractBackupManager() {
     internal fun restoreCategoriesForManga(manga: Manga, categories: List<Int>, backupCategories: List<BackupCategory>) {
         val dbCategories = databaseHelper.getCategories().executeAsBlocking()
         val mangaCategoriesToUpdate = mutableListOf<MangaCategory>()
-        for (backupCategoryStr in categories) {
-            for (backupCategory in backupCategories) {
-                if (backupCategoryStr == backupCategory.order) {
-                    dbCategories.firstOrNull { it.name == backupCategory.name }?.let { dbCategory ->
-                        mangaCategoriesToUpdate.add(MangaCategory.create(manga, dbCategory))
-                    }
-                    break
+        categories.forEach { backupCategoryOrder ->
+            backupCategories.firstOrNull {
+                it.order == backupCategoryOrder
+            }?.let { backupCategory ->
+                dbCategories.firstOrNull { dbCategory ->
+                    dbCategory.name == backupCategory.name
+                }?.let { dbCategory ->
+                    mangaCategoriesToUpdate.add(MangaCategory.create(manga, dbCategory))
                 }
             }
         }
