@@ -45,7 +45,7 @@ class BackupRestoreService : Service() {
             if (!isRunning(context)) {
                 val intent = Intent(context, BackupRestoreService::class.java).apply {
                     putExtra(BackupConst.EXTRA_URI, uri)
-                    putExtra(BackupConst.EXTRA_TYPE, mode)
+                    putExtra(BackupConst.EXTRA_MODE, mode)
                     online?.let { putExtra(BackupConst.EXTRA_TYPE, it) }
                 }
                 ContextCompat.startForegroundService(context, intent)
