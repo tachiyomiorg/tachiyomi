@@ -421,7 +421,7 @@ class FullBackupManager(val context: Context) : AbstractBackupManager() {
         val dbChapters = databaseHelper.getChapters(manga).executeAsBlocking()
 
         for (chapter in chapters) {
-            val pos = dbChapters.indexOf(chapter)
+            val pos = dbChapters.indexOfFirst { it.url == chapter.url }
             if (pos != -1) {
                 val dbChapter = dbChapters[pos]
                 chapter.id = dbChapter.id
