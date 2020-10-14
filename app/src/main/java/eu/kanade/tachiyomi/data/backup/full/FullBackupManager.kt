@@ -400,13 +400,12 @@ class FullBackupManager(val context: Context) : AbstractBackupManager() {
             return false
         }
 
-        for (chapter in chapters) {
-            val pos = dbChapters.indexOf(chapter)
+        chapters.forEach { chapter ->
+            val pos = dbChapters.indexOfFirst { it.url == chapter.url }
             if (pos != -1) {
                 val dbChapter = dbChapters[pos]
                 chapter.id = dbChapter.id
                 chapter.copyFrom(dbChapter)
-                break
             }
         }
         // Filter the chapters that couldn't be found.
