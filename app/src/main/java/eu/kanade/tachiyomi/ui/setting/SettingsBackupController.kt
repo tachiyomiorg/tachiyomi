@@ -237,8 +237,8 @@ class SettingsBackupController : SettingsController() {
                 val uri = data.data
                 if (uri != null) {
                     val options = arrayOf(
-                        R.string.full_restore_online,
-                        R.string.full_restore_offline
+                        R.string.full_restore_offline,
+                        R.string.full_restore_online
                     )
                         .map { activity!!.getString(it) }
                     MaterialDialog(activity!!)
@@ -250,7 +250,7 @@ class SettingsBackupController : SettingsController() {
                             RestoreBackupDialog(
                                 uri,
                                 BackupConst.BACKUP_TYPE_FULL,
-                                isOnline = index == 0
+                                isOnline = index != 0
                             ).showDialog(router)
                         }
                         .positiveButton(R.string.action_restore)
