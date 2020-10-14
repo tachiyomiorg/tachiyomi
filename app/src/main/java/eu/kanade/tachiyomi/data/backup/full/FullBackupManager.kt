@@ -420,13 +420,12 @@ class FullBackupManager(val context: Context) : AbstractBackupManager() {
     internal fun restoreChaptersForMangaOffline(manga: Manga, chapters: List<Chapter>) {
         val dbChapters = databaseHelper.getChapters(manga).executeAsBlocking()
 
-        for (chapter in chapters) {
+        chapters.forEach { chapter ->
             val pos = dbChapters.indexOfFirst { it.url == chapter.url }
             if (pos != -1) {
                 val dbChapter = dbChapters[pos]
                 chapter.id = dbChapter.id
                 chapter.copyFrom(dbChapter)
-                break
             }
         }
         chapters.map { it.manga_id = manga.id }
