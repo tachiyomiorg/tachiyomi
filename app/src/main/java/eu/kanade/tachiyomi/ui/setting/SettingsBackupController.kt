@@ -306,9 +306,9 @@ class SettingsBackupController : SettingsController() {
 
     class CreateBackupDialog(bundle: Bundle? = null) : DialogController(bundle) {
         constructor(type: Int) : this(
-            Bundle().apply {
-                putInt(KEY_TYPE, type)
-            }
+            bundleOf(
+                KEY_TYPE to type
+            )
         )
 
         override fun onCreateDialog(savedViewState: Bundle?): Dialog {
