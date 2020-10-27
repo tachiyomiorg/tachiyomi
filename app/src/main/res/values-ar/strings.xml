@@ -471,8 +471,8 @@
         <item quantity="other">يتوفر تحديث %d إضافات</item>
     </plurals>
     <plurals name="notification_chapters_multiple_and_more">
-        <item quantity="zero">الفصول %1$s و%2$d فصول أخرى</item>
-        <item quantity="one">الفصول %1$s وفصل واحد آخر</item>
+        <item quantity="zero">الفصول %1$s</item>
+        <item quantity="one">الفصول %1$s وفصل آخر</item>
         <item quantity="two">الفصول %1$s و%2$d فصول أخرى</item>
         <item quantity="few">الفصول %1$s و%2$d فصول أخرى</item>
         <item quantity="many">الفصول %1$s و%2$d فصول أخرى</item>
@@ -540,7 +540,7 @@
         <item quantity="zero">بعد أقل من دقيقة</item>
         <item quantity="one">بعد دقيقة</item>
         <item quantity="two">بعد دقيقتان</item>
-        <item quantity="few">بعد بضع دقائق</item>
+        <item quantity="few">بعد %1$s دقائق</item>
         <item quantity="many">بعد %1$s دقائق</item>
         <item quantity="other">بعد %1$s دقائق</item>
     </plurals>
@@ -548,7 +548,7 @@
         <item quantity="zero">لا يوجد فئات</item>
         <item quantity="one">فئة</item>
         <item quantity="two">فئتان</item>
-        <item quantity="few">بضع فئات</item>
+        <item quantity="few">%d فئات</item>
         <item quantity="many">%d فئات</item>
         <item quantity="other">%d فئات</item>
     </plurals>
@@ -560,7 +560,7 @@
     <string name="invalid_backup_file_missing_data">هناك بيانات مفقودة في الملف.</string>
     <string name="invalid_backup_file">ملف النسخ الاحتياطي غير صالح</string>
     <string name="tracker_not_logged_in">لم يتم تسجيل الدخول: %1$s</string>
-    <string name="source_not_found_name">لم يتم العثور على المصدر: s$1%</string>
+    <string name="source_not_found_name">لم يتم العثور على المصدر: %1$s</string>
     <string name="tracking_info">مزامنة أحاديّة لتحديث تقدم الفصول في خدمات التتبع. قم بإعداد التتبع الخاص بمانجا محدّدة من زر التتبع الخاص بها.</string>
     <string name="unofficial_extension_message">هذه الإضافة ليست من قائمة إضافات Tachiyomi الرسميّة.</string>
     <string name="ext_unofficial">غير رسمي</string>

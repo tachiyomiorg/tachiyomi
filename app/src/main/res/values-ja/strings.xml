@@ -593,12 +593,12 @@
     <string name="pref_remove_bookmarked_chapters">ブックマークした章を削除</string>
     <string name="pref_category_delete_chapters">章を削除</string>
     <string name="ext_nsfw_warning">成人向けのコンテンツをが含まれる可能性があります</string>
-    <string name="ext_nsfw_short">18禁</string>
-    <string name="parental_controls_info">非公式や誤ってフラグ付けされた可能性のある拡張機能の18禁コンテンツはこれからも表示される恐れがあります。</string>
+    <string name="ext_nsfw_short">成人向け</string>
+    <string name="parental_controls_info">非公式や誤ってフラグ付けされた可能性のある拡張機能の成人向けのコンテンツはこれからも表示される恐れがあります。</string>
     <string name="pref_allow_nsfw_sources_blocked">ブロック済み</string>
     <string name="pref_allow_nsfw_sources_allowed_multisource">ソースのブラウズをブロックするが、拡張機能リストに表示する</string>
     <string name="pref_allow_nsfw_sources_allowed">許可済み</string>
-    <string name="pref_allow_nsfw_sources">18禁ソース</string>
+    <string name="pref_allow_nsfw_sources">成人向けのソース</string>
     <plurals name="missing_chapters_warning">
         <item quantity="other">%d章が欠けています</item>
     </plurals>

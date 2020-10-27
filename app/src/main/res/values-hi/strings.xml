@@ -626,4 +626,10 @@
     <string name="manga_from_library">पुस्तकालय से मंगा</string>
     <string name="pref_hide_bottom_bar_on_scroll">स्क्रॉल पर नीचे बार छिपाएं</string>
     <string name="action_search_settings">खोज सेंटिंग</string>
+    <string name="pref_incognito_mode_summary">इतिहास पढ़ने से रोक देता है</string>
+    <string name="pref_incognito_mode">इंकॉग्निटो मोड</string>
+    <string name="pref_clear_history_summary">सभी मंगा के लिए पढ़ने का इतिहास हटाएं</string>
+    <string name="pref_clear_history">इतिहास मिटा दें</string>
+    <string name="clear_history_confirmation">क्या आपको यकीन है\? सारा इतिहास खो जाएगा।</string>
+    <string name="clear_history_completed">इतिहास हटाया गया</string>
 </resources>

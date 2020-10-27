@@ -486,7 +486,7 @@
     <string name="pref_refresh_library_tracking">Aktualiziraj praćenje</string>
     <string name="clear_database_completed">Unosi su izbrisani</string>
     <string name="clear_database_confirmation">Sigurno\? Pročitana poglavlja i napredak manga koji nisu u biblioteci, bit će izgubljeni</string>
-    <string name="pref_clear_database_summary">Izbriši povijest manga koji se ne nalaze u tvojoj biblioteci</string>
+    <string name="pref_clear_database_summary">Izbriši povijest manga koje se ne nalaze u tvojoj biblioteci</string>
     <string name="pref_clear_database">Isprazni bazu podataka</string>
     <string name="choices_reset">Izbori u dijaloškom okviru resetirani</string>
     <string name="cookies_cleared">Kolačići uklonjeni</string>
@@ -601,7 +601,7 @@
     <plurals name="num_trackers">
         <item quantity="one">1 pratilac</item>
         <item quantity="few">%d pratioca</item>
-        <item quantity="other">%d pratilaca</item>
+        <item quantity="other">%d pratioca</item>
     </plurals>
     <string name="no_pinned_sources">Nemaš prikvačenih izvora</string>
     <string name="group_backup_restore">Sigurnosna kopija i obnavljanje</string>
@@ -622,7 +622,7 @@
     <string name="backup_restore_missing_trackers">Praćenja bez prijave:</string>
     <string name="parental_controls_info">To ne sprečava neslužbena ili potencijalno krivo označena proširenje prikazati sadržaj 18+ unutar aplikacije.</string>
     <plurals name="missing_chapters_warning">
-        <item quantity="one">Nedostaje jedno poglavlje</item>
+        <item quantity="one">Nedostaje 1 poglavlje</item>
         <item quantity="few">Nedostaju %d poglavlja</item>
         <item quantity="other">Nedostaje %d poglavlja</item>
     </plurals>
@@ -638,4 +638,10 @@
     <string name="manga_from_library">Manga iz biblioteke</string>
     <string name="downloaded_chapters">Preuzeta poglavlja</string>
     <string name="pref_hide_bottom_bar_on_scroll">Sakrij donju traku pri klizanju</string>
+    <string name="pref_incognito_mode">Anonimni način rada</string>
+    <string name="pref_incognito_mode_summary">Zaustavlja čitanje povijesti</string>
+    <string name="pref_clear_history_summary">Izbriši povijest čitanja za sve mange</string>
+    <string name="pref_clear_history">Izbriši povijest</string>
+    <string name="clear_history_confirmation">Sigurno\? Izgubit će se sva povijest.</string>
+    <string name="clear_history_completed">Povijest izbrisana</string>
 </resources>

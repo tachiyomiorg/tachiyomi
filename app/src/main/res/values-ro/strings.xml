@@ -638,4 +638,10 @@
     <string name="pref_hide_bottom_bar_on_scroll">Ascundeți bara de jos când faceți scroll</string>
     <string name="action_web_view">Webview</string>
     <string name="action_search_settings">Setări de căutare</string>
+    <string name="pref_incognito_mode_summary">Întrerupe citirea istoricului</string>
+    <string name="pref_incognito_mode">Modul incognito</string>
+    <string name="pref_clear_history_summary">Ștergeți istoricul de lectură pentru toate manga</string>
+    <string name="pref_clear_history">Sterge istoricul</string>
+    <string name="clear_history_confirmation">Esti sigur\? Toată istoria se va pierde.</string>
+    <string name="clear_history_completed">Istoric șters</string>
 </resources>

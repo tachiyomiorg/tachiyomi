@@ -14,7 +14,7 @@
     <string name="action_open_in_web_view">Abrir en WebView</string>
     <string name="action_open_in_browser">Abrir en el navegador</string>
     <string name="action_move">Mover</string>
-    <string name="action_resume">Resumir</string>
+    <string name="action_resume">Reanudar</string>
     <string name="action_remove">Remover</string>
     <string name="action_next_chapter">Próximo capítulo</string>
     <string name="action_previous_chapter">Capítulo anterior</string>
@@ -589,8 +589,8 @@
     <string name="pref_category_reading_mode">Modo de lectura</string>
     <string name="pref_category_theme">Tema</string>
     <plurals name="num_trackers">
-        <item quantity="one">Rastreador</item>
-        <item quantity="other">Rastreadores</item>
+        <item quantity="one">1 rastreador</item>
+        <item quantity="other">%d rastreadores</item>
     </plurals>
     <string name="group_downloader">Descargas</string>
     <string name="channel_errors">Errores</string>
@@ -626,4 +626,10 @@
     <string name="manga_from_library">Manga de la biblioteca</string>
     <string name="pref_hide_bottom_bar_on_scroll">Ocultar la barra inferior al desplazar</string>
     <string name="action_search_settings">Opciones de búsqueda</string>
+    <string name="pref_incognito_mode_summary">Pausar historial de lectura</string>
+    <string name="pref_incognito_mode">Modo incógnito</string>
+    <string name="pref_clear_history_summary">Eliminar historial de lectura para todos los mangas</string>
+    <string name="pref_clear_history">Limpiar historial</string>
+    <string name="clear_history_confirmation">¿Estás seguro\? Todo el historial se perderá.</string>
+    <string name="clear_history_completed">Historial borrado</string>
 </resources>

@@ -656,4 +656,10 @@
     <string name="downloaded_chapters">Capítulos descarregados</string>
     <string name="manga_from_library">Mangas da biblioteca</string>
     <string name="pref_hide_bottom_bar_on_scroll">Esconder a barra inferior ao rodar</string>
+    <string name="pref_incognito_mode_summary">Pausa histórico de leitura</string>
+    <string name="pref_incognito_mode">Modo incógnito</string>
+    <string name="pref_clear_history_summary">Eliminar histórico de leitura de todas as mangás</string>
+    <string name="pref_clear_history">Eliminar histórico</string>
+    <string name="clear_history_confirmation">Tem a certeza\? Todo o histórico será perdido.</string>
+    <string name="clear_history_completed">Histórico eliminado</string>
 </resources>

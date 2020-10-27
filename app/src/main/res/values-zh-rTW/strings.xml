@@ -605,4 +605,11 @@
     <string name="confirm_set_chapter_settings">確定要將目前的選項保存為預設值嗎？</string>
     <string name="no_chapters_error">沒有章節</string>
     <string name="set_chapter_settings_as_default">保存為預設值</string>
+    <string name="clear_history_completed">已刪除記錄</string>
+    <string name="clear_history_confirmation">所有的閱讀記錄將會遺失，你確定嗎？</string>
+    <string name="pref_clear_history_summary">將所有漫畫的閱讀記錄刪除</string>
+    <string name="pref_clear_history">清除閱讀記錄</string>
+    <string name="pref_hide_bottom_bar_on_scroll">捲動時隱藏底部功能表</string>
+    <string name="pref_incognito_mode_summary">暫停閱讀記錄</string>
+    <string name="pref_incognito_mode">無痕模式</string>
 </resources>

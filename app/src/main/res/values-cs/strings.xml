@@ -9,7 +9,7 @@
     <string name="label_recent_manga">Historie</string>
     <string name="label_categories">Kategorie</string>
     <string name="label_backup">Záloha</string>
-    <string name="label_migration">Zdroj migrace</string>
+    <string name="label_migration">Migrovat</string>
     <string name="label_extensions">Rozšíření</string>
     <string name="label_extension_info">Informace o rozšíření</string>
     <string name="action_settings">Nastavení</string>

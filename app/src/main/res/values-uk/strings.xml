@@ -420,8 +420,9 @@
     <string name="lock_never">Ніколи</string>
     <plurals name="lock_after_mins">
         <item quantity="one">Після 1 хвилини</item>
-        <item quantity="few">Після 1%$s хвилин</item>
-        <item quantity="many">Після 1%$s хвилин</item>
+        <item quantity="few">Після %1$s хвилин</item>
+        <item quantity="many">Після %1$s хвилин</item>
+        <item quantity="other">Після %1$s хвилин</item>
     </plurals>
     <string name="secure_screen">Екран безпеки</string>
     <string name="ext_updates_pending">Очікуються оновлення</string>
@@ -645,4 +646,10 @@
     <string name="manga_from_library">Манга з бібліотеки</string>
     <string name="pref_hide_bottom_bar_on_scroll">Приховати нижню панель при прокручуванні</string>
     <string name="action_search_settings">Налаштування пошуку</string>
+    <string name="pref_incognito_mode_summary">Призупиняє історію читання</string>
+    <string name="pref_incognito_mode">Режим інкогніто</string>
+    <string name="pref_clear_history_summary">Видалити всю історію для всієї манги</string>
+    <string name="pref_clear_history">Очистити історію</string>
+    <string name="clear_history_confirmation">Ви впевнені\? Всю історію буде втрачено.</string>
+    <string name="clear_history_completed">Історію видалено</string>
 </resources>

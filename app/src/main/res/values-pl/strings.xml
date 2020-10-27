@@ -611,4 +611,5 @@
     <string name="pref_allow_nsfw_sources_allowed">Dozwolone</string>
     <string name="pref_allow_nsfw_sources">Źródła 18+</string>
     <string name="pref_category_parental_controls">Kontrola rodzicielska</string>
+    <string name="action_search_settings">Ustawienia szukania</string>
 </resources>
