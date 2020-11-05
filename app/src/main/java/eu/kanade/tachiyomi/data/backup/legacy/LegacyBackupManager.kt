@@ -2,44 +2,52 @@ package eu.kanade.tachiyomi.data.backup.legacy
 
 import android.content.Context
 import android.net.Uri
-import com.github.salomonbrys.kotson.fromJson
-import com.github.salomonbrys.kotson.registerTypeAdapter
-import com.github.salomonbrys.kotson.registerTypeHierarchyAdapter
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.google.gson.JsonArray
 import eu.kanade.tachiyomi.data.backup.AbstractBackupManager
-import eu.kanade.tachiyomi.data.backup.legacy.models.Backup.CURRENT_VERSION
+import eu.kanade.tachiyomi.data.backup.legacy.models.Backup.Companion.CURRENT_VERSION
 import eu.kanade.tachiyomi.data.backup.legacy.models.DHistory
-import eu.kanade.tachiyomi.data.backup.legacy.serializer.CategoryTypeAdapter
-import eu.kanade.tachiyomi.data.backup.legacy.serializer.ChapterTypeAdapter
-import eu.kanade.tachiyomi.data.backup.legacy.serializer.HistoryTypeAdapter
-import eu.kanade.tachiyomi.data.backup.legacy.serializer.MangaTypeAdapter
-import eu.kanade.tachiyomi.data.backup.legacy.serializer.TrackTypeAdapter
-import eu.kanade.tachiyomi.data.database.models.CategoryImpl
+import eu.kanade.tachiyomi.data.backup.legacy.serializer.CategoryImplTypeSerializer
+import eu.kanade.tachiyomi.data.backup.legacy.serializer.CategoryTypeSerializer
+import eu.kanade.tachiyomi.data.backup.legacy.serializer.ChapterImplTypeSerializer
+import eu.kanade.tachiyomi.data.backup.legacy.serializer.ChapterTypeSerializer
+import eu.kanade.tachiyomi.data.backup.legacy.serializer.HistoryTypeSerializer
+import eu.kanade.tachiyomi.data.backup.legacy.serializer.MangaImplTypeSerializer
+import eu.kanade.tachiyomi.data.backup.legacy.serializer.MangaTypeSerializer
+import eu.kanade.tachiyomi.data.backup.legacy.serializer.TrackImplTypeSerializer
+import eu.kanade.tachiyomi.data.backup.legacy.serializer.TrackTypeSerializer
+import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Chapter
-import eu.kanade.tachiyomi.data.database.models.ChapterImpl
 import eu.kanade.tachiyomi.data.database.models.History
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.database.models.MangaCategory
-import eu.kanade.tachiyomi.data.database.models.MangaImpl
 import eu.kanade.tachiyomi.data.database.models.Track
-import eu.kanade.tachiyomi.data.database.models.TrackImpl
 import eu.kanade.tachiyomi.data.database.models.toMangaInfo
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.model.toSManga
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.modules.SerializersModule
+import kotlinx.serialization.modules.contextual
 import kotlin.math.max
 
 class LegacyBackupManager(context: Context, version: Int = CURRENT_VERSION) : AbstractBackupManager(context) {
 
-    val parser: Gson = when (version) {
-        2 -> GsonBuilder()
-            .registerTypeAdapter<MangaImpl>(MangaTypeAdapter.build())
-            .registerTypeHierarchyAdapter<ChapterImpl>(ChapterTypeAdapter.build())
-            .registerTypeAdapter<CategoryImpl>(CategoryTypeAdapter.build())
-            .registerTypeAdapter<DHistory>(HistoryTypeAdapter.build())
-            .registerTypeHierarchyAdapter<TrackImpl>(TrackTypeAdapter.build())
-            .create()
+    val parser: Json = when (version) {
+        2 -> Json {
+            // Forks may have added items to backup
+            ignoreUnknownKeys = true
+
+            // Register custom serializers
+            serializersModule = SerializersModule {
+                contextual(MangaTypeSerializer)
+                contextual(MangaImplTypeSerializer)
+                contextual(ChapterTypeSerializer)
+                contextual(ChapterImplTypeSerializer)
+                contextual(CategoryTypeSerializer)
+                contextual(CategoryImplTypeSerializer)
+                contextual(TrackTypeSerializer)
+                contextual(TrackImplTypeSerializer)
+                contextual(HistoryTypeSerializer)
+            }
+        }
         else -> throw Exception("Unknown backup version")
     }
 
@@ -79,12 +87,11 @@ class LegacyBackupManager(context: Context, version: Int = CURRENT_VERSION) : Ab
     /**
      * Restore the categories from Json
      *
-     * @param jsonCategories array containing categories
+     * @param backupCategories array containing categories
      */
-    internal fun restoreCategories(jsonCategories: JsonArray) {
+    internal fun restoreCategories(backupCategories: List<Category>) {
         // Get categories from file and from db
         val dbCategories = databaseHelper.getCategories().executeAsBlocking()
-        val backupCategories = parser.fromJson<List<CategoryImpl>>(jsonCategories)
 
         // Iterate over them
         backupCategories.forEach { category ->

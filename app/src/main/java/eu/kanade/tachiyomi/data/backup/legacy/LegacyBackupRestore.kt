@@ -2,88 +2,80 @@ package eu.kanade.tachiyomi.data.backup.legacy
 
 import android.content.Context
 import android.net.Uri
-import com.github.salomonbrys.kotson.fromJson
-import com.google.gson.JsonArray
-import com.google.gson.JsonElement
-import com.google.gson.JsonObject
-import com.google.gson.JsonParser
-import com.google.gson.stream.JsonReader
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.backup.AbstractBackupRestore
 import eu.kanade.tachiyomi.data.backup.BackupNotifier
 import eu.kanade.tachiyomi.data.backup.legacy.models.Backup
-import eu.kanade.tachiyomi.data.backup.legacy.models.Backup.MANGAS
 import eu.kanade.tachiyomi.data.backup.legacy.models.DHistory
+import eu.kanade.tachiyomi.data.backup.legacy.models.MangaObject
+import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Chapter
-import eu.kanade.tachiyomi.data.database.models.ChapterImpl
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.database.models.MangaImpl
 import eu.kanade.tachiyomi.data.database.models.Track
-import eu.kanade.tachiyomi.data.database.models.TrackImpl
 import eu.kanade.tachiyomi.source.Source
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.decodeFromJsonElement
+import kotlinx.serialization.json.intOrNull
+import kotlinx.serialization.json.jsonPrimitive
+import okio.buffer
+import okio.source
 import java.util.Date
 
 class LegacyBackupRestore(context: Context, notifier: BackupNotifier) : AbstractBackupRestore<LegacyBackupManager>(context, notifier) {
 
     override suspend fun performRestore(uri: Uri): Boolean {
-        val reader = JsonReader(context.contentResolver.openInputStream(uri)!!.bufferedReader())
-        val json = JsonParser.parseReader(reader).asJsonObject
+        // Read the json and create a Json Object,
+        // cannot use the backupManager json deserializer one because its not initialized yet
+        val backupObject = Json.decodeFromString<JsonObject>(
+            context.contentResolver.openInputStream(uri)!!.source().buffer().use { it.readUtf8() }
+        )
 
-        val version = json.get(Backup.VERSION)?.asInt ?: 1
+        // Get parser version
+        val version = backupObject["version"]?.jsonPrimitive?.intOrNull ?: 1
+
+        // Initialize manager
         backupManager = LegacyBackupManager(context, version)
 
-        val mangasJson = json.get(MANGAS).asJsonArray
-        restoreAmount = mangasJson.size() + 1 // +1 for categories
+        // Decode the json object to a Backup object
+        val backup = backupManager.parser.decodeFromJsonElement<Backup>(backupObject)
+
+        restoreAmount = backup.mangas.size + 1 // +1 for categories
 
         // Restore categories
-        json.get(Backup.CATEGORIES)?.let { restoreCategories(it) }
+        backup.categories?.let { restoreCategories(it) }
 
         // Store source mapping for error messages
-        sourceMapping = LegacyBackupRestoreValidator.getSourceMapping(json)
+        sourceMapping = LegacyBackupRestoreValidator.getSourceMapping(backup.extensions ?: emptyList())
 
         // Restore individual manga
-        mangasJson.forEach {
+        backup.mangas.forEach {
             if (job?.isActive != true) {
                 return false
             }
 
-            restoreManga(it.asJsonObject)
+            restoreManga(it)
         }
 
         return true
     }
 
-    private fun restoreCategories(categoriesJson: JsonElement) {
+    private fun restoreCategories(categoriesJson: List<Category>) {
         db.inTransaction {
-            backupManager.restoreCategories(categoriesJson.asJsonArray)
+            backupManager.restoreCategories(categoriesJson)
         }
 
         restoreProgress += 1
         showRestoreProgress(restoreProgress, restoreAmount, context.getString(R.string.categories))
     }
 
-    private suspend fun restoreManga(mangaJson: JsonObject) {
-        val manga = backupManager.parser.fromJson<MangaImpl>(
-            mangaJson.get(
-                Backup.MANGA
-            )
-        )
-        val chapters = backupManager.parser.fromJson<List<ChapterImpl>>(
-            mangaJson.get(Backup.CHAPTERS)
-                ?: JsonArray()
-        )
-        val categories = backupManager.parser.fromJson<List<String>>(
-            mangaJson.get(Backup.CATEGORIES)
-                ?: JsonArray()
-        )
-        val history = backupManager.parser.fromJson<List<DHistory>>(
-            mangaJson.get(Backup.HISTORY)
-                ?: JsonArray()
-        )
-        val tracks = backupManager.parser.fromJson<List<TrackImpl>>(
-            mangaJson.get(Backup.TRACK)
-                ?: JsonArray()
-        )
+    private suspend fun restoreManga(mangaJson: MangaObject) {
+        val manga = mangaJson.manga
+        val chapters = mangaJson.chapters ?: emptyList()
+        val categories = mangaJson.categories ?: emptyList()
+        val history = mangaJson.history ?: emptyList()
+        val tracks = mangaJson.track ?: emptyList()
 
         val source = backupManager.sourceManager.get(manga.source)
         val sourceName = sourceMapping[manga.source] ?: manga.source.toString()
