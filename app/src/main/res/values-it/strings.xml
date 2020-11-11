@@ -658,5 +658,11 @@
     <string name="action_search_settings">Ricerca impostazioni</string>
     <string name="downloaded_chapters">Capitoli scaricati</string>
     <string name="manga_from_library">Manga dalla libreria</string>
-    <string name="pref_hide_bottom_bar_on_scroll">Nascondi la barra in basso allo scorrimento</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Nascondi la barra dei pulsanti quando scorri</string>
+    <string name="pref_incognito_mode_summary">Sospendi cronologia di lettura</string>
+    <string name="pref_incognito_mode">Modalità incognito</string>
+    <string name="pref_clear_history_summary">Cancella cronologia di lettura di tutti i manga</string>
+    <string name="pref_clear_history">Svuota cronologia</string>
+    <string name="clear_history_confirmation">Sei sicuro\? Tutta la cronologia verrà cancellata.</string>
+    <string name="clear_history_completed">Cronologia cancellata</string>
 </resources>

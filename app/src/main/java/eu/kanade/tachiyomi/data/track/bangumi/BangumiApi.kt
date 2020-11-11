@@ -20,9 +20,12 @@ import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import rx.Observable
+import uy.kohesive.injekt.injectLazy
 import java.net.URLEncoder
 
 class BangumiApi(private val client: OkHttpClient, interceptor: BangumiInterceptor) {
+
+    private val json: Json by injectLazy()
 
     private val authClient = client.newBuilder().addInterceptor(interceptor).build()
 
@@ -93,7 +96,7 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
                 if (responseBody.contains("\"code\":404")) {
                     responseBody = "{\"results\":0,\"list\":[]}"
                 }
-                val response = Json.decodeFromString<JsonObject>(responseBody)["list"]?.jsonArray
+                val response = json.decodeFromString<JsonObject>(responseBody)["list"]?.jsonArray
                 response?.filter { it.jsonObject["type"]?.jsonPrimitive?.int == 1 }?.map { jsonToSearch(it.jsonObject) }
             }
     }
@@ -134,7 +137,7 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
             .map { netResponse ->
                 // get comic info
                 val responseBody = netResponse.body?.string().orEmpty()
-                jsonToTrack(Json.decodeFromString(responseBody))
+                jsonToTrack(json.decodeFromString(responseBody))
             }
     }
 
@@ -151,7 +154,7 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
             .asObservableSuccess()
             .map { netResponse ->
                 val resp = netResponse.body?.string()
-                val coll = Json.decodeFromString<Collection>(resp!!)
+                val coll = json.decodeFromString<Collection>(resp!!)
                 track.status = coll.status?.id!!
                 track.last_chapter_read = coll.ep_status!!
                 track
@@ -164,7 +167,7 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
             if (responseBody.isEmpty()) {
                 throw Exception("Null Response")
             }
-            Json.decodeFromString<OAuth>(responseBody)
+            json.decodeFromString<OAuth>(responseBody)
         }
     }
 

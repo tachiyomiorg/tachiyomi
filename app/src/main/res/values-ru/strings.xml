@@ -648,9 +648,9 @@
     <string name="downloaded_chapters">Загруженные главы</string>
     <string name="manga_from_library">Манга из библиотеки</string>
     <string name="pref_hide_bottom_bar_on_scroll">Скрыть нижнюю панель при прокрутке</string>
-    <string name="pref_incognito_mode_summary">Приостанавливает историю прочтения</string>
+    <string name="pref_incognito_mode_summary">Приостанавливает историю чтения</string>
     <string name="pref_incognito_mode">Режим инкогнито</string>
-    <string name="pref_clear_history_summary">Удалить историю прочтения для всей манги</string>
+    <string name="pref_clear_history_summary">Удалить историю чтения для всей манги</string>
     <string name="pref_clear_history">Очистить историю</string>
     <string name="clear_history_confirmation">Вы уверены\? Вся история будет удалена.</string>
     <string name="clear_history_completed">История удалена</string>

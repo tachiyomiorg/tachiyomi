@@ -48,7 +48,7 @@
     <string name="action_display">디스플레이</string>
     <string name="history">기록</string>
     <string name="label_download_queue">다운로드 대기열</string>
-    <string name="label_library">내 서재</string>
+    <string name="label_library">서재</string>
     <string name="label_recent_manga">최근 읽음</string>
     <string name="label_recent_updates">서재 업데이트</string>
     <string name="action_sort_total">모든 챕터</string>

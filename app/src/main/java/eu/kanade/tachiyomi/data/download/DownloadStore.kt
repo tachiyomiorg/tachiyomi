@@ -28,6 +28,7 @@ class DownloadStore(
      */
     private val preferences = context.getSharedPreferences("active_downloads", Context.MODE_PRIVATE)
 
+    private val json: Json by injectLazy()
     private val db: DatabaseHelper by injectLazy()
 
     /**
@@ -109,7 +110,7 @@ class DownloadStore(
      */
     private fun serialize(download: Download): String {
         val obj = DownloadObject(download.manga.id!!, download.chapter.id!!, counter++)
-        return Json.encodeToString(obj)
+        return json.encodeToString(obj)
     }
 
     /**
@@ -119,7 +120,7 @@ class DownloadStore(
      */
     private fun deserialize(string: String): DownloadObject? {
         return try {
-            Json.decodeFromString<DownloadObject>(string)
+            json.decodeFromString<DownloadObject>(string)
         } catch (e: Exception) {
             null
         }

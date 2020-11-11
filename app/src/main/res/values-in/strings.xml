@@ -466,7 +466,7 @@
     <string name="action_sort_last_checked">Terakhir diperiksa</string>
     <string name="information_webview_required">Tampilan web dibutuhkan untuk Tachiyomi</string>
     <plurals name="update_check_notification_ext_updates">
-        <item quantity="other">Terdapat perbaharuan ekstensi</item>
+        <item quantity="other">Terdapat %d perbaharuan ekstensi</item>
     </plurals>
     <string name="recent_manga_time">Bab. %1$s - %2$s</string>
     <string name="updating_library">Memperbarui koleksi perpustakaan</string>
@@ -513,7 +513,7 @@
     <string name="viewer">Mode membaca</string>
     <string name="pref_true_color_summary">Mengurangi kualitas, namun mempengaruhi performa</string>
     <plurals name="num_categories">
-        <item quantity="other">Kategori</item>
+        <item quantity="other">%d kategori</item>
     </plurals>
     <string name="action_display_unread_badge">Belum Dibaca</string>
     <string name="gray_background">Abu-abu</string>
@@ -611,4 +611,13 @@
     <string name="action_web_view">Tampilan Web</string>
     <string name="share_page_info">%1$s: %2$s, halaman %3$d</string>
     <string name="action_search_settings">Cari pengaturan</string>
+    <string name="downloaded_chapters">Bab terunduh</string>
+    <string name="manga_from_library">Manga dari perpustakaan</string>
+    <string name="pref_incognito_mode_summary">Jeda riwayat membaca</string>
+    <string name="pref_incognito_mode">Mode penyamaran</string>
+    <string name="pref_clear_history_summary">Hapus riwayat membaca untuk seluruh manga</string>
+    <string name="pref_clear_history">Hapus riwayat</string>
+    <string name="clear_history_confirmation">Apakah anda yakin\? Semua riwayat akan terhapus.</string>
+    <string name="clear_history_completed">Riwayat telah dihapus</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Sembunyikan bilah bawah saat menggulirkan halaman</string>
 </resources>

@@ -40,7 +40,7 @@
     <string name="ext_installing">Лартӑнать</string>
     <string name="ext_downloading">Тиесе илӗнет</string>
     <string name="ext_install">Ларт</string>
-    <string name="ext_update">Ҫӗнетни</string>
+    <string name="ext_update">Ҫӗнет</string>
     <string name="all">Веҫех</string>
     <plurals name="num_categories">
         <item quantity="one">%d пухмӑш</item>
@@ -258,7 +258,7 @@
     <string name="custom_dir">Усӑҫ палӑртнӑ вырӑнӗ</string>
     <string name="pref_remove_after_marked_as_read">Вуланӑ пек палӑртнӑ хыҫҫӑн катерт</string>
     <string name="scale_type_original_size">Хӑйӗн виҫе</string>
-    <string name="pager_viewer">Кӗнеке элне пӑхни</string>
+    <string name="pager_viewer">Эл тӑрӑх</string>
     <string name="pref_viewer_type">Яланхилле вулав тытӑмӗ</string>
     <string name="pref_color_filter_mode">Тӗс алипе хутӑштармалли тытӑм</string>
     <string name="pref_show_reading_mode_summary">Вулӑш уҫӑ пулсан хальхи тытӑма кӗскен палӑртмалла</string>
@@ -384,7 +384,7 @@
     <string name="notification_chapters_single_and_more">%1$s сыпӑкӗ тата ытти %2$d</string>
     <string name="notification_chapters_multiple">%1$s сыпӑкӗсем</string>
     <plurals name="notification_chapters_multiple_and_more">
-        <item quantity="one">%1$s сыпӑкӗсем тата ытти %2$d</item>
+        <item quantity="one">%1$s сыпӑкӗсем</item>
         <item quantity="other">%1$s сыпӑкӗсем тата ытти %2$d</item>
     </plurals>
     <plurals name="notification_chapters_generic">
@@ -627,4 +627,10 @@
     <string name="pref_hide_bottom_bar_on_scroll">Ҫаврӑнтару чух аялти хӑмине пытармалла</string>
     <string name="downloaded_chapters">Тиесе илнӗ сыпӑксем</string>
     <string name="manga_from_library">Вулавӑшран манкӑ</string>
+    <string name="pref_incognito_mode_summary">Вулани кун-сула чарса лартать</string>
+    <string name="pref_clear_history">Кун-ҫул тасат</string>
+    <string name="clear_history_completed">Кун-ҫула катертнӗ</string>
+    <string name="pref_incognito_mode">Вӑрттӑнлӑх тытӑмӗ</string>
+    <string name="pref_clear_history_summary">Пур манкӑн вуланӑ кун-ҫула катерт</string>
+    <string name="clear_history_confirmation">Чӑнах катертесшӗн-и\? Веҫ кун-ҫулӗ ҫухалӗ.</string>
 </resources>

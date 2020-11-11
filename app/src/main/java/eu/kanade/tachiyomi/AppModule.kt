@@ -13,6 +13,7 @@ import eu.kanade.tachiyomi.network.NetworkHelper
 import eu.kanade.tachiyomi.source.SourceManager
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.serialization.json.Json
 import uy.kohesive.injekt.api.InjektModule
 import uy.kohesive.injekt.api.InjektRegistrar
 import uy.kohesive.injekt.api.addSingleton
@@ -43,6 +44,8 @@ class AppModule(val app: Application) : InjektModule {
         addSingletonFactory { TrackManager(app) }
 
         addSingletonFactory { Gson() }
+
+        addSingletonFactory { Json { ignoreUnknownKeys = true } }
 
         // Asynchronously init expensive components for a faster cold start
 

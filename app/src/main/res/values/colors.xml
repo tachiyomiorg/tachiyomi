@@ -28,7 +28,7 @@
     <color name="textColorSecondaryDark">@color/md_white_1000_70</color>
     <color name="textColorHintDark">@color/md_white_1000_50</color>
     <color name="dividerDark">@android:color/transparent</color>
-    <color name="rippleColorDark">@color/md_white_1000_20</color>-
+    <color name="rippleColorDark">@color/md_white_1000_20</color>
     <color name="backgroundDark">@color/colorDarkPrimaryDark</color>
     <color name="dialogDark">@color/colorDarkPrimary</color>
     <color name="selectorColorDark">@color/md_blue_A200_50</color>

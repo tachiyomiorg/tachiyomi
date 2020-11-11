@@ -5,8 +5,11 @@ import kotlinx.serialization.json.Json
 import okhttp3.FormBody
 import okhttp3.Interceptor
 import okhttp3.Response
+import uy.kohesive.injekt.injectLazy
 
 class BangumiInterceptor(val bangumi: Bangumi) : Interceptor {
+
+    private val json: Json by injectLazy()
 
     /**
      * OAuth object used for authenticated requests.
@@ -30,7 +33,7 @@ class BangumiInterceptor(val bangumi: Bangumi) : Interceptor {
         if (currAuth.isExpired()) {
             val response = chain.proceed(BangumiApi.refreshTokenRequest(currAuth.refresh_token!!))
             if (response.isSuccessful) {
-                newAuth(Json.decodeFromString<OAuth>(response.body!!.string()))
+                newAuth(json.decodeFromString<OAuth>(response.body!!.string()))
             } else {
                 response.close()
             }

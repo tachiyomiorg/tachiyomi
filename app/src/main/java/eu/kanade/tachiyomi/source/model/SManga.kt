@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.source.model
 
+import tachiyomi.source.model.MangaInfo
 import java.io.Serializable
 
 interface SManga : Serializable {
@@ -59,5 +60,32 @@ interface SManga : Serializable {
         fun create(): SManga {
             return SMangaImpl()
         }
+    }
+}
+
+fun SManga.toMangaInfo(): MangaInfo {
+    return MangaInfo(
+        key = this.url,
+        title = this.title,
+        artist = this.artist ?: "",
+        author = this.author ?: "",
+        description = this.description ?: "",
+        genres = this.genre?.split(", ") ?: emptyList(),
+        status = this.status,
+        cover = this.thumbnail_url ?: ""
+    )
+}
+
+fun MangaInfo.toSManga(): SManga {
+    val mangaInfo = this
+    return SManga.create().apply {
+        url = mangaInfo.key
+        title = mangaInfo.title
+        artist = mangaInfo.artist
+        author = mangaInfo.author
+        description = mangaInfo.description
+        genre = mangaInfo.genres.joinToString(", ")
+        status = mangaInfo.status
+        thumbnail_url = mangaInfo.cover
     }
 }

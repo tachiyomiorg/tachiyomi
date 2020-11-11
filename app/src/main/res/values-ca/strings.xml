@@ -625,4 +625,10 @@
     <string name="downloaded_chapters">Capítols baixats</string>
     <string name="manga_from_library">Manga de la biblioteca</string>
     <string name="pref_hide_bottom_bar_on_scroll">Amaga la barra inferior en desplaçar</string>
+    <string name="clear_history_confirmation">"N\'esteu segur\? Es perdrà  tot l\'historial."</string>
+    <string name="pref_incognito_mode_summary">Pausa l\'historial de lectura</string>
+    <string name="pref_incognito_mode">Mode d\'incògnit</string>
+    <string name="pref_clear_history_summary">Suprimeix l\'historial de lectura de tot el manga</string>
+    <string name="pref_clear_history">Suprimeix l\'historial</string>
+    <string name="clear_history_completed">S\'ha buidat l\'historial</string>
 </resources>

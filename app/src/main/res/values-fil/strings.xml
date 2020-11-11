@@ -626,4 +626,10 @@
     <string name="manga_from_library">Manga mula sa Aklatan</string>
     <string name="pref_hide_bottom_bar_on_scroll">Itago ang bottom bar pagka-scroll</string>
     <string name="action_search_settings">Paghahanap</string>
+    <string name="pref_incognito_mode_summary">Ihinto ang pagtala sa mga binabasa</string>
+    <string name="pref_incognito_mode">Nakatago</string>
+    <string name="pref_clear_history_summary">Burahin ang kasaysayan ng pagbasa sa bawat manga</string>
+    <string name="pref_clear_history">Burahin ang kasaysayan</string>
+    <string name="clear_history_completed">Nabura na ang buong kasaysayan</string>
+    <string name="clear_history_confirmation">Sigurado ka ba\? Buburahin nito ang buong kasaysayan ng binuksan mo.</string>
 </resources>

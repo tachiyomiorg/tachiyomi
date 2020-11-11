@@ -11,6 +11,7 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import rx.Completable
 import rx.Observable
+import uy.kohesive.injekt.injectLazy
 
 class Shikimori(private val context: Context, id: Int) : TrackService(id) {
 
@@ -27,6 +28,8 @@ class Shikimori(private val context: Context, id: Int) : TrackService(id) {
     }
 
     override val name = "Shikimori"
+
+    private val json: Json by injectLazy()
 
     private val interceptor by lazy { ShikimoriInterceptor(this) }
 
@@ -116,12 +119,12 @@ class Shikimori(private val context: Context, id: Int) : TrackService(id) {
     }
 
     fun saveToken(oauth: OAuth?) {
-        preferences.trackToken(this).set(Json.encodeToString(oauth))
+        preferences.trackToken(this).set(json.encodeToString(oauth))
     }
 
     fun restoreToken(): OAuth? {
         return try {
-            Json.decodeFromString<OAuth>(preferences.trackToken(this).get())
+            json.decodeFromString<OAuth>(preferences.trackToken(this).get())
         } catch (e: Exception) {
             null
         }

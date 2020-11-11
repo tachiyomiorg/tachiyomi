@@ -623,4 +623,13 @@
     <string name="action_web_view">WebView</string>
     <string name="share_page_info">%1$s: %2$s, pagina %3$d</string>
     <string name="action_search_settings">Zoekinstellingen</string>
+    <string name="downloaded_chapters">Gedownloade hoofdstukken</string>
+    <string name="manga_from_library">Manga uit de bibliotheek</string>
+    <string name="pref_incognito_mode_summary">Pauzeert leesgeschiedenis</string>
+    <string name="pref_incognito_mode">Incognitomodus</string>
+    <string name="pref_clear_history_summary">Verwijder leesgeschiedenis voor alle manga</string>
+    <string name="pref_clear_history">Geschiedenis wissen</string>
+    <string name="clear_history_confirmation">Weet je dit zeker\? Alle geschiedenis zal verloren gaan.</string>
+    <string name="clear_history_completed">Geschiedenis verwijderd</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Navigatiebalk verbergen bij het scrollen</string>
 </resources>

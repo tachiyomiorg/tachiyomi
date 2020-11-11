@@ -216,6 +216,7 @@ class SettingsGeneralController : SettingsController() {
                     "uk",
                     "ur-rPK",
                     "vi",
+                    "uz",
                     "zh-rCN",
                     "zh-rTW"
                 )

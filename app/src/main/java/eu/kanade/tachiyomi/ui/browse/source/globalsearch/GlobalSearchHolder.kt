@@ -4,11 +4,13 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
+import eu.kanade.tachiyomi.util.system.LocaleHelper
 import kotlinx.android.synthetic.main.global_search_controller_card.no_results_found
 import kotlinx.android.synthetic.main.global_search_controller_card.progress
 import kotlinx.android.synthetic.main.global_search_controller_card.recycler
-import kotlinx.android.synthetic.main.global_search_controller_card.source_card
+import kotlinx.android.synthetic.main.global_search_controller_card.subtitle
 import kotlinx.android.synthetic.main.global_search_controller_card.title
 import kotlinx.android.synthetic.main.global_search_controller_card.title_wrapper
 
@@ -50,10 +52,10 @@ class GlobalSearchHolder(view: View, val adapter: GlobalSearchAdapter) :
         val results = item.results
 
         val titlePrefix = if (item.highlighted) "▶ " else ""
-        val langSuffix = if (source.lang.isNotEmpty()) " (${source.lang})" else ""
 
-        // Set Title with country code if available.
-        title.text = titlePrefix + source.name + langSuffix
+        title.text = titlePrefix + source.name
+        subtitle.isVisible = source !is LocalSource
+        subtitle.text = LocaleHelper.getDisplayName(source.lang)
 
         when {
             results == null -> {
@@ -103,11 +105,9 @@ class GlobalSearchHolder(view: View, val adapter: GlobalSearchAdapter) :
 
     private fun showResultsHolder() {
         no_results_found.isVisible = false
-        source_card.isVisible = true
     }
 
     private fun showNoResults() {
         no_results_found.isVisible = true
-        source_card.isVisible = false
     }
 }

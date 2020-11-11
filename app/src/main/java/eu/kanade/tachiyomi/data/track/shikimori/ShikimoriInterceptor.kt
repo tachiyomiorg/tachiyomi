@@ -4,8 +4,11 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
 import okhttp3.Response
+import uy.kohesive.injekt.injectLazy
 
 class ShikimoriInterceptor(val shikimori: Shikimori) : Interceptor {
+
+    private val json: Json by injectLazy()
 
     /**
      * OAuth object used for authenticated requests.
@@ -23,7 +26,7 @@ class ShikimoriInterceptor(val shikimori: Shikimori) : Interceptor {
         if (currAuth.isExpired()) {
             val response = chain.proceed(ShikimoriApi.refreshTokenRequest(refreshToken))
             if (response.isSuccessful) {
-                newAuth(Json.decodeFromString<OAuth>(response.body!!.string()))
+                newAuth(json.decodeFromString<OAuth>(response.body!!.string()))
             } else {
                 response.close()
             }

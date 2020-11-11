@@ -6,11 +6,13 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.icon
 import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
+import eu.kanade.tachiyomi.util.system.LocaleHelper
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.view.setVectorCompat
 import kotlinx.android.synthetic.main.source_main_controller_card_item.image
 import kotlinx.android.synthetic.main.source_main_controller_card_item.pin
 import kotlinx.android.synthetic.main.source_main_controller_card_item.source_latest
+import kotlinx.android.synthetic.main.source_main_controller_card_item.subtitle
 import kotlinx.android.synthetic.main.source_main_controller_card_item.title
 
 class SourceHolder(private val view: View, val adapter: SourceAdapter) :
@@ -29,8 +31,9 @@ class SourceHolder(private val view: View, val adapter: SourceAdapter) :
     fun bind(item: SourceItem) {
         val source = item.source
 
-        // Set source name
         title.text = source.name
+        subtitle.isVisible = source !is LocalSource
+        subtitle.text = LocaleHelper.getDisplayName(source.lang)
 
         // Set source icon
         itemView.post {

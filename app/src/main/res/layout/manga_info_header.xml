@@ -180,8 +180,7 @@
         android:id="@+id/manga_summary_section"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="?attr/selectableItemBackground">
+        android:layout_marginTop="8dp">
 
         <TextView
             android:id="@+id/manga_summary_text"

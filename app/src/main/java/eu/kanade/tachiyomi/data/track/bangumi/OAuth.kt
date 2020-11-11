@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 data class OAuth(
     val access_token: String,
     val token_type: String,
-    val created_at: Long,
+    val created_at: Long = System.currentTimeMillis() / 1000,
     val expires_in: Long,
     val refresh_token: String?,
     val user_id: Long?

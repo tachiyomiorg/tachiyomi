@@ -7,9 +7,10 @@ import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
 import eu.kanade.tachiyomi.widget.StateImageViewTarget
-import kotlinx.android.synthetic.main.global_search_controller_card_item.itemImage
+import kotlinx.android.synthetic.main.global_search_controller_card_item.card
+import kotlinx.android.synthetic.main.global_search_controller_card_item.cover
 import kotlinx.android.synthetic.main.global_search_controller_card_item.progress
-import kotlinx.android.synthetic.main.global_search_controller_card_item.tvTitle
+import kotlinx.android.synthetic.main.global_search_controller_card_item.title
 
 class GlobalSearchCardHolder(view: View, adapter: GlobalSearchCardAdapter) :
     BaseFlexibleViewHolder(view, adapter) {
@@ -32,15 +33,17 @@ class GlobalSearchCardHolder(view: View, adapter: GlobalSearchCardAdapter) :
     }
 
     fun bind(manga: Manga) {
-        tvTitle.text = manga.title
+        card.clipToOutline = true
+
+        title.text = manga.title
         // Set alpha of thumbnail.
-        itemImage.alpha = if (manga.favorite) 0.3f else 1.0f
+        cover.alpha = if (manga.favorite) 0.3f else 1.0f
 
         setImage(manga)
     }
 
     fun setImage(manga: Manga) {
-        GlideApp.with(itemView.context).clear(itemImage)
+        GlideApp.with(itemView.context).clear(cover)
         if (!manga.thumbnail_url.isNullOrEmpty()) {
             GlideApp.with(itemView.context)
                 .load(manga.toMangaThumbnail())
@@ -48,7 +51,7 @@ class GlobalSearchCardHolder(view: View, adapter: GlobalSearchCardAdapter) :
                 .centerCrop()
                 .skipMemoryCache(true)
                 .placeholder(android.R.color.transparent)
-                .into(StateImageViewTarget(itemImage, progress))
+                .into(StateImageViewTarget(cover, progress))
         }
     }
 }

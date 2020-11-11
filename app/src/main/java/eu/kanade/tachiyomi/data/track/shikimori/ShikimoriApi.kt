@@ -24,8 +24,11 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import rx.Observable
+import uy.kohesive.injekt.injectLazy
 
 class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInterceptor) {
+
+    private val json: Json by injectLazy()
 
     private val jsonime = "application/json; charset=utf-8".toMediaTypeOrNull()
     private val authClient = client.newBuilder().addInterceptor(interceptor).build()
@@ -72,7 +75,7 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
                 if (responseBody.isEmpty()) {
                     throw Exception("Null Response")
                 }
-                val response = Json.decodeFromString<JsonArray>(responseBody)
+                val response = json.decodeFromString<JsonArray>(responseBody)
                 response.map { jsonToSearch(it.jsonObject) }
             }
     }
@@ -125,7 +128,7 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
             .asObservableSuccess()
             .map { netResponse ->
                 val responseBody = netResponse.body?.string().orEmpty()
-                Json.decodeFromString<JsonObject>(responseBody)
+                json.decodeFromString<JsonObject>(responseBody)
             }.flatMap { mangas ->
                 authClient.newCall(request)
                     .asObservableSuccess()
@@ -134,7 +137,7 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
                         if (responseBody.isEmpty()) {
                             throw Exception("Null Response")
                         }
-                        val response = Json.decodeFromString<JsonArray>(responseBody)
+                        val response = json.decodeFromString<JsonArray>(responseBody)
                         if (response.size > 1) {
                             throw Exception("Too much mangas in response")
                         }
@@ -148,7 +151,7 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
 
     fun getCurrentUser(): Int {
         val user = authClient.newCall(GET("$apiUrl/users/whoami")).execute().body?.string()!!
-        return Json.decodeFromString<JsonObject>(user)["id"]!!.jsonPrimitive.int
+        return json.decodeFromString<JsonObject>(user)["id"]!!.jsonPrimitive.int
     }
 
     fun accessToken(code: String): Observable<OAuth> {
@@ -157,7 +160,7 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
             if (responseBody.isEmpty()) {
                 throw Exception("Null Response")
             }
-            Json.decodeFromString<OAuth>(responseBody)
+            json.decodeFromString<OAuth>(responseBody)
         }
     }
 
@@ -177,9 +180,9 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
         private const val clientSecret = "229942c742dd4cde803125d17d64501d91c0b12e14cb1e5120184d77d67024c0"
 
         private const val baseUrl = "https://shikimori.one"
-        private const val apiUrl = "https://shikimori.one/api"
-        private const val oauthUrl = "https://shikimori.one/oauth/token"
-        private const val loginUrl = "https://shikimori.one/oauth/authorize"
+        private const val apiUrl = "$baseUrl/api"
+        private const val oauthUrl = "$baseUrl/oauth/token"
+        private const val loginUrl = "$baseUrl/oauth/authorize"
 
         private const val redirectUrl = "tachiyomi://shikimori-auth"
         private const val baseMangaUrl = "$apiUrl/mangas"

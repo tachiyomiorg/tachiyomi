@@ -73,7 +73,10 @@
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/root_fab"
         style="@style/Theme.Widget.FAB"
-        android:visibility="gone" />
+        android:visibility="gone"
+        tools:icon="@drawable/ic_add_24dp"
+        tools:text="Action"
+        tools:visibility="visible" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"

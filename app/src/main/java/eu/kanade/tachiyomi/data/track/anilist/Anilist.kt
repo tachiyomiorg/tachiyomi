@@ -11,6 +11,7 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import rx.Completable
 import rx.Observable
+import uy.kohesive.injekt.injectLazy
 
 class Anilist(private val context: Context, id: Int) : TrackService(id) {
 
@@ -33,6 +34,8 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
     }
 
     override val name = "AniList"
+
+    private val json: Json by injectLazy()
 
     private val interceptor by lazy { AnilistInterceptor(this, getPassword()) }
 
@@ -196,12 +199,12 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
     }
 
     fun saveOAuth(oAuth: OAuth?) {
-        preferences.trackToken(this).set(Json.encodeToString(oAuth))
+        preferences.trackToken(this).set(json.encodeToString(oAuth))
     }
 
     fun loadOAuth(): OAuth? {
         return try {
-            Json.decodeFromString<OAuth>(preferences.trackToken(this).get())
+            json.decodeFromString<OAuth>(preferences.trackToken(this).get())
         } catch (e: Exception) {
             null
         }

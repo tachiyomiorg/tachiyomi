@@ -11,10 +11,13 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import rx.Completable
 import rx.Observable
+import uy.kohesive.injekt.injectLazy
 
 class Bangumi(private val context: Context, id: Int) : TrackService(id) {
 
     override val name = "Bangumi"
+
+    private val json: Json by injectLazy()
 
     private val interceptor by lazy { BangumiInterceptor(this) }
 
@@ -111,12 +114,12 @@ class Bangumi(private val context: Context, id: Int) : TrackService(id) {
     }
 
     fun saveToken(oauth: OAuth?) {
-        preferences.trackToken(this).set(Json.encodeToString(oauth))
+        preferences.trackToken(this).set(json.encodeToString(oauth))
     }
 
     fun restoreToken(): OAuth? {
         return try {
-            Json.decodeFromString<OAuth>(preferences.trackToken(this).get())
+            json.decodeFromString<OAuth>(preferences.trackToken(this).get())
         } catch (e: Exception) {
             null
         }

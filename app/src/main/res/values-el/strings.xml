@@ -621,7 +621,7 @@
     <string name="confirm_set_chapter_settings">Είστε βέβαιοι ότι θέλετε να αποθηκεύσετε αυτές τις ρυθμίσεις ως προεπιλεγμένες;</string>
     <string name="chapter_settings">Ρυθμίσεις κεφαλαίου</string>
     <string name="action_web_view">WebView</string>
-    <string name="share_page_info">%1$s: %2 $s, σελίδα %3$d</string>
+    <string name="share_page_info">%1$s: %2$s, σελίδα %3$d</string>
     <string name="action_search_settings">Αναζήτηση ρυθμίσεων</string>
     <string name="downloaded_chapters">Κεφάλαια που έχουν ληφθεί</string>
     <string name="manga_from_library">Manga από τη βιβλιοθήκη</string>

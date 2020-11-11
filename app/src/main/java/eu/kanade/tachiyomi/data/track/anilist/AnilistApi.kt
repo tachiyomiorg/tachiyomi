@@ -23,9 +23,12 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import rx.Observable
+import uy.kohesive.injekt.injectLazy
 import java.util.Calendar
 
 class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
+
+    private val json: Json by injectLazy()
 
     private val jsonMime = "application/json; charset=utf-8".toMediaTypeOrNull()
     private val authClient = client.newBuilder().addInterceptor(interceptor).build()
@@ -61,7 +64,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 if (responseBody.isEmpty()) {
                     throw Exception("Null Response")
                 }
-                val response = Json.decodeFromString<JsonObject>(responseBody)
+                val response = json.decodeFromString<JsonObject>(responseBody)
                 track.library_id = response["data"]!!.jsonObject["SaveMediaListEntry"]!!.jsonObject["id"]!!.jsonPrimitive.long
                 track
             }
@@ -143,7 +146,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 if (responseBody.isEmpty()) {
                     throw Exception("Null Response")
                 }
-                val response = Json.decodeFromString<JsonObject>(responseBody)
+                val response = json.decodeFromString<JsonObject>(responseBody)
                 val data = response["data"]!!.jsonObject
                 val page = data["Page"]!!.jsonObject
                 val media = page["media"]!!.jsonArray
@@ -203,7 +206,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 if (responseBody.isEmpty()) {
                     throw Exception("Null Response")
                 }
-                val response = Json.decodeFromString<JsonObject>(responseBody)
+                val response = json.decodeFromString<JsonObject>(responseBody)
                 val data = response["data"]!!.jsonObject
                 val page = data["Page"]!!.jsonObject
                 val media = page["mediaList"]!!.jsonArray
@@ -248,7 +251,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 if (responseBody.isEmpty()) {
                     throw Exception("Null Response")
                 }
-                val response = Json.decodeFromString<JsonObject>(responseBody)
+                val response = json.decodeFromString<JsonObject>(responseBody)
                 val data = response["data"]!!.jsonObject
                 val viewer = data["Viewer"]!!.jsonObject
                 Pair(viewer["id"]!!.jsonPrimitive.int, viewer["mediaListOptions"]!!.jsonObject["scoreFormat"]!!.jsonPrimitive.content)

@@ -8,6 +8,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import uy.kohesive.injekt.injectLazy
 
 /**
  * Class used to keep a list of chapters for future deletion.
@@ -15,6 +16,8 @@ import kotlinx.serialization.json.Json
  * @param context the application context.
  */
 class DownloadPendingDeleter(context: Context) {
+
+    private val json: Json by injectLazy()
 
     /**
      * Preferences used to store the list of chapters to delete.
@@ -49,7 +52,7 @@ class DownloadPendingDeleter(context: Context) {
             val existingEntry = preferences.getString(manga.id!!.toString(), null)
             if (existingEntry != null) {
                 // Existing entry found on preferences, decode json and add the new chapter
-                val savedEntry = Json.decodeFromString<Entry>(existingEntry)
+                val savedEntry = json.decodeFromString<Entry>(existingEntry)
 
                 // Append new chapters
                 val newChapters = savedEntry.chapters.addUniqueById(chapters)
@@ -65,7 +68,7 @@ class DownloadPendingDeleter(context: Context) {
         }
 
         // Save current state
-        val json = Json.encodeToString(newEntry)
+        val json = json.encodeToString(newEntry)
         preferences.edit {
             putString(newEntry.manga.id.toString(), json)
         }
@@ -97,7 +100,7 @@ class DownloadPendingDeleter(context: Context) {
     private fun decodeAll(): List<Entry> {
         return preferences.all.values.mapNotNull { rawEntry ->
             try {
-                (rawEntry as? String)?.let { Json.decodeFromString<Entry>(it) }
+                (rawEntry as? String)?.let { json.decodeFromString<Entry>(it) }
             } catch (e: Exception) {
                 null
             }
