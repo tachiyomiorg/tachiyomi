@@ -324,6 +324,7 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
      */
     override fun handleKeyEvent(event: KeyEvent): Boolean {
         val isUp = event.action == KeyEvent.ACTION_UP
+        val ctrlPressed = event.metaState.and(KeyEvent.META_CTRL_ON) > 0
 
         when (event.keyCode) {
             KeyEvent.KEYCODE_VOLUME_DOWN -> {
@@ -340,8 +341,16 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
                     if (!config.volumeKeysInverted) moveUp() else moveDown()
                 }
             }
-            KeyEvent.KEYCODE_DPAD_RIGHT -> if (isUp) moveRight()
-            KeyEvent.KEYCODE_DPAD_LEFT -> if (isUp) moveLeft()
+            KeyEvent.KEYCODE_DPAD_RIGHT -> {
+                if (isUp) {
+                    if (ctrlPressed) moveToNext() else moveRight()
+                }
+            }
+            KeyEvent.KEYCODE_DPAD_LEFT -> {
+                if (isUp) {
+                    if (ctrlPressed) moveToPrevious() else moveLeft()
+                }
+            }
             KeyEvent.KEYCODE_DPAD_DOWN -> if (isUp) moveDown()
             KeyEvent.KEYCODE_DPAD_UP -> if (isUp) moveUp()
             KeyEvent.KEYCODE_PAGE_DOWN -> if (isUp) moveDown()

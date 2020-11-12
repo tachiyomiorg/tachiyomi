@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<remote-actions
+    actionset_label="@string/app_name"
+    version="1.2">
+    <action
+        id="tachiyomi_next_page"
+        label="@string/spen_next_page"
+        priority="1"
+        repeatable="true"
+        repeatable_interval="short"
+        trigger_key="CTRL_LEFT+DPAD_RIGHT">
+        <preference
+            name="gesture"
+            value="click" />
+    </action>
+    <action
+        id="tachiyomi_previous_page"
+        label="@string/spen_previous_page"
+        priority="2"
+        repeatable="true"
+        repeatable_interval="short"
+        trigger_key="CTRL_LEFT+DPAD_LEFT">
+        <preference
+            name="gesture"
+            value="double_click" />
+    </action>
+    <action
+        id="tachiyomi_back"
+        label="@string/action_webview_back"
+        priority="3"
+        repeatable="true"
+        repeatable_interval="short"
+        trigger_key="BACK">
+        <preference
+            name="gesture"
+            value="circle_ccw" />
+    </action>
+    <action
+        id="tachiyomi_next_chapter"
+        label="@string/action_next_chapter"
+        priority="4"
+        repeatable="true"
+        repeatable_interval="short"
+        trigger_key="N">
+        <preference
+            name="gesture"
+            value="swipe_right" />
+    </action>
+    <action
+        id="tachiyomi_previous_chapter"
+        label="@string/action_previous_chapter"
+        priority="5"
+        repeatable="true"
+        repeatable_interval="short"
+        trigger_key="P">
+        <preference
+            name="gesture"
+            value="swipe_left" />
+    </action>
+</remote-actions>

@@ -60,7 +60,14 @@
         </activity>
         <activity
             android:name=".ui.reader.ReaderActivity"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="com.samsung.android.support.REMOTE_ACTION" />
+            </intent-filter>
+
+            <meta-data android:name="com.samsung.android.support.REMOTE_ACTION"
+                android:resource="@xml/s_pen_actions"/>
+        </activity>
         <activity
             android:name=".ui.security.BiometricUnlockActivity"
             android:theme="@style/Theme.Splash" />

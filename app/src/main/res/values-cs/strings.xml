@@ -401,4 +401,6 @@
     <string name="label_more">Více</string>
     <string name="action_menu">Menu</string>
     <string name="label_sources">Zdroje</string>
+    <string name="spen_previous_page">Předchozí stránka</string>
+    <string name="spen_next_page">Následující stránka</string>
 </resources>
