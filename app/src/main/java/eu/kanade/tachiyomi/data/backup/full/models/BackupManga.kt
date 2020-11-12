@@ -29,9 +29,9 @@ data class BackupManga(
     @ProtoNumber(13) var dateAdded: Long = 0,
     @ProtoNumber(14) var viewer: Int = 0,
     // @ProtoNumber(15) val flags: Int = 0, 1.x value, not used in 0.x
-    @ProtoNumber(15) var chapters: List<BackupChapter> = emptyList(),
-    @ProtoNumber(14) var categories: List<Int> = emptyList(),
-    @ProtoNumber(16) var tracking: List<BackupTracking> = emptyList(),
+    @ProtoNumber(16) var chapters: List<BackupChapter> = emptyList(),
+    @ProtoNumber(17) var categories: List<Int> = emptyList(),
+    @ProtoNumber(18) var tracking: List<BackupTracking> = emptyList(),
     // Bump by 100 for values that are not saved/implemented in 1.x but are used in 0.x
     @ProtoNumber(100) var favorite: Boolean = true,
     @ProtoNumber(101) var chapterFlags: Int = 0,

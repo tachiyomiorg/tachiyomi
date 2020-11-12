@@ -287,7 +287,7 @@ class FullBackupManager(context: Context) : AbstractBackupManager(context) {
                 dbCategories.firstOrNull { dbCategory ->
                     dbCategory.name == backupCategory.name
                 }?.let { dbCategory ->
-                    mangaCategoriesToUpdate.add(MangaCategory.create(manga, dbCategory))
+                    mangaCategoriesToUpdate += MangaCategory.create(manga, dbCategory)
                 }
             }
         }
