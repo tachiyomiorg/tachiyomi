@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.ui.reader.viewer.pager
 import android.graphics.RectF
 import eu.kanade.tachiyomi.ui.reader.viewer.ViewerNavigation
 import eu.kanade.tachiyomi.ui.reader.viewer.navigation.LNavigation
+import eu.kanade.tachiyomi.util.lang.invert
 
 /**
  * Visualization of default state without any inversion
@@ -15,18 +16,14 @@ import eu.kanade.tachiyomi.ui.reader.viewer.navigation.LNavigation
  * +---+---+---+
  */
 class PagerDefaultNavigation(invertHorizontal: Boolean = false) : ViewerNavigation() {
+
     override var nextRegion = listOf(
-        when (invertHorizontal) {
-            false -> RectF(0.66f, 0f, 1f, 1f)
-            true -> RectF(0f, 0f, 0.33f, 1f)
-        }
-    )
+        RectF(0.66f, 0f, 1f, 1f)
+    ).map { it.invert(invertHorizontal, false) }
+
     override var prevRegion = listOf(
-        when (invertHorizontal) {
-            true -> RectF(0.66f, 0f, 1f, 1f)
-            false -> RectF(0f, 0f, 0.33f, 1f)
-        }
-    )
+        RectF(0f, 0f, 0.33f, 1f)
+    ).map { it.invert(invertHorizontal, false) }
 }
 
 class VerticalPagerDefaultNavigation(invertHorizontal: Boolean = false, invertVertical: Boolean = false) : LNavigation(invertHorizontal, invertVertical)

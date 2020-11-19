@@ -71,8 +71,7 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
         navigator = when (navigationMode) {
             0 -> defaultViewerNavigation(invertHorizontal, invertVertical)
             1 -> LNavigation(invertHorizontal, invertVertical)
-            2 -> KindlishNavigation()
-
+            2 -> KindlishNavigation(invertHorizontal, invertVertical)
             else -> defaultViewerNavigation(invertHorizontal, invertVertical)
         }
     }

@@ -2,6 +2,7 @@ package eu.kanade.tachiyomi.ui.reader.viewer.navigation
 
 import android.graphics.RectF
 import eu.kanade.tachiyomi.ui.reader.viewer.ViewerNavigation
+import eu.kanade.tachiyomi.util.lang.invert
 
 /**
  * Visualization of default state without any inversion
@@ -13,19 +14,13 @@ import eu.kanade.tachiyomi.ui.reader.viewer.ViewerNavigation
 * | P | N | N |   N: Next
 * +---+---+---+
 */
-class KindlishNavigation(invertHorizontal: Boolean = false) : ViewerNavigation() {
+class KindlishNavigation(invertHorizontal: Boolean = false, invertVertical: Boolean = false) : ViewerNavigation() {
 
     override var nextRegion = listOf(
-        when (invertHorizontal) {
-            false -> RectF(0.33f, 0.30f, 1f, 1f)
-            true -> RectF(0f, 0.30f, 0.33f, 1f)
-        }
-    )
+        RectF(0.33f, 0.30f, 1f, 1f)
+    ).map { it.invert(invertHorizontal, invertVertical) }
 
     override var prevRegion = listOf(
-        when (invertHorizontal) {
-            true -> RectF(0.33f, 0.30f, 1f, 1f)
-            false -> RectF(0f, 0.30f, 0.33f, 1f)
-        }
-    )
+        RectF(0f, 0.30f, 0.33f, 1f)
+    ).map { it.invert(invertHorizontal, invertVertical) }
 }
