@@ -505,7 +505,6 @@
     <string name="pref_library_update_error_notification">হালনাগাদের ত্রুটিগুলোর বিজ্ঞপ্তি দেখান</string>
     <string name="pref_library_update_refresh_metadata_summary">সংগ্রহশালা হালনাগেদের সময় নতুন মোড়ক এবং বর্ণনা খুঁজুন</string>
     <string name="pref_category_library_categories">বিভাগসমূহ</string>
-    <string name="pref_category_parental_controls">পিতামাতার নিয়ন্ত্রণ সমূহ</string>
     <string name="pref_jump_to_chapters">খোলার পর অধ্যায়ে যান</string>
     <plurals name="notification_chapters_multiple_and_more">
         <item quantity="one">%1$s অধ্যায়সমূহ এবং ১টি আরও</item>

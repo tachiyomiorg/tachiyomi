@@ -638,7 +638,6 @@
     <string name="pref_allow_nsfw_sources_allowed_multisource">Блокирай разглеждането на източници, но ги показвай в списъка с разширения</string>
     <string name="pref_allow_nsfw_sources_allowed">Позволено</string>
     <string name="pref_allow_nsfw_sources">Източници 18+</string>
-    <string name="pref_category_parental_controls">Родителски контрол</string>
     <string name="pref_category_theme">Тема</string>
     <string name="action_download_unread">Изтегли непрочетените глави</string>
     <string name="action_sort_date_added">Добавено на</string>

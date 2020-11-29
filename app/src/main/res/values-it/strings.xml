@@ -341,7 +341,7 @@
     <string name="action_display_download_badge">Indicatore capitoli scaricati</string>
     <string name="action_reset">Reimposta</string>
     <string name="action_open">Apri</string>
-    <string name="action_login">Accesso</string>
+    <string name="action_login">Accedi</string>
     <string name="all_lang">Tutto</string>
     <string name="ext_update">Aggiorna</string>
     <string name="ext_install">Installa</string>
@@ -429,7 +429,7 @@
     <string name="pref_category_library_categories">Categorie</string>
     <string name="logout_title">Disconnettersi da %1$s\?</string>
     <string name="logout">Esci</string>
-    <string name="logout_success">Ora sei disconnesso</string>
+    <string name="logout_success">Ora sei disconnesso/a</string>
     <string name="currently_reading">In lettura</string>
     <string name="paused">In pausa</string>
     <string name="want_to_read">Voglio leggere</string>
@@ -638,7 +638,6 @@
     <string name="ext_nsfw_warning">Potrebbe contenere materiale 18+</string>
     <string name="ext_nsfw_short">18+</string>
     <string name="pref_allow_nsfw_sources">Fonti 18+</string>
-    <string name="pref_category_parental_controls">Filtro famiglia</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">C\'è un capitolo mancante</item>
         <item quantity="other">Ci sono %d capitoli mancanti</item>

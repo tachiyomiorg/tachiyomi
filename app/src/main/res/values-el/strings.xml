@@ -600,16 +600,15 @@
     <string name="download_notifier_download_finish">Η λήψη ολοκληρώθηκε</string>
     <string name="channel_errors">Σφάλματα</string>
     <string name="backup_restore_missing_trackers">Ιχνηλάτες που δεν έχουν συνδεθεί:</string>
-    <string name="pref_allow_nsfw_sources_blocked">Αποκλείστηκε</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Αποκλεισμός περιήγησης πηγών αλλά εμφάνιση στη λίστα επεκτάσεων</string>
-    <string name="pref_allow_nsfw_sources_allowed">Επιτρέπεται</string>
+    <string name="pref_allow_nsfw_sources_blocked">Απόκρυψη</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Απόκρυψη σε πηγές αλλά εμφάνιση στη λίστα επεκτάσεων</string>
+    <string name="pref_allow_nsfw_sources_allowed">Εμφάνιση</string>
     <string name="pref_allow_nsfw_sources">18+ πηγές</string>
     <string name="pref_category_delete_chapters">Διαγραφή κεφαλαίων</string>
     <string name="ext_nsfw_warning">Μπορεί να περιέχει 18+ περιεχόμενο</string>
     <string name="ext_nsfw_short">18+</string>
     <string name="pref_remove_bookmarked_chapters">Διαγραφή κεφαλαίων με σελιδοδείκτη</string>
     <string name="parental_controls_info">Αυτό δεν εμποδίζει τις ανεπίσημες ή ενδεχομένως εσφαλμένα επισημασμένες επεκτάσεις να εμφανίζουν περιεχόμενο 18+ περιεχόμενο στην εφαρμογή.</string>
-    <string name="pref_category_parental_controls">Γονικοί ελέγχοι</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Λείπει 1 κεφάλαιο</item>
         <item quantity="other">Λείπουν %d κεφάλαια</item>
@@ -632,4 +631,15 @@
     <string name="pref_clear_history">Διαγραφή ιστορικού</string>
     <string name="clear_history_confirmation">Είστε σίγουροι\? Όλο το ιστορικό θα χαθεί.</string>
     <string name="clear_history_completed">Το ιστορικό διαγράφηκε</string>
+    <string name="spen_next_page">Επόμενη σελίδα</string>
+    <string name="spen_previous_page">Προηγούμενη σελίδα</string>
+    <string name="full_restore_offline">Επαναφορά εκτός σύνδεσης, ολοκληρώνεται γρήγορα, αλλά περιέχει μόνο ό,τι έχει το αντίγραφο ασφαλείας σας</string>
+    <string name="full_restore_online">Επαναφορά σε σύνδεση, πολύ πιο αργή, αλλά σας δίνει πιο ενημερωμένες πληροφορίες και κεφάλαια</string>
+    <string name="full_restore_mode">Λειτουργία δικτύου</string>
+    <string name="pref_backup_auto_create_legacy">Επίσης, δημιουργία αντιγράφου ασφαλείας παλαιού τύπου</string>
+    <string name="pref_create_legacy_backup_summary">Μπορεί να χρησιμοποιηθεί σε παλαιότερες εκδόσεις του Tachiyomi</string>
+    <string name="pref_create_legacy_backup">Δημιουργία αντιγράφου ασφαλείας παλαιού τύπου</string>
+    <string name="migration_help_guide">Οδηγός μετανάστευσης πηγής</string>
+    <string name="invalid_backup_file_type">Μη έγκυρο αντίγραφο ασσφαλείας: %1$s</string>
+    <string name="pref_category_nsfw_content">18+ περιεχόμενο</string>
 </resources>

@@ -13,7 +13,7 @@
     <string name="information_webview_outdated">אנא עדכן את אפליקציית WebView לקבלת תאימות טובה יותר</string>
     <string name="information_cloudflare_bypass_failure">עקיפה של Cloudflare נכשלה</string>
     <string name="information_empty_category">אין לך קטגוריות. לחץ על כפתור הפלוס כדי ליצור אחד לארגון הספרייה שלך.</string>
-    <string name="information_empty_library">הספרייה שלך ריקה, הוסף סדרות לספרייה שלך מהמקורות.</string>
+    <string name="information_empty_library">הספרייה שלך ריקה, הוסף סדרות לספרייה שלך מהספריה.</string>
     <string name="information_no_downloads">אין הורדות</string>
     <string name="description_cover">כריכה של מנגה</string>
     <plurals name="update_check_notification_ext_updates">
@@ -268,7 +268,7 @@
     <string name="action_cancel_all">בטל הכל</string>
     <string name="action_display">תצוגה</string>
     <string name="action_sort_last_checked">נבדק לאחרונה</string>
-    <string name="action_filter_downloaded">הורד</string>
+    <string name="action_filter_downloaded">מורד</string>
     <string name="track">מעקב</string>
     <string name="label_more">עוד</string>
     <string name="action_cancel">ביטול</string>
@@ -431,7 +431,7 @@
     <string name="label_help">עזרה</string>
     <string name="label_extension_info">פרטי הרחבה</string>
     <string name="label_extensions">הרחבות</string>
-    <string name="label_migration">הגירת מקורות</string>
+    <string name="label_migration">להעביר</string>
     <string name="label_backup">גיבוי</string>
     <string name="label_categories">קטגוריות</string>
     <string name="label_sources">מקורות</string>
@@ -445,4 +445,9 @@
     <string name="manga">מנגה</string>
     <string name="categories">קטגוריות</string>
     <string name="name">שם</string>
+    <string name="confirm_exit">לחץ אחורה שוב כדי לסגור</string>
+    <string name="unlock_app">פתח את \"Tachiyomi\"</string>
+    <string name="information_no_recent_manga">שום דבר נקרא לאחרונה</string>
+    <string name="information_no_recent">אין עידכונים אחרונים</string>
+    <string name="action_filter_bookmarked">מנגה שנשמרה</string>
 </resources>

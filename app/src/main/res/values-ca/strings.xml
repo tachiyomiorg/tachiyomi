@@ -604,11 +604,10 @@
     <string name="ext_nsfw_warning">Pot contenir contingut +18</string>
     <string name="ext_nsfw_short">+18</string>
     <string name="parental_controls_info">Això no evita que les extensions no oficials o possiblement mal etiquetades puguin mostrar contingut +18 a l\'aplicació.</string>
-    <string name="pref_allow_nsfw_sources_blocked">Blocat</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Bloca la navegació de les fonts però les mostra a la llista d\'extensions</string>
-    <string name="pref_allow_nsfw_sources_allowed">Permès</string>
+    <string name="pref_allow_nsfw_sources_blocked">Amaga</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Amaga de les fonts però mostra a la llista d\'extensions</string>
+    <string name="pref_allow_nsfw_sources_allowed">Mostra</string>
     <string name="pref_allow_nsfw_sources">Fonts +18</string>
-    <string name="pref_category_parental_controls">Control parental</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Hi manca 1 capítol</item>
         <item quantity="other">Hi manquen %d capítols</item>
@@ -631,4 +630,15 @@
     <string name="pref_clear_history_summary">Suprimeix l\'historial de lectura de tot el manga</string>
     <string name="pref_clear_history">Suprimeix l\'historial</string>
     <string name="clear_history_completed">S\'ha buidat l\'historial</string>
+    <string name="spen_next_page">Pàgina següent</string>
+    <string name="spen_previous_page">Pàgina anterior</string>
+    <string name="full_restore_offline">Restaura sense connexió: acaba ràpidament però conté només el que contingui la còpia de seguretat</string>
+    <string name="full_restore_online">Restaura en línia: molt més lent, però us proporciona informació més actualitzada i capítols</string>
+    <string name="full_restore_mode">Mode de xarxa</string>
+    <string name="pref_backup_auto_create_legacy">Crea també una còpia de seguretat en format antic</string>
+    <string name="pref_create_legacy_backup_summary">Es pot utilitzar en versions més antigues del Tachiyomi</string>
+    <string name="pref_create_legacy_backup">Crea una còpia de seguretat en format antic</string>
+    <string name="migration_help_guide">Guia de migració de fonts</string>
+    <string name="invalid_backup_file_type">Fitxer de còpia de seguretat invàlid: %1$s</string>
+    <string name="pref_category_nsfw_content">Contingut +18</string>
 </resources>

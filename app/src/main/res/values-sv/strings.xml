@@ -598,9 +598,9 @@
         <item quantity="other">%d trackers</item>
     </plurals>
     <string name="no_pinned_sources">Du har inga fästa källor</string>
-    <string name="pref_allow_nsfw_sources_blocked">Blockerad</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Blockera att bläddra källor men visa i tilläggslistan</string>
-    <string name="pref_allow_nsfw_sources_allowed">Tillåtet</string>
+    <string name="pref_allow_nsfw_sources_blocked">Dölj</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Dölj i källor men visa i tilläggslistan</string>
+    <string name="pref_allow_nsfw_sources_allowed">Visa</string>
     <string name="pref_allow_nsfw_sources">18+ källor</string>
     <string name="pref_remove_bookmarked_chapters">Ta bort bokmärkta kapitel</string>
     <string name="pref_category_delete_chapters">Ta bort kapitel</string>
@@ -608,7 +608,6 @@
     <string name="ext_nsfw_short">18+</string>
     <string name="backup_restore_missing_trackers">Trackers som inte har loggats in:</string>
     <string name="parental_controls_info">Detta förhindrar inte inofficiella eller potentiellt felaktigt flaggade tillägg från att visa 18+ innehåll i appen.</string>
-    <string name="pref_category_parental_controls">Föräldrakontroll</string>
     <string name="channel_errors">Fel</string>
     <string name="chapter_settings_updated">Uppdaterade standardinställningar för kapitel</string>
     <string name="confirm_set_chapter_settings">Vill du spara de här inställningarna som standard\?</string>
@@ -632,4 +631,15 @@
     <string name="clear_history_completed">Historiken har tagits bort</string>
     <string name="pref_hide_bottom_bar_on_scroll">Dölj navigationsfältet vid scroll</string>
     <string name="action_search_settings">Sök inställningar</string>
+    <string name="spen_next_page">Nästa sida</string>
+    <string name="spen_previous_page">Föregående sida</string>
+    <string name="full_restore_offline">Återställ offline, klar snabbt men innehåller bara vad din säkerhetskopia har</string>
+    <string name="full_restore_online">Återställ online, mycket segare men ger dig mer uppdaterad infomration och kapitel</string>
+    <string name="full_restore_mode">Nätverksläge</string>
+    <string name="pref_create_legacy_backup_summary">Kan används i äldre versioner av Tachiyomi</string>
+    <string name="migration_help_guide">Guide för källmigrering</string>
+    <string name="invalid_backup_file_type">Ogiltig säkerhetskopia: %1$s</string>
+    <string name="pref_backup_auto_create_legacy">Skapa också äldre säkerhetskopia</string>
+    <string name="pref_create_legacy_backup">Skapa äldre säkerhetskopia</string>
+    <string name="pref_category_nsfw_content">18+ innehåll</string>
 </resources>

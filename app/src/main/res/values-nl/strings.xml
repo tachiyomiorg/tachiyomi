@@ -609,7 +609,6 @@
     <string name="ext_nsfw_warning">Kan 18+-inhoud bevatten</string>
     <string name="ext_nsfw_short">18+</string>
     <string name="parental_controls_info">Dit voorkomt niet dat onofficiële of mogelijk incorrect gemarkeerde extensies 18+-inhoud kunnen laten zien in de app.</string>
-    <string name="pref_category_parental_controls">Ouderlijk toezicht</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Er is 1 missend hoofdstuk</item>
         <item quantity="other">Er zijn %d missende hoofstukken</item>
@@ -632,4 +631,13 @@
     <string name="clear_history_confirmation">Weet je dit zeker\? Alle geschiedenis zal verloren gaan.</string>
     <string name="clear_history_completed">Geschiedenis verwijderd</string>
     <string name="pref_hide_bottom_bar_on_scroll">Navigatiebalk verbergen bij het scrollen</string>
+    <string name="spen_next_page">Volgende pagina</string>
+    <string name="spen_previous_page">Vorige pagina</string>
+    <string name="full_restore_offline">Herstel offline, sneller klaar maar bevat alleen wat de backup heeft</string>
+    <string name="full_restore_online">Herstel online, veel langzamer maar geeft bijgewerkte informatie en hoofdstukken</string>
+    <string name="full_restore_mode">Netwerkmodus</string>
+    <string name="pref_backup_auto_create_legacy">Maak ook een verouderde backup</string>
+    <string name="pref_create_legacy_backup_summary">Kan gebruikt worden in oudere versies van Tachiyomi</string>
+    <string name="pref_create_legacy_backup">Verourderde back-up maken</string>
+    <string name="migration_help_guide">Bronmigratiegids</string>
 </resources>

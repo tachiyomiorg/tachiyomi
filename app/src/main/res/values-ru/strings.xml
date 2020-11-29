@@ -621,15 +621,14 @@
     <string name="channel_errors">Ошибки</string>
     <string name="backup_restore_missing_trackers">Не выполнен вход в трекеры:</string>
     <string name="pref_allow_nsfw_sources">Источники 18+</string>
-    <string name="pref_allow_nsfw_sources_blocked">Заблокировано</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Блокировать просмотр источников, но отображать их в списке расширений</string>
-    <string name="pref_allow_nsfw_sources_allowed">Разрешено</string>
+    <string name="pref_allow_nsfw_sources_blocked">Скрыть</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Скрыть в источниках, но показать в списке расширений</string>
+    <string name="pref_allow_nsfw_sources_allowed">Показывать</string>
     <string name="pref_remove_bookmarked_chapters">Удалять главы с закладками</string>
     <string name="pref_category_delete_chapters">Удаление глав</string>
     <string name="ext_nsfw_warning">Может содержать контент 18+</string>
     <string name="ext_nsfw_short">18+</string>
     <string name="parental_controls_info">Это не предотвращает появление внутри приложения контента 18+ из неофициальных или потенциально неправильно помеченных расширений.</string>
-    <string name="pref_category_parental_controls">Родительский контроль</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Отсутствует 1 глава</item>
         <item quantity="few">Отсутствуют %d главы</item>
@@ -654,4 +653,15 @@
     <string name="pref_clear_history">Очистить историю</string>
     <string name="clear_history_confirmation">Вы уверены\? Вся история будет удалена.</string>
     <string name="clear_history_completed">История удалена</string>
+    <string name="spen_next_page">Следующая страница</string>
+    <string name="spen_previous_page">Предыдущая страница</string>
+    <string name="full_restore_offline">Оффлайн восстановление; работает быстрее, но восстанавливает только то, что было в вашей резервной копии</string>
+    <string name="full_restore_online">Онлайн восстановление; гораздо медленнее, но подгружает более актуальную информацию и новые главы</string>
+    <string name="full_restore_mode">Сетевой режим</string>
+    <string name="pref_backup_auto_create_legacy">Также создавать резервную копию старого формата</string>
+    <string name="pref_create_legacy_backup_summary">Может быть использован в предыдущих версиях Tachiyomi</string>
+    <string name="pref_create_legacy_backup">Создать резервную копию старого формата</string>
+    <string name="migration_help_guide">Руководство по миграции источников</string>
+    <string name="invalid_backup_file_type">Неверный файл резервной копии: %1$s</string>
+    <string name="pref_category_nsfw_content">Контент 18+</string>
 </resources>

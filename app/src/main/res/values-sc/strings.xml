@@ -605,11 +605,10 @@
     <string name="ext_nsfw_warning">Diat pòdere cuntènnere cuntenutos 18+</string>
     <string name="ext_nsfw_short">18+</string>
     <string name="parental_controls_info">Custu no impedit a estensiones no ufitziales o potentzialmente non curretas de ammustrare cuntenutos 18+ in s\'aplicatzione.</string>
-    <string name="pref_allow_nsfw_sources_blocked">Blocadas</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Bloca s\'esploratzione de sas mitzas ma ammustra·las in sa lista de sas estensiones</string>
-    <string name="pref_allow_nsfw_sources_allowed">Permìtidas</string>
+    <string name="pref_allow_nsfw_sources_blocked">Cua</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Cua·las in sas mitzas ma ammustra·las in sa lista de sas estensiones</string>
+    <string name="pref_allow_nsfw_sources_allowed">Ammustra</string>
     <string name="pref_allow_nsfw_sources">Mitzas 18+</string>
-    <string name="pref_category_parental_controls">Controllos pro sos genitores</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Mancat 1 capìtulu</item>
         <item quantity="other">Mancant %d capìtulos</item>
@@ -632,4 +631,15 @@
     <string name="pref_clear_history">Isbòida sa cronologia</string>
     <string name="clear_history_confirmation">Seguru ses\? As a pèrdere totu sa cronologia.</string>
     <string name="clear_history_completed">Cronologia iscantzellada</string>
+    <string name="spen_next_page">Pàgina imbeniente</string>
+    <string name="spen_previous_page">Pàgina anteposta</string>
+    <string name="full_restore_online">Riprìstinat in lìnia, meda prus lenta ma ti frunit informatziones e capìtulos prus agiornados</string>
+    <string name="full_restore_offline">Riprìstinat chene lìnia, acabat in presse ma cuntenet petzi su chi b\'at in sa còpia de seguresa tua</string>
+    <string name="full_restore_mode">Modalidade de retza</string>
+    <string name="pref_backup_auto_create_legacy">Crea fintzas una còpia de seguresa de casta betza</string>
+    <string name="pref_create_legacy_backup_summary">Podet èssere impreada in versiones prus betzas de Tachiyomi</string>
+    <string name="pref_create_legacy_backup">Crea una còpia de seguresa de casta betza</string>
+    <string name="migration_help_guide">Ghia a su tramudòngiu de sas mitzas</string>
+    <string name="invalid_backup_file_type">Documentu de còpia de seguresa non vàlidu: %1$s</string>
+    <string name="pref_category_nsfw_content">Cuntenutu 18+</string>
 </resources>

@@ -589,16 +589,15 @@
     <string name="download_notifier_download_finish">下载已完成</string>
     <string name="channel_errors">错误</string>
     <string name="backup_restore_missing_trackers">未登录的同步源：</string>
-    <string name="pref_allow_nsfw_sources_blocked">禁止显示</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">禁止显示，但仍在扩展插件列表中显示</string>
-    <string name="pref_allow_nsfw_sources_allowed">允许显示</string>
+    <string name="pref_allow_nsfw_sources_blocked">隐藏</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">在来源中隐藏，但显示在扩展列表中</string>
+    <string name="pref_allow_nsfw_sources_allowed">显示</string>
     <string name="pref_allow_nsfw_sources">18+ 图源</string>
     <string name="pref_remove_bookmarked_chapters">删除已添加书签的章节</string>
     <string name="pref_category_delete_chapters">删除章节</string>
     <string name="ext_nsfw_warning">可能包含 18+ 内容</string>
     <string name="ext_nsfw_short">18+</string>
     <string name="parental_controls_info">这并不能防止非官方或可能被错误标记的扩展插件在应用程序中显示 18+ 内容。</string>
-    <string name="pref_category_parental_controls">家长控制</string>
     <plurals name="missing_chapters_warning">
         <item quantity="other">此处有 %d 章缺失</item>
     </plurals>
@@ -620,4 +619,15 @@
     <string name="pref_clear_history">清除历史</string>
     <string name="clear_history_confirmation">你确定吗？所有的历史都将丢失。</string>
     <string name="clear_history_completed">历史已删除</string>
+    <string name="spen_next_page">下一页</string>
+    <string name="spen_previous_page">上一页</string>
+    <string name="full_restore_offline">离线恢复，完成得很快，但只包含备份文件有的内容</string>
+    <string name="full_restore_online">在线恢复，速度要慢得多但给你更多更新的信息和章节</string>
+    <string name="full_restore_mode">网络模式</string>
+    <string name="pref_backup_auto_create_legacy">同样创建旧版备份</string>
+    <string name="pref_create_legacy_backup_summary">可以用于旧版本的Tachiyomi</string>
+    <string name="pref_create_legacy_backup">创建旧备份</string>
+    <string name="migration_help_guide">源迁移指南</string>
+    <string name="invalid_backup_file_type">无效的备份文件：%1$s</string>
+    <string name="pref_category_nsfw_content">18+ 内容</string>
 </resources>

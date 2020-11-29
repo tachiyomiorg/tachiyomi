@@ -609,7 +609,6 @@
     <string name="parental_controls_info">Hindi naiiwasan nito ang pagpakita ng mga 18+ ng mga di-opisyal o posibleng maling naka-flag na dugtong sa loob ng app.</string>
     <string name="ext_nsfw_warning">Maaaring maglaman ng pang-18+</string>
     <string name="ext_nsfw_short">18+</string>
-    <string name="pref_category_parental_controls">Kontrol ng Magulang</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">May isang nawawalang kabanata</item>
         <item quantity="other">May %d (na) nawawalang kabanata</item>

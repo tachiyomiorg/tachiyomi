@@ -139,7 +139,7 @@
     <string name="action_move_category">انتخاب دسته بندی</string>
     <string name="unlock_app">بازکردن تاچی یومی</string>
     <string name="information_empty_category">هیچ دسته بندی وجود ندارد. با زدن دکمه به علاوه دسته بندی جدیدی بسازید.</string>
-    <string name="information_empty_library">کتابخانه خالی است, از قسمت مرور مانگاای اضافه کنید.</string>
+    <string name="information_empty_library">کتابخانه خالی است، از قسمت مرور مانگایی اضافه کنید.</string>
     <string name="information_no_recent_manga">هیچ چیز مانگاای به تازگی خوانده شده</string>
     <string name="information_no_recent">هیچ فصل جدیدی یافت نشد</string>
     <string name="information_no_downloads">صف خالی است</string>
@@ -594,4 +594,9 @@
     <string name="action_download_unread">دانلود فصل‌های خوانده‌نشده</string>
     <string name="action_sort_date_added">تاریخ اضافه شدن</string>
     <string name="updated_version">به نسخه v%1$s آپدیت شد</string>
+    <string name="pref_allow_nsfw_sources_allowed">مجاز</string>
+    <string name="pref_allow_nsfw_sources">منابع ۱۸+</string>
+    <string name="pref_hide_bottom_bar_on_scroll">نوار پایین هنگام اسکرول کردن پنهان شود</string>
+    <string name="action_web_view">WebView</string>
+    <string name="action_search_settings">جست و جوی تنضیمات</string>
 </resources>

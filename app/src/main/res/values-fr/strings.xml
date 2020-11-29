@@ -216,7 +216,7 @@
     <!-- Category activity -->
     <string name="error_category_exists">Une catégorie avec ce nom existe déjà !</string>
     <!-- Dialog option with checkbox view -->
-    <string name="dialog_with_checkbox_remove_description">Ceci enlèvera la date de lecture de ce chapitre. Êtes-vous sûr·e \?</string>
+    <string name="dialog_with_checkbox_remove_description">Ceci enlèvera la date de lecture de ce chapitre. Êtes-vous sûr(e) \?</string>
     <string name="dialog_with_checkbox_reset">Réinitialiser tous les chapitres de ce manga</string>
     <!-- SnackBar -->
     <string name="snack_add_to_library">Ajouter ce manga à la bibliothèque ?</string>
@@ -279,7 +279,7 @@
     <string name="download_notifier_text_only_wifi">Aucune connexion disponible</string>
     <string name="download_notifier_no_network">Aucune connexion disponible</string>
     <string name="pref_language">Langue</string>
-    <string name="clear_database_confirmation">Êtes-vous sûr·e \? Les chapitres lus et la progression des mangas non présents dans la bibliothèque seront perdus</string>
+    <string name="clear_database_confirmation">Êtes-vous sûr(e) \? Les chapitres lus et la progression des mangas non présents dans la bibliothèque seront perdus</string>
     <string name="confirm_delete_chapters">Supprimer les chapitres sélectionnés \?</string>
     <string name="custom_dir">Répertoire personnalisé</string>
     <string name="download_10">10 prochains chapitres</string>
@@ -535,7 +535,7 @@
     <string name="pref_confirm_exit">Confirmer la sortie</string>
     <string name="recent_manga_time">Ch. %1$s – %2$s</string>
     <string name="error_invalid_date_supplied">Date fournie invalide</string>
-    <string name="licenses">Licences open source</string>
+    <string name="licenses">Licences à code source ouvert</string>
     <string name="confirm_exit">Appuyer à nouveau pour quitter</string>
     <string name="track_finished_reading_date">Date de fin de lecture</string>
     <string name="track_started_reading_date">Date de début de lecture</string>
@@ -643,7 +643,6 @@
     <string name="pref_allow_nsfw_sources_blocked">Bloqué</string>
     <string name="pref_allow_nsfw_sources_allowed">Autorisé</string>
     <string name="pref_allow_nsfw_sources">Sources 18+</string>
-    <string name="pref_category_parental_controls">contrôle parental</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Il manque 1 chapitre</item>
         <item quantity="other">Il manque %d chapitres</item>
@@ -660,10 +659,19 @@
     <string name="manga_from_library">Manga de la bibliothèque</string>
     <string name="action_search_settings">Paramètres de la recherche</string>
     <string name="pref_incognito_mode_summary">Pause dans l\'enregistrement de l\'historique</string>
-    <string name="clear_history_confirmation">Êtes-vous sûr \? Tout l\'Historique sera perdue.</string>
+    <string name="clear_history_confirmation">Êtes-vous sûr(e) \? Tout l\'Historique sera perdue.</string>
     <string name="pref_incognito_mode">Mode navigation privée</string>
     <string name="pref_clear_history_summary">Supprimer l\'historique de lecture pour tous les mangas</string>
     <string name="pref_clear_history">Effacer l\'historique</string>
     <string name="clear_history_completed">Historique supprimé</string>
     <string name="chapter_settings_updated">Paramétrage des chapitres par défaut enregistré</string>
+    <string name="spen_next_page">Page suivante</string>
+    <string name="spen_previous_page">Page précédente</string>
+    <string name="migration_help_guide">Guide de migration des sources</string>
+    <string name="full_restore_offline">Restauration hors ligne, se termine rapidement mais ne contient que ce que votre sauvegarde</string>
+    <string name="full_restore_online">Restauration en ligne, beaucoup plus lente mais vous donne plus d\'informations et de chapitres à jour</string>
+    <string name="full_restore_mode">Mode réseau</string>
+    <string name="pref_backup_auto_create_legacy">Créez également une sauvegarde héritée</string>
+    <string name="pref_create_legacy_backup_summary">Peut être utilisé dans les anciennes versions de Tachiyomi</string>
+    <string name="pref_create_legacy_backup">Créer des sauvegardes héritées</string>
 </resources>

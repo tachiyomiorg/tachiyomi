@@ -217,7 +217,7 @@
     <string name="pref_refresh_library_tracking_summary">Oppdaterer status, poengsum og sist leste kapittel fra sporingstjenestene</string>
     <string name="version">Versjon</string>
     <string name="build_time">Byggtid</string>
-    <string name="pref_enable_acra">Send kræsjrapporter</string>
+    <string name="pref_enable_acra">Send krasjrapporter</string>
     <string name="pref_acra_summary">Hjelper til med fiksing av feil. Ingen sensitiv data vil bli sendt</string>
     <string name="login_title">Innlogging for %1$s</string>
     <string name="username">Brukernavn</string>
@@ -578,7 +578,46 @@
     <string name="pref_allow_nsfw_sources_allowed_multisource">Blokker surfing av kilder, men vis i tilleggslisten</string>
     <string name="pref_allow_nsfw_sources_allowed">Tillatt</string>
     <string name="pref_allow_nsfw_sources">Kilder for 18+</string>
-    <string name="pref_category_parental_controls">Foreldrekontroll</string>
     <string name="recent_manga_time">Kap. %1$s - %2$s</string>
     <string name="share_page_info">%1$s: %2$s, side %3$d</string>
+    <string name="chapter_settings">Kapittelinnstillinger</string>
+    <string name="set_chapter_settings_as_default">Sett som forvalg</string>
+    <string name="no_chapters_error">Fant ingen kapitler</string>
+    <plurals name="num_trackers">
+        <item quantity="one">1 sporer</item>
+        <item quantity="other">%d sporere</item>
+    </plurals>
+    <string name="track_started_reading_date">Lesing påbegynt dato</string>
+    <string name="track_finished_reading_date">Ferdiglest dato</string>
+    <plurals name="missing_chapters_warning">
+        <item quantity="one">Det er ett manglende kapittel</item>
+        <item quantity="other">Det er %d manglende kapittel</item>
+    </plurals>
+    <string name="information_webview_outdated">Oppdater WebView-programmet for bedre kompabilitet</string>
+    <string name="chapter_settings_updated">Oppdaterte forvalgte kapittelinnstillinger</string>
+    <string name="confirm_set_chapter_settings">Er du sikker på at du vil lagre disse innstillingene som forvalg\?</string>
+    <string name="action_search_settings">Søkeinnstillinger</string>
+    <plurals name="update_check_notification_ext_updates">
+        <item quantity="one">Utvidelsesoppdatering tilgjengelig</item>
+        <item quantity="other">%d utvidelsesoppdateringer tilgjengelige</item>
+    </plurals>
+    <plurals name="notification_chapters_multiple_and_more">
+        <item quantity="one">Kapittel %1$s og ett til</item>
+        <item quantity="other">Kapitler %1$s og %2$d til</item>
+    </plurals>
+    <string name="notification_chapters_multiple">Kapitler %1$s</string>
+    <string name="download_insufficient_space">Ikke nok diskplass til å laste ned kapitler</string>
+    <string name="also_set_chapter_settings_for_library">Bruk også for all manga i biblioteket</string>
+    <string name="action_global_search_query">Søk etter «%1$s» i hele programmet</string>
+    <string name="updated_version">Oppdatert til v</string>
+    <string name="licenses">Friprog-lisenser</string>
+    <string name="whats_new">Hva er nytt</string>
+    <string name="pref_disable_battery_optimization_summary">Hjelper med oppdageringer og sikkerhetskopiering av biblioteket</string>
+    <string name="pref_refresh_library_covers">Gjenoppfrisk mangaomslag i biblioteket</string>
+    <string name="backup_restore_missing_trackers">Ikke innloggede sporere:</string>
+    <string name="invalid_backup_file_missing_manga">Sikkerhetskopi inneholder ikke noe manga.</string>
+    <string name="tracking_info">Enveissynkronisering for å oppdatere kapittelfremdrift til sporingstjenester. Sett opp sporing for individuelle mangaoppføringer fra deres sporingsknapp.</string>
+    <string name="pref_true_color_summary">Reduserer sjattering, men koster ytelse</string>
+    <string name="pref_webtoon_side_padding">Sidefyll</string>
+    <string name="action_web_view">WebView</string>
 </resources>

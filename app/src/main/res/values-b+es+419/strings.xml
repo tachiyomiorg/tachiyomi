@@ -609,7 +609,6 @@
     <string name="pref_allow_nsfw_sources_allowed_multisource">Bloquear fuente, mostrar en la lista de extensiones</string>
     <string name="pref_allow_nsfw_sources_allowed">Permitidas</string>
     <string name="pref_allow_nsfw_sources">Fuentes +18</string>
-    <string name="pref_category_parental_controls">Controles parentales</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Falta un capítulo</item>
         <item quantity="other">Faltan %d capítulos</item>
@@ -632,4 +631,6 @@
     <string name="pref_clear_history">Limpiar historial</string>
     <string name="clear_history_confirmation">¿Estás seguro\? Todo el historial se perderá.</string>
     <string name="clear_history_completed">Historial borrado</string>
+    <string name="spen_next_page">Siguiente página</string>
+    <string name="spen_previous_page">Página previa</string>
 </resources>

@@ -63,7 +63,6 @@
     <string name="pref_allow_nsfw_sources_allowed_multisource">የአሰሳ ምንጮችን አግድ ግን በቅጥያዎች ዝርዝር ውስጥ አሳይ</string>
     <string name="pref_allow_nsfw_sources_allowed">ተፈቅዷል</string>
     <string name="pref_allow_nsfw_sources">18+ ምንጮች</string>
-    <string name="pref_category_parental_controls">የወላጅ መቆጣጠሪያዎች</string>
     <string name="hide_notification_content">የማሳወቂያ ይዘትን ደብቅ</string>
     <string name="secure_screen_summary">መተግበሪያዎችን ሲቀይሩ የመተግበሪያ ይዘቶችን ደብቅ እና ቅጽበታዊ ገጽ እይታዎችን ያግዳል</string>
     <string name="secure_screen">ደህንነቱ የተጠበቀ ማያ ገጽ</string>

@@ -590,14 +590,13 @@
     <string name="channel_errors">Ralat</string>
     <string name="backup_restore_missing_trackers">Penjejak yang tidak dilog masuk:</string>
     <string name="pref_allow_nsfw_sources">Sumber 18+ tahun keatas</string>
-    <string name="pref_allow_nsfw_sources_blocked">Disekat</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Sekat melayari sumber tetapi tunjuk dalam senarai sambungan</string>
-    <string name="pref_allow_nsfw_sources_allowed">Dibenarkan</string>
+    <string name="pref_allow_nsfw_sources_blocked">Sembunyi</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Sembunyi di sumber tetapi tunjuk dalam senarai sambungan</string>
+    <string name="pref_allow_nsfw_sources_allowed">Papar</string>
     <string name="pref_remove_bookmarked_chapters">Padam bab yang ditanda</string>
     <string name="pref_category_delete_chapters">Padam bab</string>
     <string name="ext_nsfw_warning">Mungkin mengandungi kandungan 18+ tahun keatas</string>
     <string name="ext_nsfw_short">18+</string>
-    <string name="pref_category_parental_controls">Kawalan ibu bapa</string>
     <string name="parental_controls_info">Ini tidak menghalang sambungan yang tidak rasmi atau berpotensi tidak menggunakan tetapan yang betul daripada menayangkan kandungan 18+ tahun keatas dalam aplikasi.</string>
     <plurals name="missing_chapters_warning">
         <item quantity="other">Ada %d bab yang hilang</item>
@@ -620,4 +619,15 @@
     <string name="pref_clear_history">Padamkan sejarah</string>
     <string name="clear_history_confirmation">Anda pasti\? Semua sejarah akan hilang.</string>
     <string name="clear_history_completed">Sejarah dipadamkan</string>
+    <string name="spen_next_page">Halaman seterusnya</string>
+    <string name="spen_previous_page">Halaman terdahulu</string>
+    <string name="full_restore_offline">Pulih secara luar talian, selesai dengan cepat tetapi hanya ada apa yang ada dalam fail sandaran</string>
+    <string name="full_restore_online">Pulih secara dalam talian, ia perlahan tetapi memberikan maklumat and bab</string>
+    <string name="full_restore_mode">Mod Rangkaian</string>
+    <string name="pref_backup_auto_create_legacy">Buat juga sandaran legasi</string>
+    <string name="pref_create_legacy_backup_summary">Boleh digunakan pada versi Tachiyomi yang</string>
+    <string name="pref_create_legacy_backup">Buat sandaran legasi</string>
+    <string name="migration_help_guide">Panduan memindahkan sumber</string>
+    <string name="invalid_backup_file_type">Fail sandaran tidak sah: %1$s</string>
+    <string name="pref_category_nsfw_content">Kandungan 18+</string>
 </resources>

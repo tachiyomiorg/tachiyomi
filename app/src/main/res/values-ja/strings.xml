@@ -87,8 +87,8 @@
     <string name="pref_library_update_restriction">ライブラリ更新制限</string>
     <string name="pref_library_update_restriction_summary">条件が満たされた場合にのみ更新する</string>
     <string name="wifi">Wi-Fi</string>
-    <string name="charging">充電</string>
-    <string name="pref_update_only_non_completed">進行中の漫画のみ更新</string>
+    <string name="charging">充電中</string>
+    <string name="pref_update_only_non_completed">連載中のマンガのみ更新</string>
     <string name="pref_auto_update_manga_sync">読んだ後に章の読書進捗を更新</string>
     <string name="pref_start_screen">スタート画面</string>
     <string name="pref_language">言語</string>
@@ -175,7 +175,7 @@
     <string name="pref_clear_database">データベースをクリア</string>
     <string name="pref_clear_database_summary">ライブラリにないマンガの履歴を削除</string>
     <string name="version">バージョン</string>
-    <string name="build_time">ビルドタイム</string>
+    <string name="build_time">ビルド日時</string>
     <string name="pref_enable_acra">クラッシュレポートを送信する</string>
     <string name="login_title">%1$sにログイン</string>
     <string name="username">ユーザー名</string>
@@ -342,8 +342,8 @@
     <string name="update_check_notification_download_error">ダウンロード中にエラー発生</string>
     <string name="update_check_notification_update_available">アップデート利用可能！</string>
     <string name="description_cover">マンガカバー</string>
-    <string name="information_no_downloads">ダウンロードタスクが空です</string>
-    <string name="information_no_recent">最近の章なし</string>
+    <string name="information_no_downloads">ダウンロード無し</string>
+    <string name="information_no_recent">最近の更新はありません</string>
     <string name="information_no_recent_manga">最近に読んだマンガなし</string>
     <string name="information_empty_library">ライブラリは空です。「ブラウズ」から新しいマンガシリーズを追加してください。</string>
     <string name="information_empty_category">カテゴリーがありません。「+」をタップしてカテゴリーを追加し、ライブラリを整理できます。</string>
@@ -383,7 +383,7 @@
     <string name="pref_category_library">ライブラリ</string>
     <string name="invalid_download_dir">ダウンロード場所が無効です</string>
     <string name="ext_obsolete">廃止済み</string>
-    <string name="obsolete_extension_message">この拡張は利用不可になりました。</string>
+    <string name="obsolete_extension_message">この拡張機能は利用不可になりました。</string>
     <string name="pref_date_format">日付形式</string>
     <string name="pref_category_library_update">更新</string>
     <string name="pref_category_library_categories">カテゴリー</string>
@@ -588,16 +588,15 @@
     <string name="pref_category_theme">テーマ</string>
     <string name="action_sort_date_added">ライブラリへの追加日付順</string>
     <string name="channel_errors">エラー</string>
-    <string name="pref_category_parental_controls">ペアレンタル コントロール</string>
     <string name="backup_restore_missing_trackers">ログインしていないトラッカー：</string>
     <string name="pref_remove_bookmarked_chapters">ブックマークした章を削除</string>
     <string name="pref_category_delete_chapters">章を削除</string>
-    <string name="ext_nsfw_warning">成人向けのコンテンツをが含まれる可能性があります</string>
+    <string name="ext_nsfw_warning">成人向けのコンテンツが含まれる可能性があります</string>
     <string name="ext_nsfw_short">成人向け</string>
     <string name="parental_controls_info">非公式や誤ってフラグ付けされた可能性のある拡張機能の成人向けのコンテンツはこれからも表示される恐れがあります。</string>
-    <string name="pref_allow_nsfw_sources_blocked">ブロック済み</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">ソースのブラウズをブロックするが、拡張機能リストに表示する</string>
-    <string name="pref_allow_nsfw_sources_allowed">許可済み</string>
+    <string name="pref_allow_nsfw_sources_blocked">隠し</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">ソース から 隠し、拡張機能リストに表示する</string>
+    <string name="pref_allow_nsfw_sources_allowed">表示する</string>
     <string name="pref_allow_nsfw_sources">成人向けのソース</string>
     <plurals name="missing_chapters_warning">
         <item quantity="other">%d章が欠けています</item>
@@ -620,4 +619,15 @@
     <string name="pref_clear_history">履歴を全消去</string>
     <string name="clear_history_confirmation">履歴がすべて失われます。続行しますか？</string>
     <string name="clear_history_completed">履歴を削除しました</string>
+    <string name="spen_next_page">次のページ</string>
+    <string name="spen_previous_page">前のページ</string>
+    <string name="full_restore_offline">オフラインで復元（速いですが、バックアップそのまましか復元しません）</string>
+    <string name="full_restore_online">オンラインで復元（復元には時間がかかりますが、最新の情報と章を取得できます）</string>
+    <string name="full_restore_mode">ネットワーク モード</string>
+    <string name="pref_backup_auto_create_legacy">同じくレガシー バックアップを作成</string>
+    <string name="pref_create_legacy_backup_summary">古いバージョンのTachiyomiで利用可能</string>
+    <string name="pref_create_legacy_backup">レガシー バックアップを作成</string>
+    <string name="migration_help_guide">ソース移行ガイド</string>
+    <string name="invalid_backup_file_type">無効なバックアップ ファイル：%1$s</string>
+    <string name="pref_category_nsfw_content">成人コンテント</string>
 </resources>

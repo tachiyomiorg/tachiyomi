@@ -632,15 +632,14 @@
     <string name="channel_errors">Errores</string>
     <string name="backup_restore_missing_trackers">Rastreadores no conectados:</string>
     <string name="pref_allow_nsfw_sources">Fuentes 18+</string>
-    <string name="pref_allow_nsfw_sources_blocked">Bloqueado</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Bloquear fuentes de navegación pero mostrarlas en la lista de extensiones</string>
-    <string name="pref_allow_nsfw_sources_allowed">Permitido</string>
+    <string name="pref_allow_nsfw_sources_blocked">Ocultar</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Ocultar en fuentes pero mostrarlas en la lista de extensiones</string>
+    <string name="pref_allow_nsfw_sources_allowed">Mostrar</string>
     <string name="pref_remove_bookmarked_chapters">Borrar capítulos marcados</string>
     <string name="pref_category_delete_chapters">Borrar capítulos</string>
     <string name="ext_nsfw_warning">Puede contener contenido 18+</string>
     <string name="ext_nsfw_short">18+</string>
     <string name="parental_controls_info">Esto no evita que las extensiones no oficiales o potencialmente marcadas incorrectamente muestren contenido para mayores de 18 años dentro de la aplicación.</string>
-    <string name="pref_category_parental_controls">Controles parentales</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Falta 1 capítulo</item>
         <item quantity="other">Faltan %d capítulos</item>
@@ -663,4 +662,15 @@
     <string name="pref_clear_history">Borrar historial</string>
     <string name="clear_history_confirmation">¿Está seguro\? Toda la historia se perderá.</string>
     <string name="clear_history_completed">Historial eliminado</string>
+    <string name="spen_next_page">Siguiente página</string>
+    <string name="spen_previous_page">Página anterior</string>
+    <string name="full_restore_offline">Restaura fuera de línea, termina rápidamente pero sólo contiene lo que tiene tu copia de seguridad</string>
+    <string name="full_restore_online">Restaurar en línea, es mucho más lento pero te da más información actualizada y capítulos</string>
+    <string name="full_restore_mode">Modo de red</string>
+    <string name="pref_backup_auto_create_legacy">También crear copia de seguridad heredada</string>
+    <string name="pref_create_legacy_backup_summary">Se puede utilizar en versiones anteriores de Tachiyomi</string>
+    <string name="pref_create_legacy_backup">Crear una copia de seguridad heredada</string>
+    <string name="migration_help_guide">Guía de migración de fuentes</string>
+    <string name="invalid_backup_file_type">Archivo de copia de seguridad inválido: %1$s</string>
+    <string name="pref_category_nsfw_content">Contenido 18+</string>
 </resources>

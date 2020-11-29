@@ -619,7 +619,6 @@
     <string name="pref_allow_nsfw_sources_allowed_multisource">Blocați sursele de navigare, dar se afișează în lista de extensii</string>
     <string name="pref_allow_nsfw_sources_allowed">Permis</string>
     <string name="pref_allow_nsfw_sources">Surse 18+</string>
-    <string name="pref_category_parental_controls">Control parental</string>
     <string name="no_pinned_sources">Nu aveți surse fixate</string>
     <string name="no_chapters_error">Nu a fost găsit niciun capitol</string>
     <plurals name="missing_chapters_warning">

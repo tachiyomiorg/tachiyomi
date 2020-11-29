@@ -622,7 +622,6 @@
     <string name="pref_allow_nsfw_sources_blocked">ನಿರ್ಬಂಧಿಸಲಾಗಿದೆ</string>
     <string name="pref_allow_nsfw_sources_allowed_multisource">ಬ್ರೌಸನಲ್ಲಿ ಮೂಲಗಳನ್ನು ನಿರ್ಬಂಧಿಸಿ ಆದರೆ ವಿಸ್ತರಣೆಗಳ ಪಟ್ಟಿಯಲ್ಲಿ ತೋರಿಸಿ</string>
     <string name="pref_allow_nsfw_sources_allowed">ಅನುಮತಿಸಲಾಗಿದೆ</string>
-    <string name="pref_category_parental_controls">ಪೋಷಕರ ನಿಯಂತ್ರಣಗಳು</string>
     <string name="pref_hide_bottom_bar_on_scroll">ಸ್ಕ್ರಾಲ್‌ ಮಾಡಿದಾಗ ಕೆಳಗಿನ ಪಟ್ಟಿಯನ್ನು ಮರೆಮಾಡಿ</string>
     <string name="action_search_settings">ಸಂಯೋಜನೆಗಳಲ್ಲಿ ಹುಡುಕಿ</string>
 </resources>

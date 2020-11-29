@@ -627,7 +627,6 @@
     <string name="pref_allow_nsfw_sources_allowed_multisource">Блокувати переглянуті джерела, але показувати в списку розширень</string>
     <string name="pref_allow_nsfw_sources_allowed">Дозволено</string>
     <string name="pref_allow_nsfw_sources">18+ джерела</string>
-    <string name="pref_category_parental_controls">Батьківський контроль</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Відсутня 1 глава</item>
         <item quantity="few">Відсутні %d глави</item>
@@ -652,4 +651,13 @@
     <string name="pref_clear_history">Очистити історію</string>
     <string name="clear_history_confirmation">Ви впевнені\? Всю історію буде втрачено.</string>
     <string name="clear_history_completed">Історію видалено</string>
+    <string name="spen_next_page">Наступна сторінка</string>
+    <string name="spen_previous_page">Попередня сторінка</string>
+    <string name="migration_help_guide">Гайд по міграції джерел</string>
+    <string name="full_restore_offline">Оффлайн відновлення працює швидше, але містить тільки те що було в вашій резервній копії</string>
+    <string name="full_restore_online">Онлайн відновлення значно повільніше але забезпечує оновлені інформацію та глави</string>
+    <string name="full_restore_mode">Мережевий режим</string>
+    <string name="pref_backup_auto_create_legacy">Також створювати сумісну копію</string>
+    <string name="pref_create_legacy_backup_summary">Може бути використано в старіших версіях Tachiyomi</string>
+    <string name="pref_create_legacy_backup">Створити сумісну резервну копію</string>
 </resources>

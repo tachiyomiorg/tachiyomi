@@ -394,7 +394,7 @@
     <string name="pref_date_format">दिनांक स्वरूप</string>
     <string name="pref_category_library_update">अद्यतन</string>
     <string name="pref_category_library_categories">श्रेणियाँ</string>
-    <string name="logout_title">% 1 $ s से लॉगआउट करें\?</string>
+    <string name="logout_title">%1$s से लॉगआउट करें\?</string>
     <string name="logout">लॉग आउट</string>
     <string name="logout_success">अब आप लॉग आउट है</string>
     <string name="currently_reading">इस समय पढ़ा जा रहा है</string>
@@ -435,12 +435,12 @@
         <item quantity="one">1 नया अध्याय</item>
         <item quantity="other">%1$d नए अध्याय</item>
     </plurals>
-    <string name="notification_chapters_single">अध्याय %1 $ s</string>
-    <string name="notification_chapters_single_and_more">अध्याय% 1 $ s और% 2 $ d अधिक</string>
+    <string name="notification_chapters_single">अध्याय %1$s</string>
+    <string name="notification_chapters_single_and_more">अध्याय %1$s और %2$d अधिक</string>
     <string name="notification_chapters_multiple">अध्याय %1$s</string>
     <plurals name="notification_chapters_multiple_and_more">
-        <item quantity="one">अध्याय %1 $ s और 1 अधिक</item>
-        <item quantity="other">अध्याय %1 $ s और % 2$ s अधिक</item>
+        <item quantity="one">अध्याय %1$s और 1 अधिक</item>
+        <item quantity="other">अध्याय %1$s और %2$d अधिक</item>
     </plurals>
     <string name="hide_notification_content">अधिसूचना सामग्री छुपाएं</string>
     <string name="notification_check_updates">नए अध्यायों के लिए जांच</string>
@@ -497,7 +497,7 @@
     <string name="pref_confirm_exit">बाहर निकलने की पुष्टि करें</string>
     <string name="confirm_exit">बाहर निकलने के लिए फिर से वापस दबाएं</string>
     <string name="label_downloaded_only">केवल डाउनलोड किए गए</string>
-    <string name="recent_manga_time">अध्याय %1 $ s - %2 $ s</string>
+    <string name="recent_manga_time">अध्याय %1$s – %2$s</string>
     <string name="restoring_backup_error">बैकअप बहाल करने में विफल रहा</string>
     <string name="creating_backup_error">बैकअप फेल</string>
     <string name="restoring_backup_canceled">पुनर्स्थापना रद्द की गई</string>
@@ -608,7 +608,6 @@
     <string name="pref_allow_nsfw_sources_allowed_multisource">ब्राउज़िंग स्रोतों को ब्लॉक करें लेकिन एक्सटेंशन सूची में दिखाएं</string>
     <string name="pref_allow_nsfw_sources">18+ स्रोत</string>
     <string name="pref_allow_nsfw_sources_allowed">अनुमति</string>
-    <string name="pref_category_parental_controls">पैतृक नियंत्रण</string>
     <string name="parental_controls_info">यह अनौपचारिक या संभावित रूप से फ़्लैग किए गए एक्सटेंशन को ऐप के भीतर 18+ सामग्री के सामने आने से नहीं रोकता है।</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">1 लापता अध्याय है</item>

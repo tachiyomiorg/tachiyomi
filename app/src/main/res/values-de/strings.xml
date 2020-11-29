@@ -10,7 +10,7 @@
     <string name="label_library">Bibliothek</string>
     <string name="label_recent_manga">Verlauf</string>
     <string name="label_categories">Kategorien</string>
-    <string name="label_backup">Backup</string>
+    <string name="label_backup">Sicherung</string>
     <string name="action_settings">Einstellungen</string>
     <string name="action_filter">Filter</string>
     <string name="action_filter_downloaded">Heruntergeladen</string>
@@ -63,7 +63,7 @@
     <string name="action_save">Speichern</string>
     <string name="action_reset">Zurücksetzen</string>
     <string name="action_undo">Rückgängig machen</string>
-    <string name="action_open_log">Log öffnen</string>
+    <string name="action_open_log">Protokoll öffnen</string>
     <string name="action_create">Erstellen</string>
     <string name="action_restore">Wiederherstellen</string>
     <string name="loading">Wird geladen…</string>
@@ -90,7 +90,7 @@
     <string name="update_48hour">Alle 2 Tage</string>
     <string name="update_weekly">Wöchentlich</string>
     <string name="update_monthly">Monatlich</string>
-    <string name="pref_library_update_categories">Kategorien für das globale Update</string>
+    <string name="pref_library_update_categories">Kategorien für die globale Aktualisierung</string>
     <string name="all">Alle</string>
     <string name="pref_library_update_restriction">Bibliotheksaktualisierung einschränken</string>
     <string name="pref_library_update_restriction_summary">Nur aktualisieren, wenn diese Bedingungen zutreffen</string>
@@ -131,7 +131,7 @@
     <string name="scale_type_fit_width">Horizontal ausfüllen</string>
     <string name="scale_type_fit_height">Vertikal ausfüllen</string>
     <string name="scale_type_original_size">Orginalgröße</string>
-    <string name="scale_type_smart_fit">Intelligentes ausfüllen</string>
+    <string name="scale_type_smart_fit">Intelligentes Ausfüllen</string>
     <string name="pref_zoom_start">Zoom Anfangsposition</string>
     <string name="zoom_start_automatic">Automatisch</string>
     <string name="zoom_start_left">Links</string>
@@ -160,23 +160,23 @@
     <string name="pref_download_new">Neue Kapitel herunterladen</string>
     <string name="pref_download_new_categories">Kategorien, die heruntergeladen werden sollen</string>
     <string name="services">Anbieter</string>
-    <string name="backup">Backup</string>
-    <string name="pref_create_backup">Backup erstellen</string>
+    <string name="backup">Sichern</string>
+    <string name="pref_create_backup">Sicherung erstellen</string>
     <string name="pref_create_backup_summ">Kann benutzt werden, um die aktuelle Bibliothek wiederherzustellen</string>
-    <string name="pref_restore_backup">Backup wiederherstellen</string>
-    <string name="pref_restore_backup_summ">Bibliothek mit Hilfe eines Backups wiederherstellen</string>
-    <string name="pref_backup_directory">Backup-Speicherort</string>
-    <string name="pref_backup_service_category">Automatische Backups</string>
-    <string name="pref_backup_interval">Backuphäufigkeit</string>
-    <string name="pref_backup_slots">Maximale Backups</string>
-    <string name="backup_created">Backup erstellt</string>
+    <string name="pref_restore_backup">Sicherung wiederherstellen</string>
+    <string name="pref_restore_backup_summ">Bibliothek mit Hilfe einer Sicherung wiederherstellen</string>
+    <string name="pref_backup_directory">Sicherungsspeicherort</string>
+    <string name="pref_backup_service_category">Automatische Sicherungen</string>
+    <string name="pref_backup_interval">Sicherungshäufigkeit</string>
+    <string name="pref_backup_slots">Maximale Sicherungen</string>
+    <string name="backup_created">Sicherung erstellt</string>
     <string name="restore_completed">Wiederherstellen abgeschlossen</string>
-    <string name="backup_restore_content">Beim Wiederherstellen eines Backups werden Daten von den Quellen abgerufen, wodurch Mobilfunkkosten enstehen können.
+    <string name="backup_restore_content">Beim Wiederherstellen einer Sicherung werden Daten von den Quellen abgerufen, wodurch Mobilfunkkosten enstehen können.
 \n
-\nVergewissere dich zudem, dass du alle benötigten Seitenlogins bereitgestellt hast, bevor du mit dem Wiederherstellen beginnst.</string>
+\nVergewissere dich zudem, dass du alle benötigten Seitenanmeldungsdaten bereitgestellt hast, bevor du mit dem Wiederherstellen beginnst.</string>
     <string name="backup_choice">Was möchtest du sichern\?</string>
-    <string name="restoring_backup">Backup wird wiederhergestellt</string>
-    <string name="creating_backup">Erstelle Backup</string>
+    <string name="restoring_backup">Sicherung wird wiederhergestellt</string>
+    <string name="creating_backup">Erstelle Sicherung</string>
     <string name="pref_clear_chapter_cache">Kapitel-Zwischenspeicher leeren</string>
     <string name="used_cache">Belegt: %1$s</string>
     <string name="cache_deleted">Zwischenspeicher geleert. %1$d Dateien wurden gelöscht</string>
@@ -202,7 +202,7 @@
     <string name="login_success">Angemeldet</string>
     <string name="invalid_login">Anmeldung fehlgeschlagen</string>
     <string name="unknown_error">Unbekannter Fehler</string>
-    <string name="library_search_hint">Titel oder Autor…</string>
+    <string name="library_search_hint">Titel oder Autor …</string>
     <string name="updating_category">Kategorie wird aktualisiert</string>
     <string name="source_requires_login">Für diese Quelle musst du dich anmelden</string>
     <string name="select_source">Wähle eine Quelle</string>
@@ -280,12 +280,12 @@
     <string name="notification_no_connection_title">Synchronisation abgebrochen</string>
     <string name="notification_no_connection_body">Keine Verbindung möglich</string>
     <string name="file_select_cover">Wähle ein Vorschaubild</string>
-    <string name="file_select_backup">Wähle eine Backup-Datei</string>
+    <string name="file_select_backup">Wähle eine Sicherungsdatei</string>
     <string name="update_check_confirm">Herunterladen</string>
     <string name="update_check_ignore">Ignorieren</string>
-    <string name="update_check_no_new_updates">Kein neues Update verfügbar</string>
-    <string name="update_check_look_for_updates">Suche nach Updates…</string>
-    <string name="update_check_notification_file_download">Update herunterladen</string>
+    <string name="update_check_no_new_updates">Keine neue Aktualisierung verfügbar</string>
+    <string name="update_check_look_for_updates">Suche nach Aktualisierungen …</string>
+    <string name="update_check_notification_file_download">Aktualisierung herunterladen</string>
     <string name="update_check_notification_download_in_progress">Herunterladen…</string>
     <string name="update_check_notification_download_complete">Download abgeschlossen</string>
     <string name="update_check_notification_download_error">Fehler beim Herunterladen</string>
@@ -307,9 +307,9 @@
     <string name="label_recent_updates">Neu</string>
     <string name="action_global_search">Globale Suche</string>
     <string name="action_open">Öffnen</string>
-    <string name="action_login">Einloggen</string>
+    <string name="action_login">Anmelden</string>
     <string name="other_source">Andere</string>
-    <string name="action_global_search_hint">Globale Suche…</string>
+    <string name="action_global_search_hint">Globale Suche …</string>
     <string name="latest">Neueste</string>
     <string name="browse">Stöbern</string>
     <string name="channel_library">Bibliothek</string>
@@ -331,7 +331,7 @@
     <string name="ext_available">Verfügbar</string>
     <string name="untrusted_extension_message">Diese Erweiterung ist mit einem nicht vertrauenswürdigen Zertifikat unterschrieben und wurde nicht aktiviert.
 \n
-\nEine bösartige Erweiterung könnte in Tachiyomi gespeicherte Login-Daten auslesen oder einen schädlichen Code ausführen.
+\nEine bösartige Erweiterung könnte in Tachiyomi gespeicherte Anmeldungsdaten auslesen oder einen schädlichen Code ausführen.
 \n
 \nDurch das Vertrauen dieses Zertifikats akzeptieren Sie diese Risiken.</string>
     <string name="ext_version_info">Version: %1$s</string>
@@ -423,7 +423,7 @@
         <item quantity="other">Nach %1$s Minuten</item>
     </plurals>
     <string name="secure_screen">Bildschirm sichern</string>
-    <string name="ext_updates_pending">Updates ausstehend</string>
+    <string name="ext_updates_pending">Aktualisierungen ausstehend</string>
     <string name="pref_cutout_short">Inhalt im Ausschnittbereich anzeigen</string>
     <string name="information_cloudflare_bypass_failure">Fehler beim Umgehen von Cloudflare</string>
     <string name="information_webview_outdated">Bitte aktualisiere die WebView-App für eine bessere Kompatibilität</string>
@@ -445,7 +445,7 @@
     <string name="hide_notification_content">Benachrichtigungsinhalt verbergen</string>
     <string name="notification_check_updates">Überprüfe auf neue Kapitel</string>
     <string name="pref_disable_battery_optimization">Akkuverbrauch-Optimierung deaktivieren</string>
-    <string name="pref_disable_battery_optimization_summary">Hilft bei Bibliotheksaktualisierungen und Backups im Hintergrund</string>
+    <string name="pref_disable_battery_optimization_summary">Hilft bei Bibliotheksaktualisierungen und -sicherungen im Hintergrund</string>
     <string name="battery_optimization_disabled">Akkuverbrauch-Optimierung ist bereits deaktiviert</string>
     <string name="email">E-Mail-Adresse</string>
     <string name="pref_always_show_chapter_transition">Kapitelübergang immer anzeigen</string>
@@ -464,12 +464,12 @@
     <string name="action_move_to_top">Nach oben verschieben</string>
     <string name="action_move_to_bottom">Nach unten verschieben</string>
     <string name="action_sort_last_checked">Zuletzt überprüft</string>
-    <string name="pref_enable_automatic_extension_updates">Nach Erweiterungsupdates suchen</string>
+    <string name="pref_enable_automatic_extension_updates">Nach Erweiterungsaktualisierungen suchen</string>
     <plurals name="update_check_notification_ext_updates">
-        <item quantity="one">Erweiterungsupdate verfügbar</item>
-        <item quantity="other">%d Erweiterungsupdates verfügbar</item>
+        <item quantity="one">Erweiterungsaktualisierung verfügbar</item>
+        <item quantity="other">%d Erweiterungsaktualisierungen verfügbar</item>
     </plurals>
-    <string name="channel_ext_updates">Erweiterungsupdates</string>
+    <string name="channel_ext_updates">Erweiterungsaktualisierungen</string>
     <string name="http_error_hint">Website in WebView prüfen</string>
     <string name="updating_library">Bibliothek wird aktualisiert</string>
     <string name="pref_skip_filtered_chapters">Überspringe gefilterte Kapitel</string>
@@ -493,20 +493,20 @@
     <string name="add_to_library">Zur Bibliothek hinzufügen</string>
     <string name="confirm_exit">Zum Beenden nochmal die Zurück-Taste drücken</string>
     <string name="information_webview_required">WebView ist für Tachiyomi erforderlich</string>
-    <string name="licenses">Open-Source Lizenzen</string>
+    <string name="licenses">Quelloffene Lizenzen</string>
     <string name="website">Website</string>
     <string name="pref_confirm_exit">Beenden bestätigen</string>
     <string name="label_downloaded_only">Nur Heruntergeladenes</string>
     <string name="recent_manga_time">Kap. %1$s - %2$s</string>
-    <string name="restoring_backup_error">Backup-Wiederherstellung fehlgeschlagen</string>
-    <string name="creating_backup_error">Backup fehlgeschlagen</string>
+    <string name="restoring_backup_error">Sicherungswiederherstellung fehlgeschlagen</string>
+    <string name="creating_backup_error">Sicherung fehlgeschlagen</string>
     <string name="restoring_backup_canceled">Wiederherstellung abgebrochen</string>
     <string name="restore_in_progress">Wiederherstellung wird bereits durchgeführt</string>
-    <string name="backup_in_progress">Backup wird bereits durchgeführt</string>
+    <string name="backup_in_progress">Sicherung wird bereits durchgeführt</string>
     <string name="error_invalid_date_supplied">Ungültiges Datum angegeben</string>
     <string name="track_finished_reading_date">Datum des Leseendes</string>
     <string name="track_started_reading_date">Datum des Lesebeginns</string>
-    <string name="check_for_updates">Auf Updates überprüfen</string>
+    <string name="check_for_updates">Auf Aktualisierungen überprüfen</string>
     <string name="last_used_source">Zuletzt genutzt</string>
     <string name="local_source_help_guide">Lokale-Quellen-Guide</string>
     <string name="restore_duration">%02d min, %02d s</string>
@@ -541,9 +541,9 @@
     <string name="sort_by_upload_date">Nach Uploaddatum</string>
     <string name="label_data">Daten</string>
     <string name="backup_restore_missing_sources">Fehlende Quellen:</string>
-    <string name="invalid_backup_file_missing_manga">Backup beinhaltet keinerlei Manga.</string>
+    <string name="invalid_backup_file_missing_manga">Sicherung beinhaltet keinerlei Manga.</string>
     <string name="invalid_backup_file_missing_data">Der Datei fehlen Daten.</string>
-    <string name="invalid_backup_file">Ungültige Backupdatei</string>
+    <string name="invalid_backup_file">Ungültige Sicherungsdatei</string>
     <string name="tracker_not_logged_in">Nicht angemeldet: %1$s</string>
     <string name="source_not_found_name">Quelle nicht gefunden: %1$s</string>
     <string name="pref_library_update_error_notification">Aktualisierungsfehler-Benachrichtigungen anzeigen</string>
@@ -599,17 +599,16 @@
     <string name="channel_complete">Abgeschlossen</string>
     <string name="channel_progress">Fortschritt</string>
     <string name="channel_errors">Fehler</string>
-    <string name="backup_restore_missing_trackers">Nicht-eingeloggte Tracker:</string>
-    <string name="pref_allow_nsfw_sources">18+ Quellen</string>
-    <string name="pref_allow_nsfw_sources_blocked">Blockiert</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Stöbern der Quelle blockieren, aber in der Erweiterungsliste anzeigen</string>
-    <string name="pref_allow_nsfw_sources_allowed">Erlaubt</string>
+    <string name="backup_restore_missing_trackers">Nicht-angemeldete Tracker:</string>
+    <string name="pref_allow_nsfw_sources">Ü18-Quellen</string>
+    <string name="pref_allow_nsfw_sources_blocked">Versteckten</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">In den Quellen verstecken, aber in der Erweiterungsliste anzeigen</string>
+    <string name="pref_allow_nsfw_sources_allowed">Anzeigen</string>
     <string name="pref_remove_bookmarked_chapters">Mit Lesezeichen versehene Kapitel löschen</string>
     <string name="pref_category_delete_chapters">Kapitel löschen</string>
-    <string name="ext_nsfw_warning">Kann 18+ Inhalte enthalten</string>
-    <string name="ext_nsfw_short">18+</string>
-    <string name="parental_controls_info">Dies verhindert nicht, dass inoffizielle oder möglicherweise falsch gekennzeichnete Erweiterungen 18+ Inhalte in der App anzeigen.</string>
-    <string name="pref_category_parental_controls">Kindersicherung</string>
+    <string name="ext_nsfw_warning">Kann Ü18-Inhalte enthalten</string>
+    <string name="ext_nsfw_short">Ü18</string>
+    <string name="parental_controls_info">Dies verhindert nicht, dass inoffizielle oder möglicherweise falsch gekennzeichnete Erweiterungen Ü18-Inhalte in der App anzeigen.</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Es gibt 1 fehlendes Kapitel</item>
         <item quantity="other">Es gibt %d fehlende Kapitel</item>
@@ -632,4 +631,15 @@
     <string name="pref_clear_history">Verlauf löschen</string>
     <string name="clear_history_confirmation">Bist du sicher\? Der gesamte Verlauf wird verloren sein.</string>
     <string name="clear_history_completed">Verlauf gelöscht</string>
+    <string name="spen_next_page">Nächste Seite</string>
+    <string name="spen_previous_page">Vorherige Seite</string>
+    <string name="full_restore_mode">Netzwerk-Modus</string>
+    <string name="full_restore_offline">Offline wiederherstellen; ist schnell, aber beinhaltet nur den Inhalt deines Backups</string>
+    <string name="full_restore_online">Online wiederherstellen; viel langsamer, aber mit aktuelleren Informationen und Kapiteln</string>
+    <string name="pref_backup_auto_create_legacy">Auch ein Legacy-Backup erstellen</string>
+    <string name="pref_create_legacy_backup_summary">Können in älteren Versionen von Tachiyomi verwendet werden</string>
+    <string name="pref_create_legacy_backup">Legacy-Backup erstellen</string>
+    <string name="migration_help_guide">Quellenmigration</string>
+    <string name="invalid_backup_file_type">Ungültige Backup-Datei: %1$s</string>
+    <string name="pref_category_nsfw_content">Ü18-Inhalte</string>
 </resources>
