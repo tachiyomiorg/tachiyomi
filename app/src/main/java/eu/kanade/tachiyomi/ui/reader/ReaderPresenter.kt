@@ -407,17 +407,19 @@ class ReaderPresenter(
     }
 
     /**
-     * Saves this [chapter] progress (last read page and whether it's read).
+     * Saves this [chapter] progress (last read page and whether it's read) if incognito mode isn't on.
      */
     private fun saveChapterProgress(chapter: ReaderChapter) {
-        db.updateChapterProgress(chapter.chapter).asRxCompletable()
-            .onErrorComplete()
-            .subscribeOn(Schedulers.io())
-            .subscribe()
+        if (!preferences.incognitoMode().get()) {
+            db.updateChapterProgress(chapter.chapter).asRxCompletable()
+                .onErrorComplete()
+                .subscribeOn(Schedulers.io())
+                .subscribe()
+        }
     }
 
     /**
-     * Saves this [chapter] last read history.
+     * Saves this [chapter] last read history if incognito mode isn't on.
      */
     private fun saveChapterHistory(chapter: ReaderChapter) {
         if (!preferences.incognitoMode().get()) {
