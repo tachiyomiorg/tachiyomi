@@ -177,6 +177,29 @@
     <style name="Theme.Tachiyomi.Dark" parent="Theme.Base.Dark">
     </style>
 
+    <style name="Theme.Tachiyomi.Gray" parent="Theme.Base.Dark">
+        <item name="colorPrimary">@color/light_gray</item>
+        <item name="colorOnPrimary">@color/textColorPrimaryGray</item>
+        <item name="colorAccentOnPrimary">@color/colorAccentGray</item>
+        <item name="colorPrimaryVariant">@color/light_gray</item>
+        <item name="colorSecondary">@color/colorAccentGray</item>
+        <item name="colorOnSecondary">@color/textColorPrimaryGray</item>
+        <item name="colorSurface">@color/light_gray</item>
+        <item name="colorOnSurface">@color/textColorPrimaryGray</item>
+        <item name="colorOnBackground">@color/textColorPrimaryGray</item>
+        <item name="colorAccent">@color/colorAccentGray</item>
+
+        <item name="android:colorBackground">@color/backgroundGray</item>
+
+        <!-- Some ROMs make black navbars white (e.g. OxygenOS) -->
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+
+        <!-- Custom Attributes -->
+        <item name="colorLibrarySelection">@color/selectorColorDark</item>
+        <item name="colorLibrarySelectionActive">@color/selectorColorDark</item>
+    </style>
+
+
     <style name="Theme.Tachiyomi.DarkBlue" parent="Theme.Base.Dark">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorAccentOnPrimary">@color/textColorPrimaryDark</item>

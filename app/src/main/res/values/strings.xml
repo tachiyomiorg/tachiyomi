@@ -151,6 +151,7 @@
     <string name="theme_dark_default">Default</string>
     <string name="theme_dark_blue">Dark blue</string>
     <string name="theme_dark_amoled">AMOLED black</string>
+    <string name="theme_dark_gray">Cool gray</string>
     <string name="pref_start_screen">Start screen</string>
     <string name="pref_language">Language</string>
     <string name="system_default">Default</string>

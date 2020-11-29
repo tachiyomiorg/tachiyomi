@@ -33,6 +33,20 @@
     <color name="dialogDark">@color/colorDarkPrimary</color>
     <color name="selectorColorDark">@color/md_blue_A200_50</color>
 
+    <!-- Gray Theme -->
+    <color name="colorAccentGray">#3399FF</color>
+    <color name="textColorPrimaryGray">@color/md_white_1000</color>
+    <color name="textColorSecondaryGray">@color/md_white_1000_70</color>
+    <color name="textColorHintGray">@color/md_white_1000_50</color>
+    <color name="dividerGray">@android:color/transparent</color>
+    <color name="rippleColorGray">@color/md_white_1000_20</color>
+    <color name="backgroundGray">#202125</color>
+    <color name="dialogGray">#242529</color>
+    <color name="selectorColorGray">@color/md_blue_A200_50</color>
+
+    <color name="gray">#202125</color>
+    <color name="light_gray">#242529</color>
+
     <!-- Reader Theme -->
     <color name="readerColorDarkPrimary">@color/colorDarkPrimary</color>
     <color name="pageNumberBackgroundLight">@color/md_grey_50_75</color>
