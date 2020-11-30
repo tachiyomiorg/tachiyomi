@@ -1,6 +1,5 @@
 package eu.kanade.tachiyomi.ui.reader.viewer.pager
 
-import eu.kanade.tachiyomi.data.preference.PreferenceValues.TappingInvertMode
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.reader.viewer.ViewerConfig
 import eu.kanade.tachiyomi.ui.reader.viewer.ViewerNavigation
@@ -37,7 +36,13 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
             .register({ imageCropBorders = it }, { imagePropertyChangedListener?.invoke() })
 
         preferences.navigationModePager()
-            .register({ navigationMode = it }, { viewerNavigation(it, tappingInverted) })
+            .register(
+                { navigationMode = it },
+                {
+                    navigationMode = it
+                    viewerNavigation()
+                }
+            )
     }
 
     private fun zoomTypeFromPreference(value: Int) {
@@ -57,23 +62,21 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
         }
     }
 
-    override fun defaultViewerNavigation(invertHorizontal: Boolean, invertVertical: Boolean): ViewerNavigation {
+    override fun defaultViewerNavigation(): ViewerNavigation {
         return when (viewer) {
-            is VerticalPagerViewer -> VerticalPagerDefaultNavigation(invertHorizontal, invertVertical)
-            else -> PagerDefaultNavigation(invertHorizontal)
+            is VerticalPagerViewer -> VerticalPagerDefaultNavigation()
+            else -> PagerDefaultNavigation()
         }
     }
 
-    override fun viewerNavigation(navigationMode: Int, invertMode: TappingInvertMode) {
-        val invertHorizontal = invertMode.shouldInvertHorizontal()
-        val invertVertical = invertMode.shouldInvertVertical()
-
+    override fun viewerNavigation() {
         navigator = when (navigationMode) {
-            0 -> defaultViewerNavigation(invertHorizontal, invertVertical)
-            1 -> LNavigation(invertHorizontal, invertVertical)
-            2 -> KindlishNavigation(invertHorizontal, invertVertical)
-            else -> defaultViewerNavigation(invertHorizontal, invertVertical)
+            0 -> defaultViewerNavigation()
+            1 -> LNavigation()
+            2 -> KindlishNavigation()
+            else -> defaultViewerNavigation()
         }
+        super.viewerNavigation()
     }
 
     enum class ZoomType {

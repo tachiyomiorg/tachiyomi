@@ -1,6 +1,5 @@
 package eu.kanade.tachiyomi.ui.reader.viewer.webtoon
 
-import eu.kanade.tachiyomi.data.preference.PreferenceValues.TappingInvertMode
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.reader.viewer.ViewerConfig
 import eu.kanade.tachiyomi.ui.reader.viewer.ViewerNavigation
@@ -30,22 +29,26 @@ class WebtoonConfig(preferences: PreferencesHelper = Injekt.get()) : ViewerConfi
             .register({ sidePadding = it }, { imagePropertyChangedListener?.invoke() })
 
         preferences.navigationModeWebtoon()
-            .register({ navigationMode = it }, { viewerNavigation(it, tappingInverted) })
+            .register(
+                { navigationMode = it },
+                {
+                    navigationMode = it
+                    viewerNavigation()
+                }
+            )
     }
 
-    override fun defaultViewerNavigation(invertHorizontal: Boolean, invertVertical: Boolean): ViewerNavigation {
-        return WebtoonDefaultNavigation(invertHorizontal, invertVertical)
+    override fun defaultViewerNavigation(): ViewerNavigation {
+        return WebtoonDefaultNavigation()
     }
 
-    override fun viewerNavigation(navigationMode: Int, invertMode: TappingInvertMode) {
-        val invertHorizontal = invertMode.shouldInvertHorizontal()
-        val invertVertical = invertMode.shouldInvertVertical()
-
+    override fun viewerNavigation() {
         this.navigator = when (navigationMode) {
-            0 -> defaultViewerNavigation(invertHorizontal, invertVertical)
-            1 -> LNavigation(invertHorizontal, invertVertical)
-            2 -> KindlishNavigation(invertHorizontal, invertVertical)
-            else -> defaultViewerNavigation(invertHorizontal, invertVertical)
+            0 -> defaultViewerNavigation()
+            1 -> LNavigation()
+            2 -> KindlishNavigation()
+            else -> defaultViewerNavigation()
         }
+        super.viewerNavigation()
     }
 }

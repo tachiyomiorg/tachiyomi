@@ -17,9 +17,17 @@ abstract class ViewerConfig(preferences: PreferencesHelper) {
 
     private val scope = CoroutineScope(Job() + Dispatchers.Main)
 
-    abstract fun defaultViewerNavigation(invertHorizontal: Boolean = false, invertVertical: Boolean = false): ViewerNavigation
+    abstract fun defaultViewerNavigation(): ViewerNavigation
 
-    abstract fun viewerNavigation(navigationMode: Int, invertMode: TappingInvertMode)
+    open fun viewerNavigation() {
+        tappingBehaviour()
+    }
+
+    protected fun tappingBehaviour() {
+        navigator.invertVertical = tappingInverted.shouldInvertVertical()
+        navigator.invertHorizontal = tappingInverted.shouldInvertHorizontal()
+        navigator.invert()
+    }
 
     abstract var navigator: ViewerNavigation
         protected set
@@ -43,7 +51,13 @@ abstract class ViewerConfig(preferences: PreferencesHelper) {
             .register({ tappingEnabled = it })
 
         preferences.readWithTappingInverted()
-            .register({ tappingInverted = it }, { viewerNavigation(navigationMode, it) })
+            .register(
+                { tappingInverted = it },
+                {
+                    tappingInverted = it
+                    tappingBehaviour()
+                }
+            )
 
         preferences.readWithLongTap()
             .register({ longTapEnabled = it })
