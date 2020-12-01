@@ -23,8 +23,6 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
     var imageCropBorders = false
         private set
 
-    override var navigator: ViewerNavigation = defaultViewerNavigation()
-
     init {
         preferences.imageScaleType()
             .register({ imageScaleType = it }, { imagePropertyChangedListener?.invoke() })
@@ -36,13 +34,7 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
             .register({ imageCropBorders = it }, { imagePropertyChangedListener?.invoke() })
 
         preferences.navigationModePager()
-            .register(
-                { navigationMode = it },
-                {
-                    navigationMode = it
-                    viewerNavigation()
-                }
-            )
+            .register({ navigationMode = it }, { viewerNavigation() })
     }
 
     private fun zoomTypeFromPreference(value: Int) {

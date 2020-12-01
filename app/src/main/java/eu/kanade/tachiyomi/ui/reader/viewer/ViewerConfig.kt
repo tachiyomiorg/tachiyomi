@@ -17,21 +17,6 @@ abstract class ViewerConfig(preferences: PreferencesHelper) {
 
     private val scope = CoroutineScope(Job() + Dispatchers.Main)
 
-    abstract fun defaultViewerNavigation(): ViewerNavigation
-
-    open fun viewerNavigation() {
-        tappingBehaviour()
-    }
-
-    protected fun tappingBehaviour() {
-        navigator.invertVertical = tappingInverted.shouldInvertVertical()
-        navigator.invertHorizontal = tappingInverted.shouldInvertHorizontal()
-        navigator.invert()
-    }
-
-    abstract var navigator: ViewerNavigation
-        protected set
-
     var imagePropertyChangedListener: (() -> Unit)? = null
 
     var tappingEnabled = true
@@ -46,18 +31,15 @@ abstract class ViewerConfig(preferences: PreferencesHelper) {
     var navigationMode = 0
         protected set
 
+    lateinit var navigator: ViewerNavigation
+        protected set
+
     init {
         preferences.readWithTapping()
             .register({ tappingEnabled = it })
 
         preferences.readWithTappingInverted()
-            .register(
-                { tappingInverted = it },
-                {
-                    tappingInverted = it
-                    tappingBehaviour()
-                }
-            )
+            .register({ tappingInverted = it }, { applyInversion() })
 
         preferences.readWithLongTap()
             .register({ longTapEnabled = it })
@@ -79,6 +61,17 @@ abstract class ViewerConfig(preferences: PreferencesHelper) {
 
         preferences.alwaysShowChapterTransition()
             .register({ alwaysShowChapterTransition = it })
+    }
+
+    protected abstract fun defaultViewerNavigation(): ViewerNavigation
+
+    protected open fun viewerNavigation() = applyInversion()
+
+    private fun applyInversion() {
+        if (!this::navigator.isInitialized) return
+        navigator.invertVertical = tappingInverted.shouldInvertVertical()
+        navigator.invertHorizontal = tappingInverted.shouldInvertHorizontal()
+        navigator.invert()
     }
 
     fun <T> Preference<T>.register(

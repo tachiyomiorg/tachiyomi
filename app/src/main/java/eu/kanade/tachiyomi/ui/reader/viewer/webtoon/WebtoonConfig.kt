@@ -19,8 +19,6 @@ class WebtoonConfig(preferences: PreferencesHelper = Injekt.get()) : ViewerConfi
     var sidePadding = 0
         private set
 
-    override var navigator: ViewerNavigation = defaultViewerNavigation()
-
     init {
         preferences.cropBordersWebtoon()
             .register({ imageCropBorders = it }, { imagePropertyChangedListener?.invoke() })
@@ -29,13 +27,7 @@ class WebtoonConfig(preferences: PreferencesHelper = Injekt.get()) : ViewerConfi
             .register({ sidePadding = it }, { imagePropertyChangedListener?.invoke() })
 
         preferences.navigationModeWebtoon()
-            .register(
-                { navigationMode = it },
-                {
-                    navigationMode = it
-                    viewerNavigation()
-                }
-            )
+            .register({ navigationMode = it }, { viewerNavigation() })
     }
 
     override fun defaultViewerNavigation(): ViewerNavigation {
