@@ -31,7 +31,7 @@ class SetTrackReadingDatesDialog<T> : DialogController
 
     @Suppress("unused")
     constructor(bundle: Bundle) : super(bundle) {
-        val track = bundle.getSerializable(SetTrackReadingDatesDialog.KEY_ITEM_TRACK) as Track
+        val track = bundle.getSerializable(KEY_ITEM_TRACK) as Track
         val service = Injekt.get<TrackManager>().getService(track.sync_id)!!
         item = TrackItem(track, service)
         dateToUpdate = ReadingDate.Start

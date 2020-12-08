@@ -51,10 +51,7 @@ object ImageUtil {
     }
 
     private fun ByteArray.compareWith(magic: ByteArray): Boolean {
-        for (i in magic.indices) {
-            if (this[i] != magic[i]) return false
-        }
-        return true
+        return magic.indices.none { this[it] != magic[it] }
     }
 
     private fun charByteArrayOf(vararg bytes: Int): ByteArray {

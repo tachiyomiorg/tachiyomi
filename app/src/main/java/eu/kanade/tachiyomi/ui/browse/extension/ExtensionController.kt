@@ -185,7 +185,7 @@ open class ExtensionController :
     }
 
     private fun drawExtensions() {
-        if (!query.isBlank()) {
+        if (query.isNotBlank()) {
             adapter?.updateDataSet(
                 extensions.filter {
                     it.extension.name.contains(query, ignoreCase = true)

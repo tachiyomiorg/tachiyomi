@@ -264,7 +264,7 @@ open class BrowseSourceController(bundle: Bundle) :
         searchView.maxWidth = Int.MAX_VALUE
 
         val query = presenter.query
-        if (!query.isBlank()) {
+        if (query.isNotBlank()) {
             searchItem.expandActionView()
             searchView.setQuery(query, true)
             searchView.clearFocus()

@@ -175,10 +175,10 @@ class EpubFile(file: File) : Closeable {
      */
     private fun getPathSeparator(): String {
         val meta = zip.getEntry("META-INF\\container.xml")
-        if (meta != null) {
-            return "\\"
+        return if (meta != null) {
+            "\\"
         } else {
-            return "/"
+            "/"
         }
     }
 
@@ -206,10 +206,10 @@ class EpubFile(file: File) : Closeable {
      */
     private fun getParentDirectory(path: String): String {
         val separatorIndex = path.lastIndexOf(pathSeparator)
-        if (separatorIndex >= 0) {
-            return path.substring(0, separatorIndex)
+        return if (separatorIndex >= 0) {
+            path.substring(0, separatorIndex)
         } else {
-            return ""
+            ""
         }
     }
 }

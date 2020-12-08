@@ -222,9 +222,8 @@ open class GlobalSearchPresenter(
     private fun initializeFetchImageSubscription() {
         fetchImageSubscription?.unsubscribe()
         fetchImageSubscription = fetchImageSubject.observeOn(Schedulers.io())
-            .flatMap { pair ->
-                val source = pair.second
-                Observable.from(pair.first).filter { it.thumbnail_url == null && !it.initialized }
+            .flatMap { (first, source) ->
+                Observable.from(first).filter { it.thumbnail_url == null && !it.initialized }
                     .map { Pair(it, source) }
                     .concatMap { getMangaDetailsObservable(it.first, it.second) }
                     .map { Pair(source as CatalogueSource, it) }

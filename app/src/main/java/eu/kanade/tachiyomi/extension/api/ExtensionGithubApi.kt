@@ -1,8 +1,6 @@
 package eu.kanade.tachiyomi.extension.api
 
 import android.content.Context
-import com.github.salomonbrys.kotson.get
-import com.github.salomonbrys.kotson.int
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.extension.model.LoadResult

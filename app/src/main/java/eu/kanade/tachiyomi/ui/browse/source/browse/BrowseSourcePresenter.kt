@@ -52,7 +52,7 @@ import java.util.Date
  */
 open class BrowseSourcePresenter(
     private val sourceId: Long,
-    private val searchQuery: String? = null,
+    searchQuery: String? = null,
     private val sourceManager: SourceManager = Injekt.get(),
     private val db: DatabaseHelper = Injekt.get(),
     private val prefs: PreferencesHelper = Injekt.get(),
@@ -153,9 +153,9 @@ open class BrowseSourcePresenter(
         pagerSubscription?.let { remove(it) }
         pagerSubscription = pager.results()
             .observeOn(Schedulers.io())
-            .map { pair -> pair.first to pair.second.map { networkToLocalManga(it, sourceId) } }
+            .map { (first, second) -> first to second.map { networkToLocalManga(it, sourceId) } }
             .doOnNext { initializeMangas(it.second) }
-            .map { pair -> pair.first to pair.second.map { SourceItem(it, sourceDisplayMode) } }
+            .map { (first, second) -> first to second.map { SourceItem(it, sourceDisplayMode) } }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeReplay(
                 { view, (page, mangas) ->

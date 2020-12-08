@@ -128,7 +128,7 @@ class DownloadCache(
             .orEmpty()
             .associate { it.name to SourceDirectory(it) }
             .mapNotNullKeys { entry ->
-                onlineSources.find { provider.getSourceDirName(it).toLowerCase() == entry.key?.toLowerCase() }?.id
+                onlineSources.find { provider.getSourceDirName(it).equals(entry.key, ignoreCase = true) }?.id
             }
 
         rootDir.files = sourceDirs

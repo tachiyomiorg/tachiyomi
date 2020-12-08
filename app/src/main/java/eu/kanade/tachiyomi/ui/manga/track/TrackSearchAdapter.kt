@@ -47,7 +47,7 @@ class TrackSearchAdapter(context: Context) :
             binding.trackSearchTitle.text = track.title
             binding.trackSearchSummary.text = track.summary
             GlideApp.with(view.context).clear(binding.trackSearchCover)
-            if (!track.cover_url.isEmpty()) {
+            if (track.cover_url.isNotEmpty()) {
                 GlideApp.with(view.context)
                     .load(track.cover_url)
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)

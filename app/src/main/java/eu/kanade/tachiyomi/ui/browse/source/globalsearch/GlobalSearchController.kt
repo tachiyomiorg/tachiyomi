@@ -195,7 +195,7 @@ open class GlobalSearchController(
 
         adapter?.updateDataSet(searchResult)
 
-        val progress = searchResult.mapNotNull { it.results }.count().toDouble() / searchResult.size
+        val progress = searchResult.mapNotNull { it.results }.size.toDouble() / searchResult.size
         if (progress < 1) {
             binding.progressBar.isVisible = true
             binding.progressBar.progress = (progress * 100).toInt()

@@ -152,7 +152,7 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
         // Initial opening - preload allowed
         currentPage ?: return true
 
-        val nextItem = adapter.items.getOrNull(adapter.items.count() - 1)
+        val nextItem = adapter.items.getOrNull(adapter.items.size - 1)
         val nextChapter = (nextItem as? ChapterTransition.Next)?.to ?: (nextItem as? ReaderPage)?.chapter
 
         // Allow preload for

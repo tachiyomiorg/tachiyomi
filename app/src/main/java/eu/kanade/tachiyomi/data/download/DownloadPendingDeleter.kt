@@ -89,8 +89,8 @@ class DownloadPendingDeleter(context: Context) {
         }
         lastAddedEntry = null
 
-        return entries.associate { entry ->
-            entry.manga.toModel() to entry.chapters.map { it.toModel() }
+        return entries.associate { (chapters, manga) ->
+            manga.toModel() to chapters.map { it.toModel() }
         }
     }
 

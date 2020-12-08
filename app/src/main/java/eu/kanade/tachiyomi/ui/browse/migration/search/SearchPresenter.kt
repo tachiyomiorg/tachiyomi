@@ -97,7 +97,7 @@ class SearchPresenter(
                 val prevMangaChapters = db.getChapters(prevManga).executeAsBlocking()
                 val maxChapterRead = prevMangaChapters
                     .filter { it.read }
-                    .maxBy { it.chapter_number }?.chapter_number
+                    .maxByOrNull { it.chapter_number }?.chapter_number
                 val bookmarkedChapters = prevMangaChapters
                     .filter { it.bookmark && it.isRecognizedNumber }
                     .map { it.chapter_number }

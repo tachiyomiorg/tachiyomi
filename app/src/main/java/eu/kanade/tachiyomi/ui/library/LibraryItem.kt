@@ -101,11 +101,11 @@ class LibraryItem(val manga: LibraryManga, private val libraryDisplayMode: Prefe
     private fun containsGenre(tag: String, genres: List<String>?): Boolean {
         return if (tag.startsWith("-")) {
             genres?.find {
-                it.trim().toLowerCase() == tag.substringAfter("-").toLowerCase()
+                it.trim().equals(tag.substringAfter("-"), ignoreCase = true)
             } == null
         } else {
             genres?.find {
-                it.trim().toLowerCase() == tag.toLowerCase()
+                it.trim().equals(tag, ignoreCase = true)
             } != null
         }
     }

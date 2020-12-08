@@ -52,7 +52,7 @@ class CategoryPresenter(
         val cat = Category.create(name)
 
         // Set the new item in the last position.
-        cat.order = categories.map { it.order + 1 }.max() ?: 0
+        cat.order = categories.map { it.order + 1 }.maxOrNull() ?: 0
 
         // Insert into database.
         db.insertCategory(cat).asRxObservable().subscribe()

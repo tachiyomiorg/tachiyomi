@@ -165,8 +165,7 @@ class LibraryUpdateNotifier(private val context: Context) {
 
             // Per-manga notification
             if (!preferences.hideNotificationContent()) {
-                updates.forEach {
-                    val (manga, chapters) = it
+                updates.forEach { (manga, chapters) ->
                     notify(manga.id.hashCode(), createNewChaptersNotification(manga, chapters))
                 }
             }

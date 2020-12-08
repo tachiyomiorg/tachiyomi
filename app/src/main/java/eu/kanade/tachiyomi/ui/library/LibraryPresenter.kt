@@ -409,9 +409,7 @@ class LibraryPresenter(
         val mc = mutableListOf<MangaCategory>()
 
         for (manga in mangas) {
-            for (cat in categories) {
-                mc.add(MangaCategory.create(manga, cat))
-            }
+            categories.mapTo(mc) { MangaCategory.create(manga, it) }
         }
 
         db.setMangaCategories(mc, mangas)

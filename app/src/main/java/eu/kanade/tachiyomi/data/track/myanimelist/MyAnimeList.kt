@@ -149,13 +149,9 @@ class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
     private fun saveCSRF(csrf: String) = preferences.trackToken(this).set(csrf)
 
     private fun checkCookies(): Boolean {
-        var ckCount = 0
         val url = BASE_URL.toHttpUrlOrNull()!!
-        for (ck in networkService.cookieManager.get(url)) {
-            if (ck.name == USER_SESSION_COOKIE || ck.name == LOGGED_IN_COOKIE) {
-                ckCount++
-            }
-        }
+        val ckCount = networkService.cookieManager.get(url).count {
+            it.name == USER_SESSION_COOKIE || it.name == LOGGED_IN_COOKIE }
 
         return ckCount == 2
     }
