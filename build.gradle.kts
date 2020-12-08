@@ -26,8 +26,8 @@ subprojects {
 buildscript {
     dependencies {
         classpath("com.github.zellius:android-shortcut-gradle-plugin:0.1.2")
-        classpath("com.google.gms:google-services:4.3.3")
-        classpath("com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:8.3.0")
+        classpath("com.google.gms:google-services:4.3.4")
+        classpath("com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:" + BuildPluginsVersion.ABOUTLIB_PLUGIN)
         classpath(kotlin("serialization", version = BuildPluginsVersion.KOTLIN))
     }
     repositories {
