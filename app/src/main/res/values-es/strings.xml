@@ -673,4 +673,5 @@
     <string name="migration_help_guide">Guía de migración de fuentes</string>
     <string name="invalid_backup_file_type">Archivo de copia de seguridad inválido: %1$s</string>
     <string name="pref_category_nsfw_content">Contenido 18+</string>
+    <string name="process_text_action_name">Buscar en Tachiyomi</string>
 </resources>

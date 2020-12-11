@@ -601,10 +601,10 @@
     <string name="download_notifier_download_finish">Тиев вӗҫленӗ</string>
     <string name="channel_errors">Йӑнӑшсем</string>
     <string name="backup_restore_missing_trackers">Кӗмен сӑнанусем:</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Ҫӑл куҫа пӑхма чарса ларт, анчах хушмасен ят-йышӗнче кӑтарт</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Ҫӑл куҫсенче пытар, анчах хушмасен ят-йышӗнче кӑтарт</string>
     <string name="pref_allow_nsfw_sources">18+ ҫӑл куҫсем</string>
-    <string name="pref_allow_nsfw_sources_allowed">Ирӗк панӑ</string>
-    <string name="pref_allow_nsfw_sources_blocked">Чарса лартнӑ</string>
+    <string name="pref_allow_nsfw_sources_allowed">Кӑтарт</string>
+    <string name="pref_allow_nsfw_sources_blocked">Пытар</string>
     <string name="pref_remove_bookmarked_chapters">Картнӑ сыпӑксене катерт</string>
     <string name="pref_category_delete_chapters">Сыпӑксене катерт</string>
     <string name="ext_nsfw_warning">18+ шалаш пулма пултарать</string>
@@ -642,4 +642,6 @@
     <string name="pref_create_legacy_backup_summary">Кивӗ верссисенче усӑ курма пулать</string>
     <string name="pref_create_legacy_backup">Кивӗ форматлӑ янтӑв ту</string>
     <string name="invalid_backup_file_type">Тӗрӗс мар янтӑв файлӗ: %1$s</string>
+    <string name="pref_category_nsfw_content">18+ шалаш</string>
+    <string name="process_text_action_name">Tachiyomi-ра шыра</string>
 </resources>

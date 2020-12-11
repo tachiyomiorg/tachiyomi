@@ -641,5 +641,6 @@
     <string name="pref_create_legacy_backup">Criar backup legado</string>
     <string name="migration_help_guide">Guia de migração de fonte</string>
     <string name="invalid_backup_file_type">Arquivo de backup inválido: %1$s</string>
-    <string name="pref_category_nsfw_content">Conteúdo 18+</string>
+    <string name="pref_category_nsfw_content">Conteúdo +18</string>
+    <string name="process_text_action_name">Buscar no Tachiyomi</string>
 </resources>

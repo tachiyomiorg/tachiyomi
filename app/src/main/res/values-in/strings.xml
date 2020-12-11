@@ -597,7 +597,7 @@
     <string name="pref_remove_bookmarked_chapters">Hapus bab yang ditandai</string>
     <string name="pref_category_delete_chapters">Hapus bab</string>
     <string name="parental_controls_info">Ini tidak mencegah ekstensi yang tidak dilabeli konten 18+ di dalam aplikasi.</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Sembunyikan dari sumber tapi tampilkan di daftar ekstensi</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Sembunyikan dalam sumber tapi tampilkan di daftar ekstensi</string>
     <plurals name="missing_chapters_warning">
         <item quantity="other">Ada %d bab yang hilang</item>
     </plurals>
@@ -620,4 +620,15 @@
     <string name="clear_history_completed">Riwayat telah dihapus</string>
     <string name="pref_hide_bottom_bar_on_scroll">Sembunyikan bilah bawah saat menggulirkan halaman</string>
     <string name="pref_category_nsfw_content">Konten 18+</string>
+    <string name="invalid_backup_file_type">Cadangan tidak valid: %1$s</string>
+    <string name="pref_backup_auto_create_legacy">Buat cadangan versi lama juga</string>
+    <string name="pref_create_legacy_backup">Buat cadangan versi</string>
+    <string name="spen_next_page">Halaman selanjutnya</string>
+    <string name="spen_previous_page">Halaman sebelumnya</string>
+    <string name="migration_help_guide">Petunjuk migrasi</string>
+    <string name="full_restore_offline">Pulihkan secara offline, selesai dengan cepat namun hanya menyertakan daang terdapat dalam cadangan anda</string>
+    <string name="full_restore_online">Pulihkan secara online, lebih lama tetapi menyegarkan info dan bab terbaru</string>
+    <string name="full_restore_mode">Mode Jaringan</string>
+    <string name="pref_create_legacy_backup_summary">Bisa digunakan di Tachiyomi versi lama</string>
+    <string name="process_text_action_name">Cari di Tachiyomi</string>
 </resources>

@@ -356,7 +356,7 @@
     <string name="track_start_date">تم البدء فيها</string>
     <string name="track_type">النوع</string>
     <string name="track_author">المؤلف</string>
-    <string name="migration_info">اضغط لتحديد مصدر للترحيل منه</string>
+    <string name="migration_info">إضغط لتحديد مصدر للترحيل منه</string>
     <string name="migration_dialog_what_to_include">اختر بيانات لتضمينها</string>
     <string name="migrate">ترحيل</string>
     <string name="copy">نسخ</string>
@@ -612,8 +612,8 @@
     <string name="pref_jump_to_chapters">الذهاب إلى الفصول المفتوحة</string>
     <string name="parental_controls_info">هذا لا يمنع الإضافات غير الرسمية أو التي تم وضع علامة عليها بشكل غير صحيح من اظهار محتوى غير لائق داخل التطبيق.</string>
     <string name="pref_allow_nsfw_sources_blocked">محجوب</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">حظر التصفح المصادر ولكن تظهر في قائمة اﻹضافات</string>
-    <string name="pref_allow_nsfw_sources_allowed">مَسموح</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">إخفاء في المصادر ولكن تظهر في قائمة اﻹضافات</string>
+    <string name="pref_allow_nsfw_sources_allowed">مسموح</string>
     <string name="pref_allow_nsfw_sources">مصادر +18</string>
     <string name="pref_category_locale">محلي</string>
     <string name="action_open_in_settings">افتح في الإعدادات</string>
@@ -687,4 +687,6 @@
     <string name="pref_backup_auto_create_legacy">قم أيضًا بإنشاء نسخة إحتياطية قديمة</string>
     <string name="pref_create_legacy_backup_summary">يمكن إستخدامه في الإصدارات القديمة من Tachiyomi</string>
     <string name="pref_create_legacy_backup">إنشاء نسخة احتياطية قديمة</string>
+    <string name="invalid_backup_file_type">ملف النسخ الاحتياطي غير صالح: %1$s</string>
+    <string name="pref_category_nsfw_content">محتوى +18</string>
 </resources>

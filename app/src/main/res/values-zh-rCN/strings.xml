@@ -159,7 +159,7 @@
     <string name="scale_type_fit_screen">填充屏幕</string>
     <string name="scale_type_stretch">拉伸</string>
     <string name="scale_type_fit_width">适应宽度</string>
-    <string name="scale_type_fit_height">适应长度</string>
+    <string name="scale_type_fit_height">适应高度</string>
     <string name="scale_type_original_size">原始大小</string>
     <string name="scale_type_smart_fit">智能填充</string>
     <string name="pref_zoom_start">缩放位置</string>
@@ -630,4 +630,5 @@
     <string name="migration_help_guide">源迁移指南</string>
     <string name="invalid_backup_file_type">无效的备份文件：%1$s</string>
     <string name="pref_category_nsfw_content">18+ 内容</string>
+    <string name="process_text_action_name">在 Tachiyomi 中搜索</string>
 </resources>

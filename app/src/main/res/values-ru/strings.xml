@@ -655,8 +655,8 @@
     <string name="clear_history_completed">История удалена</string>
     <string name="spen_next_page">Следующая страница</string>
     <string name="spen_previous_page">Предыдущая страница</string>
-    <string name="full_restore_offline">Оффлайн восстановление; работает быстрее, но восстанавливает только то, что было в вашей резервной копии</string>
-    <string name="full_restore_online">Онлайн восстановление; гораздо медленнее, но подгружает более актуальную информацию и новые главы</string>
+    <string name="full_restore_offline">Оффлайн восстановление: работает быстрее, но восстанавливает только то, что было в вашей резервной копии</string>
+    <string name="full_restore_online">Онлайн восстановление: работает гораздо медленнее, но подгружает более актуальные главы и информацию</string>
     <string name="full_restore_mode">Сетевой режим</string>
     <string name="pref_backup_auto_create_legacy">Также создавать резервную копию старого формата</string>
     <string name="pref_create_legacy_backup_summary">Может быть использован в предыдущих версиях Tachiyomi</string>
@@ -664,4 +664,5 @@
     <string name="migration_help_guide">Руководство по миграции источников</string>
     <string name="invalid_backup_file_type">Неверный файл резервной копии: %1$s</string>
     <string name="pref_category_nsfw_content">Контент 18+</string>
+    <string name="process_text_action_name">Искать в Tachiyomi</string>
 </resources>

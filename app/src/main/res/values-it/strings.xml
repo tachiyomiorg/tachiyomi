@@ -3,7 +3,7 @@
     <string name="name">Nome</string>
     <!-- Activities and fragments labels (toolbar title) -->
     <string name="label_settings">Impostazioni</string>
-    <string name="label_download_queue">Coda di download</string>
+    <string name="label_download_queue">Coda di scaricamento</string>
     <string name="label_library">Libreria</string>
     <string name="label_recent_manga">Cronologia</string>
     <string name="label_recent_updates">Aggiornamenti</string>
@@ -39,7 +39,7 @@
     <string name="action_sort_down">Ordine decrescente</string>
     <string name="action_show_downloaded">Scaricati</string>
     <string name="action_next_unread">Prossimo capitolo non letto</string>
-    <string name="action_stop">Stop</string>
+    <string name="action_stop">Ferma</string>
     <string name="action_pause">Pausa</string>
     <string name="action_previous_chapter">Capitolo precedente</string>
     <string name="action_next_chapter">Prossimo capitolo</string>
@@ -274,7 +274,7 @@
     <!--Content Description-->
     <string name="description_cover">Copertina del manga</string>
     <!-- Information Text -->
-    <string name="information_no_downloads">Nessun download in coda</string>
+    <string name="information_no_downloads">Nessuno scaricamento in coda</string>
     <string name="information_no_recent">Nessun aggiornamento recente</string>
     <string name="information_no_recent_manga">Non è stato letto niente di recente</string>
     <string name="information_empty_library">La tua libreria è vuota. Aggiungi dei contenuti alla tua libreria dalle fonti.</string>
@@ -555,7 +555,7 @@
         <item quantity="one">Completato in %1$s con %2$s errore</item>
         <item quantity="other">Completato in %1$s con %2$s errori</item>
     </plurals>
-    <string name="restore_duration">%02d min %02d sec</string>
+    <string name="restore_duration">%02d min %02d s</string>
     <string name="pref_search_pinned_sources_only">Includi solo le fonti fissate</string>
     <string name="tracking_info">Sincronizzazione a senso unico per aggiornare l\'avanzamento del capitolo sui servizi di monitoraggio. Imposta il monitoraggio per le singole voci del manga dai loro pulsanti di monitoraggio.</string>
     <string name="pref_true_color_summary">Riduce l\'uso della banda, ma influisce sulle prestazioni</string>
@@ -626,7 +626,7 @@
         <item quantity="other">%d tracciatori</item>
     </plurals>
     <string name="channel_progress">Progresso</string>
-    <string name="pref_allow_nsfw_sources_allowed">Permesso</string>
+    <string name="pref_allow_nsfw_sources_allowed">Mostra</string>
     <string name="group_backup_restore">Backup e ripristino</string>
     <string name="group_downloader">Scaricamenti</string>
     <string name="channel_errors">Errori</string>
@@ -645,8 +645,8 @@
     <string name="backup_restore_missing_trackers">Trackers non collegati:</string>
     <string name="no_chapters_error">Nessun capitolo trovato</string>
     <string name="parental_controls_info">Questo non impedisce a estensioni non ufficiali o potenzialmente segnalate in modo errato di far mostrare contenuti 18+ all\'interno dell\'app.</string>
-    <string name="pref_allow_nsfw_sources_blocked">Bloccato</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Blocca le fonti di navigazione ma mostrale nell\'elenco delle estensioni</string>
+    <string name="pref_allow_nsfw_sources_blocked">Nascondi</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Nascondi le fonti di navigazione ma mostrale nell\'elenco delle estensioni</string>
     <string name="chapter_settings_updated">Impostazioni predefinite del capitolo aggiornate</string>
     <string name="share_page_info">%1$s: %2$s, pagina %3$d</string>
     <string name="set_chapter_settings_as_default">Imposta come predefinito</string>
@@ -664,4 +664,15 @@
     <string name="pref_clear_history">Svuota cronologia</string>
     <string name="clear_history_confirmation">Sei sicuro\? Tutta la cronologia verrà cancellata.</string>
     <string name="clear_history_completed">Cronologia cancellata</string>
+    <string name="spen_next_page">Pagina successiva</string>
+    <string name="spen_previous_page">Pagina precedente</string>
+    <string name="migration_help_guide">Guida alla migrazione di origine</string>
+    <string name="invalid_backup_file_type">File di backup invalido: %1$s</string>
+    <string name="full_restore_offline">Ripristina fuori linea, termina rapidamente ma contiene solo ciò che ha il backup</string>
+    <string name="full_restore_online">Ripristina in linea, molto più lentamente ma fornisce informazioni e capitoli più aggiornati</string>
+    <string name="full_restore_mode">Modalità rete</string>
+    <string name="pref_backup_auto_create_legacy">Crea anche backup legacy</string>
+    <string name="pref_create_legacy_backup_summary">Può essere utilizzato nelle versioni precedenti di Tachiyomi</string>
+    <string name="pref_create_legacy_backup">Crea backup legacy</string>
+    <string name="pref_category_nsfw_content">Contenuto +18</string>
 </resources>

@@ -10,7 +10,7 @@
     <string name="label_library">Bibliothek</string>
     <string name="label_recent_manga">Verlauf</string>
     <string name="label_categories">Kategorien</string>
-    <string name="label_backup">Sicherung</string>
+    <string name="label_backup">Datensicherung</string>
     <string name="action_settings">Einstellungen</string>
     <string name="action_filter">Filter</string>
     <string name="action_filter_downloaded">Heruntergeladen</string>
@@ -71,7 +71,7 @@
     <string name="short_recent_updates">Neu</string>
     <string name="pref_category_general">Allgemein</string>
     <string name="pref_category_reader">Lese-Einstellungen</string>
-    <string name="pref_category_downloads">Downloads</string>
+    <string name="pref_category_downloads">Heruntergeladene</string>
     <string name="pref_category_tracking">Tracking</string>
     <string name="pref_category_advanced">Erweitert</string>
     <string name="pref_category_about">Über</string>
@@ -161,22 +161,22 @@
     <string name="pref_download_new_categories">Kategorien, die heruntergeladen werden sollen</string>
     <string name="services">Anbieter</string>
     <string name="backup">Sichern</string>
-    <string name="pref_create_backup">Sicherung erstellen</string>
+    <string name="pref_create_backup">Datensicherung erstellen</string>
     <string name="pref_create_backup_summ">Kann benutzt werden, um die aktuelle Bibliothek wiederherzustellen</string>
-    <string name="pref_restore_backup">Sicherung wiederherstellen</string>
-    <string name="pref_restore_backup_summ">Bibliothek mit Hilfe einer Sicherung wiederherstellen</string>
+    <string name="pref_restore_backup">Datensicherung wiederherstellen</string>
+    <string name="pref_restore_backup_summ">Bibliothek mit Hilfe einer Datensicherung wiederherstellen</string>
     <string name="pref_backup_directory">Sicherungsspeicherort</string>
-    <string name="pref_backup_service_category">Automatische Sicherungen</string>
-    <string name="pref_backup_interval">Sicherungshäufigkeit</string>
-    <string name="pref_backup_slots">Maximale Sicherungen</string>
-    <string name="backup_created">Sicherung erstellt</string>
+    <string name="pref_backup_service_category">Automatische Datensicherungen</string>
+    <string name="pref_backup_interval">Datensicherungshäufigkeit</string>
+    <string name="pref_backup_slots">Maximale Datensicherungen</string>
+    <string name="backup_created">Datensicherung erstellt</string>
     <string name="restore_completed">Wiederherstellen abgeschlossen</string>
-    <string name="backup_restore_content">Beim Wiederherstellen einer Sicherung werden Daten von den Quellen abgerufen, wodurch Mobilfunkkosten enstehen können.
+    <string name="backup_restore_content">Beim Wiederherstellen einer Datensicherung werden Daten von den Quellen abgerufen, wodurch Mobilfunkkosten enstehen können.
 \n
 \nVergewissere dich zudem, dass du alle benötigten Seitenanmeldungsdaten bereitgestellt hast, bevor du mit dem Wiederherstellen beginnst.</string>
     <string name="backup_choice">Was möchtest du sichern\?</string>
     <string name="restoring_backup">Sicherung wird wiederhergestellt</string>
-    <string name="creating_backup">Erstelle Sicherung</string>
+    <string name="creating_backup">Erstelle Datensicherung</string>
     <string name="pref_clear_chapter_cache">Kapitel-Zwischenspeicher leeren</string>
     <string name="used_cache">Belegt: %1$s</string>
     <string name="cache_deleted">Zwischenspeicher geleert. %1$d Dateien wurden gelöscht</string>
@@ -509,7 +509,7 @@
     <string name="check_for_updates">Auf Aktualisierungen überprüfen</string>
     <string name="last_used_source">Zuletzt genutzt</string>
     <string name="local_source_help_guide">Lokale-Quellen-Guide</string>
-    <string name="restore_duration">%02d min, %02d s</string>
+    <string name="restore_duration">%02d Min. %02d Sk.</string>
     <string name="downloaded_only_summary">Filtert alle Manga in deiner Bibliothek</string>
     <plurals name="download_queue_summary">
         <item quantity="one">1 verbleibend</item>
@@ -595,7 +595,7 @@
     <string name="no_pinned_sources">Du hast keine angehefteten Quellen</string>
     <string name="download_notifier_download_finish">Download abgeschlossen</string>
     <string name="group_backup_restore">Sichern und Wiederherstellen</string>
-    <string name="group_downloader">Downloads</string>
+    <string name="group_downloader">Heruntergeladene</string>
     <string name="channel_complete">Abgeschlossen</string>
     <string name="channel_progress">Fortschritt</string>
     <string name="channel_errors">Fehler</string>
@@ -634,12 +634,13 @@
     <string name="spen_next_page">Nächste Seite</string>
     <string name="spen_previous_page">Vorherige Seite</string>
     <string name="full_restore_mode">Netzwerk-Modus</string>
-    <string name="full_restore_offline">Offline wiederherstellen; ist schnell, aber beinhaltet nur den Inhalt deines Backups</string>
+    <string name="full_restore_offline">Offline wiederherstellen; ist schnell, aber beinhaltet nur den Inhalt deiner Datensicherung</string>
     <string name="full_restore_online">Online wiederherstellen; viel langsamer, aber mit aktuelleren Informationen und Kapiteln</string>
-    <string name="pref_backup_auto_create_legacy">Auch ein Legacy-Backup erstellen</string>
+    <string name="pref_backup_auto_create_legacy">Auch ein Legacy-Sicherung erstellen</string>
     <string name="pref_create_legacy_backup_summary">Können in älteren Versionen von Tachiyomi verwendet werden</string>
-    <string name="pref_create_legacy_backup">Legacy-Backup erstellen</string>
+    <string name="pref_create_legacy_backup">Legacy-Sicherung erstellen</string>
     <string name="migration_help_guide">Quellenmigration</string>
-    <string name="invalid_backup_file_type">Ungültige Backup-Datei: %1$s</string>
+    <string name="invalid_backup_file_type">Ungültige Datensicherungsdatei: %1$s</string>
     <string name="pref_category_nsfw_content">Ü18-Inhalte</string>
+    <string name="process_text_action_name">In Tachiyomi</string>
 </resources>

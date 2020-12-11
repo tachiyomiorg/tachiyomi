@@ -605,9 +605,9 @@
     <string name="ext_nsfw_warning">Puede contener contenido para mayores de 18 años</string>
     <string name="ext_nsfw_short">18+</string>
     <string name="parental_controls_info">Esto no evita que las extensiones no oficiales o potencialmente marcadas incorrectamente muestren contenido para mayores de 18 años dentro de la aplicación.</string>
-    <string name="pref_allow_nsfw_sources_blocked">Bloquear</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Bloquear fuente, mostrar en la lista de extensiones</string>
-    <string name="pref_allow_nsfw_sources_allowed">Permitidas</string>
+    <string name="pref_allow_nsfw_sources_blocked">Ocultar</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Ocultar en fuentes pero mostrar en la lista de extensiones</string>
+    <string name="pref_allow_nsfw_sources_allowed">Mostrar</string>
     <string name="pref_allow_nsfw_sources">Fuentes +18</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Falta un capítulo</item>
@@ -633,4 +633,13 @@
     <string name="clear_history_completed">Historial borrado</string>
     <string name="spen_next_page">Siguiente página</string>
     <string name="spen_previous_page">Página previa</string>
+    <string name="migration_help_guide">Guía de migración de fuentes</string>
+    <string name="invalid_backup_file_type">Archivo de copia de seguridad inválido: %1$s</string>
+    <string name="full_restore_offline">Restaurar fuera de línea, termina rápidamente pero contiene solo lo que tu copia de seguridad posee</string>
+    <string name="full_restore_online">Restaurar en línea, es más lento pero te da información y capítulos más actualizados</string>
+    <string name="full_restore_mode">Modo de red</string>
+    <string name="pref_backup_auto_create_legacy">También crear copia de seguridad heredada</string>
+    <string name="pref_create_legacy_backup_summary">Puede usarse en versiones anteriores de Tachiyomi</string>
+    <string name="pref_create_legacy_backup">Crear copia de seguridad heredada</string>
+    <string name="pref_category_nsfw_content">Contenido +18</string>
 </resources>

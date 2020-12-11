@@ -642,4 +642,5 @@
     <string name="migration_help_guide">Lähteen siirto-opas</string>
     <string name="invalid_backup_file_type">Virheellinen varmuuskopiotiedosto: %1$s</string>
     <string name="pref_category_nsfw_content">18+ konettia</string>
+    <string name="process_text_action_name">Hae Tachiyomista</string>
 </resources>
