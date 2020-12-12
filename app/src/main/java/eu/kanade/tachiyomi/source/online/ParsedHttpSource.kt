@@ -24,7 +24,7 @@ abstract class ParsedHttpSource : HttpSource() {
 
         val mangas = document.select(popularMangaSelector()).map { element ->
             popularMangaFromElement(element)
-        }
+        }.filter { manga -> manga.title != "REMOVEDMANGA" }
 
         val hasNextPage = popularMangaNextPageSelector()?.let { selector ->
             document.select(selector).first()
@@ -62,7 +62,7 @@ abstract class ParsedHttpSource : HttpSource() {
 
         val mangas = document.select(searchMangaSelector()).map { element ->
             searchMangaFromElement(element)
-        }
+        }.filter { manga -> manga.title != "REMOVEDMANGA" }
 
         val hasNextPage = searchMangaNextPageSelector()?.let { selector ->
             document.select(selector).first()
@@ -100,7 +100,7 @@ abstract class ParsedHttpSource : HttpSource() {
 
         val mangas = document.select(latestUpdatesSelector()).map { element ->
             latestUpdatesFromElement(element)
-        }
+        }.filter { manga -> manga.title != "REMOVEDMANGA" }
 
         val hasNextPage = latestUpdatesNextPageSelector()?.let { selector ->
             document.select(selector).first()
