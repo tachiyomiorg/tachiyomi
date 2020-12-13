@@ -1,8 +1,10 @@
 package eu.kanade.tachiyomi.data.updater.github
 
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import eu.kanade.tachiyomi.network.NetworkHelper
+import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 import uy.kohesive.injekt.Injekt
@@ -17,7 +19,7 @@ interface GithubService {
         fun create(): GithubService {
             val restAdapter = Retrofit.Builder()
                 .baseUrl("https://api.github.com")
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(Json { ignoreUnknownKeys = true }.asConverterFactory("application/json".toMediaType()))
                 .client(Injekt.get<NetworkHelper>().client)
                 .build()
 

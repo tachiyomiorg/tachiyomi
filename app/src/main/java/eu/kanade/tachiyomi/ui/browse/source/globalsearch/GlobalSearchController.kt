@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
@@ -23,7 +24,6 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.appcompat.QueryTextEvent
 import reactivecircus.flowbinding.appcompat.queryTextEvents
-import uy.kohesive.injekt.api.get
 import uy.kohesive.injekt.injectLazy
 
 /**
@@ -194,6 +194,14 @@ open class GlobalSearchController(
         }
 
         adapter?.updateDataSet(searchResult)
+
+        val progress = searchResult.mapNotNull { it.results }.size.toDouble() / searchResult.size
+        if (progress < 1) {
+            binding.progressBar.isVisible = true
+            binding.progressBar.progress = (progress * 100).toInt()
+        } else {
+            binding.progressBar.isVisible = false
+        }
     }
 
     /**

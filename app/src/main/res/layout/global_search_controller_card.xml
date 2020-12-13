@@ -17,12 +17,29 @@
             style="@style/TextAppearance.Regular.SubHeading"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="@dimen/material_component_text_fields_padding_above_and_below_label"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/subtitle"
             app:layout_constraintEnd_toStartOf="@+id/title_more_icon"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
             tools:text="Title" />
+
+        <TextView
+            android:id="@+id/subtitle"
+            style="@style/TextAppearance.Regular.Body1.Secondary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:maxLines="1"
+            android:textSize="12sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/title_more_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            tools:text="English"
+            tools:visibility="visible" />
 
         <ImageView
             android:id="@+id/title_more_icon"
@@ -48,30 +65,19 @@
         android:text="@string/no_results_found"
         android:visibility="gone" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/source_card"
-        style="@style/Theme.Widget.CardView.Item"
+    <ProgressBar
+        android:id="@+id/progress"
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="144dp">
-
-        <ProgressBar
-            android:id="@+id/progress"
-            style="?android:attr/progressBarStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:orientation="horizontal"
-            android:paddingStart="4dp"
-            android:paddingEnd="4dp"
-            tools:listitem="@layout/global_search_controller_card_item" />
-
-    </androidx.cardview.widget.CardView>
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        tools:listitem="@layout/global_search_controller_card_item" />
 
 </LinearLayout>

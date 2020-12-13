@@ -1,5 +1,7 @@
 name: Issue closer
-on: [issues]
+on:
+  issues:
+    types: [opened, edited, reopened]
 
 jobs:
   autoclose:

@@ -23,6 +23,15 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     @Suppress("LeakingThis")
     private val secureActivityDelegate = SecureActivityDelegate(this)
 
+    private val isDarkMode: Boolean by lazy {
+        val themeMode = preferences.themeMode().get()
+        (themeMode == Values.ThemeMode.dark) ||
+            (
+                themeMode == Values.ThemeMode.system &&
+                    (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES)
+                )
+    }
+
     private val lightTheme: Int by lazy {
         when (preferences.themeLight().get()) {
             Values.LightThemeVariant.blue -> R.style.Theme_Tachiyomi_LightBlue
@@ -60,15 +69,8 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(
-            when (preferences.themeMode().get()) {
-                Values.ThemeMode.system -> {
-                    if (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
-                        darkTheme
-                    } else {
-                        lightTheme
-                    }
-                }
-                Values.ThemeMode.dark -> darkTheme
+            when {
+                isDarkMode -> darkTheme
                 else -> lightTheme
             }
         )

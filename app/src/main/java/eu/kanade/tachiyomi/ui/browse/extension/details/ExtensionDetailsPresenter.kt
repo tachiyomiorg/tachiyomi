@@ -24,7 +24,7 @@ class ExtensionDetailsPresenter(
         extensionManager.getInstalledExtensionsObservable()
             .skip(1)
             .filter { extensions -> extensions.none { it.pkgName == pkgName } }
-            .map { Unit }
+            .map { }
             .take(1)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeFirst({ view, _ ->

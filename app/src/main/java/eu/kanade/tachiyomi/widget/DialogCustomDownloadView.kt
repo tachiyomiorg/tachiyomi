@@ -3,15 +3,10 @@ package eu.kanade.tachiyomi.widget
 import android.content.Context
 import android.text.SpannableStringBuilder
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
-import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.util.view.inflate
-import kotlinx.android.synthetic.main.download_custom_amount.view.btn_decrease
-import kotlinx.android.synthetic.main.download_custom_amount.view.btn_decrease_10
-import kotlinx.android.synthetic.main.download_custom_amount.view.btn_increase
-import kotlinx.android.synthetic.main.download_custom_amount.view.btn_increase_10
-import kotlinx.android.synthetic.main.download_custom_amount.view.myNumber
+import eu.kanade.tachiyomi.databinding.DownloadCustomAmountBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -25,8 +20,6 @@ import timber.log.Timber
  */
 class DialogCustomDownloadView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
     LinearLayout(context, attrs) {
-
-    private val scope = CoroutineScope(Job() + Dispatchers.Main)
 
     /**
      * Current amount of custom download chooser.
@@ -44,44 +37,43 @@ class DialogCustomDownloadView @JvmOverloads constructor(context: Context, attrs
      */
     private var max = 0
 
+    private val scope = CoroutineScope(Job() + Dispatchers.Main)
+
+    private val binding: DownloadCustomAmountBinding
+
     init {
-        // Add view to stack
-        addView(inflate(R.layout.download_custom_amount))
+        binding = DownloadCustomAmountBinding.inflate(LayoutInflater.from(context), this, false)
+        addView(binding.root)
     }
 
-    /**
-     * Called when view is added
-     *
-     * @param child
-     */
     override fun onViewAdded(child: View) {
         super.onViewAdded(child)
 
         // Set download count to 0.
-        myNumber.text = SpannableStringBuilder(getAmount(0).toString())
+        binding.myNumber.text = SpannableStringBuilder(getAmount(0).toString())
 
         // When user presses button decrease amount by 10.
-        btn_decrease_10.setOnClickListener {
-            myNumber.text = SpannableStringBuilder(getAmount(amount - 10).toString())
+        binding.btnDecrease10.setOnClickListener {
+            binding.myNumber.text = SpannableStringBuilder(getAmount(amount - 10).toString())
         }
 
         // When user presses button increase amount by 10.
-        btn_increase_10.setOnClickListener {
-            myNumber.text = SpannableStringBuilder(getAmount(amount + 10).toString())
+        binding.btnIncrease10.setOnClickListener {
+            binding.myNumber.text = SpannableStringBuilder(getAmount(amount + 10).toString())
         }
 
         // When user presses button decrease amount by 1.
-        btn_decrease.setOnClickListener {
-            myNumber.text = SpannableStringBuilder(getAmount(amount - 1).toString())
+        binding.btnDecrease.setOnClickListener {
+            binding.myNumber.text = SpannableStringBuilder(getAmount(amount - 1).toString())
         }
 
         // When user presses button increase amount by 1.
-        btn_increase.setOnClickListener {
-            myNumber.text = SpannableStringBuilder(getAmount(amount + 1).toString())
+        binding.btnIncrease.setOnClickListener {
+            binding.myNumber.text = SpannableStringBuilder(getAmount(amount + 1).toString())
         }
 
         // When user inputs custom number set amount equal to input.
-        myNumber.textChanges()
+        binding.myNumber.textChanges()
             .onEach {
                 try {
                     amount = getAmount(Integer.parseInt(it.toString()))

@@ -2,6 +2,7 @@ package eu.kanade.tachiyomi.ui.manga.chapter
 
 import android.app.Dialog
 import android.os.Bundle
+import androidx.core.os.bundleOf
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.bluelinelabs.conductor.Controller
@@ -25,10 +26,8 @@ class DownloadCustomChaptersDialog<T> : DialogController
      * @param maxChapters maximal number of chapters that user can download.
      */
     constructor(target: T, maxChapters: Int) : super(
-        Bundle().apply {
-            // Add maximum number of chapters to download value to bundle.
-            putInt(KEY_ITEM_MAX, maxChapters)
-        }
+        // Add maximum number of chapters to download value to bundle.
+        bundleOf(KEY_ITEM_MAX to maxChapters)
     ) {
         targetController = target
         this.maxChapters = maxChapters

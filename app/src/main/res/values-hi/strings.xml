@@ -18,7 +18,6 @@
     <string name="action_filter_downloaded">डाउनलोड किया हुआ</string>
     <string name="action_filter_bookmarked">पृष्ठ स्मृति करा हुआ</string>
     <string name="action_filter_unread">अपठित</string>
-    <string name="action_filter_read">पठित</string>
     <string name="action_filter_empty">फिल्टर हटाए</string>
     <string name="action_sort_alpha">वर्णक्रमानुसार</string>
     <string name="action_sort_total">कुल अध्याय</string>
@@ -212,8 +211,6 @@
     <string name="library_search_hint">शीर्षक या लेखक …</string>
     <string name="updating_category">श्रेणी अपडेट कर रहा है</string>
     <string name="local_source_badge">लोकल</string>
-    <string name="confirm_delete_manga">क्या आप वाकई चयनित मंगा को हटाना चाहते हैं?</string>
-    <string name="also_delete_chapters">डाउनलोड किए गए अध्याय भी हटाएं</string>
     <string name="source_requires_login">इस स्रोत के लिए आपको प्रवेश करना होगा</string>
     <string name="select_source">किसी स्रोत का चयन करें</string>
     <string name="no_valid_sources">कृपया कम से कम एक वैध स्रोत सक्षम करें</string>
@@ -397,7 +394,7 @@
     <string name="pref_date_format">दिनांक स्वरूप</string>
     <string name="pref_category_library_update">अद्यतन</string>
     <string name="pref_category_library_categories">श्रेणियाँ</string>
-    <string name="logout_title">% 1 $ s से लॉगआउट करें\?</string>
+    <string name="logout_title">%1$s से लॉगआउट करें\?</string>
     <string name="logout">लॉग आउट</string>
     <string name="logout_success">अब आप लॉग आउट है</string>
     <string name="currently_reading">इस समय पढ़ा जा रहा है</string>
@@ -438,12 +435,12 @@
         <item quantity="one">1 नया अध्याय</item>
         <item quantity="other">%1$d नए अध्याय</item>
     </plurals>
-    <string name="notification_chapters_single">अध्याय %1 $ s</string>
-    <string name="notification_chapters_single_and_more">अध्याय% 1 $ s और% 2 $ d अधिक</string>
+    <string name="notification_chapters_single">अध्याय %1$s</string>
+    <string name="notification_chapters_single_and_more">अध्याय %1$s और %2$d अधिक</string>
     <string name="notification_chapters_multiple">अध्याय %1$s</string>
     <plurals name="notification_chapters_multiple_and_more">
-        <item quantity="one">अध्याय %1 $ s और 1 अधिक</item>
-        <item quantity="other">अध्याय %1 $ s और % 2$ s अधिक</item>
+        <item quantity="one">अध्याय %1$s और 1 अधिक</item>
+        <item quantity="other">अध्याय %1$s और %2$d अधिक</item>
     </plurals>
     <string name="hide_notification_content">अधिसूचना सामग्री छुपाएं</string>
     <string name="notification_check_updates">नए अध्यायों के लिए जांच</string>
@@ -494,14 +491,13 @@
     <string name="add_to_library">पुस्तकालय में जोड़ें</string>
     <string name="manga_info_collapse">कम</string>
     <string name="manga_info_expand">अधिक</string>
-    <string name="manga_info_about_label">के बारे में</string>
     <string name="information_webview_required">WebView के लिए आवश्यक है Tachiyomi</string>
     <string name="licenses">ओपन सोर्स लाइसेंस</string>
     <string name="website">वेबसाइट</string>
     <string name="pref_confirm_exit">बाहर निकलने की पुष्टि करें</string>
     <string name="confirm_exit">बाहर निकलने के लिए फिर से वापस दबाएं</string>
     <string name="label_downloaded_only">केवल डाउनलोड किए गए</string>
-    <string name="recent_manga_time">अध्याय %1 $ s - %2 $ s</string>
+    <string name="recent_manga_time">अध्याय %1$s – %2$s</string>
     <string name="restoring_backup_error">बैकअप बहाल करने में विफल रहा</string>
     <string name="creating_backup_error">बैकअप फेल</string>
     <string name="restoring_backup_canceled">पुनर्स्थापना रद्द की गई</string>
@@ -582,7 +578,7 @@
     <string name="pref_read_with_tapping_inverted">उलटा दोहन</string>
     <string name="unknown_status">अज्ञात स्थिति</string>
     <string name="unknown_author">अज्ञात लेखक</string>
-    <string name="pref_dns_over_https_summary">प्रभावी होने के लिए ऐप पुनः आरंभ करने की आवश्यकता है</string>
+    <string name="requires_app_restart">प्रभावी होने के लिए ऐप पुनः आरंभ करने की आवश्यकता है</string>
     <string name="action_download_unread">अपठित अध्याय डाउनलोड करें</string>
     <string name="whats_new">नया क्या है</string>
     <string name="download_insufficient_space">कम डिस्क स्पेस के कारण अध्याय डाउनलोड नहीं कर सका</string>
@@ -612,10 +608,27 @@
     <string name="pref_allow_nsfw_sources_allowed_multisource">ब्राउज़िंग स्रोतों को ब्लॉक करें लेकिन एक्सटेंशन सूची में दिखाएं</string>
     <string name="pref_allow_nsfw_sources">18+ स्रोत</string>
     <string name="pref_allow_nsfw_sources_allowed">अनुमति</string>
-    <string name="pref_category_parental_controls">पैतृक नियंत्रण</string>
     <string name="parental_controls_info">यह अनौपचारिक या संभावित रूप से फ़्लैग किए गए एक्सटेंशन को ऐप के भीतर 18+ सामग्री के सामने आने से नहीं रोकता है।</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">1 लापता अध्याय है</item>
         <item quantity="other">%d लापता अध्याय हैं</item>
     </plurals>
+    <string name="chapter_settings_updated">अपडेट किए गए डिफ़ॉल्ट अध्याय सेटिंग्स</string>
+    <string name="no_chapters_error">कोई अध्याय नहीं मिला</string>
+    <string name="set_chapter_settings_as_default">डिफ़ॉल्ट के रूप में सेट करें</string>
+    <string name="also_set_chapter_settings_for_library">मेरी लाइब्रेरी में सभी मंगा पर भी लागू करें</string>
+    <string name="confirm_set_chapter_settings">क्या आप वाकई इन सेटिंग्स को डिफ़ॉल्ट के रूप में सहेजना चाहते हैं\?</string>
+    <string name="chapter_settings">अध्याय सेटिंग्स</string>
+    <string name="action_web_view">वेबव्यू</string>
+    <string name="share_page_info">%1$s: %2$s, पृष्ठ %3$d</string>
+    <string name="downloaded_chapters">डाउनलोड किए गए अध्याय</string>
+    <string name="manga_from_library">पुस्तकालय से मंगा</string>
+    <string name="pref_hide_bottom_bar_on_scroll">स्क्रॉल पर नीचे बार छिपाएं</string>
+    <string name="action_search_settings">खोज सेंटिंग</string>
+    <string name="pref_incognito_mode_summary">इतिहास पढ़ने से रोक देता है</string>
+    <string name="pref_incognito_mode">इंकॉग्निटो मोड</string>
+    <string name="pref_clear_history_summary">सभी मंगा के लिए पढ़ने का इतिहास हटाएं</string>
+    <string name="pref_clear_history">इतिहास मिटा दें</string>
+    <string name="clear_history_confirmation">क्या आपको यकीन है\? सारा इतिहास खो जाएगा।</string>
+    <string name="clear_history_completed">इतिहास हटाया गया</string>
 </resources>

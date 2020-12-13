@@ -173,11 +173,10 @@
     <string name="secure_screen_summary">Hide app contents when switching apps and block screenshots</string>
     <string name="hide_notification_content">Hide notification content</string>
 
-    <string name="pref_category_parental_controls">Parental controls</string>
-    <string name="pref_allow_nsfw_sources">18+ sources</string>
-    <string name="pref_allow_nsfw_sources_allowed">Allowed</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Block browsing sources but show in extensions list</string>
-    <string name="pref_allow_nsfw_sources_blocked">Blocked</string>
+    <string name="pref_category_nsfw_content">NSFW (18+) sources</string>
+    <string name="pref_show_nsfw_source">Show in sources list</string>
+    <string name="pref_show_nsfw_extension">Show in extensions list</string>
+    <string name="pref_label_nsfw_extension">Label in extensions list</string>
     <string name="parental_controls_info">This does not prevent unofficial or potentially incorrectly flagged extensions from surfacing 18+ content within the app.</string>
 
       <!-- Library section -->
@@ -352,14 +351,21 @@
     <string name="pref_create_backup_summ">Can be used to restore current library</string>
     <string name="pref_restore_backup">Restore backup</string>
     <string name="pref_restore_backup_summ">Restore library from backup file</string>
+    <string name="pref_create_legacy_backup">Create legacy backup</string>
+    <string name="pref_create_legacy_backup_summary">Can be used in older versions of Tachiyomi</string>
+    <string name="pref_backup_auto_create_legacy">Also create legacy backup</string>
     <string name="pref_backup_directory">Backup location</string>
     <string name="pref_backup_service_category">Automatic backups</string>
     <string name="pref_backup_interval">Backup frequency</string>
     <string name="pref_backup_slots">Maximum backups</string>
+    <string name="full_restore_mode">Network Mode</string>
+    <string name="full_restore_online">Restore online, much slower but gives you more updated info and chapters</string>
+    <string name="full_restore_offline">Restore offline, finishes quickly but contains only what your backup has</string>
     <string name="source_not_found_name">Source not found: %1$s</string>
     <string name="tracker_not_logged_in">Not logged in: %1$s</string>
     <string name="backup_created">Backup created</string>
     <string name="invalid_backup_file">Invalid backup file</string>
+    <string name="invalid_backup_file_type">Invalid backup file: %1$s</string>
     <string name="invalid_backup_file_missing_data">File is missing data.</string>
     <string name="invalid_backup_file_missing_manga">Backup does not contain any manga.</string>
     <string name="backup_restore_missing_sources">Missing sources:</string>
@@ -384,7 +390,7 @@
     <string name="label_network">Network</string>
     <string name="pref_clear_cookies">Clear cookies</string>
     <string name="pref_dns_over_https" translatable="false">DNS over HTTPS (Cloudflare)</string>
-    <string name="pref_dns_over_https_summary">Requires app restart to take effect</string>
+    <string name="requires_app_restart">Requires app restart to take effect</string>
     <string name="cookies_cleared">Cookies cleared</string>
     <string name="label_data">Data</string>
     <string name="pref_clear_chapter_cache">Clear chapter cache</string>
@@ -403,6 +409,10 @@
     <string name="pref_disable_battery_optimization_summary">Helps with background library updates and backups</string>
     <string name="battery_optimization_disabled">Battery optimization is already disabled</string>
     <string name="battery_optimization_setting_activity_not_found">Couldn\'t open device settings</string>
+    <string name="clear_history_completed">History deleted</string>
+    <string name="clear_history_confirmation">Are you sure? All history will be lost.</string>
+    <string name="pref_clear_history">Clear history</string>
+    <string name="pref_clear_history_summary">Delete reading history for all manga</string>
 
       <!-- About section -->
     <string name="website">Website</string>
@@ -421,6 +431,8 @@
 
     <!-- More -->
     <string name="label_downloaded_only">Downloaded only</string>
+    <string name="pref_incognito_mode">Incognito mode</string>
+    <string name="pref_incognito_mode_summary">Pauses reading history</string>
     <string name="downloaded_only_summary">Filters all manga in your library</string>
     <plurals name="download_queue_summary">
         <item quantity="one">1 remaining</item>
@@ -610,6 +622,7 @@
     <string name="recent_manga_time">Ch. %1$s - %2$s</string>
 
     <!-- Source migration screen -->
+    <string name="migration_help_guide">Source migration guide</string>
     <string name="migration_info">Tap to select the source to migrate from</string>
     <string name="migration_dialog_what_to_include">Select data to include</string>
     <string name="migration_selection_prompt">Select a source to migrate from</string>
@@ -653,6 +666,7 @@
     <!-- File Picker Titles -->
     <string name="file_select_cover">Select cover image</string>
     <string name="file_select_backup">Select backup file</string>
+    <string name="file_picker_error">No file picker app found</string>
 
     <!--UpdateCheck-->
     <string name="update_check_confirm">Download</string>
@@ -713,5 +727,12 @@
     <string name="tapping_inverted_horizontal">Horizontal</string>
     <string name="tapping_inverted_vertical">Vertical</string>
     <string name="tapping_inverted_both">Both</string>
+
+    <!-- S Pen actions -->
+    <string name="spen_previous_page">Previous page</string>
+    <string name="spen_next_page">Next page</string>
+
+    <!-- Android OS text selection menu action -->
+    <string name="process_text_action_name">Search in Tachiyomi</string>
 
 </resources>

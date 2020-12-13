@@ -100,37 +100,18 @@ class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
             }
     }
 
-    override fun login(username: String, password: String): Completable {
-        logout()
+    fun login(csrfToken: String): Completable = login("myanimelist", csrfToken)
 
-        return Observable.fromCallable { api.login(username, password) }
-            .doOnNext { csrf -> saveCSRF(csrf) }
+    override fun login(username: String, password: String): Completable {
+        return Observable.fromCallable { saveCSRF(password) }
             .doOnNext { saveCredentials(username, password) }
             .doOnError { logout() }
             .toCompletable()
     }
 
-    fun refreshLogin() {
-        val username = getUsername()
-        val password = getPassword()
-        logout()
-
-        try {
-            val csrf = api.login(username, password)
-            saveCSRF(csrf)
-            saveCredentials(username, password)
-        } catch (e: Exception) {
-            logout()
-            throw e
-        }
-    }
-
-    // Attempt to login again if cookies have been cleared but credentials are still filled
     fun ensureLoggedIn() {
         if (isAuthorized) return
-        if (!isLogged) throw Exception("MAL Login Credentials not found")
-
-        refreshLogin()
+        if (!isLogged) throw Exception("MAL login credentials not found")
     }
 
     override fun logout() {
@@ -139,7 +120,7 @@ class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
         networkService.cookieManager.remove(BASE_URL.toHttpUrlOrNull()!!)
     }
 
-    val isAuthorized: Boolean
+    private val isAuthorized: Boolean
         get() = super.isLogged &&
             getCSRF().isNotEmpty() &&
             checkCookies()
@@ -149,12 +130,9 @@ class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
     private fun saveCSRF(csrf: String) = preferences.trackToken(this).set(csrf)
 
     private fun checkCookies(): Boolean {
-        var ckCount = 0
         val url = BASE_URL.toHttpUrlOrNull()!!
-        for (ck in networkService.cookieManager.get(url)) {
-            if (ck.name == USER_SESSION_COOKIE || ck.name == LOGGED_IN_COOKIE) {
-                ckCount++
-            }
+        val ckCount = networkService.cookieManager.get(url).count {
+            it.name == USER_SESSION_COOKIE || it.name == LOGGED_IN_COOKIE
         }
 
         return ckCount == 2

@@ -1,10 +1,14 @@
 package eu.kanade.tachiyomi.data.track.shikimori
 
-import com.google.gson.Gson
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
 import okhttp3.Response
+import uy.kohesive.injekt.injectLazy
 
-class ShikimoriInterceptor(val shikimori: Shikimori, val gson: Gson) : Interceptor {
+class ShikimoriInterceptor(val shikimori: Shikimori) : Interceptor {
+
+    private val json: Json by injectLazy()
 
     /**
      * OAuth object used for authenticated requests.
@@ -22,7 +26,7 @@ class ShikimoriInterceptor(val shikimori: Shikimori, val gson: Gson) : Intercept
         if (currAuth.isExpired()) {
             val response = chain.proceed(ShikimoriApi.refreshTokenRequest(refreshToken))
             if (response.isSuccessful) {
-                newAuth(gson.fromJson(response.body!!.string(), OAuth::class.java))
+                newAuth(json.decodeFromString<OAuth>(response.body!!.string()))
             } else {
                 response.close()
             }

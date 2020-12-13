@@ -22,7 +22,6 @@
     <string name="action_filter_downloaded">Stiahnuté</string>
     <string name="action_filter_bookmarked">Uložené</string>
     <string name="action_filter_unread">Neprečítané</string>
-    <string name="action_filter_read">Prečítané</string>
     <string name="action_filter_empty">Zrušiť filter</string>
     <string name="action_sort_alpha">Abecedne</string>
     <string name="action_sort_total">Všetky kapitoly</string>
@@ -258,8 +257,6 @@
     <string name="library_search_hint">Názov alebo autor…</string>
     <string name="updating_category">Aktualizuje sa kategória</string>
     <string name="local_source_badge">Lokálny</string>
-    <string name="confirm_delete_manga">Naozaj chcete odstrániť vybraté mangy\?</string>
-    <string name="also_delete_chapters">Odstráňte tiež stiahnuté kapitoly</string>
     <string name="source_requires_login">Tento zdroj vyžaduje, aby ste sa prihlásili</string>
     <string name="select_source">Vyberte zdroj</string>
     <string name="no_valid_sources">Povoľte aspoň jeden platný zdroj</string>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!--============-->
     <!-- Base Theme -->
@@ -46,6 +46,7 @@
         <!-- Themes -->
         <item name="android:statusBarColor">?attr/colorPrimary</item>
         <item name="android:navigationBarColor">?attr/colorPrimary</item>
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="29">false</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="elevationOverlayEnabled">false</item>
         <item name="actionModeStyle">@style/Theme.ActionMode</item>
@@ -56,6 +57,7 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
         <item name="dialogTheme">@style/Theme.AlertDialog.Light</item>
         <item name="alertDialogTheme">@style/Theme.AlertDialog.Dark</item>
+        <item name="bottomSheetDialogTheme">@style/Theme.BottomSheet</item>
         <item name="chipStyle">@style/Theme.Widget.Chip</item>
         <item name="buttonStyle">@style/Theme.Widget.Button</item>
         <item name="snackbarStyle">@style/Theme.Widget.Snackbar</item>
@@ -135,6 +137,7 @@
         <!-- Themes -->
         <item name="android:statusBarColor">?attr/colorPrimary</item>
         <item name="android:navigationBarColor">?attr/colorPrimary</item>
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="29">false</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="elevationOverlayEnabled">false</item>
         <item name="actionModeStyle">@style/Theme.ActionMode</item>
@@ -146,6 +149,7 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
         <item name="dialogTheme">@style/Theme.AlertDialog.Dark</item>
         <item name="alertDialogTheme">@style/Theme.AlertDialog.Dark</item>
+        <item name="bottomSheetDialogTheme">@style/Theme.BottomSheet</item>
         <item name="chipStyle">@style/Theme.Widget.Chip</item>
         <item name="buttonStyle">@style/Theme.Widget.Button</item>
         <item name="snackbarStyle">@style/Theme.Widget.Snackbar</item>

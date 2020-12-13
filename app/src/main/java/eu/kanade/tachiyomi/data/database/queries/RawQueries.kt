@@ -50,7 +50,7 @@ fun getRecentsQuery() =
  * The select statement returns all information of chapters that have the same id as the chapter in max_last_read
  * and are read after the given time period
  */
-fun getRecentMangasQuery(limit: Int = 25, offset: Int = 0, search: String = "") =
+fun getRecentMangasQuery(search: String = "") =
     """
     SELECT ${Manga.TABLE}.${Manga.COL_URL} as mangaUrl, ${Manga.TABLE}.*, ${Chapter.TABLE}.*, ${History.TABLE}.*
     FROM ${Manga.TABLE}
@@ -68,7 +68,7 @@ fun getRecentMangasQuery(limit: Int = 25, offset: Int = 0, search: String = "") 
     AND max_last_read.${History.COL_CHAPTER_ID} = ${History.TABLE}.${History.COL_CHAPTER_ID}
     AND lower(${Manga.TABLE}.${Manga.COL_TITLE}) LIKE '%$search%'
     ORDER BY max_last_read.${History.COL_LAST_READ} DESC
-    LIMIT $limit OFFSET $offset
+    LIMIT ? OFFSET ?
 """
 
 fun getHistoryByMangaId() =

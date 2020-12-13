@@ -9,7 +9,7 @@ fun Track.toShikimoriStatus() = when (status) {
     Shikimori.DROPPED -> "dropped"
     Shikimori.PLANNING -> "planned"
     Shikimori.REPEATING -> "rewatching"
-    else -> throw NotImplementedError("Unknown status")
+    else -> throw NotImplementedError("Unknown status: $status")
 }
 
 fun toTrackStatus(status: String) = when (status) {
@@ -19,6 +19,5 @@ fun toTrackStatus(status: String) = when (status) {
     "dropped" -> Shikimori.DROPPED
     "planned" -> Shikimori.PLANNING
     "rewatching" -> Shikimori.REPEATING
-
-    else -> throw Exception("Unknown status")
+    else -> throw NotImplementedError("Unknown status: $status")
 }

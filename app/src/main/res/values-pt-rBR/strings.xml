@@ -18,7 +18,6 @@
     <string name="action_filter_downloaded">Disponível offline</string>
     <string name="action_filter_bookmarked">Favorito</string>
     <string name="action_filter_unread">Não lido</string>
-    <string name="action_filter_read">Lido</string>
     <string name="action_filter_empty">Remover filtros</string>
     <string name="action_sort_alpha">Alfabeticamente</string>
     <string name="action_sort_total">Total de capítulos</string>
@@ -207,8 +206,6 @@
     <string name="unknown_error">Erro desconhecido</string>
     <string name="library_search_hint">Título ou autor…</string>
     <string name="updating_category">Atualizando categoria</string>
-    <string name="confirm_delete_manga">Você tem certeza de que deseja remover os mangás selecionados\?</string>
-    <string name="also_delete_chapters">Também excluir os capítulos disponíveis offline</string>
     <string name="source_requires_login">Esta fonte requer que você faça login</string>
     <string name="select_source">Selecione uma fonte</string>
     <string name="no_valid_sources">Por favor, ative pelo menos uma fonte válida</string>
@@ -494,7 +491,6 @@
     <string name="in_library">Na biblioteca</string>
     <string name="manga_info_collapse">Menos</string>
     <string name="manga_info_expand">Mais</string>
-    <string name="manga_info_about_label">Sobre</string>
     <string name="pref_confirm_exit">Confirmar ao sair</string>
     <string name="confirm_exit">Pressione voltar novamente para sair</string>
     <string name="information_webview_required">A WebView é necessária para o Tachiyomi</string>
@@ -572,7 +568,7 @@
         <item quantity="other">%1$s capítulos</item>
     </plurals>
     <string name="action_open_in_settings">Abrir nas Configurações</string>
-    <string name="pref_dns_over_https_summary">Requer o reinício do aplicativo para ter efeito</string>
+    <string name="requires_app_restart">Requer o reinício do aplicativo para ter efeito</string>
     <string name="pref_dns_over_https" translatable="false">DNS sob HTTPS (Cloudflare)</string>
     <string name="label_network">Rede</string>
     <string name="pref_jump_to_chapters">Pular para os capítulos ao abrir</string>
@@ -605,18 +601,46 @@
     <string name="channel_errors">Erros</string>
     <string name="backup_restore_missing_trackers">Monitoradores sem login realizado:</string>
     <string name="pref_allow_nsfw_sources">Fontes +18</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Bloquear a navegação nas fontes, mas exibi-las na lista de extensões</string>
-    <string name="pref_allow_nsfw_sources_blocked">Bloqueado</string>
-    <string name="pref_allow_nsfw_sources_allowed">Permitido</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Ocultar nas fontes, mas exibi-las na lista de extensões</string>
+    <string name="pref_allow_nsfw_sources_blocked">Ocultar</string>
+    <string name="pref_allow_nsfw_sources_allowed">Mostrar</string>
     <string name="pref_remove_bookmarked_chapters">Excluir capítulos favoritos</string>
     <string name="pref_category_delete_chapters">Excluir capítulos</string>
     <string name="ext_nsfw_warning">Pode haver conteúdo +18</string>
     <string name="ext_nsfw_short">+18</string>
-    <string name="pref_category_parental_controls">Controles parentais</string>
     <string name="parental_controls_info">Isso não impede que extensões não oficiais ou potencialmente sinalizadas de maneira incorreta apresentem conteúdo +18 no aplicativo.</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Há 1 capítulo faltando</item>
         <item quantity="other">Há %d capítulos faltando</item>
     </plurals>
     <string name="no_chapters_error">Nenhum capítulo encontrado</string>
+    <string name="action_web_view">WebView</string>
+    <string name="chapter_settings_updated">Configurações padrões de capítulo atualizadas</string>
+    <string name="set_chapter_settings_as_default">Definir como padrão</string>
+    <string name="also_set_chapter_settings_for_library">Também aplicar a todos os mangás na minha biblioteca</string>
+    <string name="confirm_set_chapter_settings">Você tem certeza que quer salvar como padrão essas configurações\?</string>
+    <string name="chapter_settings">Configurações de capítulo</string>
+    <string name="share_page_info">%1$s: %2$s, página %3$d</string>
+    <string name="action_search_settings">Pesquisar configurações</string>
+    <string name="manga_from_library">Mangás da biblioteca</string>
+    <string name="downloaded_chapters">Capítulos disponíveis offline</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Ocultar a barra inferior durante a rolagem</string>
+    <string name="pref_incognito_mode_summary">Pausa o histórico de leitura</string>
+    <string name="pref_incognito_mode">Modo anônimo</string>
+    <string name="pref_clear_history_summary">Exclui o histórico de leitura para todos os mangás</string>
+    <string name="pref_clear_history">Limpar o histórico</string>
+    <string name="clear_history_confirmation">Você tem certeza\? Todo o histórico será perdido.</string>
+    <string name="clear_history_completed">Histórico excluído</string>
+    <string name="spen_next_page">Próxima página</string>
+    <string name="spen_previous_page">Página anterior</string>
+    <string name="full_restore_offline">Restaurar offline. Termina rápido, mas contém somente o que o seu backup possui</string>
+    <string name="full_restore_online">Restaurar online. Muito lento, mas oferece informações e capítulos mais atualizados</string>
+    <string name="full_restore_mode">Modo de Rede</string>
+    <string name="pref_backup_auto_create_legacy">Também criar um backup legado</string>
+    <string name="pref_create_legacy_backup_summary">Pode ser usado em versões antigas do Tachiyomi</string>
+    <string name="pref_create_legacy_backup">Criar backup legado</string>
+    <string name="migration_help_guide">Guia de migração de fonte</string>
+    <string name="invalid_backup_file_type">Arquivo de backup inválido: %1$s</string>
+    <string name="pref_category_nsfw_content">Conteúdo +18</string>
+    <string name="process_text_action_name">Buscar no Tachiyomi</string>
 </resources>

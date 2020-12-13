@@ -3,14 +3,12 @@ package eu.kanade.tachiyomi.ui.setting.track
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.StringRes
+import androidx.core.os.bundleOf
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.widget.preference.LoginDialogPreference
-import kotlinx.android.synthetic.main.pref_account_login.view.login
-import kotlinx.android.synthetic.main.pref_account_login.view.password
-import kotlinx.android.synthetic.main.pref_account_login.view.username
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import uy.kohesive.injekt.Injekt
@@ -28,40 +26,38 @@ class TrackLoginDialog(
     constructor(service: TrackService) : this(service, null)
 
     constructor(service: TrackService, @StringRes usernameLabelRes: Int?) :
-        this(R.string.login_title, service.name, usernameLabelRes, Bundle().apply { putInt("key", service.id) })
+        this(R.string.login_title, service.name, usernameLabelRes, bundleOf("key" to service.id))
 
-    override fun setCredentialsOnView(view: View) = with(view) {
-        username.setText(service.getUsername())
-        password.setText(service.getPassword())
+    override fun setCredentialsOnView(view: View) {
+        binding?.username?.setText(service.getUsername())
+        binding?.password?.setText(service.getPassword())
     }
 
     override fun checkLogin() {
         requestSubscription?.unsubscribe()
 
-        v?.apply {
-            if (username.text.isNullOrEmpty() || password.text.isNullOrEmpty()) {
-                return
-            }
-
-            login.progress = 1
-            val user = username.text.toString()
-            val pass = password.text.toString()
-
-            requestSubscription = service.login(user, pass)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                    {
-                        dialog?.dismiss()
-                        context.toast(R.string.login_success)
-                    },
-                    { error ->
-                        login.progress = -1
-                        login.setText(R.string.unknown_error)
-                        error.message?.let { context.toast(it) }
-                    }
-                )
+        if (binding!!.username.text.isNullOrEmpty() || binding!!.password.text.isNullOrEmpty()) {
+            return
         }
+
+        binding!!.login.progress = 1
+        val user = binding!!.username.text.toString()
+        val pass = binding!!.password.text.toString()
+
+        requestSubscription = service.login(user, pass)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                    dialog?.dismiss()
+                    view?.context?.toast(R.string.login_success)
+                },
+                { error ->
+                    binding!!.login.progress = -1
+                    binding!!.login.setText(R.string.unknown_error)
+                    error.message?.let { view?.context?.toast(it) }
+                }
+            )
     }
 
     override fun onDialogClosed() {

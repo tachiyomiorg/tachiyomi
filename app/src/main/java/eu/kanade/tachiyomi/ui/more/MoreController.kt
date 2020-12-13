@@ -15,6 +15,7 @@ import eu.kanade.tachiyomi.ui.download.DownloadController
 import eu.kanade.tachiyomi.ui.setting.SettingsController
 import eu.kanade.tachiyomi.ui.setting.SettingsMainController
 import eu.kanade.tachiyomi.util.preference.add
+import eu.kanade.tachiyomi.util.preference.defaultValue
 import eu.kanade.tachiyomi.util.preference.iconRes
 import eu.kanade.tachiyomi.util.preference.iconTint
 import eu.kanade.tachiyomi.util.preference.onClick
@@ -51,6 +52,15 @@ class MoreController :
             summaryRes = R.string.downloaded_only_summary
             iconRes = R.drawable.ic_cloud_off_24dp
             iconTint = tintColor
+        }
+
+        switchPreference {
+            key = Keys.incognitoMode
+            summaryRes = R.string.pref_incognito_mode_summary
+            titleRes = R.string.pref_incognito_mode
+            iconRes = R.drawable.ic_glasses_black_24dp
+            iconTint = tintColor
+            defaultValue = false
         }
 
         preferenceCategory {

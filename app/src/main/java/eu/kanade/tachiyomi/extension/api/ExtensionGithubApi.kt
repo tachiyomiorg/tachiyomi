@@ -1,16 +1,16 @@
 package eu.kanade.tachiyomi.extension.api
 
 import android.content.Context
-import com.github.salomonbrys.kotson.get
-import com.github.salomonbrys.kotson.int
-import com.github.salomonbrys.kotson.string
-import com.google.gson.JsonArray
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.extension.model.LoadResult
 import eu.kanade.tachiyomi.extension.util.ExtensionLoader
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.int
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 import uy.kohesive.injekt.injectLazy
 import java.util.Date
 
@@ -53,18 +53,18 @@ internal class ExtensionGithubApi {
     private fun parseResponse(json: JsonArray): List<Extension.Available> {
         return json
             .filter { element ->
-                val versionName = element["version"].string
+                val versionName = element.jsonObject["version"]!!.jsonPrimitive.content
                 val libVersion = versionName.substringBeforeLast('.').toDouble()
                 libVersion >= ExtensionLoader.LIB_VERSION_MIN && libVersion <= ExtensionLoader.LIB_VERSION_MAX
             }
             .map { element ->
-                val name = element["name"].string.substringAfter("Tachiyomi: ")
-                val pkgName = element["pkg"].string
-                val apkName = element["apk"].string
-                val versionName = element["version"].string
-                val versionCode = element["code"].int
-                val lang = element["lang"].string
-                val nsfw = element["nsfw"].int == 1
+                val name = element.jsonObject["name"]!!.jsonPrimitive.content.substringAfter("Tachiyomi: ")
+                val pkgName = element.jsonObject["pkg"]!!.jsonPrimitive.content
+                val apkName = element.jsonObject["apk"]!!.jsonPrimitive.content
+                val versionName = element.jsonObject["version"]!!.jsonPrimitive.content
+                val versionCode = element.jsonObject["code"]!!.jsonPrimitive.int
+                val lang = element.jsonObject["lang"]!!.jsonPrimitive.content
+                val nsfw = element.jsonObject["nsfw"]!!.jsonPrimitive.int == 1
                 val icon = "$REPO_URL_PREFIX/icon/${apkName.replace(".apk", ".png")}"
 
                 Extension.Available(name, pkgName, versionName, versionCode, lang, nsfw, apkName, icon)

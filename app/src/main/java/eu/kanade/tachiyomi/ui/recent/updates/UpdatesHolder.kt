@@ -5,16 +5,13 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
+import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
-import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
+import eu.kanade.tachiyomi.databinding.UpdatesItemBinding
 import eu.kanade.tachiyomi.util.system.getResourceColor
-import kotlinx.android.synthetic.main.updates_item.chapter_title
-import kotlinx.android.synthetic.main.updates_item.download_text
-import kotlinx.android.synthetic.main.updates_item.manga_cover
-import kotlinx.android.synthetic.main.updates_item.manga_title
 
 /**
  * Holder that contains chapter item
@@ -27,7 +24,9 @@ import kotlinx.android.synthetic.main.updates_item.manga_title
  * @constructor creates a new recent chapter holder.
  */
 class UpdatesHolder(private val view: View, private val adapter: UpdatesAdapter) :
-    BaseFlexibleViewHolder(view, adapter) {
+    FlexibleViewHolder(view, adapter) {
+
+    private val binding = UpdatesItemBinding.bind(view)
 
     private var readColor = view.context.getResourceColor(R.attr.colorOnSurface, 0.38f)
     private var unreadColor = view.context.getResourceColor(R.attr.colorOnSurface)
@@ -38,7 +37,7 @@ class UpdatesHolder(private val view: View, private val adapter: UpdatesAdapter)
     private var item: UpdatesItem? = null
 
     init {
-        manga_cover.setOnClickListener {
+        binding.mangaCover.setOnClickListener {
             adapter.coverClickListener.onCoverClick(bindingAdapterPosition)
         }
     }
@@ -52,25 +51,25 @@ class UpdatesHolder(private val view: View, private val adapter: UpdatesAdapter)
         this.item = item
 
         // Set chapter title
-        chapter_title.text = item.chapter.name
+        binding.chapterTitle.text = item.chapter.name
 
         // Set manga title
-        manga_title.text = item.manga.title
+        binding.mangaTitle.text = item.manga.title
 
         // Check if chapter is read and set correct color
         if (item.chapter.read) {
-            chapter_title.setTextColor(readColor)
-            manga_title.setTextColor(readColor)
+            binding.chapterTitle.setTextColor(readColor)
+            binding.mangaTitle.setTextColor(readColor)
         } else {
-            chapter_title.setTextColor(unreadColor)
-            manga_title.setTextColor(unreadColor)
+            binding.chapterTitle.setTextColor(unreadColor)
+            binding.mangaTitle.setTextColor(unreadColor)
         }
 
         // Set chapter status
         notifyStatus(item.status)
 
         // Set cover
-        GlideApp.with(itemView.context).clear(manga_cover)
+        GlideApp.with(itemView.context).clear(binding.mangaCover)
 
         val radius = itemView.context.resources.getDimensionPixelSize(R.dimen.card_radius)
         val requestOptions = RequestOptions().transform(CenterCrop(), RoundedCorners(radius))
@@ -79,7 +78,7 @@ class UpdatesHolder(private val view: View, private val adapter: UpdatesAdapter)
             .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
             .apply(requestOptions)
             .dontAnimate()
-            .into(manga_cover)
+            .into(binding.mangaCover)
     }
 
     /**
@@ -87,7 +86,7 @@ class UpdatesHolder(private val view: View, private val adapter: UpdatesAdapter)
      *
      * @param status download status
      */
-    fun notifyStatus(status: Int) = with(download_text) {
+    fun notifyStatus(status: Int) = with(binding.downloadText) {
         when (status) {
             Download.QUEUE -> setText(R.string.chapter_queued)
             Download.DOWNLOADING -> setText(R.string.chapter_downloading)

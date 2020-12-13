@@ -15,7 +15,6 @@
     <string name="action_filter">Filter</string>
     <string name="action_filter_downloaded">Gedownload</string>
     <string name="action_filter_unread">Ongelezen</string>
-    <string name="action_filter_read">Gelezen</string>
     <string name="action_filter_empty">Verwijder filter</string>
     <string name="action_sort_alpha">Alfabetisch</string>
     <string name="action_sort_last_read">Laatst gelezen</string>
@@ -157,8 +156,6 @@
     <string name="unknown_error">Onbekende fout</string>
     <string name="library_search_hint">Titel of auteur…</string>
     <string name="updating_category">Categorie bijwerken</string>
-    <string name="confirm_delete_manga">Weet je zeker dat je de geselecteerde manga wilt verwijderen\?</string>
-    <string name="also_delete_chapters">Verwijder ook gedownloade hoofdstukken</string>
     <string name="select_source">Selecteer een bron</string>
     <string name="no_valid_sources">Gelieve ten minste één geldige bron te kiezen</string>
     <string name="no_more_results">Geen verdere resultaten</string>
@@ -476,7 +473,6 @@
     <string name="add_tracking">Tracking toevoegen</string>
     <string name="manga_info_collapse">Minder</string>
     <string name="manga_info_expand">Meer</string>
-    <string name="manga_info_about_label">Over</string>
     <string name="in_library">In bibliotheek</string>
     <string name="add_to_library">Toevoegen aan bibliotheek</string>
     <string name="local_source_help_guide">Hulp bij lokale bronnen</string>
@@ -572,7 +568,7 @@
     </plurals>
     <string name="action_sort_descending">Aflopend</string>
     <string name="action_open_in_settings">In Instellingen openen</string>
-    <string name="pref_dns_over_https_summary">Herstart van de app nodig om van kracht te worden</string>
+    <string name="requires_app_restart">Herstart van de app nodig om van kracht te worden</string>
     <string name="pref_dns_over_https" translatable="false">DNS over HTTPS (Cloudflare)</string>
     <string name="label_network">Netwerk</string>
     <string name="pref_jump_to_chapters">Ga naar de hoofdstukken bij openen</string>
@@ -604,19 +600,47 @@
     <string name="download_notifier_download_finish">Download voltooid</string>
     <string name="channel_errors">Fouten</string>
     <string name="backup_restore_missing_trackers">Niet-ingelogde trackers:</string>
-    <string name="pref_allow_nsfw_sources_blocked">Geblokkeerd</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Blokkeer bladeren door bronnen, maar laat wel zien in lijst van extensies</string>
-    <string name="pref_allow_nsfw_sources_allowed">Toegestaan</string>
+    <string name="pref_allow_nsfw_sources_blocked">Verbergen</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Verbergen in bronnen, maar weergeven in lijst van extensies</string>
+    <string name="pref_allow_nsfw_sources_allowed">Weergeven</string>
     <string name="pref_allow_nsfw_sources">18+-bronnen</string>
     <string name="pref_remove_bookmarked_chapters">Verwijder hoofdstukken met bladwijzers</string>
     <string name="pref_category_delete_chapters">Hoofdstukken verwijderen</string>
     <string name="ext_nsfw_warning">Kan 18+-inhoud bevatten</string>
     <string name="ext_nsfw_short">18+</string>
     <string name="parental_controls_info">Dit voorkomt niet dat onofficiële of mogelijk incorrect gemarkeerde extensies 18+-inhoud kunnen laten zien in de app.</string>
-    <string name="pref_category_parental_controls">Ouderlijk toezicht</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Er is 1 missend hoofdstuk</item>
         <item quantity="other">Er zijn %d missende hoofstukken</item>
     </plurals>
     <string name="no_chapters_error">Geen hoofdstukken gevonden</string>
+    <string name="chapter_settings_updated">Standaard hoofdstukinstellingen bijgewerkt</string>
+    <string name="set_chapter_settings_as_default">Instellen als standaard</string>
+    <string name="also_set_chapter_settings_for_library">Ook toepassen op alle manga in mijn bibliotheek</string>
+    <string name="confirm_set_chapter_settings">Weet je zeker dat je deze instellingen als standaardinstellingen wilt opslaan\?</string>
+    <string name="chapter_settings">Hoofdstukinstellingen</string>
+    <string name="action_web_view">WebView</string>
+    <string name="share_page_info">%1$s: %2$s, pagina %3$d</string>
+    <string name="action_search_settings">Zoekinstellingen</string>
+    <string name="downloaded_chapters">Gedownloade hoofdstukken</string>
+    <string name="manga_from_library">Manga uit de bibliotheek</string>
+    <string name="pref_incognito_mode_summary">Pauzeert leesgeschiedenis</string>
+    <string name="pref_incognito_mode">Incognitomodus</string>
+    <string name="pref_clear_history_summary">Verwijder leesgeschiedenis voor alle manga</string>
+    <string name="pref_clear_history">Geschiedenis wissen</string>
+    <string name="clear_history_confirmation">Weet je dit zeker\? Alle geschiedenis zal verloren gaan.</string>
+    <string name="clear_history_completed">Geschiedenis verwijderd</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Navigatiebalk verbergen bij het scrollen</string>
+    <string name="spen_next_page">Volgende pagina</string>
+    <string name="spen_previous_page">Vorige pagina</string>
+    <string name="full_restore_offline">Herstel offline, sneller klaar maar bevat alleen wat de backup heeft</string>
+    <string name="full_restore_online">Herstel online, veel langzamer maar geeft bijgewerkte informatie en hoofdstukken</string>
+    <string name="full_restore_mode">Netwerkmodus</string>
+    <string name="pref_backup_auto_create_legacy">Maak ook een verouderde backup</string>
+    <string name="pref_create_legacy_backup_summary">Kan gebruikt worden in oudere versies van Tachiyomi</string>
+    <string name="pref_create_legacy_backup">Verourderde back-up maken</string>
+    <string name="migration_help_guide">Bronmigratiegids</string>
+    <string name="process_text_action_name">Zoeken in Tachiyomi</string>
+    <string name="invalid_backup_file_type">Ongeldig back-upbestand: %1$s</string>
+    <string name="pref_category_nsfw_content">18+ inhoud</string>
 </resources>

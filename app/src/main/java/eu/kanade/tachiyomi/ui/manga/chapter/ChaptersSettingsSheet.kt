@@ -87,12 +87,12 @@ class ChaptersSettingsSheet(
 
         inner class FilterGroup : Group {
 
-            private val unread = Item.TriStateGroup(R.string.action_filter_unread, this)
             private val downloaded = Item.TriStateGroup(R.string.action_filter_downloaded, this)
+            private val unread = Item.TriStateGroup(R.string.action_filter_unread, this)
             private val bookmarked = Item.TriStateGroup(R.string.action_filter_bookmarked, this)
 
             override val header = null
-            override val items = listOf(unread, downloaded, bookmarked)
+            override val items = listOf(downloaded, unread, bookmarked)
             override val footer = null
 
             override fun initModels() {

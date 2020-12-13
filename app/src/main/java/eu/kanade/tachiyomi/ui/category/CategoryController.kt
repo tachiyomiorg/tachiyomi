@@ -19,9 +19,9 @@ import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.databinding.CategoriesControllerBinding
 import eu.kanade.tachiyomi.ui.base.controller.FabController
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
+import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.shrinkOnScroll
-import kotlinx.android.synthetic.main.main_activity.root_coordinator
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.view.clicks
@@ -199,7 +199,7 @@ class CategoryController :
                 undoHelper = UndoHelper(adapter, this)
                 undoHelper?.start(
                     adapter.selectedPositions,
-                    activity!!.root_coordinator,
+                    (activity as? MainActivity)?.binding?.rootCoordinator!!,
                     R.string.snack_categories_deleted,
                     R.string.action_undo,
                     3000

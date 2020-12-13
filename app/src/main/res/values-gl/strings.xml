@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="label_settings">Axustes</string>
+    <string name="label_more">Máis</string>
+    <string name="name">Nome</string>
+    <string name="label_sources">Fontes</string>
+    <string name="label_recent_manga">Historial</string>
+    <string name="label_recent_updates">Actualizacións</string>
+    <string name="label_library">Biblioteca</string>
+    <string name="label_download_queue">Cola de descargas</string>
+</resources>

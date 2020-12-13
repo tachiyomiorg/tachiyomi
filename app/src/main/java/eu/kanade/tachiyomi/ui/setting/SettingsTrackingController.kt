@@ -10,6 +10,7 @@ import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.track.anilist.AnilistApi
 import eu.kanade.tachiyomi.data.track.bangumi.BangumiApi
 import eu.kanade.tachiyomi.data.track.shikimori.ShikimoriApi
+import eu.kanade.tachiyomi.ui.setting.track.MyAnimeListLoginActivity
 import eu.kanade.tachiyomi.ui.setting.track.TrackLoginDialog
 import eu.kanade.tachiyomi.ui.setting.track.TrackLogoutDialog
 import eu.kanade.tachiyomi.util.preference.defaultValue
@@ -43,9 +44,7 @@ class SettingsTrackingController :
             titleRes = R.string.services
 
             trackPreference(trackManager.myAnimeList) {
-                val dialog = TrackLoginDialog(trackManager.myAnimeList)
-                dialog.targetController = this@SettingsTrackingController
-                dialog.showDialog(router)
+                startActivity(MyAnimeListLoginActivity.newIntent(activity!!))
             }
             trackPreference(trackManager.aniList) {
                 val tabsIntent = CustomTabsIntent.Builder()
@@ -106,6 +105,7 @@ class SettingsTrackingController :
         super.onActivityResumed(activity)
 
         // Manually refresh OAuth trackers' holders
+        updatePreference(trackManager.myAnimeList.id)
         updatePreference(trackManager.aniList.id)
         updatePreference(trackManager.shikimori.id)
         updatePreference(trackManager.bangumi.id)

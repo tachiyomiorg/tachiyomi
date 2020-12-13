@@ -97,7 +97,6 @@
     <string name="action_filter_downloaded">Ladattu</string>
     <string name="action_filter_bookmarked">Kirjanmerkki</string>
     <string name="action_filter_unread">Lukemattomat</string>
-    <string name="action_filter_read">Luettu</string>
     <string name="action_filter_empty">Poista suodattimet</string>
     <string name="action_sort_alpha">Aakkosjärjestyksessä</string>
     <string name="action_search">Haku</string>
@@ -301,7 +300,6 @@
     <string name="library_search_hint">Nimike tai kirjailija…</string>
     <string name="updating_category">Päivitetään kategoriaa</string>
     <string name="local_source_badge">Paikallinen</string>
-    <string name="confirm_delete_manga">Oletko varma että haluat poistaa valitut sarjat\?</string>
     <string name="source_requires_login">Tämä lähde vaatii sisäänkirjautumisen</string>
     <string name="no_valid_sources">Ota käyttöön vähintään yksi lähde</string>
     <string name="no_more_results">Ei enempää tuloksia</string>
@@ -344,7 +342,6 @@
     <string name="pref_create_backup">Luo varmuuskopio</string>
     <string name="pref_restore_backup">Palauta varmuuskopio</string>
     <string name="pref_backup_directory">Varmuuskopio kansio</string>
-    <string name="also_delete_chapters">Poista myös ladatut luvut</string>
     <string name="select_source">Valitse lähde</string>
     <string name="local_source">Paikalliset lähteet</string>
     <string name="other_source">Muut</string>
@@ -505,7 +502,6 @@
     <string name="track_started_reading_date">Aloituspäivämäärä</string>
     <string name="manga_info_collapse">Vähemmän</string>
     <string name="manga_info_expand">Enemmän</string>
-    <string name="manga_info_about_label">Tietoa</string>
     <string name="pinned_sources">Kiinnitetyt</string>
     <string name="http_error_hint">Katso sivu WebViewissä</string>
     <string name="webtoon_side_padding_0">Ei yhtään</string>
@@ -572,7 +568,7 @@
         <item quantity="other">%1$s lukua</item>
     </plurals>
     <string name="action_open_in_settings">Avaa Asetuksissa</string>
-    <string name="pref_dns_over_https_summary">Edellyttää sovelluksen käynnistämistä uudelleen</string>
+    <string name="requires_app_restart">Edellyttää sovelluksen käynnistämistä uudelleen</string>
     <string name="pref_dns_over_https" translatable="false">DNS HTTPS:n kautta (Cloudflare)</string>
     <string name="label_network">Verkko</string>
     <string name="pref_jump_to_chapters">Siirry lukuihin avatessa</string>
@@ -604,19 +600,47 @@
     <string name="download_notifier_download_finish">Lataus valmis</string>
     <string name="channel_errors">Virheet</string>
     <string name="backup_restore_missing_trackers">Seurantapalvelimet joihin et ole kirjautunut sisään:</string>
-    <string name="pref_allow_nsfw_sources_blocked">Estetty</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Estä selaaminen lähteistä, mutta näytä laajennusluettelossa</string>
-    <string name="pref_allow_nsfw_sources_allowed">Sallittu</string>
+    <string name="pref_allow_nsfw_sources_blocked">Piilota</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Piiloita lähteissä, mutta näytä laajennusluettelossa</string>
+    <string name="pref_allow_nsfw_sources_allowed">Näytä</string>
     <string name="pref_allow_nsfw_sources">18+ lähteet</string>
     <string name="pref_remove_bookmarked_chapters">Poista kirjanmerkityt luvut</string>
     <string name="pref_category_delete_chapters">Poista luvut</string>
     <string name="ext_nsfw_warning">Voi sisältää 18+ sisältöä</string>
     <string name="ext_nsfw_short">18+</string>
     <string name="parental_controls_info">Tämä ei estä epävirallisia tai mahdollisesti väärin merkittyjä laajennuksia näyttämästä 18+ sisältöä sovelluksessa.</string>
-    <string name="pref_category_parental_controls">Lapsilukko</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">1 puuttuva luku</item>
         <item quantity="other">%d puuttuvaa lukua</item>
     </plurals>
     <string name="no_chapters_error">Lukuja ei löytynyt</string>
+    <string name="chapter_settings_updated">Päivitetyt luvun oletusasetukset</string>
+    <string name="set_chapter_settings_as_default">Aseta oletukseksi</string>
+    <string name="also_set_chapter_settings_for_library">Koskee myös kaikkia kirjastoni mangoja</string>
+    <string name="confirm_set_chapter_settings">Haluatko varmasti tallentaa nämä asetukset oletuksena\?</string>
+    <string name="chapter_settings">Luvun asetukset</string>
+    <string name="action_web_view">WebView</string>
+    <string name="share_page_info">%1$s: %2$s, sivu %3$d</string>
+    <string name="action_search_settings">Hakuasetukset</string>
+    <string name="downloaded_chapters">Ladatut luvut</string>
+    <string name="manga_from_library">Manga kirjastosta</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Piilota alapalkki selatessa</string>
+    <string name="pref_incognito_mode_summary">Keskeyttää lukuhistorian</string>
+    <string name="pref_incognito_mode">Incognito-tila</string>
+    <string name="pref_clear_history_summary">Poista kaikkien mangojen lukuhistoria</string>
+    <string name="pref_clear_history">Tyhjennä historia</string>
+    <string name="clear_history_confirmation">Oletko varma\? Koko historia menetetään.</string>
+    <string name="clear_history_completed">Historia poistettu</string>
+    <string name="spen_next_page">Seuraava sivu</string>
+    <string name="spen_previous_page">Edellinen sivu</string>
+    <string name="full_restore_offline">Palauta offline-tilassa, päättyy nopeasti, mutta sisältää vain sen, mitä varmuuskopiossa on</string>
+    <string name="full_restore_online">Palauta verkossa, paljon hitaampi, mutta antaa sinulle enemmän päivitettyjä tietoja ja lukuja</string>
+    <string name="full_restore_mode">Verkkotila</string>
+    <string name="pref_backup_auto_create_legacy">Luo myös vanha varmuuskopio</string>
+    <string name="pref_create_legacy_backup_summary">Voidaan käyttää Tachiyomin vanhemmissa versioissa</string>
+    <string name="pref_create_legacy_backup">Luo vanha varmuuskopio</string>
+    <string name="migration_help_guide">Lähteen siirto-opas</string>
+    <string name="invalid_backup_file_type">Virheellinen varmuuskopiotiedosto: %1$s</string>
+    <string name="pref_category_nsfw_content">18+ konettia</string>
+    <string name="process_text_action_name">Hae Tachiyomista</string>
 </resources>

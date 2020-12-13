@@ -21,7 +21,6 @@
     <string name="action_filter_downloaded">Nedladdat</string>
     <string name="action_filter_bookmarked">Bokmärkt</string>
     <string name="action_filter_unread">Oläst</string>
-    <string name="action_filter_read">Läst</string>
     <string name="action_filter_empty">Ta bort filtret</string>
     <string name="action_sort_alpha">Alfabetiskt</string>
     <string name="action_sort_total">Totalt kapitel</string>
@@ -239,8 +238,6 @@
     <string name="library_search_hint">Titel eller författare…</string>
     <string name="updating_category">Uppdaterar kategori</string>
     <string name="local_source_badge">Lokal</string>
-    <string name="confirm_delete_manga">Är du säker på att du vill ta bort vald manga\?</string>
-    <string name="also_delete_chapters">Radera även nedladdade kapitel</string>
     <string name="source_requires_login">Denna källan kräver att du loggar in</string>
     <string name="select_source">Välj en källa</string>
     <string name="no_valid_sources">Vänligen aktivera minst en giltig källa</string>
@@ -494,7 +491,6 @@
     <string name="action_select_inverse">Välj omvänd</string>
     <string name="manga_info_collapse">Mindre</string>
     <string name="manga_info_expand">Mer</string>
-    <string name="manga_info_about_label">Info</string>
     <string name="pref_confirm_exit">Bekräfta utgång</string>
     <string name="confirm_exit">Tryck tillbaka igen för att gå ur</string>
     <string name="information_webview_required">WebView krävs för Tachiyomi</string>
@@ -576,7 +572,7 @@
     </plurals>
     <string name="unknown_status">Okänd status</string>
     <string name="unknown_author">Okänd författare</string>
-    <string name="pref_dns_over_https_summary">Kräver omstart av appen för att börja gälla</string>
+    <string name="requires_app_restart">Kräver omstart av appen för att börja gälla</string>
     <string name="pref_dns_over_https" translatable="false">DNS över HTTPS (Cloudflare)</string>
     <string name="label_network">Nätverk</string>
     <string name="pref_jump_to_chapters">Hoppa till kapitel vid öppning</string>
@@ -602,9 +598,9 @@
         <item quantity="other">%d trackers</item>
     </plurals>
     <string name="no_pinned_sources">Du har inga fästa källor</string>
-    <string name="pref_allow_nsfw_sources_blocked">Blockerad</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Blockera att bläddra källor men visa i tilläggslistan</string>
-    <string name="pref_allow_nsfw_sources_allowed">Tillåtet</string>
+    <string name="pref_allow_nsfw_sources_blocked">Dölj</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Dölj i källor men visa i tilläggslistan</string>
+    <string name="pref_allow_nsfw_sources_allowed">Visa</string>
     <string name="pref_allow_nsfw_sources">18+ källor</string>
     <string name="pref_remove_bookmarked_chapters">Ta bort bokmärkta kapitel</string>
     <string name="pref_category_delete_chapters">Ta bort kapitel</string>
@@ -612,6 +608,38 @@
     <string name="ext_nsfw_short">18+</string>
     <string name="backup_restore_missing_trackers">Trackers som inte har loggats in:</string>
     <string name="parental_controls_info">Detta förhindrar inte inofficiella eller potentiellt felaktigt flaggade tillägg från att visa 18+ innehåll i appen.</string>
-    <string name="pref_category_parental_controls">Föräldrakontroll</string>
     <string name="channel_errors">Fel</string>
+    <string name="chapter_settings_updated">Uppdaterade standardinställningar för kapitel</string>
+    <string name="confirm_set_chapter_settings">Vill du spara de här inställningarna som standard\?</string>
+    <plurals name="missing_chapters_warning">
+        <item quantity="one">Det saknas 1 kapitel</item>
+        <item quantity="other">Det saknas %d kapitel</item>
+    </plurals>
+    <string name="share_page_info">%1$s: %2$s, sida %3$d</string>
+    <string name="no_chapters_error">Inga kapitel hittades</string>
+    <string name="set_chapter_settings_as_default">Ange som standard</string>
+    <string name="also_set_chapter_settings_for_library">Gäller även all manga i biblioteket</string>
+    <string name="chapter_settings">Kapitelinställningar</string>
+    <string name="action_web_view">WebView</string>
+    <string name="downloaded_chapters">Nedladdade kapitel</string>
+    <string name="manga_from_library">Manga från biblioteket</string>
+    <string name="pref_incognito_mode_summary">Pausar läshistoriken</string>
+    <string name="pref_incognito_mode">Inkognitoläge</string>
+    <string name="pref_clear_history_summary">Radera läshistorik för all manga</string>
+    <string name="pref_clear_history">Rensa historik</string>
+    <string name="clear_history_confirmation">Är du säker\? All historik kommer att försvinna.</string>
+    <string name="clear_history_completed">Historiken har tagits bort</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Dölj navigationsfältet vid scroll</string>
+    <string name="action_search_settings">Sök inställningar</string>
+    <string name="spen_next_page">Nästa sida</string>
+    <string name="spen_previous_page">Föregående sida</string>
+    <string name="full_restore_offline">Återställ offline, klar snabbt men innehåller bara vad din säkerhetskopia har</string>
+    <string name="full_restore_online">Återställ online, mycket segare men ger dig mer uppdaterad infomration och kapitel</string>
+    <string name="full_restore_mode">Nätverksläge</string>
+    <string name="pref_create_legacy_backup_summary">Kan används i äldre versioner av Tachiyomi</string>
+    <string name="migration_help_guide">Guide för källmigrering</string>
+    <string name="invalid_backup_file_type">Ogiltig säkerhetskopia: %1$s</string>
+    <string name="pref_backup_auto_create_legacy">Skapa också äldre säkerhetskopia</string>
+    <string name="pref_create_legacy_backup">Skapa äldre säkerhetskopia</string>
+    <string name="pref_category_nsfw_content">18+ innehåll</string>
 </resources>

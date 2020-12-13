@@ -2,23 +2,22 @@ package eu.kanade.tachiyomi.ui.reader.viewer
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
 import androidx.core.view.isVisible
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.databinding.ReaderTransitionViewBinding
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
-import kotlinx.android.synthetic.main.reader_transition_view.view.lower_text
-import kotlinx.android.synthetic.main.reader_transition_view.view.upper_text
-import kotlinx.android.synthetic.main.reader_transition_view.view.warning
-import kotlinx.android.synthetic.main.reader_transition_view.view.warning_text
-import kotlin.math.floor
 
 class ReaderTransitionView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
     LinearLayout(context, attrs) {
 
+    private val binding: ReaderTransitionViewBinding
+
     init {
-        inflate(context, R.layout.reader_transition_view, this)
+        binding = ReaderTransitionViewBinding.inflate(LayoutInflater.from(context), this, true)
         layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
     }
 
@@ -38,20 +37,20 @@ class ReaderTransitionView @JvmOverloads constructor(context: Context, attrs: At
         val prevChapter = transition.to
 
         val hasPrevChapter = prevChapter != null
-        lower_text.isVisible = hasPrevChapter
+        binding.lowerText.isVisible = hasPrevChapter
         if (hasPrevChapter) {
-            upper_text.textAlignment = TEXT_ALIGNMENT_TEXT_START
-            upper_text.text = buildSpannedString {
+            binding.upperText.textAlignment = TEXT_ALIGNMENT_TEXT_START
+            binding.upperText.text = buildSpannedString {
                 bold { append(context.getString(R.string.transition_current)) }
                 append("\n${transition.from.chapter.name}")
             }
-            lower_text.text = buildSpannedString {
+            binding.lowerText.text = buildSpannedString {
                 bold { append(context.getString(R.string.transition_previous)) }
                 append("\n${prevChapter!!.chapter.name}")
             }
         } else {
-            upper_text.textAlignment = TEXT_ALIGNMENT_CENTER
-            upper_text.text = context.getString(R.string.transition_no_previous)
+            binding.upperText.textAlignment = TEXT_ALIGNMENT_CENTER
+            binding.upperText.text = context.getString(R.string.transition_no_previous)
         }
     }
 
@@ -62,43 +61,45 @@ class ReaderTransitionView @JvmOverloads constructor(context: Context, attrs: At
         val nextChapter = transition.to
 
         val hasNextChapter = nextChapter != null
-        lower_text.isVisible = hasNextChapter
+        binding.lowerText.isVisible = hasNextChapter
         if (hasNextChapter) {
-            upper_text.textAlignment = TEXT_ALIGNMENT_TEXT_START
-            upper_text.text = buildSpannedString {
+            binding.upperText.textAlignment = TEXT_ALIGNMENT_TEXT_START
+            binding.upperText.text = buildSpannedString {
                 bold { append(context.getString(R.string.transition_finished)) }
                 append("\n${transition.from.chapter.name}")
             }
-            lower_text.text = buildSpannedString {
+            binding.lowerText.text = buildSpannedString {
                 bold { append(context.getString(R.string.transition_next)) }
                 append("\n${nextChapter!!.chapter.name}")
             }
         } else {
-            upper_text.textAlignment = TEXT_ALIGNMENT_CENTER
-            upper_text.text = context.getString(R.string.transition_no_next)
+            binding.upperText.textAlignment = TEXT_ALIGNMENT_CENTER
+            binding.upperText.text = context.getString(R.string.transition_no_next)
         }
     }
 
     private fun missingChapterWarning(transition: ChapterTransition) {
         if (transition.to == null) {
-            warning.isVisible = false
+            binding.warning.isVisible = false
             return
         }
 
-        val fromChapterNumber: Float = floor(transition.from.chapter.chapter_number)
-        val toChapterNumber: Float = floor(transition.to!!.chapter.chapter_number)
+        val hasMissingChapters = when (transition) {
+            is ChapterTransition.Prev -> hasMissingChapters(transition.from, transition.to)
+            is ChapterTransition.Next -> hasMissingChapters(transition.to, transition.from)
+        }
+
+        if (!hasMissingChapters) {
+            binding.warning.isVisible = false
+            return
+        }
 
         val chapterDifference = when (transition) {
-            is ChapterTransition.Prev -> fromChapterNumber - toChapterNumber - 1f
-            is ChapterTransition.Next -> toChapterNumber - fromChapterNumber - 1f
+            is ChapterTransition.Prev -> calculateChapterDifference(transition.from, transition.to)
+            is ChapterTransition.Next -> calculateChapterDifference(transition.to, transition.from)
         }
 
-        val hasMissingChapters = when (transition) {
-            is ChapterTransition.Prev -> MissingChapters.hasMissingChapters(fromChapterNumber, toChapterNumber)
-            is ChapterTransition.Next -> MissingChapters.hasMissingChapters(toChapterNumber, fromChapterNumber)
-        }
-
-        warning_text.text = resources.getQuantityString(R.plurals.missing_chapters_warning, chapterDifference.toInt(), chapterDifference.toInt())
-        warning.isVisible = hasMissingChapters
+        binding.warningText.text = resources.getQuantityString(R.plurals.missing_chapters_warning, chapterDifference.toInt(), chapterDifference.toInt())
+        binding.warning.isVisible = true
     }
 }

@@ -1,9 +1,10 @@
 package eu.kanade.tachiyomi.ui.manga.info
 
+import android.graphics.PorterDuff
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -20,11 +21,10 @@ import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.system.copyToClipboard
+import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.view.setChips
-import eu.kanade.tachiyomi.util.view.setTooltip
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.merge
@@ -103,27 +103,17 @@ class MangaInfoHeaderAdapter(
                     isVisible = true
 
                     if (trackCount > 0) {
-                        setCompoundDrawablesWithIntrinsicBounds(
-                            null,
-                            ContextCompat.getDrawable(context, R.drawable.ic_done_24dp),
-                            null,
-                            null
-                        )
+                        setIconResource(R.drawable.ic_done_24dp)
                         text = view.context.resources.getQuantityString(
                             R.plurals.num_trackers,
                             trackCount,
                             trackCount
                         )
-                        isSelected = true
+                        isActivated = true
                     } else {
-                        setCompoundDrawablesWithIntrinsicBounds(
-                            null,
-                            ContextCompat.getDrawable(context, R.drawable.ic_sync_24dp),
-                            null,
-                            null
-                        )
+                        setIconResource(R.drawable.ic_sync_24dp)
                         text = view.context.getString(R.string.manga_tracking_tab)
-                        isSelected = false
+                        isActivated = false
                     }
 
                     clicks()
@@ -139,7 +129,6 @@ class MangaInfoHeaderAdapter(
                 binding.btnWebview.clicks()
                     .onEach { controller.openMangaInWebView() }
                     .launchIn(scope)
-                binding.btnWebview.setTooltip(R.string.action_open_in_web_view)
             }
 
             binding.mangaFullTitle.longClicks()
@@ -214,7 +203,6 @@ class MangaInfoHeaderAdapter(
          * @param manga manga object containing information about manga.
          * @param source the source of the manga.
          */
-        @ExperimentalCoroutinesApi
         private fun setMangaInfo(manga: Manga, source: Source?) {
             // Update full title TextView.
             binding.mangaFullTitle.text = if (manga.title.isBlank()) {
@@ -320,6 +308,14 @@ class MangaInfoHeaderAdapter(
                     initialLoad = false
                 }
             }
+
+            // backgroundTint attribute doesn't work properly on Android 5
+            if (Build.VERSION.SDK_INT == Build.VERSION_CODES.LOLLIPOP) {
+                binding.mangaInfoToggleMoreScrim.background.setColorFilter(
+                    view.context.getResourceColor(android.R.attr.colorBackground),
+                    PorterDuff.Mode.SRC_ATOP
+                )
+            }
         }
 
         private fun showMangaInfo(visible: Boolean) {
@@ -352,18 +348,10 @@ class MangaInfoHeaderAdapter(
             // Set the Favorite drawable to the correct one.
             // Border drawable if false, filled drawable if true.
             binding.btnFavorite.apply {
-                setCompoundDrawablesWithIntrinsicBounds(
-                    null,
-                    ContextCompat.getDrawable(
-                        context,
-                        if (isFavorite) R.drawable.ic_favorite_24dp else R.drawable.ic_favorite_border_24dp
-                    ),
-                    null,
-                    null
-                )
+                setIconResource(if (isFavorite) R.drawable.ic_favorite_24dp else R.drawable.ic_favorite_border_24dp)
                 text =
                     context.getString(if (isFavorite) R.string.in_library else R.string.add_to_library)
-                isSelected = isFavorite
+                isActivated = isFavorite
             }
         }
     }

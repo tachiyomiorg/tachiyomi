@@ -168,6 +168,7 @@ class SettingsGeneralController : SettingsController() {
                 // Due to compatibility issues:
                 // - Hebrew: `he` is copied into `iw` at build time
                 langs += arrayOf(
+                    "am",
                     "ar",
                     "be",
                     "bg",
@@ -185,6 +186,7 @@ class SettingsGeneralController : SettingsController() {
                     "fi",
                     "fil",
                     "fr",
+                    "gl",
                     "he",
                     "hi",
                     "hr",
@@ -215,6 +217,7 @@ class SettingsGeneralController : SettingsController() {
                     "uk",
                     "ur-rPK",
                     "vi",
+                    "uz",
                     "zh-rCN",
                     "zh-rTW"
                 )

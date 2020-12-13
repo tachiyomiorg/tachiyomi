@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_source_migration_help"
+        android:icon="@drawable/ic_help_24dp"
+        android:title="@string/migration_help_guide"
+        app:iconTint="?attr/colorOnPrimary"
+        app:showAsAction="ifRoom" />
+
+</menu>

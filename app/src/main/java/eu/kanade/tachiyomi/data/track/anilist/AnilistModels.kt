@@ -63,7 +63,7 @@ data class ALUserManga(
         "DROPPED" -> Anilist.DROPPED
         "PLANNING" -> Anilist.PLANNING
         "REPEATING" -> Anilist.REPEATING
-        else -> throw NotImplementedError("Unknown status")
+        else -> throw NotImplementedError("Unknown status: $list_status")
     }
 }
 
@@ -74,7 +74,7 @@ fun Track.toAnilistStatus() = when (status) {
     Anilist.DROPPED -> "DROPPED"
     Anilist.PLANNING -> "PLANNING"
     Anilist.REPEATING -> "REPEATING"
-    else -> throw NotImplementedError("Unknown status")
+    else -> throw NotImplementedError("Unknown status: $status")
 }
 
 private val preferences: PreferencesHelper by injectLazy()
@@ -102,5 +102,5 @@ fun Track.toAnilistScore(): String = when (preferences.anilistScoreType().get())
     }
 // 10 point decimal
     "POINT_10_DECIMAL" -> (score / 10).toString()
-    else -> throw Exception("Unknown score type")
+    else -> throw NotImplementedError("Unknown score type")
 }

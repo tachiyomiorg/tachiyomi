@@ -2,18 +2,19 @@ package eu.kanade.tachiyomi.ui.browse.source.browse
 
 import android.os.Bundle
 import eu.davidea.flexibleadapter.items.IFlexible
-import eu.davidea.flexibleadapter.items.ISectionable
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.database.models.MangaCategory
+import eu.kanade.tachiyomi.data.database.models.toMangaInfo
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.Filter
 import eu.kanade.tachiyomi.source.model.FilterList
 import eu.kanade.tachiyomi.source.model.SManga
+import eu.kanade.tachiyomi.source.model.toSManga
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import eu.kanade.tachiyomi.ui.browse.source.filter.CheckboxItem
 import eu.kanade.tachiyomi.ui.browse.source.filter.CheckboxSectionItem
@@ -29,12 +30,17 @@ import eu.kanade.tachiyomi.ui.browse.source.filter.TextSectionItem
 import eu.kanade.tachiyomi.ui.browse.source.filter.TriStateItem
 import eu.kanade.tachiyomi.ui.browse.source.filter.TriStateSectionItem
 import eu.kanade.tachiyomi.util.chapter.ChapterSettingsHelper
+import eu.kanade.tachiyomi.util.lang.launchIO
+import eu.kanade.tachiyomi.util.lang.launchUI
 import eu.kanade.tachiyomi.util.removeCovers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.isActive
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
-import rx.subjects.PublishSubject
 import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
@@ -45,7 +51,7 @@ import java.util.Date
  */
 open class BrowseSourcePresenter(
     private val sourceId: Long,
-    private val searchQuery: String? = null,
+    searchQuery: String? = null,
     private val sourceManager: SourceManager = Injekt.get(),
     private val db: DatabaseHelper = Injekt.get(),
     private val prefs: PreferencesHelper = Injekt.get(),
@@ -85,9 +91,9 @@ open class BrowseSourcePresenter(
     private lateinit var pager: Pager
 
     /**
-     * Subject that initializes a list of manga.
+     * Flow of manga list to initialize.
      */
-    private val mangaDetailSubject = PublishSubject.create<List<Manga>>()
+    private val mangaDetailsFlow = MutableStateFlow<List<Manga>>(emptyList())
 
     /**
      * Subscription for the pager.
@@ -100,9 +106,9 @@ open class BrowseSourcePresenter(
     private var pageSubscription: Subscription? = null
 
     /**
-     * Subscription to initialize manga details.
+     * Job to initialize manga details.
      */
-    private var initializerSubscription: Subscription? = null
+    private var initializerJob: Job? = null
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
@@ -133,7 +139,7 @@ open class BrowseSourcePresenter(
         this.query = query
         this.appliedFilters = filters
 
-        subscribeToMangaInitializer()
+        initializeManga()
 
         // Create a new pager.
         pager = createPager(query, filters)
@@ -146,9 +152,9 @@ open class BrowseSourcePresenter(
         pagerSubscription?.let { remove(it) }
         pagerSubscription = pager.results()
             .observeOn(Schedulers.io())
-            .map { pair -> pair.first to pair.second.map { networkToLocalManga(it, sourceId) } }
+            .map { (first, second) -> first to second.map { networkToLocalManga(it, sourceId) } }
             .doOnNext { initializeMangas(it.second) }
-            .map { pair -> pair.first to pair.second.map { SourceItem(it, sourceDisplayMode) } }
+            .map { (first, second) -> first to second.map { SourceItem(it, sourceDisplayMode) } }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeReplay(
                 { view, (page, mangas) ->
@@ -189,24 +195,22 @@ open class BrowseSourcePresenter(
     /**
      * Subscribes to the initializer of manga details and updates the view if needed.
      */
-    private fun subscribeToMangaInitializer() {
-        initializerSubscription?.let { remove(it) }
-        initializerSubscription = mangaDetailSubject.observeOn(Schedulers.io())
-            .flatMap { Observable.from(it) }
-            .filter { it.thumbnail_url == null && !it.initialized }
-            .concatMap { getMangaDetailsObservable(it) }
-            .onBackpressureBuffer()
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { manga ->
-                    @Suppress("DEPRECATION")
-                    view?.onMangaInitialized(manga)
-                },
-                { error ->
-                    Timber.e(error)
+    private fun initializeManga() {
+        initializerJob?.cancel()
+        initializerJob = launchIO {
+            mangaDetailsFlow
+                .onEach { mangas ->
+                    if (!isActive) return@onEach
+
+                    try {
+                        mangas.filter { it.thumbnail_url == null && !it.initialized }
+                            .map { getMangaDetails(it) }
+                            .forEach { launchUI { view?.onMangaInitialized(it) } }
+                    } catch (error: Exception) {
+                        launchUI { Timber.e(error) }
+                    }
                 }
-            )
-            .apply { add(this) }
+        }
     }
 
     /**
@@ -234,24 +238,27 @@ open class BrowseSourcePresenter(
      * @param mangas the list of manga to initialize.
      */
     fun initializeMangas(mangas: List<Manga>) {
-        mangaDetailSubject.onNext(mangas)
+        launchIO { mangaDetailsFlow.emit(mangas) }
     }
 
     /**
-     * Returns an observable of manga that initializes the given manga.
+     * Returns the initialized manga.
      *
      * @param manga the manga to initialize.
-     * @return an observable of the manga to initialize
+     * @return the initialized manga
      */
-    private fun getMangaDetailsObservable(manga: Manga): Observable<Manga> {
-        return source.fetchMangaDetails(manga)
-            .flatMap { networkManga ->
-                manga.copyFrom(networkManga)
-                manga.initialized = true
-                db.insertManga(manga).executeAsBlocking()
-                Observable.just(manga)
-            }
-            .onErrorResumeNext { Observable.just(manga) }
+    private suspend fun getMangaDetails(manga: Manga): Manga {
+        return try {
+            source.getMangaDetails(manga.toMangaInfo())
+                .let { networkManga ->
+                    manga.copyFrom(networkManga.toSManga())
+                    manga.initialized = true
+                    db.insertManga(manga).executeAsBlocking()
+                    manga
+                }
+        } catch (e: Exception) {
+            manga
+        }
     }
 
     /**
@@ -279,7 +286,7 @@ open class BrowseSourcePresenter(
      * Refreshes the active display mode.
      */
     fun refreshDisplayMode() {
-        subscribeToMangaInitializer()
+        initializeManga()
     }
 
     /**
@@ -313,7 +320,7 @@ open class BrowseSourcePresenter(
                             is Filter.Text -> TextSectionItem(it)
                             is Filter.Select<*> -> SelectSectionItem(it)
                             else -> null
-                        } as? ISectionable<*, *>
+                        }
                     }
                     subItems.forEach { it.header = group }
                     group.subItems = subItems

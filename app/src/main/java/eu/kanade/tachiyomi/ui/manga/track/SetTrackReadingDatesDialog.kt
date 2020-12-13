@@ -2,6 +2,7 @@ package eu.kanade.tachiyomi.ui.manga.track
 
 import android.app.Dialog
 import android.os.Bundle
+import androidx.core.os.bundleOf
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.datetime.datePicker
 import com.bluelinelabs.conductor.Controller
@@ -21,9 +22,7 @@ class SetTrackReadingDatesDialog<T> : DialogController
     private val dateToUpdate: ReadingDate
 
     constructor(target: T, dateToUpdate: ReadingDate, item: TrackItem) : super(
-        Bundle().apply {
-            putSerializable(SetTrackReadingDatesDialog.KEY_ITEM_TRACK, item.track)
-        }
+        bundleOf(KEY_ITEM_TRACK to item.track)
     ) {
         targetController = target
         this.item = item
@@ -32,7 +31,7 @@ class SetTrackReadingDatesDialog<T> : DialogController
 
     @Suppress("unused")
     constructor(bundle: Bundle) : super(bundle) {
-        val track = bundle.getSerializable(SetTrackReadingDatesDialog.KEY_ITEM_TRACK) as Track
+        val track = bundle.getSerializable(KEY_ITEM_TRACK) as Track
         val service = Injekt.get<TrackManager>().getService(track.sync_id)!!
         item = TrackItem(track, service)
         dateToUpdate = ReadingDate.Start

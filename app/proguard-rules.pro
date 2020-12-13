@@ -56,3 +56,24 @@
 -keep class * implements com.google.gson.TypeAdapterFactory
 -keep class * implements com.google.gson.JsonSerializer
 -keep class * implements com.google.gson.JsonDeserializer
+
+
+## kotlinx.serialization ##
+
+-keepattributes *Annotation*, InnerClasses
+-dontnote kotlinx.serialization.AnnotationsKt # core serialization annotations
+
+-keepclassmembers class kotlinx.serialization.json.** {
+    *** Companion;
+}
+-keepclasseswithmembers class kotlinx.serialization.json.** {
+    kotlinx.serialization.KSerializer serializer(...);
+}
+
+-keep,includedescriptorclasses class eu.kanade.tachiyomi.**$$serializer { *; }
+-keepclassmembers class eu.kanade.tachiyomi.** {
+    *** Companion;
+}
+-keepclasseswithmembers class eu.kanade.tachiyomi.** {
+    kotlinx.serialization.KSerializer serializer(...);
+}

@@ -12,7 +12,6 @@
     <string name="action_filter_downloaded">다운로드됨</string>
     <string name="action_filter_bookmarked">북마크됨</string>
     <string name="action_filter_unread">안 읽음</string>
-    <string name="action_filter_read">읽음</string>
     <string name="action_filter_empty">필터 제거</string>
     <string name="action_sort_alpha">알파벳 순으로</string>
     <string name="action_sort_last_read">읽은 순으로</string>
@@ -49,7 +48,7 @@
     <string name="action_display">디스플레이</string>
     <string name="history">기록</string>
     <string name="label_download_queue">다운로드 대기열</string>
-    <string name="label_library">내 서재</string>
+    <string name="label_library">서재</string>
     <string name="label_recent_manga">최근 읽음</string>
     <string name="label_recent_updates">서재 업데이트</string>
     <string name="action_sort_total">모든 챕터</string>
@@ -202,8 +201,6 @@
     <string name="invalid_login">로그인 오류</string>
     <string name="unknown_error">알 수 없는 오류</string>
     <string name="updating_category">카테고리 업데이트중</string>
-    <string name="confirm_delete_manga">선택된 만화들을 정말로 제거하시겠습니까\?</string>
-    <string name="also_delete_chapters">다운로드된 챕터들도 지우기</string>
     <string name="source_requires_login">이 소스는 로그인을 필요로 합니다</string>
     <string name="select_source">소스 선택</string>
     <string name="no_valid_sources">최소한 1개의 유효한 소스를 선택해주세요</string>

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
@@ -22,7 +23,7 @@ import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.browse.extension.ExtensionController
 import eu.kanade.tachiyomi.ui.browse.migration.sources.MigrationSourcesController
 import eu.kanade.tachiyomi.ui.browse.source.SourceController
-import kotlinx.android.synthetic.main.main_activity.tabs
+import eu.kanade.tachiyomi.ui.main.MainActivity
 import uy.kohesive.injekt.injectLazy
 
 class BrowseController :
@@ -31,9 +32,7 @@ class BrowseController :
     TabbedController {
 
     constructor(toExtensions: Boolean = false) : super(
-        Bundle().apply {
-            putBoolean(TO_EXTENSIONS_EXTRA, toExtensions)
-        }
+        bundleOf(TO_EXTENSIONS_EXTRA to toExtensions)
     )
 
     @Suppress("unused")
@@ -75,7 +74,7 @@ class BrowseController :
     override fun onChangeStarted(handler: ControllerChangeHandler, type: ControllerChangeType) {
         super.onChangeStarted(handler, type)
         if (type.isEnter) {
-            activity?.tabs?.apply {
+            (activity as? MainActivity)?.binding?.tabs?.apply {
                 setupWithViewPager(binding.pager)
 
                 // Show badge on tab for extension updates
@@ -97,7 +96,7 @@ class BrowseController :
     }
 
     fun setExtensionUpdateBadge() {
-        activity?.tabs?.apply {
+        (activity as? MainActivity)?.binding?.tabs?.apply {
             val updates = preferences.extensionUpdatesCount().get()
             if (updates > 0) {
                 val badge: BadgeDrawable? = getTabAt(1)?.orCreateBadge

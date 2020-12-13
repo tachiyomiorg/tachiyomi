@@ -170,9 +170,9 @@ open class GlobalSearchPresenter(
                     Observable.defer { source.fetchSearchManga(1, query, FilterList()) }
                         .subscribeOn(Schedulers.io())
                         .onErrorReturn { MangasPage(emptyList(), false) } // Ignore timeouts or other exceptions
-                        .map { it.mangas.take(10) } // Get at most 10 manga from search result.
-                        .map { list -> list.map { networkToLocalManga(it, source.id) } } // Convert to local manga.
-                        .doOnNext { fetchImage(it, source) } // Load manga covers.
+                        .map { it.mangas }
+                        .map { list -> list.map { networkToLocalManga(it, source.id) } } // Convert to local manga
+                        .doOnNext { fetchImage(it, source) } // Load manga covers
                         .map { list -> createCatalogueSearchItem(source, list.map { GlobalSearchCardItem(it) }) }
                 },
                 5
@@ -221,9 +221,8 @@ open class GlobalSearchPresenter(
     private fun initializeFetchImageSubscription() {
         fetchImageSubscription?.unsubscribe()
         fetchImageSubscription = fetchImageSubject.observeOn(Schedulers.io())
-            .flatMap { pair ->
-                val source = pair.second
-                Observable.from(pair.first).filter { it.thumbnail_url == null && !it.initialized }
+            .flatMap { (first, source) ->
+                Observable.from(first).filter { it.thumbnail_url == null && !it.initialized }
                     .map { Pair(it, source) }
                     .concatMap { getMangaDetailsObservable(it.first, it.second) }
                     .map { Pair(source as CatalogueSource, it) }

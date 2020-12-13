@@ -174,6 +174,17 @@ class DownloadManager(private val context: Context) {
     }
 
     /**
+     * Returns the download from queue if the chapter is queued for download
+     * else it will return null which means that the chapter is not queued for download
+     *
+     * @param chapter the chapter to check.
+     */
+    fun getChapterDownloadOrNull(chapter: Chapter): Download? {
+        return downloader.queue
+            .firstOrNull { it.chapter.id == chapter.id && it.chapter.manga_id == chapter.manga_id }
+    }
+
+    /**
      * Returns the amount of downloaded chapters for a manga.
      *
      * @param manga the manga to check.

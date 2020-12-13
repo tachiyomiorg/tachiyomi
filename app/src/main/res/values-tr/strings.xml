@@ -14,14 +14,13 @@
     <string name="label_categories">Kategoriler</string>
     <string name="label_backup">Yedekleme</string>
     <string name="label_migration">Taşın</string>
-    <string name="label_extensions">Eklentiler</string>
-    <string name="label_extension_info">Eklenti bilgisi</string>
+    <string name="label_extensions">Uzantılar</string>
+    <string name="label_extension_info">Uzantı bilgisi</string>
     <string name="action_settings">Ayarlar</string>
     <string name="action_filter">Filtrele</string>
     <string name="action_filter_downloaded">İndirilen</string>
     <string name="action_filter_bookmarked">İşaretli</string>
     <string name="action_filter_unread">Okunmamış</string>
-    <string name="action_filter_read">Okunmuş</string>
     <string name="action_filter_empty">Filtreyi kaldır</string>
     <string name="action_sort_alpha">Alfabetik</string>
     <string name="action_sort_total">Toplam bölüm</string>
@@ -239,8 +238,6 @@
     <string name="library_search_hint">Başlık veya yazar…</string>
     <string name="updating_category">Kategori güncelleniyor</string>
     <string name="local_source_badge">Yerel</string>
-    <string name="confirm_delete_manga">Seçilen mangayı kaldırmak istediğinizden emin misiniz?</string>
-    <string name="also_delete_chapters">İndirilen bölümleri de sil</string>
     <string name="source_requires_login">Bu kaynak giriş yapmanızı gerektirir</string>
     <string name="select_source">Bir kaynak seç</string>
     <string name="no_valid_sources">Lütfen en az bir geçerli kaynağı etkinleştirin</string>
@@ -494,7 +491,6 @@
     <string name="add_to_library">Kitaplığa ekle</string>
     <string name="manga_info_collapse">Daha az</string>
     <string name="manga_info_expand">Daha fazla</string>
-    <string name="manga_info_about_label">Hakkında</string>
     <string name="website">Web sitesi</string>
     <string name="information_webview_required">WebView, Tachiyomi için gereklidir</string>
     <string name="licenses">Açık kaynak lisansları</string>
@@ -572,7 +568,7 @@
         <item quantity="other">%1$s bölüm</item>
     </plurals>
     <string name="action_open_in_settings">Ayarlarda aç</string>
-    <string name="pref_dns_over_https_summary">Etkili olması için uygulama yeniden başlatılmalıdır</string>
+    <string name="requires_app_restart">Etkili olması için uygulama yeniden başlatılmalıdır</string>
     <string name="pref_dns_over_https" translatable="false">HTTPS ile DNS (Cloudflare)</string>
     <string name="label_network">Ağ</string>
     <string name="pref_jump_to_chapters">Açınca bölümlere git</string>
@@ -604,19 +600,47 @@
     <string name="download_notifier_download_finish">İndirme tamamlandı</string>
     <string name="channel_errors">Hatalar</string>
     <string name="backup_restore_missing_trackers">İzleyiciler giriş yapmadı:</string>
-    <string name="pref_allow_nsfw_sources_blocked">Engelli</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Kaynaklara göz atmayı engelle, ancak uzantılar listesinde göster</string>
-    <string name="pref_allow_nsfw_sources_allowed">İzinli</string>
+    <string name="pref_allow_nsfw_sources_blocked">Gizle</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Kaynaklarda gizle ama uzantılar listesinde göster</string>
+    <string name="pref_allow_nsfw_sources_allowed">Göster</string>
     <string name="pref_allow_nsfw_sources">18+ kaynaklar</string>
     <string name="pref_remove_bookmarked_chapters">İşaretli bölümleri sil</string>
     <string name="pref_category_delete_chapters">Bölümleri sil</string>
     <string name="ext_nsfw_warning">18+ içerik içerebilir</string>
     <string name="ext_nsfw_short">18+</string>
     <string name="parental_controls_info">Bu, resmi olmayan veya yanlış işaretlenmiş uzantıların, uygulama içinde 18+ içeriği göstermesini engellemez.</string>
-    <string name="pref_category_parental_controls">Ebeveyn denetimleri</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">1 eksik bölüm var</item>
         <item quantity="other">%d eksik bölüm var</item>
     </plurals>
     <string name="no_chapters_error">Bölüm bulunamadı</string>
+    <string name="chapter_settings_updated">Öntanımlı bölüm ayarları güncellendi</string>
+    <string name="set_chapter_settings_as_default">Öntanımlı olarak ayarla</string>
+    <string name="also_set_chapter_settings_for_library">Kitaplığımdaki tüm mangalara da uygula</string>
+    <string name="confirm_set_chapter_settings">Bu ayarları öntanımlı olarak kaydetmek istediğinizden emin misiniz\?</string>
+    <string name="chapter_settings">Bölüm ayarları</string>
+    <string name="action_web_view">WebView</string>
+    <string name="share_page_info">%1$s: %2$s, sayfa %3$d</string>
+    <string name="action_search_settings">Arama ayarları</string>
+    <string name="downloaded_chapters">İndirilen bölümler</string>
+    <string name="manga_from_library">Kitaplıktan manga</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Kaydırmada alt çubuğu gizle</string>
+    <string name="pref_incognito_mode_summary">Okuma geçmişini duraklatır</string>
+    <string name="pref_incognito_mode">Gizli kip</string>
+    <string name="pref_clear_history_summary">Tüm mangaların okuma geçmişini sil</string>
+    <string name="pref_clear_history">Geçmişi temizle</string>
+    <string name="clear_history_confirmation">Emin misiniz\? Tüm geçmiş kaybolacak.</string>
+    <string name="clear_history_completed">Geçmiş silindi</string>
+    <string name="spen_next_page">Sonraki sayfa</string>
+    <string name="spen_previous_page">Önceki sayfa</string>
+    <string name="full_restore_offline">Çevrim dışı olarak geri yükle, hızlı bir şekilde tamamlanır ancak yalnızca yedeklemenizde bulunan şeyleri içerir</string>
+    <string name="full_restore_online">Çevrim içi olarak geri yükle, çok daha yavaş ancak size daha güncel bilgi ve bölümler sağlar</string>
+    <string name="full_restore_mode">Ağ Kipi</string>
+    <string name="pref_backup_auto_create_legacy">Ayrıca eski yedekleme oluştur</string>
+    <string name="pref_create_legacy_backup_summary">Tachiyomi\'nin eski sürümlerinde kullanılabilir</string>
+    <string name="pref_create_legacy_backup">Eski yedekleme oluştur</string>
+    <string name="migration_help_guide">Kaynak taşınma kılavuzu</string>
+    <string name="invalid_backup_file_type">Geçersiz yedekleme dosyası: %1$s</string>
+    <string name="pref_category_nsfw_content">18+ içerik</string>
+    <string name="process_text_action_name">Tachiyomi\'de ara</string>
 </resources>

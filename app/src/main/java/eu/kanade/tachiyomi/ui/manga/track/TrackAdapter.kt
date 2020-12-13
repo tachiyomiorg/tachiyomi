@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import eu.kanade.tachiyomi.databinding.TrackItemBinding
-import eu.kanade.tachiyomi.util.view.inflate
 
 class TrackAdapter(controller: TrackController) : RecyclerView.Adapter<TrackHolder>() {
 

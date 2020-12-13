@@ -2,6 +2,7 @@ package eu.kanade.tachiyomi.widget.preference
 
 import android.app.Dialog
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import androidx.annotation.StringRes
 import com.afollestad.materialdialogs.MaterialDialog
@@ -9,11 +10,9 @@ import com.afollestad.materialdialogs.customview.customView
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
 import com.dd.processbutton.iml.ActionProcessButton
-import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.databinding.PrefAccountLoginBinding
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
-import kotlinx.android.synthetic.main.pref_account_login.view.login
-import kotlinx.android.synthetic.main.pref_account_login.view.username_label
 import rx.Subscription
 import uy.kohesive.injekt.injectLazy
 
@@ -24,7 +23,7 @@ abstract class LoginDialogPreference(
     bundle: Bundle? = null
 ) : DialogController(bundle) {
 
-    var v: View? = null
+    var binding: PrefAccountLoginBinding? = null
         private set
 
     val preferences: PreferencesHelper by injectLazy()
@@ -32,8 +31,9 @@ abstract class LoginDialogPreference(
     var requestSubscription: Subscription? = null
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
+        binding = PrefAccountLoginBinding.inflate(LayoutInflater.from(activity!!))
         var dialog = MaterialDialog(activity!!)
-            .customView(R.layout.pref_account_login)
+            .customView(view = binding!!.root)
             .negativeButton(android.R.string.cancel)
 
         if (titleRes != null) {
@@ -46,16 +46,14 @@ abstract class LoginDialogPreference(
     }
 
     fun onViewCreated(view: View) {
-        v = view.apply {
-            if (usernameLabelRes != null) {
-                username_label.hint = context.getString(usernameLabelRes)
-            }
-
-            login.setMode(ActionProcessButton.Mode.ENDLESS)
-            login.setOnClickListener { checkLogin() }
-
-            setCredentialsOnView(this)
+        if (usernameLabelRes != null) {
+            binding!!.usernameLabel.hint = view.context.getString(usernameLabelRes)
         }
+
+        binding!!.login.setMode(ActionProcessButton.Mode.ENDLESS)
+        binding!!.login.setOnClickListener { checkLogin() }
+
+        setCredentialsOnView(view)
     }
 
     override fun onChangeStarted(handler: ControllerChangeHandler, type: ControllerChangeType) {
@@ -67,6 +65,7 @@ abstract class LoginDialogPreference(
 
     open fun onDialogClosed() {
         requestSubscription?.unsubscribe()
+        binding = null
     }
 
     protected abstract fun checkLogin()

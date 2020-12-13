@@ -24,7 +24,6 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.appcompat.queryTextChanges
 import reactivecircus.flowbinding.swiperefreshlayout.refreshes
-import uy.kohesive.injekt.api.get
 
 /**
  * Controller to manage the catalogues available in the app.
@@ -186,7 +185,7 @@ open class ExtensionController :
     }
 
     private fun drawExtensions() {
-        if (!query.isBlank()) {
+        if (query.isNotBlank()) {
             adapter?.updateDataSet(
                 extensions.filter {
                     it.extension.name.contains(query, ignoreCase = true)

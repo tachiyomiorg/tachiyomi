@@ -2,22 +2,22 @@ package eu.kanade.tachiyomi.widget
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.annotation.StringRes
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.view.isVisible
-import eu.kanade.tachiyomi.R
-import kotlinx.android.synthetic.main.common_view_empty.view.actions_container
-import kotlinx.android.synthetic.main.common_view_empty.view.text_face
-import kotlinx.android.synthetic.main.common_view_empty.view.text_label
+import eu.kanade.tachiyomi.databinding.CommonViewEmptyBinding
 import kotlin.random.Random
 
 class EmptyView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
     RelativeLayout(context, attrs) {
 
+    private val binding: CommonViewEmptyBinding
+
     init {
-        inflate(context, R.layout.common_view_empty, this)
+        binding = CommonViewEmptyBinding.inflate(LayoutInflater.from(context), this, true)
     }
 
     /**
@@ -36,10 +36,10 @@ class EmptyView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     }
 
     fun show(message: String, actions: List<Action>? = null) {
-        text_face.text = getRandomErrorFace()
-        text_label.text = message
+        binding.textFace.text = getRandomErrorFace()
+        binding.textLabel.text = message
 
-        actions_container.removeAllViews()
+        binding.actionsContainer.removeAllViews()
         if (!actions.isNullOrEmpty()) {
             actions.forEach {
                 val button = AppCompatButton(context).apply {
@@ -52,7 +52,7 @@ class EmptyView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
                     setOnClickListener(it.listener)
                 }
 
-                actions_container.addView(button)
+                binding.actionsContainer.addView(button)
             }
         }
 

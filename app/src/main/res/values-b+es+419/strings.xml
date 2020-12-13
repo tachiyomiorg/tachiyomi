@@ -14,7 +14,7 @@
     <string name="action_open_in_web_view">Abrir en WebView</string>
     <string name="action_open_in_browser">Abrir en el navegador</string>
     <string name="action_move">Mover</string>
-    <string name="action_resume">Resumir</string>
+    <string name="action_resume">Reanudar</string>
     <string name="action_remove">Remover</string>
     <string name="action_next_chapter">Próximo capítulo</string>
     <string name="action_previous_chapter">Capítulo anterior</string>
@@ -57,14 +57,13 @@
     <string name="label_migration">Migrar</string>
     <string name="label_recent_updates">Actualizaciones</string>
     <string name="label_library">Biblioteca</string>
-    <string name="label_settings">Configuraciones</string>
+    <string name="label_settings">Configuración</string>
     <string name="name">Nombre</string>
     <string name="label_categories">Categorías</string>
     <string name="label_sources">Fuentes</string>
     <string name="action_remove_bookmark">Quitar marcador</string>
     <string name="action_bookmark">Añadir marcador</string>
     <string name="action_sort_last_checked">Último verificado</string>
-    <string name="action_filter_read">Leído</string>
     <string name="action_filter_unread">No leído</string>
     <string name="action_filter_bookmarked">Marcado</string>
     <string name="label_download_queue">Lista de descargas</string>
@@ -376,7 +375,7 @@
     <string name="pref_clear_chapter_cache">Borrar caché de los capítulos</string>
     <string name="label_data">Datos</string>
     <string name="cookies_cleared">Cookies borradas</string>
-    <string name="pref_dns_over_https_summary">Requiere el reinicio de la aplicación para que surta efecto</string>
+    <string name="requires_app_restart">Requiere el reinicio de la aplicación para que surta efecto</string>
     <string name="battery_optimization_disabled">La optimización de la batería ya está desactivada</string>
     <string name="pref_disable_battery_optimization_summary">Ayuda con las actualizaciones y las copias de seguridad de biblioteca en segundo plano</string>
     <string name="pref_disable_battery_optimization">Desactivar optimización de batería</string>
@@ -403,8 +402,6 @@
     <string name="source_requires_login">Este fuente requiere que inicies sesión</string>
     <string name="tabs_header">Pestañas</string>
     <string name="badges_header">Insignias</string>
-    <string name="also_delete_chapters">También eliminar capítulos descargados</string>
-    <string name="confirm_delete_manga">¿Eliminar los mangas seleccionados\?</string>
     <string name="local_source_badge">Local</string>
     <string name="updating_category">Actualizando categoría</string>
     <string name="library_search_hint">Título o autor…</string>
@@ -489,7 +486,6 @@
     </plurals>
     <string name="manga_info_collapse">Menos</string>
     <string name="manga_info_expand">Más</string>
-    <string name="manga_info_about_label">Acerca de</string>
     <string name="manga_removed_library">Eliminado de la biblioteca</string>
     <string name="manga_added_library">Añadido a la biblioteca</string>
     <string name="manga_info_full_title_label">Título</string>
@@ -593,8 +589,8 @@
     <string name="pref_category_reading_mode">Modo de lectura</string>
     <string name="pref_category_theme">Tema</string>
     <plurals name="num_trackers">
-        <item quantity="one">Rastreador</item>
-        <item quantity="other">Rastreadores</item>
+        <item quantity="one">1 rastreador</item>
+        <item quantity="other">%d rastreadores</item>
     </plurals>
     <string name="group_downloader">Descargas</string>
     <string name="channel_errors">Errores</string>
@@ -609,9 +605,41 @@
     <string name="ext_nsfw_warning">Puede contener contenido para mayores de 18 años</string>
     <string name="ext_nsfw_short">18+</string>
     <string name="parental_controls_info">Esto no evita que las extensiones no oficiales o potencialmente marcadas incorrectamente muestren contenido para mayores de 18 años dentro de la aplicación.</string>
-    <string name="pref_allow_nsfw_sources_blocked">Bloquear</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Bloquear fuente, mostrar en la lista de extensiones</string>
-    <string name="pref_allow_nsfw_sources_allowed">Permitidas</string>
+    <string name="pref_allow_nsfw_sources_blocked">Ocultar</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Ocultar en fuentes pero mostrar en la lista de extensiones</string>
+    <string name="pref_allow_nsfw_sources_allowed">Mostrar</string>
     <string name="pref_allow_nsfw_sources">Fuentes +18</string>
-    <string name="pref_category_parental_controls">Controles parentales</string>
+    <plurals name="missing_chapters_warning">
+        <item quantity="one">Falta un capítulo</item>
+        <item quantity="other">Faltan %d capítulos</item>
+    </plurals>
+    <string name="share_page_info">%1$s: %2$s, página %3$d</string>
+    <string name="chapter_settings_updated">Las configuraciones predeterminadas del capítulo han sido actualizadas</string>
+    <string name="no_chapters_error">No se encontraron capitulos</string>
+    <string name="set_chapter_settings_as_default">Establecer predeterminado</string>
+    <string name="also_set_chapter_settings_for_library">Aplicar también a todos los mangas en mi biblioteca</string>
+    <string name="confirm_set_chapter_settings">¿Estás seguro de que quieres guardar como predeterminadas estas configuraciones\?</string>
+    <string name="chapter_settings">Ajustes del capítulo</string>
+    <string name="action_web_view">Vista de la web</string>
+    <string name="downloaded_chapters">Capítulos descargardos</string>
+    <string name="manga_from_library">Manga de la biblioteca</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Ocultar la barra inferior al desplazar</string>
+    <string name="action_search_settings">Opciones de búsqueda</string>
+    <string name="pref_incognito_mode_summary">Pausar historial de lectura</string>
+    <string name="pref_incognito_mode">Modo incógnito</string>
+    <string name="pref_clear_history_summary">Eliminar historial de lectura para todos los mangas</string>
+    <string name="pref_clear_history">Limpiar historial</string>
+    <string name="clear_history_confirmation">¿Estás seguro\? Todo el historial se perderá.</string>
+    <string name="clear_history_completed">Historial borrado</string>
+    <string name="spen_next_page">Siguiente página</string>
+    <string name="spen_previous_page">Página previa</string>
+    <string name="migration_help_guide">Guía de migración de fuentes</string>
+    <string name="invalid_backup_file_type">Archivo de copia de seguridad inválido: %1$s</string>
+    <string name="full_restore_offline">Restaurar fuera de línea, termina rápidamente pero contiene solo lo que tu copia de seguridad posee</string>
+    <string name="full_restore_online">Restaurar en línea, es más lento pero te da información y capítulos más actualizados</string>
+    <string name="full_restore_mode">Modo de red</string>
+    <string name="pref_backup_auto_create_legacy">También crear copia de seguridad heredada</string>
+    <string name="pref_create_legacy_backup_summary">Puede usarse en versiones anteriores de Tachiyomi</string>
+    <string name="pref_create_legacy_backup">Crear copia de seguridad heredada</string>
+    <string name="pref_category_nsfw_content">Contenido +18</string>
 </resources>

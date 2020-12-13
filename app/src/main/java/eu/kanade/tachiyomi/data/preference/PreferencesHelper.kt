@@ -10,7 +10,6 @@ import com.tfcporciuncula.flow.Preference
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferenceValues.DisplayMode
-import eu.kanade.tachiyomi.data.preference.PreferenceValues.NsfwAllowance
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.track.anilist.Anilist
 import eu.kanade.tachiyomi.widget.ExtendedNavigationView
@@ -77,7 +76,7 @@ class PreferencesHelper(val context: Context) {
 
     fun showLibraryUpdateErrors() = prefs.getBoolean(Keys.showLibraryUpdateErrors, false)
 
-    fun clear() = prefs.edit().clear().apply()
+    fun clear() = prefs.edit { clear() }
 
     fun themeMode() = flowPrefs.getEnum(Keys.themeMode, Values.ThemeMode.system)
 
@@ -164,10 +163,10 @@ class PreferencesHelper(val context: Context) {
     fun trackPassword(sync: TrackService) = prefs.getString(Keys.trackPassword(sync.id), "")
 
     fun setTrackCredentials(sync: TrackService, username: String, password: String) {
-        prefs.edit()
-            .putString(Keys.trackUsername(sync.id), username)
-            .putString(Keys.trackPassword(sync.id), password)
-            .apply()
+        prefs.edit {
+            putString(Keys.trackUsername(sync.id), username)
+            putString(Keys.trackPassword(sync.id), password)
+        }
     }
 
     fun trackToken(sync: TrackService) = flowPrefs.getString(Keys.trackToken(sync.id), "")
@@ -227,7 +226,9 @@ class PreferencesHelper(val context: Context) {
 
     fun automaticExtUpdates() = flowPrefs.getBoolean(Keys.automaticExtUpdates, true)
 
-    fun allowNsfwSource() = flowPrefs.getEnum(Keys.allowNsfwSource, NsfwAllowance.ALLOWED)
+    fun showNsfwSource() = flowPrefs.getBoolean(Keys.showNsfwSource, true)
+    fun showNsfwExtension() = flowPrefs.getBoolean(Keys.showNsfwExtension, true)
+    fun labelNsfwExtension() = prefs.getBoolean(Keys.labelNsfwExtension, true)
 
     fun extensionUpdatesCount() = flowPrefs.getInt("ext_updates_count", 0)
 
@@ -270,6 +271,10 @@ class PreferencesHelper(val context: Context) {
     fun displayChapterByNameOrNumber() = prefs.getInt(Keys.defaultChapterDisplayByNameOrNumber, Manga.DISPLAY_NAME)
 
     fun sortChapterByAscendingOrDescending() = prefs.getInt(Keys.defaultChapterSortByAscendingOrDescending, Manga.SORT_DESC)
+
+    fun incognitoMode() = flowPrefs.getBoolean(Keys.incognitoMode, false)
+
+    fun createLegacyBackup() = flowPrefs.getBoolean(Keys.createLegacyBackup, true)
 
     fun setChapterSettingsDefault(manga: Manga) {
         prefs.edit {

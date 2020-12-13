@@ -24,7 +24,6 @@
     <string name="action_filter_downloaded">ڈاؤن لوڈ شدہ</string>
     <string name="action_filter_bookmarked">بُک مارک شدہ</string>
     <string name="action_filter_unread">پڑھا نہیں گیا</string>
-    <string name="action_filter_read">پڑھ لیا</string>
     <string name="action_filter_empty">فلٹر ہٹائیں</string>
     <string name="action_sort_alpha">حروف تہجی کے لحاظ سے</string>
     <string name="action_sort_total">کل ابواب</string>

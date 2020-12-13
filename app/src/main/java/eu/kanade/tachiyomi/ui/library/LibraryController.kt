@@ -33,11 +33,9 @@ import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchController
 import eu.kanade.tachiyomi.ui.main.MainActivity
-import eu.kanade.tachiyomi.ui.main.offsetAppbarHeight
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.toast
-import kotlinx.android.synthetic.main.main_activity.tabs
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
@@ -147,7 +145,7 @@ class LibraryController(
 
     private fun updateTitle() {
         val categoryTabs = preferences.categoryTabs().get()
-        val currentCategory = adapter?.categories?.get(binding.libraryPager.currentItem)
+        val currentCategory = adapter?.categories?.getOrNull(binding.libraryPager.currentItem)
 
         if (categoryTabs) {
             currentTitle = resources?.getString(R.string.label_library)
@@ -211,10 +209,6 @@ class LibraryController(
             }
         }
 
-        if (preferences.downloadedOnly().get()) {
-            binding.downloadedOnly.isVisible = true
-        }
-
         binding.btnGlobalSearch.clicks()
             .onEach {
                 router.pushController(
@@ -223,13 +217,13 @@ class LibraryController(
             }
             .launchIn(scope)
 
-        binding.actionToolbar.offsetAppbarHeight(activity!!)
+        (activity!! as MainActivity).fixViewToBottom(binding.actionToolbar)
     }
 
     override fun onChangeStarted(handler: ControllerChangeHandler, type: ControllerChangeType) {
         super.onChangeStarted(handler, type)
         if (type.isEnter) {
-            activity?.tabs?.setupWithViewPager(binding.libraryPager)
+            (activity as? MainActivity)?.binding?.tabs?.setupWithViewPager(binding.libraryPager)
             presenter.subscribeLibrary()
         }
     }
@@ -307,7 +301,7 @@ class LibraryController(
         // Delay the scroll position to allow the view to be properly measured.
         view.post {
             if (isAttached) {
-                activity?.tabs?.setScrollPosition(binding.libraryPager.currentItem, 0f, true)
+                (activity as? MainActivity)?.binding?.tabs?.setScrollPosition(binding.libraryPager.currentItem, 0f, true)
             }
         }
 

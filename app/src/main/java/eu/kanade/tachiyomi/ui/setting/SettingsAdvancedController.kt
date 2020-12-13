@@ -95,6 +95,16 @@ class SettingsAdvancedController : SettingsController() {
                     ctrl.showDialog(router)
                 }
             }
+            preference {
+                titleRes = R.string.pref_clear_history
+                summaryRes = R.string.pref_clear_history_summary
+
+                onClick {
+                    val ctrl = ClearHistoryDialogController()
+                    ctrl.targetController = this@SettingsAdvancedController
+                    ctrl.showDialog(router)
+                }
+            }
         }
 
         preferenceCategory {
@@ -112,7 +122,7 @@ class SettingsAdvancedController : SettingsController() {
             switchPreference {
                 key = Keys.enableDoh
                 titleRes = R.string.pref_dns_over_https
-                summaryRes = R.string.pref_dns_over_https_summary
+                summaryRes = R.string.requires_app_restart
                 defaultValue = false
             }
         }
@@ -170,6 +180,22 @@ class SettingsAdvancedController : SettingsController() {
                 }
                 .negativeButton(android.R.string.cancel)
         }
+    }
+
+    class ClearHistoryDialogController : DialogController() {
+        override fun onCreateDialog(savedViewState: Bundle?): Dialog {
+            return MaterialDialog(activity!!)
+                .message(R.string.clear_history_confirmation)
+                .positiveButton(android.R.string.ok) {
+                    (targetController as? SettingsAdvancedController)?.clearHistory()
+                }
+                .negativeButton(android.R.string.cancel)
+        }
+    }
+
+    private fun clearHistory() {
+        db.deleteHistory().executeAsBlocking()
+        activity?.toast(R.string.clear_history_completed)
     }
 
     private fun clearDatabase() {

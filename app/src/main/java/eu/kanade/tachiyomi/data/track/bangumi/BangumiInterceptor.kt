@@ -1,23 +1,27 @@
 package eu.kanade.tachiyomi.data.track.bangumi
 
-import com.google.gson.Gson
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 import okhttp3.FormBody
 import okhttp3.Interceptor
 import okhttp3.Response
+import uy.kohesive.injekt.injectLazy
 
-class BangumiInterceptor(val bangumi: Bangumi, val gson: Gson) : Interceptor {
+class BangumiInterceptor(val bangumi: Bangumi) : Interceptor {
+
+    private val json: Json by injectLazy()
 
     /**
      * OAuth object used for authenticated requests.
      */
     private var oauth: OAuth? = bangumi.restoreToken()
 
-    fun addTocken(tocken: String, oidFormBody: FormBody): FormBody {
+    fun addToken(token: String, oidFormBody: FormBody): FormBody {
         val newFormBody = FormBody.Builder()
         for (i in 0 until oidFormBody.size) {
             newFormBody.add(oidFormBody.name(i), oidFormBody.value(i))
         }
-        newFormBody.add("access_token", tocken)
+        newFormBody.add("access_token", token)
         return newFormBody.build()
     }
 
@@ -29,7 +33,7 @@ class BangumiInterceptor(val bangumi: Bangumi, val gson: Gson) : Interceptor {
         if (currAuth.isExpired()) {
             val response = chain.proceed(BangumiApi.refreshTokenRequest(currAuth.refresh_token!!))
             if (response.isSuccessful) {
-                newAuth(gson.fromJson(response.body!!.string(), OAuth::class.java))
+                newAuth(json.decodeFromString<OAuth>(response.body!!.string()))
             } else {
                 response.close()
             }
@@ -42,7 +46,7 @@ class BangumiInterceptor(val bangumi: Bangumi, val gson: Gson) : Interceptor {
                     .addQueryParameter("access_token", currAuth.access_token).build()
             )
             .build() else originalRequest.newBuilder()
-            .post(addTocken(currAuth.access_token, originalRequest.body as FormBody))
+            .post(addToken(currAuth.access_token, originalRequest.body as FormBody))
             .header("User-Agent", "Tachiyomi")
             .build()
 

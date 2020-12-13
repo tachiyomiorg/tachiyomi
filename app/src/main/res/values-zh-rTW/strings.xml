@@ -20,7 +20,6 @@
     <string name="action_filter_downloaded">已下載</string>
     <string name="action_filter_bookmarked">已新增書籤</string>
     <string name="action_filter_unread">未讀</string>
-    <string name="action_filter_read">閱畢</string>
     <string name="action_filter_empty">清除篩選器</string>
     <string name="action_sort_alpha">題名</string>
     <string name="action_sort_total">章節數</string>
@@ -166,8 +165,6 @@
     <string name="login">登入</string>
     <string name="login_success">已登入</string>
     <string name="invalid_login">登入失敗</string>
-    <string name="confirm_delete_manga">確定要移除所選的漫畫嗎？</string>
-    <string name="also_delete_chapters">將下載的章節一併刪除</string>
     <string name="manga_added_library">已收藏至書櫃</string>
     <string name="manga_removed_library">已從書櫃中移除</string>
     <string name="copied_to_clipboard">已複製至剪貼簿：
@@ -450,7 +447,6 @@
     <string name="updating_library">正在更新書櫃</string>
     <string name="add_to_library">加入書櫃</string>
     <string name="pref_library_update_error_notification">顯示更新錯誤通知</string>
-    <string name="manga_info_about_label">概要</string>
     <string name="logout_success">你已登出</string>
     <string name="logout">登出</string>
     <string name="last_used_source">最近使用</string>
@@ -529,7 +525,7 @@
     <plurals name="num_categories">
         <item quantity="other">%d 個分類</item>
     </plurals>
-    <string name="pref_dns_over_https_summary">需要重新啟動應用程式以套用</string>
+    <string name="requires_app_restart">需要重新啟動應用程式以套用</string>
     <string name="pref_dns_over_https" translatable="false">DNS over HTTPS (Cloudflare)</string>
     <string name="label_network">網路</string>
     <string name="tapping_inverted_both">全部</string>
@@ -591,7 +587,6 @@
     <string name="download_notifier_download_finish">下載完成</string>
     <string name="group_downloader">下載</string>
     <string name="ext_nsfw_short">18+</string>
-    <string name="pref_category_parental_controls">監護</string>
     <string name="parental_controls_info">即使啟用監護限制，還是可能有漏網之魚。使用者仍可藉由非官方或未正確標幟的擴充套件在本應用程式中瀏覽未滿十八歲之人不宜觀賞的內容。</string>
     <string name="ext_nsfw_warning">可能包含未滿十八歲之人不宜觀賞的內容</string>
     <string name="pref_allow_nsfw_sources">未滿十八歲之人不宜瀏覽的來源</string>
@@ -599,4 +594,21 @@
     <string name="invalid_backup_file_missing_manga">備份檔並未包含任何漫畫</string>
     <string name="pref_remove_bookmarked_chapters">刪除有書籤的章節</string>
     <string name="pref_category_delete_chapters">刪除章節</string>
+    <string name="chapter_settings_updated">已更新章節設定預設值</string>
+    <plurals name="missing_chapters_warning">
+        <item quantity="other">此處有 %d 篇章節散佚</item>
+    </plurals>
+    <string name="action_search_settings">搜尋設定</string>
+    <string name="chapter_settings">章節設定</string>
+    <string name="also_set_chapter_settings_for_library">同時套用至其餘在書櫃中的漫畫</string>
+    <string name="confirm_set_chapter_settings">確定要將目前的選項保存為預設值嗎？</string>
+    <string name="no_chapters_error">沒有章節</string>
+    <string name="set_chapter_settings_as_default">保存為預設值</string>
+    <string name="clear_history_completed">已刪除記錄</string>
+    <string name="clear_history_confirmation">所有的閱讀記錄將會遺失，你確定嗎？</string>
+    <string name="pref_clear_history_summary">將所有漫畫的閱讀記錄刪除</string>
+    <string name="pref_clear_history">清除閱讀記錄</string>
+    <string name="pref_hide_bottom_bar_on_scroll">捲動時隱藏底部功能表</string>
+    <string name="pref_incognito_mode_summary">暫停閱讀記錄</string>
+    <string name="pref_incognito_mode">無痕模式</string>
 </resources>

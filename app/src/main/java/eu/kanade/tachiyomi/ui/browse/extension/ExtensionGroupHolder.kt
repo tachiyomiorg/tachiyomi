@@ -3,11 +3,13 @@ package eu.kanade.tachiyomi.ui.browse.extension
 import android.annotation.SuppressLint
 import android.view.View
 import eu.davidea.flexibleadapter.FlexibleAdapter
-import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
-import kotlinx.android.synthetic.main.source_main_controller_card_header.title
+import eu.davidea.viewholders.FlexibleViewHolder
+import eu.kanade.tachiyomi.databinding.SourceMainControllerCardHeaderBinding
 
 class ExtensionGroupHolder(view: View, adapter: FlexibleAdapter<*>) :
-    BaseFlexibleViewHolder(view, adapter) {
+    FlexibleViewHolder(view, adapter) {
+
+    private val binding = SourceMainControllerCardHeaderBinding.bind(view)
 
     @SuppressLint("SetTextI18n")
     fun bind(item: ExtensionGroupItem) {
@@ -16,6 +18,6 @@ class ExtensionGroupHolder(view: View, adapter: FlexibleAdapter<*>) :
             text += " (${item.size})"
         }
 
-        title.text = text
+        binding.title.text = text
     }
 }

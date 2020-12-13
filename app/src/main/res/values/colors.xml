@@ -5,8 +5,8 @@
     <color name="colorPrimaryDark">#435E7E</color>
 
     <!-- Dark Application Colors -->
-    <color name="colorDarkPrimary">#212121</color>
-    <color name="colorDarkPrimaryDark">#1C1C1D</color>
+    <color name="colorDarkPrimary">#242529</color>
+    <color name="colorDarkPrimaryDark">#202125</color>
     <color name="colorAmoledPrimary">@color/md_black_1000</color>
 
     <color name="splashBackgroundColor">@color/colorPrimary</color>
@@ -28,7 +28,7 @@
     <color name="textColorSecondaryDark">@color/md_white_1000_70</color>
     <color name="textColorHintDark">@color/md_white_1000_50</color>
     <color name="dividerDark">@android:color/transparent</color>
-    <color name="rippleColorDark">@color/md_white_1000_20</color>-
+    <color name="rippleColorDark">@color/md_white_1000_20</color>
     <color name="backgroundDark">@color/colorDarkPrimaryDark</color>
     <color name="dialogDark">@color/colorDarkPrimary</color>
     <color name="selectorColorDark">@color/md_blue_A200_50</color>

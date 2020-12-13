@@ -9,7 +9,7 @@ import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.model.ViewerChapters
-import eu.kanade.tachiyomi.ui.reader.viewer.MissingChapters
+import eu.kanade.tachiyomi.ui.reader.viewer.hasMissingChapters
 
 /**
  * RecyclerView Adapter used by this [viewer] to where [ViewerChapters] updates are posted.
@@ -23,6 +23,7 @@ class WebtoonAdapter(val viewer: WebtoonViewer) : RecyclerView.Adapter<RecyclerV
         private set
 
     var currentChapter: ReaderChapter? = null
+
     /**
      * Updates this adapter with the given [chapters]. It handles setting a few pages of the
      * next/previous chapter to allow seamless transitions.
@@ -31,8 +32,8 @@ class WebtoonAdapter(val viewer: WebtoonViewer) : RecyclerView.Adapter<RecyclerV
         val newItems = mutableListOf<Any>()
 
         // Forces chapter transition if there is missing chapters
-        val prevHasMissingChapters = if (chapters.prevChapter != null) MissingChapters.hasMissingChapters(chapters.currChapter.chapter, chapters.prevChapter.chapter) else false
-        val nextHasMissingChapters = if (chapters.nextChapter != null) MissingChapters.hasMissingChapters(chapters.nextChapter.chapter, chapters.currChapter.chapter) else false
+        val prevHasMissingChapters = hasMissingChapters(chapters.currChapter, chapters.prevChapter)
+        val nextHasMissingChapters = hasMissingChapters(chapters.nextChapter, chapters.currChapter)
 
         // Add previous chapter pages and transition.
         if (chapters.prevChapter != null) {

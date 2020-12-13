@@ -2,14 +2,16 @@ package eu.kanade.tachiyomi.ui.browse.source
 
 import android.view.View
 import eu.davidea.flexibleadapter.FlexibleAdapter
-import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
+import eu.davidea.viewholders.FlexibleViewHolder
+import eu.kanade.tachiyomi.databinding.SourceMainControllerCardHeaderBinding
 import eu.kanade.tachiyomi.util.system.LocaleHelper
-import kotlinx.android.synthetic.main.source_main_controller_card_header.title
 
 class LangHolder(view: View, adapter: FlexibleAdapter<*>) :
-    BaseFlexibleViewHolder(view, adapter) {
+    FlexibleViewHolder(view, adapter) {
+
+    private val binding = SourceMainControllerCardHeaderBinding.bind(view)
 
     fun bind(item: LangItem) {
-        title.text = LocaleHelper.getSourceDisplayName(item.code, itemView.context)
+        binding.title.text = LocaleHelper.getSourceDisplayName(item.code, itemView.context)
     }
 }

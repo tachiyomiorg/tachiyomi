@@ -3,9 +3,9 @@ package eu.kanade.tachiyomi.data.library
 import android.app.Service
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.IBinder
 import android.os.PowerManager
+import androidx.core.content.ContextCompat
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
@@ -72,7 +72,9 @@ class LibraryUpdateService(
      */
     enum class Target {
         CHAPTERS, // Manga chapters
+
         COVERS, // Manga covers
+
         TRACKING // Tracking metadata
     }
 
@@ -113,11 +115,7 @@ class LibraryUpdateService(
                     putExtra(KEY_TARGET, target)
                     category?.let { putExtra(KEY_CATEGORY, it.id) }
                 }
-                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-                    context.startService(intent)
-                } else {
-                    context.startForegroundService(intent)
-                }
+                ContextCompat.startForegroundService(context, intent)
 
                 return true
             }
@@ -279,7 +277,7 @@ class LibraryUpdateService(
                         Pair(emptyList(), emptyList())
                     }
                     // Filter out mangas without new chapters (or failed).
-                    .filter { pair -> pair.first.isNotEmpty() }
+                    .filter { (first) -> first.isNotEmpty() }
                     .doOnNext {
                         if (manga.shouldDownloadNewChapters(db, preferences)) {
                             downloadChapters(manga, it.first)
@@ -321,7 +319,7 @@ class LibraryUpdateService(
                     )
                 }
             }
-            .map { manga -> manga.first }
+            .map { (first) -> first }
     }
 
     private fun downloadChapters(manga: Manga, chapters: List<Chapter>) {

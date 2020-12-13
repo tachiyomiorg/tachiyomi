@@ -2,12 +2,15 @@ package eu.kanade.tachiyomi.data.download
 
 import android.content.Context
 import androidx.core.content.edit
-import com.google.gson.Gson
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.online.HttpSource
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import uy.kohesive.injekt.injectLazy
 
 /**
@@ -25,11 +28,7 @@ class DownloadStore(
      */
     private val preferences = context.getSharedPreferences("active_downloads", Context.MODE_PRIVATE)
 
-    /**
-     * Gson instance to serialize/deserialize downloads.
-     */
-    private val gson: Gson by injectLazy()
-
+    private val json: Json by injectLazy()
     private val db: DatabaseHelper by injectLazy()
 
     /**
@@ -111,7 +110,7 @@ class DownloadStore(
      */
     private fun serialize(download: Download): String {
         val obj = DownloadObject(download.manga.id!!, download.chapter.id!!, counter++)
-        return gson.toJson(obj)
+        return json.encodeToString(obj)
     }
 
     /**
@@ -121,7 +120,7 @@ class DownloadStore(
      */
     private fun deserialize(string: String): DownloadObject? {
         return try {
-            gson.fromJson(string, DownloadObject::class.java)
+            json.decodeFromString<DownloadObject>(string)
         } catch (e: Exception) {
             null
         }
@@ -134,5 +133,6 @@ class DownloadStore(
      * @param chapterId the id of the chapter.
      * @param order the order of the download in the queue.
      */
+    @Serializable
     data class DownloadObject(val mangaId: Long, val chapterId: Long, val order: Int)
 }

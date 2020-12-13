@@ -27,8 +27,7 @@ import eu.kanade.tachiyomi.util.preference.preferenceCategory
 import eu.kanade.tachiyomi.util.preference.summaryRes
 import eu.kanade.tachiyomi.util.preference.switchPreference
 import eu.kanade.tachiyomi.util.preference.titleRes
-import kotlinx.android.synthetic.main.pref_library_columns.view.landscape_columns
-import kotlinx.android.synthetic.main.pref_library_columns.view.portrait_columns
+import eu.kanade.tachiyomi.widget.MinMaxNumberPicker
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -244,7 +243,7 @@ class SettingsLibraryController : SettingsController() {
         }
 
         fun onViewCreated(view: View) {
-            with(view.portrait_columns) {
+            with(view.findViewById(R.id.portrait_columns) as MinMaxNumberPicker) {
                 displayedValues = arrayOf(context.getString(R.string.default_columns)) +
                     IntRange(1, 10).map(Int::toString)
                 value = portrait
@@ -253,7 +252,7 @@ class SettingsLibraryController : SettingsController() {
                     portrait = newValue
                 }
             }
-            with(view.landscape_columns) {
+            with(view.findViewById(R.id.landscape_columns) as MinMaxNumberPicker) {
                 displayedValues = arrayOf(context.getString(R.string.default_columns)) +
                     IntRange(1, 10).map(Int::toString)
                 value = landscape

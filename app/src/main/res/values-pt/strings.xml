@@ -14,7 +14,6 @@
     <string name="action_filter">Filtro</string>
     <string name="action_filter_downloaded">Transferido</string>
     <string name="action_filter_unread">Não Lido</string>
-    <string name="action_filter_read">Lido</string>
     <string name="action_filter_empty">Remover filtro</string>
     <string name="action_search">Procurar</string>
     <string name="action_select_all">Selecionar tudo</string>
@@ -158,7 +157,6 @@
     <!-- Library fragment -->
     <string name="library_search_hint">Título ou autor…</string>
     <string name="updating_category">A atualizar categoria</string>
-    <string name="confirm_delete_manga">Tem certeza que quer remover mangás selecionados\?</string>
     <!-- Catalogue fragment -->
     <string name="source_requires_login">Esta fonte necessita que inicie a sessão</string>
     <string name="select_source">Selecionar uma fonte</string>
@@ -285,7 +283,7 @@
     <string name="pref_language">Língua</string>
     <string name="system_default">Predefinição</string>
     <string name="action_restore">Restaurar</string>
-    <string name="app_not_available">Aplicação não disponível</string>
+    <string name="app_not_available">App não disponível</string>
     <string name="default_category">Categoria padrão</string>
     <string name="default_category_summary">Perguntar sempre</string>
     <string name="ext_update">Atualizar</string>
@@ -351,7 +349,6 @@
     <string name="pref_refresh_library_tracking">Atualizar monitorização</string>
     <string name="pref_refresh_library_tracking_summary">Atualiza estado, avaliações e últimos capítulos lidos dos serviços de monitorização</string>
     <string name="local_source_badge">Local</string>
-    <string name="also_delete_chapters">Também eliminar os capítulos transferidos</string>
     <string name="no_more_results">Sem mais resultados</string>
     <string name="local_source">Fonte local</string>
     <string name="other_source">Outras</string>
@@ -459,10 +456,10 @@
     <string name="ext_updates_pending">Atualizações pendentes</string>
     <string name="pref_cutout_short">Mostrar conteúdo na área de corte</string>
     <string name="information_cloudflare_bypass_failure">Falha ao contornar o Cloudflare</string>
-    <string name="information_webview_outdated">Por favor, atualize a aplicação de WebView para uma melhor compatibilidade</string>
+    <string name="information_webview_outdated">Por favor, atualize a app de WebView para melhor compatibilidade</string>
     <string name="channel_new_chapters">Atualizações de capítulos</string>
     <string name="unlock_app">Desbloquear o Tachiyomi</string>
-    <string name="secure_screen_summary">Esconder os conteúdos da aplicação durante a troca de aplicações e impedir capturas de ecrã</string>
+    <string name="secure_screen_summary">Esconder os conteúdos da app durante a troca de apps e impedir capturas de ecrã</string>
     <string name="pref_category_display">Visualização</string>
     <string name="notification_chapters_single_and_more">Capítulo %1$s e %2$d mais</string>
     <string name="notification_chapters_multiple">Capítulos %1$s</string>
@@ -536,7 +533,6 @@
     <string name="add_tracking">Adicionar à monitorização</string>
     <string name="manga_info_collapse">Menos</string>
     <string name="manga_info_expand">Mais</string>
-    <string name="manga_info_about_label">Sobre</string>
     <string name="in_library">Na biblioteca</string>
     <string name="add_to_library">Adicionar à biblioteca</string>
     <string name="local_source_help_guide">Guia de fonte local</string>
@@ -610,7 +606,7 @@
     </plurals>
     <string name="unknown_status">Estado desconhecido</string>
     <string name="unknown_author">Autor desconhecido</string>
-    <string name="pref_dns_over_https_summary">Requer reinício da aplicação para ter efeito</string>
+    <string name="requires_app_restart">Requer reinício da app para ter efeito</string>
     <string name="label_network">Rede</string>
     <string name="pref_dns_over_https" translatable="false">DNS por HTTPS (Cloudflare)</string>
     <string name="updated_version">Atualizado para v%1$s</string>
@@ -639,14 +635,42 @@
     <string name="ext_nsfw_warning">Pode conter conteúdo 18+</string>
     <string name="ext_nsfw_short">18+</string>
     <string name="parental_controls_info">Isto não impede que extensões não oficiais ou potencialmente marcadas de forma incorreta surjam com conteúdos de 18+ dentro da aplicação.</string>
-    <string name="pref_allow_nsfw_sources_blocked">Bloqueado</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Bloquear fontes de navegação mas mostrar na lista de extensões</string>
-    <string name="pref_allow_nsfw_sources_allowed">Permitido</string>
-    <string name="pref_allow_nsfw_sources">fontes 18+</string>
-    <string name="pref_category_parental_controls">Controlos parentais</string>
+    <string name="pref_allow_nsfw_sources_blocked">Esconder</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Esconder nas fontes mas mostrar na lista de extensões</string>
+    <string name="pref_allow_nsfw_sources_allowed">Mostrar</string>
+    <string name="pref_allow_nsfw_sources">Fontes 18+</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Há 1 capítulo em falta</item>
         <item quantity="other">Há %d capítulos em falta</item>
     </plurals>
     <string name="no_chapters_error">Nenhum capítulo encontrado</string>
+    <string name="chapter_settings_updated">Definições padrão de capítulo atualizadas</string>
+    <string name="confirm_set_chapter_settings">Tem certeza de que quer guardar estas definições como padrão\?</string>
+    <string name="chapter_settings">Definições dos capítulos</string>
+    <string name="action_web_view">WebView</string>
+    <string name="share_page_info">%1$s: %2$s, página %3$d</string>
+    <string name="set_chapter_settings_as_default">Definir como padrão</string>
+    <string name="also_set_chapter_settings_for_library">Também aplicar a todos os mangás na minha biblioteca</string>
+    <string name="action_search_settings">Definições de pesquisa</string>
+    <string name="downloaded_chapters">Capítulos descarregados</string>
+    <string name="manga_from_library">Mangas da biblioteca</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Esconder a barra inferior ao rodar</string>
+    <string name="pref_incognito_mode_summary">Pausa histórico de leitura</string>
+    <string name="pref_incognito_mode">Modo incógnito</string>
+    <string name="pref_clear_history_summary">Eliminar histórico de leitura de todas as mangás</string>
+    <string name="pref_clear_history">Eliminar histórico</string>
+    <string name="clear_history_confirmation">Tem a certeza\? Todo o histórico será perdido.</string>
+    <string name="clear_history_completed">Histórico eliminado</string>
+    <string name="pref_category_nsfw_content">Conteúdo 18+</string>
+    <string name="spen_next_page">Página seguinte</string>
+    <string name="spen_previous_page">Página anterior</string>
+    <string name="migration_help_guide">Guia de migração de fonte</string>
+    <string name="invalid_backup_file_type">Cópia de segurança inválida: %1$s</string>
+    <string name="full_restore_offline">Restaurar offline, termina rapidamente mas contém apenas o que a sua cópiad de segurança tem</string>
+    <string name="full_restore_online">Restaurar online, muito mais lento mas dá-lhe mais informações e capítulos mais atualizados</string>
+    <string name="full_restore_mode">Modo de Rede</string>
+    <string name="pref_backup_auto_create_legacy">Criar também cópia de segurança antiga</string>
+    <string name="pref_create_legacy_backup_summary">Pode ser usado em versões mais antigas do Tachiyomi</string>
+    <string name="pref_create_legacy_backup">Criar cópia de segurança antiga</string>
+    <string name="process_text_action_name">Procurar no Tachiyomi</string>
 </resources>

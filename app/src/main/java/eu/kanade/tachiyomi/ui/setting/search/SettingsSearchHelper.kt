@@ -14,7 +14,6 @@ import eu.kanade.tachiyomi.ui.setting.SettingsController
 import eu.kanade.tachiyomi.ui.setting.SettingsDownloadController
 import eu.kanade.tachiyomi.ui.setting.SettingsGeneralController
 import eu.kanade.tachiyomi.ui.setting.SettingsLibraryController
-import eu.kanade.tachiyomi.ui.setting.SettingsParentalControlsController
 import eu.kanade.tachiyomi.ui.setting.SettingsReaderController
 import eu.kanade.tachiyomi.ui.setting.SettingsSecurityController
 import eu.kanade.tachiyomi.ui.setting.SettingsTrackingController
@@ -36,7 +35,6 @@ object SettingsSearchHelper {
         SettingsDownloadController::class,
         SettingsGeneralController::class,
         SettingsLibraryController::class,
-        SettingsParentalControlsController::class,
         SettingsReaderController::class,
         SettingsSecurityController::class,
         SettingsTrackingController::class
@@ -83,8 +81,8 @@ object SettingsSearchHelper {
         pref: Preference,
         breadcrumbs: String = ""
     ) {
-        when (pref) {
-            is PreferenceGroup -> {
+        when {
+            pref is PreferenceGroup -> {
                 val breadcrumbsStr = addLocalizedBreadcrumb(breadcrumbs, "${pref.title}")
 
                 for (x in 0 until pref.preferenceCount) {
@@ -92,7 +90,7 @@ object SettingsSearchHelper {
                     getSettingSearchResult(ctrl, subPref, breadcrumbsStr) // recursion
                 }
             }
-            is PreferenceCategory -> {
+            pref is PreferenceCategory -> {
                 val breadcrumbsStr = addLocalizedBreadcrumb(breadcrumbs, "${pref.title}")
 
                 for (x in 0 until pref.preferenceCount) {
@@ -100,10 +98,10 @@ object SettingsSearchHelper {
                     getSettingSearchResult(ctrl, subPref, breadcrumbsStr) // recursion
                 }
             }
-            else -> {
+            (pref.title != null) -> {
                 // Is an actual preference
                 val title = pref.title.toString()
-                val summary = if (pref.summary != null) pref.summary.toString() else ""
+                val summary = pref.summary?.toString() ?: ""
                 val breadcrumbsStr = addLocalizedBreadcrumb(breadcrumbs, "${pref.title}")
 
                 prefSearchResultList.add(

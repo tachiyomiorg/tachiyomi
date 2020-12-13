@@ -1,16 +1,11 @@
 package eu.kanade.tachiyomi.ui.download
 
 import android.view.View
+import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.download.model.Download
-import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
+import eu.kanade.tachiyomi.databinding.DownloadItemBinding
 import eu.kanade.tachiyomi.util.view.popupMenu
-import kotlinx.android.synthetic.main.download_item.chapter_title
-import kotlinx.android.synthetic.main.download_item.download_progress
-import kotlinx.android.synthetic.main.download_item.download_progress_text
-import kotlinx.android.synthetic.main.download_item.manga_full_title
-import kotlinx.android.synthetic.main.download_item.menu
-import kotlinx.android.synthetic.main.download_item.reorder
 
 /**
  * Class used to hold the data of a download.
@@ -20,11 +15,13 @@ import kotlinx.android.synthetic.main.download_item.reorder
  * @constructor creates a new download holder.
  */
 class DownloadHolder(private val view: View, val adapter: DownloadAdapter) :
-    BaseFlexibleViewHolder(view, adapter) {
+    FlexibleViewHolder(view, adapter) {
+
+    private val binding = DownloadItemBinding.bind(view)
 
     init {
-        setDragHandleView(reorder)
-        menu.setOnClickListener { it.post { showPopupMenu(it) } }
+        setDragHandleView(binding.reorder)
+        binding.menu.setOnClickListener { it.post { showPopupMenu(it) } }
     }
 
     private lateinit var download: Download
@@ -37,19 +34,19 @@ class DownloadHolder(private val view: View, val adapter: DownloadAdapter) :
     fun bind(download: Download) {
         this.download = download
         // Update the chapter name.
-        chapter_title.text = download.chapter.name
+        binding.chapterTitle.text = download.chapter.name
 
         // Update the manga title
-        manga_full_title.text = download.manga.title
+        binding.mangaFullTitle.text = download.manga.title
 
         // Update the progress bar and the number of downloaded pages
         val pages = download.pages
         if (pages == null) {
-            download_progress.progress = 0
-            download_progress.max = 1
-            download_progress_text.text = ""
+            binding.downloadProgress.progress = 0
+            binding.downloadProgress.max = 1
+            binding.downloadProgressText.text = ""
         } else {
-            download_progress.max = pages.size * 100
+            binding.downloadProgress.max = pages.size * 100
             notifyProgress()
             notifyDownloadedPages()
         }
@@ -60,10 +57,10 @@ class DownloadHolder(private val view: View, val adapter: DownloadAdapter) :
      */
     fun notifyProgress() {
         val pages = download.pages ?: return
-        if (download_progress.max == 1) {
-            download_progress.max = pages.size * 100
+        if (binding.downloadProgress.max == 1) {
+            binding.downloadProgress.max = pages.size * 100
         }
-        download_progress.progress = download.totalProgress
+        binding.downloadProgress.progress = download.totalProgress
     }
 
     /**
@@ -71,7 +68,7 @@ class DownloadHolder(private val view: View, val adapter: DownloadAdapter) :
      */
     fun notifyDownloadedPages() {
         val pages = download.pages ?: return
-        download_progress_text.text = "${download.downloadedImages}/${pages.size}"
+        binding.downloadProgressText.text = "${download.downloadedImages}/${pages.size}"
     }
 
     override fun onItemReleased(position: Int) {

@@ -15,7 +15,6 @@
     <string name="action_filter_downloaded">Téléchargés</string>
     <string name="action_filter_bookmarked">Signets</string>
     <string name="action_filter_unread">Non lus</string>
-    <string name="action_filter_read">Lus</string>
     <string name="action_filter_empty">Enlever le filtre</string>
     <string name="action_sort_alpha">Alphabétiquement</string>
     <string name="action_sort_last_read">Dernier lu</string>
@@ -32,9 +31,9 @@
     <string name="action_update_library">Mettre à jour la bibliothèque</string>
     <string name="action_edit">Modifier</string>
     <string name="action_add">Ajouter</string>
-    <string name="action_add_category">Ajouter catégorie</string>
-    <string name="action_edit_categories">Modifier catégories</string>
-    <string name="action_rename_category">Renommer catégorie</string>
+    <string name="action_add_category">Ajouter une catégorie</string>
+    <string name="action_edit_categories">Modifier les catégories</string>
+    <string name="action_rename_category">Renommer la catégorie</string>
     <string name="action_move_category">Déplacer vers une catégorie</string>
     <string name="action_edit_cover">Changer l\'image de couverture</string>
     <string name="action_sort_up">Trier par ordre ascendant</string>
@@ -172,7 +171,6 @@
     <string name="unknown_error">Erreur inconnue</string>
     <!-- Library fragment -->
     <string name="library_search_hint">Titre ou auteur…</string>
-    <string name="confirm_delete_manga">Êtes-vous sûr·e de vouloir supprimer les mangas sélectionnés \?</string>
     <!-- Catalogue fragment -->
     <string name="source_requires_login">Cette source demande de vous identifier</string>
     <string name="select_source">Sélectionner une source</string>
@@ -218,7 +216,7 @@
     <!-- Category activity -->
     <string name="error_category_exists">Une catégorie avec ce nom existe déjà !</string>
     <!-- Dialog option with checkbox view -->
-    <string name="dialog_with_checkbox_remove_description">Ceci enlèvera la date de lecture de ce chapitre. Êtes-vous sûr·e \?</string>
+    <string name="dialog_with_checkbox_remove_description">Ceci enlèvera la date de lecture de ce chapitre. Êtes-vous sûr(e) \?</string>
     <string name="dialog_with_checkbox_reset">Réinitialiser tous les chapitres de ce manga</string>
     <!-- SnackBar -->
     <string name="snack_add_to_library">Ajouter ce manga à la bibliothèque ?</string>
@@ -281,7 +279,7 @@
     <string name="download_notifier_text_only_wifi">Aucune connexion disponible</string>
     <string name="download_notifier_no_network">Aucune connexion disponible</string>
     <string name="pref_language">Langue</string>
-    <string name="clear_database_confirmation">Êtes-vous sûr·e \? Les chapitres lus et la progression des mangas non présents dans la bibliothèque seront perdus</string>
+    <string name="clear_database_confirmation">Êtes-vous sûr(e) \? Les chapitres lus et la progression des mangas non présents dans la bibliothèque seront perdus</string>
     <string name="confirm_delete_chapters">Supprimer les chapitres sélectionnés \?</string>
     <string name="custom_dir">Répertoire personnalisé</string>
     <string name="download_10">10 prochains chapitres</string>
@@ -317,7 +315,7 @@
     <string name="pref_backup_directory">Dossier de sauvegarde</string>
     <string name="pref_backup_service_category">Sauvegardes automatiques</string>
     <string name="restore_completed">Restauration terminée</string>
-    <string name="backup_choice">Que voulez-vous sauvegarder ?</string>
+    <string name="backup_choice">Que voulez-vous sauvegarder \?</string>
     <string name="invalid_combination">Le défaut ne peut pas être selectionné avec des autres catégories</string>
     <string name="delete_downloads_for_manga">Supprimer les chapitres téléchargés ?</string>
     <string name="track">Suivi</string>
@@ -335,7 +333,6 @@
     <string name="creating_backup">Création de sauvegarde en cours</string>
     <string name="pref_refresh_library_tracking">Actualiser les métadonnées de suivi</string>
     <string name="pref_refresh_library_tracking_summary">Actualise le statut, appréciation et dernier chapitre lu des services de suivi</string>
-    <string name="also_delete_chapters">Efface aussi les chapitres téléchargés</string>
     <string name="default_category_summary">Toujours demander</string>
     <string name="pref_read_with_volume_keys_inverted">Inverser les boutons de volume</string>
     <string name="pref_crop_borders">Rogner les bordures</string>
@@ -534,18 +531,17 @@
     <string name="backup_in_progress">Sauvegarde déjà en cours</string>
     <string name="manga_info_collapse">Moins</string>
     <string name="manga_info_expand">Plus</string>
-    <string name="manga_info_about_label">À propos</string>
     <string name="website">Site web</string>
     <string name="pref_confirm_exit">Confirmer la sortie</string>
     <string name="recent_manga_time">Ch. %1$s – %2$s</string>
     <string name="error_invalid_date_supplied">Date fournie invalide</string>
-    <string name="licenses">Licences open source</string>
+    <string name="licenses">Licences à code source ouvert</string>
     <string name="confirm_exit">Appuyer à nouveau pour quitter</string>
     <string name="track_finished_reading_date">Date de fin de lecture</string>
     <string name="track_started_reading_date">Date de début de lecture</string>
     <string name="last_used_source">Dernière utilisée</string>
     <string name="check_for_updates">Rechercher des mises à jour</string>
-    <string name="restore_duration">%02d min, %02d s</string>
+    <string name="restore_duration">%02d min, %02d s</string>
     <string name="information_webview_required">WebView est requis par Tachiyomi</string>
     <string name="local_source_help_guide">Guide des sources locales</string>
     <plurals name="download_queue_summary">
@@ -580,7 +576,7 @@
     <string name="pref_library_update_refresh_metadata_summary">Vérifier s\'il y a une nouvelle couverture ou synopsis lors des mises à jour de la bibliothèque</string>
     <string name="sort_by_upload_date">Par date de téléversement</string>
     <string name="label_data">Donnée</string>
-    <string name="backup_restore_missing_sources">Sources manquantes :</string>
+    <string name="backup_restore_missing_sources">Sources manquantes :</string>
     <string name="invalid_backup_file_missing_manga">La sauvegarde ne contient aucune série.</string>
     <string name="invalid_backup_file_missing_data">Données manquante dans le fichier.</string>
     <string name="invalid_backup_file">Fichier de sauvegarde invalide</string>
@@ -606,7 +602,7 @@
     <string name="action_sort_descending">Décroissant</string>
     <string name="action_disable">Désactiver</string>
     <string name="action_open_in_settings">Ouvrir dans les paramètres</string>
-    <string name="pref_dns_over_https_summary">Nécessite un redémarrage de l\'application pour prendre effet</string>
+    <string name="requires_app_restart">Nécessite un redémarrage de l\'application pour prendre effet</string>
     <string name="pref_dns_over_https" translatable="false">DNS sur HTTPS (Cloudflare)</string>
     <string name="label_network">Réseau</string>
     <string name="tapping_inverted_both">Les deux</string>
@@ -636,21 +632,48 @@
     <string name="channel_complete">Compléter</string>
     <string name="channel_progress">Progression</string>
     <string name="download_notifier_download_finish">Téléchargement terminé</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Bloquer les sources de navigation mais afficher dans la liste des extensions</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Cachez-vous dans les sources mais affichez-le dans la liste des extensions</string>
     <string name="channel_errors">Erreurs</string>
-    <string name="backup_restore_missing_trackers">Trackers non connectés:</string>
+    <string name="backup_restore_missing_trackers">Traceurs non connectés :</string>
     <string name="pref_remove_bookmarked_chapters">Supprimer les chapitres favoris</string>
     <string name="pref_category_delete_chapters">Supprimer des chapitres</string>
     <string name="ext_nsfw_warning">Peut contenir du contenus +18</string>
     <string name="ext_nsfw_short">18+</string>
-    <string name="parental_controls_info">Cela n\'empêche pas les extensions non officielles ou potentiellement incorrectement signalées de faire apparaître du contenu 18+ dans l\'application.</string>
-    <string name="pref_allow_nsfw_sources_blocked">Bloqué</string>
-    <string name="pref_allow_nsfw_sources_allowed">Autorisé</string>
-    <string name="pref_allow_nsfw_sources">Sources 18+</string>
-    <string name="pref_category_parental_controls">contrôle parental</string>
+    <string name="parental_controls_info">Ceci n\'empêche pas les extensions non officielles ou potentiellement incorrectement signalées de faire apparaître du contenu +18 dans l\'application.</string>
+    <string name="pref_allow_nsfw_sources_blocked">Cacher</string>
+    <string name="pref_allow_nsfw_sources_allowed">Afficher</string>
+    <string name="pref_allow_nsfw_sources">Sources +18</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Il manque 1 chapitre</item>
         <item quantity="other">Il manque %d chapitres</item>
     </plurals>
     <string name="no_chapters_error">Aucun chapitre trouvé</string>
+    <string name="confirm_set_chapter_settings">Appliquer ce paramétrage par défaut \?</string>
+    <string name="chapter_settings">Paramètres du chapitre</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Cacher la barre inférieure lors du défilement</string>
+    <string name="action_web_view">Navigateur intégré</string>
+    <string name="also_set_chapter_settings_for_library">Appliquer à ma librairie</string>
+    <string name="set_chapter_settings_as_default">Appliquer par défaut</string>
+    <string name="share_page_info">%1$s: %2$s, page %3$d</string>
+    <string name="downloaded_chapters">Chapitres téléchargés</string>
+    <string name="manga_from_library">Manga de la bibliothèque</string>
+    <string name="action_search_settings">Paramètres de la recherche</string>
+    <string name="pref_incognito_mode_summary">Pause dans l\'enregistrement de l\'historique</string>
+    <string name="clear_history_confirmation">Êtes-vous sûr(e) \? Tout l\'Historique sera perdue.</string>
+    <string name="pref_incognito_mode">Mode navigation privée</string>
+    <string name="pref_clear_history_summary">Supprimer l\'historique de lecture pour tous les mangas</string>
+    <string name="pref_clear_history">Effacer l\'historique</string>
+    <string name="clear_history_completed">Historique supprimé</string>
+    <string name="chapter_settings_updated">Paramétrage des chapitres par défaut enregistré</string>
+    <string name="spen_next_page">Page suivante</string>
+    <string name="spen_previous_page">Page précédente</string>
+    <string name="migration_help_guide">Guide de migration des sources</string>
+    <string name="full_restore_offline">Restauration hors ligne, se termine rapidement mais ne contient que ce que votre sauvegarde</string>
+    <string name="full_restore_online">Restauration en ligne, beaucoup plus lente mais vous donne plus d\'informations et de chapitres à jour</string>
+    <string name="full_restore_mode">Mode réseau</string>
+    <string name="pref_backup_auto_create_legacy">Créez également une sauvegarde héritée</string>
+    <string name="pref_create_legacy_backup_summary">Peut être utilisé dans les anciennes versions de Tachiyomi</string>
+    <string name="pref_create_legacy_backup">Créer des sauvegardes héritées</string>
+    <string name="pref_category_nsfw_content">Contenu +18</string>
+    <string name="invalid_backup_file_type">Fichier de sauvegarde invalide : %1$s</string>
 </resources>

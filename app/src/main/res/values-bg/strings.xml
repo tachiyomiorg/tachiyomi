@@ -15,7 +15,6 @@
     <string name="action_filter_downloaded">Изтеглени</string>
     <string name="action_filter_bookmarked">Отбелязани</string>
     <string name="action_filter_unread">Непрочетени</string>
-    <string name="action_filter_read">Прочетени</string>
     <string name="action_filter_empty">Премахни филтрирането</string>
     <string name="action_sort_alpha">Азбучен ред</string>
     <string name="action_sort_last_read">Последно четене</string>
@@ -182,7 +181,6 @@
     <!-- Library fragment -->
     <string name="library_search_hint">Заглавие или автор…</string>
     <string name="updating_category">Обновяване на категорията</string>
-    <string name="confirm_delete_manga">Сигурни ли сте, че желаете да премахнете избраната манга?</string>
     <!-- Catalogue fragment -->
     <string name="source_requires_login">Източникът изисква от вас да въведете име и парола</string>
     <string name="select_source">Изберете източник</string>
@@ -332,7 +330,6 @@
     <string name="creating_backup">Създаване на резервно копие</string>
     <string name="pref_refresh_library_tracking">Обнови проследяването</string>
     <string name="pref_refresh_library_tracking_summary">Обновява статус, оценка и последно прочетена глава от услугите за проследяване</string>
-    <string name="also_delete_chapters">Също изтрий изтеглените глави</string>
     <string name="local_source">Локални</string>
     <string name="invalid_combination">\"По подразбиране\" не може да се избира с други категории</string>
     <string name="added_to_library">Мангата беше добавена към библиотеката Ви</string>
@@ -471,7 +468,6 @@
     <string name="add_tracking">Добави проследяване</string>
     <string name="manga_info_collapse">По-малко</string>
     <string name="manga_info_expand">Повече</string>
-    <string name="manga_info_about_label">Инфо</string>
     <string name="in_library">В библиотеката</string>
     <string name="add_to_library">Добави към библиотеката</string>
     <string name="local_source_help_guide">Помощ за локални източници</string>
@@ -585,7 +581,7 @@
     <string name="tabs_header">Раздели</string>
     <string name="badges_header">Значки</string>
     <string name="label_data">Данни</string>
-    <string name="pref_dns_over_https_summary">Изисква рестартиране на приложението, за да влезе в сила</string>
+    <string name="requires_app_restart">Изисква рестартиране на приложението, за да влезе в сила</string>
     <string name="label_network">Мрежа</string>
     <string name="backup_restore_missing_sources">Липсващи източници:</string>
     <string name="invalid_backup_file_missing_manga">Резервното копие не съдържа манга.</string>
@@ -642,7 +638,6 @@
     <string name="pref_allow_nsfw_sources_allowed_multisource">Блокирай разглеждането на източници, но ги показвай в списъка с разширения</string>
     <string name="pref_allow_nsfw_sources_allowed">Позволено</string>
     <string name="pref_allow_nsfw_sources">Източници 18+</string>
-    <string name="pref_category_parental_controls">Родителски контрол</string>
     <string name="pref_category_theme">Тема</string>
     <string name="action_download_unread">Изтегли непрочетените глави</string>
     <string name="action_sort_date_added">Добавено на</string>

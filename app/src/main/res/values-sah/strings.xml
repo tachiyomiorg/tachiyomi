@@ -25,7 +25,6 @@
     <string name="action_sort_total">Түһүмэх ахсаанынан</string>
     <string name="action_sort_alpha">Алпаабыт бэрээдэгинэн</string>
     <string name="action_filter_empty">Биилтирэни ылыы</string>
-    <string name="action_filter_read">Ааҕыллыбыт</string>
     <string name="action_filter_unread">Ааҕыллыбатах</string>
     <string name="action_filter_bookmarked">Кыбытыы</string>
     <string name="action_filter_downloaded">Хачайдаммыт</string>
@@ -346,7 +345,7 @@
     <string name="pref_remove_after_marked_as_read">Ааҕыллыбыт диэн суруллубутун кэннэ</string>
     <string name="pref_download_only_over_wifi">Wi-Fi эрэ баар буоллаҕына хачайдаа</string>
     <string name="pref_download_directory">Хачайдааһын сурунаала</string>
-    <string name="pref_dns_over_https_summary">Уларыйыы киирэрин гына эбилиги хос холбоо</string>
+    <string name="requires_app_restart">Уларыйыы киирэрин гына эбилиги хос холбоо</string>
     <string name="cache_delete_error">Кээс сотторуутугар сыыһааһын буолла</string>
     <string name="cache_deleted">Кээс ыраастанна. %1$d билэ сотторуллубут этэ</string>
     <string name="used_cache">Туттуллубут: %1$s</string>
@@ -390,8 +389,6 @@
     <string name="source_requires_login">Бу төрүт киирини көрдүүр</string>
     <string name="tabs_header">Кыбытыктар</string>
     <string name="badges_header">Бэлиэлэр</string>
-    <string name="also_delete_chapters">Хачайдаммыт түһүмэхтэри эмиэ соттор</string>
-    <string name="confirm_delete_manga">Талыллыбыт маанганы сотторорго эрэллээххин дуо\?</string>
     <string name="local_source_badge">Локальнай</string>
     <string name="updating_category">Бөлөх саҥардыыта</string>
     <string name="library_search_hint">Айымньы эбэтэр суручааччы аата…</string>
@@ -420,7 +417,6 @@
     </plurals>
     <string name="manga_info_collapse">Кырата</string>
     <string name="manga_info_expand">Эбии</string>
-    <string name="manga_info_about_label">Маанга туһунан</string>
     <string name="manga_removed_library">Бэбэлэтиэкэттэн ылылынна</string>
     <string name="manga_added_library">Бэбэлэтиэкэҕэ киирдэ</string>
     <string name="manga_info_full_title_label">Айымньы аата</string>
@@ -477,7 +473,6 @@
     <string name="ext_nsfw_warning">18+ контент баар буолуон сөп</string>
     <string name="ext_nsfw_short">18+</string>
     <string name="parental_controls_info">Ити официальнайа суох эбэтэр сыыһа бэлиэтэммит 18+ контенны эбиликкж киирэрин тохтоппот.</string>
-    <string name="pref_category_parental_controls">Төрөппүт хонтуруола</string>
     <string name="download_notifier_download_finish">Хачайдааһын бүттэ</string>
     <string name="custom_filter">Туттааччы биилтирэ</string>
     <string name="options">Түстэл</string>
@@ -521,4 +516,38 @@
     <string name="page_downloaded">Сирэй манна копуйаланна: %1$s</string>
     <string name="cover_updated">Тас саҥардыллыбыт</string>
     <string name="set_as_cover">Тас курдук туруор</string>
+    <string name="migration_info">Көһөр төрүккүн талар курдук, баттаа</string>
+    <string name="recent_manga_time">%1$s-%2$s Түһ.</string>
+    <string name="updating_library">Бэбэлэтиэкэ саҥардыыта</string>
+    <plurals name="missing_chapters_warning">
+        <item quantity="other">Манна %d түһүмэх суох</item>
+    </plurals>
+    <string name="loader_not_implemented_error">Төрүт булуллубата</string>
+    <string name="page_list_empty_error">Сирэйдэр булуллубатылар</string>
+    <string name="transition_pages_error">Сирэйдэр хачайдааһыннара сатаммата: %1$s</string>
+    <string name="transition_pages_loading">Сирэйдэр хачайдана тураллар…</string>
+    <string name="transition_no_previous">Иннинээҕи түһүмэх суох</string>
+    <string name="transition_no_next">Аныгыскы түһүмэх суох</string>
+    <string name="transition_previous">Иннинээҕи:</string>
+    <string name="transition_next">Аныгыскы:</string>
+    <string name="transition_current">Билиҥҥи:</string>
+    <string name="transition_finished">Бүппүт:</string>
+    <string name="viewer">Ааҕы эрэһиимэ</string>
+    <string name="share_page_info">%1$s: %2$s, сирэй %3$d</string>
+    <string name="no_chapters_error">Түһүмэхтэр суохтар</string>
+    <string name="set_chapter_settings_as_default">Куолутунан</string>
+    <string name="also_set_chapter_settings_for_library">Мин бэбэлэтиэкэбэр баар маангаларга туттуҥ</string>
+    <string name="confirm_set_chapter_settings">Бу түстэл куолутунан хааларын баҕараҕын дуо\?</string>
+    <string name="chapter_settings">Түһүмэх түстэлэ</string>
+    <string name="downloaded_chapters">Хачайдаммыт түһүмэхтэр</string>
+    <string name="manga_from_library">Бэбэлэтиэкэттэн маанга</string>
+    <string name="pref_incognito_mode_summary">Ааҕы остуоруйатын тохтотор</string>
+    <string name="pref_incognito_mode">Кистэлэҥ эрэһиимэ</string>
+    <string name="pref_clear_history_summary">Маангаҕа барытыгар ааҕы остуоруйатын сотторуу</string>
+    <string name="pref_clear_history">Остуоруйаны сотторуу</string>
+    <string name="clear_history_confirmation">Эрэллээххин дуо\? Остуоруйа барыта сотторуллуоҕа.</string>
+    <string name="clear_history_completed">Остуоруйа сотторулунна</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Эргитэн түһэргэ алларааҥы хонууну сабыы</string>
+    <string name="action_web_view">WebView</string>
+    <string name="action_search_settings">Көрдөөһүн түстэлэ</string>
 </resources>

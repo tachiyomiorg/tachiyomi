@@ -133,44 +133,42 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_favorite"
             style="@style/Theme.Widget.Button.Action"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:checkable="true"
             android:text="@string/add_to_library"
-            app:drawableTopCompat="@drawable/ic_favorite_border_24dp"
+            app:icon="@drawable/ic_favorite_border_24dp"
             app:layout_constraintEnd_toStartOf="@+id/btn_tracking"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_tracking"
             style="@style/Theme.Widget.Button.Action"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:checkable="true"
             android:text="@string/manga_tracking_tab"
             android:visibility="gone"
-            app:drawableTopCompat="@drawable/ic_sync_24dp"
+            app:icon="@drawable/ic_sync_24dp"
             app:layout_constraintEnd_toStartOf="@+id/btn_webview"
             app:layout_constraintStart_toEndOf="@+id/btn_favorite"
             app:layout_constraintTop_toTopOf="parent"
             tools:visibility="visible" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_webview"
             style="@style/Theme.Widget.Button.Action"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:text="@string/action_web_view"
             android:visibility="gone"
-            app:drawableTopCompat="@drawable/ic_public_24dp"
+            app:icon="@drawable/ic_public_24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btn_tracking"
             app:layout_constraintTop_toTopOf="parent"
@@ -182,8 +180,7 @@
         android:id="@+id/manga_summary_section"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="?attr/selectableItemBackground">
+        android:layout_marginTop="8dp">
 
         <TextView
             android:id="@+id/manga_summary_text"

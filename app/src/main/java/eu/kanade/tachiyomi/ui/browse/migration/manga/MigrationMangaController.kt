@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
@@ -19,10 +20,10 @@ class MigrationMangaController :
     private var adapter: FlexibleAdapter<IFlexible<*>>? = null
 
     constructor(sourceId: Long, sourceName: String?) : super(
-        Bundle().apply {
-            putLong(SOURCE_ID_EXTRA, sourceId)
-            putString(SOURCE_NAME_EXTRA, sourceName)
-        }
+        bundleOf(
+            SOURCE_ID_EXTRA to sourceId,
+            SOURCE_NAME_EXTRA to sourceName
+        )
     )
 
     @Suppress("unused")

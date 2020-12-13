@@ -121,7 +121,9 @@ object PreferenceKeys {
 
     const val automaticExtUpdates = "automatic_ext_updates"
 
-    const val allowNsfwSource = "allow_nsfw_source"
+    const val showNsfwSource = "show_nsfw_source"
+    const val showNsfwExtension = "show_nsfw_extension"
+    const val labelNsfwExtension = "label_nsfw_extension"
 
     const val startScreen = "start_screen"
 
@@ -180,6 +182,10 @@ object PreferenceKeys {
     const val defaultChapterSortByAscendingOrDescending = "default_chapter_sort_by_ascending_or_descending"
 
     const val defaultChapterDisplayByNameOrNumber = "default_chapter_display_by_name_or_number"
+
+    const val incognitoMode = "incognito_mode"
+
+    const val createLegacyBackup = "create_legacy_backup"
 
     fun trackUsername(syncId: Int) = "pref_mangasync_username_$syncId"
 

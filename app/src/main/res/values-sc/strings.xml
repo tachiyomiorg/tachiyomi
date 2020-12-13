@@ -21,7 +21,6 @@
     <string name="action_filter_downloaded">Iscarrigados</string>
     <string name="action_filter_bookmarked">Sinnados</string>
     <string name="action_filter_unread">Non lèghidos</string>
-    <string name="action_filter_read">Lèghidos</string>
     <string name="action_filter_empty">Boga su filtru</string>
     <string name="action_sort_alpha">Alfabeticamente</string>
     <string name="action_sort_total">Capìtulos totales</string>
@@ -240,8 +239,6 @@
     <string name="library_search_hint">Tìtulu o autore…</string>
     <string name="updating_category">Agiornende sa categoria</string>
     <string name="local_source_badge">Locale</string>
-    <string name="confirm_delete_manga">Ses seguru de chèrrere bogare sos manga ischertados\?</string>
-    <string name="also_delete_chapters">Iscantzella fintzas sos capìtulos iscarrigados</string>
     <string name="source_requires_login">Custa mitza ti pedit de fàghere s\'atzessu</string>
     <string name="select_source">Ischerta una mitza</string>
     <string name="no_valid_sources">Pro praghere abìlita a su mancu una mitza vàlida</string>
@@ -494,7 +491,6 @@
     <string name="add_to_library">Annanghe a sa biblioteca</string>
     <string name="manga_info_collapse">De mancu</string>
     <string name="manga_info_expand">De prus</string>
-    <string name="manga_info_about_label">Informatziones</string>
     <string name="information_webview_required">Pro Tachiyomi b\'at bisòngiu de WebView</string>
     <string name="licenses">Litzèntzias a mitza aberta</string>
     <string name="website">Situ web</string>
@@ -572,7 +568,7 @@
         <item quantity="one">1 capìtulu</item>
         <item quantity="other">%1$s capìtulos</item>
     </plurals>
-    <string name="pref_dns_over_https_summary">Tenet bisòngiu chi torres a allùghere s\'aplicatzione pro tènnere efetu</string>
+    <string name="requires_app_restart">Tenet bisòngiu chi torres a allùghere s\'aplicatzione pro tènnere efetu</string>
     <string name="pref_dns_over_https" translatable="false">DNS pro mèdiu de HTTPS (Cloudflare)</string>
     <string name="label_network">Retza</string>
     <string name="pref_jump_to_chapters">Brinca a sos capìtulos a s\'abertura</string>
@@ -609,14 +605,42 @@
     <string name="ext_nsfw_warning">Diat pòdere cuntènnere cuntenutos 18+</string>
     <string name="ext_nsfw_short">18+</string>
     <string name="parental_controls_info">Custu no impedit a estensiones no ufitziales o potentzialmente non curretas de ammustrare cuntenutos 18+ in s\'aplicatzione.</string>
-    <string name="pref_allow_nsfw_sources_blocked">Blocadas</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Bloca s\'esploratzione de sas mitzas ma ammustra·las in sa lista de sas estensiones</string>
-    <string name="pref_allow_nsfw_sources_allowed">Permìtidas</string>
+    <string name="pref_allow_nsfw_sources_blocked">Cua</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Cua·las in sas mitzas ma ammustra·las in sa lista de sas estensiones</string>
+    <string name="pref_allow_nsfw_sources_allowed">Ammustra</string>
     <string name="pref_allow_nsfw_sources">Mitzas 18+</string>
-    <string name="pref_category_parental_controls">Controllos pro sos genitores</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Mancat 1 capìtulu</item>
         <item quantity="other">Mancant %d capìtulos</item>
     </plurals>
     <string name="no_chapters_error">Perunu capìtulu agatadu</string>
+    <string name="chapter_settings_updated">Impostatziones predefinidas de sos capìtulos agiornadas</string>
+    <string name="set_chapter_settings_as_default">Imposta comente predefinidu</string>
+    <string name="also_set_chapter_settings_for_library">Àplica fintzas a totu sos manga in sa biblioteca mea</string>
+    <string name="confirm_set_chapter_settings">Ses seguru de chèrrere sarvare custas informatziones comente predefinidas\?</string>
+    <string name="chapter_settings">Impostatziones de sos capìtulos</string>
+    <string name="action_web_view">Vista web</string>
+    <string name="share_page_info">%1$s: %2$s, pàgina %3$d</string>
+    <string name="action_search_settings">Impostatziones de chirca</string>
+    <string name="downloaded_chapters">Capìtulos iscarrigados</string>
+    <string name="manga_from_library">Manga dae sa biblioteca</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Cua sa barra inferiore in s\'iscurridura</string>
+    <string name="pref_incognito_mode_summary">Ponet in pàusa sa registratzione de sa cronologia de leghidura</string>
+    <string name="pref_incognito_mode">Modalidade anònima</string>
+    <string name="pref_clear_history_summary">Iscantzella totu sa cronologia de leghidura pro totu sos manga</string>
+    <string name="pref_clear_history">Isbòida sa cronologia</string>
+    <string name="clear_history_confirmation">Seguru ses\? As a pèrdere totu sa cronologia.</string>
+    <string name="clear_history_completed">Cronologia iscantzellada</string>
+    <string name="spen_next_page">Pàgina imbeniente</string>
+    <string name="spen_previous_page">Pàgina anteposta</string>
+    <string name="full_restore_online">Riprìstinat in lìnia, meda prus lenta ma ti frunit informatziones e capìtulos prus agiornados</string>
+    <string name="full_restore_offline">Riprìstinat chene lìnia, acabat in presse ma cuntenet petzi su chi b\'at in sa còpia de seguresa tua</string>
+    <string name="full_restore_mode">Modalidade de retza</string>
+    <string name="pref_backup_auto_create_legacy">Crea fintzas una còpia de seguresa de casta betza</string>
+    <string name="pref_create_legacy_backup_summary">Podet èssere impreada in versiones prus betzas de Tachiyomi</string>
+    <string name="pref_create_legacy_backup">Crea una còpia de seguresa de casta betza</string>
+    <string name="migration_help_guide">Ghia a su tramudòngiu de sas mitzas</string>
+    <string name="invalid_backup_file_type">Documentu de còpia de seguresa non vàlidu: %1$s</string>
+    <string name="pref_category_nsfw_content">Cuntenutu 18+</string>
+    <string name="process_text_action_name">Chirca in Tachiyomi</string>
 </resources>

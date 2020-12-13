@@ -2,6 +2,7 @@ package eu.kanade.tachiyomi.ui.browse.extension
 
 import android.app.Dialog
 import android.os.Bundle
+import androidx.core.os.bundleOf
 import com.afollestad.materialdialogs.MaterialDialog
 import com.bluelinelabs.conductor.Controller
 import eu.kanade.tachiyomi.R
@@ -11,10 +12,10 @@ class ExtensionTrustDialog<T>(bundle: Bundle? = null) : DialogController(bundle)
         where T : Controller, T : ExtensionTrustDialog.Listener {
 
     constructor(target: T, signatureHash: String, pkgName: String) : this(
-        Bundle().apply {
-            putString(SIGNATURE_KEY, signatureHash)
-            putString(PKGNAME_KEY, pkgName)
-        }
+        bundleOf(
+            SIGNATURE_KEY to signatureHash,
+            PKGNAME_KEY to pkgName
+        )
     ) {
         targetController = target
     }

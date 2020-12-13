@@ -6,10 +6,13 @@ import eu.kanade.tachiyomi.data.backup.BackupCreatorJob
 import eu.kanade.tachiyomi.data.library.LibraryUpdateJob
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.updater.UpdaterJob
 import eu.kanade.tachiyomi.extension.ExtensionUpdateJob
 import eu.kanade.tachiyomi.ui.library.LibrarySort
 import eu.kanade.tachiyomi.widget.ExtendedNavigationView
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 import java.io.File
 
 object Migrations {
@@ -22,13 +25,13 @@ object Migrations {
      */
     fun upgrade(preferences: PreferencesHelper): Boolean {
         val context = preferences.context
-        val oldVersion = preferences.lastVersionCode().get()
 
         // Cancel app updater job for debug builds that don't include it
         if (BuildConfig.DEBUG && !BuildConfig.INCLUDE_UPDATER) {
             UpdaterJob.cancelTask(context)
         }
 
+        val oldVersion = preferences.lastVersionCode().get()
         if (oldVersion < BuildConfig.VERSION_CODE) {
             preferences.lastVersionCode().set(BuildConfig.VERSION_CODE)
 
@@ -89,6 +92,7 @@ object Migrations {
             }
             if (oldVersion < 44) {
                 // Reset sorting preference if using removed sort by source
+                @Suppress("DEPRECATION")
                 if (preferences.librarySortingMode().get() == LibrarySort.SOURCE) {
                     preferences.librarySortingMode().set(LibrarySort.ALPHA)
                 }
@@ -111,9 +115,14 @@ object Migrations {
                     putInt(PreferenceKeys.filterCompleted, convertBooleanPrefToTriState("pref_filter_completed_key"))
                     remove("pref_filter_completed_key")
                 }
+
+                // Force MAL log out due to login flow change
+                val trackManager = Injekt.get<TrackManager>()
+                trackManager.myAnimeList.logout()
             }
             return true
         }
+
         return false
     }
 }

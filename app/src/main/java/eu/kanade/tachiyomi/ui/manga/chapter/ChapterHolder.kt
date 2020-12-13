@@ -5,25 +5,24 @@ import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.view.View
 import androidx.core.view.isVisible
+import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.model.Download
-import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
-import kotlinx.android.synthetic.main.chapters_item.bookmark_icon
-import kotlinx.android.synthetic.main.chapters_item.chapter_description
-import kotlinx.android.synthetic.main.chapters_item.chapter_title
-import kotlinx.android.synthetic.main.chapters_item.download_text
+import eu.kanade.tachiyomi.databinding.ChaptersItemBinding
 import java.util.Date
 
 class ChapterHolder(
     view: View,
     private val adapter: ChaptersAdapter
-) : BaseFlexibleViewHolder(view, adapter) {
+) : FlexibleViewHolder(view, adapter) {
+
+    private val binding = ChaptersItemBinding.bind(view)
 
     fun bind(item: ChapterItem, manga: Manga) {
         val chapter = item.chapter
 
-        chapter_title.text = when (manga.displayMode) {
+        binding.chapterTitle.text = when (manga.displayMode) {
             Manga.DISPLAY_NUMBER -> {
                 val number = adapter.decimalFormat.format(chapter.chapter_number.toDouble())
                 itemView.context.getString(R.string.display_mode_chapter, number)
@@ -32,15 +31,21 @@ class ChapterHolder(
         }
 
         // Set correct text color
-        val chapterColor = when {
+        val chapterTitleColor = when {
             chapter.read -> adapter.readColor
             chapter.bookmark -> adapter.bookmarkedColor
             else -> adapter.unreadColor
         }
-        chapter_title.setTextColor(chapterColor)
-        chapter_description.setTextColor(chapterColor)
+        binding.chapterTitle.setTextColor(chapterTitleColor)
 
-        bookmark_icon.isVisible = chapter.bookmark
+        val chapterDescriptionColor = when {
+            chapter.read -> adapter.readColor
+            chapter.bookmark -> adapter.bookmarkedColor
+            else -> adapter.unreadColorSecondary
+        }
+        binding.chapterDescription.setTextColor(chapterDescriptionColor)
+
+        binding.bookmarkIcon.isVisible = chapter.bookmark
 
         val descriptions = mutableListOf<CharSequence>()
 
@@ -58,15 +63,15 @@ class ChapterHolder(
         }
 
         if (descriptions.isNotEmpty()) {
-            chapter_description.text = descriptions.joinTo(SpannableStringBuilder(), " • ")
+            binding.chapterDescription.text = descriptions.joinTo(SpannableStringBuilder(), " • ")
         } else {
-            chapter_description.text = ""
+            binding.chapterDescription.text = ""
         }
 
         notifyStatus(item.status)
     }
 
-    fun notifyStatus(status: Int) = with(download_text) {
+    fun notifyStatus(status: Int) = with(binding.downloadText) {
         when (status) {
             Download.QUEUE -> setText(R.string.chapter_queued)
             Download.DOWNLOADING -> setText(R.string.chapter_downloading)

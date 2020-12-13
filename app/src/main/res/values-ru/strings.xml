@@ -17,7 +17,6 @@
     <string name="action_filter_bookmarked">Закладка</string>
     <string name="action_filter_downloaded">Загружено</string>
     <string name="action_filter_empty">Удалить фильтр</string>
-    <string name="action_filter_read">Прочитано</string>
     <string name="action_filter_unread">Не прочитано</string>
     <string name="action_install">Установить</string>
     <string name="action_mark_as_read">Отметить как прочитанное</string>
@@ -73,7 +72,6 @@
     <string name="color_filter_b_value">B</string>
     <string name="completed">Завершено</string>
     <string name="confirm_delete_chapters">Вы уверены что хотите удалить выбранн(ые/ую) глав(ы/у)\?</string>
-    <string name="confirm_delete_manga">Вы уверены, что хотите удалить выбранную мангу\?</string>
     <string name="confirm_set_image_as_cover">Использовать эту картинку как обложку\?</string>
     <string name="cookies_cleared">Куки удалены</string>
     <string name="cover_updated">Обложка обновлена</string>
@@ -267,7 +265,6 @@
     <string name="action_restore">Восстановить</string>
     <string name="action_undo">Отменить</string>
     <string name="added_to_library">Манга была добавлена в библиотеку</string>
-    <string name="also_delete_chapters">Также удалить загруженные главы</string>
     <string name="backup_choice">Что вы хотите бэкапить\?</string>
     <string name="backup_created">Бэкап создан</string>
     <string name="backup_restore_content">При восстановлении используются данные из источников, что может вызвать большой расход трафика.
@@ -503,7 +500,6 @@
     <string name="information_webview_required">Для Tachiyomi необходим WebView</string>
     <string name="manga_info_collapse">Меньше</string>
     <string name="manga_info_expand">Больше</string>
-    <string name="manga_info_about_label">Описание</string>
     <string name="in_library">В библиотеке</string>
     <string name="add_to_library">Добавить в библиотеку</string>
     <string name="licenses">Лицензии открытого кода</string>
@@ -590,7 +586,7 @@
         <item quantity="other">%1$s глав</item>
     </plurals>
     <string name="action_sort_descending">По убыванию</string>
-    <string name="pref_dns_over_https_summary">Требуется перезапуск приложения для вступления в силу</string>
+    <string name="requires_app_restart">Требуется перезапуск приложения для вступления в силу</string>
     <string name="pref_dns_over_https" translatable="false">DNS по HTTPS (Cloudflare)</string>
     <string name="label_network">Сеть</string>
     <string name="pref_jump_to_chapters">Переходить к главам при запуске</string>
@@ -625,15 +621,14 @@
     <string name="channel_errors">Ошибки</string>
     <string name="backup_restore_missing_trackers">Не выполнен вход в трекеры:</string>
     <string name="pref_allow_nsfw_sources">Источники 18+</string>
-    <string name="pref_allow_nsfw_sources_blocked">Заблокировано</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Блокировать просмотр источников, но отображать их в списке расширений</string>
-    <string name="pref_allow_nsfw_sources_allowed">Разрешено</string>
+    <string name="pref_allow_nsfw_sources_blocked">Скрыть</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Скрыть в источниках, но показать в списке расширений</string>
+    <string name="pref_allow_nsfw_sources_allowed">Показывать</string>
     <string name="pref_remove_bookmarked_chapters">Удалять главы с закладками</string>
     <string name="pref_category_delete_chapters">Удаление глав</string>
     <string name="ext_nsfw_warning">Может содержать контент 18+</string>
     <string name="ext_nsfw_short">18+</string>
     <string name="parental_controls_info">Это не предотвращает появление внутри приложения контента 18+ из неофициальных или потенциально неправильно помеченных расширений.</string>
-    <string name="pref_category_parental_controls">Родительский контроль</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Отсутствует 1 глава</item>
         <item quantity="few">Отсутствуют %d главы</item>
@@ -641,4 +636,33 @@
         <item quantity="other">Отсутствуют %d глав</item>
     </plurals>
     <string name="no_chapters_error">Нет глав</string>
+    <string name="chapter_settings_updated">Обновлены настройки главы по умолчанию</string>
+    <string name="set_chapter_settings_as_default">По умолчанию</string>
+    <string name="also_set_chapter_settings_for_library">Также применить для всей манги в моей библиотеке</string>
+    <string name="confirm_set_chapter_settings">Вы уверены, что хотите сохранить эти настройки по умолчанию\?</string>
+    <string name="chapter_settings">Настройки главы</string>
+    <string name="action_web_view">WebView</string>
+    <string name="share_page_info">%1$s: %2$s, страница %3$d</string>
+    <string name="action_search_settings">Настройки поиска</string>
+    <string name="downloaded_chapters">Загруженные главы</string>
+    <string name="manga_from_library">Манга из библиотеки</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Скрыть нижнюю панель при прокрутке</string>
+    <string name="pref_incognito_mode_summary">Приостанавливает историю чтения</string>
+    <string name="pref_incognito_mode">Режим инкогнито</string>
+    <string name="pref_clear_history_summary">Удалить историю чтения для всей манги</string>
+    <string name="pref_clear_history">Очистить историю</string>
+    <string name="clear_history_confirmation">Вы уверены\? Вся история будет удалена.</string>
+    <string name="clear_history_completed">История удалена</string>
+    <string name="spen_next_page">Следующая страница</string>
+    <string name="spen_previous_page">Предыдущая страница</string>
+    <string name="full_restore_offline">Оффлайн восстановление: работает быстрее, но восстанавливает только то, что было в вашей резервной копии</string>
+    <string name="full_restore_online">Онлайн восстановление: работает гораздо медленнее, но подгружает более актуальные главы и информацию</string>
+    <string name="full_restore_mode">Сетевой режим</string>
+    <string name="pref_backup_auto_create_legacy">Также создавать резервную копию старого формата</string>
+    <string name="pref_create_legacy_backup_summary">Может быть использован в предыдущих версиях Tachiyomi</string>
+    <string name="pref_create_legacy_backup">Создать резервную копию старого формата</string>
+    <string name="migration_help_guide">Руководство по миграции источников</string>
+    <string name="invalid_backup_file_type">Неверный файл резервной копии: %1$s</string>
+    <string name="pref_category_nsfw_content">Контент 18+</string>
+    <string name="process_text_action_name">Искать в Tachiyomi</string>
 </resources>

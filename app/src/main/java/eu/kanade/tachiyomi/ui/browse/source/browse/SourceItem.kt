@@ -13,12 +13,12 @@ import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferenceValues.DisplayMode
+import eu.kanade.tachiyomi.databinding.SourceComfortableGridItemBinding
+import eu.kanade.tachiyomi.databinding.SourceCompactGridItemBinding
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
-import kotlinx.android.synthetic.main.source_compact_grid_item.view.card
-import kotlinx.android.synthetic.main.source_compact_grid_item.view.gradient
 
 class SourceItem(val manga: Manga, private val displayMode: Preference<DisplayMode>) :
-    AbstractFlexibleItem<SourceHolder>() {
+    AbstractFlexibleItem<SourceHolder<*>>() {
 
     override fun getLayoutRes(): Int {
         return when (displayMode.get()) {
@@ -31,17 +31,18 @@ class SourceItem(val manga: Manga, private val displayMode: Preference<DisplayMo
     override fun createViewHolder(
         view: View,
         adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>
-    ): SourceHolder {
+    ): SourceHolder<*> {
         return when (displayMode.get()) {
             DisplayMode.COMPACT_GRID -> {
+                val binding = SourceCompactGridItemBinding.bind(view)
                 val parent = adapter.recyclerView as AutofitRecyclerView
                 val coverHeight = parent.itemWidth / 3 * 4
                 view.apply {
-                    card.layoutParams = FrameLayout.LayoutParams(
+                    binding.card.layoutParams = FrameLayout.LayoutParams(
                         MATCH_PARENT,
                         coverHeight
                     )
-                    gradient.layoutParams = FrameLayout.LayoutParams(
+                    binding.gradient.layoutParams = FrameLayout.LayoutParams(
                         MATCH_PARENT,
                         coverHeight / 2,
                         Gravity.BOTTOM
@@ -50,10 +51,11 @@ class SourceItem(val manga: Manga, private val displayMode: Preference<DisplayMo
                 SourceGridHolder(view, adapter)
             }
             DisplayMode.COMFORTABLE_GRID -> {
+                val binding = SourceComfortableGridItemBinding.bind(view)
                 val parent = adapter.recyclerView as AutofitRecyclerView
                 val coverHeight = parent.itemWidth / 3 * 4
                 view.apply {
-                    card.layoutParams = ConstraintLayout.LayoutParams(
+                    binding.card.layoutParams = ConstraintLayout.LayoutParams(
                         MATCH_PARENT,
                         coverHeight
                     )
@@ -68,7 +70,7 @@ class SourceItem(val manga: Manga, private val displayMode: Preference<DisplayMo
 
     override fun bindViewHolder(
         adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>,
-        holder: SourceHolder,
+        holder: SourceHolder<*>,
         position: Int,
         payloads: List<Any?>?
     ) {

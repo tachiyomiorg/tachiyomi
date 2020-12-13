@@ -11,7 +11,6 @@ import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.merge
@@ -53,7 +52,6 @@ class MangaChaptersHeaderAdapter(
     }
 
     inner class HeaderViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-        @ExperimentalCoroutinesApi
         fun bind() {
             binding.chaptersLabel.text = if (numChapters == null) {
                 view.context.getString(R.string.chapters)

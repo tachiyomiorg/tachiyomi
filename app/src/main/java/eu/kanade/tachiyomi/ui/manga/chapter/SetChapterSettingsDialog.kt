@@ -2,6 +2,7 @@ package eu.kanade.tachiyomi.ui.manga.chapter
 
 import android.app.Dialog
 import android.os.Bundle
+import androidx.core.os.bundleOf
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import eu.kanade.tachiyomi.R
@@ -14,9 +15,7 @@ import eu.kanade.tachiyomi.widget.DialogCheckboxView
 class SetChapterSettingsDialog(bundle: Bundle? = null) : DialogController(bundle) {
 
     constructor(manga: Manga) : this(
-        Bundle().apply {
-            putSerializable(MANGA_KEY, manga)
-        }
+        bundleOf(MANGA_KEY to manga)
     )
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {

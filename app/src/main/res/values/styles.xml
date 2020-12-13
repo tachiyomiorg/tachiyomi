@@ -48,6 +48,17 @@
     </style>
 
 
+    <!--===========-->
+    <!--BottomSheet-->
+    <!--===========-->
+
+    <style name="Theme.BottomSheet" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">?attr/colorPrimary</item>
+    </style>
+
+
     <!--===============-->
     <!--Text Appearance-->
     <!--===============-->
@@ -107,6 +118,7 @@
 
     <style name="TextAppearance.Widget.Button" parent="TextAppearance.MaterialComponents.Button">
         <item name="android:letterSpacing">0</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 
     <style name="TextAppearance.Widget.Menu" parent="TextAppearance.AppCompat.Menu">
@@ -124,11 +136,11 @@
     <!--=======-->
     <style name="Theme.Widget" />
 
-    <style name="Theme.Widget.FAB" parent="@style/Widget.MaterialComponents.FloatingActionButton">
+    <style name="Theme.Widget.FAB" parent="@style/Widget.MaterialComponents.ExtendedFloatingActionButton.Icon">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="fabCustomSize">@dimen/fab_size</item>
-        <item name="android:minHeight">@dimen/fab_size</item>
+        <item name="android:minWidth">@dimen/fab_size</item>
         <item name="android:layout_gravity">bottom|end</item>
         <item name="android:layout_margin">@dimen/fab_margin</item>
         <item name="android:scaleType">fitCenter</item>
@@ -250,17 +262,16 @@
         <item name="android:textAllCaps">false</item>
     </style>
 
-    <style name="Theme.Widget.Button.Action" parent="Widget.MaterialComponents.Button.Icon">
-        <item name="elevation">0dp</item>
-
+    <style name="Theme.Widget.Button.Action" parent="Widget.MaterialComponents.Button.UnelevatedButton.Icon">
         <item name="android:textSize">12sp</item>
+        <item name="android:textAllCaps">false</item>
 
-        <item name="drawableTint">?attr/colorOnBackground</item>
-        <item name="android:drawablePadding">4dp</item>
-        <item name="rippleColor">?attr/colorAccent</item>
-        <item name="android:textColor">?attr/colorOnBackground</item>
+        <item name="backgroundTint">@android:color/transparent</item>
 
-        <item name="backgroundTint">@color/outlined_button_bg</item>
+        <item name="iconGravity">top</item>
+        <item name="iconTint">@color/button_action_selector</item>
+        <item name="iconPadding">4dp</item>
+        <item name="android:textColor">@color/button_action_selector</item>
     </style>
 
     <style name="Theme.Widget.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
@@ -313,23 +324,5 @@
         <item name="android:textColor">?attr/colorOnPrimary</item>
         <item name="android:textSize">15sp</item>
     </style>
-
-
-    <!--===-->
-    <!--OLD-->
-    <!--===-->
-    <style name="FilePickerTheme" parent="NNF_BaseTheme.Light">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimary</item>
-        <item name="colorAccent">@color/colorAccentLight</item>
-        <item name="colorButtonNormal">@color/colorPrimary</item>
-        <item name="android:textSize">14sp</item>
-
-        <item name="alertDialogTheme">@style/FilePickerAlertDialogTheme</item>
-
-        <item name="nnf_toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
-    </style>
-
-    <style name="FilePickerAlertDialogTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert" />
 
 </resources>

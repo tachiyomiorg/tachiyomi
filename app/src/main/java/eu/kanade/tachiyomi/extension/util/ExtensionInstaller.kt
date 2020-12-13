@@ -29,7 +29,7 @@ internal class ExtensionInstaller(private val context: Context) {
     /**
      * The system's download manager
      */
-    private val downloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+    private val downloadManager = context.getSystemService<DownloadManager>()!!
 
     /**
      * The broadcast receiver which listens to download completion events.

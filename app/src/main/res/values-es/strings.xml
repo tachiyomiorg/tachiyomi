@@ -151,7 +151,6 @@
     <!-- Library fragment -->
     <string name="library_search_hint">Título o autor…</string>
     <string name="updating_category">Actualizando categoría</string>
-    <string name="confirm_delete_manga">¿Estás seguro de eliminar las mangas seleccionados\?</string>
     <!-- Catalogue fragment -->
     <string name="source_requires_login">Este fuente requiere que inicies sesión</string>
     <string name="select_source">Selecciona una fuente</string>
@@ -251,7 +250,6 @@
     <string name="track">Seguimiento</string>
     <string name="history">Historial</string>
     <string name="action_filter_bookmarked">Con marcador</string>
-    <string name="action_filter_read">Leídos</string>
     <string name="action_sort_alpha">Alfabéticamente</string>
     <string name="action_sort_total">Total de capítulos</string>
     <string name="action_sort_last_read">Último leído</string>
@@ -318,7 +316,6 @@
     <string name="choices_reset">Reiniciar opciones de diálogo</string>
     <string name="pref_refresh_library_tracking">Refrescar el seguimiento</string>
     <string name="pref_refresh_library_tracking_summary">Actualización de estado, puntuación y último capítulo leído en los servicios de seguimiento</string>
-    <string name="also_delete_chapters">También eliminar capítulos descargados</string>
     <string name="no_valid_sources">Por favor habilita al menos una fuente válida</string>
     <string name="no_more_results">No hay más resultados</string>
     <string name="local_source">Fuente local</string>
@@ -527,7 +524,6 @@
     <string name="information_webview_required">Tachiyomi necesita WebView</string>
     <string name="manga_info_collapse">Menos</string>
     <string name="manga_info_expand">Más</string>
-    <string name="manga_info_about_label">Acerca de</string>
     <string name="licenses">Licencias de código abierto</string>
     <string name="website">Sitio web</string>
     <string name="pref_confirm_exit">Confirmar salida</string>
@@ -603,7 +599,7 @@
     <string name="action_sort_descending">Descendente</string>
     <string name="action_disable">Desactivar</string>
     <string name="action_open_in_settings">Abrir en Configuración</string>
-    <string name="pref_dns_over_https_summary">Requiere el reinicio de la aplicación para que surta efecto</string>
+    <string name="requires_app_restart">Requiere el reinicio de la aplicación para que surta efecto</string>
     <string name="pref_dns_over_https" translatable="false">DNS sobre HTTPS (Cloudflare)</string>
     <string name="label_network">Red</string>
     <string name="pref_jump_to_chapters">Saltar a los capítulos abiertos</string>
@@ -636,18 +632,46 @@
     <string name="channel_errors">Errores</string>
     <string name="backup_restore_missing_trackers">Rastreadores no conectados:</string>
     <string name="pref_allow_nsfw_sources">Fuentes 18+</string>
-    <string name="pref_allow_nsfw_sources_blocked">Bloqueado</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Bloquear fuentes de navegación pero mostrarlas en la lista de extensiones</string>
-    <string name="pref_allow_nsfw_sources_allowed">Permitido</string>
+    <string name="pref_allow_nsfw_sources_blocked">Ocultar</string>
+    <string name="pref_allow_nsfw_sources_allowed_multisource">Ocultar en fuentes pero mostrarlas en la lista de extensiones</string>
+    <string name="pref_allow_nsfw_sources_allowed">Mostrar</string>
     <string name="pref_remove_bookmarked_chapters">Borrar capítulos marcados</string>
     <string name="pref_category_delete_chapters">Borrar capítulos</string>
     <string name="ext_nsfw_warning">Puede contener contenido 18+</string>
     <string name="ext_nsfw_short">18+</string>
     <string name="parental_controls_info">Esto no evita que las extensiones no oficiales o potencialmente marcadas incorrectamente muestren contenido para mayores de 18 años dentro de la aplicación.</string>
-    <string name="pref_category_parental_controls">Controles parentales</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Falta 1 capítulo</item>
         <item quantity="other">Faltan %d capítulos</item>
     </plurals>
     <string name="no_chapters_error">No hay capítulos</string>
+    <string name="action_web_view">WebView</string>
+    <string name="chapter_settings_updated">Actualizado los ajustes del capítulo por defecto</string>
+    <string name="set_chapter_settings_as_default">Establecer como predeterminado</string>
+    <string name="also_set_chapter_settings_for_library">Aplicar también a toda la manga de mi biblioteca</string>
+    <string name="confirm_set_chapter_settings">¿Está seguro de que desea guardar esta configuración como predeterminada\?</string>
+    <string name="chapter_settings">Configuración de capítulo</string>
+    <string name="share_page_info">%1$s: %2$s, página %3$d</string>
+    <string name="action_search_settings">Opciones de búsqueda</string>
+    <string name="downloaded_chapters">Capítulos descargados</string>
+    <string name="manga_from_library">Manga de la biblioteca</string>
+    <string name="pref_hide_bottom_bar_on_scroll">Ocultar la barra inferior al desplazar</string>
+    <string name="pref_incognito_mode_summary">Pausar historial de lectura</string>
+    <string name="pref_incognito_mode">Modo incognito</string>
+    <string name="pref_clear_history_summary">Eliminar el historial de lectura para toda la manga</string>
+    <string name="pref_clear_history">Borrar historial</string>
+    <string name="clear_history_confirmation">¿Está seguro\? Toda la historia se perderá.</string>
+    <string name="clear_history_completed">Historial eliminado</string>
+    <string name="spen_next_page">Siguiente página</string>
+    <string name="spen_previous_page">Página anterior</string>
+    <string name="full_restore_offline">Restaura fuera de línea, termina rápidamente pero sólo contiene lo que tiene tu copia de seguridad</string>
+    <string name="full_restore_online">Restaurar en línea, es mucho más lento pero te da más información actualizada y capítulos</string>
+    <string name="full_restore_mode">Modo de red</string>
+    <string name="pref_backup_auto_create_legacy">También crear copia de seguridad heredada</string>
+    <string name="pref_create_legacy_backup_summary">Se puede utilizar en versiones anteriores de Tachiyomi</string>
+    <string name="pref_create_legacy_backup">Crear una copia de seguridad heredada</string>
+    <string name="migration_help_guide">Guía de migración de fuentes</string>
+    <string name="invalid_backup_file_type">Archivo de copia de seguridad inválido: %1$s</string>
+    <string name="pref_category_nsfw_content">Contenido 18+</string>
+    <string name="process_text_action_name">Buscar en Tachiyomi</string>
 </resources>

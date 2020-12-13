@@ -17,6 +17,7 @@ import androidx.appcompat.view.ActionMode
 import androidx.core.graphics.blue
 import androidx.core.graphics.green
 import androidx.core.graphics.red
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -47,11 +48,11 @@ import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.browse.migration.search.SearchController
 import eu.kanade.tachiyomi.ui.browse.source.browse.BrowseSourceController
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchController
+import eu.kanade.tachiyomi.ui.browse.source.latest.LatestUpdatesController
 import eu.kanade.tachiyomi.ui.library.ChangeMangaCategoriesDialog
 import eu.kanade.tachiyomi.ui.library.ChangeMangaCoverDialog
 import eu.kanade.tachiyomi.ui.library.LibraryController
 import eu.kanade.tachiyomi.ui.main.MainActivity
-import eu.kanade.tachiyomi.ui.main.offsetAppbarHeight
 import eu.kanade.tachiyomi.ui.manga.chapter.ChapterItem
 import eu.kanade.tachiyomi.ui.manga.chapter.ChaptersAdapter
 import eu.kanade.tachiyomi.ui.manga.chapter.ChaptersSettingsSheet
@@ -71,8 +72,6 @@ import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.getCoordinates
 import eu.kanade.tachiyomi.util.view.shrinkOnScroll
 import eu.kanade.tachiyomi.util.view.snack
-import kotlinx.android.synthetic.main.main_activity.root_coordinator
-import kotlinx.android.synthetic.main.main_activity.toolbar
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.view.clicks
@@ -97,10 +96,10 @@ class MangaController :
     DeleteChaptersDialog.Listener {
 
     constructor(manga: Manga?, fromSource: Boolean = false) : super(
-        Bundle().apply {
-            putLong(MANGA_EXTRA, manga?.id ?: 0)
-            putBoolean(FROM_SOURCE_EXTRA, fromSource)
-        }
+        bundleOf(
+            MANGA_EXTRA to (manga?.id ?: 0),
+            FROM_SOURCE_EXTRA to fromSource
+        )
     ) {
         this.manga = manga
         if (manga != null) {
@@ -235,7 +234,7 @@ class MangaController :
             }
             .launchIn(scope)
 
-        binding.actionToolbar.offsetAppbarHeight(activity!!)
+        (activity!! as MainActivity).fixViewToBottom(binding.actionToolbar)
 
         settingsSheet = ChaptersSettingsSheet(router, presenter) { group ->
             if (group is ChaptersSettingsSheet.Filter.FilterGroup) {
@@ -259,7 +258,7 @@ class MangaController :
             else -> min(binding.recycler.computeVerticalScrollOffset(), 255)
         }
 
-        activity?.toolbar?.setTitleTextColor(
+        (activity as? MainActivity)?.binding?.toolbar?.setTitleTextColor(
             Color.argb(
                 calculatedAlpha,
                 toolbarTextColor.red,
@@ -503,7 +502,7 @@ class MangaController :
     private fun toggleFavorite() {
         val isNowFavorite = presenter.toggleFavorite()
         if (activity != null && !isNowFavorite && presenter.hasDownloads()) {
-            activity!!.root_coordinator?.snack(activity!!.getString(R.string.delete_downloads_for_manga)) {
+            (activity as? MainActivity)?.binding?.rootCoordinator?.snack(activity!!.getString(R.string.delete_downloads_for_manga)) {
                 setAction(R.string.action_delete) {
                     presenter.deleteDownloads()
                 }
@@ -569,6 +568,10 @@ class MangaController :
                 (router.activity as MainActivity).setSelectedNavItem(R.id.nav_library)
                 val controller = router.getControllerWithTag(R.id.nav_library.toString()) as LibraryController
                 controller.search(query)
+            }
+            is LatestUpdatesController -> {
+                // Search doesn't currently work in source Latest view
+                return
             }
             is BrowseSourceController -> {
                 router.handleBack()
@@ -900,7 +903,7 @@ class MangaController :
         val manga = presenter.manga
         presenter.downloadChapters(chapters)
         if (view != null && !manga.favorite) {
-            addSnackbar = activity!!.root_coordinator?.snack(view.context.getString(R.string.snack_add_to_library), Snackbar.LENGTH_INDEFINITE) {
+            addSnackbar = (activity as? MainActivity)?.binding?.rootCoordinator?.snack(view.context.getString(R.string.snack_add_to_library), Snackbar.LENGTH_INDEFINITE) {
                 setAction(R.string.action_add) {
                     addToLibrary(manga)
                 }
@@ -920,7 +923,7 @@ class MangaController :
     private fun markPreviousAsRead(chapters: List<ChapterItem>) {
         val adapter = chaptersAdapter ?: return
         val prevChapters = if (presenter.sortDescending()) adapter.items.reversed() else adapter.items
-        val chapterPos = prevChapters.indexOf(chapters.last())
+        val chapterPos = prevChapters.indexOf(chapters.lastOrNull())
         if (chapterPos != -1) {
             markAsRead(prevChapters.take(chapterPos))
         }

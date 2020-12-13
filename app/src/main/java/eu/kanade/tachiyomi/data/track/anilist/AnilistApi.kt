@@ -2,25 +2,33 @@ package eu.kanade.tachiyomi.data.track.anilist
 
 import android.net.Uri
 import androidx.core.net.toUri
-import com.github.salomonbrys.kotson.array
-import com.github.salomonbrys.kotson.get
-import com.github.salomonbrys.kotson.jsonObject
-import com.github.salomonbrys.kotson.nullInt
-import com.github.salomonbrys.kotson.nullString
-import com.github.salomonbrys.kotson.obj
-import com.google.gson.JsonObject
-import com.google.gson.JsonParser
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.network.asObservableSuccess
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.contentOrNull
+import kotlinx.serialization.json.int
+import kotlinx.serialization.json.intOrNull
+import kotlinx.serialization.json.jsonArray
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
+import kotlinx.serialization.json.long
+import kotlinx.serialization.json.put
+import kotlinx.serialization.json.putJsonObject
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import rx.Observable
+import uy.kohesive.injekt.injectLazy
 import java.util.Calendar
 
 class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
+
+    private val json: Json by injectLazy()
 
     private val jsonMime = "application/json; charset=utf-8".toMediaTypeOrNull()
     private val authClient = client.newBuilder().addInterceptor(interceptor).build()
@@ -35,15 +43,14 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 |} 
             |}
             |""".trimMargin()
-        val variables = jsonObject(
-            "mangaId" to track.media_id,
-            "progress" to track.last_chapter_read,
-            "status" to track.toAnilistStatus()
-        )
-        val payload = jsonObject(
-            "query" to query,
-            "variables" to variables
-        )
+        val payload = buildJsonObject {
+            put("query", query)
+            putJsonObject("variables") {
+                put("mangaId", track.media_id)
+                put("progress", track.last_chapter_read)
+                put("status", track.toAnilistStatus())
+            }
+        }
         val body = payload.toString().toRequestBody(jsonMime)
         val request = Request.Builder()
             .url(apiUrl)
@@ -57,8 +64,8 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 if (responseBody.isEmpty()) {
                     throw Exception("Null Response")
                 }
-                val response = JsonParser.parseString(responseBody).obj
-                track.library_id = response["data"]["SaveMediaListEntry"]["id"].asLong
+                val response = json.decodeFromString<JsonObject>(responseBody)
+                track.library_id = response["data"]!!.jsonObject["SaveMediaListEntry"]!!.jsonObject["id"]!!.jsonPrimitive.long
                 track
             }
     }
@@ -74,16 +81,15 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 |}
             |}
             |""".trimMargin()
-        val variables = jsonObject(
-            "listId" to track.library_id,
-            "progress" to track.last_chapter_read,
-            "status" to track.toAnilistStatus(),
-            "score" to track.score.toInt()
-        )
-        val payload = jsonObject(
-            "query" to query,
-            "variables" to variables
-        )
+        val payload = buildJsonObject {
+            put("query", query)
+            putJsonObject("variables") {
+                put("listId", track.library_id)
+                put("progress", track.last_chapter_read)
+                put("status", track.toAnilistStatus())
+                put("score", track.score.toInt())
+            }
+        }
         val body = payload.toString().toRequestBody(jsonMime)
         val request = Request.Builder()
             .url(apiUrl)
@@ -122,13 +128,12 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 |}
             |}
             |""".trimMargin()
-        val variables = jsonObject(
-            "query" to search
-        )
-        val payload = jsonObject(
-            "query" to query,
-            "variables" to variables
-        )
+        val payload = buildJsonObject {
+            put("query", query)
+            putJsonObject("variables") {
+                put("query", search)
+            }
+        }
         val body = payload.toString().toRequestBody(jsonMime)
         val request = Request.Builder()
             .url(apiUrl)
@@ -141,11 +146,11 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 if (responseBody.isEmpty()) {
                     throw Exception("Null Response")
                 }
-                val response = JsonParser.parseString(responseBody).obj
-                val data = response["data"]!!.obj
-                val page = data["Page"].obj
-                val media = page["media"].array
-                val entries = media.map { jsonToALManga(it.obj) }
+                val response = json.decodeFromString<JsonObject>(responseBody)
+                val data = response["data"]!!.jsonObject
+                val page = data["Page"]!!.jsonObject
+                val media = page["media"]!!.jsonArray
+                val entries = media.map { jsonToALManga(it.jsonObject) }
                 entries.map { it.toTrack() }
             }
     }
@@ -182,14 +187,13 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 |}
             |}
             |""".trimMargin()
-        val variables = jsonObject(
-            "id" to userid,
-            "manga_id" to track.media_id
-        )
-        val payload = jsonObject(
-            "query" to query,
-            "variables" to variables
-        )
+        val payload = buildJsonObject {
+            put("query", query)
+            putJsonObject("variables") {
+                put("id", userid)
+                put("manga_id", track.media_id)
+            }
+        }
         val body = payload.toString().toRequestBody(jsonMime)
         val request = Request.Builder()
             .url(apiUrl)
@@ -202,11 +206,11 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 if (responseBody.isEmpty()) {
                     throw Exception("Null Response")
                 }
-                val response = JsonParser.parseString(responseBody).obj
-                val data = response["data"]!!.obj
-                val page = data["Page"].obj
-                val media = page["mediaList"].array
-                val entries = media.map { jsonToALUserManga(it.obj) }
+                val response = json.decodeFromString<JsonObject>(responseBody)
+                val data = response["data"]!!.jsonObject
+                val page = data["Page"]!!.jsonObject
+                val media = page["mediaList"]!!.jsonArray
+                val entries = media.map { jsonToALUserManga(it.jsonObject) }
                 entries.firstOrNull()?.toTrack()
             }
     }
@@ -232,9 +236,9 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 |}
             |}
             |""".trimMargin()
-        val payload = jsonObject(
-            "query" to query
-        )
+        val payload = buildJsonObject {
+            put("query", query)
+        }
         val body = payload.toString().toRequestBody(jsonMime)
         val request = Request.Builder()
             .url(apiUrl)
@@ -247,10 +251,10 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 if (responseBody.isEmpty()) {
                     throw Exception("Null Response")
                 }
-                val response = JsonParser.parseString(responseBody).obj
-                val data = response["data"]!!.obj
-                val viewer = data["Viewer"].obj
-                Pair(viewer["id"].asInt, viewer["mediaListOptions"]["scoreFormat"].asString)
+                val response = json.decodeFromString<JsonObject>(responseBody)
+                val data = response["data"]!!.jsonObject
+                val viewer = data["Viewer"]!!.jsonObject
+                Pair(viewer["id"]!!.jsonPrimitive.int, viewer["mediaListOptions"]!!.jsonObject["scoreFormat"]!!.jsonPrimitive.content)
             }
     }
 
@@ -258,12 +262,12 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
         val date = try {
             val date = Calendar.getInstance()
             date.set(
-                struct["startDate"]["year"].nullInt ?: 0,
+                struct["startDate"]!!.jsonObject["year"]!!.jsonPrimitive.intOrNull ?: 0,
                 (
-                    struct["startDate"]["month"].nullInt
+                    struct["startDate"]!!.jsonObject["month"]!!.jsonPrimitive.intOrNull
                         ?: 0
                     ) - 1,
-                struct["startDate"]["day"].nullInt ?: 0
+                struct["startDate"]!!.jsonObject["day"]!!.jsonPrimitive.intOrNull ?: 0
             )
             date.timeInMillis
         } catch (_: Exception) {
@@ -271,19 +275,25 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
         }
 
         return ALManga(
-            struct["id"].asInt,
-            struct["title"]["romaji"].asString,
-            struct["coverImage"]["large"].asString,
-            struct["description"].nullString.orEmpty(),
-            struct["type"].asString,
-            struct["status"].nullString.orEmpty(),
+            struct["id"]!!.jsonPrimitive.int,
+            struct["title"]!!.jsonObject["romaji"]!!.jsonPrimitive.content,
+            struct["coverImage"]!!.jsonObject["large"]!!.jsonPrimitive.content,
+            struct["description"]!!.jsonPrimitive.contentOrNull,
+            struct["type"]!!.jsonPrimitive.content,
+            struct["status"]!!.jsonPrimitive.contentOrNull ?: "",
             date,
-            struct["chapters"].nullInt ?: 0
+            struct["chapters"]!!.jsonPrimitive.intOrNull ?: 0
         )
     }
 
     private fun jsonToALUserManga(struct: JsonObject): ALUserManga {
-        return ALUserManga(struct["id"].asLong, struct["status"].asString, struct["scoreRaw"].asInt, struct["progress"].asInt, jsonToALManga(struct["media"].obj))
+        return ALUserManga(
+            struct["id"]!!.jsonPrimitive.long,
+            struct["status"]!!.jsonPrimitive.content,
+            struct["scoreRaw"]!!.jsonPrimitive.int,
+            struct["progress"]!!.jsonPrimitive.int,
+            jsonToALManga(struct["media"]!!.jsonObject)
+        )
     }
 
     companion object {

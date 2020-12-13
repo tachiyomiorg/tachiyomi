@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
+import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -35,6 +36,7 @@ import eu.kanade.tachiyomi.ui.base.controller.FabController
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.library.ChangeMangaCategoriesDialog
+import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.webview.WebViewActivity
 import eu.kanade.tachiyomi.util.system.connectivityManager
@@ -45,7 +47,6 @@ import eu.kanade.tachiyomi.util.view.shrinkOnScroll
 import eu.kanade.tachiyomi.util.view.snack
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
 import eu.kanade.tachiyomi.widget.EmptyView
-import kotlinx.android.synthetic.main.main_activity.root_coordinator
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.filter
@@ -237,12 +238,7 @@ open class BrowseSourceController(bundle: Bundle) :
 
         if (filterSheet != null) {
             // Add bottom padding if filter FAB is visible
-            recycler.setPadding(
-                recycler.paddingLeft,
-                recycler.paddingTop,
-                recycler.paddingRight,
-                view.resources.getDimensionPixelOffset(R.dimen.fab_list_padding)
-            )
+            recycler.updatePadding(bottom = view.resources.getDimensionPixelOffset(R.dimen.fab_list_padding))
             recycler.clipToPadding = false
 
             actionFab?.shrinkOnScroll(recycler)
@@ -268,7 +264,7 @@ open class BrowseSourceController(bundle: Bundle) :
         searchView.maxWidth = Int.MAX_VALUE
 
         val query = presenter.query
-        if (!query.isBlank()) {
+        if (query.isNotBlank()) {
             searchItem.expandActionView()
             searchView.setQuery(query, true)
             searchView.clearFocus()
@@ -402,7 +398,7 @@ open class BrowseSourceController(bundle: Bundle) :
 
             binding.emptyView.show(message, actions)
         } else {
-            snack = activity!!.root_coordinator?.snack(message, Snackbar.LENGTH_INDEFINITE) {
+            snack = (activity as? MainActivity)?.binding?.rootCoordinator?.snack(message, Snackbar.LENGTH_INDEFINITE) {
                 setAction(R.string.action_retry, retryAction)
             }
         }
@@ -495,13 +491,13 @@ open class BrowseSourceController(bundle: Bundle) :
      * @param manga the manga to find.
      * @return the holder of the manga or null if it's not bound.
      */
-    private fun getHolder(manga: Manga): SourceHolder? {
+    private fun getHolder(manga: Manga): SourceHolder<*>? {
         val adapter = adapter ?: return null
 
         adapter.allBoundViewHolders.forEach { holder ->
             val item = adapter.getItem(holder.bindingAdapterPosition) as? SourceItem
             if (item != null && item.manga.id!! == manga.id!!) {
-                return holder as SourceHolder
+                return holder as SourceHolder<*>
             }
         }
 
