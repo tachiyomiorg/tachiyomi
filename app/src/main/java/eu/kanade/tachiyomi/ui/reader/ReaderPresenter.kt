@@ -10,6 +10,7 @@ import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.History
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.DownloadManager
+import eu.kanade.tachiyomi.data.preference.PreferenceKeys.removeExcludeCategories
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.source.LocalSource
@@ -401,8 +402,20 @@ class ReaderPresenter(
         val currentChapterPosition = chapterList.indexOf(currentChapter)
         val removeAfterReadSlots = preferences.removeAfterReadSlots()
         val chapterToDelete = chapterList.getOrNull(currentChapterPosition - removeAfterReadSlots)
+
+        // Retrieve the categories that are set to exclude from being deleted on read
+        val categoriesToExclude = preferences.removeExcludeCategories().get().map(String::toInt)
+        val categoriesForManga =
+            this.manga?.let {
+                db.getCategoriesForManga(it).executeAsBlocking()
+                    .mapNotNull { it.id }
+                    .takeUnless { it.isEmpty() }
+            } ?: listOf(0)
+
         // Check if deleting option is enabled and chapter exists
-        if (removeAfterReadSlots != -1 && chapterToDelete != null) {
+        if (removeAfterReadSlots != -1 && chapterToDelete != null &&
+            categoriesForManga.intersect(categoriesToExclude).isEmpty()
+        ) {
             enqueueDeleteReadChapters(chapterToDelete)
         }
     }

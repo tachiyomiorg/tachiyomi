@@ -18,15 +18,7 @@ import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.asImmediateFlow
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
-import eu.kanade.tachiyomi.util.preference.defaultValue
-import eu.kanade.tachiyomi.util.preference.entriesRes
-import eu.kanade.tachiyomi.util.preference.intListPreference
-import eu.kanade.tachiyomi.util.preference.multiSelectListPreference
-import eu.kanade.tachiyomi.util.preference.onClick
-import eu.kanade.tachiyomi.util.preference.preference
-import eu.kanade.tachiyomi.util.preference.preferenceCategory
-import eu.kanade.tachiyomi.util.preference.switchPreference
-import eu.kanade.tachiyomi.util.preference.titleRes
+import eu.kanade.tachiyomi.util.preference.*
 import eu.kanade.tachiyomi.util.system.getFilePicker
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -42,6 +34,9 @@ class SettingsDownloadController : SettingsController() {
 
     override fun setupPreferenceScreen(screen: PreferenceScreen) = screen.apply {
         titleRes = R.string.pref_category_downloads
+
+        val dbCategories = db.getCategories().executeAsBlocking()
+        val categories = listOf(Category.createDefault()) + dbCategories
 
         preference {
             key = Keys.downloadsDirectory
@@ -92,10 +87,27 @@ class SettingsDownloadController : SettingsController() {
                 titleRes = R.string.pref_remove_bookmarked_chapters
                 defaultValue = false
             }
-        }
+            multiSelectListPreference {
+                key = Keys.removeExcludeCategories
+                titleRes = R.string.pref_remove_exclude_categories
+                entries = categories.map { it.name }.toTypedArray()
+                entryValues = categories.map { it.id.toString() }.toTypedArray()
 
-        val dbCategories = db.getCategories().executeAsBlocking()
-        val categories = listOf(Category.createDefault()) + dbCategories
+                preferences.removeExcludeCategories().asFlow()
+                    .onEach { mutable ->
+                        val selected = mutable
+                            .mapNotNull { id -> categories.find { it.id == id.toInt() } }
+                            .sortedBy { it.order }
+
+                        summary = if (selected.isEmpty()) {
+                            resources?.getString(R.string.none)
+                        } else {
+                            selected.joinToString { it.name }
+                        }
+                    }
+                    .launchIn(scope)
+            }
+        }
 
         preferenceCategory {
             titleRes = R.string.pref_download_new

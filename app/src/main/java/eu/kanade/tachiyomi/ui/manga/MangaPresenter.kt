@@ -451,10 +451,21 @@ class MangaPresenter(
             chapter
         }
 
+        // Retrieve the categories that are set to exclude from being deleted on read
+        val categoriesToExclude = preferences.removeExcludeCategories().get().map(String::toInt)
+        val categoriesForManga =
+            this.manga?.let {
+                db.getCategoriesForManga(it).executeAsBlocking()
+                    .mapNotNull { it.id }
+                    .takeUnless { it.isEmpty() }
+            } ?: listOf(0)
+
         launchIO {
             db.updateChaptersProgress(chapters).executeAsBlocking()
 
-            if (preferences.removeAfterMarkedAsRead()) {
+            if (preferences.removeAfterMarkedAsRead() &&
+                categoriesForManga.intersect(categoriesToExclude).isEmpty()
+            ) {
                 deleteChapters(chapters)
             }
         }

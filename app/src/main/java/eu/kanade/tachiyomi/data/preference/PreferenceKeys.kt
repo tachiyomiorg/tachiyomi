@@ -143,6 +143,8 @@ object PreferenceKeys {
 
     const val downloadNewCategories = "download_new_categories"
 
+    const val removeExcludeCategories = "remove_exclude_categories"
+
     const val libraryDisplayMode = "pref_display_mode_library"
 
     const val lang = "app_language"

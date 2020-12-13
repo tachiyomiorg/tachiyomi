@@ -326,6 +326,7 @@
     <string name="pref_remove_after_marked_as_read">After manually marked as read</string>
     <string name="pref_remove_after_read">After reading</string>
     <string name="pref_remove_bookmarked_chapters">Delete bookmarked chapters</string>
+    <string name="pref_remove_exclude_categories">Categories to exclude in removing</string>
     <string name="custom_dir">Custom location</string>
     <string name="disabled">Disabled</string>
     <string name="last_read_chapter">Last read chapter</string>
@@ -335,6 +336,7 @@
     <string name="fifth_to_last">Fifth to last chapter</string>
     <string name="pref_download_new">Download new chapters</string>
     <string name="pref_download_new_categories">Categories to include in download</string>
+    <string name="none">None</string>
 
       <!-- Tracking section -->
     <string name="pref_auto_update_manga_sync">Update chapter progress after reading</string>
