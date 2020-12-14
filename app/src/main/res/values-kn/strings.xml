@@ -578,7 +578,7 @@
     <string name="action_global_search_query">\"%1$s\" ಅನ್ನು ಗ್ಲೋಬಲ್ ಸರ್ಚ್ ಮಾಡಿ</string>
     <string name="updated_version">v%1$s ಗೆ ಅಪ್ಡೇಟ್ ಆಗಿದೆ</string>
     <string name="whats_new">ಹೊಸತೇನಿದೆ</string>
-    <string name="pref_dns_over_https_summary">ಜಾರಿಗೆ ಬರಲು ಅಪ್ಲಿಕೇಶನ್ ಮರುಪ್ರಾರಂಭದ ಅಗತ್ಯವಿದೆ</string>
+    <string name="requires_app_restart">ಜಾರಿಗೆ ಬರಲು ಅಪ್ಲಿಕೇಶನ್ ಮರುಪ್ರಾರಂಭದ ಅಗತ್ಯವಿದೆ</string>
     <string name="label_network">ಅಡ್ವಾನ್ಸ್ಡ್ ಸೆಕ್ಷನ್</string>
     <string name="pref_category_reading_mode">ಓದುವ ಮೊಡ್</string>
     <string name="pref_jump_to_chapters">ಓಪನ್ ಮಾಡಿದ ಮೇಲೆ ಅಧ್ಯಯಕ್ಕೆ ಹೋಗಿ</string>

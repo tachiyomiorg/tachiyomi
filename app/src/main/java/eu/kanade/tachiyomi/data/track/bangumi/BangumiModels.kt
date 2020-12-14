@@ -8,7 +8,7 @@ fun Track.toBangumiStatus() = when (status) {
     Bangumi.ON_HOLD -> "on_hold"
     Bangumi.DROPPED -> "dropped"
     Bangumi.PLANNING -> "wish"
-    else -> throw NotImplementedError("Unknown status")
+    else -> throw NotImplementedError("Unknown status: $status")
 }
 
 fun toTrackStatus(status: String) = when (status) {
@@ -17,6 +17,5 @@ fun toTrackStatus(status: String) = when (status) {
     "on_hold" -> Bangumi.ON_HOLD
     "dropped" -> Bangumi.DROPPED
     "wish" -> Bangumi.PLANNING
-
-    else -> throw Exception("Unknown status")
+    else -> throw NotImplementedError("Unknown status: $status")
 }

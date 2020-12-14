@@ -111,7 +111,7 @@ class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
 
     fun ensureLoggedIn() {
         if (isAuthorized) return
-        if (!isLogged) throw Exception("MAL login credentials not found")
+        if (!isLogged) throw Exception(context.getString(R.string.myanimelist_creds_missing))
     }
 
     override fun logout() {

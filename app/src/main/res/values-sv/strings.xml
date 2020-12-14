@@ -572,7 +572,7 @@
     </plurals>
     <string name="unknown_status">Okänd status</string>
     <string name="unknown_author">Okänd författare</string>
-    <string name="pref_dns_over_https_summary">Kräver omstart av appen för att börja gälla</string>
+    <string name="requires_app_restart">Kräver omstart av appen för att börja gälla</string>
     <string name="pref_dns_over_https" translatable="false">DNS över HTTPS (Cloudflare)</string>
     <string name="label_network">Nätverk</string>
     <string name="pref_jump_to_chapters">Hoppa till kapitel vid öppning</string>

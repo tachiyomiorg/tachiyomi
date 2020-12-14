@@ -591,7 +591,7 @@
     <string name="pref_read_with_tapping_inverted">Інвертувати тицяння</string>
     <string name="unknown_status">Невідомий статус</string>
     <string name="unknown_author">Невідомий автор</string>
-    <string name="pref_dns_over_https_summary">Потрібен перезапуск, щоб зміни вступили в дію</string>
+    <string name="requires_app_restart">Потрібен перезапуск, щоб зміни вступили в дію</string>
     <string name="pref_dns_over_https" translatable="false">DNS понад HTTPS (Cloudflare)</string>
     <string name="label_network">Мережа</string>
     <string name="pref_jump_to_chapters">Перейти до глав при відкритті</string>

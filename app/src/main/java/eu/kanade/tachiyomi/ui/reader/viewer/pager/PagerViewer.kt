@@ -185,7 +185,7 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
      * activity of the change and requests the preload of the next chapter if this is the last page.
      */
     private fun onReaderPageSelected(page: ReaderPage, allowPreload: Boolean) {
-        val pages = page.chapter.pages!! // Won't be null because it's the loaded chapter
+        val pages = page.chapter.pages ?: return
         Timber.d("onReaderPageSelected: ${page.number}/${pages.size}")
         activity.onPageSelected(page)
 

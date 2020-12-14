@@ -33,9 +33,6 @@ import java.util.TimeZone
 
 class AboutController : SettingsController() {
 
-    /**
-     * Checks for new releases
-     */
     private val updateChecker by lazy { GithubUpdateChecker() }
 
     private val dateFormat: DateFormat = preferences.dateFormat()

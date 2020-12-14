@@ -586,7 +586,7 @@
         <item quantity="other">%1$s глав</item>
     </plurals>
     <string name="action_sort_descending">По убыванию</string>
-    <string name="pref_dns_over_https_summary">Требуется перезапуск приложения для вступления в силу</string>
+    <string name="requires_app_restart">Требуется перезапуск приложения для вступления в силу</string>
     <string name="pref_dns_over_https" translatable="false">DNS по HTTPS (Cloudflare)</string>
     <string name="label_network">Сеть</string>
     <string name="pref_jump_to_chapters">Переходить к главам при запуске</string>

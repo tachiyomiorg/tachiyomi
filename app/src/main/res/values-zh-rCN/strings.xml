@@ -558,7 +558,7 @@
         <item quantity="other">%1$s 个章节</item>
     </plurals>
     <string name="action_open_in_settings">在设置中打开</string>
-    <string name="pref_dns_over_https_summary">需要重启应用才能生效</string>
+    <string name="requires_app_restart">需要重启应用才能生效</string>
     <string name="pref_dns_over_https" translatable="false">DNS over HTTPS (Cloudflare)</string>
     <string name="label_network">网络</string>
     <string name="pref_jump_to_chapters">打开时跳转到阅读章节</string>

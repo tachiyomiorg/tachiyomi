@@ -599,7 +599,7 @@
     <string name="action_sort_descending">Descendente</string>
     <string name="action_disable">Desactivar</string>
     <string name="action_open_in_settings">Abrir en Configuración</string>
-    <string name="pref_dns_over_https_summary">Requiere el reinicio de la aplicación para que surta efecto</string>
+    <string name="requires_app_restart">Requiere el reinicio de la aplicación para que surta efecto</string>
     <string name="pref_dns_over_https" translatable="false">DNS sobre HTTPS (Cloudflare)</string>
     <string name="label_network">Red</string>
     <string name="pref_jump_to_chapters">Saltar a los capítulos abiertos</string>

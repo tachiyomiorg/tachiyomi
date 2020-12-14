@@ -581,7 +581,7 @@
     <string name="tabs_header">Раздели</string>
     <string name="badges_header">Значки</string>
     <string name="label_data">Данни</string>
-    <string name="pref_dns_over_https_summary">Изисква рестартиране на приложението, за да влезе в сила</string>
+    <string name="requires_app_restart">Изисква рестартиране на приложението, за да влезе в сила</string>
     <string name="label_network">Мрежа</string>
     <string name="backup_restore_missing_sources">Липсващи източници:</string>
     <string name="invalid_backup_file_missing_manga">Резервното копие не съдържа манга.</string>

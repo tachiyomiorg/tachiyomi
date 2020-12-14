@@ -606,7 +606,7 @@
     </plurals>
     <string name="unknown_status">Estado desconhecido</string>
     <string name="unknown_author">Autor desconhecido</string>
-    <string name="pref_dns_over_https_summary">Requer reinício da app para ter efeito</string>
+    <string name="requires_app_restart">Requer reinício da app para ter efeito</string>
     <string name="label_network">Rede</string>
     <string name="pref_dns_over_https" translatable="false">DNS por HTTPS (Cloudflare)</string>
     <string name="updated_version">Atualizado para v%1$s</string>

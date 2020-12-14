@@ -109,7 +109,7 @@ class LibraryUpdateNotifier(private val context: Context) {
 
                 setContentIntent(errorLogIntent)
                 addAction(
-                    R.drawable.nnf_ic_file_folder,
+                    R.drawable.ic_folder_24dp,
                     context.getString(R.string.action_open_log),
                     errorLogIntent
                 )

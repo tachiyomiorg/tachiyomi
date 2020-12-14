@@ -573,7 +573,7 @@
     <string name="action_global_search_query">Cerca \"%1$s\" globalment</string>
     <string name="updated_version">S\'ha actualitzat a la v%1$s</string>
     <string name="whats_new">Novetats</string>
-    <string name="pref_dns_over_https_summary">Cal reiniciar l\'aplicació perquè s\'apliqui</string>
+    <string name="requires_app_restart">Cal reiniciar l\'aplicació perquè s\'apliqui</string>
     <string name="label_network">Xarxa</string>
     <string name="pref_category_reading_mode">Mode de lectura</string>
     <string name="pref_show_reading_mode_summary">Mostra breument el mode actual en obrir el lector</string>

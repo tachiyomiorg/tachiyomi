@@ -568,7 +568,7 @@
         <item quantity="other">%1$s κεφάλαια</item>
     </plurals>
     <string name="action_open_in_settings">Άνοιγμα στις Ρυθμίσεις</string>
-    <string name="pref_dns_over_https_summary">Απαιτείται επανεκκίνηση της εφαρμογής για να τεθεί σε ισχύ</string>
+    <string name="requires_app_restart">Απαιτείται επανεκκίνηση της εφαρμογής για να τεθεί σε ισχύ</string>
     <string name="pref_dns_over_https" translatable="false">DNS μέσω HTTPS (Cloudflare)</string>
     <string name="label_network">Δίκτυο</string>
     <string name="pref_jump_to_chapters">Μετάβαση στα κεφάλαια κατά το άνοιγμα</string>

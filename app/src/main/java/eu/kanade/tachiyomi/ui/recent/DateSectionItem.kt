@@ -2,26 +2,26 @@ package eu.kanade.tachiyomi.ui.recent
 
 import android.text.format.DateUtils
 import android.view.View
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractHeaderItem
 import eu.davidea.flexibleadapter.items.IFlexible
 import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.databinding.RecentSectionItemBinding
 import java.util.Date
 
-class DateSectionItem(val date: Date) : AbstractHeaderItem<DateSectionItem.Holder>() {
+class DateSectionItem(val date: Date) : AbstractHeaderItem<DateSectionItem.DateSectionItemHolder>() {
 
     override fun getLayoutRes(): Int {
         return R.layout.recent_section_item
     }
 
-    override fun createViewHolder(view: View, adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>): Holder {
-        return Holder(view, adapter)
+    override fun createViewHolder(view: View, adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>): DateSectionItemHolder {
+        return DateSectionItemHolder(view, adapter)
     }
 
-    override fun bindViewHolder(adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>, holder: Holder, position: Int, payloads: List<Any?>?) {
+    override fun bindViewHolder(adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>, holder: DateSectionItemHolder, position: Int, payloads: List<Any?>?) {
         holder.bind(this)
     }
 
@@ -37,14 +37,14 @@ class DateSectionItem(val date: Date) : AbstractHeaderItem<DateSectionItem.Holde
         return date.hashCode()
     }
 
-    class Holder(view: View, adapter: FlexibleAdapter<*>) : FlexibleViewHolder(view, adapter, true) {
+    inner class DateSectionItemHolder(view: View, adapter: FlexibleAdapter<*>) : FlexibleViewHolder(view, adapter, true) {
+
+        private val binding = RecentSectionItemBinding.bind(view)
 
         private val now = Date().time
 
-        val section_text: TextView = view.findViewById(R.id.section_text)
-
         fun bind(item: DateSectionItem) {
-            section_text.text = DateUtils.getRelativeTimeSpanString(item.date.time, now, DateUtils.DAY_IN_MILLIS)
+            binding.sectionText.text = DateUtils.getRelativeTimeSpanString(item.date.time, now, DateUtils.DAY_IN_MILLIS)
         }
     }
 }

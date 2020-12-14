@@ -555,7 +555,7 @@
     <plurals name="manga_num_chapters">
         <item quantity="other">%1$s bab</item>
     </plurals>
-    <string name="pref_dns_over_https_summary">Mulai ulang aplikasi untuk menerapkan pengaturan</string>
+    <string name="requires_app_restart">Mulai ulang aplikasi untuk menerapkan pengaturan</string>
     <string name="pref_dns_over_https" translatable="false">DNS melalui HTTPS (Cloudflare)</string>
     <string name="label_network">Jaringan</string>
     <string name="pref_jump_to_chapters">Lompat ke bab saat dibuka</string>

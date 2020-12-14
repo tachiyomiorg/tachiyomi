@@ -345,7 +345,7 @@
     <string name="pref_remove_after_marked_as_read">Ааҕыллыбыт диэн суруллубутун кэннэ</string>
     <string name="pref_download_only_over_wifi">Wi-Fi эрэ баар буоллаҕына хачайдаа</string>
     <string name="pref_download_directory">Хачайдааһын сурунаала</string>
-    <string name="pref_dns_over_https_summary">Уларыйыы киирэрин гына эбилиги хос холбоо</string>
+    <string name="requires_app_restart">Уларыйыы киирэрин гына эбилиги хос холбоо</string>
     <string name="cache_delete_error">Кээс сотторуутугар сыыһааһын буолла</string>
     <string name="cache_deleted">Кээс ыраастанна. %1$d билэ сотторуллубут этэ</string>
     <string name="used_cache">Туттуллубут: %1$s</string>

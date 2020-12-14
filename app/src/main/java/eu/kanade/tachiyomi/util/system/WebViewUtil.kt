@@ -13,7 +13,7 @@ object WebViewUtil {
 
     const val REQUESTED_WITH = "com.android.browser"
 
-    const val MINIMUM_WEBVIEW_VERSION = 84
+    const val MINIMUM_WEBVIEW_VERSION = 86
 
     fun supportsWebView(context: Context): Boolean {
         try {

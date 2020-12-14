@@ -39,7 +39,6 @@ import eu.kanade.tachiyomi.util.preference.preferenceCategory
 import eu.kanade.tachiyomi.util.preference.summaryRes
 import eu.kanade.tachiyomi.util.preference.switchPreference
 import eu.kanade.tachiyomi.util.preference.titleRes
-import eu.kanade.tachiyomi.util.system.getFilePicker
 import eu.kanade.tachiyomi.util.system.toast
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -125,13 +124,11 @@ class SettingsBackupController : SettingsController() {
                 titleRes = R.string.pref_backup_directory
 
                 onClick {
-                    val currentDir = preferences.backupsDirectory().get()
                     try {
                         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
                         startActivityForResult(intent, CODE_BACKUP_DIR)
                     } catch (e: ActivityNotFoundException) {
-                        // Fall back to custom picker on error
-                        startActivityForResult(preferences.context.getFilePicker(currentDir), CODE_BACKUP_DIR)
+                        activity?.toast(R.string.file_picker_error)
                     }
                 }
 
@@ -205,7 +202,7 @@ class SettingsBackupController : SettingsController() {
                     )
                 }
                 CODE_BACKUP_RESTORE -> {
-                    uri?.path?.let { path ->
+                    uri?.path?.let {
                         val fileName = DocumentFile.fromSingleUri(activity, uri)!!.name!!
                         when {
                             fileName.endsWith(".proto.gz") -> {
@@ -258,7 +255,6 @@ class SettingsBackupController : SettingsController() {
 
     fun createBackup(flags: Int, type: Int) {
         backupFlags = flags
-        val currentDir = preferences.backupsDirectory().get()
         val code = when (type) {
             BackupConst.BACKUP_TYPE_FULL -> CODE_FULL_BACKUP_CREATE
             else -> CODE_LEGACY_BACKUP_CREATE
@@ -277,8 +273,7 @@ class SettingsBackupController : SettingsController() {
 
             startActivityForResult(intent, code)
         } catch (e: ActivityNotFoundException) {
-            // Handle errors where the Android ROM doesn't support the built in picker
-            startActivityForResult(preferences.context.getFilePicker(currentDir), code)
+            activity?.toast(R.string.file_picker_error)
         }
     }
 

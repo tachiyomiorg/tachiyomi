@@ -568,7 +568,7 @@
         <item quantity="other">%1$s bölüm</item>
     </plurals>
     <string name="action_open_in_settings">Ayarlarda aç</string>
-    <string name="pref_dns_over_https_summary">Etkili olması için uygulama yeniden başlatılmalıdır</string>
+    <string name="requires_app_restart">Etkili olması için uygulama yeniden başlatılmalıdır</string>
     <string name="pref_dns_over_https" translatable="false">HTTPS ile DNS (Cloudflare)</string>
     <string name="label_network">Ağ</string>
     <string name="pref_jump_to_chapters">Açınca bölümlere git</string>

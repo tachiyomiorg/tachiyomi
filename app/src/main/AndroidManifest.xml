@@ -81,10 +81,6 @@
             android:name=".ui.webview.WebViewActivity"
             android:configChanges="uiMode|orientation|screenSize" />
         <activity
-            android:name=".widget.CustomLayoutPickerActivity"
-            android:label="@string/app_name"
-            android:theme="@style/FilePickerTheme" />
-        <activity
             android:name=".ui.setting.track.AnilistLoginActivity"
             android:label="Anilist">
             <intent-filter>

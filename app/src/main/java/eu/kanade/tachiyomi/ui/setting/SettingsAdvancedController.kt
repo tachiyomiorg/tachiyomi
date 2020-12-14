@@ -122,7 +122,7 @@ class SettingsAdvancedController : SettingsController() {
             switchPreference {
                 key = Keys.enableDoh
                 titleRes = R.string.pref_dns_over_https
-                summaryRes = R.string.pref_dns_over_https_summary
+                summaryRes = R.string.requires_app_restart
                 defaultValue = false
             }
         }

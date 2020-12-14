@@ -101,7 +101,7 @@ object SettingsSearchHelper {
             (pref.title != null) -> {
                 // Is an actual preference
                 val title = pref.title.toString()
-                val summary = if (pref.summary != null) pref.summary.toString() else ""
+                val summary = pref.summary?.toString() ?: ""
                 val breadcrumbsStr = addLocalizedBreadcrumb(breadcrumbs, "${pref.title}")
 
                 prefSearchResultList.add(

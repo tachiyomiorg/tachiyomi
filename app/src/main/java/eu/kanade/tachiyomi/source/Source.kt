@@ -62,14 +62,18 @@ interface Source : tachiyomi.source.Source {
     /**
      * [1.x API] Get the updated details for a manga.
      */
+    @Suppress("DEPRECATION")
     override suspend fun getMangaDetails(manga: MangaInfo): MangaInfo {
-        return fetchMangaDetails(manga.toSManga()).awaitSingle()
-            .toMangaInfo()
+        val sManga = manga.toSManga()
+        val networkManga = fetchMangaDetails(sManga).awaitSingle()
+        sManga.copyFrom(networkManga)
+        return sManga.toMangaInfo()
     }
 
     /**
      * [1.x API] Get all the available chapters for a manga.
      */
+    @Suppress("DEPRECATION")
     override suspend fun getChapterList(manga: MangaInfo): List<ChapterInfo> {
         return fetchChapterList(manga.toSManga()).awaitSingle()
             .map { it.toChapterInfo() }
@@ -78,6 +82,7 @@ interface Source : tachiyomi.source.Source {
     /**
      * [1.x API] Get the list of pages a chapter has.
      */
+    @Suppress("DEPRECATION")
     override suspend fun getPageList(chapter: ChapterInfo): List<tachiyomi.source.model.Page> {
         return fetchPageList(chapter.toSChapter()).awaitSingle()
             .map { it.toPageUrl() }

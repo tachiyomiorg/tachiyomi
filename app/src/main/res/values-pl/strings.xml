@@ -581,7 +581,7 @@
     <string name="action_disable">Wyłącz</string>
     <string name="action_open_in_settings">Otwórz w ustawieniach</string>
     <string name="action_start">Start</string>
-    <string name="pref_dns_over_https_summary">Wymaga ponownego uruchomienia aplikacji</string>
+    <string name="requires_app_restart">Wymaga ponownego uruchomienia aplikacji</string>
     <string name="pref_dns_over_https" translatable="false">DNS przez HTTPS (Cloudflare)</string>
     <string name="label_network">Sieć</string>
     <string name="pref_jump_to_chapters">Przeskocz do rozdziałów przy otwarciu</string>

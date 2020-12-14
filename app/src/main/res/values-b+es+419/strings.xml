@@ -375,7 +375,7 @@
     <string name="pref_clear_chapter_cache">Borrar caché de los capítulos</string>
     <string name="label_data">Datos</string>
     <string name="cookies_cleared">Cookies borradas</string>
-    <string name="pref_dns_over_https_summary">Requiere el reinicio de la aplicación para que surta efecto</string>
+    <string name="requires_app_restart">Requiere el reinicio de la aplicación para que surta efecto</string>
     <string name="battery_optimization_disabled">La optimización de la batería ya está desactivada</string>
     <string name="pref_disable_battery_optimization_summary">Ayuda con las actualizaciones y las copias de seguridad de biblioteca en segundo plano</string>
     <string name="pref_disable_battery_optimization">Desactivar optimización de batería</string>

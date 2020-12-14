@@ -5,8 +5,8 @@ import java.text.SimpleDateFormat
 apply plugin: 'com.android.application'
 apply plugin: 'com.mikepenz.aboutlibraries.plugin'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlinx-serialization'
 apply plugin: 'com.github.zellius.shortcut-helper'
 
@@ -42,8 +42,8 @@ android {
         minSdkVersion AndroidConfig.minSdk
         targetSdkVersion AndroidConfig.targetSdk
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        versionCode 52
-        versionName "0.10.6"
+        versionCode 53
+        versionName "0.10.7"
 
         buildConfigField "String", "COMMIT_COUNT", "\"${getCommitCount()}\""
         buildConfigField "String", "COMMIT_SHA", "\"${getGitSha()}\""
@@ -67,13 +67,13 @@ android {
             applicationIdSuffix ".debug"
         }
         release {
-            postprocessing {
-                obfuscate false
-                optimizeCode true
-                removeUnusedCode false
-                removeUnusedResources true
-                proguardFiles 'proguard-rules.pro'
-            }
+//            postprocessing {
+//                obfuscate false
+//                optimizeCode true
+//                removeUnusedCode false
+//                removeUnusedResources true
+//                proguardFiles 'proguard-rules.pro'
+//            }
         }
     }
 
@@ -121,10 +121,6 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
-}
-
-androidExtensions {
-    experimental = true
 }
 
 dependencies {
@@ -239,7 +235,6 @@ dependencies {
     implementation 'com.github.dmytrodanylyk.android-process-button:library:1.0.4'
     implementation 'eu.davidea:flexible-adapter:5.1.0'
     implementation 'eu.davidea:flexible-adapter-ui:1.0.0'
-    implementation 'com.nononsenseapps:filepicker:2.5.2'
     implementation 'com.nightlynexus.viewstatepageradapter:viewstatepageradapter:1.1.0'
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
     implementation 'com.github.carlosesco:DirectionalViewPager:a844dbca0a'
@@ -280,7 +275,7 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-reflect:$BuildPluginsVersion.KOTLIN"
 
-    final coroutines_version = '1.4.1'
+    final coroutines_version = '1.4.2'
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
 

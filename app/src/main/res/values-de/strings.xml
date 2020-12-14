@@ -568,7 +568,7 @@
         <item quantity="other">%1$s Kapitel</item>
     </plurals>
     <string name="action_open_in_settings">In den Einstellungen öffnen</string>
-    <string name="pref_dns_over_https_summary">App muss neu gestartet werden, um die Einstellung zu übernehmen</string>
+    <string name="requires_app_restart">App muss neu gestartet werden, um die Einstellung zu übernehmen</string>
     <string name="pref_dns_over_https" translatable="false">DNS über HTTPS (Cloudflare)</string>
     <string name="label_network">Netzwerk</string>
     <string name="pref_jump_to_chapters">Beim Öffnen zu den Kapiteln springen</string>

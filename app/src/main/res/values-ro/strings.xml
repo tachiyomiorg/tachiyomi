@@ -575,7 +575,7 @@
         <item quantity="few">%1$s capitole</item>
         <item quantity="other">%1$s de capitole</item>
     </plurals>
-    <string name="pref_dns_over_https_summary">Necesită restartarea aplicației pentru a avea efect</string>
+    <string name="requires_app_restart">Necesită restartarea aplicației pentru a avea efect</string>
     <string name="pref_dns_over_https" translatable="false">DNS prin HTTPS (Cloudflare)</string>
     <string name="action_sort_descending">Descrescător</string>
     <string name="action_disable">Dezactivați</string>

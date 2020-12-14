@@ -10,7 +10,6 @@ import com.tfcporciuncula.flow.Preference
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferenceValues.DisplayMode
-import eu.kanade.tachiyomi.data.preference.PreferenceValues.NsfwAllowance
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.track.anilist.Anilist
 import eu.kanade.tachiyomi.widget.ExtendedNavigationView
@@ -227,7 +226,9 @@ class PreferencesHelper(val context: Context) {
 
     fun automaticExtUpdates() = flowPrefs.getBoolean(Keys.automaticExtUpdates, true)
 
-    fun allowNsfwSource() = flowPrefs.getEnum(Keys.allowNsfwSource, NsfwAllowance.ALLOWED)
+    fun showNsfwSource() = flowPrefs.getBoolean(Keys.showNsfwSource, true)
+    fun showNsfwExtension() = flowPrefs.getBoolean(Keys.showNsfwExtension, true)
+    fun labelNsfwExtension() = prefs.getBoolean(Keys.labelNsfwExtension, true)
 
     fun extensionUpdatesCount() = flowPrefs.getInt("ext_updates_count", 0)
 

@@ -325,22 +325,4 @@
         <item name="android:textSize">15sp</item>
     </style>
 
-
-    <!--===-->
-    <!--OLD-->
-    <!--===-->
-    <style name="FilePickerTheme" parent="NNF_BaseTheme.Light">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimary</item>
-        <item name="colorAccent">@color/colorAccentLight</item>
-        <item name="colorButtonNormal">@color/colorPrimary</item>
-        <item name="android:textSize">14sp</item>
-
-        <item name="alertDialogTheme">@style/FilePickerAlertDialogTheme</item>
-
-        <item name="nnf_toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
-    </style>
-
-    <style name="FilePickerAlertDialogTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert" />
-
 </resources>

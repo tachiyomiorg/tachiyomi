@@ -568,7 +568,7 @@
         <item quantity="other">%1$s capítulos</item>
     </plurals>
     <string name="action_open_in_settings">Abrir nas Configurações</string>
-    <string name="pref_dns_over_https_summary">Requer o reinício do aplicativo para ter efeito</string>
+    <string name="requires_app_restart">Requer o reinício do aplicativo para ter efeito</string>
     <string name="pref_dns_over_https" translatable="false">DNS sob HTTPS (Cloudflare)</string>
     <string name="label_network">Rede</string>
     <string name="pref_jump_to_chapters">Pular para os capítulos ao abrir</string>

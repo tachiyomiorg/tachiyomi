@@ -464,7 +464,7 @@
     <string name="set_chapter_settings_as_default">প্রকৃত হিসেবে সংরক্ষণ করুন</string>
     <string name="confirm_set_chapter_settings">আপনি কি নিশ্চিত সেটিংসগুলো প্রকৃত হিসেবে সংরক্ষণ করবেন\?</string>
     <string name="label_data">তথ্য</string>
-    <string name="pref_dns_over_https_summary">কার্যকর করতে অ্যাপ পুনরারম্ভ করতে হবে</string>
+    <string name="requires_app_restart">কার্যকর করতে অ্যাপ পুনরারম্ভ করতে হবে</string>
     <string name="label_network">নেটওয়ার্ক</string>
     <string name="restoring_backup_canceled">পুনরুদ্ধার বাতিল করা হয়েছে</string>
     <string name="restoring_backup_error">ব্যাকআপ পুনরুদ্ধার ব্যর্থ হয়েছে</string>

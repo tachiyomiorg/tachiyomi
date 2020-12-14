@@ -563,7 +563,7 @@
     </plurals>
     <string name="updated_version">განახლებულია v%1$s-მდე</string>
     <string name="whats_new">რა არის ახალი</string>
-    <string name="pref_dns_over_https_summary">ასამოქმედებლად საჭიროა აპლიკაციის გადატვირთვა</string>
+    <string name="requires_app_restart">ასამოქმედებლად საჭიროა აპლიკაციის გადატვირთვა</string>
     <string name="label_network">ქსელი</string>
     <plurals name="restore_completed_message">
         <item quantity="one">გაკეთებულია %1$s %2$s შეცდომით</item>

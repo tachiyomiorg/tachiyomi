@@ -558,7 +558,7 @@
     </plurals>
     <string name="action_sort_descending">Menurun</string>
     <string name="action_disable">Matikan</string>
-    <string name="pref_dns_over_https_summary">Mula semula diperlukan untuk berkesan</string>
+    <string name="requires_app_restart">Mula semula diperlukan untuk berkesan</string>
     <string name="pref_dns_over_https" translatable="false">DNS melalui HTTPS (Cloudflare)</string>
     <string name="label_network">Rangkaian</string>
     <string name="pref_jump_to_chapters">Terus ke bab bila buka</string>

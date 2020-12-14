@@ -602,7 +602,7 @@
     <string name="action_sort_descending">Décroissant</string>
     <string name="action_disable">Désactiver</string>
     <string name="action_open_in_settings">Ouvrir dans les paramètres</string>
-    <string name="pref_dns_over_https_summary">Nécessite un redémarrage de l\'application pour prendre effet</string>
+    <string name="requires_app_restart">Nécessite un redémarrage de l\'application pour prendre effet</string>
     <string name="pref_dns_over_https" translatable="false">DNS sur HTTPS (Cloudflare)</string>
     <string name="label_network">Réseau</string>
     <string name="tapping_inverted_both">Les deux</string>

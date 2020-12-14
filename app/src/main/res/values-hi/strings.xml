@@ -578,7 +578,7 @@
     <string name="pref_read_with_tapping_inverted">उलटा दोहन</string>
     <string name="unknown_status">अज्ञात स्थिति</string>
     <string name="unknown_author">अज्ञात लेखक</string>
-    <string name="pref_dns_over_https_summary">प्रभावी होने के लिए ऐप पुनः आरंभ करने की आवश्यकता है</string>
+    <string name="requires_app_restart">प्रभावी होने के लिए ऐप पुनः आरंभ करने की आवश्यकता है</string>
     <string name="action_download_unread">अपठित अध्याय डाउनलोड करें</string>
     <string name="whats_new">नया क्या है</string>
     <string name="download_insufficient_space">कम डिस्क स्पेस के कारण अध्याय डाउनलोड नहीं कर सका</string>

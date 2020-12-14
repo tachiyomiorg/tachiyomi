@@ -172,11 +172,10 @@
     <string name="secure_screen_summary">Hide app contents when switching apps and block screenshots</string>
     <string name="hide_notification_content">Hide notification content</string>
 
-    <string name="pref_category_nsfw_content">18+ content</string>
-    <string name="pref_allow_nsfw_sources">18+ sources</string>
-    <string name="pref_allow_nsfw_sources_allowed">Show</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Hide in sources but show in extensions list</string>
-    <string name="pref_allow_nsfw_sources_blocked">Hide</string>
+    <string name="pref_category_nsfw_content">NSFW (18+) sources</string>
+    <string name="pref_show_nsfw_source">Show in sources list</string>
+    <string name="pref_show_nsfw_extension">Show in extensions list</string>
+    <string name="pref_label_nsfw_extension">Label in extensions list</string>
     <string name="parental_controls_info">This does not prevent unofficial or potentially incorrectly flagged extensions from surfacing 18+ content within the app.</string>
 
       <!-- Library section -->
@@ -392,7 +391,7 @@
     <string name="label_network">Network</string>
     <string name="pref_clear_cookies">Clear cookies</string>
     <string name="pref_dns_over_https" translatable="false">DNS over HTTPS (Cloudflare)</string>
-    <string name="pref_dns_over_https_summary">Requires app restart to take effect</string>
+    <string name="requires_app_restart">Requires app restart to take effect</string>
     <string name="cookies_cleared">Cookies cleared</string>
     <string name="label_data">Data</string>
     <string name="pref_clear_chapter_cache">Clear chapter cache</string>
@@ -572,6 +571,8 @@
     <string name="track_type">Type</string>
     <string name="track_author">Author</string>
     <string name="error_invalid_date_supplied">Invalid date supplied</string>
+    <string name="myanimelist_creds_missing">MAL login credentials not found</string>
+    <string name="myanimelist_relogin">Please login to MAL again</string>
 
     <!-- Category activity -->
     <string name="error_category_exists">A category with this name already exists!</string>
@@ -668,6 +669,7 @@
     <!-- File Picker Titles -->
     <string name="file_select_cover">Select cover image</string>
     <string name="file_select_backup">Select backup file</string>
+    <string name="file_picker_error">No file picker app found</string>
 
     <!--UpdateCheck-->
     <string name="update_check_confirm">Download</string>

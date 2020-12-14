@@ -558,7 +558,7 @@
     <string name="cache_deleted">Кеша тастнӑ. %1$d файла катертнӗ</string>
     <string name="pref_clear_chapter_cache">Сыпӑксен кешне тасат</string>
     <string name="label_data">Пӗлӗмсем</string>
-    <string name="pref_dns_over_https_summary">Вӑя кӗрес тесен хушӑма сӳнтерсе ҫутмалла</string>
+    <string name="requires_app_restart">Вӑя кӗрес тесен хушӑма сӳнтерсе ҫутмалла</string>
     <string name="restoring_backup_canceled">Тавӑрнине пӑрахӑҫланӑ</string>
     <string name="restoring_backup_error">Янтӑв тавӑрни йӑнӑшӗ</string>
     <string name="restoring_backup">Янтӑв тавӑрни</string>

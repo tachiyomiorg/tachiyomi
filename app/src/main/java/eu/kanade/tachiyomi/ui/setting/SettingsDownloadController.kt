@@ -20,6 +20,7 @@ import eu.kanade.tachiyomi.data.preference.asImmediateFlow
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.util.preference.*
 import eu.kanade.tachiyomi.util.system.getFilePicker
+import eu.kanade.tachiyomi.util.system.toast
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uy.kohesive.injekt.Injekt
@@ -167,12 +168,12 @@ class SettingsDownloadController : SettingsController() {
         preferences.downloadsDirectory().set(path.toString())
     }
 
-    fun customDirectorySelected(currentDir: String) {
+    fun customDirectorySelected() {
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
         try {
             startActivityForResult(intent, DOWNLOAD_DIR)
         } catch (e: ActivityNotFoundException) {
-            startActivityForResult(preferences.context.getFilePicker(currentDir), DOWNLOAD_DIR)
+            activity?.toast(R.string.file_picker_error)
         }
     }
 
@@ -193,7 +194,7 @@ class SettingsDownloadController : SettingsController() {
                 ) { _, position, text ->
                     val target = targetController as? SettingsDownloadController
                     if (position == externalDirs.lastIndex) {
-                        target?.customDirectorySelected(currentDir)
+                        target?.customDirectorySelected()
                     } else {
                         target?.predefinedDirectorySelected(text.toString())
                     }

@@ -581,7 +581,7 @@
     <string name="no_pinned_sources">شما هیچ منبع پین‌شده‌ای ندارید</string>
     <string name="action_global_search_query">«%1$s» در همه منابع جستجو شود</string>
     <string name="whats_new">اخبار</string>
-    <string name="pref_dns_over_https_summary">برای اعمال تغییرات برنامه نیاز به راه اندازی مجدد دارد</string>
+    <string name="requires_app_restart">برای اعمال تغییرات برنامه نیاز به راه اندازی مجدد دارد</string>
     <string name="label_network">شبکه</string>
     <string name="backup_restore_missing_trackers">ردیابی‌هایی که به سیستم وارد نشده اند:</string>
     <string name="pref_category_reading_mode">حالت خواندن</string>

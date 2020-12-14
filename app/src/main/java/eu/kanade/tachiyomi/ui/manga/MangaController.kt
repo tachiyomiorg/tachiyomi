@@ -923,7 +923,7 @@ class MangaController :
     private fun markPreviousAsRead(chapters: List<ChapterItem>) {
         val adapter = chaptersAdapter ?: return
         val prevChapters = if (presenter.sortDescending()) adapter.items.reversed() else adapter.items
-        val chapterPos = prevChapters.indexOf(chapters.last())
+        val chapterPos = prevChapters.indexOf(chapters.lastOrNull())
         if (chapterPos != -1) {
             markAsRead(prevChapters.take(chapterPos))
         }

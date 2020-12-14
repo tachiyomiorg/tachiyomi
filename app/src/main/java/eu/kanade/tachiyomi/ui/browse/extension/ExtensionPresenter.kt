@@ -3,7 +3,6 @@ package eu.kanade.tachiyomi.ui.browse.extension
 import android.app.Application
 import android.os.Bundle
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.preference.PreferenceValues
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.extension.ExtensionManager
 import eu.kanade.tachiyomi.extension.model.Extension
@@ -56,7 +55,7 @@ open class ExtensionPresenter(
     private fun toItems(tuple: ExtensionTuple): List<ExtensionItem> {
         val context = Injekt.get<Application>()
         val activeLangs = preferences.enabledLanguages().get()
-        val showNsfwExtensions = preferences.allowNsfwSource().get() != PreferenceValues.NsfwAllowance.BLOCKED
+        val showNsfwExtensions = preferences.showNsfwExtension().get()
 
         val (installed, untrusted, available) = tuple
 

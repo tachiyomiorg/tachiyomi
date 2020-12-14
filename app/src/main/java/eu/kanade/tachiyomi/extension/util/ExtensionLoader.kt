@@ -6,7 +6,6 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import dalvik.system.PathClassLoader
 import eu.kanade.tachiyomi.annotations.Nsfw
-import eu.kanade.tachiyomi.data.preference.PreferenceValues
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.extension.model.LoadResult
@@ -26,8 +25,8 @@ import uy.kohesive.injekt.injectLazy
 internal object ExtensionLoader {
 
     private val preferences: PreferencesHelper by injectLazy()
-    private val allowNsfwSource by lazy {
-        preferences.allowNsfwSource().get()
+    private val loadNsfwSource by lazy {
+        preferences.showNsfwSource().get()
     }
 
     private const val EXTENSION_FEATURE = "tachiyomi.extension"
@@ -133,7 +132,7 @@ internal object ExtensionLoader {
         }
 
         val isNsfw = appInfo.metaData.getInt(METADATA_NSFW) == 1
-        if (allowNsfwSource == PreferenceValues.NsfwAllowance.BLOCKED && isNsfw) {
+        if (!loadNsfwSource && isNsfw) {
             return LoadResult.Error("NSFW extension $pkgName not allowed")
         }
 
@@ -218,7 +217,7 @@ internal object ExtensionLoader {
      * Checks whether a Source or SourceFactory is annotated with @Nsfw.
      */
     private fun isSourceNsfw(clazz: Any): Boolean {
-        if (allowNsfwSource == PreferenceValues.NsfwAllowance.ALLOWED) {
+        if (loadNsfwSource) {
             return false
         }
 

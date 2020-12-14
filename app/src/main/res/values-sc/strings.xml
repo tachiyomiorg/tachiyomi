@@ -568,7 +568,7 @@
         <item quantity="one">1 capìtulu</item>
         <item quantity="other">%1$s capìtulos</item>
     </plurals>
-    <string name="pref_dns_over_https_summary">Tenet bisòngiu chi torres a allùghere s\'aplicatzione pro tènnere efetu</string>
+    <string name="requires_app_restart">Tenet bisòngiu chi torres a allùghere s\'aplicatzione pro tènnere efetu</string>
     <string name="pref_dns_over_https" translatable="false">DNS pro mèdiu de HTTPS (Cloudflare)</string>
     <string name="label_network">Retza</string>
     <string name="pref_jump_to_chapters">Brinca a sos capìtulos a s\'abertura</string>

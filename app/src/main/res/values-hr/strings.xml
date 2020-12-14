@@ -578,7 +578,7 @@
         <item quantity="few">%1$s poglavlja</item>
         <item quantity="other">%1$s poglavlja</item>
     </plurals>
-    <string name="pref_dns_over_https_summary">Za preuzimanje postavke, ponovo pokreni program</string>
+    <string name="requires_app_restart">Za preuzimanje postavke, ponovo pokreni program</string>
     <string name="pref_dns_over_https" translatable="false">DNS preko HTTPS-a (Cloudflare)</string>
     <string name="label_network">Mreža</string>
     <string name="tapping_inverted_both">Oboje</string>

@@ -568,7 +568,7 @@
         <item quantity="other">%1$s lukua</item>
     </plurals>
     <string name="action_open_in_settings">Avaa Asetuksissa</string>
-    <string name="pref_dns_over_https_summary">Edellyttää sovelluksen käynnistämistä uudelleen</string>
+    <string name="requires_app_restart">Edellyttää sovelluksen käynnistämistä uudelleen</string>
     <string name="pref_dns_over_https" translatable="false">DNS HTTPS:n kautta (Cloudflare)</string>
     <string name="label_network">Verkko</string>
     <string name="pref_jump_to_chapters">Siirry lukuihin avatessa</string>

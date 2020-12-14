@@ -604,7 +604,7 @@
     <string name="unknown_author">Autore sconosciuto</string>
     <string name="updated_version">Aggiornato verso v%1$s</string>
     <string name="whats_new">Le novità</string>
-    <string name="pref_dns_over_https_summary">Richiede il riavvio dell\'applicazione per avere effetto</string>
+    <string name="requires_app_restart">Richiede il riavvio dell\'applicazione per avere effetto</string>
     <string name="pref_dns_over_https" translatable="false">DNS via HTTPS (Cloudflare)</string>
     <string name="label_network">Rete</string>
     <string name="pref_show_reading_mode_summary">Mostra brevemente la modalità corrente all\'apertura del lettore</string>

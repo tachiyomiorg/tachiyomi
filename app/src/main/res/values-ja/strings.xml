@@ -564,7 +564,7 @@
     <string name="tapping_inverted_none">なし</string>
     <string name="unknown_status">不明なステータス</string>
     <string name="unknown_author">作者不明</string>
-    <string name="pref_dns_over_https_summary">変更を適用するためには再起動してください</string>
+    <string name="requires_app_restart">変更を適用するためには再起動してください</string>
     <string name="label_network">ネットワーク</string>
     <string name="pref_jump_to_chapters">起動時にチャプターを表示</string>
     <string name="pref_read_with_tapping_inverted">タップでのページめくりを反転</string>

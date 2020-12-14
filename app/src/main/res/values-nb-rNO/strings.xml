@@ -523,7 +523,7 @@
     <string name="battery_optimization_disabled">Batterioptimalisering er allerede deaktivert</string>
     <string name="pref_disable_battery_optimization">Deaktiver batterioptimalisering</string>
     <string name="label_data">Data</string>
-    <string name="pref_dns_over_https_summary">Krever omstart for å tre i kraft</string>
+    <string name="requires_app_restart">Krever omstart for å tre i kraft</string>
     <string name="label_network">Nettverk</string>
     <string name="restoring_backup_canceled">Avbrutt gjenoppretting</string>
     <string name="restore_in_progress">Gjenoppretting er allerede i gang</string>

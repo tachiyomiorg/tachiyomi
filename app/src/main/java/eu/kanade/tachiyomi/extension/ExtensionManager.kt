@@ -124,8 +124,7 @@ class ExtensionManager(
             .map { it.extension }
         installedExtensions
             .flatMap { it.sources }
-            // overwrite is needed until the bundled sources are removed
-            .forEach { sourceManager.registerSource(it, true) }
+            .forEach { sourceManager.registerSource(it) }
 
         untrustedExtensions = extensions
             .filterIsInstance<LoadResult.Untrusted>()

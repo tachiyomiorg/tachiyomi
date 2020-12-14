@@ -1,9 +1,10 @@
 package eu.kanade.tachiyomi.ui.library
 
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
+import eu.kanade.tachiyomi.databinding.LibraryCategoryBinding
 import eu.kanade.tachiyomi.util.view.inflate
 import eu.kanade.tachiyomi.widget.RecyclerViewPagerAdapter
 
@@ -34,8 +35,9 @@ class LibraryAdapter(private val controller: LibraryController) : RecyclerViewPa
      * @return a new view.
      */
     override fun createView(container: ViewGroup): View {
-        val view = container.inflate(R.layout.library_category) as LibraryCategoryView
-        view.onCreate(controller)
+        val binding = LibraryCategoryBinding.inflate(LayoutInflater.from(container.context), container, false)
+        val view: LibraryCategoryView = binding.root
+        view.onCreate(controller, binding)
         return view
     }
 

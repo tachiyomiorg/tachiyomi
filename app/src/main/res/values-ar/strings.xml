@@ -601,7 +601,7 @@
     <string name="action_start">ابدأ</string>
     <string name="action_sort_date_added">تاريخ الاضافة</string>
     <string name="whats_new">ما الجديد</string>
-    <string name="pref_dns_over_https_summary">يتطلب إعادة تشغيل التطبيق ليتم تفعيله</string>
+    <string name="requires_app_restart">يتطلب إعادة تشغيل التطبيق ليتم تفعيله</string>
     <string name="label_network">شبكة الاتصال</string>
     <string name="backup_restore_missing_trackers">أجهزة التتبع التي لم يتم تسجيل الدخول إليها:</string>
     <string name="pref_remove_bookmarked_chapters">حذف الفصول ذات العلامة المرجعية</string>
