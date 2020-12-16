@@ -34,7 +34,7 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
             .register({ imageCropBorders = it }, { imagePropertyChangedListener?.invoke() })
 
         preferences.navigationModePager()
-            .register({ navigationMode = it }, { viewerNavigation() })
+            .register({ navigationMode = it }, { updateNavigation(navigationMode) })
     }
 
     private fun zoomTypeFromPreference(value: Int) {
@@ -54,21 +54,25 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
         }
     }
 
-    override fun defaultViewerNavigation(): ViewerNavigation {
+    override var navigator: ViewerNavigation = defaultNavigation()
+        set(value) {
+            field = value.also { it.invertMode = this.tappingInverted }
+        }
+
+    override fun defaultNavigation(): ViewerNavigation {
         return when (viewer) {
             is VerticalPagerViewer -> VerticalPagerDefaultNavigation()
             else -> PagerDefaultNavigation()
         }
     }
 
-    override fun viewerNavigation() {
+    override fun updateNavigation(navigationMode: Int) {
         navigator = when (navigationMode) {
-            0 -> defaultViewerNavigation()
+            0 -> defaultNavigation()
             1 -> LNavigation()
             2 -> KindlishNavigation()
-            else -> defaultViewerNavigation()
+            else -> defaultNavigation()
         }
-        super.viewerNavigation()
     }
 
     enum class ZoomType {

@@ -27,20 +27,24 @@ class WebtoonConfig(preferences: PreferencesHelper = Injekt.get()) : ViewerConfi
             .register({ sidePadding = it }, { imagePropertyChangedListener?.invoke() })
 
         preferences.navigationModeWebtoon()
-            .register({ navigationMode = it }, { viewerNavigation() })
+            .register({ navigationMode = it }, { updateNavigation(it) })
     }
 
-    override fun defaultViewerNavigation(): ViewerNavigation {
+    override var navigator: ViewerNavigation = defaultNavigation()
+        set(value) {
+            field = value.also { it.invertMode = tappingInverted }
+        }
+
+    override fun defaultNavigation(): ViewerNavigation {
         return WebtoonDefaultNavigation()
     }
 
-    override fun viewerNavigation() {
+    override fun updateNavigation(navigationMode: Int) {
         this.navigator = when (navigationMode) {
-            0 -> defaultViewerNavigation()
+            0 -> defaultNavigation()
             1 -> LNavigation()
             2 -> KindlishNavigation()
-            else -> defaultViewerNavigation()
+            else -> defaultNavigation()
         }
-        super.viewerNavigation()
     }
 }

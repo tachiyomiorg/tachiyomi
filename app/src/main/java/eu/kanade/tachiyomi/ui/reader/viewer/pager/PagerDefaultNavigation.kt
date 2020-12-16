@@ -16,15 +16,15 @@ import eu.kanade.tachiyomi.ui.reader.viewer.navigation.LNavigation
  */
 class PagerDefaultNavigation : ViewerNavigation() {
 
-    override var invertVertical: Boolean = false
-        set(_) { field = false }
-
-    override var nextRegion = navigationOf(
-        RectF(0f, 0f, 0.33f, 1f)
-    )
-
-    override var prevRegion = navigationOf(
-        RectF(0.66f, 0f, 1f, 1f)
+    override var regions: List<Region> = listOf(
+        Region(
+            rectF = RectF(0f, 0f, 0.33f, 1f),
+            type = NavigationRegion.NEXT
+        ),
+        Region(
+            rectF = RectF(0.66f, 0f, 1f, 1f),
+            type = NavigationRegion.PREV
+        ),
     )
 }
 

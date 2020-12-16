@@ -31,7 +31,7 @@ abstract class ViewerConfig(preferences: PreferencesHelper) {
     var navigationMode = 0
         protected set
 
-    lateinit var navigator: ViewerNavigation
+    abstract var navigator: ViewerNavigation
         protected set
 
     init {
@@ -39,7 +39,7 @@ abstract class ViewerConfig(preferences: PreferencesHelper) {
             .register({ tappingEnabled = it })
 
         preferences.readWithTappingInverted()
-            .register({ tappingInverted = it }, { applyInversion() })
+            .register({ tappingInverted = it }, { navigator.invertMode = it })
 
         preferences.readWithLongTap()
             .register({ longTapEnabled = it })
@@ -63,16 +63,9 @@ abstract class ViewerConfig(preferences: PreferencesHelper) {
             .register({ alwaysShowChapterTransition = it })
     }
 
-    protected abstract fun defaultViewerNavigation(): ViewerNavigation
+    protected abstract fun defaultNavigation(): ViewerNavigation
 
-    protected open fun viewerNavigation() = applyInversion()
-
-    private fun applyInversion() {
-        if (!this::navigator.isInitialized) return
-        navigator.invertVertical = tappingInverted.shouldInvertVertical()
-        navigator.invertHorizontal = tappingInverted.shouldInvertHorizontal()
-        navigator.invert()
-    }
+    abstract fun updateNavigation(navigationMode: Int)
 
     fun <T> Preference<T>.register(
         valueAssignment: (T) -> Unit,

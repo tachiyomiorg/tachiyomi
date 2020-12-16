@@ -31,14 +31,11 @@ object PreferenceValues {
         LIST,
     }
 
-    enum class TappingInvertMode {
+    enum class TappingInvertMode(val shouldInvertHorizontal: Boolean = false, val shouldInvertVertical: Boolean = false) {
         NONE,
-        HORIZONTAL,
-        VERTICAL,
-        BOTH;
-
-        fun shouldInvertHorizontal() = this == HORIZONTAL || this == BOTH
-        fun shouldInvertVertical() = this == VERTICAL || this == BOTH
+        HORIZONTAL(shouldInvertHorizontal = true),
+        VERTICAL(shouldInvertVertical = true),
+        BOTH(shouldInvertHorizontal = true, shouldInvertVertical = true)
     }
 
     enum class NsfwAllowance {

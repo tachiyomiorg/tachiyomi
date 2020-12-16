@@ -15,11 +15,14 @@ import eu.kanade.tachiyomi.ui.reader.viewer.ViewerNavigation
 */
 class KindlishNavigation : ViewerNavigation() {
 
-    override var nextRegion = navigationOf(
-        RectF(0.33f, 0.33f, 1f, 1f)
-    )
-
-    override var prevRegion = navigationOf(
-        RectF(0f, 0.33f, 0.33f, 1f)
+    override var regions: List<Region> = listOf(
+        Region(
+            rectF = RectF(0.33f, 0.33f, 1f, 1f),
+            type = NavigationRegion.NEXT
+        ),
+        Region(
+            rectF = RectF(0f, 0.33f, 0.33f, 1f),
+            type = NavigationRegion.PREV
+        )
     )
 }
