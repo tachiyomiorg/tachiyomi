@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.ui.reader.viewer.pager
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.reader.viewer.ViewerConfig
 import eu.kanade.tachiyomi.ui.reader.viewer.ViewerNavigation
+import eu.kanade.tachiyomi.ui.reader.viewer.navigation.EdgeNavigation
 import eu.kanade.tachiyomi.ui.reader.viewer.navigation.KindlishNavigation
 import eu.kanade.tachiyomi.ui.reader.viewer.navigation.LNavigation
 import uy.kohesive.injekt.Injekt
@@ -71,6 +72,7 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
             0 -> defaultNavigation()
             1 -> LNavigation()
             2 -> KindlishNavigation()
+            3 -> EdgeNavigation()
             else -> defaultNavigation()
         }
     }
