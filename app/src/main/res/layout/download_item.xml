@@ -37,12 +37,13 @@
         android:id="@+id/chapter_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginTop="4dp"
         android:layout_toEndOf="@id/reorder"
         android:ellipsize="end"
         android:maxLines="1"
         android:textAppearance="@style/TextAppearance.Regular.Caption"
-        app:layout_constraintEnd_toStartOf="@+id/menu"
+        app:layout_constraintEnd_toStartOf="@+id/manga_source"
         app:layout_constraintStart_toStartOf="@+id/manga_full_title"
         app:layout_constraintTop_toBottomOf="@+id/manga_full_title"
         tools:text="Chapter Title" />
@@ -68,6 +69,18 @@
         app:layout_constraintEnd_toStartOf="@+id/menu"
         app:layout_constraintTop_toTopOf="@+id/manga_full_title"
         tools:text="(0/10)" />
+
+    <TextView
+        android:id="@+id/manga_source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/chapter_title"
+        android:maxLines="1"
+        android:textAppearance="@style/TextAppearance.Regular.Caption.Hint"
+        app:layout_constraintBottom_toBottomOf="@+id/chapter_title"
+        app:layout_constraintEnd_toStartOf="@+id/menu"
+        app:layout_constraintTop_toTopOf="@+id/chapter_title"
+        tools:text="Manga Source" />
 
     <ImageButton
         android:id="@+id/menu"

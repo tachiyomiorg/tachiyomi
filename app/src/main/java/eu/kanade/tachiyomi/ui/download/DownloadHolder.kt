@@ -39,6 +39,9 @@ class DownloadHolder(private val view: View, val adapter: DownloadAdapter) :
         // Update the manga title
         binding.mangaFullTitle.text = download.manga.title
 
+        // Update the manga source
+        binding.mangaSource.text = download.source.name
+
         // Update the progress bar and the number of downloaded pages
         val pages = download.pages
         if (pages == null) {
