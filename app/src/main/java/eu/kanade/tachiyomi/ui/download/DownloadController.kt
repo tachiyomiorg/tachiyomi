@@ -157,6 +157,17 @@ class DownloadController :
                 val downloads = items.mapNotNull { it.download }
                 presenter.reorder(downloads)
             }
+            R.id.bigest, R.id.smallest -> {
+                val adapter = adapter ?: return false
+                val items = adapter.currentItems.sortedBy { it.download.chapter.chapter_number }
+                    .toMutableList()
+                if (item.itemId == R.id.bigest) {
+                    items.reverse()
+                }
+                adapter.updateDataSet(items)
+                val downloads = items.mapNotNull { it.download }
+                presenter.reorder(downloads)
+            }
         }
         return super.onOptionsItemSelected(item)
     }
