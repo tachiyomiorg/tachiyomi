@@ -450,11 +450,7 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
 
     private fun showReadingModeSnackbar(mode: Int) {
         val strings = resources.getStringArray(R.array.viewers_selector)
-        binding.root.snack(strings[mode], Snackbar.LENGTH_SHORT) {
-            setAction(android.R.string.ok) {
-                dismiss()
-            }
-        }
+        binding.root.snack(strings[mode], Snackbar.LENGTH_SHORT)
     }
 
     /**
