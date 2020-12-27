@@ -504,8 +504,6 @@
     <string name="restore_in_progress">Ja s\'està fent una restauració</string>
     <string name="backup_in_progress">Ja s\'està fent una còpia de seguretat</string>
     <string name="error_invalid_date_supplied">S\'ha indicat una data invàlida</string>
-    <string name="track_finished_reading_date">Data en què el vau acabar a llegir</string>
-    <string name="track_started_reading_date">Data en què el vau començar a llegir</string>
     <string name="local_source_help_guide">Guia de fonts locals</string>
     <string name="last_used_source">Utilitzada per darrer cop</string>
     <string name="check_for_updates">Comprova si hi ha actualitzacions</string>
@@ -573,7 +571,7 @@
     <string name="action_global_search_query">Cerca \"%1$s\" globalment</string>
     <string name="updated_version">S\'ha actualitzat a la v%1$s</string>
     <string name="whats_new">Novetats</string>
-    <string name="requires_app_restart">Cal reiniciar l\'aplicació perquè s\'apliqui</string>
+    <string name="requires_app_restart">Cal reiniciar l\'aplicació perquè tingui efecte</string>
     <string name="label_network">Xarxa</string>
     <string name="pref_category_reading_mode">Mode de lectura</string>
     <string name="pref_show_reading_mode_summary">Mostra breument el mode actual en obrir el lector</string>
@@ -604,10 +602,6 @@
     <string name="ext_nsfw_warning">Pot contenir contingut +18</string>
     <string name="ext_nsfw_short">+18</string>
     <string name="parental_controls_info">Això no evita que les extensions no oficials o possiblement mal etiquetades puguin mostrar contingut +18 a l\'aplicació.</string>
-    <string name="pref_allow_nsfw_sources_blocked">Amaga</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Amaga de les fonts però mostra a la llista d\'extensions</string>
-    <string name="pref_allow_nsfw_sources_allowed">Mostra</string>
-    <string name="pref_allow_nsfw_sources">Fonts +18</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Hi manca 1 capítol</item>
         <item quantity="other">Hi manquen %d capítols</item>
@@ -640,6 +634,12 @@
     <string name="pref_create_legacy_backup">Crea una còpia de seguretat en format antic</string>
     <string name="migration_help_guide">Guia de migració de fonts</string>
     <string name="invalid_backup_file_type">Fitxer de còpia de seguretat invàlid: %1$s</string>
-    <string name="pref_category_nsfw_content">Contingut +18</string>
+    <string name="pref_category_nsfw_content">Fonts NSFW (+18)</string>
     <string name="process_text_action_name">Cerca al Tachiyomi</string>
+    <string name="file_picker_error">No s\'ha trobat cap aplicació de selecció de fitxers</string>
+    <string name="pref_label_nsfw_extension">Etiqueta a la llista d\'extensions</string>
+    <string name="pref_show_nsfw_extension">Mostra a la llista d\'extensions</string>
+    <string name="pref_show_nsfw_source">Mostra a la llista de fonts</string>
+    <string name="myanimelist_relogin">Torneu a iniciar la sessió a MAL</string>
+    <string name="myanimelist_creds_missing">No s\'han trobat les credencials d\'inici de sessió a MAL</string>
 </resources>

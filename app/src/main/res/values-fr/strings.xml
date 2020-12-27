@@ -182,7 +182,7 @@
     <string name="description">Description</string>
     <string name="ongoing">En cours</string>
     <string name="unknown">Inconnu</string>
-    <string name="licensed">Sous licence</string>
+    <string name="licensed">Licencié</string>
     <string name="remove_from_library">Enlever de la bilbiothèque</string>
     <!-- Manga chapters fragment -->
     <string name="manga_chapters_tab">Chapitres</string>
@@ -361,11 +361,11 @@
     <string name="ext_uninstall">Désinstaller</string>
     <string name="ext_available">Disponible</string>
     <string name="untrusted_extension">Extension non reconnue</string>
-    <string name="untrusted_extension_message">Cette extension a été signé avec un certificat non reconnu et n\'a pas été activée. 
-\n 
-\nUne extension malveillante peut lire les identifiants de connexion sauvegardés sur Tachiyomi ou exécuter du code malicieux. 
-\n 
-\nEn faisant confiance à ce certificat vous acceptez ces risques.</string>
+    <string name="untrusted_extension_message">Cette extension a été signée avec un certificat non fiable et n\'a pas été activée.
+\n
+\nUne extension malveillante pourrait lire n\'importe quel identifiant de connexion stocké dans Tachiyomi ou exécuter un code arbitraire.
+\n
+\nEn faisant confiance à ce certificat, vous acceptez ces risques.</string>
     <string name="ext_version_info">Version : %1$s</string>
     <string name="ext_language_info">Langue : %1$s</string>
     <string name="pref_double_tap_anim_speed">Vitesse d\'animation du double-clic</string>
@@ -507,10 +507,10 @@
     <string name="action_sort_last_checked">Dernière vérification</string>
     <string name="updating_library">Mise à jour de la bibliothèque</string>
     <string name="label_sources">Sources</string>
-    <string name="webtoon_side_padding_25">25%</string>
-    <string name="webtoon_side_padding_20">20%</string>
-    <string name="webtoon_side_padding_15">15%</string>
-    <string name="webtoon_side_padding_10">10%</string>
+    <string name="webtoon_side_padding_25">25 %</string>
+    <string name="webtoon_side_padding_20">20 %</string>
+    <string name="webtoon_side_padding_15">15 %</string>
+    <string name="webtoon_side_padding_10">10 %</string>
     <string name="webtoon_side_padding_0">Aucun</string>
     <string name="pref_category_reading">En cours</string>
     <string name="vertical_plus_viewer">Vertical continu</string>
@@ -537,8 +537,6 @@
     <string name="error_invalid_date_supplied">Date fournie invalide</string>
     <string name="licenses">Licences à code source ouvert</string>
     <string name="confirm_exit">Appuyer à nouveau pour quitter</string>
-    <string name="track_finished_reading_date">Date de fin de lecture</string>
-    <string name="track_started_reading_date">Date de début de lecture</string>
     <string name="last_used_source">Dernière utilisée</string>
     <string name="check_for_updates">Rechercher des mises à jour</string>
     <string name="restore_duration">%02d min, %02d s</string>
@@ -632,7 +630,6 @@
     <string name="channel_complete">Compléter</string>
     <string name="channel_progress">Progression</string>
     <string name="download_notifier_download_finish">Téléchargement terminé</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Cachez-vous dans les sources mais affichez-le dans la liste des extensions</string>
     <string name="channel_errors">Erreurs</string>
     <string name="backup_restore_missing_trackers">Traceurs non connectés :</string>
     <string name="pref_remove_bookmarked_chapters">Supprimer les chapitres favoris</string>
@@ -640,9 +637,6 @@
     <string name="ext_nsfw_warning">Peut contenir du contenus +18</string>
     <string name="ext_nsfw_short">18+</string>
     <string name="parental_controls_info">Ceci n\'empêche pas les extensions non officielles ou potentiellement incorrectement signalées de faire apparaître du contenu +18 dans l\'application.</string>
-    <string name="pref_allow_nsfw_sources_blocked">Cacher</string>
-    <string name="pref_allow_nsfw_sources_allowed">Afficher</string>
-    <string name="pref_allow_nsfw_sources">Sources +18</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Il manque 1 chapitre</item>
         <item quantity="other">Il manque %d chapitres</item>
@@ -676,4 +670,11 @@
     <string name="pref_create_legacy_backup">Créer des sauvegardes héritées</string>
     <string name="pref_category_nsfw_content">Contenu +18</string>
     <string name="invalid_backup_file_type">Fichier de sauvegarde invalide : %1$s</string>
+    <string name="myanimelist_relogin">Veuillez vous reconnecter à MAL</string>
+    <string name="process_text_action_name">Rechercher dans Tachiyomi</string>
+    <string name="file_picker_error">L’application de sélection de fichier est introuvable</string>
+    <string name="myanimelist_creds_missing">Identifiants de connexion pour MAL non trouvés</string>
+    <string name="pref_label_nsfw_extension">Étiqueter dans la liste d\'extension</string>
+    <string name="pref_show_nsfw_extension">Afficher dans la liste d\'extensions</string>
+    <string name="pref_show_nsfw_source">Afficher dans la liste de sources</string>
 </resources>

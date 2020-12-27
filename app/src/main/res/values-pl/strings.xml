@@ -230,7 +230,7 @@
     <string name="fifth_to_last">5 rozdziałów do tyłu</string>
     <string name="pref_download_new">Pobieraj nowe rozdziały</string>
     <string name="backup">Kopia zapasowa</string>
-    <string name="manga">Mangi</string>
+    <string name="manga">Manga</string>
     <string name="pref_category_tracking">Śledzenie</string>
     <string name="pref_reader_navigation">Nawigacja</string>
     <string name="pref_download_new_categories">Kategorie do auto-pobierania</string>
@@ -283,7 +283,7 @@
     <string name="sort_by_number">Według numeru rozdziału</string>
     <string name="manga_tracking_tab">Śledzenie</string>
     <string name="status">Status</string>
-    <string name="snack_categories_deleted">Usunięte kategorie</string>
+    <string name="snack_categories_deleted">Usunięto kategorie</string>
     <string name="dialog_with_checkbox_remove_description">To usunie datę przeczytania tego rozdziału. Na pewno?</string>
     <string name="dialog_with_checkbox_reset">Resetuj wszystkie rozdziały tej mangi</string>
     <string name="snack_add_to_library">Dodać mangę do biblioteki?</string>
@@ -522,8 +522,6 @@
     </plurals>
     <string name="notification_check_updates">Poszukiwanie nowych rozdziałów</string>
     <string name="viewer">Tryb czytania</string>
-    <string name="track_finished_reading_date">Data zakończenia czytania</string>
-    <string name="track_started_reading_date">Data rozpoczęcia czytania</string>
     <string name="local_source_help_guide">Przeglądarka lokalnych źródeł</string>
     <plurals name="download_queue_summary">
         <item quantity="one">Pozostał %1$s</item>
@@ -607,9 +605,6 @@
     <string name="pref_category_theme">Motyw</string>
     <string name="action_download_unread">Pobierz nieprzeczytane rozdziały</string>
     <string name="action_sort_date_added">Dane dodane</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Ukrywaj w wyszukiwanych ale wyświetlaj na liście rozszerzeń</string>
-    <string name="pref_allow_nsfw_sources_allowed">Pokazuj</string>
-    <string name="pref_allow_nsfw_sources">Źródła 18+</string>
     <string name="action_search_settings">Ustawienia szukania</string>
     <string name="full_restore_mode">Tryb sieciowy</string>
     <string name="spen_next_page">Następna strona</string>
@@ -661,9 +656,14 @@
     <string name="ext_nsfw_warning">Może zawierać zawartość +18</string>
     <string name="ext_nsfw_short">18+</string>
     <string name="parental_controls_info">Nie zapobiega to nieoficjalnym lub potencjalnie niepoprawnie oflagowanym rozszerzeniom przed pokazywaniem zwartości +18 w aplikacji.</string>
-    <string name="pref_allow_nsfw_sources_blocked">Ukrywaj</string>
     <string name="action_web_view">WebView</string>
     <string name="invalid_backup_file_type">Nieprawidłowy plik kopii zapasowej: %1$s</string>
-    <string name="pref_category_nsfw_content">Materiały 18+</string>
+    <string name="pref_category_nsfw_content">NFSW Materiały 18+</string>
     <string name="process_text_action_name">wyszukaj w Tachiyomi</string>
+    <string name="file_picker_error">Nie znaleziono aplikacji do przeglądania plików</string>
+    <string name="myanimelist_relogin">Wymagane ponowne zalogowanie do MAL</string>
+    <string name="myanimelist_creds_missing">Nie znaleziono danych logowania do MAL</string>
+    <string name="pref_label_nsfw_extension">Pokazuj etykiety na liście rozszerzeń</string>
+    <string name="pref_show_nsfw_extension">Pokazuj na liście rozszerzeń</string>
+    <string name="pref_show_nsfw_source">Pokazuj na liście źródeł</string>
 </resources>

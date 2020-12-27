@@ -498,8 +498,6 @@
     <string name="licenses">Avoimen lähdekoodin lisenssit</string>
     <string name="recent_manga_time">Luku. %1$s - %2$s</string>
     <string name="error_invalid_date_supplied">Annettu päivämäärä ei kelpaa</string>
-    <string name="track_finished_reading_date">Lopetuspäivämäärä</string>
-    <string name="track_started_reading_date">Aloituspäivämäärä</string>
     <string name="manga_info_collapse">Vähemmän</string>
     <string name="manga_info_expand">Enemmän</string>
     <string name="pinned_sources">Kiinnitetyt</string>
@@ -568,7 +566,7 @@
         <item quantity="other">%1$s lukua</item>
     </plurals>
     <string name="action_open_in_settings">Avaa Asetuksissa</string>
-    <string name="requires_app_restart">Edellyttää sovelluksen käynnistämistä uudelleen</string>
+    <string name="requires_app_restart">Edellyttää sovelluksen käynnisstämisen uudelleen</string>
     <string name="pref_dns_over_https" translatable="false">DNS HTTPS:n kautta (Cloudflare)</string>
     <string name="label_network">Verkko</string>
     <string name="pref_jump_to_chapters">Siirry lukuihin avatessa</string>
@@ -600,10 +598,6 @@
     <string name="download_notifier_download_finish">Lataus valmis</string>
     <string name="channel_errors">Virheet</string>
     <string name="backup_restore_missing_trackers">Seurantapalvelimet joihin et ole kirjautunut sisään:</string>
-    <string name="pref_allow_nsfw_sources_blocked">Piilota</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Piiloita lähteissä, mutta näytä laajennusluettelossa</string>
-    <string name="pref_allow_nsfw_sources_allowed">Näytä</string>
-    <string name="pref_allow_nsfw_sources">18+ lähteet</string>
     <string name="pref_remove_bookmarked_chapters">Poista kirjanmerkityt luvut</string>
     <string name="pref_category_delete_chapters">Poista luvut</string>
     <string name="ext_nsfw_warning">Voi sisältää 18+ sisältöä</string>
@@ -641,6 +635,12 @@
     <string name="pref_create_legacy_backup">Luo vanha varmuuskopio</string>
     <string name="migration_help_guide">Lähteen siirto-opas</string>
     <string name="invalid_backup_file_type">Virheellinen varmuuskopiotiedosto: %1$s</string>
-    <string name="pref_category_nsfw_content">18+ konettia</string>
+    <string name="pref_category_nsfw_content">NSFW (18+) lähteet</string>
     <string name="process_text_action_name">Hae Tachiyomista</string>
+    <string name="pref_label_nsfw_extension">Laajennusluettelon otsikko</string>
+    <string name="pref_show_nsfw_extension">Näytä laajennusluettelossa</string>
+    <string name="pref_show_nsfw_source">Näytä lähdeluettelossa</string>
+    <string name="file_picker_error">Tiedostonvalitsinsovellusta ei löytynyt</string>
+    <string name="myanimelist_relogin">Kirjaudu uudelleen MAL: iin</string>
+    <string name="myanimelist_creds_missing">MAL-kirjautumistietoja ei löytynyt</string>
 </resources>

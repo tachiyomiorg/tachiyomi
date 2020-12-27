@@ -504,8 +504,6 @@
     <string name="restore_in_progress">पुनर्स्थापना पहले से ही प्रगति पर है</string>
     <string name="backup_in_progress">बैकअप पहले से ही प्रगति पर है</string>
     <string name="error_invalid_date_supplied">अमान्य दिनांक को आपूर्ति की गई</string>
-    <string name="track_finished_reading_date">पढ़ना समाप्त की तिथि</string>
-    <string name="track_started_reading_date">पढ़ना शुरू करने की तारीख</string>
     <string name="last_used_source">आखरी इस्त्तमाल किया गया</string>
     <string name="check_for_updates">अद्यतन के लिए जाँच</string>
     <string name="local_source_help_guide">स्थानीय स्रोत गाइड</string>
@@ -578,7 +576,7 @@
     <string name="pref_read_with_tapping_inverted">उलटा दोहन</string>
     <string name="unknown_status">अज्ञात स्थिति</string>
     <string name="unknown_author">अज्ञात लेखक</string>
-    <string name="requires_app_restart">प्रभावी होने के लिए ऐप पुनः आरंभ करने की आवश्यकता है</string>
+    <string name="requires_app_restart">प्रभावी होने के लिए एप्लिकेशन पुनरारंभ की आवश्यकता होती है</string>
     <string name="action_download_unread">अपठित अध्याय डाउनलोड करें</string>
     <string name="whats_new">नया क्या है</string>
     <string name="download_insufficient_space">कम डिस्क स्पेस के कारण अध्याय डाउनलोड नहीं कर सका</string>
@@ -604,10 +602,6 @@
     <string name="pref_category_delete_chapters">अध्यायों को हटाएं</string>
     <string name="ext_nsfw_warning">18+ सामग्री हो सकती है</string>
     <string name="ext_nsfw_short">18+</string>
-    <string name="pref_allow_nsfw_sources_blocked">अवरुद्ध</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">ब्राउज़िंग स्रोतों को ब्लॉक करें लेकिन एक्सटेंशन सूची में दिखाएं</string>
-    <string name="pref_allow_nsfw_sources">18+ स्रोत</string>
-    <string name="pref_allow_nsfw_sources_allowed">अनुमति</string>
     <string name="parental_controls_info">यह अनौपचारिक या संभावित रूप से फ़्लैग किए गए एक्सटेंशन को ऐप के भीतर 18+ सामग्री के सामने आने से नहीं रोकता है।</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">1 लापता अध्याय है</item>
@@ -631,4 +625,19 @@
     <string name="pref_clear_history">इतिहास मिटा दें</string>
     <string name="clear_history_confirmation">क्या आपको यकीन है\? सारा इतिहास खो जाएगा।</string>
     <string name="clear_history_completed">इतिहास हटाया गया</string>
+    <string name="invalid_backup_file_type">अमान्य बैकअप फ़ाइल: %1$s</string>
+    <string name="process_text_action_name">Tachiyomi में खोजें</string>
+    <string name="spen_next_page">अगला पृष्ठ</string>
+    <string name="spen_previous_page">पिछला पृष्ठ</string>
+    <string name="migration_help_guide">स्रोत माइग्रेशन गाइड</string>
+    <string name="full_restore_offline">ऑफ़लाइन पुनर्स्थापित करें, जल्दी समाप्त हो जाता है, लेकिन केवल वही होता है जिसमें आपका बैकअप होता है</string>
+    <string name="full_restore_online">ऑनलाइन पुनर्स्थापित करें, बहुत धीमा लेकिन आपको अधिक अद्यतन जानकारी और अध्याय देता है</string>
+    <string name="full_restore_mode">नेटवर्क मोड</string>
+    <string name="pref_backup_auto_create_legacy">विरासत बैकअप भी बनाएं</string>
+    <string name="pref_create_legacy_backup_summary">Tachiyomi के पुराने संस्करणों में उपयोग किया जा सकता है</string>
+    <string name="pref_create_legacy_backup">विरासत बैकअप बनाएँ</string>
+    <string name="pref_label_nsfw_extension">एक्सटेंशन सूची में लेबल</string>
+    <string name="pref_show_nsfw_extension">एक्सटेंशन सूची में दिखाएं</string>
+    <string name="pref_show_nsfw_source">स्रोत सूची में दिखाएं</string>
+    <string name="pref_category_nsfw_content">18+ सामग्री</string>
 </resources>

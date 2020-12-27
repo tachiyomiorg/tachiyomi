@@ -219,7 +219,7 @@
     <string name="choices_reset">重置对话选择</string>
     <string name="pref_clear_database">清除数据库</string>
     <string name="pref_clear_database_summary">删除未保存在书架中的漫画的历史</string>
-    <string name="clear_database_confirmation">你确定吗？这将会删除未在书架的漫画章节与阅读进度的数据</string>
+    <string name="clear_database_confirmation">这将会删除未在书架的漫画阅读进度的数据，你确定吗？</string>
     <string name="clear_database_completed">已删除条目</string>
     <string name="pref_refresh_library_tracking">刷新同步</string>
     <string name="pref_refresh_library_tracking_summary">更新同步服务的状态，评分以及已读章节</string>
@@ -241,7 +241,7 @@
     <string name="source_requires_login">此图源需要登录</string>
     <string name="select_source">选择图源</string>
     <string name="no_valid_sources">请至少启用一个有效图源</string>
-    <string name="no_more_results">未找到更多结果</string>
+    <string name="no_more_results">没有更多结果</string>
     <string name="local_source">本地图源</string>
     <string name="other_source">其它</string>
     <string name="invalid_combination">默认分类不能与其它分类一起选择</string>
@@ -319,7 +319,7 @@
     <string name="chapter_subtitle">第 %1$s 章</string>
     <string name="no_next_chapter">后面没有啦</string>
     <string name="no_previous_chapter">前面没有啦</string>
-    <string name="decode_image_error">图片加载失败</string>
+    <string name="decode_image_error">无法加载该图片</string>
     <string name="confirm_set_image_as_cover">要将此页设为封面吗？</string>
     <string name="transition_finished">已读完：</string>
     <string name="transition_current">当前章节：</string>
@@ -508,8 +508,6 @@
     <string name="restore_duration">%02d 分，%02d 秒</string>
     <string name="pref_search_pinned_sources_only">仅在已置顶的图源中搜索</string>
     <string name="error_invalid_date_supplied">无效的日期</string>
-    <string name="track_finished_reading_date">完成阅读时间</string>
-    <string name="track_started_reading_date">开始阅读时间</string>
     <string name="gray_background">灰色</string>
     <string name="pref_category_for_this_series">适用于此系列</string>
     <string name="viewer">阅读模式</string>
@@ -558,7 +556,7 @@
         <item quantity="other">%1$s 个章节</item>
     </plurals>
     <string name="action_open_in_settings">在设置中打开</string>
-    <string name="requires_app_restart">需要重启应用才能生效</string>
+    <string name="requires_app_restart">要生效，需要重启应用程序</string>
     <string name="pref_dns_over_https" translatable="false">DNS over HTTPS (Cloudflare)</string>
     <string name="label_network">网络</string>
     <string name="pref_jump_to_chapters">打开时跳转到阅读章节</string>
@@ -589,10 +587,6 @@
     <string name="download_notifier_download_finish">下载已完成</string>
     <string name="channel_errors">错误</string>
     <string name="backup_restore_missing_trackers">未登录的同步源：</string>
-    <string name="pref_allow_nsfw_sources_blocked">隐藏</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">在来源中隐藏，但显示在扩展列表中</string>
-    <string name="pref_allow_nsfw_sources_allowed">显示</string>
-    <string name="pref_allow_nsfw_sources">18+ 图源</string>
     <string name="pref_remove_bookmarked_chapters">删除已添加书签的章节</string>
     <string name="pref_category_delete_chapters">删除章节</string>
     <string name="ext_nsfw_warning">可能包含 18+ 内容</string>
@@ -624,11 +618,17 @@
     <string name="full_restore_offline">离线恢复，完成得很快，但只包含备份文件有的内容</string>
     <string name="full_restore_online">在线恢复，速度要慢得多但给你更多更新的信息和章节</string>
     <string name="full_restore_mode">网络模式</string>
-    <string name="pref_backup_auto_create_legacy">同样创建旧版备份</string>
-    <string name="pref_create_legacy_backup_summary">可以用于旧版本的Tachiyomi</string>
-    <string name="pref_create_legacy_backup">创建旧备份</string>
-    <string name="migration_help_guide">源迁移指南</string>
+    <string name="pref_backup_auto_create_legacy">同时创建旧版本备份</string>
+    <string name="pref_create_legacy_backup_summary">可用于旧版本的 Tachiyomi</string>
+    <string name="pref_create_legacy_backup">创建旧版本备份</string>
+    <string name="migration_help_guide">图源迁移指南</string>
     <string name="invalid_backup_file_type">无效的备份文件：%1$s</string>
-    <string name="pref_category_nsfw_content">18+ 内容</string>
+    <string name="pref_category_nsfw_content">NSFW (18+) 内容</string>
     <string name="process_text_action_name">在 Tachiyomi 中搜索</string>
+    <string name="file_picker_error">未找到文件选择应用</string>
+    <string name="myanimelist_relogin">请再次登录 myanimelist</string>
+    <string name="myanimelist_creds_missing">未找到 myanimelist 登陆凭据</string>
+    <string name="pref_label_nsfw_extension">在扩展列表中加标签</string>
+    <string name="pref_show_nsfw_extension">在扩展列表中显示</string>
+    <string name="pref_show_nsfw_source">显示在源列表</string>
 </resources>

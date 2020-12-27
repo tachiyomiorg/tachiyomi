@@ -468,8 +468,6 @@
     <string name="recent_manga_time">Hfst. %1$s - %2$s</string>
     <string name="updating_library">Bibliotheek bijwerken</string>
     <string name="error_invalid_date_supplied">Ongeldige datum opgegeven</string>
-    <string name="track_finished_reading_date">Datum klaar met lezen</string>
-    <string name="track_started_reading_date">Datum begonnen met lezen</string>
     <string name="add_tracking">Tracking toevoegen</string>
     <string name="manga_info_collapse">Minder</string>
     <string name="manga_info_expand">Meer</string>
@@ -600,10 +598,6 @@
     <string name="download_notifier_download_finish">Download voltooid</string>
     <string name="channel_errors">Fouten</string>
     <string name="backup_restore_missing_trackers">Niet-ingelogde trackers:</string>
-    <string name="pref_allow_nsfw_sources_blocked">Verbergen</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Verbergen in bronnen, maar weergeven in lijst van extensies</string>
-    <string name="pref_allow_nsfw_sources_allowed">Weergeven</string>
-    <string name="pref_allow_nsfw_sources">18+-bronnen</string>
     <string name="pref_remove_bookmarked_chapters">Verwijder hoofdstukken met bladwijzers</string>
     <string name="pref_category_delete_chapters">Hoofdstukken verwijderen</string>
     <string name="ext_nsfw_warning">Kan 18+-inhoud bevatten</string>
@@ -642,5 +636,11 @@
     <string name="migration_help_guide">Bronmigratiegids</string>
     <string name="process_text_action_name">Zoeken in Tachiyomi</string>
     <string name="invalid_backup_file_type">Ongeldig back-upbestand: %1$s</string>
-    <string name="pref_category_nsfw_content">18+ inhoud</string>
+    <string name="pref_category_nsfw_content">NSFW-bronnen (18+)</string>
+    <string name="file_picker_error">Geen bestandskiezer-app gevonden</string>
+    <string name="myanimelist_relogin">Log alstublieft opnieuw in op MAL</string>
+    <string name="myanimelist_creds_missing">MAL-inloggegevens niet gevonden</string>
+    <string name="pref_label_nsfw_extension">Markeren in extensielijst</string>
+    <string name="pref_show_nsfw_extension">Weergeven in extensielijst</string>
+    <string name="pref_show_nsfw_source">Weergeven in bronnenlijst</string>
 </resources>

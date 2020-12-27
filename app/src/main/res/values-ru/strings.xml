@@ -14,7 +14,7 @@
     <string name="action_edit_categories">Изменить категории</string>
     <string name="action_edit_cover">Изменить обложку</string>
     <string name="action_filter">Фильтр</string>
-    <string name="action_filter_bookmarked">Закладка</string>
+    <string name="action_filter_bookmarked">Добавлено в закладки</string>
     <string name="action_filter_downloaded">Загружено</string>
     <string name="action_filter_empty">Удалить фильтр</string>
     <string name="action_filter_unread">Не прочитано</string>
@@ -22,7 +22,7 @@
     <string name="action_mark_as_read">Отметить как прочитанное</string>
     <string name="action_mark_as_unread">Пометить как непрочитанное</string>
     <string name="action_mark_previous_as_read">Отметить предыдущее как прочитанное</string>
-    <string name="action_move_category">Добавить в категор(ии/ию)</string>
+    <string name="action_move_category">Добавить в категории</string>
     <string name="action_next_chapter">Следующая глава</string>
     <string name="action_next_unread">Следующая непрочитанная</string>
     <string name="action_open_in_browser">Открыть в браузере</string>
@@ -111,9 +111,9 @@
     <string name="information_empty_library">Ваша библиотека пуста. Добавьте тайтлы в библиотеку из Поиска.</string>
     <string name="information_no_downloads">Нет загрузок</string>
     <string name="information_no_recent">Нет новых обновлений</string>
-    <string name="information_no_recent_manga">Нет ничего прочитаного за последнее время</string>
+    <string name="information_no_recent_manga">В последнее время ничего не прочитано</string>
     <string name="invalid_login">Ошибка входа</string>
-    <string name="label_backup">Бэкап</string>
+    <string name="label_backup">Резервная копия</string>
     <string name="label_categories">Категории</string>
     <string name="label_download_queue">Очередь загрузки</string>
     <string name="label_library">Библиотека</string>
@@ -272,7 +272,7 @@
 \nУбедитесь, что установили и авторизовались во всех нужных расширениях и сервисах отслеживания перед восстановлением.</string>
     <string name="categories">Категории</string>
     <string name="chapter_paused">Пауза</string>
-    <string name="creating_backup">Создаем бэкап</string>
+    <string name="creating_backup">Создаем резервную копию</string>
     <string name="default_category">Категория по умолчанию</string>
     <string name="default_category_summary">Всегда спрашивать</string>
     <string name="delete_downloads_for_manga">Удалить загруженные главы\?</string>
@@ -295,7 +295,7 @@
     <string name="pref_restore_backup">Восстановить из бэкапа</string>
     <string name="pref_restore_backup_summ">Восстановить библиотеку из бэкапа</string>
     <string name="restore_completed">Восстановление закончено</string>
-    <string name="restoring_backup">Восстановление из бэкапа</string>
+    <string name="restoring_backup">Восстановление из резервной копии</string>
     <string name="short_recent_updates">Обновления</string>
     <string name="snack_categories_deleted">Категории удалены</string>
     <string name="track">Отслеживание</string>
@@ -392,7 +392,7 @@
     <string name="ext_obsolete">Устарело</string>
     <string name="obsolete_extension_message">Это расширение больше недоступно.</string>
     <string name="pref_date_format">Формат даты</string>
-    <string name="pref_category_library_update">Обновление</string>
+    <string name="pref_category_library_update">Обновления</string>
     <string name="pref_category_library_categories">Категории</string>
     <string name="logout_title">Выйти из %1$s\?</string>
     <string name="logout">Выйти</string>
@@ -400,7 +400,7 @@
     <string name="currently_reading">Сейчас читаю</string>
     <string name="paused">Приостановлено</string>
     <string name="want_to_read">Хочу почитать</string>
-    <string name="label_more">Еще</string>
+    <string name="label_more">Ещё</string>
     <string name="action_sort_latest_chapter">Последняя глава</string>
     <string name="action_view_chapters">Посмотреть главы</string>
     <string name="action_cancel_all">Отменить всё</string>
@@ -411,10 +411,10 @@
     <string name="pref_theme_dark">Тёмная тема</string>
     <string name="theme_dark_default">По умолчанию</string>
     <string name="theme_dark_blue">Темно-синяя</string>
-    <string name="theme_dark_amoled">AMOLED черный</string>
+    <string name="theme_dark_amoled">AMOLED черная</string>
     <string name="pref_manage_notifications">Управлять уведомлениями</string>
     <string name="pref_category_security">Безопасность</string>
-    <string name="lock_with_biometrics">Блокировать биометрией</string>
+    <string name="lock_with_biometrics">Блокировать отпечатком</string>
     <string name="lock_when_idle">Блокировать в режиме ожидания</string>
     <string name="lock_always">Всегда</string>
     <string name="lock_never">Никогда</string>
@@ -468,7 +468,7 @@
     <string name="pref_always_show_chapter_transition">Всегда показывать переход между главами</string>
     <string name="pref_enable_automatic_extension_updates">Проверять обновления для расширений</string>
     <string name="hide_notification_content">Скрыть содержимое уведомлений</string>
-    <string name="secure_screen_summary">Скрывать содержимое приложения при переключении на другие приложения и блокировать скриншоты</string>
+    <string name="secure_screen_summary">Скрывать содержимое приложения при переключении на другие приложения а также блокировать скриншоты</string>
     <string name="theme_light_blue">Бело-синяя</string>
     <string name="pref_theme_light">Светлая тема</string>
     <string name="action_oldest">Старейший</string>
@@ -483,7 +483,7 @@
     <string name="label_sources">Источники</string>
     <string name="pref_category_reading">Чтение</string>
     <string name="pref_skip_filtered_chapters">Пропускать фильтрованные главы</string>
-    <string name="action_select_inverse">Инвертировать выбор</string>
+    <string name="action_select_inverse">Инверсия</string>
     <string name="vertical_plus_viewer">Непрерывно вертикально</string>
     <string name="pref_webtoon_side_padding">Боковой отступ</string>
     <string name="webtoon_side_padding_25">25%</string>
@@ -507,8 +507,6 @@
     <string name="pref_confirm_exit">Подтвердить выход</string>
     <string name="recent_manga_time">Гл. %1$s - %2$s</string>
     <string name="error_invalid_date_supplied">Неправильно указана дата</string>
-    <string name="track_finished_reading_date">Дата окончания чтения</string>
-    <string name="track_started_reading_date">Дата начала чтения</string>
     <string name="local_source_help_guide">Руководство по локальным источникам</string>
     <string name="last_used_source">Последний использованный</string>
     <string name="downloaded_only_summary">Фильтрует всю мангу в вашей библиотеке</string>
@@ -603,7 +601,7 @@
     <string name="download_insufficient_space">Невозможно загрузить главы из-за нехватки места на диске</string>
     <string name="action_global_search_query">Искать \"%1$s\" глобально</string>
     <string name="pref_category_reading_mode">Режим чтения</string>
-    <string name="pref_category_locale">Локаль</string>
+    <string name="pref_category_locale">Региональные настройки</string>
     <string name="pref_category_theme">Тема</string>
     <string name="action_sort_date_added">Дата добавления</string>
     <plurals name="num_trackers">
@@ -620,10 +618,6 @@
     <string name="channel_progress">Прогресс</string>
     <string name="channel_errors">Ошибки</string>
     <string name="backup_restore_missing_trackers">Не выполнен вход в трекеры:</string>
-    <string name="pref_allow_nsfw_sources">Источники 18+</string>
-    <string name="pref_allow_nsfw_sources_blocked">Скрыть</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Скрыть в источниках, но показать в списке расширений</string>
-    <string name="pref_allow_nsfw_sources_allowed">Показывать</string>
     <string name="pref_remove_bookmarked_chapters">Удалять главы с закладками</string>
     <string name="pref_category_delete_chapters">Удаление глав</string>
     <string name="ext_nsfw_warning">Может содержать контент 18+</string>
@@ -655,14 +649,20 @@
     <string name="clear_history_completed">История удалена</string>
     <string name="spen_next_page">Следующая страница</string>
     <string name="spen_previous_page">Предыдущая страница</string>
-    <string name="full_restore_offline">Оффлайн восстановление: работает быстрее, но восстанавливает только то, что было в вашей резервной копии</string>
-    <string name="full_restore_online">Онлайн восстановление: работает гораздо медленнее, но подгружает более актуальные главы и информацию</string>
+    <string name="full_restore_offline">Оффлайн восстановление - работает быстрее, но восстанавливает только то, что было в вашей резервной копии</string>
+    <string name="full_restore_online">Онлайн восстановление - работает гораздо медленнее, но подгружает более актуальные главы и информацию</string>
     <string name="full_restore_mode">Сетевой режим</string>
     <string name="pref_backup_auto_create_legacy">Также создавать резервную копию старого формата</string>
     <string name="pref_create_legacy_backup_summary">Может быть использован в предыдущих версиях Tachiyomi</string>
     <string name="pref_create_legacy_backup">Создать резервную копию старого формата</string>
     <string name="migration_help_guide">Руководство по миграции источников</string>
     <string name="invalid_backup_file_type">Неверный файл резервной копии: %1$s</string>
-    <string name="pref_category_nsfw_content">Контент 18+</string>
+    <string name="pref_category_nsfw_content">NSFW (18+) источники</string>
     <string name="process_text_action_name">Искать в Tachiyomi</string>
+    <string name="pref_label_nsfw_extension">Метка в списке расширений</string>
+    <string name="pref_show_nsfw_extension">Показывать в списке расширений</string>
+    <string name="pref_show_nsfw_source">Показывать в списке источников</string>
+    <string name="file_picker_error">Приложение для выбора файлов не найдено</string>
+    <string name="myanimelist_relogin">Пожалуйста, войдите в MAL снова</string>
+    <string name="myanimelist_creds_missing">Учетные данные входа в MAL не найдены</string>
 </resources>

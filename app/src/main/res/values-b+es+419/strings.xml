@@ -375,7 +375,7 @@
     <string name="pref_clear_chapter_cache">Borrar caché de los capítulos</string>
     <string name="label_data">Datos</string>
     <string name="cookies_cleared">Cookies borradas</string>
-    <string name="requires_app_restart">Requiere el reinicio de la aplicación para que surta efecto</string>
+    <string name="requires_app_restart">Requiere reiniciar la aplicación para que surta efecto</string>
     <string name="battery_optimization_disabled">La optimización de la batería ya está desactivada</string>
     <string name="pref_disable_battery_optimization_summary">Ayuda con las actualizaciones y las copias de seguridad de biblioteca en segundo plano</string>
     <string name="pref_disable_battery_optimization">Desactivar optimización de batería</string>
@@ -573,8 +573,6 @@
     <string name="error_invalid_date_supplied">La fecha indicada es invalida</string>
     <string name="track_author">Autor</string>
     <string name="track_type">Tipo</string>
-    <string name="track_finished_reading_date">Fecha de finalización de lectura</string>
-    <string name="track_started_reading_date">Fecha de inicio de lectura</string>
     <string name="track_start_date">Iniciado</string>
     <string name="track_status">Estado</string>
     <string name="status">Estado</string>
@@ -605,10 +603,6 @@
     <string name="ext_nsfw_warning">Puede contener contenido para mayores de 18 años</string>
     <string name="ext_nsfw_short">18+</string>
     <string name="parental_controls_info">Esto no evita que las extensiones no oficiales o potencialmente marcadas incorrectamente muestren contenido para mayores de 18 años dentro de la aplicación.</string>
-    <string name="pref_allow_nsfw_sources_blocked">Ocultar</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Ocultar en fuentes pero mostrar en la lista de extensiones</string>
-    <string name="pref_allow_nsfw_sources_allowed">Mostrar</string>
-    <string name="pref_allow_nsfw_sources">Fuentes +18</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Falta un capítulo</item>
         <item quantity="other">Faltan %d capítulos</item>
@@ -641,5 +635,12 @@
     <string name="pref_backup_auto_create_legacy">También crear copia de seguridad heredada</string>
     <string name="pref_create_legacy_backup_summary">Puede usarse en versiones anteriores de Tachiyomi</string>
     <string name="pref_create_legacy_backup">Crear copia de seguridad heredada</string>
-    <string name="pref_category_nsfw_content">Contenido +18</string>
+    <string name="pref_category_nsfw_content">NSFW (Contenido +18)</string>
+    <string name="process_text_action_name">Buscar en Tachiyomi</string>
+    <string name="file_picker_error">No se encontró ninguna aplicación de selección de archivos</string>
+    <string name="myanimelist_relogin">Por favor iniciar sesión con MAL de nuevo</string>
+    <string name="myanimelist_creds_missing">Credenciales de inicio de sesión de MAL no encontradas</string>
+    <string name="pref_label_nsfw_extension">Etiqueta en la lista de extensiones</string>
+    <string name="pref_show_nsfw_extension">Mostrar en la lista de extensiones</string>
+    <string name="pref_show_nsfw_source">Mostrar en la lista de fuentes</string>
 </resources>

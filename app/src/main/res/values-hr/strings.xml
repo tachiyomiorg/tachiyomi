@@ -370,8 +370,6 @@
     <string name="error_invalid_date_supplied">Naveden je neispravan datum</string>
     <string name="track_author">Autor</string>
     <string name="track_type">Vrsta</string>
-    <string name="track_finished_reading_date">Datum završetka čitanja</string>
-    <string name="track_started_reading_date">Datum početka čitanja</string>
     <string name="track_start_date">Započeto</string>
     <string name="track_status">Stanje</string>
     <string name="status">Stanje</string>
@@ -578,7 +576,7 @@
         <item quantity="few">%1$s poglavlja</item>
         <item quantity="other">%1$s poglavlja</item>
     </plurals>
-    <string name="requires_app_restart">Za preuzimanje postavke, ponovo pokreni program</string>
+    <string name="requires_app_restart">Zahtijeva ponovno pokretanje programa</string>
     <string name="pref_dns_over_https" translatable="false">DNS preko HTTPS-a (Cloudflare)</string>
     <string name="label_network">Mreža</string>
     <string name="tapping_inverted_both">Oboje</string>
@@ -614,10 +612,6 @@
     <string name="pref_category_delete_chapters">Izbriši poglavlja</string>
     <string name="ext_nsfw_warning">Može sadržavati 18+ sadržaj</string>
     <string name="ext_nsfw_short">18+</string>
-    <string name="pref_allow_nsfw_sources_blocked">Sakrij</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Sakrij u izvorima, ali prikaži u popisu proširenja</string>
-    <string name="pref_allow_nsfw_sources_allowed">Prikaži</string>
-    <string name="pref_allow_nsfw_sources">18+ izvori</string>
     <string name="backup_restore_missing_trackers">Praćenja bez prijave:</string>
     <string name="parental_controls_info">To ne sprečava neslužbena ili potencijalno krivo označena proširenje prikazati sadržaj 18+ unutar aplikacije.</string>
     <plurals name="missing_chapters_warning">
@@ -653,6 +647,12 @@
     <string name="pref_create_legacy_backup">Stvori zastarjelu sigurnosnu kopiju</string>
     <string name="migration_help_guide">Vodič za migraciju izvora</string>
     <string name="invalid_backup_file_type">Neispravna datoteka sigurnosne kopije: %1$s</string>
-    <string name="pref_category_nsfw_content">18+ sadržaj</string>
+    <string name="pref_category_nsfw_content">Neprikladan sadržaj (18+)</string>
     <string name="process_text_action_name">Traži u Tachiyomiju</string>
+    <string name="file_picker_error">Nije pronađen nijedan program za biranje datoteka</string>
+    <string name="myanimelist_relogin">Ponovo se prijavi na MAL</string>
+    <string name="myanimelist_creds_missing">Podaci za prijavu na MAL nisu pronađene</string>
+    <string name="pref_label_nsfw_extension">Oznaka u popisu dodataka</string>
+    <string name="pref_show_nsfw_extension">Pokaži u popisu dodataka</string>
+    <string name="pref_show_nsfw_source">Pokaži u popisu izvora</string>
 </resources>

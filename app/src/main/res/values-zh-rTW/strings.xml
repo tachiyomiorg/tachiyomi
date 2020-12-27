@@ -516,8 +516,6 @@
     <plurals name="download_queue_summary">
         <item quantity="other">剩餘 %1$s 本</item>
     </plurals>
-    <string name="track_finished_reading_date">閱讀完畢日期</string>
-    <string name="track_started_reading_date">開始閱讀日期</string>
     <plurals name="manga_num_chapters">
         <item quantity="other">共 %1$s 章</item>
     </plurals>
@@ -582,15 +580,11 @@
     <string name="channel_progress">進度</string>
     <string name="channel_errors">錯誤</string>
     <string name="channel_complete">作業完成</string>
-    <string name="pref_allow_nsfw_sources_blocked">禁止顯示</string>
-    <string name="pref_allow_nsfw_sources_allowed">允許顯示</string>
     <string name="download_notifier_download_finish">下載完成</string>
     <string name="group_downloader">下載</string>
     <string name="ext_nsfw_short">18+</string>
     <string name="parental_controls_info">即使啟用監護限制，還是可能有漏網之魚。使用者仍可藉由非官方或未正確標幟的擴充套件在本應用程式中瀏覽未滿十八歲之人不宜觀賞的內容。</string>
     <string name="ext_nsfw_warning">可能包含未滿十八歲之人不宜觀賞的內容</string>
-    <string name="pref_allow_nsfw_sources">未滿十八歲之人不宜瀏覽的來源</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">禁止顯示，但仍可見於擴充套件清單</string>
     <string name="invalid_backup_file_missing_manga">備份檔並未包含任何漫畫</string>
     <string name="pref_remove_bookmarked_chapters">刪除有書籤的章節</string>
     <string name="pref_category_delete_chapters">刪除章節</string>
@@ -611,4 +605,28 @@
     <string name="pref_hide_bottom_bar_on_scroll">捲動時隱藏底部功能表</string>
     <string name="pref_incognito_mode_summary">暫停閱讀記錄</string>
     <string name="pref_incognito_mode">無痕模式</string>
+    <string name="full_restore_online">線上還原：耗時較久，但提供較新的章節與資訊</string>
+    <string name="full_restore_offline">離線還原：即刻完成，但僅包含備份檔裡的內容</string>
+    <string name="myanimelist_creds_missing">找不到 MAL 登入憑證</string>
+    <string name="action_web_view">WebView</string>
+    <string name="http_error_hint">在 WebView 中檢查網站</string>
+    <string name="file_picker_error">找不到檔案選擇器</string>
+    <string name="share_page_info">《%1$s》：%2$s，第 %3$d 頁</string>
+    <string name="migration_help_guide">來源遷移說明</string>
+    <string name="invalid_backup_file_type">無效的備份檔：%1$s</string>
+    <string name="spen_next_page">下一頁</string>
+    <string name="spen_previous_page">上一頁</string>
+    <string name="process_text_action_name">Tachiyomi 搜尋</string>
+    <string name="myanimelist_relogin">請重新登入 MAL</string>
+    <string name="full_restore_mode">網路模式</string>
+    <string name="pref_backup_auto_create_legacy">同時建立舊版備份</string>
+    <string name="pref_create_legacy_backup_summary">可供舊版 Tachiyomi 還原</string>
+    <string name="pref_create_legacy_backup">建立適用於舊版的備份</string>
+    <string name="pref_category_nsfw_content">未滿十八歲之人不宜瀏覽的來源</string>
+    <plurals name="notification_new_chapters_summary">
+        <item quantity="other">共 %d 本漫畫</item>
+    </plurals>
+    <string name="pref_label_nsfw_extension">在擴充套件清單中標幟</string>
+    <string name="pref_show_nsfw_extension">在擴充套件清單中顯示</string>
+    <string name="pref_show_nsfw_source">在來源清單中顯示</string>
 </resources>

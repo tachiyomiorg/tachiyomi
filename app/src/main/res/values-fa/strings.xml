@@ -74,8 +74,6 @@
     <string name="error_invalid_date_supplied">تاریخ نامعتبر وارد شد</string>
     <string name="track_author">نویسنده</string>
     <string name="track_type">نوع</string>
-    <string name="track_finished_reading_date">تاریخ اتمام خواندن</string>
-    <string name="track_started_reading_date">تاریخ شروع خواندن</string>
     <string name="track_start_date">شروع شده</string>
     <string name="track_status">وضعیت خوانده شده</string>
     <string name="status">وضعیت خوانده شده</string>
@@ -594,8 +592,6 @@
     <string name="action_download_unread">دانلود فصل‌های خوانده‌نشده</string>
     <string name="action_sort_date_added">تاریخ اضافه شدن</string>
     <string name="updated_version">به نسخه v%1$s آپدیت شد</string>
-    <string name="pref_allow_nsfw_sources_allowed">مجاز</string>
-    <string name="pref_allow_nsfw_sources">منابع ۱۸+</string>
     <string name="pref_hide_bottom_bar_on_scroll">نوار پایین هنگام اسکرول کردن پنهان شود</string>
     <string name="action_web_view">WebView</string>
     <string name="action_search_settings">جست و جوی تنضیمات</string>
