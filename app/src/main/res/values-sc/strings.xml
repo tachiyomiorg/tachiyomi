@@ -499,8 +499,6 @@
     <string name="label_downloaded_only">Iscarrigados ebbia</string>
     <string name="recent_manga_time">Cap. %1$s - %2$s</string>
     <string name="error_invalid_date_supplied">Sa data frunida no est vàlida</string>
-    <string name="track_finished_reading_date">Data de acabu de sa leghidura</string>
-    <string name="track_started_reading_date">Data de incumentzu de sa leghidura</string>
     <string name="last_used_source">Ùrtima impreada</string>
     <string name="check_for_updates">Chirca agiornamentos</string>
     <string name="restoring_backup_canceled">Riprìstinu annulladu</string>
@@ -605,10 +603,6 @@
     <string name="ext_nsfw_warning">Diat pòdere cuntènnere cuntenutos 18+</string>
     <string name="ext_nsfw_short">18+</string>
     <string name="parental_controls_info">Custu no impedit a estensiones no ufitziales o potentzialmente non curretas de ammustrare cuntenutos 18+ in s\'aplicatzione.</string>
-    <string name="pref_allow_nsfw_sources_blocked">Cua</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Cua·las in sas mitzas ma ammustra·las in sa lista de sas estensiones</string>
-    <string name="pref_allow_nsfw_sources_allowed">Ammustra</string>
-    <string name="pref_allow_nsfw_sources">Mitzas 18+</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Mancat 1 capìtulu</item>
         <item quantity="other">Mancant %d capìtulos</item>
@@ -641,6 +635,12 @@
     <string name="pref_create_legacy_backup">Crea una còpia de seguresa de casta betza</string>
     <string name="migration_help_guide">Ghia a su tramudòngiu de sas mitzas</string>
     <string name="invalid_backup_file_type">Documentu de còpia de seguresa non vàlidu: %1$s</string>
-    <string name="pref_category_nsfw_content">Cuntenutu 18+</string>
+    <string name="pref_category_nsfw_content">Cuntenutu NSFW (18+)</string>
     <string name="process_text_action_name">Chirca in Tachiyomi</string>
+    <string name="pref_label_nsfw_extension">Eticheta in sa lista de sas estensiones</string>
+    <string name="pref_show_nsfw_extension">Ammustra in sa lista de sas estensiones</string>
+    <string name="pref_show_nsfw_source">Ammustra in sa lista de sas mitzas</string>
+    <string name="file_picker_error">Peruna aplicatzione pro ischertare documentos agatada</string>
+    <string name="myanimelist_relogin">Pro praghere torra a intrare in MAL</string>
+    <string name="myanimelist_creds_missing">Credentziales de atzessu MAL no agatadas</string>
 </resources>

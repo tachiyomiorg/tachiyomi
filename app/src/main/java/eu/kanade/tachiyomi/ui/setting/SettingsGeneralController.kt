@@ -212,6 +212,7 @@ class SettingsGeneralController : SettingsController() {
                     "sk",
                     "sr",
                     "sv",
+                    "te",
                     "th",
                     "tr",
                     "uk",

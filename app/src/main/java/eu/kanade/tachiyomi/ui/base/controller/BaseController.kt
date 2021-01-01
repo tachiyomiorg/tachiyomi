@@ -12,7 +12,6 @@ import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
 import com.bluelinelabs.conductor.RestoreViewOnCreateController
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.clearFindViewByIdCache
 import timber.log.Timber
 
 abstract class BaseController<VB : ViewBinding>(bundle: Bundle? = null) :
@@ -52,11 +51,6 @@ abstract class BaseController<VB : ViewBinding>(bundle: Bundle? = null) :
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup, savedViewState: Bundle?): View {
         return inflateView(inflater, container)
-    }
-
-    override fun onDestroyView(view: View) {
-        super.onDestroyView(view)
-        clearFindViewByIdCache()
     }
 
     abstract fun inflateView(inflater: LayoutInflater, container: ViewGroup): View

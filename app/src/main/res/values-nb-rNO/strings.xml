@@ -574,10 +574,6 @@
     <string name="ext_nsfw_warning">Kan inneholde innhold for 18+</string>
     <string name="ext_nsfw_short">18+</string>
     <string name="parental_controls_info">Dette forhindrer ikke uoffisielle eller potensielt feilaktig kategoriserte tillegg fra å vise innhold for 18+ i programmet.</string>
-    <string name="pref_allow_nsfw_sources_blocked">Blokkert</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Blokker surfing av kilder, men vis i tilleggslisten</string>
-    <string name="pref_allow_nsfw_sources_allowed">Tillatt</string>
-    <string name="pref_allow_nsfw_sources">Kilder for 18+</string>
     <string name="recent_manga_time">Kap. %1$s - %2$s</string>
     <string name="share_page_info">%1$s: %2$s, side %3$d</string>
     <string name="chapter_settings">Kapittelinnstillinger</string>
@@ -587,8 +583,6 @@
         <item quantity="one">1 sporer</item>
         <item quantity="other">%d sporere</item>
     </plurals>
-    <string name="track_started_reading_date">Lesing påbegynt dato</string>
-    <string name="track_finished_reading_date">Ferdiglest dato</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Det er ett manglende kapittel</item>
         <item quantity="other">Det er %d manglende kapittel</item>

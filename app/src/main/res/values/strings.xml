@@ -278,12 +278,17 @@
     <string name="black_background">Black</string>
     <string name="pref_viewer_type">Default reading mode</string>
     <string name="default_viewer">Default</string>
+    <string name="default_nav">Default</string>
+    <string name="l_nav">L shaped</string>
+    <string name="kindlish_nav">Kindle-ish</string>
+    <string name="edge_nav">Edge</string>
     <string name="left_to_right_viewer">Left to right</string>
     <string name="right_to_left_viewer">Right to left</string>
     <string name="vertical_viewer">Vertical</string>
     <string name="webtoon_viewer">Webtoon</string>
     <string name="vertical_plus_viewer">Continuous vertical</string>
     <string name="pager_viewer">Paged</string>
+    <string name="pref_viewer_nav">Navigation layout</string>
     <string name="pref_image_decoder">Image decoder</string>
     <string name="pref_image_scale_type">Scale type</string>
     <string name="scale_type_fit_screen">Fit screen</string>
@@ -565,11 +570,11 @@
     <string name="status">Status</string>
     <string name="track_status">Status</string>
     <string name="track_start_date">Started</string>
-    <string name="track_started_reading_date">Started reading date</string>
-    <string name="track_finished_reading_date">Finished reading date</string>
     <string name="track_type">Type</string>
     <string name="track_author">Author</string>
     <string name="error_invalid_date_supplied">Invalid date supplied</string>
+    <string name="myanimelist_creds_missing">MAL login credentials not found</string>
+    <string name="myanimelist_relogin">Please login to MAL again</string>
 
     <!-- Category activity -->
     <string name="error_category_exists">A category with this name already exists!</string>

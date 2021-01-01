@@ -16,7 +16,7 @@ class WhatsNewDialogController(bundle: Bundle? = null) : DialogController(bundle
             .title(text = activity!!.getString(R.string.updated_version, BuildConfig.VERSION_NAME))
             .positiveButton(android.R.string.ok)
             .neutralButton(R.string.whats_new) {
-                val url = "https://github.com/inorichi/tachiyomi/releases/tag/v${BuildConfig.VERSION_NAME}"
+                val url = "https://github.com/tachiyomiorg/tachiyomi/releases/tag/v${BuildConfig.VERSION_NAME}"
                 val intent = Intent(Intent.ACTION_VIEW, url.toUri())
                 startActivity(intent)
             }

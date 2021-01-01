@@ -225,6 +225,19 @@
     </style>
 
 
+    <style name="Theme.Widget.CircularProgressIndicator" parent="Widget.MaterialComponents.CircularProgressIndicator">
+        <item name="indicatorColor">?attr/colorAccent</item>
+    </style>
+    <style name="Theme.Widget.CircularProgressIndicator.Small" parent="Theme.Widget.CircularProgressIndicator">
+        <item name="indicatorSize">16dp</item>
+        <item name="trackThickness">2dp</item>
+    </style>
+
+    <style name="Theme.Widget.LinearProgressIndicator" parent="Widget.MaterialComponents.LinearProgressIndicator">
+        <item name="indicatorColor">?attr/colorAccent</item>
+    </style>
+
+
     <!--=======================-->
     <!--Widgets.TextInputLayout-->
     <!--=======================-->

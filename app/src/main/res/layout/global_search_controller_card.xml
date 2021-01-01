@@ -65,12 +65,13 @@
         android:text="@string/no_results_found"
         android:visibility="gone" />
 
-    <ProgressBar
+    <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/progress"
-        style="?android:attr/progressBarStyleSmall"
+        style="@style/Theme.Widget.CircularProgressIndicator.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:indeterminate="true" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"

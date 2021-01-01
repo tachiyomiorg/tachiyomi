@@ -22,7 +22,7 @@ class DownloadQueue(
         downloads.forEach { download ->
             download.setStatusSubject(statusSubject)
             download.setStatusCallback(::setPagesFor)
-            download.status = Download.QUEUE
+            download.status = Download.State.QUEUE
         }
         queue.addAll(downloads)
         store.addAll(downloads)
@@ -34,8 +34,8 @@ class DownloadQueue(
         store.remove(download)
         download.setStatusSubject(null)
         download.setStatusCallback(null)
-        if (download.status == Download.DOWNLOADING || download.status == Download.QUEUE) {
-            download.status = Download.NOT_DOWNLOADED
+        if (download.status == Download.State.DOWNLOADING || download.status == Download.State.QUEUE) {
+            download.status = Download.State.NOT_DOWNLOADED
         }
         if (removed) {
             updatedRelay.call(Unit)
@@ -60,8 +60,8 @@ class DownloadQueue(
         queue.forEach { download ->
             download.setStatusSubject(null)
             download.setStatusCallback(null)
-            if (download.status == Download.DOWNLOADING || download.status == Download.QUEUE) {
-                download.status = Download.NOT_DOWNLOADED
+            if (download.status == Download.State.DOWNLOADING || download.status == Download.State.QUEUE) {
+                download.status = Download.State.NOT_DOWNLOADED
             }
         }
         queue.clear()
@@ -70,7 +70,7 @@ class DownloadQueue(
     }
 
     fun getActiveDownloads(): Observable<Download> =
-        Observable.from(this).filter { download -> download.status == Download.DOWNLOADING }
+        Observable.from(this).filter { download -> download.status == Download.State.DOWNLOADING }
 
     fun getStatusObservable(): Observable<Download> = statusSubject.onBackpressureBuffer()
 
@@ -79,7 +79,7 @@ class DownloadQueue(
         .map { this }
 
     private fun setPagesFor(download: Download) {
-        if (download.status == Download.DOWNLOADED || download.status == Download.ERROR) {
+        if (download.status == Download.State.DOWNLOADED || download.status == Download.State.ERROR) {
             setPagesSubject(download.pages, null)
         }
     }
@@ -88,19 +88,19 @@ class DownloadQueue(
         return statusSubject.onBackpressureBuffer()
             .startWith(getActiveDownloads())
             .flatMap { download ->
-                if (download.status == Download.DOWNLOADING) {
+                if (download.status == Download.State.DOWNLOADING) {
                     val pageStatusSubject = PublishSubject.create<Int>()
                     setPagesSubject(download.pages, pageStatusSubject)
                     return@flatMap pageStatusSubject
                         .onBackpressureBuffer()
                         .filter { it == Page.READY }
                         .map { download }
-                } else if (download.status == Download.DOWNLOADED || download.status == Download.ERROR) {
+                } else if (download.status == Download.State.DOWNLOADED || download.status == Download.State.ERROR) {
                     setPagesSubject(download.pages, null)
                 }
                 Observable.just(download)
             }
-            .filter { it.status == Download.DOWNLOADING }
+            .filter { it.status == Download.State.DOWNLOADING }
     }
 
     private fun setPagesSubject(pages: List<Page>?, subject: PublishSubject<Int>?) {

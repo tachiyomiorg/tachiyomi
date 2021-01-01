@@ -67,16 +67,17 @@ class FullBackupRestore(context: Context, notifier: BackupNotifier, private val 
         val history = backupManga.history
         val tracks = backupManga.getTrackingImpl()
 
+        val source = backupManager.sourceManager.get(manga.source)
+        val sourceName = sourceMapping[manga.source] ?: manga.source.toString()
+
         try {
-            val source = backupManager.sourceManager.get(manga.source)
             if (source != null || !online) {
                 restoreMangaData(manga, source, chapters, categories, history, tracks, backupCategories, online)
             } else {
-                val sourceName = sourceMapping[manga.source] ?: manga.source.toString()
-                errors.add(Date() to "${manga.title} - ${context.getString(R.string.source_not_found_name, sourceName)}")
+                errors.add(Date() to "${manga.title} [$sourceName]: ${context.getString(R.string.source_not_found_name, sourceName)}")
             }
         } catch (e: Exception) {
-            errors.add(Date() to "${manga.title} - ${e.message}")
+            errors.add(Date() to "${manga.title} [$sourceName]: ${e.message}")
         }
 
         restoreProgress += 1

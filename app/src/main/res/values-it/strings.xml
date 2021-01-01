@@ -327,7 +327,7 @@
     <string name="pref_refresh_library_tracking">Aggiorna monitoraggio</string>
     <string name="pref_refresh_library_tracking_summary">Aggiorna stato, voto e ultimo capitolo letto dalla funzione segna progresso</string>
     <string name="no_more_results">Non ci sono altri risultati</string>
-    <string name="local_source">Fonti locali</string>
+    <string name="local_source">Fonte locale</string>
     <string name="added_to_library">Il manga è stato aggiunto alla tua libreria</string>
     <string name="delete_downloads_for_manga">Eliminare i capitoli scaricati?</string>
     <string name="chapter_paused">In pausa</string>
@@ -524,8 +524,6 @@
     <string name="action_select_inverse">Selezione inversa</string>
     <string name="recent_manga_time">Cap. %1$s - %2$s</string>
     <string name="error_invalid_date_supplied">Data inesistente selezionata</string>
-    <string name="track_finished_reading_date">Data fine lettura</string>
-    <string name="track_started_reading_date">Data inizio lettura</string>
     <string name="manga_info_collapse">Meno</string>
     <string name="manga_info_expand">Più</string>
     <string name="licenses">Licenze open source</string>
@@ -604,7 +602,7 @@
     <string name="unknown_author">Autore sconosciuto</string>
     <string name="updated_version">Aggiornato verso v%1$s</string>
     <string name="whats_new">Le novità</string>
-    <string name="requires_app_restart">Richiede il riavvio dell\'applicazione per avere effetto</string>
+    <string name="requires_app_restart">Richiesto riavvio dell\'app per applicare le modifiche</string>
     <string name="pref_dns_over_https" translatable="false">DNS via HTTPS (Cloudflare)</string>
     <string name="label_network">Rete</string>
     <string name="pref_show_reading_mode_summary">Mostra brevemente la modalità corrente all\'apertura del lettore</string>
@@ -626,7 +624,6 @@
         <item quantity="other">%d tracciatori</item>
     </plurals>
     <string name="channel_progress">Progresso</string>
-    <string name="pref_allow_nsfw_sources_allowed">Mostra</string>
     <string name="group_backup_restore">Backup e ripristino</string>
     <string name="group_downloader">Scaricamenti</string>
     <string name="channel_errors">Errori</string>
@@ -637,7 +634,6 @@
     <string name="pref_category_delete_chapters">Elimina capitoli</string>
     <string name="ext_nsfw_warning">Potrebbe contenere materiale 18+</string>
     <string name="ext_nsfw_short">18+</string>
-    <string name="pref_allow_nsfw_sources">Fonti 18+</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">C\'è un capitolo mancante</item>
         <item quantity="other">Ci sono %d capitoli mancanti</item>
@@ -645,8 +641,6 @@
     <string name="backup_restore_missing_trackers">Trackers non collegati:</string>
     <string name="no_chapters_error">Nessun capitolo trovato</string>
     <string name="parental_controls_info">Questo non impedisce a estensioni non ufficiali o potenzialmente segnalate in modo errato di far mostrare contenuti 18+ all\'interno dell\'app.</string>
-    <string name="pref_allow_nsfw_sources_blocked">Nascondi</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Nascondi le fonti di navigazione ma mostrale nell\'elenco delle estensioni</string>
     <string name="chapter_settings_updated">Impostazioni predefinite del capitolo aggiornate</string>
     <string name="share_page_info">%1$s: %2$s, pagina %3$d</string>
     <string name="set_chapter_settings_as_default">Imposta come predefinito</string>
@@ -674,5 +668,12 @@
     <string name="pref_backup_auto_create_legacy">Crea anche backup legacy</string>
     <string name="pref_create_legacy_backup_summary">Può essere utilizzato nelle versioni precedenti di Tachiyomi</string>
     <string name="pref_create_legacy_backup">Crea backup legacy</string>
-    <string name="pref_category_nsfw_content">Contenuto +18</string>
+    <string name="pref_category_nsfw_content">Fonti NSFW (18+)</string>
+    <string name="process_text_action_name">Cerca in Tachiyomi</string>
+    <string name="pref_label_nsfw_extension">Etichetta nella lista delle estensioni</string>
+    <string name="pref_show_nsfw_extension">Mostra nella lista delle estensioni</string>
+    <string name="pref_show_nsfw_source">Mostra nella lista delle fonti</string>
+    <string name="myanimelist_relogin">Per favore accedi di nuovo a MAL</string>
+    <string name="myanimelist_creds_missing">Credenziali di accesso MAL non trovate</string>
+    <string name="file_picker_error">Nessuna app per la selezione dei file trovata</string>
 </resources>

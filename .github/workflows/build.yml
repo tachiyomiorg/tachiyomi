@@ -2,7 +2,7 @@ name: CI
 on:
   push:
     branches:
-      - dev
+      - master
     tags:
       - v*
   pull_request:
@@ -55,14 +55,14 @@ jobs:
       # Sign APK and create release for tags
 
       - name: Get tag name
-        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'inorichi/tachiyomi'
+        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'tachiyomiorg/tachiyomi'
         id: get_tag_name
         run: |
           set -x
           echo "VERSION_TAG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
 
       - name: Sign APK
-        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'inorichi/tachiyomi'
+        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'tachiyomiorg/tachiyomi'
         uses: r0adkll/sign-android-release@v1
         with:
           releaseDirectory: app/build/outputs/apk/standard/release
@@ -72,7 +72,7 @@ jobs:
           keyPassword: ${{ secrets.KEY_PASSWORD }}
 
       - name: Create release
-        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'inorichi/tachiyomi'
+        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'tachiyomiorg/tachiyomi'
         id: create_release
         uses: actions/create-release@v1
         env:
@@ -84,7 +84,7 @@ jobs:
           prerelease: false
 
       - name: Upload APK to release
-        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'inorichi/tachiyomi'
+        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'tachiyomiorg/tachiyomi'
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

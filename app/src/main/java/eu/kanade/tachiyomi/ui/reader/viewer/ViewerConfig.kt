@@ -28,13 +28,18 @@ abstract class ViewerConfig(preferences: PreferencesHelper) {
     var volumeKeysInverted = false
     var trueColor = false
     var alwaysShowChapterTransition = true
+    var navigationMode = 0
+        protected set
+
+    abstract var navigator: ViewerNavigation
+        protected set
 
     init {
         preferences.readWithTapping()
             .register({ tappingEnabled = it })
 
         preferences.readWithTappingInverted()
-            .register({ tappingInverted = it })
+            .register({ tappingInverted = it }, { navigator.invertMode = it })
 
         preferences.readWithLongTap()
             .register({ longTapEnabled = it })
@@ -57,6 +62,10 @@ abstract class ViewerConfig(preferences: PreferencesHelper) {
         preferences.alwaysShowChapterTransition()
             .register({ alwaysShowChapterTransition = it })
     }
+
+    protected abstract fun defaultNavigation(): ViewerNavigation
+
+    abstract fun updateNavigation(navigationMode: Int)
 
     fun <T> Preference<T>.register(
         valueAssignment: (T) -> Unit,

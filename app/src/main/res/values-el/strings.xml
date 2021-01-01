@@ -248,7 +248,7 @@
     <string name="added_to_library">Το manga έχει προστεθεί στη βιβλιοθήκη σας</string>
     <string name="action_global_search_hint">Καθολική αναζήτηση…</string>
     <string name="latest">Νεότερα</string>
-    <string name="browse">Αναζήτηση</string>
+    <string name="browse">Περιήγηση</string>
     <string name="manga_not_in_db">Αυτό το manga έχει αφαιρεθεί από τη βάση δεδομένων.</string>
     <string name="manga_detail_tab">Πληροφορίες</string>
     <string name="description">Περιγραφή</string>
@@ -418,8 +418,6 @@
     <string name="recent_manga_time">Κεφ. %1$s - %2$s</string>
     <string name="updating_library">Ενημέρωση βιβλιοθήκης</string>
     <string name="error_invalid_date_supplied">Η ημερομηνία που δόθηκε δεν είναι έγκυρη</string>
-    <string name="track_finished_reading_date">Ημερομηνία ολοκλήρωσης ανάγνωσης</string>
-    <string name="track_started_reading_date">Ημερομηνία έναρξης ανάγνωσης</string>
     <string name="want_to_read">Θέλω να διαβάσω</string>
     <string name="paused">Σε παύση</string>
     <string name="currently_reading">Διαβάζετε αυτή τη στιγμή</string>
@@ -600,10 +598,6 @@
     <string name="download_notifier_download_finish">Η λήψη ολοκληρώθηκε</string>
     <string name="channel_errors">Σφάλματα</string>
     <string name="backup_restore_missing_trackers">Ιχνηλάτες που δεν έχουν συνδεθεί:</string>
-    <string name="pref_allow_nsfw_sources_blocked">Απόκρυψη</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Απόκρυψη σε πηγές αλλά εμφάνιση στη λίστα επεκτάσεων</string>
-    <string name="pref_allow_nsfw_sources_allowed">Εμφάνιση</string>
-    <string name="pref_allow_nsfw_sources">18+ πηγές</string>
     <string name="pref_category_delete_chapters">Διαγραφή κεφαλαίων</string>
     <string name="ext_nsfw_warning">Μπορεί να περιέχει 18+ περιεχόμενο</string>
     <string name="ext_nsfw_short">18+</string>
@@ -641,6 +635,12 @@
     <string name="pref_create_legacy_backup">Δημιουργία αντιγράφου ασφαλείας παλαιού τύπου</string>
     <string name="migration_help_guide">Οδηγός μετανάστευσης πηγής</string>
     <string name="invalid_backup_file_type">Μη έγκυρο αντίγραφο ασσφαλείας: %1$s</string>
-    <string name="pref_category_nsfw_content">18+ περιεχόμενο</string>
+    <string name="pref_category_nsfw_content">Πηγές NSFW (18+)</string>
     <string name="process_text_action_name">Αναζήτηση στο Tachiyomi</string>
+    <string name="pref_label_nsfw_extension">Ετικέτα στη λίστα επεκτάσεων</string>
+    <string name="pref_show_nsfw_extension">Εμφάνιση στη λίστα επεκτάσεων</string>
+    <string name="pref_show_nsfw_source">Εμφάνιση στη λίστα πηγών</string>
+    <string name="file_picker_error">Δεν βρέθηκε εφαρμογή επιλογής αρχείων</string>
+    <string name="myanimelist_relogin">Συνδεθείτε ξανά στο MAL</string>
+    <string name="myanimelist_creds_missing">Τα διαπιστευτήρια σύνδεσης MAL δεν βρέθηκαν</string>
 </resources>

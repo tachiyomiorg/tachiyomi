@@ -381,8 +381,6 @@
     <string name="status">სტატუსი</string>
     <string name="track_status">სტატუსი</string>
     <string name="track_start_date">დაიწყო</string>
-    <string name="track_started_reading_date">კითხვის დაწყების თარიღი</string>
-    <string name="track_finished_reading_date">კითხვის დასრულების თარიღი</string>
     <string name="track_type">ტიპი</string>
     <string name="track_author">ავტორი</string>
     <string name="error_invalid_date_supplied">არასწორი თარიღი</string>

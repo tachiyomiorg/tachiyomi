@@ -503,12 +503,10 @@
     <string name="recent_manga_time">Cap. %1$s - %2$s</string>
     <string name="restoring_backup_canceled">Restauração cancelada</string>
     <string name="restoring_backup_error">Falha ao restaurar o backup</string>
-    <string name="track_finished_reading_date">Data de término da leitura</string>
-    <string name="track_started_reading_date">Data de início da leitura</string>
     <string name="error_invalid_date_supplied">Data inválida fornecida</string>
     <string name="last_used_source">Última utilizada</string>
     <string name="check_for_updates">Procurar por atualizações</string>
-    <string name="local_source_help_guide">Guia sobre a fonte local</string>
+    <string name="local_source_help_guide">Guia para a fonte local</string>
     <string name="restore_duration">%02d min e %02d seg</string>
     <string name="downloaded_only_summary">Filtra todos os mangás em sua biblioteca</string>
     <plurals name="download_queue_summary">
@@ -600,10 +598,6 @@
     <string name="channel_complete">Concluído</string>
     <string name="channel_errors">Erros</string>
     <string name="backup_restore_missing_trackers">Monitoradores sem login realizado:</string>
-    <string name="pref_allow_nsfw_sources">Fontes +18</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Ocultar nas fontes, mas exibi-las na lista de extensões</string>
-    <string name="pref_allow_nsfw_sources_blocked">Ocultar</string>
-    <string name="pref_allow_nsfw_sources_allowed">Mostrar</string>
     <string name="pref_remove_bookmarked_chapters">Excluir capítulos favoritos</string>
     <string name="pref_category_delete_chapters">Excluir capítulos</string>
     <string name="ext_nsfw_warning">Pode haver conteúdo +18</string>
@@ -641,6 +635,12 @@
     <string name="pref_create_legacy_backup">Criar backup legado</string>
     <string name="migration_help_guide">Guia de migração de fonte</string>
     <string name="invalid_backup_file_type">Arquivo de backup inválido: %1$s</string>
-    <string name="pref_category_nsfw_content">Conteúdo +18</string>
+    <string name="pref_category_nsfw_content">Fontes NSFW (+18)</string>
     <string name="process_text_action_name">Buscar no Tachiyomi</string>
+    <string name="pref_label_nsfw_extension">Rotular na lista de extensões</string>
+    <string name="pref_show_nsfw_extension">Mostrar na lista de extensões</string>
+    <string name="pref_show_nsfw_source">Mostrar na lista de fontes</string>
+    <string name="file_picker_error">Nenhum aplicativo de seleção de arquivos encontrado</string>
+    <string name="myanimelist_relogin">Por favor, faça login no MAL novamente</string>
+    <string name="myanimelist_creds_missing">Credenciais de login do MAL não encontradas</string>
 </resources>

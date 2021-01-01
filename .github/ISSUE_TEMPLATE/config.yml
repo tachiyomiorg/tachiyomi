@@ -4,5 +4,5 @@ contact_links:
     url: https://tachiyomi.org/help/
     about: Common questions are answered here.
   - name: Tachiyomi extensions GitHub repository
-    url: https://github.com/inorichi/tachiyomi-extensions
+    url: https://github.com/tachiyomiorg/tachiyomi-extensions
     about: Issues about an extension/source/catalogue should be opened here instead.

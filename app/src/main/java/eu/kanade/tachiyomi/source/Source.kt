@@ -64,8 +64,10 @@ interface Source : tachiyomi.source.Source {
      */
     @Suppress("DEPRECATION")
     override suspend fun getMangaDetails(manga: MangaInfo): MangaInfo {
-        return fetchMangaDetails(manga.toSManga()).awaitSingle()
-            .toMangaInfo()
+        val sManga = manga.toSManga()
+        val networkManga = fetchMangaDetails(sManga).awaitSingle()
+        sManga.copyFrom(networkManga)
+        return sManga.toMangaInfo()
     }
 
     /**

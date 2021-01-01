@@ -5,19 +5,23 @@ import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.view.View
 import androidx.core.view.isVisible
-import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.databinding.ChaptersItemBinding
+import eu.kanade.tachiyomi.source.LocalSource
+import eu.kanade.tachiyomi.ui.manga.chapter.base.BaseChapterHolder
 import java.util.Date
 
 class ChapterHolder(
     view: View,
     private val adapter: ChaptersAdapter
-) : FlexibleViewHolder(view, adapter) {
+) : BaseChapterHolder(view, adapter) {
 
     private val binding = ChaptersItemBinding.bind(view)
+
+    init {
+        binding.download.setOnClickListener { onDownloadClick(it) }
+    }
 
     fun bind(item: ChapterItem, manga: Manga) {
         val chapter = item.chapter
@@ -68,16 +72,7 @@ class ChapterHolder(
             binding.chapterDescription.text = ""
         }
 
-        notifyStatus(item.status)
-    }
-
-    fun notifyStatus(status: Int) = with(binding.downloadText) {
-        when (status) {
-            Download.QUEUE -> setText(R.string.chapter_queued)
-            Download.DOWNLOADING -> setText(R.string.chapter_downloading)
-            Download.DOWNLOADED -> setText(R.string.chapter_downloaded)
-            Download.ERROR -> setText(R.string.chapter_error)
-            else -> text = ""
-        }
+        binding.download.isVisible = item.manga.source != LocalSource.ID
+        binding.download.setState(item.status, item.progress)
     }
 }

@@ -13,6 +13,7 @@ import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.SelectableAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.download.DownloadService
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService
 import eu.kanade.tachiyomi.data.notification.Notifications
@@ -23,6 +24,7 @@ import eu.kanade.tachiyomi.ui.base.controller.RootController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaController
+import eu.kanade.tachiyomi.ui.manga.chapter.base.BaseChaptersAdapter
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.util.system.notificationManager
 import eu.kanade.tachiyomi.util.system.toast
@@ -45,6 +47,7 @@ class UpdatesController :
     FlexibleAdapter.OnItemClickListener,
     FlexibleAdapter.OnItemLongClickListener,
     FlexibleAdapter.OnUpdateListener,
+    BaseChaptersAdapter.OnChapterClickListener,
     ConfirmDeleteChaptersDialog.Listener,
     UpdatesAdapter.OnCoverClickListener {
 
@@ -84,7 +87,7 @@ class UpdatesController :
         val layoutManager = LinearLayoutManager(view.context)
         binding.recycler.layoutManager = layoutManager
         binding.recycler.setHasFixedSize(true)
-        adapter = UpdatesAdapter(this@UpdatesController)
+        adapter = UpdatesAdapter(this@UpdatesController, view.context)
         binding.recycler.adapter = adapter
         adapter?.fastScroller = binding.fastScroller
 
@@ -229,16 +232,13 @@ class UpdatesController :
      * Update download status of chapter
      * @param download [Download] object containing download progress.
      */
-    fun onChapterStatusChange(download: Download) {
-        getHolder(download)?.notifyStatus(download.status)
-    }
-
-    /**
-     * Returns holder belonging to chapter
-     * @param download [Download] object containing download progress.
-     */
-    private fun getHolder(download: Download): UpdatesHolder? {
-        return binding.recycler.findViewHolderForItemId(download.chapter.id!!) as? UpdatesHolder
+    fun onChapterDownloadUpdate(download: Download) {
+        adapter?.currentItems
+            ?.filterIsInstance<UpdatesItem>()
+            ?.find { it.chapter.id == download.chapter.id }?.let {
+                adapter?.updateItem(it)
+                adapter?.notifyDataSetChanged()
+            }
     }
 
     /**
@@ -292,6 +292,22 @@ class UpdatesController :
      */
     fun onChaptersDeletedError(error: Throwable) {
         Timber.e(error)
+    }
+
+    override fun downloadChapter(position: Int) {
+        val item = adapter?.getItem(position) as? UpdatesItem ?: return
+        if (item.status == Download.State.ERROR) {
+            DownloadService.start(activity!!)
+        } else {
+            downloadChapters(listOf(item))
+        }
+        adapter?.updateItem(item)
+    }
+
+    override fun deleteChapter(position: Int) {
+        val item = adapter?.getItem(position) as? UpdatesItem ?: return
+        deleteChapters(listOf(item))
+        adapter?.updateItem(item)
     }
 
     /**

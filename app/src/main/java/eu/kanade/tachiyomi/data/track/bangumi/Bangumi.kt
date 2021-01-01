@@ -6,10 +6,10 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
+import eu.kanade.tachiyomi.util.lang.runAsObservable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import rx.Completable
 import rx.Observable
 import uy.kohesive.injekt.injectLazy
 
@@ -31,18 +31,18 @@ class Bangumi(private val context: Context, id: Int) : TrackService(id) {
         return track.score.toInt().toString()
     }
 
-    override fun add(track: Track): Observable<Track> {
+    override suspend fun add(track: Track): Track {
         return api.addLibManga(track)
     }
 
-    override fun update(track: Track): Observable<Track> {
+    override suspend fun update(track: Track): Track {
         return api.updateLibManga(track)
     }
 
     override fun bind(track: Track): Observable<Track> {
-        return api.statusLibManga(track)
+        return runAsObservable({ api.statusLibManga(track) })
             .flatMap {
-                api.findLibManga(track).flatMap { remoteTrack ->
+                runAsObservable({ api.findLibManga(track) }).flatMap { remoteTrack ->
                     if (remoteTrack != null && it != null) {
                         track.copyPersonalFrom(remoteTrack)
                         track.library_id = remoteTrack.library_id
@@ -53,30 +53,27 @@ class Bangumi(private val context: Context, id: Int) : TrackService(id) {
                         // Set default fields if it's not found in the list
                         track.score = DEFAULT_SCORE.toFloat()
                         track.status = DEFAULT_STATUS
-                        add(track)
-                        update(track)
+                        runAsObservable({ add(track) })
+                        runAsObservable({ update(track) })
                     }
                 }
             }
     }
 
     override fun search(query: String): Observable<List<TrackSearch>> {
-        return api.search(query)
+        return runAsObservable({ api.search(query) })
     }
 
     override fun refresh(track: Track): Observable<Track> {
-        return api.statusLibManga(track)
-            .flatMap {
-                track.copyPersonalFrom(it!!)
-                api.findLibManga(track)
-                    .map { remoteTrack ->
-                        if (remoteTrack != null) {
-                            track.total_chapters = remoteTrack.total_chapters
-                            track.status = remoteTrack.status
-                        }
-                        track
-                    }
+        return runAsObservable({
+            val remoteStatusTrack = api.statusLibManga(track)
+            track.copyPersonalFrom(remoteStatusTrack!!)
+            api.findLibManga(track)?.let { remoteTrack ->
+                track.total_chapters = remoteTrack.total_chapters
+                track.status = remoteTrack.status
             }
+            track
+        })
     }
 
     override fun getLogo() = R.drawable.ic_tracker_bangumi
@@ -100,17 +97,16 @@ class Bangumi(private val context: Context, id: Int) : TrackService(id) {
 
     override fun getCompletionStatus(): Int = COMPLETED
 
-    override fun login(username: String, password: String) = login(password)
+    override suspend fun login(username: String, password: String) = login(password)
 
-    fun login(code: String): Completable {
-        return api.accessToken(code).map { oauth: OAuth? ->
+    suspend fun login(code: String) {
+        try {
+            val oauth = api.accessToken(code)
             interceptor.newAuth(oauth)
-            if (oauth != null) {
-                saveCredentials(oauth.user_id.toString(), oauth.access_token)
-            }
-        }.doOnError {
+            saveCredentials(oauth.user_id.toString(), oauth.access_token)
+        } catch (e: Throwable) {
             logout()
-        }.toCompletable()
+        }
     }
 
     fun saveToken(oauth: OAuth?) {

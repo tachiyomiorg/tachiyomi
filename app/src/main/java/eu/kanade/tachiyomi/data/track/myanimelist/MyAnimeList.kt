@@ -6,9 +6,12 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
-import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
-import rx.Completable
+import eu.kanade.tachiyomi.util.lang.runAsObservable
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import rx.Observable
+import uy.kohesive.injekt.injectLazy
 
 class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
 
@@ -18,29 +21,23 @@ class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
         const val ON_HOLD = 3
         const val DROPPED = 4
         const val PLAN_TO_READ = 6
-
-        const val DEFAULT_STATUS = READING
-        const val DEFAULT_SCORE = 0
-
-        const val BASE_URL = "https://myanimelist.net"
-        const val USER_SESSION_COOKIE = "MALSESSIONID"
-        const val LOGGED_IN_COOKIE = "is_logged_in"
+        const val REREADING = 7
     }
 
-    private val interceptor by lazy { MyAnimeListInterceptor(this) }
+    private val json: Json by injectLazy()
+
+    private val interceptor by lazy { MyAnimeListInterceptor(this, getPassword()) }
     private val api by lazy { MyAnimeListApi(client, interceptor) }
 
     override val name: String
         get() = "MyAnimeList"
-
-    override val supportsReadingDates: Boolean = true
 
     override fun getLogo() = R.drawable.ic_tracker_mal
 
     override fun getLogoColor() = Color.rgb(46, 81, 162)
 
     override fun getStatusList(): List<Int> {
-        return listOf(READING, COMPLETED, ON_HOLD, DROPPED, PLAN_TO_READ)
+        return listOf(READING, COMPLETED, ON_HOLD, DROPPED, PLAN_TO_READ, REREADING)
     }
 
     override fun getStatus(status: Int): String = with(context) {
@@ -50,6 +47,7 @@ class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
             ON_HOLD -> getString(R.string.on_hold)
             DROPPED -> getString(R.string.dropped)
             PLAN_TO_READ -> getString(R.string.plan_to_read)
+            REREADING -> getString(R.string.repeating)
             else -> ""
         }
     }
@@ -64,77 +62,69 @@ class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
         return track.score.toInt().toString()
     }
 
-    override fun add(track: Track): Observable<Track> {
-        return api.addLibManga(track)
+    override suspend fun add(track: Track): Track {
+        return api.addItemToList(track)
     }
 
-    override fun update(track: Track): Observable<Track> {
-        return api.updateLibManga(track)
+    override suspend fun update(track: Track): Track {
+        return api.updateItem(track)
     }
 
     override fun bind(track: Track): Observable<Track> {
-        return api.findLibManga(track)
-            .flatMap { remoteTrack ->
-                if (remoteTrack != null) {
-                    track.copyPersonalFrom(remoteTrack)
-                    update(track)
-                } else {
-                    // Set default fields if it's not found in the list
-                    track.score = DEFAULT_SCORE.toFloat()
-                    track.status = DEFAULT_STATUS
-                    add(track)
-                }
+        return runAsObservable({
+            val remoteTrack = api.findListItem(track)
+            if (remoteTrack != null) {
+                track.copyPersonalFrom(remoteTrack)
+                track.media_id = remoteTrack.media_id
+                update(track)
+            } else {
+                add(track)
             }
+        })
     }
 
     override fun search(query: String): Observable<List<TrackSearch>> {
-        return api.search(query)
+        if (query.startsWith("my:")) {
+            query.substringAfter("my:").toIntOrNull()?.let { id ->
+                return runAsObservable({ listOf(api.getMangaDetails(id)) })
+            }
+        }
+
+        return runAsObservable({ api.search(query) })
     }
 
     override fun refresh(track: Track): Observable<Track> {
-        return api.getLibManga(track)
-            .map { remoteTrack ->
-                track.copyPersonalFrom(remoteTrack)
-                track.total_chapters = remoteTrack.total_chapters
-                track
-            }
+        return runAsObservable({ api.getListItem(track) })
     }
 
-    fun login(csrfToken: String): Completable = login("myanimelist", csrfToken)
+    override suspend fun login(username: String, password: String) = login(password)
 
-    override fun login(username: String, password: String): Completable {
-        return Observable.fromCallable { saveCSRF(password) }
-            .doOnNext { saveCredentials(username, password) }
-            .doOnError { logout() }
-            .toCompletable()
-    }
-
-    fun ensureLoggedIn() {
-        if (isAuthorized) return
-        if (!isLogged) throw Exception("MAL login credentials not found")
+    suspend fun login(authCode: String) {
+        try {
+            val oauth = api.getAccessToken(authCode)
+            interceptor.setAuth(oauth)
+            val username = api.getCurrentUser()
+            saveCredentials(username, oauth.access_token)
+        } catch (e: Throwable) {
+            logout()
+        }
     }
 
     override fun logout() {
         super.logout()
         preferences.trackToken(this).delete()
-        networkService.cookieManager.remove(BASE_URL.toHttpUrlOrNull()!!)
+        interceptor.setAuth(null)
     }
 
-    private val isAuthorized: Boolean
-        get() = super.isLogged &&
-            getCSRF().isNotEmpty() &&
-            checkCookies()
+    fun saveOAuth(oAuth: OAuth?) {
+        preferences.trackToken(this).set(json.encodeToString(oAuth))
+    }
 
-    fun getCSRF(): String = preferences.trackToken(this).get()
-
-    private fun saveCSRF(csrf: String) = preferences.trackToken(this).set(csrf)
-
-    private fun checkCookies(): Boolean {
-        val url = BASE_URL.toHttpUrlOrNull()!!
-        val ckCount = networkService.cookieManager.get(url).count {
-            it.name == USER_SESSION_COOKIE || it.name == LOGGED_IN_COOKIE
+    fun loadOAuth(): OAuth? {
+        return try {
+            json.decodeFromString<OAuth>(preferences.trackToken(this).get())
+        } catch (e: Exception) {
+            null
         }
-
-        return ckCount == 2
     }
 }

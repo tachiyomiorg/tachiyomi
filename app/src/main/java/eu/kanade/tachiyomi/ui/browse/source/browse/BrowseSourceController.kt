@@ -35,6 +35,7 @@ import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.base.controller.FabController
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
+import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchController
 import eu.kanade.tachiyomi.ui.library.ChangeMangaCategoriesDialog
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaController
@@ -247,7 +248,7 @@ open class BrowseSourceController(bundle: Bundle) :
         recycler.setHasFixedSize(true)
         recycler.adapter = adapter
 
-        binding.catalogueView.addView(recycler, 1)
+        binding.catalogueView.addView(recycler)
 
         if (oldPosition != RecyclerView.NO_POSITION) {
             recycler.layoutManager?.scrollToPosition(oldPosition)
@@ -279,7 +280,12 @@ open class BrowseSourceController(bundle: Bundle) :
         searchItem.fixExpand(
             onExpand = { invalidateMenuOnExpand() },
             onCollapse = {
-                searchWithQuery("")
+                if (router.backstackSize >= 2 && router.backstack[router.backstackSize - 2].controller() is GlobalSearchController) {
+                    router.popController(this)
+                } else {
+                    searchWithQuery("")
+                }
+
                 true
             }
         )
@@ -459,7 +465,6 @@ open class BrowseSourceController(bundle: Bundle) :
         val adapter = adapter ?: return
 
         preferences.sourceDisplayMode().set(mode)
-        presenter.refreshDisplayMode()
         activity?.invalidateOptionsMenu()
         setupRecycler(view)
 

@@ -191,7 +191,7 @@
     <string name="choices_reset">Pilihan dialog diset semula</string>
     <string name="pref_clear_database">Hapus pangkalan data</string>
     <string name="pref_clear_database_summary">Hapus sejarah manga yang tidak disimpan di dalam pustaka</string>
-    <string name="clear_database_confirmation">Adakah anda pasti\? Status bab dibaca dan progres bacaan manga yang tidak ada di dalam pustaka akan hilang</string>
+    <string name="clear_database_confirmation">Adakah anda pasti\? Bab dibaca dan kemajuan manga bukan-pustaka akan hilang</string>
     <string name="clear_database_completed">Pangkalan data dihapuskan</string>
     <string name="pref_refresh_library_tracking">Segar semula penjejakan</string>
     <string name="pref_refresh_library_tracking_summary">Kemas kini status, skor dan bab terakhir dibaca dari perkhidmatan penjejakan</string>
@@ -214,7 +214,7 @@
     <string name="select_source">Pilih sumber</string>
     <string name="no_valid_sources">Sila aktifkan sekurang-kurangnya satu sumber yang sah</string>
     <string name="no_more_results">Tiada lagi hasil</string>
-    <string name="local_source">Sumber setempat</string>
+    <string name="local_source">Sumber lokal</string>
     <string name="other_source">Lain</string>
     <string name="invalid_combination">Lalai tidak boleh dipilih bersama kategori lain</string>
     <string name="added_to_library">Manga ini telah ditambahkan ke pustaka anda</string>
@@ -477,8 +477,6 @@
     <string name="information_webview_required">WebView diperlukan untuk Tachiyomi</string>
     <string name="recent_manga_time">Bab %1$s - %2$s</string>
     <string name="error_invalid_date_supplied">Tarikh dimasukkan tidak sah</string>
-    <string name="track_finished_reading_date">Tarikh selesai membaca</string>
-    <string name="track_started_reading_date">Tarikh mula membaca</string>
     <string name="add_tracking">Tambah penjejakan</string>
     <string name="manga_info_collapse">Tutup</string>
     <string name="manga_info_expand">Buka</string>
@@ -503,7 +501,7 @@
     <string name="label_downloaded_only">Dimuat turun sahaja</string>
     <string name="last_used_source">Terakhir digunakan</string>
     <string name="check_for_updates">Semak untuk pengemaskinian</string>
-    <string name="local_source_help_guide">Panduan penggunaan sumber tempatan</string>
+    <string name="local_source_help_guide">Panduan penggunaan sumber lokal</string>
     <string name="restore_duration">%02d minit, %02d saat</string>
     <string name="downloaded_only_summary">Tapis semua manga di dalam pustaka anda</string>
     <plurals name="download_queue_summary">
@@ -589,10 +587,6 @@
     <string name="channel_complete">Selesai</string>
     <string name="channel_errors">Ralat</string>
     <string name="backup_restore_missing_trackers">Penjejak yang tidak dilog masuk:</string>
-    <string name="pref_allow_nsfw_sources">Sumber 18+ tahun keatas</string>
-    <string name="pref_allow_nsfw_sources_blocked">Sembunyi</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Sembunyi di sumber tetapi tunjuk dalam senarai sambungan</string>
-    <string name="pref_allow_nsfw_sources_allowed">Papar</string>
     <string name="pref_remove_bookmarked_chapters">Padam bab yang ditanda</string>
     <string name="pref_category_delete_chapters">Padam bab</string>
     <string name="ext_nsfw_warning">Mungkin mengandungi kandungan 18+ tahun keatas</string>
@@ -629,6 +623,12 @@
     <string name="pref_create_legacy_backup">Buat sandaran legasi</string>
     <string name="migration_help_guide">Panduan memindahkan sumber</string>
     <string name="invalid_backup_file_type">Fail sandaran tidak sah: %1$s</string>
-    <string name="pref_category_nsfw_content">Kandungan 18+</string>
+    <string name="pref_category_nsfw_content">Sumber NSFW (18+)</string>
     <string name="process_text_action_name">Cari di Tachiyomi</string>
+    <string name="pref_label_nsfw_extension">Label dalam senarai</string>
+    <string name="pref_show_nsfw_extension">Tunjuk dalam senarai</string>
+    <string name="pref_show_nsfw_source">Tunjuk dalam senarai</string>
+    <string name="file_picker_error">Tiada aplikasi memilih fail</string>
+    <string name="myanimelist_creds_missing">Kelayakan log masuk MAL tidak dijumpai</string>
+    <string name="myanimelist_relogin">Sila log masuk ke MAL sekali lagi</string>
 </resources>

@@ -506,8 +506,6 @@
     <string name="confirm_exit">Apăsați din nou pentru a ieși</string>
     <string name="label_downloaded_only">Doar descărcate</string>
     <string name="error_invalid_date_supplied">Data furnizată este invalidă</string>
-    <string name="track_finished_reading_date">Data la care s-a terminat citirea</string>
-    <string name="track_started_reading_date">Data la care s-a început citirea</string>
     <string name="restoring_backup_canceled">Restaurare anulată</string>
     <string name="restore_in_progress">Restaurarea este deja în curs de desfășurare</string>
     <string name="backup_in_progress">Crearea copiei de rezervă este deja în curs de desfășurare</string>
@@ -575,7 +573,7 @@
         <item quantity="few">%1$s capitole</item>
         <item quantity="other">%1$s de capitole</item>
     </plurals>
-    <string name="requires_app_restart">Necesită restartarea aplicației pentru a avea efect</string>
+    <string name="requires_app_restart">Necesită repornirea aplicației pentru a avea efect</string>
     <string name="pref_dns_over_https" translatable="false">DNS prin HTTPS (Cloudflare)</string>
     <string name="action_sort_descending">Descrescător</string>
     <string name="action_disable">Dezactivați</string>
@@ -615,10 +613,6 @@
     <string name="ext_nsfw_warning">Poate conține conținut 18+</string>
     <string name="ext_nsfw_short">Peste 18</string>
     <string name="parental_controls_info">Acest lucru nu împiedică extensiile neoficiale sau potențial semnalizate incorect să iasă la suprafață cu conținut 18+ în cadrul aplicației.</string>
-    <string name="pref_allow_nsfw_sources_blocked">Ascunde</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Ascundere în surse, dar afișare în lista de extensii</string>
-    <string name="pref_allow_nsfw_sources_allowed">Arată</string>
-    <string name="pref_allow_nsfw_sources">Surse 18+</string>
     <string name="no_pinned_sources">Nu aveți surse fixate</string>
     <string name="no_chapters_error">Nu a fost găsit niciun capitol</string>
     <plurals name="missing_chapters_warning">
@@ -654,5 +648,11 @@
     <string name="pref_backup_auto_create_legacy">De asemenea, creați copii de rezervă de moștenire</string>
     <string name="pref_create_legacy_backup_summary">Poate fi utilizat în versiuni mai vechi de Tachiyomi</string>
     <string name="pref_create_legacy_backup">Crează copie de rezervă de moștenire</string>
-    <string name="pref_category_nsfw_content">Conținut 18+</string>
+    <string name="pref_category_nsfw_content">Conținut NSFW (18+)</string>
+    <string name="pref_label_nsfw_extension">Etichetează în lista extensiilor</string>
+    <string name="pref_show_nsfw_extension">Arată în lista extensiilor</string>
+    <string name="pref_show_nsfw_source">Arată în lista surselor</string>
+    <string name="file_picker_error">Nicio aplicație de ales fișiere nu a fost găsite</string>
+    <string name="myanimelist_relogin">Te rugăm să te loghezi la MAL din nou</string>
+    <string name="myanimelist_creds_missing">Datele de conectare la site-ul MAL nu au fost găsite</string>
 </resources>

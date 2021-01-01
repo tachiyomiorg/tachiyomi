@@ -110,7 +110,7 @@
     <string name="pref_start_screen">Başlangıç ekranı</string>
     <string name="pref_language">Dil</string>
     <string name="system_default">Sistem öntanımlı</string>
-    <string name="default_category">Öntanımlı kategori</string>
+    <string name="default_category">Varsayılan kategori</string>
     <string name="default_category_summary">Her zaman sor</string>
     <string name="all_lang">Tümü</string>
     <string name="ext_update">Güncelle</string>
@@ -501,8 +501,6 @@
     <string name="restoring_backup_error">Yedek geri yüklenemedi</string>
     <string name="creating_backup_error">Yedekleme başarısız</string>
     <string name="error_invalid_date_supplied">Geçersiz tarih belirtildi</string>
-    <string name="track_finished_reading_date">Okuma tarihi tamamlandı</string>
-    <string name="track_started_reading_date">Okuma tarihi başladı</string>
     <string name="restoring_backup_canceled">Geri yükleme iptal edildi</string>
     <string name="restore_in_progress">Geri yükleme zaten devam ediyor</string>
     <string name="backup_in_progress">Yedekleme zaten devam ediyor</string>
@@ -568,7 +566,7 @@
         <item quantity="other">%1$s bölüm</item>
     </plurals>
     <string name="action_open_in_settings">Ayarlarda aç</string>
-    <string name="requires_app_restart">Etkili olması için uygulama yeniden başlatılmalıdır</string>
+    <string name="requires_app_restart">Etkili olması için uygulamanın yeniden başlatılmasını gerektirir</string>
     <string name="pref_dns_over_https" translatable="false">HTTPS ile DNS (Cloudflare)</string>
     <string name="label_network">Ağ</string>
     <string name="pref_jump_to_chapters">Açınca bölümlere git</string>
@@ -600,10 +598,6 @@
     <string name="download_notifier_download_finish">İndirme tamamlandı</string>
     <string name="channel_errors">Hatalar</string>
     <string name="backup_restore_missing_trackers">İzleyiciler giriş yapmadı:</string>
-    <string name="pref_allow_nsfw_sources_blocked">Gizle</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Kaynaklarda gizle ama uzantılar listesinde göster</string>
-    <string name="pref_allow_nsfw_sources_allowed">Göster</string>
-    <string name="pref_allow_nsfw_sources">18+ kaynaklar</string>
     <string name="pref_remove_bookmarked_chapters">İşaretli bölümleri sil</string>
     <string name="pref_category_delete_chapters">Bölümleri sil</string>
     <string name="ext_nsfw_warning">18+ içerik içerebilir</string>
@@ -641,6 +635,12 @@
     <string name="pref_create_legacy_backup">Eski yedekleme oluştur</string>
     <string name="migration_help_guide">Kaynak taşınma kılavuzu</string>
     <string name="invalid_backup_file_type">Geçersiz yedekleme dosyası: %1$s</string>
-    <string name="pref_category_nsfw_content">18+ içerik</string>
+    <string name="pref_category_nsfw_content">Yetişkin içerik (18+) kaynakları</string>
     <string name="process_text_action_name">Tachiyomi\'de ara</string>
+    <string name="pref_label_nsfw_extension">Uzantılar listesinde etiketle</string>
+    <string name="pref_show_nsfw_extension">Uzantılar listesinde göster</string>
+    <string name="pref_show_nsfw_source">Kaynaklar listesinde göster</string>
+    <string name="file_picker_error">Dosya seçme uygulaması bulunamadı</string>
+    <string name="myanimelist_relogin">Lütfen MAL\'ye tekrar giriş yapın</string>
+    <string name="myanimelist_creds_missing">MAL giriş kimlik bilgileri bulunamadı</string>
 </resources>

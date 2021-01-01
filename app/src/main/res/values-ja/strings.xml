@@ -520,7 +520,6 @@
     <string name="updating_library">ライブラリを更新中</string>
     <string name="viewer">ビューアモード</string>
     <string name="error_invalid_date_supplied">無効な日付です</string>
-    <string name="track_started_reading_date">読書開始日付</string>
     <string name="manga_info_collapse">詳細を非表示</string>
     <string name="channel_ext_updates">拡張機能の更新</string>
     <string name="information_cloudflare_bypass_failure">Cloudflareをバイパスできませんでした</string>
@@ -538,7 +537,6 @@
     <string name="recent_manga_time">第%1$s章 - %2$s</string>
     <string name="page_list_empty_error">ページが見つかりません</string>
     <string name="pref_category_for_this_series">このシリーズでは</string>
-    <string name="track_finished_reading_date">読み終わった日付</string>
     <string name="add_tracking">追跡サービスを追加</string>
     <string name="add_to_library">ライブラリに追加</string>
     <string name="sort_by_upload_date">アップロード日付順</string>
@@ -564,7 +562,7 @@
     <string name="tapping_inverted_none">なし</string>
     <string name="unknown_status">不明なステータス</string>
     <string name="unknown_author">作者不明</string>
-    <string name="requires_app_restart">変更を適用するためには再起動してください</string>
+    <string name="requires_app_restart">変更を適用するには再起動してください</string>
     <string name="label_network">ネットワーク</string>
     <string name="pref_jump_to_chapters">起動時にチャプターを表示</string>
     <string name="pref_read_with_tapping_inverted">タップでのページめくりを反転</string>
@@ -594,10 +592,6 @@
     <string name="ext_nsfw_warning">成人向けのコンテンツが含まれる可能性があります</string>
     <string name="ext_nsfw_short">成人向け</string>
     <string name="parental_controls_info">非公式や誤ってフラグ付けされた可能性のある拡張機能の成人向けのコンテンツはこれからも表示される恐れがあります。</string>
-    <string name="pref_allow_nsfw_sources_blocked">表示しない</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">ソースリストに表示しないが、拡張機能リストに表示する</string>
-    <string name="pref_allow_nsfw_sources_allowed">表示する</string>
-    <string name="pref_allow_nsfw_sources">成人向けのソース</string>
     <plurals name="missing_chapters_warning">
         <item quantity="other">%d章が欠けています</item>
     </plurals>
@@ -629,5 +623,12 @@
     <string name="pref_create_legacy_backup">レガシー バックアップを作成</string>
     <string name="migration_help_guide">ソース移行ガイド</string>
     <string name="invalid_backup_file_type">無効なバックアップ ファイル：%1$s</string>
-    <string name="pref_category_nsfw_content">成人向けのコンテンツ</string>
+    <string name="pref_category_nsfw_content">成人向けのソース</string>
+    <string name="process_text_action_name">Tachiyomiで検索</string>
+    <string name="pref_label_nsfw_extension">拡張機能リストでマーク</string>
+    <string name="pref_show_nsfw_extension">拡張機能リストに表示</string>
+    <string name="pref_show_nsfw_source">ソースリストに表示</string>
+    <string name="file_picker_error">ファイルを選択できるアプリが見つかりません</string>
+    <string name="myanimelist_relogin">もう一度MALにログインしてください</string>
+    <string name="myanimelist_creds_missing">MALログイン資格情報が見つかりません</string>
 </resources>

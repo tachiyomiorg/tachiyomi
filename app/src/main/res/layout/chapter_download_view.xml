@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="28dp"
+    android:layout_height="28dp"
+    android:background="?selectableItemBackgroundBorderless">
+
+    <ImageView
+        android:id="@+id/download_icon_border"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="2dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/border_circle"
+        app:tint="@color/material_on_surface_emphasis_medium"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/download_icon"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="4dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/ic_arrow_downward_24dp"
+        app:tint="@color/material_on_surface_emphasis_medium"
+        tools:ignore="ContentDescription" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/download_progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:indeterminate="true"
+        android:padding="1dp"
+        android:visibility="gone"
+        app:indicatorColor="@color/material_on_surface_emphasis_medium"
+        app:indicatorInset="0dp"
+        app:indicatorSize="26dp"
+        app:trackThickness="2dp" />
+
+    <ImageView
+        android:id="@+id/downloaded_icon"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:visibility="gone"
+        app:srcCompat="@drawable/ic_check_circle_24dp"
+        app:tint="@color/material_on_surface_emphasis_medium"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/error_icon"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:visibility="gone"
+        app:srcCompat="@drawable/ic_error_outline_24dp"
+        app:tint="?attr/colorError"
+        tools:ignore="ContentDescription" />
+
+</FrameLayout>

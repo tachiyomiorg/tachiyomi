@@ -15,7 +15,7 @@
             android:id="@+id/backdrop"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="?attr/actionBarSize"
+            android:layout_marginBottom="44dp"
             android:alpha="0.2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -24,10 +24,12 @@
             tools:background="@mipmap/ic_launcher" />
 
         <View
+            android:id="@+id/backdrop_overlay"
             android:layout_width="match_parent"
-            android:layout_height="88dp"
-            android:layout_marginBottom="?attr/actionBarSize"
+            android:layout_height="160dp"
+            android:layout_marginBottom="44dp"
             android:background="@drawable/manga_info_gradient"
+            android:backgroundTint="?android:attr/colorBackground"
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <LinearLayout
@@ -36,7 +38,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingStart="16dp"
-            android:paddingTop="64dp"
+            android:paddingTop="48dp"
             android:paddingEnd="16dp"
             android:paddingBottom="8dp"
             app:layout_constraintTop_toTopOf="parent">
@@ -129,24 +131,17 @@
 
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp">
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_favorite"
             style="@style/Theme.Widget.Button.Action"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:text="@string/add_to_library"
             app:icon="@drawable/ic_favorite_border_24dp"
             app:layout_constraintEnd_toStartOf="@+id/btn_tracking"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/manga_info" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_tracking"
@@ -158,7 +153,7 @@
             app:icon="@drawable/ic_sync_24dp"
             app:layout_constraintEnd_toStartOf="@+id/btn_webview"
             app:layout_constraintStart_toEndOf="@+id/btn_favorite"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/manga_info"
             tools:visibility="visible" />
 
         <com.google.android.material.button.MaterialButton
@@ -166,12 +161,13 @@
             style="@style/Theme.Widget.Button.Action"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
             android:text="@string/action_web_view"
             android:visibility="gone"
             app:icon="@drawable/ic_public_24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btn_tracking"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/manga_info"
             tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

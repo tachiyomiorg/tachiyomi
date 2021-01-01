@@ -31,7 +31,8 @@
         android:layout_marginTop="12dp"
         android:ellipsize="end"
         android:maxLines="1"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/download"
         app:layout_constraintStart_toEndOf="@+id/bookmark_icon"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Title" />
@@ -43,21 +44,19 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:ellipsize="end"
+        android:paddingEnd="8dp"
         android:singleLine="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/download_text"
+        app:layout_constraintEnd_toStartOf="@+id/download"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="22/02/2016 • Scanlator • Page: 45" />
 
-    <TextView
-        android:id="@+id/download_text"
-        style="@style/TextAppearance.Regular.Caption.Hint"
+    <eu.kanade.tachiyomi.ui.manga.chapter.ChapterDownloadView
+        android:id="@+id/download"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:textAllCaps="true"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="DOWNLOADED" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

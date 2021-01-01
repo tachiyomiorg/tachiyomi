@@ -2,12 +2,14 @@ package eu.kanade.tachiyomi.data.track.kitsu
 
 import android.content.Context
 import android.graphics.Color
-import com.google.gson.Gson
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
-import rx.Completable
+import eu.kanade.tachiyomi.util.lang.runAsObservable
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import rx.Observable
 import uy.kohesive.injekt.injectLazy
 import java.text.DecimalFormat
@@ -27,9 +29,9 @@ class Kitsu(private val context: Context, id: Int) : TrackService(id) {
 
     override val name = "Kitsu"
 
-    private val gson: Gson by injectLazy()
+    private val json: Json by injectLazy()
 
-    private val interceptor by lazy { KitsuInterceptor(this, gson) }
+    private val interceptor by lazy { KitsuInterceptor(this) }
 
     private val api by lazy { KitsuApi(client, interceptor) }
 
@@ -68,49 +70,51 @@ class Kitsu(private val context: Context, id: Int) : TrackService(id) {
         return df.format(track.score)
     }
 
-    override fun add(track: Track): Observable<Track> {
+    override suspend fun add(track: Track): Track {
         return api.addLibManga(track, getUserId())
     }
 
-    override fun update(track: Track): Observable<Track> {
+    override suspend fun update(track: Track): Track {
         return api.updateLibManga(track)
     }
 
     override fun bind(track: Track): Observable<Track> {
-        return api.findLibManga(track, getUserId())
-            .flatMap { remoteTrack ->
-                if (remoteTrack != null) {
-                    track.copyPersonalFrom(remoteTrack)
-                    track.media_id = remoteTrack.media_id
-                    update(track)
-                } else {
-                    track.score = DEFAULT_SCORE
-                    track.status = DEFAULT_STATUS
-                    add(track)
-                }
+        return runAsObservable({
+            val remoteTrack = api.findLibManga(track, getUserId())
+            if (remoteTrack != null) {
+                track.copyPersonalFrom(remoteTrack)
+                track.media_id = remoteTrack.media_id
+                update(track)
+            } else {
+                track.score = DEFAULT_SCORE
+                track.status = DEFAULT_STATUS
+                add(track)
             }
+        })
     }
 
     override fun search(query: String): Observable<List<TrackSearch>> {
-        return api.search(query)
+        return runAsObservable({ api.search(query) })
     }
 
     override fun refresh(track: Track): Observable<Track> {
-        return api.getLibManga(track)
-            .map { remoteTrack ->
-                track.copyPersonalFrom(remoteTrack)
-                track.total_chapters = remoteTrack.total_chapters
-                track
-            }
+        return runAsObservable({
+            val remoteTrack = api.getLibManga(track)
+            track.copyPersonalFrom(remoteTrack)
+            track.total_chapters = remoteTrack.total_chapters
+            track
+        })
     }
 
-    override fun login(username: String, password: String): Completable {
-        return api.login(username, password)
-            .doOnNext { interceptor.newAuth(it) }
-            .flatMap { api.getCurrentUser() }
-            .doOnNext { userId -> saveCredentials(username, userId) }
-            .doOnError { logout() }
-            .toCompletable()
+    override suspend fun login(username: String, password: String) {
+        try {
+            val token = api.login(username, password)
+            interceptor.newAuth(token)
+            val userId = api.getCurrentUser()
+            saveCredentials(username, userId)
+        } catch (e: Throwable) {
+            logout()
+        }
     }
 
     override fun logout() {
@@ -123,13 +127,12 @@ class Kitsu(private val context: Context, id: Int) : TrackService(id) {
     }
 
     fun saveToken(oauth: OAuth?) {
-        val json = gson.toJson(oauth)
-        preferences.trackToken(this).set(json)
+        preferences.trackToken(this).set(json.encodeToString(oauth))
     }
 
     fun restoreToken(): OAuth? {
         return try {
-            gson.fromJson(preferences.trackToken(this).get(), OAuth::class.java)
+            json.decodeFromString<OAuth>(preferences.trackToken(this).get())
         } catch (e: Exception) {
             null
         }

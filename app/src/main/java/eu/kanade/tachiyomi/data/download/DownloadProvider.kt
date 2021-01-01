@@ -14,6 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
 
 /**
@@ -55,6 +56,7 @@ class DownloadProvider(private val context: Context) {
                 .createDirectory(getSourceDirName(source))
                 .createDirectory(getMangaDirName(manga))
         } catch (e: NullPointerException) {
+            Timber.w(e)
             throw Exception(context.getString(R.string.invalid_download_dir))
         }
     }

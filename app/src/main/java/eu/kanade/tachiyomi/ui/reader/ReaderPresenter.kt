@@ -21,13 +21,15 @@ import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.model.ViewerChapters
 import eu.kanade.tachiyomi.util.isLocal
+import eu.kanade.tachiyomi.util.lang.await
 import eu.kanade.tachiyomi.util.lang.byteSize
 import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.lang.takeBytes
 import eu.kanade.tachiyomi.util.storage.DiskUtil
 import eu.kanade.tachiyomi.util.system.ImageUtil
 import eu.kanade.tachiyomi.util.updateCoverLastModified
-import rx.Completable
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -661,29 +663,29 @@ class ReaderPresenter(
 
         val trackManager = Injekt.get<TrackManager>()
 
-        db.getTracks(manga).asRxSingle()
-            .flatMapCompletable { trackList ->
-                Completable.concat(
-                    trackList.map { track ->
-                        val service = trackManager.getService(track.sync_id)
-                        if (service != null && service.isLogged && chapterRead > track.last_chapter_read) {
-                            track.last_chapter_read = chapterRead
+        launchIO {
+            db.getTracks(manga).await()
+                .mapNotNull { track ->
+                    val service = trackManager.getService(track.sync_id)
+                    if (service != null && service.isLogged && chapterRead > track.last_chapter_read) {
+                        track.last_chapter_read = chapterRead
 
-                            // We wan't these to execute even if the presenter is destroyed and leaks
-                            // for a while. The view can still be garbage collected.
-                            Observable.defer { service.update(track) }
-                                .map { db.insertTrack(track).executeAsBlocking() }
-                                .toCompletable()
-                                .onErrorComplete()
-                        } else {
-                            Completable.complete()
+                        // We want these to execute even if the presenter is destroyed and leaks
+                        // for a while. The view can still be garbage collected.
+                        async {
+                            runCatching {
+                                service.update(track)
+                                db.insertTrack(track).await()
+                            }
                         }
+                    } else {
+                        null
                     }
-                )
-            }
-            .onErrorComplete()
-            .subscribeOn(Schedulers.io())
-            .subscribe()
+                }
+                .awaitAll()
+                .filter { it.isFailure }
+                .forEach { it.exceptionOrNull()?.let { e -> Timber.w(e) } }
+        }
     }
 
     /**

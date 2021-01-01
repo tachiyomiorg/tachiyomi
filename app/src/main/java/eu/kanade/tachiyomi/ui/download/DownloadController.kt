@@ -172,17 +172,17 @@ class DownloadController :
      */
     private fun onStatusChange(download: Download) {
         when (download.status) {
-            Download.DOWNLOADING -> {
+            Download.State.DOWNLOADING -> {
                 observeProgress(download)
                 // Initial update of the downloaded pages
                 onUpdateDownloadedPages(download)
             }
-            Download.DOWNLOADED -> {
+            Download.State.DOWNLOADED -> {
                 unsubscribeProgress(download)
                 onUpdateProgress(download)
                 onUpdateDownloadedPages(download)
             }
-            Download.ERROR -> unsubscribeProgress(download)
+            Download.State.ERROR -> unsubscribeProgress(download)
         }
     }
 

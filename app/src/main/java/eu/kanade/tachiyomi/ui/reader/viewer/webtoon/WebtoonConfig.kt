@@ -2,6 +2,10 @@ package eu.kanade.tachiyomi.ui.reader.viewer.webtoon
 
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.reader.viewer.ViewerConfig
+import eu.kanade.tachiyomi.ui.reader.viewer.ViewerNavigation
+import eu.kanade.tachiyomi.ui.reader.viewer.navigation.EdgeNavigation
+import eu.kanade.tachiyomi.ui.reader.viewer.navigation.KindlishNavigation
+import eu.kanade.tachiyomi.ui.reader.viewer.navigation.LNavigation
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
@@ -22,5 +26,27 @@ class WebtoonConfig(preferences: PreferencesHelper = Injekt.get()) : ViewerConfi
 
         preferences.webtoonSidePadding()
             .register({ sidePadding = it }, { imagePropertyChangedListener?.invoke() })
+
+        preferences.navigationModeWebtoon()
+            .register({ navigationMode = it }, { updateNavigation(it) })
+    }
+
+    override var navigator: ViewerNavigation = defaultNavigation()
+        set(value) {
+            field = value.also { it.invertMode = tappingInverted }
+        }
+
+    override fun defaultNavigation(): ViewerNavigation {
+        return WebtoonDefaultNavigation()
+    }
+
+    override fun updateNavigation(navigationMode: Int) {
+        this.navigator = when (navigationMode) {
+            0 -> defaultNavigation()
+            1 -> LNavigation()
+            2 -> KindlishNavigation()
+            3 -> EdgeNavigation()
+            else -> defaultNavigation()
+        }
     }
 }

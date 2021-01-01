@@ -407,10 +407,6 @@
     <string name="label_more">আরও</string>
     <string name="pref_category_display">প্রদর্শন</string>
     <string name="parental_controls_info">এটি অ্যাপ্লিকেশনে অনানুষ্ঠানিক বা সম্ভাব্যভাবে ভুলভাবে চিহ্নিত এক্সটেনশনের ১৮+ সামগ্রী দেখানো থেকে আটকাবে না।</string>
-    <string name="pref_allow_nsfw_sources_blocked">আটকানো</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">ব্রাউজিং উৎসগুলো লুকান কিন্তু এক্সটেনশন তালিকায় দেখুন</string>
-    <string name="pref_allow_nsfw_sources_allowed">অনুমোদিত</string>
-    <string name="pref_allow_nsfw_sources">১৮+ উৎসগুলো</string>
     <string name="hide_notification_content">বিজ্ঞপ্তির বিষয়বস্তু লুকান</string>
     <string name="secure_screen">পর্দা নিরাপদ করুন</string>
     <string name="lock_never">কখনই না</string>
@@ -574,8 +570,6 @@
     <string name="pref_category_for_this_series">এই সিরিজের জন্য</string>
     <string name="share_page_info">%1$s: %2$s, পৃষ্ঠা %3$d</string>
     <string name="error_invalid_date_supplied">অবৈধ তারিখ সরবরাহ করা হয়েছে</string>
-    <string name="track_finished_reading_date">পড়া শুরুর সময়</string>
-    <string name="track_started_reading_date">পড়া শুরুর সময়</string>
     <string name="want_to_read">পড়তে চাই</string>
     <string name="paused">বিরতি</string>
     <string name="currently_reading">বর্তমানে পড়া হচ্ছে</string>
@@ -630,4 +624,13 @@
     <string name="pref_disable_battery_optimization_summary">পিছেনে লাইব্রেরী হালনাগাদ ও ব্যাকআপে সাহায্য করে</string>
     <string name="pref_disable_battery_optimization">ব্যাটারি অপ্টিমাইজেশন অক্ষম করুন</string>
     <string name="tracking_info">ট্র্যাকিং সার্ভিসে অধ্যায়ের অগ্রগতি হালনাগাদের একমুখী পথ। স্বতন্ত্র মাঙ্গার ট্র্যকিং সেটাপের জন্য তাদের নিজস্ব ট্র্যাকিং বাটন ব্যবহার করুন।</string>
+    <string name="full_restore_online">অনলাইন পুনরুদ্ধার , অনেক ধীর ধীরে হবে কিন্তু আপনাকে আরও আপডেট করা তথ্য এবং অধ্যায় দিবে</string>
+    <string name="full_restore_mode">নেটওয়ার্ক মোডে</string>
+    <string name="pref_backup_auto_create_legacy">লিগ্যাসি ব্যাকআপও তৈরি করুন</string>
+    <string name="pref_create_legacy_backup_summary">"আগের তাছিয়ুমি ভার্শন এর ব্যবহার করা  জন্য"</string>
+    <string name="pref_create_legacy_backup">উত্তরাধিকার এর ব্যাকআপ তৈরি করা</string>
+    <string name="pref_label_nsfw_extension">লেবেল এর এক্সটেনশন গুলো তালিকা</string>
+    <string name="pref_show_nsfw_extension">১৮+ এক্সটেনশন গুলো তালিকা</string>
+    <string name="pref_show_nsfw_source">১৮+ মাধ্যম গুলোর তালিকা</string>
+    <string name="pref_category_nsfw_content">খারাপ জিনিস (১৮+) মাধ্যম</string>
 </resources>

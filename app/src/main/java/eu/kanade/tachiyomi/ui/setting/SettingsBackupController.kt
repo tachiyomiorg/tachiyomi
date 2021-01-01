@@ -202,8 +202,8 @@ class SettingsBackupController : SettingsController() {
                     )
                 }
                 CODE_BACKUP_RESTORE -> {
-                    uri?.path?.let { path ->
-                        val fileName = DocumentFile.fromSingleUri(activity, uri)!!.name!!
+                    uri?.path?.let {
+                        val fileName = DocumentFile.fromSingleUri(activity, uri)?.name ?: uri.toString()
                         when {
                             fileName.endsWith(".proto.gz") -> {
                                 val options = arrayOf(
@@ -255,7 +255,6 @@ class SettingsBackupController : SettingsController() {
 
     fun createBackup(flags: Int, type: Int) {
         backupFlags = flags
-        val currentDir = preferences.backupsDirectory().get()
         val code = when (type) {
             BackupConst.BACKUP_TYPE_FULL -> CODE_FULL_BACKUP_CREATE
             else -> CODE_LEGACY_BACKUP_CREATE

@@ -21,6 +21,7 @@ import eu.kanade.tachiyomi.ui.manga.chapter.ChapterItem
 import eu.kanade.tachiyomi.util.chapter.ChapterSettingsHelper
 import eu.kanade.tachiyomi.util.chapter.syncChaptersWithSource
 import eu.kanade.tachiyomi.util.isLocal
+import eu.kanade.tachiyomi.util.lang.await
 import eu.kanade.tachiyomi.util.lang.isNullOrUnsubscribed
 import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.prepUpdateCover
@@ -79,7 +80,8 @@ class MangaPresenter(
     /**
      * Subscription to observe download status changes.
      */
-    private var observeDownloadsSubscription: Subscription? = null
+    private var observeDownloadsStatusSubscription: Subscription? = null
+    private var observeDownloadsPageSubscription: Subscription? = null
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
@@ -293,12 +295,20 @@ class MangaPresenter(
     // Chapters list - start
 
     private fun observeDownloads() {
-        observeDownloadsSubscription?.let { remove(it) }
-        observeDownloadsSubscription = downloadManager.queue.getStatusObservable()
+        observeDownloadsStatusSubscription?.let { remove(it) }
+        observeDownloadsStatusSubscription = downloadManager.queue.getStatusObservable()
             .observeOn(AndroidSchedulers.mainThread())
             .filter { download -> download.manga.id == manga.id }
             .doOnNext { onDownloadStatusChange(it) }
-            .subscribeLatestCache(MangaController::onChapterStatusChange) { _, error ->
+            .subscribeLatestCache(MangaController::onChapterDownloadUpdate) { _, error ->
+                Timber.e(error)
+            }
+
+        observeDownloadsPageSubscription?.let { remove(it) }
+        observeDownloadsPageSubscription = downloadManager.queue.getProgressObservable()
+            .observeOn(AndroidSchedulers.mainThread())
+            .filter { download -> download.manga.id == manga.id }
+            .subscribeLatestCache(MangaController::onChapterDownloadUpdate) { _, error ->
                 Timber.e(error)
             }
     }
@@ -328,7 +338,7 @@ class MangaPresenter(
     private fun setDownloadedChapters(chapters: List<ChapterItem>) {
         chapters
             .filter { downloadManager.isChapterDownloaded(it, manga) }
-            .forEach { it.status = Download.DOWNLOADED }
+            .forEach { it.status = Download.State.DOWNLOADED }
     }
 
     /**
@@ -416,7 +426,7 @@ class MangaPresenter(
      */
     private fun onDownloadStatusChange(download: Download) {
         // Assign the download to the model object.
-        if (download.status == Download.QUEUE) {
+        if (download.status == Download.State.QUEUE) {
             chapters.find { it.id == download.chapter.id }?.let {
                 if (it.download == null) {
                     it.download = download
@@ -425,7 +435,7 @@ class MangaPresenter(
         }
 
         // Force UI update if downloaded filter active and download finished.
-        if (onlyDownloaded() != State.IGNORE && download.status == Download.DOWNLOADED) {
+        if (onlyDownloaded() != State.IGNORE && download.status == Download.State.DOWNLOADED) {
             refreshChapters()
         }
     }
@@ -452,7 +462,7 @@ class MangaPresenter(
         }
 
         launchIO {
-            db.updateChaptersProgress(chapters).executeAsBlocking()
+            db.updateChaptersProgress(chapters).await()
 
             if (preferences.removeAfterMarkedAsRead()) {
                 deleteChapters(chapters)
@@ -473,14 +483,13 @@ class MangaPresenter(
      * @param selectedChapters the list of chapters to bookmark.
      */
     fun bookmarkChapters(selectedChapters: List<ChapterItem>, bookmarked: Boolean) {
-        Observable.from(selectedChapters)
-            .doOnNext { chapter ->
-                chapter.bookmark = bookmarked
-            }
-            .toList()
-            .flatMap { db.updateChaptersProgress(it).asRxObservable() }
-            .subscribeOn(Schedulers.io())
-            .subscribe()
+        launchIO {
+            selectedChapters
+                .forEach {
+                    it.bookmark = bookmarked
+                    db.updateChapterProgress(it).await()
+                }
+        }
     }
 
     /**
@@ -488,36 +497,30 @@ class MangaPresenter(
      * @param chapters the list of chapters to delete.
      */
     fun deleteChapters(chapters: List<ChapterItem>) {
-        Observable.just(chapters)
-            .doOnNext { deleteChaptersInternal(chapters) }
-            .doOnNext { if (onlyDownloaded() != State.IGNORE) refreshChapters() }
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeFirst(
-                { view, _ ->
-                    view.onChaptersDeleted(chapters)
-                },
-                MangaController::onChaptersDeletedError
-            )
+        launchIO {
+            try {
+                downloadManager.deleteChapters(chapters, manga, source).forEach {
+                    if (it is ChapterItem) {
+                        it.status = Download.State.NOT_DOWNLOADED
+                        it.download = null
+                    }
+                }
+
+                if (onlyDownloaded() != State.IGNORE) {
+                    refreshChapters()
+                }
+
+                view?.onChaptersDeleted(chapters)
+            } catch (e: Throwable) {
+                view?.onChaptersDeletedError(e)
+            }
+        }
     }
 
     private fun downloadNewChapters(chapters: List<Chapter>) {
         if (chapters.isEmpty() || !manga.shouldDownloadNewChapters(db, preferences)) return
 
         downloadChapters(chapters)
-    }
-
-    /**
-     * Deletes a list of chapters from disk. This method is called in a background thread.
-     * @param chapters the chapters to delete.
-     */
-    private fun deleteChaptersInternal(chapters: List<ChapterItem>) {
-        downloadManager.deleteChapters(chapters, manga, source).forEach {
-            if (it is ChapterItem) {
-                it.status = Download.NOT_DOWNLOADED
-                it.download = null
-            }
-        }
     }
 
     /**

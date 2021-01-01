@@ -13,12 +13,14 @@ import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.graphics.Color
 import android.net.ConnectivityManager
+import android.net.Uri
 import android.os.PowerManager
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
+import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
@@ -224,12 +226,20 @@ fun Context.isServiceRunning(serviceClass: Class<*>): Boolean {
 /**
  * Opens a URL in a custom tab.
  */
-fun Context.openInBrowser(url: String) {
+fun Context.openInBrowser(url: String, @ColorInt toolbarColor: Int? = null) {
+    this.openInBrowser(url.toUri(), toolbarColor)
+}
+
+fun Context.openInBrowser(uri: Uri, @ColorInt toolbarColor: Int? = null) {
     try {
         val intent = CustomTabsIntent.Builder()
-            .setToolbarColor(getResourceColor(R.attr.colorPrimary))
+            .setDefaultColorSchemeParams(
+                CustomTabColorSchemeParams.Builder()
+                    .setToolbarColor(toolbarColor ?: getResourceColor(R.attr.colorPrimary))
+                    .build()
+            )
             .build()
-        intent.launchUrl(this, url.toUri())
+        intent.launchUrl(this, uri)
     } catch (e: Exception) {
         toast(e.message)
     }

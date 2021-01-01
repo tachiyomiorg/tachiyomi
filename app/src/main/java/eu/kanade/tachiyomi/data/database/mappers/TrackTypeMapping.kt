@@ -56,8 +56,10 @@ class TrackPutResolver : DefaultPutResolver<Track>() {
         put(COL_STATUS, obj.status)
         put(COL_TRACKING_URL, obj.tracking_url)
         put(COL_SCORE, obj.score)
-        put(COL_START_DATE, obj.started_reading_date)
-        put(COL_FINISH_DATE, obj.finished_reading_date)
+
+        // These aren't used anymore
+        put(COL_START_DATE, 0)
+        put(COL_FINISH_DATE, 0)
     }
 }
 
@@ -75,8 +77,6 @@ class TrackGetResolver : DefaultGetResolver<Track>() {
         status = cursor.getInt(cursor.getColumnIndex(COL_STATUS))
         score = cursor.getFloat(cursor.getColumnIndex(COL_SCORE))
         tracking_url = cursor.getString(cursor.getColumnIndex(COL_TRACKING_URL))
-        started_reading_date = cursor.getLong(cursor.getColumnIndex(COL_START_DATE))
-        finished_reading_date = cursor.getLong(cursor.getColumnIndex(COL_FINISH_DATE))
     }
 }
 

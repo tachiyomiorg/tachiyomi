@@ -29,14 +29,14 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <ProgressBar
+        <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/progress"
-            style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="32dp"
+            android:indeterminate="true"
             android:visibility="invisible"
             tools:visibility="visible" />
 

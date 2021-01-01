@@ -1,0 +1,38 @@
+package eu.kanade.tachiyomi.ui.manga.chapter.base
+
+import android.view.View
+import eu.davidea.viewholders.FlexibleViewHolder
+import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.download.model.Download
+import eu.kanade.tachiyomi.util.view.popupMenu
+
+open class BaseChapterHolder(
+    view: View,
+    private val adapter: BaseChaptersAdapter<*>
+) : FlexibleViewHolder(view, adapter) {
+
+    fun onDownloadClick(view: View) {
+        val item = adapter.getItem(bindingAdapterPosition) as? BaseChapterItem<*, *> ?: return
+        when (item.status) {
+            Download.State.NOT_DOWNLOADED, Download.State.ERROR -> {
+                adapter.clickListener.downloadChapter(bindingAdapterPosition)
+            }
+            else -> {
+                view.popupMenu(
+                    R.menu.chapter_download,
+                    initMenu = {
+                        // Download.State.DOWNLOADED
+                        findItem(R.id.delete_download).isVisible = item.status == Download.State.DOWNLOADED
+
+                        // Download.State.DOWNLOADING, Download.State.QUEUE
+                        findItem(R.id.cancel_download).isVisible = item.status != Download.State.DOWNLOADED
+                    },
+                    onMenuItemClick = {
+                        adapter.clickListener.deleteChapter(bindingAdapterPosition)
+                        true
+                    }
+                )
+            }
+        }
+    }
+}

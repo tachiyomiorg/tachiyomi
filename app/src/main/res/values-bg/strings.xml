@@ -463,8 +463,6 @@
     <string name="recent_manga_time">Гл. %1$s - %2$s</string>
     <string name="updating_library">Обновяване на библиотеката</string>
     <string name="error_invalid_date_supplied">Невалидна дата</string>
-    <string name="track_finished_reading_date">Крайна дата</string>
-    <string name="track_started_reading_date">Начална дата</string>
     <string name="add_tracking">Добави проследяване</string>
     <string name="manga_info_collapse">По-малко</string>
     <string name="manga_info_expand">Повече</string>
@@ -634,10 +632,6 @@
     <string name="ext_nsfw_short">18+</string>
     <string name="pref_jump_to_chapters">Отиди до глави при отваряне</string>
     <string name="parental_controls_info">Тази настройка няма да спре неофициални или потенциално неправилно маркирани разширения да позволяват достъп до съдържание за възрастни в апликацията.</string>
-    <string name="pref_allow_nsfw_sources_blocked">Блокирани</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">Блокирай разглеждането на източници, но ги показвай в списъка с разширения</string>
-    <string name="pref_allow_nsfw_sources_allowed">Позволено</string>
-    <string name="pref_allow_nsfw_sources">Източници 18+</string>
     <string name="pref_category_theme">Тема</string>
     <string name="action_download_unread">Изтегли непрочетените глави</string>
     <string name="action_sort_date_added">Добавено на</string>

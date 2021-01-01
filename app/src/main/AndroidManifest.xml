@@ -96,7 +96,18 @@
         </activity>
         <activity
             android:name=".ui.setting.track.MyAnimeListLoginActivity"
-            android:configChanges="uiMode|orientation|screenSize" />
+            android:label="MyAnimeList">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="myanimelist-auth"
+                    android:scheme="tachiyomi" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.setting.track.ShikimoriLoginActivity"
             android:label="Shikimori">

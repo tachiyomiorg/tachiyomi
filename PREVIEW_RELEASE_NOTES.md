@@ -1,3 +1,6 @@
+### r2903
+- The MyAnimeList tracker was rewritten. You will need to log out and log in again.
+
 ### r1810
 - Background jobs were migrated to a new system. You may need to toggle the settings to ensure they
 run properly. This includes app updates, library updates, and automatic backups.

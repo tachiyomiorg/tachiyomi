@@ -1,10 +1,10 @@
 package eu.kanade.tachiyomi.ui.manga.chapter
 
 import android.content.Context
-import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.manga.MangaController
+import eu.kanade.tachiyomi.ui.manga.chapter.base.BaseChaptersAdapter
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import uy.kohesive.injekt.injectLazy
 import java.text.DateFormat
@@ -14,9 +14,9 @@ import java.text.DecimalFormatSymbols
 class ChaptersAdapter(
     controller: MangaController,
     context: Context
-) : FlexibleAdapter<ChapterItem>(null, controller, true) {
+) : BaseChaptersAdapter<ChapterItem>(controller) {
 
-    val preferences: PreferencesHelper by injectLazy()
+    private val preferences: PreferencesHelper by injectLazy()
 
     var items: List<ChapterItem> = emptyList()
 

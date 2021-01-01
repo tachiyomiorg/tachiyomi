@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.ui.reader.viewer.webtoon
 
+import android.graphics.PointF
 import android.view.KeyEvent
 import android.view.MotionEvent
 import android.view.View
@@ -9,12 +10,12 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.WebtoonLayoutManager
-import eu.kanade.tachiyomi.data.preference.PreferenceValues.TappingInvertMode
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.model.ViewerChapters
 import eu.kanade.tachiyomi.ui.reader.viewer.BaseViewer
+import eu.kanade.tachiyomi.ui.reader.viewer.ViewerNavigation
 import rx.subscriptions.CompositeSubscription
 import timber.log.Timber
 import kotlin.math.max
@@ -101,25 +102,15 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
                 return@f
             }
 
-            val positionX = event.rawX
-            val positionY = event.rawY
-            val topSideTap = positionY < recycler.height * 0.25f
-            val bottomSideTap = positionY > recycler.height * 0.75f
-            val leftSideTap = positionX < recycler.width * 0.33f
-            val rightSideTap = positionX > recycler.width * 0.66f
-
-            val invertMode = config.tappingInverted
-            val invertVertical = invertMode == TappingInvertMode.VERTICAL || invertMode == TappingInvertMode.BOTH
-            val invertHorizontal = invertMode == TappingInvertMode.HORIZONTAL || invertMode == TappingInvertMode.BOTH
-
-            when {
-                topSideTap && !invertVertical || bottomSideTap && invertVertical -> scrollUp()
-                bottomSideTap && !invertVertical || topSideTap && invertVertical -> scrollDown()
-
-                leftSideTap && !invertHorizontal || rightSideTap && invertHorizontal -> scrollUp()
-                rightSideTap && !invertHorizontal || leftSideTap && invertHorizontal -> scrollDown()
-
-                else -> activity.toggleMenu()
+            val pos = PointF(event.rawX / recycler.width, event.rawY / recycler.height)
+            if (!config.tappingEnabled) activity.toggleMenu()
+            else {
+                val navigator = config.navigator
+                when (navigator.getAction(pos)) {
+                    ViewerNavigation.NavigationRegion.MENU -> activity.toggleMenu()
+                    ViewerNavigation.NavigationRegion.NEXT -> scrollDown()
+                    ViewerNavigation.NavigationRegion.PREV -> scrollUp()
+                }
             }
         }
         recycler.longTapListener = f@{ event ->
@@ -229,7 +220,7 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
         if (recycler.isGone) {
             Timber.d("Recycler first layout")
             val pages = chapters.currChapter.pages ?: return
-            moveToPage(pages[chapters.currChapter.requestedPage])
+            moveToPage(pages[min(chapters.currChapter.requestedPage, pages.lastIndex)])
             recycler.isVisible = true
         }
     }

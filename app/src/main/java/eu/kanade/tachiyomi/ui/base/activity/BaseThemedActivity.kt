@@ -4,24 +4,14 @@ import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
-import androidx.viewbinding.ViewBinding
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.ui.security.SecureActivityDelegate
-import eu.kanade.tachiyomi.util.system.LocaleHelper
 import uy.kohesive.injekt.injectLazy
 import eu.kanade.tachiyomi.data.preference.PreferenceValues as Values
 
-abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
+abstract class BaseThemedActivity : AppCompatActivity() {
 
     val preferences: PreferencesHelper by injectLazy()
-
-    val scope = lifecycleScope
-    lateinit var binding: VB
-
-    @Suppress("LeakingThis")
-    private val secureActivityDelegate = SecureActivityDelegate(this)
 
     private val isDarkMode: Boolean by lazy {
         val themeMode = preferences.themeMode().get()
@@ -62,11 +52,6 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
         }
     }
 
-    init {
-        @Suppress("LeakingThis")
-        LocaleHelper.updateConfiguration(this)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(
             when {
@@ -76,13 +61,5 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
         )
 
         super.onCreate(savedInstanceState)
-
-        secureActivityDelegate.onCreate()
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        secureActivityDelegate.onResume()
     }
 }

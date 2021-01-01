@@ -2,6 +2,10 @@ package eu.kanade.tachiyomi.ui.reader.viewer.pager
 
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.reader.viewer.ViewerConfig
+import eu.kanade.tachiyomi.ui.reader.viewer.ViewerNavigation
+import eu.kanade.tachiyomi.ui.reader.viewer.navigation.EdgeNavigation
+import eu.kanade.tachiyomi.ui.reader.viewer.navigation.KindlishNavigation
+import eu.kanade.tachiyomi.ui.reader.viewer.navigation.LNavigation
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
@@ -29,6 +33,9 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
 
         preferences.cropBorders()
             .register({ imageCropBorders = it }, { imagePropertyChangedListener?.invoke() })
+
+        preferences.navigationModePager()
+            .register({ navigationMode = it }, { updateNavigation(navigationMode) })
     }
 
     private fun zoomTypeFromPreference(value: Int) {
@@ -45,6 +52,28 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
             3 -> ZoomType.Right
             // Center
             else -> ZoomType.Center
+        }
+    }
+
+    override var navigator: ViewerNavigation = defaultNavigation()
+        set(value) {
+            field = value.also { it.invertMode = this.tappingInverted }
+        }
+
+    override fun defaultNavigation(): ViewerNavigation {
+        return when (viewer) {
+            is VerticalPagerViewer -> VerticalPagerDefaultNavigation()
+            else -> PagerDefaultNavigation()
+        }
+    }
+
+    override fun updateNavigation(navigationMode: Int) {
+        navigator = when (navigationMode) {
+            0 -> defaultNavigation()
+            1 -> LNavigation()
+            2 -> KindlishNavigation()
+            3 -> EdgeNavigation()
+            else -> defaultNavigation()
         }
     }
 

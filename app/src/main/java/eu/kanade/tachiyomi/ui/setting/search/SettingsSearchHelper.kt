@@ -98,7 +98,7 @@ object SettingsSearchHelper {
                     getSettingSearchResult(ctrl, subPref, breadcrumbsStr) // recursion
                 }
             }
-            (pref.title != null) -> {
+            (pref.title != null && pref.isVisible) -> {
                 // Is an actual preference
                 val title = pref.title.toString()
                 val summary = pref.summary?.toString() ?: ""

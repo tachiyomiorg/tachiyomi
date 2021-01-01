@@ -13,7 +13,6 @@ import com.dd.processbutton.iml.ActionProcessButton
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.databinding.PrefAccountLoginBinding
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
-import rx.Subscription
 import uy.kohesive.injekt.injectLazy
 
 abstract class LoginDialogPreference(
@@ -27,8 +26,6 @@ abstract class LoginDialogPreference(
         private set
 
     val preferences: PreferencesHelper by injectLazy()
-
-    var requestSubscription: Subscription? = null
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         binding = PrefAccountLoginBinding.inflate(LayoutInflater.from(activity!!))
@@ -64,7 +61,6 @@ abstract class LoginDialogPreference(
     }
 
     open fun onDialogClosed() {
-        requestSubscription?.unsubscribe()
         binding = null
     }
 

@@ -22,9 +22,9 @@ data class BackupTracking(
     @ProtoNumber(8) var score: Float = 0F,
     @ProtoNumber(9) var status: Int = 0,
     // startedReadingDate is called startReadTime in 1.x
-    @ProtoNumber(10) var startedReadingDate: Long = 0,
+    // @ProtoNumber(10) var startedReadingDate: Long = 0,
     // finishedReadingDate is called endReadTime in 1.x
-    @ProtoNumber(11) var finishedReadingDate: Long = 0,
+    // @ProtoNumber(11) var finishedReadingDate: Long = 0,
 ) {
     fun getTrackingImpl(): TrackImpl {
         return TrackImpl().apply {
@@ -37,8 +37,6 @@ data class BackupTracking(
             total_chapters = this@BackupTracking.totalChapters
             score = this@BackupTracking.score
             status = this@BackupTracking.status
-            started_reading_date = this@BackupTracking.startedReadingDate
-            finished_reading_date = this@BackupTracking.finishedReadingDate
             tracking_url = this@BackupTracking.trackingUrl
         }
     }
@@ -56,8 +54,6 @@ data class BackupTracking(
                 totalChapters = track.total_chapters,
                 score = track.score,
                 status = track.status,
-                startedReadingDate = track.started_reading_date,
-                finishedReadingDate = track.finished_reading_date,
                 trackingUrl = track.tracking_url
             )
         }

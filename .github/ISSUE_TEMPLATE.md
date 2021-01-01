@@ -2,9 +2,9 @@
 
 I acknowledge that:
 
-- I have updated to the latest version of the app (stable is v0.10.6)
+- I have updated to the latest version of the app (stable is v0.10.7)
 - I have updated all extensions
-- If this is an issue with an extension, that I should be opening an issue in https://github.com/inorichi/tachiyomi-extensions
+- If this is an issue with an extension, that I should be opening an issue in https://github.com/tachiyomiorg/tachiyomi-extensions
 
 **DELETE THIS SECTION IF YOU HAVE READ AND ACKNOWLEDGED IT**
 

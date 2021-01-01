@@ -33,9 +33,6 @@ import java.util.TimeZone
 
 class AboutController : SettingsController() {
 
-    /**
-     * Checks for new releases
-     */
     private val updateChecker by lazy { GithubUpdateChecker() }
 
     private val dateFormat: DateFormat = preferences.dateFormat()
@@ -75,9 +72,9 @@ class AboutController : SettingsController() {
 
             onClick {
                 val url = if (BuildConfig.DEBUG) {
-                    "https://github.com/inorichi/tachiyomi/commits/dev"
+                    "https://github.com/tachiyomiorg/tachiyomi/commits/master"
                 } else {
-                    "https://github.com/inorichi/tachiyomi/releases/tag/v${BuildConfig.VERSION_NAME}"
+                    "https://github.com/tachiyomiorg/tachiyomi/releases/tag/v${BuildConfig.VERSION_NAME}"
                 }
 
                 val intent = Intent(Intent.ACTION_VIEW, url.toUri())
@@ -90,7 +87,7 @@ class AboutController : SettingsController() {
                 titleRes = R.string.notices
 
                 onClick {
-                    val intent = Intent(Intent.ACTION_VIEW, "https://github.com/inorichi/tachiyomi/blob/dev/PREVIEW_RELEASE_NOTES.md".toUri())
+                    val intent = Intent(Intent.ACTION_VIEW, "https://github.com/tachiyomiorg/tachiyomi/blob/master/PREVIEW_RELEASE_NOTES.md".toUri())
                     startActivity(intent)
                 }
             }
@@ -120,7 +117,7 @@ class AboutController : SettingsController() {
             preference {
                 key = "pref_about_github"
                 title = "GitHub"
-                val url = "https://github.com/inorichi/tachiyomi"
+                val url = "https://github.com/tachiyomiorg/tachiyomi"
                 summary = url
                 onClick {
                     val intent = Intent(Intent.ACTION_VIEW, url.toUri())
@@ -130,7 +127,7 @@ class AboutController : SettingsController() {
             preference {
                 key = "pref_about_label_extensions"
                 titleRes = R.string.label_extensions
-                val url = "https://github.com/inorichi/tachiyomi-extensions"
+                val url = "https://github.com/tachiyomiorg/tachiyomi-extensions"
                 summary = url
                 onClick {
                     val intent = Intent(Intent.ACTION_VIEW, url.toUri())

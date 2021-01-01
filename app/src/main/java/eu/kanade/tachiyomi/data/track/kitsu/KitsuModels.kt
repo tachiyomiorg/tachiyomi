@@ -1,32 +1,31 @@
 package eu.kanade.tachiyomi.data.track.kitsu
 
 import androidx.annotation.CallSuper
-import com.github.salomonbrys.kotson.byInt
-import com.github.salomonbrys.kotson.byString
-import com.github.salomonbrys.kotson.nullInt
-import com.github.salomonbrys.kotson.nullObj
-import com.github.salomonbrys.kotson.nullString
-import com.github.salomonbrys.kotson.obj
-import com.google.gson.JsonObject
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.contentOrNull
+import kotlinx.serialization.json.int
+import kotlinx.serialization.json.intOrNull
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
 class KitsuSearchManga(obj: JsonObject) {
-    val id by obj.byInt
-    private val canonicalTitle by obj.byString
-    private val chapterCount = obj.get("chapterCount").nullInt
-    val subType = obj.get("subtype").nullString
-    val original = obj.get("posterImage").nullObj?.get("original")?.asString
-    private val synopsis by obj.byString
-    private var startDate = obj.get("startDate").nullString?.let {
+    val id = obj["id"]!!.jsonPrimitive.int
+    private val canonicalTitle = obj["canonicalTitle"]!!.jsonPrimitive.content
+    private val chapterCount = obj["chapterCount"]?.jsonPrimitive?.intOrNull
+    val subType = obj["subtype"]?.jsonPrimitive?.contentOrNull
+    val original = obj["posterImage"]?.jsonObject?.get("original")?.jsonPrimitive?.content
+    private val synopsis = obj["synopsis"]!!.jsonPrimitive.content
+    private var startDate = obj["startDate"]?.jsonPrimitive?.contentOrNull?.let {
         val outputDf = SimpleDateFormat("yyyy-MM-dd", Locale.US)
         outputDf.format(Date(it.toLong() * 1000))
     }
-    private val endDate = obj.get("endDate").nullString
+    private val endDate = obj["endDate"]?.jsonPrimitive?.contentOrNull
 
     @CallSuper
     fun toTrack() = TrackSearch.create(TrackManager.KITSU).apply {
@@ -47,17 +46,17 @@ class KitsuSearchManga(obj: JsonObject) {
 }
 
 class KitsuLibManga(obj: JsonObject, manga: JsonObject) {
-    val id by manga.byInt
-    private val canonicalTitle by manga["attributes"].byString
-    private val chapterCount = manga["attributes"].obj.get("chapterCount").nullInt
-    val type = manga["attributes"].obj.get("mangaType").nullString.orEmpty()
-    val original by manga["attributes"].obj["posterImage"].byString
-    private val synopsis by manga["attributes"].byString
-    private val startDate = manga["attributes"].obj.get("startDate").nullString.orEmpty()
-    private val libraryId by obj.byInt("id")
-    val status by obj["attributes"].byString
-    private val ratingTwenty = obj["attributes"].obj.get("ratingTwenty").nullString
-    val progress by obj["attributes"].byInt
+    val id = manga["id"]!!.jsonPrimitive.int
+    private val canonicalTitle = manga["attributes"]!!.jsonObject["canonicalTitle"]!!.jsonPrimitive.content
+    private val chapterCount = manga["attributes"]!!.jsonObject["chapterCount"]?.jsonPrimitive?.intOrNull
+    val type = manga["attributes"]!!.jsonObject["mangaType"]?.jsonPrimitive?.contentOrNull.orEmpty()
+    val original = manga["attributes"]!!.jsonObject["posterImage"]!!.jsonObject["original"]!!.jsonPrimitive.content
+    private val synopsis = manga["attributes"]!!.jsonObject["synopsis"]!!.jsonPrimitive.content
+    private val startDate = manga["attributes"]!!.jsonObject["startDate"]?.jsonPrimitive?.contentOrNull.orEmpty()
+    private val libraryId = obj["id"]!!.jsonPrimitive.int
+    val status = obj["attributes"]!!.jsonObject["status"]!!.jsonPrimitive.content
+    private val ratingTwenty = obj["attributes"]!!.jsonObject["ratingTwenty"]?.jsonPrimitive?.contentOrNull
+    val progress = obj["attributes"]!!.jsonObject["progress"]!!.jsonPrimitive.int
 
     fun toTrack() = TrackSearch.create(TrackManager.KITSU).apply {
         media_id = libraryId

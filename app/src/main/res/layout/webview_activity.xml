@@ -30,13 +30,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ProgressBar
+            <com.google.android.material.progressindicator.LinearProgressIndicator
                 android:id="@+id/progress_bar"
-                style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:progressBackgroundTint="@color/colorPrimary"
-                android:progressTint="@color/colorPrimary" />
+                android:layout_height="wrap_content" />
 
         </WebView>
 

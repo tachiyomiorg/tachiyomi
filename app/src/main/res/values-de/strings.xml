@@ -71,7 +71,7 @@
     <string name="short_recent_updates">Neu</string>
     <string name="pref_category_general">Allgemein</string>
     <string name="pref_category_reader">Lese-Einstellungen</string>
-    <string name="pref_category_downloads">Heruntergeladene</string>
+    <string name="pref_category_downloads">Downloads</string>
     <string name="pref_category_tracking">Tracking</string>
     <string name="pref_category_advanced">Erweitert</string>
     <string name="pref_category_about">Über</string>
@@ -422,7 +422,7 @@
         <item quantity="one">Nach 1 Minute</item>
         <item quantity="other">Nach %1$s Minuten</item>
     </plurals>
-    <string name="secure_screen">Bildschirm sichern</string>
+    <string name="secure_screen">Sicherheitsbildschirm</string>
     <string name="ext_updates_pending">Aktualisierungen ausstehend</string>
     <string name="pref_cutout_short">Inhalt im Ausschnittbereich anzeigen</string>
     <string name="information_cloudflare_bypass_failure">Fehler beim Umgehen von Cloudflare</string>
@@ -477,10 +477,10 @@
     <string name="label_sources">Quellen</string>
     <string name="action_select_inverse">Auswahl umkehren</string>
     <string name="vertical_plus_viewer">Kontinuierlich vertikal</string>
-    <string name="webtoon_side_padding_25">25 %</string>
-    <string name="webtoon_side_padding_20">20 %</string>
-    <string name="webtoon_side_padding_15">15 %</string>
-    <string name="webtoon_side_padding_10">10 %</string>
+    <string name="webtoon_side_padding_25">25 %</string>
+    <string name="webtoon_side_padding_20">20 %</string>
+    <string name="webtoon_side_padding_15">15 %</string>
+    <string name="webtoon_side_padding_10">10 %</string>
     <string name="webtoon_side_padding_0">Kein Rand</string>
     <string name="pref_webtoon_side_padding">Seitenpolster</string>
     <string name="pinned_sources">Angeheftet</string>
@@ -504,8 +504,6 @@
     <string name="restore_in_progress">Wiederherstellung wird bereits durchgeführt</string>
     <string name="backup_in_progress">Sicherung wird bereits durchgeführt</string>
     <string name="error_invalid_date_supplied">Ungültiges Datum angegeben</string>
-    <string name="track_finished_reading_date">Datum des Leseendes</string>
-    <string name="track_started_reading_date">Datum des Lesebeginns</string>
     <string name="check_for_updates">Auf Aktualisierungen überprüfen</string>
     <string name="last_used_source">Zuletzt genutzt</string>
     <string name="local_source_help_guide">Lokale-Quellen-Guide</string>
@@ -595,15 +593,11 @@
     <string name="no_pinned_sources">Du hast keine angehefteten Quellen</string>
     <string name="download_notifier_download_finish">Download abgeschlossen</string>
     <string name="group_backup_restore">Sichern und Wiederherstellen</string>
-    <string name="group_downloader">Heruntergeladene</string>
+    <string name="group_downloader">Downloads</string>
     <string name="channel_complete">Abgeschlossen</string>
     <string name="channel_progress">Fortschritt</string>
     <string name="channel_errors">Fehler</string>
     <string name="backup_restore_missing_trackers">Nicht-angemeldete Tracker:</string>
-    <string name="pref_allow_nsfw_sources">Ü18-Quellen</string>
-    <string name="pref_allow_nsfw_sources_blocked">Versteckten</string>
-    <string name="pref_allow_nsfw_sources_allowed_multisource">In den Quellen verstecken, aber in der Erweiterungsliste anzeigen</string>
-    <string name="pref_allow_nsfw_sources_allowed">Anzeigen</string>
     <string name="pref_remove_bookmarked_chapters">Mit Lesezeichen versehene Kapitel löschen</string>
     <string name="pref_category_delete_chapters">Kapitel löschen</string>
     <string name="ext_nsfw_warning">Kann Ü18-Inhalte enthalten</string>
@@ -641,6 +635,12 @@
     <string name="pref_create_legacy_backup">Legacy-Sicherung erstellen</string>
     <string name="migration_help_guide">Quellenmigration</string>
     <string name="invalid_backup_file_type">Ungültige Datensicherungsdatei: %1$s</string>
-    <string name="pref_category_nsfw_content">Ü18-Inhalte</string>
+    <string name="pref_category_nsfw_content">NSFW(18+)-Quellen</string>
     <string name="process_text_action_name">In Tachiyomi</string>
+    <string name="pref_label_nsfw_extension">In der Erweiterungsliste markieren</string>
+    <string name="pref_show_nsfw_extension">In der Erweiterungsliste</string>
+    <string name="pref_show_nsfw_source">In der Quellenliste anzeigen</string>
+    <string name="file_picker_error">Keine Dateiauswahl-App gefunden</string>
+    <string name="myanimelist_relogin">Bitte logge dich erneut in MAL ein</string>
+    <string name="myanimelist_creds_missing">MAL-Anmeldeinformationen wurden nicht gefunden</string>
 </resources>
