@@ -57,7 +57,9 @@ object PreferenceKeys {
 
     const val readWithTapping = "reader_tap"
 
-    const val readWithTappingInverted = "reader_tapping_inverted"
+    const val pagerNavInverted = "reader_tapping_inverted"
+
+    const val webtoonNavInverted = "reader_tapping_inverted_webtoon"
 
     const val readWithLongTap = "reader_long_tap"
 

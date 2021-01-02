@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.widget.CompoundButton
 import android.widget.Spinner
 import androidx.annotation.ArrayRes
-import androidx.core.view.isInvisible
+import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.core.widget.NestedScrollView
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -39,7 +39,6 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
         super.onCreate(savedInstanceState)
 
         initGeneralPreferences()
-        initNavigationPreferences()
 
         when (activity.viewer) {
             is PagerViewer -> initPagerPreferences()
@@ -83,36 +82,33 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
      * Init the preferences for the pager reader.
      */
     private fun initPagerPreferences() {
-        binding.webtoonPrefsGroup.isInvisible = true
-        binding.pagerPrefsGroup.isVisible = true
+        binding.webtoonPrefsGroup.root.isGone = true
+        binding.pagerPrefsGroup.root.isVisible = true
 
-        binding.pagerNav.bindToPreference(preferences.navigationModePager())
-        binding.scaleType.bindToPreference(preferences.imageScaleType(), 1)
-        binding.zoomStart.bindToPreference(preferences.zoomStart(), 1)
-        binding.cropBorders.bindToPreference(preferences.cropBorders())
+        binding.pagerPrefsGroup.tappingPrefsGroup.isVisible = preferences.readWithTapping().get()
+
+        binding.pagerPrefsGroup.tappingInverted.bindToPreference(preferences.pagerNavInverted())
+
+        binding.pagerPrefsGroup.pagerNav.bindToPreference(preferences.navigationModePager())
+        binding.pagerPrefsGroup.scaleType.bindToPreference(preferences.imageScaleType(), 1)
+        binding.pagerPrefsGroup.zoomStart.bindToPreference(preferences.zoomStart(), 1)
+        binding.pagerPrefsGroup.cropBorders.bindToPreference(preferences.cropBorders())
     }
 
     /**
      * Init the preferences for the webtoon reader.
      */
     private fun initWebtoonPreferences() {
-        binding.pagerPrefsGroup.isInvisible = true
-        binding.webtoonPrefsGroup.isVisible = true
+        binding.pagerPrefsGroup.root.isGone = true
+        binding.webtoonPrefsGroup.root.isVisible = true
 
-        binding.webtoonNav.bindToPreference(preferences.navigationModeWebtoon())
-        binding.cropBordersWebtoon.bindToPreference(preferences.cropBordersWebtoon())
-        binding.webtoonSidePadding.bindToIntPreference(preferences.webtoonSidePadding(), R.array.webtoon_side_padding_values)
-    }
+        binding.webtoonPrefsGroup.tappingPrefsGroup.isVisible = preferences.readWithTapping().get()
 
-    /**
-     * Init the preferences for navigation.
-     */
-    private fun initNavigationPreferences() {
-        if (!preferences.readWithTapping().get()) {
-            binding.navigationPrefsGroup.isVisible = false
-        }
+        binding.webtoonPrefsGroup.tappingInverted.bindToPreference(preferences.webtoonNavInverted())
 
-        binding.tappingInverted.bindToPreference(preferences.readWithTappingInverted())
+        binding.webtoonPrefsGroup.webtoonNav.bindToPreference(preferences.navigationModeWebtoon())
+        binding.webtoonPrefsGroup.cropBordersWebtoon.bindToPreference(preferences.cropBordersWebtoon())
+        binding.webtoonPrefsGroup.webtoonSidePadding.bindToIntPreference(preferences.webtoonSidePadding(), R.array.webtoon_side_padding_values)
     }
 
     /**

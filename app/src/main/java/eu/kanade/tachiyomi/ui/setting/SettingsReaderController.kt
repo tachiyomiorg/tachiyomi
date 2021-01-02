@@ -138,6 +138,41 @@ class SettingsReaderController : SettingsController() {
             titleRes = R.string.pager_viewer
 
             intListPreference {
+                key = Keys.navigationModePager
+                titleRes = R.string.pref_viewer_nav
+                entriesRes = arrayOf(
+                    R.string.default_nav,
+                    R.string.l_nav,
+                    R.string.kindlish_nav,
+                    R.string.edge_nav
+                )
+                entryValues = arrayOf("0", "1", "2", "3")
+                defaultValue = "0"
+                summary = "%s"
+
+                preferences.readWithTapping().asImmediateFlow { isVisible = it }.launchIn(scope)
+            }
+            listPreference {
+                key = Keys.pagerNavInverted
+                titleRes = R.string.pref_read_with_tapping_inverted
+                entriesRes = arrayOf(
+                    R.string.tapping_inverted_none,
+                    R.string.tapping_inverted_horizontal,
+                    R.string.tapping_inverted_vertical,
+                    R.string.tapping_inverted_both
+                )
+                entryValues = arrayOf(
+                    TappingInvertMode.NONE.name,
+                    TappingInvertMode.HORIZONTAL.name,
+                    TappingInvertMode.VERTICAL.name,
+                    TappingInvertMode.BOTH.name
+                )
+                defaultValue = TappingInvertMode.NONE.name
+                summary = "%s"
+
+                preferences.readWithTapping().asImmediateFlow { isVisible = it }.launchIn(scope)
+            }
+            intListPreference {
                 key = Keys.imageScaleType
                 titleRes = R.string.pref_image_scale_type
                 entriesRes = arrayOf(
@@ -176,6 +211,41 @@ class SettingsReaderController : SettingsController() {
             titleRes = R.string.webtoon_viewer
 
             intListPreference {
+                key = Keys.navigationModeWebtoon
+                titleRes = R.string.pref_viewer_nav
+                entriesRes = arrayOf(
+                    R.string.default_nav,
+                    R.string.l_nav,
+                    R.string.kindlish_nav,
+                    R.string.edge_nav
+                )
+                entryValues = arrayOf("0", "1", "2", "3")
+                defaultValue = "0"
+                summary = "%s"
+
+                preferences.readWithTapping().asImmediateFlow { isVisible = it }.launchIn(scope)
+            }
+            listPreference {
+                key = Keys.webtoonNavInverted
+                titleRes = R.string.pref_read_with_tapping_inverted
+                entriesRes = arrayOf(
+                    R.string.tapping_inverted_none,
+                    R.string.tapping_inverted_horizontal,
+                    R.string.tapping_inverted_vertical,
+                    R.string.tapping_inverted_both
+                )
+                entryValues = arrayOf(
+                    TappingInvertMode.NONE.name,
+                    TappingInvertMode.HORIZONTAL.name,
+                    TappingInvertMode.VERTICAL.name,
+                    TappingInvertMode.BOTH.name
+                )
+                defaultValue = TappingInvertMode.NONE.name
+                summary = "%s"
+
+                preferences.readWithTapping().asImmediateFlow { isVisible = it }.launchIn(scope)
+            }
+            intListPreference {
                 key = Keys.webtoonSidePadding
                 titleRes = R.string.pref_webtoon_side_padding
                 entriesRes = arrayOf(
@@ -203,26 +273,6 @@ class SettingsReaderController : SettingsController() {
                 key = Keys.readWithTapping
                 titleRes = R.string.pref_read_with_tapping
                 defaultValue = true
-            }
-            listPreference {
-                key = Keys.readWithTappingInverted
-                titleRes = R.string.pref_read_with_tapping_inverted
-                entriesRes = arrayOf(
-                    R.string.tapping_inverted_none,
-                    R.string.tapping_inverted_horizontal,
-                    R.string.tapping_inverted_vertical,
-                    R.string.tapping_inverted_both
-                )
-                entryValues = arrayOf(
-                    TappingInvertMode.NONE.name,
-                    TappingInvertMode.HORIZONTAL.name,
-                    TappingInvertMode.VERTICAL.name,
-                    TappingInvertMode.BOTH.name
-                )
-                defaultValue = TappingInvertMode.NONE.name
-                summary = "%s"
-
-                preferences.readWithTapping().asImmediateFlow { isVisible = it }.launchIn(scope)
             }
             switchPreference {
                 key = Keys.readWithLongTap

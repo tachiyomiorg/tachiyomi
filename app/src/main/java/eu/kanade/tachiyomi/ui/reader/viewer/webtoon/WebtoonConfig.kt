@@ -29,6 +29,9 @@ class WebtoonConfig(preferences: PreferencesHelper = Injekt.get()) : ViewerConfi
 
         preferences.navigationModeWebtoon()
             .register({ navigationMode = it }, { updateNavigation(it) })
+
+        preferences.webtoonNavInverted()
+            .register({ tappingInverted = it }, { navigator.invertMode = it })
     }
 
     override var navigator: ViewerNavigation = defaultNavigation()

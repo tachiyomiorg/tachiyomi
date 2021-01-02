@@ -38,9 +38,6 @@ abstract class ViewerConfig(preferences: PreferencesHelper) {
         preferences.readWithTapping()
             .register({ tappingEnabled = it })
 
-        preferences.readWithTappingInverted()
-            .register({ tappingInverted = it }, { navigator.invertMode = it })
-
         preferences.readWithLongTap()
             .register({ longTapEnabled = it })
 

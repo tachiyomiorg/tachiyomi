@@ -130,7 +130,9 @@ class PreferencesHelper(val context: Context) {
 
     fun readWithTapping() = flowPrefs.getBoolean(Keys.readWithTapping, true)
 
-    fun readWithTappingInverted() = flowPrefs.getEnum(Keys.readWithTappingInverted, Values.TappingInvertMode.NONE)
+    fun pagerNavInverted() = flowPrefs.getEnum(Keys.pagerNavInverted, Values.TappingInvertMode.NONE)
+
+    fun webtoonNavInverted() = flowPrefs.getEnum(Keys.webtoonNavInverted, Values.TappingInvertMode.NONE)
 
     fun readWithLongTap() = flowPrefs.getBoolean(Keys.readWithLongTap, true)
 

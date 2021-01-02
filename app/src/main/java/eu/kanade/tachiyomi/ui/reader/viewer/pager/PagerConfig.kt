@@ -36,6 +36,9 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
 
         preferences.navigationModePager()
             .register({ navigationMode = it }, { updateNavigation(navigationMode) })
+
+        preferences.pagerNavInverted()
+            .register({ tappingInverted = it }, { navigator.invertMode = it })
     }
 
     private fun zoomTypeFromPreference(value: Int) {

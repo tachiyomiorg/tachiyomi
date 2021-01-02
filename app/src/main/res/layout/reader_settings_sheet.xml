@@ -18,10 +18,10 @@
         android:alpha="0.5"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_drag_pill_24dp"
-        android:tint="?attr/colorOnBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="?attr/colorOnBackground" />
 
     <android.widget.Space
         android:id="@+id/spinner_end"
@@ -192,204 +192,30 @@
 
     <!-- Pager preferences -->
 
-    <TextView
-        android:id="@+id/pager_prefs"
+    <include
+        android:id="@+id/pager_prefs_group"
+        layout="@layout/reader_pager_settings"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/pager_viewer"
-        android:textColor="?attr/colorAccent"
-        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/end_navigation_preferences" />
-
-    <TextView
-        android:id="@+id/pager_nav_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/pref_viewer_nav"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/verticalcenter"
-        app:layout_constraintBaseline_toBaselineOf="@id/pager_nav"/>
-
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/pager_nav"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:entries="@array/pager_nav"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/pager_prefs"
-        app:layout_constraintStart_toEndOf="@id/verticalcenter"
-        app:layout_constraintEnd_toEndOf="@id/spinner_end" />
-
-    <TextView
-        android:id="@+id/scale_type_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/pref_image_scale_type"
-        app:layout_constraintBaseline_toBaselineOf="@id/scale_type"
-        app:layout_constraintEnd_toStartOf="@id/verticalcenter"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/scale_type"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:entries="@array/image_scale_type"
-        app:layout_constraintEnd_toEndOf="@id/spinner_end"
-        app:layout_constraintStart_toEndOf="@id/verticalcenter"
-        app:layout_constraintTop_toBottomOf="@+id/pager_nav" />
-
-    <TextView
-        android:id="@+id/zoom_start_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/pref_zoom_start"
-        app:layout_constraintBaseline_toBaselineOf="@id/zoom_start"
-        app:layout_constraintEnd_toStartOf="@id/verticalcenter"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/zoom_start"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:entries="@array/zoom_start"
-        app:layout_constraintEnd_toEndOf="@id/spinner_end"
-        app:layout_constraintStart_toEndOf="@id/verticalcenter"
-        app:layout_constraintTop_toBottomOf="@id/scale_type" />
-
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/crop_borders"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/pref_crop_borders"
-        android:textColor="?android:attr/textColorSecondary"
-        app:layout_constraintTop_toBottomOf="@id/zoom_start" />
-
-    <android.widget.Space
-        android:id="@+id/end_paged_preferences"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/crop_borders"
-        tools:layout_editor_absoluteX="24dp" />
-
-    <TextView
-        android:id="@+id/navigation_prefs"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/pref_reader_navigation"
-        android:textColor="?attr/colorAccent"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/end_general_preferences" />
-
-    <TextView
-        android:id="@+id/tapping_inverted_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/pref_read_with_tapping_inverted"
-        app:layout_constraintBaseline_toBaselineOf="@id/tapping_inverted"
-        app:layout_constraintEnd_toStartOf="@id/verticalcenter"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/tapping_inverted"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:entries="@array/invert_tapping_mode"
-        app:layout_constraintEnd_toEndOf="@id/spinner_end"
-        app:layout_constraintStart_toEndOf="@id/verticalcenter"
-        app:layout_constraintTop_toBottomOf="@+id/navigation_prefs" />
-
-    <android.widget.Space
-        android:id="@+id/end_navigation_preferences"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tapping_inverted"
-        tools:layout_editor_absoluteX="24dp" />
+        app:layout_constraintTop_toBottomOf="@+id/always_show_chapter_transition"
+        tools:visibility="visible" />
 
     <!-- Webtoon preferences -->
 
-    <TextView
-        android:id="@+id/webtoon_prefs"
+    <include
+        android:id="@+id/webtoon_prefs_group"
+        layout="@layout/reader_webtoon_settings"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/webtoon_viewer"
-        android:textColor="?attr/colorAccent"
-        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/end_navigation_preferences" />
-
-    <TextView
-        android:id="@+id/webtoon_side_padding_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/pref_webtoon_side_padding"
-        app:layout_constraintBaseline_toBaselineOf="@id/webtoon_side_padding"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/verticalcenter" />
-
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/webtoon_side_padding"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:entries="@array/webtoon_side_padding"
-        app:layout_constraintLeft_toRightOf="@id/verticalcenter"
-        app:layout_constraintRight_toRightOf="@id/spinner_end"
-        app:layout_constraintTop_toBottomOf="@id/webtoon_prefs" />
-
-    <TextView
-        android:id="@+id/webtoon_nav_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/pref_viewer_nav"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/verticalcenter"
-        app:layout_constraintBaseline_toBaselineOf="@id/webtoon_nav"/>
-
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/webtoon_nav"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:entries="@array/webtoon_nav"
-        app:layout_constraintEnd_toEndOf="@id/spinner_end"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@id/verticalcenter"
-        app:layout_constraintTop_toBottomOf="@+id/webtoon_side_padding" />
-
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/crop_borders_webtoon"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/pref_crop_borders"
-        android:textColor="?android:attr/textColorSecondary"
-        app:layout_constraintTop_toBottomOf="@+id/webtoon_nav" />
+        app:layout_constraintTop_toBottomOf="@id/always_show_chapter_transition" />
 
     <!-- Groups of preferences -->
-
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/pager_prefs_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:constraint_referenced_ids="pager_prefs,pager_nav_text,pager_nav,scale_type_text,scale_type,zoom_start_text,zoom_start,crop_borders"
-        tools:visibility="visible" />
-
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/webtoon_prefs_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:constraint_referenced_ids="webtoon_prefs,webtoon_nav_text,webtoon_nav,crop_borders_webtoon,webtoon_side_padding_text,webtoon_side_padding" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/verticalcenter"
@@ -397,12 +223,5 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
-
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/navigation_prefs_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:constraint_referenced_ids="navigation_prefs,tapping_inverted_text,end_navigation_preferences,tapping_inverted"
-        tools:layout_editor_absoluteX="24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
