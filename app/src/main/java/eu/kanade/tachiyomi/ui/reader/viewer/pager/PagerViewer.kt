@@ -92,10 +92,18 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
 
             val pos = PointF(event.rawX / pager.width, event.rawY / pager.height)
             val navigator = config.navigator
-            when (navigator.getAction(pos)) {
-                ViewerNavigation.NavigationRegion.MENU -> activity.toggleMenu()
-                ViewerNavigation.NavigationRegion.NEXT -> moveToNext()
-                ViewerNavigation.NavigationRegion.PREV -> moveToPrevious()
+            if (this is VerticalPagerViewer) {
+                when (navigator.getAction(pos)) {
+                    ViewerNavigation.NavigationRegion.MENU -> activity.toggleMenu()
+                    ViewerNavigation.NavigationRegion.NEXT -> moveRight()
+                    ViewerNavigation.NavigationRegion.PREV -> moveLeft()
+                }
+            } else {
+                when (navigator.getAction(pos)) {
+                    ViewerNavigation.NavigationRegion.MENU -> activity.toggleMenu()
+                    ViewerNavigation.NavigationRegion.NEXT -> moveLeft()
+                    ViewerNavigation.NavigationRegion.PREV -> moveRight()
+                }
             }
         }
         pager.longTapListener = f@{

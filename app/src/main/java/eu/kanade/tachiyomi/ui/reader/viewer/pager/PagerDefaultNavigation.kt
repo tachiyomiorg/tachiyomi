@@ -7,11 +7,11 @@ import eu.kanade.tachiyomi.ui.reader.viewer.navigation.LNavigation
 /**
  * Visualization of default state without any inversion
  * +---+---+---+
- * | N | M | P |   P: Previous
+ * | N | M | P |   P: Move Right
  * +---+---+---+
  * | N | M | P |   M: Menu
  * +---+---+---+
- * | N | M | P |   N: Next
+ * | N | M | P |   N: Move Left
  * +---+---+---+
  */
 class PagerDefaultNavigation : ViewerNavigation() {
