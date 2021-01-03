@@ -244,7 +244,7 @@ class SettingsGeneralController : SettingsController() {
             listPreference {
                 key = Keys.dateFormat
                 titleRes = R.string.pref_date_format
-                entryValues = arrayOf("", "MM/dd/yy", "dd/MM/yy", "yyyy-MM-dd")
+                entryValues = arrayOf("", "MM/dd/yy", "dd/MM/yy", "yyyy-MM-dd", "dd MMM yyyy", "MMM dd, yyyy")
 
                 val now = Date().time
                 entries = entryValues.map { value ->
