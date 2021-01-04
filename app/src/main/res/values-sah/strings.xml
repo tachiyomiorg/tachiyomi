@@ -206,7 +206,7 @@
     <string name="rotation_lock">Хатаммыт</string>
     <string name="rotation_free">Босхо</string>
     <string name="pref_rotation_type">Эргичийии</string>
-    <string name="ext_language_info">Тыл: %1$S</string>
+    <string name="ext_language_info">Тыл: %1$s</string>
     <string name="pref_lock_orientation">Эргичийиини хатаа</string>
     <string name="double_tap_anim_speed_fast">Түргэнник</string>
     <string name="double_tap_anim_speed_normal">Көннөрү</string>
@@ -263,7 +263,7 @@
     <string name="pref_page_transitions">Хамсааһыннах, сирэй арыйыыта</string>
     <string name="pref_cutout_short">Быһыллыбыт хонууга баары көрдөр</string>
     <string name="pref_fullscreen">Толору экран</string>
-    <string name="ext_version_info">Биэрсия: %1$S</string>
+    <string name="ext_version_info">Биэрсия:%1$s</string>
     <string name="unofficial_extension_message">Бу кэҥэтии официальнай Tachiyomi испииһэгиттэн буолбатах.</string>
     <string name="ext_available">Кыаллар</string>
     <string name="obsolete_extension_message">Бу кэҥэтии кыаллыбат буолла.</string>
@@ -313,7 +313,7 @@
     <string name="invalid_backup_file">Хаппаас куопуйа алдьаммыт билэтэ</string>
     <string name="backup_created">Хаппаас куопуйа оҥоһуллунна</string>
     <string name="tracker_not_logged_in">Киирбэтэх: %1$s</string>
-    <string name="source_not_found_name">Төрүт булуллубата: %$1s</string>
+    <string name="source_not_found_name">Төрүт булуллубата: %1$s</string>
     <string name="pref_backup_slots">Муҥутугар дылы хаппаас куопуйалар</string>
     <string name="pref_backup_interval">Хаппаас куопуйа оҥоһуутун түргэнэ</string>
     <string name="pref_backup_service_category">Автоматическай Хаппаас куопуйалар</string>
@@ -544,4 +544,28 @@
     <string name="pref_hide_bottom_bar_on_scroll">Эргитэн түһэргэ алларааҥы хонууну сабыы</string>
     <string name="action_web_view">WebView</string>
     <string name="action_search_settings">Көрдөөһүн түстэлэ</string>
+    <string name="migration_dialog_what_to_include">Киллэрэр дааннайдары талыы</string>
+    <string name="spen_next_page">Аныгыскы сирэй</string>
+    <string name="spen_previous_page">Иннинээҕи сирэй</string>
+    <string name="file_picker_error">Билэни талар эбилик булуллубата</string>
+    <string name="migration_help_guide">Төрүттэр көһөрүүтүн туһунан салалта</string>
+    <string name="myanimelist_relogin">Бука диэн MALга эмиэ киир</string>
+    <string name="myanimelist_creds_missing">MAL учуотнай дааннайдара булуллубата</string>
+    <string name="invalid_backup_file_type">Хаппаас куопуйа сыыһа ааттах: %1$s
+\n.proto.gz or .json. диэн бүтүөхтээх</string>
+    <string name="full_restore_offline">Оффлайн чөлүгэр түһэрии - түргэнник үлэлиир, ол эрээри хаппаас куопуйаҕа эрэ баары таһаарар</string>
+    <string name="full_restore_online">Онлайн чөлүгэр түһэрии - бытааннык үлэлиир , ол эрээри эһиэхэ ордук саҥа информацияны уонна түһүмэхтэри таһаарар</string>
+    <string name="full_restore_mode">Ситимнээх эрэһиим</string>
+    <string name="pref_backup_auto_create_legacy">Урукку формаатынан хаппас куопуйаны эбии оҥоруу</string>
+    <string name="pref_create_legacy_backup_summary">Tachiyomi урукку биэрсийэлэригэр туттуллуон сөп</string>
+    <string name="pref_create_legacy_backup">Урукку формаатынан хаппаас куопуйаны оҥоруу</string>
+    <string name="pref_viewer_nav">Нэбигээссийэ бэлиэтэ</string>
+    <string name="edge_nav">Кытыы</string>
+    <string name="kindlish_nav">Kindle курдук</string>
+    <string name="l_nav">L курдук</string>
+    <string name="default_nav">Куолутунан</string>
+    <string name="pref_label_nsfw_extension">Кэҥэтиилэр испииһиктэригэр бэлиэ</string>
+    <string name="pref_show_nsfw_extension">Кэҥэтиилэр испииһэктэригэр көрдөрүү</string>
+    <string name="pref_show_nsfw_source">Төрүттэр испииһэктэригэр көрдөрүү</string>
+    <string name="pref_category_nsfw_content">NSFW (18+) төрүттэр</string>
 </resources>

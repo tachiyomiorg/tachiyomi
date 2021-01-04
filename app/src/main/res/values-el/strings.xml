@@ -636,11 +636,15 @@
     <string name="migration_help_guide">Οδηγός μετανάστευσης πηγής</string>
     <string name="invalid_backup_file_type">Μη έγκυρο αντίγραφο ασσφαλείας: %1$s</string>
     <string name="pref_category_nsfw_content">Πηγές NSFW (18+)</string>
-    <string name="process_text_action_name">Αναζήτηση στο Tachiyomi</string>
     <string name="pref_label_nsfw_extension">Ετικέτα στη λίστα επεκτάσεων</string>
     <string name="pref_show_nsfw_extension">Εμφάνιση στη λίστα επεκτάσεων</string>
     <string name="pref_show_nsfw_source">Εμφάνιση στη λίστα πηγών</string>
     <string name="file_picker_error">Δεν βρέθηκε εφαρμογή επιλογής αρχείων</string>
     <string name="myanimelist_relogin">Συνδεθείτε ξανά στο MAL</string>
     <string name="myanimelist_creds_missing">Τα διαπιστευτήρια σύνδεσης MAL δεν βρέθηκαν</string>
+    <string name="pref_viewer_nav">Διάταξη πλοήγησης</string>
+    <string name="edge_nav">Άκρη</string>
+    <string name="kindlish_nav">Kindle-ish</string>
+    <string name="l_nav">Σχήματος L</string>
+    <string name="default_nav">Προεπιλογή</string>
 </resources>

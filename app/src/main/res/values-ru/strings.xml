@@ -227,7 +227,7 @@
     <string name="status">Статус</string>
     <string name="system_default">По умолчанию</string>
     <string name="third_to_last">Третья от прочитанной главы</string>
-    <string name="title">Заголовок</string>
+    <string name="title">Название</string>
     <string name="unknown">Неизвестно</string>
     <string name="unknown_error">Неизвестная ошибка</string>
     <string name="update_12hour">Каждые 12 часов</string>
@@ -415,7 +415,7 @@
     <string name="pref_manage_notifications">Управлять уведомлениями</string>
     <string name="pref_category_security">Безопасность</string>
     <string name="lock_with_biometrics">Блокировать отпечатком</string>
-    <string name="lock_when_idle">Блокировать в режиме ожидания</string>
+    <string name="lock_when_idle">Блокировать при бездействии</string>
     <string name="lock_always">Всегда</string>
     <string name="lock_never">Никогда</string>
     <plurals name="lock_after_mins">
@@ -555,9 +555,9 @@
     <string name="sort_by_upload_date">По дате загрузки</string>
     <string name="label_data">Данные</string>
     <string name="backup_restore_missing_sources">Отсутствующие источники:</string>
-    <string name="invalid_backup_file_missing_manga">Бэпап не содержит мангу.</string>
+    <string name="invalid_backup_file_missing_manga">Резервная копия не содержит мангу.</string>
     <string name="invalid_backup_file_missing_data">В файле отсутствуют данные.</string>
-    <string name="invalid_backup_file">Неверный файл бэкапа</string>
+    <string name="invalid_backup_file">Неверный файл резервной копии</string>
     <string name="tracker_not_logged_in">Не выполнен вход в: %1$s</string>
     <string name="source_not_found_name">Источник не найден: %1$s</string>
     <string name="pref_library_update_error_notification">Показывать уведомления об ошибках обновления</string>
@@ -620,9 +620,9 @@
     <string name="backup_restore_missing_trackers">Не выполнен вход в трекеры:</string>
     <string name="pref_remove_bookmarked_chapters">Удалять главы с закладками</string>
     <string name="pref_category_delete_chapters">Удаление глав</string>
-    <string name="ext_nsfw_warning">Может содержать контент 18+</string>
+    <string name="ext_nsfw_warning">Может содержать контент NSFW (18+)</string>
     <string name="ext_nsfw_short">18+</string>
-    <string name="parental_controls_info">Это не предотвращает появление внутри приложения контента 18+ из неофициальных или потенциально неправильно помеченных расширений.</string>
+    <string name="parental_controls_info">Это не предотвращает появление внутри приложения контента NSFW (18+) из неофициальных или потенциально неправильно помеченных расширений.</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Отсутствует 1 глава</item>
         <item quantity="few">Отсутствуют %d главы</item>
@@ -656,13 +656,18 @@
     <string name="pref_create_legacy_backup_summary">Может быть использован в предыдущих версиях Tachiyomi</string>
     <string name="pref_create_legacy_backup">Создать резервную копию старого формата</string>
     <string name="migration_help_guide">Руководство по миграции источников</string>
-    <string name="invalid_backup_file_type">Неверный файл резервной копии: %1$s</string>
+    <string name="invalid_backup_file_type">Неверный тип файла резервной копии: %1$s
+\nФайл должен заканчиваться на .proto.gz или .json.</string>
     <string name="pref_category_nsfw_content">NSFW (18+) источники</string>
-    <string name="process_text_action_name">Искать в Tachiyomi</string>
     <string name="pref_label_nsfw_extension">Метка в списке расширений</string>
     <string name="pref_show_nsfw_extension">Показывать в списке расширений</string>
     <string name="pref_show_nsfw_source">Показывать в списке источников</string>
     <string name="file_picker_error">Приложение для выбора файлов не найдено</string>
     <string name="myanimelist_relogin">Пожалуйста, войдите в MAL снова</string>
     <string name="myanimelist_creds_missing">Учетные данные входа в MAL не найдены</string>
+    <string name="pref_viewer_nav">Разметка навигации</string>
+    <string name="edge_nav">Край</string>
+    <string name="kindlish_nav">Kindle-подобная</string>
+    <string name="l_nav">L-образная</string>
+    <string name="default_nav">По умолчанию</string>
 </resources>

@@ -219,9 +219,9 @@
     <string name="choices_reset">重置对话选择</string>
     <string name="pref_clear_database">清除数据库</string>
     <string name="pref_clear_database_summary">删除未保存在书架中的漫画的历史</string>
-    <string name="clear_database_confirmation">这将会删除未在书架的漫画阅读进度的数据，你确定吗？</string>
+    <string name="clear_database_confirmation">你确定吗？未在书架中的漫画的已读章节和进度将会丢失</string>
     <string name="clear_database_completed">已删除条目</string>
-    <string name="pref_refresh_library_tracking">刷新同步</string>
+    <string name="pref_refresh_library_tracking">刷新同步进度</string>
     <string name="pref_refresh_library_tracking_summary">更新同步服务的状态，评分以及已读章节</string>
     <string name="version">版本</string>
     <string name="build_time">构建时间</string>
@@ -251,7 +251,7 @@
     <string name="browse">浏览</string>
     <string name="manga_not_in_db">此漫画已被移出数据库。</string>
     <string name="manga_detail_tab">详情</string>
-    <string name="description">描述</string>
+    <string name="description">介绍</string>
     <string name="ongoing">连载中</string>
     <string name="unknown">未知</string>
     <string name="licensed">已授权</string>
@@ -447,7 +447,7 @@
     <string name="email">邮箱地址</string>
     <string name="pref_always_show_chapter_transition">总是显示章节间的过渡页面</string>
     <plurals name="notification_new_chapters_summary">
-        <item quantity="other">共 %d 个标题</item>
+        <item quantity="other">共 %d 个漫画</item>
     </plurals>
     <string name="pref_theme_light">浅色主题</string>
     <string name="theme_light_default">默认</string>
@@ -481,7 +481,7 @@
     <string name="pref_webtoon_side_padding">侧边填充</string>
     <string name="vertical_plus_viewer">从上到下（连续）</string>
     <string name="action_select_inverse">反选</string>
-    <string name="add_tracking">添加同步</string>
+    <string name="add_tracking">添加同步进度</string>
     <string name="information_webview_required">Tachiyomi 依赖于 WebView</string>
     <string name="manga_info_collapse">显示更少</string>
     <string name="manga_info_expand">显示更多</string>
@@ -556,7 +556,7 @@
         <item quantity="other">%1$s 个章节</item>
     </plurals>
     <string name="action_open_in_settings">在设置中打开</string>
-    <string name="requires_app_restart">要生效，需要重启应用程序</string>
+    <string name="requires_app_restart">需要重启应用才能生效</string>
     <string name="pref_dns_over_https" translatable="false">DNS over HTTPS (Cloudflare)</string>
     <string name="label_network">网络</string>
     <string name="pref_jump_to_chapters">打开时跳转到阅读章节</string>
@@ -622,13 +622,18 @@
     <string name="pref_create_legacy_backup_summary">可用于旧版本的 Tachiyomi</string>
     <string name="pref_create_legacy_backup">创建旧版本备份</string>
     <string name="migration_help_guide">图源迁移指南</string>
-    <string name="invalid_backup_file_type">无效的备份文件：%1$s</string>
-    <string name="pref_category_nsfw_content">NSFW (18+) 内容</string>
-    <string name="process_text_action_name">在 Tachiyomi 中搜索</string>
+    <string name="invalid_backup_file_type">无效的备份文件类型：%1$s
+\n文件扩展名应为 .proto.gz 或 .json。</string>
+    <string name="pref_category_nsfw_content">NSFW (18+) 图源</string>
     <string name="file_picker_error">未找到文件选择应用</string>
-    <string name="myanimelist_relogin">请再次登录 myanimelist</string>
-    <string name="myanimelist_creds_missing">未找到 myanimelist 登陆凭据</string>
-    <string name="pref_label_nsfw_extension">在扩展列表中加标签</string>
-    <string name="pref_show_nsfw_extension">在扩展列表中显示</string>
-    <string name="pref_show_nsfw_source">显示在源列表</string>
+    <string name="myanimelist_relogin">请重新登录 MyAnimeList</string>
+    <string name="myanimelist_creds_missing">未找到 MyAnimeList 登陆凭据</string>
+    <string name="pref_label_nsfw_extension">在扩展插件列表中添加标签</string>
+    <string name="pref_show_nsfw_extension">在扩展插件列表中显示</string>
+    <string name="pref_show_nsfw_source">在图源列表中显示</string>
+    <string name="pref_viewer_nav">导航布局</string>
+    <string name="edge_nav">边缘</string>
+    <string name="kindlish_nav">Kindle 样式</string>
+    <string name="l_nav">L 形</string>
+    <string name="default_nav">默认</string>
 </resources>

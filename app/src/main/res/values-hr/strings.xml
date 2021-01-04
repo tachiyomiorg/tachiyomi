@@ -648,7 +648,6 @@
     <string name="migration_help_guide">Vodič za migraciju izvora</string>
     <string name="invalid_backup_file_type">Neispravna datoteka sigurnosne kopije: %1$s</string>
     <string name="pref_category_nsfw_content">Neprikladan sadržaj (18+)</string>
-    <string name="process_text_action_name">Traži u Tachiyomiju</string>
     <string name="file_picker_error">Nije pronađen nijedan program za biranje datoteka</string>
     <string name="myanimelist_relogin">Ponovo se prijavi na MAL</string>
     <string name="myanimelist_creds_missing">Podaci za prijavu na MAL nisu pronađene</string>

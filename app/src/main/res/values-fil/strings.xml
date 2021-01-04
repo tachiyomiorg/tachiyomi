@@ -115,7 +115,7 @@
     <string name="name">Pangalan</string>
     <plurals name="lock_after_mins">
         <item quantity="one">Pagkatapos ng isang minuto</item>
-        <item quantity="other">Pagkatapos ng %1$s na minuto</item>
+        <item quantity="other">Pagkatapos ng %1$s (na) minuto</item>
     </plurals>
     <string name="lock_never">Di kailanman</string>
     <string name="lock_always">Palagi</string>
@@ -625,20 +625,21 @@
     <string name="pref_clear_history">Burahin ang kasaysayan</string>
     <string name="clear_history_completed">Nabura na ang buong kasaysayan</string>
     <string name="clear_history_confirmation">Sigurado ka ba\? Buburahin nito ang buong kasaysayan ng binuksan mo.</string>
-    <string name="pref_label_nsfw_extension">markahan na malaswa ito</string>
-    <string name="full_restore_mode">ayusin gamit ang internet</string>
-    <string name="migration_help_guide">gabay sa paglipat</string>
-    <string name="process_text_action_name">Hanapin sa tachiyomi</string>
-    <string name="spen_next_page">Susunod na pahina</string>
-    <string name="spen_previous_page">Lumang pahina</string>
-    <string name="file_picker_error">Walang makitang application para makapili</string>
-    <string name="invalid_backup_file_type">hindi mabasa ng maayos ang backup na: %1$s</string>
-    <string name="full_restore_offline">Ibalik kahit walang internet, mabilis pero gagamitin lang kung ano and nasave mo dati</string>
-    <string name="full_restore_online">Ibalik gamit ang internet, Mas mabagal lang pero makakapag bigay ng mas bagong impormasyon at mga kabanata</string>
-    <string name="pref_backup_auto_create_legacy">kusa gumawa ng “backup”</string>
-    <string name="pref_create_legacy_backup_summary">pwede gamitin sa lumang bersyon ng tachiyomi</string>
-    <string name="pref_create_legacy_backup">gumawa ng “backup”</string>
-    <string name="pref_show_nsfw_extension">ipakita ang mga ekstensiyon</string>
-    <string name="pref_show_nsfw_source">ipakita ang mga malalaswang bagay</string>
-    <string name="pref_category_nsfw_content">may nilalamang malalaswang bagay</string>
+    <string name="pref_label_nsfw_extension">Label sa listahan</string>
+    <string name="full_restore_mode">Gamitin ang network</string>
+    <string name="migration_help_guide">Gabay sa Paglipat</string>
+    <string name="spen_next_page">Abante</string>
+    <string name="spen_previous_page">Balik</string>
+    <string name="file_picker_error">Walang nakitang app para makapili</string>
+    <string name="invalid_backup_file_type">Di mabasa ang backup: %1$s</string>
+    <string name="full_restore_offline">Offline ang pagpapanumbalik, mabilis matapos pero tanging ang mga nasa backup mo lang ang maibabalik</string>
+    <string name="full_restore_online">Online ang pagpapanumbalik, mas mabagal nga lang pero mas updated ang mga impormasyon at kabanata</string>
+    <string name="pref_backup_auto_create_legacy">Gawin din ang lumang pag-backup</string>
+    <string name="pref_create_legacy_backup_summary">Magagamit sa mga lumang bersyon ng Tachiyomi</string>
+    <string name="pref_create_legacy_backup">Gumawa ng lumang pag-backup</string>
+    <string name="pref_show_nsfw_extension">Ipakita sa listahan</string>
+    <string name="pref_show_nsfw_source">Ipakita sa Mga Pinagkukunan</string>
+    <string name="pref_category_nsfw_content">Mga Pinagkukunang NSFW (pang-18+)</string>
+    <string name="myanimelist_relogin">Mag-login muli po sa MAL</string>
+    <string name="myanimelist_creds_missing">Di makita ang pag-login sa MAL</string>
 </resources>

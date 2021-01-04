@@ -616,7 +616,6 @@
     <string name="invalid_backup_file_type">無效的備份檔：%1$s</string>
     <string name="spen_next_page">下一頁</string>
     <string name="spen_previous_page">上一頁</string>
-    <string name="process_text_action_name">Tachiyomi 搜尋</string>
     <string name="myanimelist_relogin">請重新登入 MAL</string>
     <string name="full_restore_mode">網路模式</string>
     <string name="pref_backup_auto_create_legacy">同時建立舊版備份</string>
@@ -629,4 +628,5 @@
     <string name="pref_label_nsfw_extension">在擴充套件清單中標幟</string>
     <string name="pref_show_nsfw_extension">在擴充套件清單中顯示</string>
     <string name="pref_show_nsfw_source">在來源清單中顯示</string>
+    <string name="default_nav">預設</string>
 </resources>

@@ -600,9 +600,9 @@
     <string name="backup_restore_missing_trackers">Niet-ingelogde trackers:</string>
     <string name="pref_remove_bookmarked_chapters">Verwijder hoofdstukken met bladwijzers</string>
     <string name="pref_category_delete_chapters">Hoofdstukken verwijderen</string>
-    <string name="ext_nsfw_warning">Kan 18+-inhoud bevatten</string>
+    <string name="ext_nsfw_warning">Kan NSFW-inhoud (18+) bevatten</string>
     <string name="ext_nsfw_short">18+</string>
-    <string name="parental_controls_info">Dit voorkomt niet dat onofficiële of mogelijk incorrect gemarkeerde extensies 18+-inhoud kunnen laten zien in de app.</string>
+    <string name="parental_controls_info">Dit voorkomt niet dat onofficiële of mogelijk incorrect gemarkeerde extensies NSFW-inhoud (18+) kunnen laten zien in de app.</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Er is 1 missend hoofdstuk</item>
         <item quantity="other">Er zijn %d missende hoofstukken</item>
@@ -634,8 +634,8 @@
     <string name="pref_create_legacy_backup_summary">Kan gebruikt worden in oudere versies van Tachiyomi</string>
     <string name="pref_create_legacy_backup">Verourderde back-up maken</string>
     <string name="migration_help_guide">Bronmigratiegids</string>
-    <string name="process_text_action_name">Zoeken in Tachiyomi</string>
-    <string name="invalid_backup_file_type">Ongeldig back-upbestand: %1$s</string>
+    <string name="invalid_backup_file_type">Ongeldig type back-upbestand: %1$s
+\nDe bestandsnaam moet eindigen op .proto.gz of .json.</string>
     <string name="pref_category_nsfw_content">NSFW-bronnen (18+)</string>
     <string name="file_picker_error">Geen bestandskiezer-app gevonden</string>
     <string name="myanimelist_relogin">Log alstublieft opnieuw in op MAL</string>
@@ -643,4 +643,9 @@
     <string name="pref_label_nsfw_extension">Markeren in extensielijst</string>
     <string name="pref_show_nsfw_extension">Weergeven in extensielijst</string>
     <string name="pref_show_nsfw_source">Weergeven in bronnenlijst</string>
+    <string name="pref_viewer_nav">Navigatie-indeling</string>
+    <string name="edge_nav">Rand</string>
+    <string name="kindlish_nav">Kindle-achtig</string>
+    <string name="l_nav">L-vormig</string>
+    <string name="default_nav">Standaard</string>
 </resources>

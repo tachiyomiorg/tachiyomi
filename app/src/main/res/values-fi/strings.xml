@@ -600,9 +600,9 @@
     <string name="backup_restore_missing_trackers">Seurantapalvelimet joihin et ole kirjautunut sisään:</string>
     <string name="pref_remove_bookmarked_chapters">Poista kirjanmerkityt luvut</string>
     <string name="pref_category_delete_chapters">Poista luvut</string>
-    <string name="ext_nsfw_warning">Voi sisältää 18+ sisältöä</string>
+    <string name="ext_nsfw_warning">Voi sisältää NSFW (18+) -sisältöä</string>
     <string name="ext_nsfw_short">18+</string>
-    <string name="parental_controls_info">Tämä ei estä epävirallisia tai mahdollisesti väärin merkittyjä laajennuksia näyttämästä 18+ sisältöä sovelluksessa.</string>
+    <string name="parental_controls_info">Tämä ei estä epävirallisia tai mahdollisesti väärin merkittyjä laajennuksia näyttämästä NSFW 18+ sisältöä sovelluksessa.</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">1 puuttuva luku</item>
         <item quantity="other">%d puuttuvaa lukua</item>
@@ -634,13 +634,18 @@
     <string name="pref_create_legacy_backup_summary">Voidaan käyttää Tachiyomin vanhemmissa versioissa</string>
     <string name="pref_create_legacy_backup">Luo vanha varmuuskopio</string>
     <string name="migration_help_guide">Lähteen siirto-opas</string>
-    <string name="invalid_backup_file_type">Virheellinen varmuuskopiotiedosto: %1$s</string>
+    <string name="invalid_backup_file_type">Virheellinen varmuuskopiotiedosto: %1$s
+\nSen pitäisi päättyä .proto.gz or .json.</string>
     <string name="pref_category_nsfw_content">NSFW (18+) lähteet</string>
-    <string name="process_text_action_name">Hae Tachiyomista</string>
     <string name="pref_label_nsfw_extension">Laajennusluettelon otsikko</string>
     <string name="pref_show_nsfw_extension">Näytä laajennusluettelossa</string>
     <string name="pref_show_nsfw_source">Näytä lähdeluettelossa</string>
     <string name="file_picker_error">Tiedostonvalitsinsovellusta ei löytynyt</string>
     <string name="myanimelist_relogin">Kirjaudu uudelleen MAL: iin</string>
     <string name="myanimelist_creds_missing">MAL-kirjautumistietoja ei löytynyt</string>
+    <string name="pref_viewer_nav">Navigointiasettelu</string>
+    <string name="edge_nav">Reuna</string>
+    <string name="kindlish_nav">Kindle-ish</string>
+    <string name="l_nav">L-muotoinen</string>
+    <string name="default_nav">Oletus</string>
 </resources>

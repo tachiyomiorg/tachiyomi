@@ -165,7 +165,6 @@
     <string name="lock_always">Sempre</string>
     <string name="lock_when_idle">Bloquear con inactividade</string>
     <string name="lock_with_biometrics">Bloquear con datos biométricos</string>
-    <string name="process_text_action_name">Procurar en Tachiyomi</string>
     <string name="file_picker_error">Non se atopou unha aplicación para seleccionar arquivos</string>
     <string name="myanimelist_relogin">Por favor, inicia sesión en MAL de novo</string>
     <string name="myanimelist_creds_missing">Credenciais de inicio de sesión de MAL non atopados</string>

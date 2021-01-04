@@ -183,7 +183,7 @@
     <string name="ongoing">En cours</string>
     <string name="unknown">Inconnu</string>
     <string name="licensed">Licencié</string>
-    <string name="remove_from_library">Enlever de la bilbiothèque</string>
+    <string name="remove_from_library">Retirer de la bilbiothèque</string>
     <!-- Manga chapters fragment -->
     <string name="manga_chapters_tab">Chapitres</string>
     <string name="display_mode_chapter">Chapitre %1$s</string>
@@ -671,7 +671,6 @@
     <string name="pref_category_nsfw_content">Contenu +18</string>
     <string name="invalid_backup_file_type">Fichier de sauvegarde invalide : %1$s</string>
     <string name="myanimelist_relogin">Veuillez vous reconnecter à MAL</string>
-    <string name="process_text_action_name">Rechercher dans Tachiyomi</string>
     <string name="file_picker_error">L’application de sélection de fichier est introuvable</string>
     <string name="myanimelist_creds_missing">Identifiants de connexion pour MAL non trouvés</string>
     <string name="pref_label_nsfw_extension">Étiqueter dans la liste d\'extension</string>

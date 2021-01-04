@@ -600,9 +600,9 @@
     <string name="backup_restore_missing_trackers">Arrastadores a sos cales no as fatu atzessu:</string>
     <string name="pref_remove_bookmarked_chapters">Iscantzella sos capìtulos sinnados</string>
     <string name="pref_category_delete_chapters">Iscantzella capìtulos</string>
-    <string name="ext_nsfw_warning">Diat pòdere cuntènnere cuntenutos 18+</string>
+    <string name="ext_nsfw_warning">Diat pòdere cuntènnere cuntenutos NSFW (18+)</string>
     <string name="ext_nsfw_short">18+</string>
-    <string name="parental_controls_info">Custu no impedit a estensiones no ufitziales o potentzialmente non curretas de ammustrare cuntenutos 18+ in s\'aplicatzione.</string>
+    <string name="parental_controls_info">Custu no impedit a estensiones no ufitziales o potentzialmente non curretas de ammustrare cuntenutos NSFW (18+) in s\'aplicatzione.</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Mancat 1 capìtulu</item>
         <item quantity="other">Mancant %d capìtulos</item>
@@ -634,13 +634,18 @@
     <string name="pref_create_legacy_backup_summary">Podet èssere impreada in versiones prus betzas de Tachiyomi</string>
     <string name="pref_create_legacy_backup">Crea una còpia de seguresa de casta betza</string>
     <string name="migration_help_guide">Ghia a su tramudòngiu de sas mitzas</string>
-    <string name="invalid_backup_file_type">Documentu de còpia de seguresa non vàlidu: %1$s</string>
+    <string name="invalid_backup_file_type">Casta de documentu de còpia de seguresa non vàlidu: %1$s
+\nDiat dèpere acabbare cun .proto.gz o .json.</string>
     <string name="pref_category_nsfw_content">Cuntenutu NSFW (18+)</string>
-    <string name="process_text_action_name">Chirca in Tachiyomi</string>
     <string name="pref_label_nsfw_extension">Eticheta in sa lista de sas estensiones</string>
     <string name="pref_show_nsfw_extension">Ammustra in sa lista de sas estensiones</string>
     <string name="pref_show_nsfw_source">Ammustra in sa lista de sas mitzas</string>
     <string name="file_picker_error">Peruna aplicatzione pro ischertare documentos agatada</string>
     <string name="myanimelist_relogin">Pro praghere torra a intrare in MAL</string>
     <string name="myanimelist_creds_missing">Credentziales de atzessu MAL no agatadas</string>
+    <string name="edge_nav">Oru</string>
+    <string name="pref_viewer_nav">Impaginatzione de su navigadore</string>
+    <string name="kindlish_nav">A tipu Kindle</string>
+    <string name="l_nav">A forma de L</string>
+    <string name="default_nav">Predefinidu</string>
 </resources>

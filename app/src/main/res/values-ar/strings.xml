@@ -597,7 +597,7 @@
     <string name="action_sort_descending">تنازلياً</string>
     <string name="action_disable">تعطيل</string>
     <string name="action_start">ابدأ</string>
-    <string name="action_sort_date_added">تاريخ الاضافة</string>
+    <string name="action_sort_date_added">تاريخ الإضافة</string>
     <string name="whats_new">ما الجديد</string>
     <string name="requires_app_restart">يتطلب إعادة تشغيل التطبيق ليتم تفعيله</string>
     <string name="label_network">شبكة الاتصال</string>
@@ -605,10 +605,10 @@
     <string name="pref_remove_bookmarked_chapters">حذف الفصول ذات العلامة المرجعية</string>
     <string name="pref_category_delete_chapters">حذف الفصول</string>
     <string name="pref_category_reading_mode">وضع القراءة</string>
-    <string name="ext_nsfw_warning">قد يحتوى محتوى للبالغين</string>
+    <string name="ext_nsfw_warning">قد يحتوى على محتوى للبالغين</string>
     <string name="ext_nsfw_short">محتوى غير لائق</string>
     <string name="pref_jump_to_chapters">الذهاب إلى الفصول المفتوحة</string>
-    <string name="parental_controls_info">هذا لا يمنع الإضافات غير الرسمية أو التي تم وضع علامة عليها بشكل غير صحيح من اظهار محتوى غير لائق داخل التطبيق.</string>
+    <string name="parental_controls_info">هذا لا يمنع الإضافات غير الرسمية أو التي تم وضع علامة عليها بشكل غير صحيح من إظهار محتوى غير لائق داخل التطبيق.</string>
     <string name="pref_category_locale">محلي</string>
     <string name="action_open_in_settings">افتح في الإعدادات</string>
     <string name="action_download_unread">تنزيل الفصول غير المقروءة</string>
@@ -681,12 +681,17 @@
     <string name="pref_backup_auto_create_legacy">قم أيضًا بإنشاء نسخة إحتياطية قديمة</string>
     <string name="pref_create_legacy_backup_summary">يمكن إستخدامه في الإصدارات القديمة من Tachiyomi</string>
     <string name="pref_create_legacy_backup">إنشاء نسخة احتياطية قديمة</string>
-    <string name="invalid_backup_file_type">ملف النسخ الاحتياطي غير صالح: %1$s</string>
+    <string name="invalid_backup_file_type">ملف النسخ الإحتياطي غير صالح: %1$s</string>
     <string name="pref_category_nsfw_content">محتوى +18</string>
-    <string name="process_text_action_name">البحث في Tachiyomi</string>
     <string name="pref_label_nsfw_extension">تسمية في قائمة الملحقات</string>
     <string name="pref_show_nsfw_source">إعرض في قائمة المصادر</string>
     <string name="pref_show_nsfw_extension">إعرض في قائمة الإضافات</string>
     <string name="myanimelist_relogin">رجاء سجل دخولك في MAL مجدداً</string>
     <string name="myanimelist_creds_missing">لم يتم عثور على بيانات تسجيل الدخول MAL</string>
+    <string name="file_picker_error">لم يتم العثور على تطبيق منتقي الملفات</string>
+    <string name="pref_viewer_nav">تخطيط التنقل</string>
+    <string name="l_nav">L shaped</string>
+    <string name="edge_nav">حافة</string>
+    <string name="kindlish_nav">كيندل العش</string>
+    <string name="default_nav">إفتراضي</string>
 </resources>

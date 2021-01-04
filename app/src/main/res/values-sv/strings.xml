@@ -639,7 +639,6 @@
     <string name="pref_label_nsfw_extension">Etikett i tilläggslistan</string>
     <string name="pref_show_nsfw_extension">Visa i tilläggslistan</string>
     <string name="pref_show_nsfw_source">Visa i källistan</string>
-    <string name="process_text_action_name">Sök i Tachiyomi</string>
     <string name="file_picker_error">Ingen filväljare-app hittades</string>
     <string name="myanimelist_relogin">Vänligen logga in på MAL igen</string>
     <string name="myanimelist_creds_missing">Inloggningsuppgifter för MAL hittades inte</string>

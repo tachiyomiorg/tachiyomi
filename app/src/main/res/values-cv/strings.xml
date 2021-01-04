@@ -637,7 +637,6 @@
     <string name="pref_create_legacy_backup">Кивӗ форматлӑ янтӑв ту</string>
     <string name="invalid_backup_file_type">Тӗрӗс мар янтӑв файлӗ: %1$s</string>
     <string name="pref_category_nsfw_content">NSFW (18+) шалаш</string>
-    <string name="process_text_action_name">Tachiyomi-ра шыра</string>
     <string name="file_picker_error">Файлсене суйламалли хушӑм тупӑнман</string>
     <string name="myanimelist_relogin">Тархасшӑн MAL-а ҫӗнӗрен кӗр</string>
     <string name="myanimelist_creds_missing">MAL-а кӗме шутлав пӗлӗмсем тупӑнман</string>

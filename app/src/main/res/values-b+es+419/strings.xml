@@ -636,7 +636,6 @@
     <string name="pref_create_legacy_backup_summary">Puede usarse en versiones anteriores de Tachiyomi</string>
     <string name="pref_create_legacy_backup">Crear copia de seguridad heredada</string>
     <string name="pref_category_nsfw_content">NSFW (Contenido +18)</string>
-    <string name="process_text_action_name">Buscar en Tachiyomi</string>
     <string name="file_picker_error">No se encontró ninguna aplicación de selección de archivos</string>
     <string name="myanimelist_relogin">Por favor iniciar sesión con MAL de nuevo</string>
     <string name="myanimelist_creds_missing">Credenciales de inicio de sesión de MAL no encontradas</string>

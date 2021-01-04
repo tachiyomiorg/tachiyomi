@@ -63,7 +63,7 @@
     <string name="action_undo">Cofnij</string>
     <string name="action_create">Utwórz</string>
     <string name="action_restore">Przywróć</string>
-    <string name="loading">Wczytywanie…</string>
+    <string name="loading">Ładowanie…</string>
     <string name="app_not_available">Aplikacja niedostępna</string>
     <string name="short_recent_updates">Aktualizacje</string>
     <string name="pref_category_general">Ogólne</string>
@@ -88,11 +88,11 @@
     <string name="completed">Ukończone</string>
     <string name="dropped">Porzucone</string>
     <string name="on_hold">Wstrzymane</string>
-    <string name="plan_to_read">Planowane</string>
+    <string name="plan_to_read">Planowane do przeczytania</string>
     <string name="score">Ocena</string>
     <string name="title">Tytuł</string>
     <string name="error_category_exists">Kategoria o takiej nazwie już istnieje!</string>
-    <string name="picture_saved">Obrazek zapisany</string>
+    <string name="picture_saved">Obraz zapisany</string>
     <string name="saving_picture">Zapisywanie obrazka</string>
     <string name="options">Opcje</string>
     <string name="set_as_cover">Ustaw jako okładkę</string>
@@ -143,7 +143,7 @@
     <string name="manga_detail_tab">Informacje</string>
     <string name="description">Opis</string>
     <string name="manga_not_in_db">Ta manga została usunięta z bazy danych.</string>
-    <string name="no_more_results">Nie ma więcej wyników</string>
+    <string name="no_more_results">Nie znaleziono więcej wyników</string>
     <string name="added_to_library">Manga została dodana do twojej biblioteki</string>
     <string name="action_open_log">Otwórz log</string>
     <string name="show_title">Tytuł</string>
@@ -167,7 +167,7 @@
     <string name="pref_library_update_restriction">Warunki aktualizacji biblioteki</string>
     <string name="pref_library_update_restriction_summary">Aktualizuje tylko, kiedy spełnione są te warunki</string>
     <string name="wifi">Wi-Fi</string>
-    <string name="charging">Ładowanie baterii</string>
+    <string name="charging">Ładowanie</string>
     <string name="pref_update_only_non_completed">Aktualizuj tylko nieukończone mangi</string>
     <string name="pref_auto_update_manga_sync">Aktualizuj postęp po przeczytaniu rozdziału</string>
     <string name="pref_start_screen">Ekran startowy</string>
@@ -267,7 +267,7 @@
     <string name="pref_refresh_library_tracking_summary">Aktualizuje status, ocenę i ostatnio czytany rozdział na podstawie usług śledzenia</string>
     <string name="build_time">Data utworzenia kompilacji</string>
     <string name="login_success">Zalogowano</string>
-    <string name="local_source">Lokalne żródło</string>
+    <string name="local_source">Źródło lokalne</string>
     <string name="ongoing">Nieukończone</string>
     <string name="unknown">Nieznane</string>
     <string name="licensed">Licencjonowane</string>
@@ -313,7 +313,7 @@
     <string name="browse">Przeglądaj</string>
     <string name="channel_common">Zwykły</string>
     <string name="channel_library">Biblioteka</string>
-    <string name="latest">Ostatnie</string>
+    <string name="latest">Najnowsze</string>
     <string name="action_display_download_badge">Plakietki pobrań</string>
     <string name="local_source_badge">Lokalna</string>
     <string name="information_empty_category">Nie masz żadnych kategorii. Dotknij plusa, aby je utworzyć i zorganizować swoją bibliotekę.</string>
@@ -344,11 +344,11 @@
     <string name="ext_untrusted">Niezaufane</string>
     <string name="ext_available">Dostępne</string>
     <string name="untrusted_extension">Niezaufane rozszerzenie</string>
-    <string name="untrusted_extension_message">To rozszerzenie było podpisane niezaufanym certyfikatem i nie zostało aktywowane. 
-\n 
-\nZłośliwe rozszerzenie może odczytać dane logowania przechowywane w Tachiyomi albo uruchomić złośliwy kod. 
-\n 
-\nPoprzez zaufanie temu rozszerzeniu potwierdzasz, że rozumiesz zagrożenie.</string>
+    <string name="untrusted_extension_message">To rozszerzenie było podpisane niezaufanym certyfikatem i nie zostało aktywowane.
+\n
+\nZłośliwe rozszerzenie może odczytać dane logowania przechowywane w Tachiyomi albo uruchomić złośliwy kod.
+\n
+\nUfając temu rozszerzeniu akceptujesz to zagrożenie.</string>
     <string name="custom_download">Pobierz wybraną ilość</string>
     <string name="download_custom">Własna ilość</string>
     <string name="migration_info">Tapnij aby zaznaczyć źródło z którego emigrować</string>
@@ -383,7 +383,7 @@
     <string name="pref_library_update_prioritization">Kolejność aktualizacji biblioteki</string>
     <string name="action_webview_back">Wstecz</string>
     <string name="filter_mode_screen">Ekran</string>
-    <string name="no_results_found">Brak wyników</string>
+    <string name="no_results_found">Nie znaleziono wyników</string>
     <string name="migration_selection_prompt">Wybierz źródło, z którego chcesz migrować</string>
     <string name="action_webview_forward">Dalej</string>
     <string name="action_webview_refresh">Odśwież</string>
@@ -411,7 +411,7 @@
     <string name="pref_enable_automatic_extension_updates">Sprawdzaj aktualizacje rozszerzeń</string>
     <string name="pref_category_display">Wyświetlanie</string>
     <string name="hide_notification_content">Ukryj zawartość powiadomienia</string>
-    <string name="lock_when_idle">Zablokuj przy bezczynności</string>
+    <string name="lock_when_idle">Zablokuj podczas bezczynności</string>
     <string name="channel_new_chapters">Aktualizacje rozdziałów</string>
     <string name="information_webview_outdated">Zaktualizuj aplikację WebView dla lepszej kompatybilności</string>
     <string name="information_cloudflare_bypass_failure">Nie udało się obejść Cloudflare</string>
@@ -424,7 +424,7 @@
     </plurals>
     <string name="lock_never">Nigdy</string>
     <string name="lock_always">Zawsze</string>
-    <string name="lock_with_biometrics">Zablokuj używając biometrii</string>
+    <string name="lock_with_biometrics">Zablokuj odciskiem palca</string>
     <string name="pref_category_security">Bezpieczeństwo</string>
     <string name="pref_manage_notifications">Zarządzaj powiadomieniami</string>
     <string name="theme_dark_amoled">Czarny AMOLED</string>
@@ -471,7 +471,7 @@
     <string name="backup_in_progress">Kopia zapasowa jest już tworzona</string>
     <string name="restore_duration">%02d min, %02d s</string>
     <string name="pref_search_pinned_sources_only">Pokazuj tylko przypięte źródła</string>
-    <string name="pref_webtoon_side_padding">Marginesy</string>
+    <string name="pref_webtoon_side_padding">Odstępy po bokach</string>
     <string name="gray_background">Szary</string>
     <string name="pref_true_color_summary">Ogranicza banding, ale ma wpływ na wydajność</string>
     <string name="ext_updates_pending">Dostępne aktualizacje</string>
@@ -481,7 +481,7 @@
         <item quantity="many">%d kategorii</item>
         <item quantity="other">%d kategorii</item>
     </plurals>
-    <string name="secure_screen">Zabezpieczenie ekranu</string>
+    <string name="secure_screen">Ukryj ekran</string>
     <string name="pref_confirm_exit">Potwierdź wyjście</string>
     <string name="action_unpin">Odepnij</string>
     <string name="action_pin">Przypnij</string>
@@ -522,7 +522,7 @@
     </plurals>
     <string name="notification_check_updates">Poszukiwanie nowych rozdziałów</string>
     <string name="viewer">Tryb czytania</string>
-    <string name="local_source_help_guide">Przeglądarka lokalnych źródeł</string>
+    <string name="local_source_help_guide">Źródła lokalne - poradnik</string>
     <plurals name="download_queue_summary">
         <item quantity="one">Pozostał %1$s</item>
         <item quantity="few">Pozostało %1$s</item>
@@ -659,7 +659,6 @@
     <string name="action_web_view">WebView</string>
     <string name="invalid_backup_file_type">Nieprawidłowy plik kopii zapasowej: %1$s</string>
     <string name="pref_category_nsfw_content">NFSW Materiały 18+</string>
-    <string name="process_text_action_name">wyszukaj w Tachiyomi</string>
     <string name="file_picker_error">Nie znaleziono aplikacji do przeglądania plików</string>
     <string name="myanimelist_relogin">Wymagane ponowne zalogowanie do MAL</string>
     <string name="myanimelist_creds_missing">Nie znaleziono danych logowania do MAL</string>

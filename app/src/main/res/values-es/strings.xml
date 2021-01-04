@@ -667,7 +667,6 @@
     <string name="migration_help_guide">Guía de migración de fuentes</string>
     <string name="invalid_backup_file_type">Archivo de copia de seguridad inválido: %1$s</string>
     <string name="pref_category_nsfw_content">Fuentes NSFW (18+)</string>
-    <string name="process_text_action_name">Buscar en Tachiyomi</string>
     <string name="pref_show_nsfw_source">Mostrar en la lista de fuentes</string>
     <string name="pref_show_nsfw_extension">Mostrar en la lista de extensiones</string>
     <string name="pref_label_nsfw_extension">Etiqueta en la lista de extensiones</string>

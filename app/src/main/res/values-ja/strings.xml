@@ -624,7 +624,6 @@
     <string name="migration_help_guide">ソース移行ガイド</string>
     <string name="invalid_backup_file_type">無効なバックアップ ファイル：%1$s</string>
     <string name="pref_category_nsfw_content">成人向けのソース</string>
-    <string name="process_text_action_name">Tachiyomiで検索</string>
     <string name="pref_label_nsfw_extension">拡張機能リストでマーク</string>
     <string name="pref_show_nsfw_extension">拡張機能リストに表示</string>
     <string name="pref_show_nsfw_source">ソースリストに表示</string>

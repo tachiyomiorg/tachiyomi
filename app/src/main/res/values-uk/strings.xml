@@ -654,7 +654,6 @@
     <string name="pref_backup_auto_create_legacy">Також створювати сумісну копію</string>
     <string name="pref_create_legacy_backup_summary">Може бути використано в старіших версіях Tachiyomi</string>
     <string name="pref_create_legacy_backup">Створити сумісну резервну копію</string>
-    <string name="process_text_action_name">Шукати в Tachiyomi</string>
     <string name="file_picker_error">Додаток вибору файлів не знайдено</string>
     <string name="myanimelist_relogin">Будь ласка, увійдіть в MAL знову</string>
     <string name="myanimelist_creds_missing">Облікові дані входу в MAL не знайдено</string>

@@ -624,11 +624,13 @@
     <string name="full_restore_online">Pulihkan secara online, lebih lama tetapi menyegarkan info dan bab terbaru</string>
     <string name="full_restore_mode">Mode Jaringan</string>
     <string name="pref_create_legacy_backup_summary">Bisa digunakan di Tachiyomi versi lama</string>
-    <string name="process_text_action_name">Cari di Tachiyomi</string>
     <string name="file_picker_error">Tidak ada aplikasi pemilih file yang ditemukan</string>
     <string name="myanimelist_relogin">Harap login kembali ke MAL</string>
     <string name="myanimelist_creds_missing">Login kredensial MAL tidak ditemukan</string>
     <string name="pref_label_nsfw_extension">Label dalam daftar ekstensi</string>
     <string name="pref_show_nsfw_extension">Tampilkan dalam daftar ekstensi</string>
     <string name="pref_show_nsfw_source">Tampilkan dalam daftar sumber</string>
+    <string name="edge_nav">Tepi</string>
+    <string name="l_nav">Berbentuk L</string>
+    <string name="default_nav">Default</string>
 </resources>

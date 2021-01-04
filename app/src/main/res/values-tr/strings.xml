@@ -600,9 +600,9 @@
     <string name="backup_restore_missing_trackers">İzleyiciler giriş yapmadı:</string>
     <string name="pref_remove_bookmarked_chapters">İşaretli bölümleri sil</string>
     <string name="pref_category_delete_chapters">Bölümleri sil</string>
-    <string name="ext_nsfw_warning">18+ içerik içerebilir</string>
+    <string name="ext_nsfw_warning">Yetişkin (18+) içerik içerebilir</string>
     <string name="ext_nsfw_short">18+</string>
-    <string name="parental_controls_info">Bu, resmi olmayan veya yanlış işaretlenmiş uzantıların, uygulama içinde 18+ içeriği göstermesini engellemez.</string>
+    <string name="parental_controls_info">Bu, resmi olmayan veya yanlış işaretlenmiş uzantıların, uygulama içinde yetişkin (18+) içeriği göstermesini engellemez.</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">1 eksik bölüm var</item>
         <item quantity="other">%d eksik bölüm var</item>
@@ -634,13 +634,18 @@
     <string name="pref_create_legacy_backup_summary">Tachiyomi\'nin eski sürümlerinde kullanılabilir</string>
     <string name="pref_create_legacy_backup">Eski yedekleme oluştur</string>
     <string name="migration_help_guide">Kaynak taşınma kılavuzu</string>
-    <string name="invalid_backup_file_type">Geçersiz yedekleme dosyası: %1$s</string>
+    <string name="invalid_backup_file_type">Geçersiz yedekleme dosyası türü: %1$s
+\n.proto.gz veya .json ile bitmelidir.</string>
     <string name="pref_category_nsfw_content">Yetişkin içerik (18+) kaynakları</string>
-    <string name="process_text_action_name">Tachiyomi\'de ara</string>
     <string name="pref_label_nsfw_extension">Uzantılar listesinde etiketle</string>
     <string name="pref_show_nsfw_extension">Uzantılar listesinde göster</string>
     <string name="pref_show_nsfw_source">Kaynaklar listesinde göster</string>
     <string name="file_picker_error">Dosya seçme uygulaması bulunamadı</string>
     <string name="myanimelist_relogin">Lütfen MAL\'ye tekrar giriş yapın</string>
     <string name="myanimelist_creds_missing">MAL giriş kimlik bilgileri bulunamadı</string>
+    <string name="pref_viewer_nav">Gezinme düzeni</string>
+    <string name="edge_nav">Kenar</string>
+    <string name="kindlish_nav">Kindle gibi</string>
+    <string name="l_nav">L şeklinde</string>
+    <string name="default_nav">Öntanımlı</string>
 </resources>

@@ -666,7 +666,6 @@
     <string name="pref_backup_auto_create_legacy">Criar também cópia de segurança antiga</string>
     <string name="pref_create_legacy_backup_summary">Pode ser usado em versões mais antigas do Tachiyomi</string>
     <string name="pref_create_legacy_backup">Criar cópia de segurança antiga</string>
-    <string name="process_text_action_name">Procurar no Tachiyomi</string>
     <string name="file_picker_error">Não foi encontrada app de selecção de ficheiros</string>
     <string name="myanimelist_relogin">Por favor inicie sessão no MAL novamente</string>
     <string name="myanimelist_creds_missing">Credenciais de sessão MAL não encontradas</string>

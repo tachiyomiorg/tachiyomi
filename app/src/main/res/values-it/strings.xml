@@ -669,11 +669,15 @@
     <string name="pref_create_legacy_backup_summary">Può essere utilizzato nelle versioni precedenti di Tachiyomi</string>
     <string name="pref_create_legacy_backup">Crea backup legacy</string>
     <string name="pref_category_nsfw_content">Fonti NSFW (18+)</string>
-    <string name="process_text_action_name">Cerca in Tachiyomi</string>
     <string name="pref_label_nsfw_extension">Etichetta nella lista delle estensioni</string>
     <string name="pref_show_nsfw_extension">Mostra nella lista delle estensioni</string>
     <string name="pref_show_nsfw_source">Mostra nella lista delle fonti</string>
     <string name="myanimelist_relogin">Per favore accedi di nuovo a MAL</string>
     <string name="myanimelist_creds_missing">Credenziali di accesso MAL non trovate</string>
     <string name="file_picker_error">Nessuna app per la selezione dei file trovata</string>
+    <string name="pref_viewer_nav">Layout della navigazione</string>
+    <string name="default_nav">Predefinito</string>
+    <string name="edge_nav">Bordo</string>
+    <string name="kindlish_nav">Tipo un Kindle</string>
+    <string name="l_nav">A forma di L</string>
 </resources>

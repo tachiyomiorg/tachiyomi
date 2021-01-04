@@ -589,9 +589,9 @@
     <string name="backup_restore_missing_trackers">Penjejak yang tidak dilog masuk:</string>
     <string name="pref_remove_bookmarked_chapters">Padam bab yang ditanda</string>
     <string name="pref_category_delete_chapters">Padam bab</string>
-    <string name="ext_nsfw_warning">Mungkin mengandungi kandungan 18+ tahun keatas</string>
+    <string name="ext_nsfw_warning">Mungkin mengandungi kandungan(18+tahun keatas</string>
     <string name="ext_nsfw_short">18+</string>
-    <string name="parental_controls_info">Ini tidak menghalang sambungan yang tidak rasmi atau berpotensi tidak menggunakan tetapan yang betul daripada menayangkan kandungan 18+ tahun keatas dalam aplikasi.</string>
+    <string name="parental_controls_info">Ini tidak menghalang sambungan yang tidak rasmi atau berpotensi tidak menggunakan tetapan yang betul daripada menayangkan kandungan(18+) tahun keatas dalam aplikasi.</string>
     <plurals name="missing_chapters_warning">
         <item quantity="other">Ada %d bab yang hilang</item>
     </plurals>
@@ -622,13 +622,18 @@
     <string name="pref_create_legacy_backup_summary">Boleh digunakan pada versi Tachiyomi yang</string>
     <string name="pref_create_legacy_backup">Buat sandaran legasi</string>
     <string name="migration_help_guide">Panduan memindahkan sumber</string>
-    <string name="invalid_backup_file_type">Fail sandaran tidak sah: %1$s</string>
+    <string name="invalid_backup_file_type">Jenis fail sandaran tidak sah: %1$s\t
+\nIa sepatutnya berakhir dengan .proto.gz atau .json.</string>
     <string name="pref_category_nsfw_content">Sumber NSFW (18+)</string>
-    <string name="process_text_action_name">Cari di Tachiyomi</string>
     <string name="pref_label_nsfw_extension">Label dalam senarai</string>
-    <string name="pref_show_nsfw_extension">Tunjuk dalam senarai</string>
-    <string name="pref_show_nsfw_source">Tunjuk dalam senarai</string>
+    <string name="pref_show_nsfw_extension">Tunjuk dalam senarai sambungan</string>
+    <string name="pref_show_nsfw_source">Tunjuk dalam senarai sumber</string>
     <string name="file_picker_error">Tiada aplikasi memilih fail</string>
     <string name="myanimelist_creds_missing">Kelayakan log masuk MAL tidak dijumpai</string>
     <string name="myanimelist_relogin">Sila log masuk ke MAL sekali lagi</string>
+    <string name="default_nav">Lalai</string>
+    <string name="pref_viewer_nav">Tataletak navigasi</string>
+    <string name="edge_nav">isi</string>
+    <string name="kindlish_nav">Serupa Kindle</string>
+    <string name="l_nav">Bentuk L</string>
 </resources>

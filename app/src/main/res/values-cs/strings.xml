@@ -193,7 +193,7 @@
     <string name="update_check_notification_download_complete">Stahování dokončeno</string>
     <string name="update_check_notification_download_error">Chyba při stahování</string>
     <string name="update_check_notification_update_available">Dostupná aktualizace!</string>
-    <string name="information_no_recent">Žádné nedávné kapitoly</string>
+    <string name="information_no_recent">Žádné nedávné aktualizace</string>
     <string name="information_no_recent_manga">Žádné nedávno čtené mangy</string>
     <string name="download_notifier_title_error">Chyba</string>
     <string name="download_notifier_unknown_error">Došlo k neznámé chybě při stahování kapitoly</string>

@@ -637,7 +637,6 @@
     <string name="pref_clear_history">Sterge istoricul</string>
     <string name="clear_history_confirmation">Esti sigur\? Toată istoria se va pierde.</string>
     <string name="clear_history_completed">Istoric șters</string>
-    <string name="process_text_action_name">Caută în Tachiyomi</string>
     <string name="spen_next_page">Pagina următoare</string>
     <string name="spen_previous_page">Pagina anterioară</string>
     <string name="migration_help_guide">Ghid de migrare a sursei</string>

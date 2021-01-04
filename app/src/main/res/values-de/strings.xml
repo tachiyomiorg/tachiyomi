@@ -195,7 +195,7 @@
     <string name="pref_enable_acra">Fehlerberichte senden</string>
     <string name="pref_acra_summary">Hilft bei der Behebung von Fehlern. Keine sensiblen Daten werden gesendet</string>
     <string name="login_title">Bei %1$s anmelden</string>
-    <string name="username">Nutzername</string>
+    <string name="username">Benutzername</string>
     <string name="password">Passwort</string>
     <string name="show_password">Passwort anzeigen</string>
     <string name="login">Anmelden</string>
@@ -331,7 +331,7 @@
     <string name="ext_available">Verfügbar</string>
     <string name="untrusted_extension_message">Diese Erweiterung ist mit einem nicht vertrauenswürdigen Zertifikat unterschrieben und wurde nicht aktiviert.
 \n
-\nEine bösartige Erweiterung könnte in Tachiyomi gespeicherte Anmeldungsdaten auslesen oder einen schädlichen Code ausführen.
+\nEine bösartige Erweiterung könnte in Tachiyomi gespeicherte Anmeldedaten auslesen oder einen schädlichen Code ausführen.
 \n
 \nDurch das Vertrauen dieses Zertifikats akzeptieren Sie diese Risiken.</string>
     <string name="ext_version_info">Version: %1$s</string>
@@ -481,7 +481,7 @@
     <string name="webtoon_side_padding_20">20 %</string>
     <string name="webtoon_side_padding_15">15 %</string>
     <string name="webtoon_side_padding_10">10 %</string>
-    <string name="webtoon_side_padding_0">Kein Rand</string>
+    <string name="webtoon_side_padding_0">Keinen</string>
     <string name="pref_webtoon_side_padding">Seitenpolster</string>
     <string name="pinned_sources">Angeheftet</string>
     <string name="action_unpin">Loslösen</string>
@@ -506,7 +506,7 @@
     <string name="error_invalid_date_supplied">Ungültiges Datum angegeben</string>
     <string name="check_for_updates">Auf Aktualisierungen überprüfen</string>
     <string name="last_used_source">Zuletzt genutzt</string>
-    <string name="local_source_help_guide">Lokale-Quellen-Guide</string>
+    <string name="local_source_help_guide">Anleitung für lokale Quellen</string>
     <string name="restore_duration">%02d Min. %02d Sk.</string>
     <string name="downloaded_only_summary">Filtert alle Manga in deiner Bibliothek</string>
     <plurals name="download_queue_summary">
@@ -600,9 +600,9 @@
     <string name="backup_restore_missing_trackers">Nicht-angemeldete Tracker:</string>
     <string name="pref_remove_bookmarked_chapters">Mit Lesezeichen versehene Kapitel löschen</string>
     <string name="pref_category_delete_chapters">Kapitel löschen</string>
-    <string name="ext_nsfw_warning">Kann Ü18-Inhalte enthalten</string>
+    <string name="ext_nsfw_warning">Kann NSFW(Ü18-Inhalte enthalten</string>
     <string name="ext_nsfw_short">Ü18</string>
-    <string name="parental_controls_info">Dies verhindert nicht, dass inoffizielle oder möglicherweise falsch gekennzeichnete Erweiterungen Ü18-Inhalte in der App anzeigen.</string>
+    <string name="parental_controls_info">Dies verhindert nicht, dass inoffizielle oder möglicherweise falsch gekennzeichnete Erweiterungen NSFW(Ü18)-Inhalte in der App anzeigen.</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Es gibt 1 fehlendes Kapitel</item>
         <item quantity="other">Es gibt %d fehlende Kapitel</item>
@@ -634,13 +634,18 @@
     <string name="pref_create_legacy_backup_summary">Können in älteren Versionen von Tachiyomi verwendet werden</string>
     <string name="pref_create_legacy_backup">Legacy-Sicherung erstellen</string>
     <string name="migration_help_guide">Quellenmigration</string>
-    <string name="invalid_backup_file_type">Ungültige Datensicherungsdatei: %1$s</string>
+    <string name="invalid_backup_file_type">Ungültiger Sicherungsdateientyp: %1$s
+\nDie Datei sollte mit .proto.gz oder .json enden.</string>
     <string name="pref_category_nsfw_content">NSFW(18+)-Quellen</string>
-    <string name="process_text_action_name">In Tachiyomi</string>
     <string name="pref_label_nsfw_extension">In der Erweiterungsliste markieren</string>
     <string name="pref_show_nsfw_extension">In der Erweiterungsliste</string>
     <string name="pref_show_nsfw_source">In der Quellenliste anzeigen</string>
     <string name="file_picker_error">Keine Dateiauswahl-App gefunden</string>
     <string name="myanimelist_relogin">Bitte logge dich erneut in MAL ein</string>
     <string name="myanimelist_creds_missing">MAL-Anmeldeinformationen wurden nicht gefunden</string>
+    <string name="edge_nav">Rand</string>
+    <string name="pref_viewer_nav">Navigationslayout</string>
+    <string name="kindlish_nav">Kindle-Stil</string>
+    <string name="l_nav">L-förmig</string>
+    <string name="default_nav">Standard</string>
 </resources>

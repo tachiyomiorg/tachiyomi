@@ -600,9 +600,9 @@
     <string name="backup_restore_missing_trackers">Monitoradores sem login realizado:</string>
     <string name="pref_remove_bookmarked_chapters">Excluir capítulos favoritos</string>
     <string name="pref_category_delete_chapters">Excluir capítulos</string>
-    <string name="ext_nsfw_warning">Pode haver conteúdo +18</string>
+    <string name="ext_nsfw_warning">Pode haver conteúdo NSFW (+18)</string>
     <string name="ext_nsfw_short">+18</string>
-    <string name="parental_controls_info">Isso não impede que extensões não oficiais ou potencialmente sinalizadas de maneira incorreta apresentem conteúdo +18 no aplicativo.</string>
+    <string name="parental_controls_info">Isso não impede que extensões não oficiais ou potencialmente sinalizadas de maneira incorreta apresentem conteúdo NSFW (+18) no aplicativo.</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Há 1 capítulo faltando</item>
         <item quantity="other">Há %d capítulos faltando</item>
@@ -634,13 +634,18 @@
     <string name="pref_create_legacy_backup_summary">Pode ser usado em versões antigas do Tachiyomi</string>
     <string name="pref_create_legacy_backup">Criar backup legado</string>
     <string name="migration_help_guide">Guia de migração de fonte</string>
-    <string name="invalid_backup_file_type">Arquivo de backup inválido: %1$s</string>
+    <string name="invalid_backup_file_type">Tipo de arquivo de backup inválido: %1$s
+\nO arquivo deve terminar com .proto.gz ou .json.</string>
     <string name="pref_category_nsfw_content">Fontes NSFW (+18)</string>
-    <string name="process_text_action_name">Buscar no Tachiyomi</string>
     <string name="pref_label_nsfw_extension">Rotular na lista de extensões</string>
     <string name="pref_show_nsfw_extension">Mostrar na lista de extensões</string>
     <string name="pref_show_nsfw_source">Mostrar na lista de fontes</string>
     <string name="file_picker_error">Nenhum aplicativo de seleção de arquivos encontrado</string>
     <string name="myanimelist_relogin">Por favor, faça login no MAL novamente</string>
     <string name="myanimelist_creds_missing">Credenciais de login do MAL não encontradas</string>
+    <string name="edge_nav">Borda</string>
+    <string name="kindlish_nav">Kindle</string>
+    <string name="l_nav">Em forma de L</string>
+    <string name="pref_viewer_nav">Layout de navegação</string>
+    <string name="default_nav">Padrão</string>
 </resources>

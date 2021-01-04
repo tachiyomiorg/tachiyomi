@@ -626,7 +626,6 @@
     <string name="clear_history_confirmation">क्या आपको यकीन है\? सारा इतिहास खो जाएगा।</string>
     <string name="clear_history_completed">इतिहास हटाया गया</string>
     <string name="invalid_backup_file_type">अमान्य बैकअप फ़ाइल: %1$s</string>
-    <string name="process_text_action_name">Tachiyomi में खोजें</string>
     <string name="spen_next_page">अगला पृष्ठ</string>
     <string name="spen_previous_page">पिछला पृष्ठ</string>
     <string name="migration_help_guide">स्रोत माइग्रेशन गाइड</string>
