@@ -8,7 +8,7 @@ import eu.kanade.tachiyomi.util.lang.invert
 abstract class ViewerNavigation {
 
     enum class NavigationRegion {
-        NEXT, PREV, MENU
+        NEXT, PREV, MENU, RIGHT, LEFT
     }
 
     data class Region(

@@ -15,7 +15,7 @@ import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.model.ViewerChapters
 import eu.kanade.tachiyomi.ui.reader.viewer.BaseViewer
-import eu.kanade.tachiyomi.ui.reader.viewer.ViewerNavigation
+import eu.kanade.tachiyomi.ui.reader.viewer.ViewerNavigation.NavigationRegion
 import timber.log.Timber
 import kotlin.math.min
 
@@ -92,18 +92,12 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
 
             val pos = PointF(event.rawX / pager.width, event.rawY / pager.height)
             val navigator = config.navigator
-            if (this is VerticalPagerViewer) {
-                when (navigator.getAction(pos)) {
-                    ViewerNavigation.NavigationRegion.MENU -> activity.toggleMenu()
-                    ViewerNavigation.NavigationRegion.NEXT -> moveRight()
-                    ViewerNavigation.NavigationRegion.PREV -> moveLeft()
-                }
-            } else {
-                when (navigator.getAction(pos)) {
-                    ViewerNavigation.NavigationRegion.MENU -> activity.toggleMenu()
-                    ViewerNavigation.NavigationRegion.NEXT -> moveLeft()
-                    ViewerNavigation.NavigationRegion.PREV -> moveRight()
-                }
+            when (navigator.getAction(pos)) {
+                NavigationRegion.MENU -> activity.toggleMenu()
+                NavigationRegion.NEXT -> moveToNext()
+                NavigationRegion.PREV -> moveToPrevious()
+                NavigationRegion.RIGHT -> moveRight()
+                NavigationRegion.LEFT -> moveLeft()
             }
         }
         pager.longTapListener = f@{
