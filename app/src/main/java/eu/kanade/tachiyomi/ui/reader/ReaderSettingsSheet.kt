@@ -65,6 +65,7 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
         binding.backgroundColor.bindToIntPreference(preferences.readerTheme(), R.array.reader_themes_values)
         binding.showPageNumber.bindToPreference(preferences.showPageNumber())
         binding.fullscreen.bindToPreference(preferences.fullscreen())
+        binding.dualPageSplit.bindToPreference(preferences.dualPageSplit())
         binding.keepscreen.bindToPreference(preferences.keepScreenOn())
         binding.longTap.bindToPreference(preferences.readWithLongTap())
         binding.alwaysShowChapterTransition.bindToPreference(preferences.alwaysShowChapterTransition())

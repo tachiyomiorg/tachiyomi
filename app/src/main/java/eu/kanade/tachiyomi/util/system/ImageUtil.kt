@@ -1,5 +1,11 @@
 package eu.kanade.tachiyomi.util.system
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Canvas
+import android.graphics.Rect
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
 import java.io.InputStream
 import java.net.URLConnection
 
@@ -67,5 +73,37 @@ object ImageUtil {
         PNG("image/png", "png"),
         GIF("image/gif", "gif"),
         WEBP("image/webp", "webp")
+    }
+
+    /**
+     * Check whether the image is too wide to read. If not, do nothing and return the stream, else
+     * split it into left and right, then merge it into a new image.
+     */
+    fun dualPageSplit(inputStream: InputStream): InputStream {
+        val bytes = inputStream.readBytes()
+        // check whether it is a dual image
+        val options = BitmapFactory.Options()
+        options.inJustDecodeBounds = true
+        BitmapFactory.decodeByteArray(bytes, 0, bytes.size, options)
+        val height = options.outHeight
+        val width = options.outWidth
+        if (width <= height) {
+            return ByteArrayInputStream(bytes)
+        }
+
+        val toTransform = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+        val result = Bitmap.createBitmap(width / 2, height * 2, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(result)
+        // right -> upper
+        val rightPart = Rect(width - width / 2, 0, width, height)
+        val upperPart = Rect(0, 0, width / 2, height)
+        canvas.drawBitmap(toTransform, rightPart, upperPart, null)
+        // left -> bottom
+        val leftPart = Rect(0, 0, width / 2, height)
+        val bottomPart = Rect(0, height, width / 2, height * 2)
+        canvas.drawBitmap(toTransform, leftPart, bottomPart, null)
+        val output = ByteArrayOutputStream()
+        result.compress(Bitmap.CompressFormat.JPEG, 100, output)
+        return ByteArrayInputStream(output.toByteArray())
     }
 }

@@ -241,6 +241,9 @@ class PagerPageHolder(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnNext { isAnimated ->
+                if (viewer.config.dualPageSplit) {
+                    openStream = ImageUtil.dualPageSplit(openStream!!)
+                }
                 if (!isAnimated) {
                     initSubsamplingImageView().setImage(ImageSource.inputStream(openStream!!))
                 } else {

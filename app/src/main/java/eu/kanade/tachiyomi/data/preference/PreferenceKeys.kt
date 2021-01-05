@@ -23,6 +23,8 @@ object PreferenceKeys {
 
     const val showPageNumber = "pref_show_page_number_key"
 
+    const val dualPageSplit = "pref_dual_page_split"
+
     const val showReadingMode = "pref_show_reading_mode"
 
     const val trueColor = "pref_true_color_key"

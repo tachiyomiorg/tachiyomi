@@ -89,6 +89,8 @@ class PreferencesHelper(val context: Context) {
 
     fun showPageNumber() = flowPrefs.getBoolean(Keys.showPageNumber, true)
 
+    fun dualPageSplit() = flowPrefs.getBoolean(Keys.dualPageSplit, false)
+
     fun showReadingMode() = prefs.getBoolean(Keys.showReadingMode, true)
 
     fun trueColor() = flowPrefs.getBoolean(Keys.trueColor, false)
