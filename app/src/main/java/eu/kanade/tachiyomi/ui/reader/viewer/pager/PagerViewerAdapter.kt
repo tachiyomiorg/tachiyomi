@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.ui.reader.viewer.pager
 import android.view.View
 import android.view.ViewGroup
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
+import eu.kanade.tachiyomi.ui.reader.model.InsertPage
 import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.model.ViewerChapters
@@ -18,13 +19,15 @@ class PagerViewerAdapter(private val viewer: PagerViewer) : ViewPagerAdapter() {
     /**
      * List of currently set items.
      */
-    var items: List<Any> = emptyList()
+    var items: MutableList<Any> = mutableListOf()
         private set
 
     var nextTransition: ChapterTransition.Next? = null
         private set
 
     var currentChapter: ReaderChapter? = null
+
+    private var doublePageSplit: MutableSet<Int> = mutableSetOf()
 
     /**
      * Updates this adapter with the given [chapters]. It handles setting a few pages of the
@@ -80,6 +83,10 @@ class PagerViewerAdapter(private val viewer: PagerViewer) : ViewPagerAdapter() {
             }
         }
 
+        // Resets double-page splits, else insert pages get misplaced
+        doublePageSplit = mutableSetOf()
+        items.filterIsInstance<InsertPage>().also { items.removeAll(it) }
+
         if (viewer is R2LPagerViewer) {
             newItems.reverse()
         }
@@ -119,5 +126,20 @@ class PagerViewerAdapter(private val viewer: PagerViewer) : ViewPagerAdapter() {
             }
         }
         return POSITION_NONE
+    }
+
+    fun onPageSplit(currentIndex: Int, placeAtIndex: Int, newPage: InsertPage) {
+        // If we have already split the double-page don't add another insert page
+        if (items[currentIndex] is InsertPage || items[placeAtIndex] is InsertPage || doublePageSplit.contains(currentIndex)) {
+            return
+        }
+
+        // Insert insert-page at given index
+        val end = items.toTypedArray().copyOfRange(placeAtIndex + 1, items.size)
+        items.removeAll(end)
+        items.add(newPage)
+        items.addAll(end)
+        doublePageSplit.add(currentIndex)
+        notifyDataSetChanged()
     }
 }

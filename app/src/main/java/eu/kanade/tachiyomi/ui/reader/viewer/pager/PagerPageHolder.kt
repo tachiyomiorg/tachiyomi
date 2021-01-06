@@ -28,6 +28,7 @@ import com.github.chrisbanes.photoview.PhotoView
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.source.model.Page
+import eu.kanade.tachiyomi.ui.reader.model.InsertPage
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.viewer.ReaderProgressBar
 import eu.kanade.tachiyomi.ui.reader.viewer.pager.PagerConfig.ZoomType
@@ -39,6 +40,7 @@ import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
+import timber.log.Timber
 import java.io.InputStream
 import java.util.concurrent.TimeUnit
 
@@ -227,8 +229,17 @@ class PagerPageHolder(
         retryButton?.isVisible = false
         decodeErrorLayout?.isVisible = false
 
+        if (page is InsertPage) {
+            Timber.d("Handleing insert page $page")
+            page.stream
+        }
+
         unsubscribeReadImageHeader()
         val streamFn = page.stream ?: return
+
+        if (page is InsertPage) {
+            Timber.d("Handleing insert page $page")
+        }
 
         var openStream: InputStream? = null
         readImageHeaderSubscription = Observable
@@ -241,8 +252,27 @@ class PagerPageHolder(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnNext { isAnimated ->
-                if (viewer.config.dualPageSplit) {
-                    openStream = ImageUtil.dualPageSplit(openStream!!)
+                if (!isAnimated && viewer.config.dualPageSplit) {
+                    val (isDoublePage, stream) = when (page) {
+                        is InsertPage -> Pair(true, openStream!!)
+                        else -> ImageUtil.isDoublePage(openStream!!)
+                    }
+                    openStream = stream
+                    if (isDoublePage && page is InsertPage) {
+                        openStream = when (viewer) {
+                            is L2RPagerViewer -> ImageUtil.splitInHalf(openStream!!, ImageUtil.Side.RIGHT)
+                            is R2LPagerViewer -> ImageUtil.splitInHalf(openStream!!, ImageUtil.Side.LEFT)
+                            else -> openStream
+                        }
+                    }
+                    if (isDoublePage && page !is InsertPage) {
+                        onPageSplit()
+                        openStream = when (viewer) {
+                            is L2RPagerViewer -> ImageUtil.splitInHalf(openStream!!, ImageUtil.Side.LEFT)
+                            is R2LPagerViewer -> ImageUtil.splitInHalf(openStream!!, ImageUtil.Side.RIGHT)
+                            else -> openStream
+                        }
+                    }
                 }
                 if (!isAnimated) {
                     initSubsamplingImageView().setImage(ImageSource.inputStream(openStream!!))
@@ -254,6 +284,29 @@ class PagerPageHolder(
             .flatMap { Observable.never<Unit>() }
             .doOnUnsubscribe { openStream?.close() }
             .subscribe({}, {})
+    }
+
+    private fun processPageSplit(pair: Pair<InputStream, InputStream?>): InputStream {
+        if (pair.second == null) return pair.first
+        val firstHalf = when (viewer) {
+            is L2RPagerViewer -> pair.second
+            is R2LPagerViewer -> pair.first
+            else -> pair.first
+        }
+        val secondHalf = when (viewer) {
+            is L2RPagerViewer -> pair.first
+            is R2LPagerViewer -> pair.second
+            else -> pair.second
+        }
+        if (page is InsertPage) {
+            return secondHalf!!
+        }
+        return firstHalf!!
+    }
+
+    private fun onPageSplit() {
+        val page = InsertPage(page, -1)
+        viewer.onPageSplit(page)
     }
 
     /**

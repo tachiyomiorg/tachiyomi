@@ -12,6 +12,7 @@ import androidx.viewpager.widget.ViewPager
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
+import eu.kanade.tachiyomi.ui.reader.model.InsertPage
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.model.ViewerChapters
 import eu.kanade.tachiyomi.ui.reader.viewer.BaseViewer
@@ -135,6 +136,7 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
             val allowPreload = checkAllowPreload(page as? ReaderPage)
             currentPage = page
             when (page) {
+                is InsertPage -> {}
                 is ReaderPage -> onReaderPageSelected(page, allowPreload)
                 is ChapterTransition -> onTransitionSelected(page)
             }
@@ -359,5 +361,18 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
             }
         }
         return false
+    }
+
+    fun onPageSplit(page: InsertPage) {
+        val currentIndex = adapter.items.indexOf(this.currentPage)
+        // Where the image needs to be placed differs for the viewer
+        val offset = when (this) {
+            is L2RPagerViewer -> 1
+            is R2LPagerViewer -> -2
+            else -> 0
+        }
+        val placeAtIndex = currentIndex + offset
+        val newPage = InsertPage(page.parent, placeAtIndex)
+        adapter.onPageSplit(currentIndex, placeAtIndex, newPage)
     }
 }
