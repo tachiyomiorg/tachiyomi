@@ -6,9 +6,7 @@ import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -115,27 +113,21 @@ suspend fun <T> Single<T>.await(): T = suspendCancellableCoroutine { cont ->
     )
 }
 
-@OptIn(InternalCoroutinesApi::class, ExperimentalCoroutinesApi::class)
 suspend fun <T> Observable<T>.awaitFirst(): T = first().awaitOne()
 
-@OptIn(InternalCoroutinesApi::class, ExperimentalCoroutinesApi::class)
 suspend fun <T> Observable<T>.awaitFirstOrDefault(default: T): T =
     firstOrDefault(default).awaitOne()
 
-@OptIn(InternalCoroutinesApi::class, ExperimentalCoroutinesApi::class)
 suspend fun <T> Observable<T>.awaitFirstOrNull(): T? = firstOrDefault(null).awaitOne()
 
-@OptIn(InternalCoroutinesApi::class, ExperimentalCoroutinesApi::class)
 suspend fun <T> Observable<T>.awaitFirstOrElse(defaultValue: () -> T): T = switchIfEmpty(
     Observable.fromCallable(
         defaultValue
     )
 ).first().awaitOne()
 
-@OptIn(InternalCoroutinesApi::class, ExperimentalCoroutinesApi::class)
 suspend fun <T> Observable<T>.awaitLast(): T = last().awaitOne()
 
-@OptIn(InternalCoroutinesApi::class, ExperimentalCoroutinesApi::class)
 suspend fun <T> Observable<T>.awaitSingle(): T = single().awaitOne()
 
 suspend fun <T> Observable<T>.awaitSingleOrDefault(default: T): T =
@@ -143,7 +135,6 @@ suspend fun <T> Observable<T>.awaitSingleOrDefault(default: T): T =
 
 suspend fun <T> Observable<T>.awaitSingleOrNull(): T? = singleOrDefault(null).awaitOne()
 
-@OptIn(InternalCoroutinesApi::class, ExperimentalCoroutinesApi::class)
 private suspend fun <T> Observable<T>.awaitOne(): T = suspendCancellableCoroutine { cont ->
     cont.unsubscribeOnCancellation(
         subscribe(

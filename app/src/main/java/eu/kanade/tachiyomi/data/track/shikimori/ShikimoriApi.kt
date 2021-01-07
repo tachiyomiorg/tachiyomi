@@ -7,6 +7,7 @@ import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.network.GET
 import eu.kanade.tachiyomi.network.POST
 import eu.kanade.tachiyomi.network.await
+import eu.kanade.tachiyomi.network.jsonMime
 import eu.kanade.tachiyomi.network.parseAs
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
@@ -21,13 +22,11 @@ import kotlinx.serialization.json.jsonPrimitive
 import kotlinx.serialization.json.put
 import kotlinx.serialization.json.putJsonObject
 import okhttp3.FormBody
-import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody.Companion.toRequestBody
 
 class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInterceptor) {
 
-    private val jsonMime = "application/json; charset=utf-8".toMediaType()
     private val authClient = client.newBuilder().addInterceptor(interceptor).build()
 
     suspend fun addLibManga(track: Track, user_id: String): Track {

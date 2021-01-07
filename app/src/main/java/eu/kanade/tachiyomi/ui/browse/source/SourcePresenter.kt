@@ -6,9 +6,6 @@ import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.drop
@@ -32,8 +29,6 @@ class SourcePresenter(
     val sourceManager: SourceManager = Injekt.get(),
     private val preferences: PreferencesHelper = Injekt.get()
 ) : BasePresenter<SourceController>() {
-
-    private val scope = CoroutineScope(Job() + Dispatchers.Main)
 
     var sources = getEnabledSources()
 
@@ -98,7 +93,7 @@ class SourcePresenter(
             .onStart { delay(500) }
             .distinctUntilChanged()
             .onEach { updateLastUsedSource(it) }
-            .launchIn(scope)
+            .launchIn(presenterScope)
     }
 
     private fun updateLastUsedSource(sourceId: Long) {

@@ -9,9 +9,6 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.databinding.ExtensionDetailHeaderBinding
 import eu.kanade.tachiyomi.ui.browse.extension.getApplicationIcon
 import eu.kanade.tachiyomi.util.system.LocaleHelper
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.view.clicks
@@ -19,7 +16,6 @@ import reactivecircus.flowbinding.android.view.clicks
 class ExtensionDetailsHeaderAdapter(private val presenter: ExtensionDetailsPresenter) :
     RecyclerView.Adapter<ExtensionDetailsHeaderAdapter.HeaderViewHolder>() {
 
-    private val scope = CoroutineScope(Job() + Dispatchers.Main)
     private lateinit var binding: ExtensionDetailHeaderBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeaderViewHolder {
@@ -47,7 +43,7 @@ class ExtensionDetailsHeaderAdapter(private val presenter: ExtensionDetailsPrese
 
             binding.extensionUninstallButton.clicks()
                 .onEach { presenter.uninstallExtension() }
-                .launchIn(scope)
+                .launchIn(presenter.presenterScope)
 
             if (extension.isObsolete) {
                 binding.extensionWarningBanner.isVisible = true

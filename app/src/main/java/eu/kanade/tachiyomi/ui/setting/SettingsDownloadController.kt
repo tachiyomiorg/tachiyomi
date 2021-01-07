@@ -57,7 +57,7 @@ class SettingsDownloadController : SettingsController() {
                     val dir = UniFile.fromUri(context, path.toUri())
                     summary = dir.filePath ?: path
                 }
-                .launchIn(scope)
+                .launchIn(viewScope)
         }
         switchPreference {
             key = Keys.downloadOnlyOverWifi
@@ -112,7 +112,7 @@ class SettingsDownloadController : SettingsController() {
                 entryValues = categories.map { it.id.toString() }.toTypedArray()
 
                 preferences.downloadNew().asImmediateFlow { isVisible = it }
-                    .launchIn(scope)
+                    .launchIn(viewScope)
 
                 preferences.downloadNewCategories().asFlow()
                     .onEach { mutableSet ->
@@ -126,7 +126,7 @@ class SettingsDownloadController : SettingsController() {
                             selectedCategories.joinToString { it.name }
                         }
                     }
-                    .launchIn(scope)
+                    .launchIn(viewScope)
             }
         }
     }

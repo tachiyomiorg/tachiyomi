@@ -13,7 +13,6 @@ import eu.kanade.tachiyomi.data.preference.PreferenceValues.DisplayMode
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.track.anilist.Anilist
 import eu.kanade.tachiyomi.widget.ExtendedNavigationView
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onEach
 import java.io.File
@@ -23,7 +22,6 @@ import java.util.Locale
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.data.preference.PreferenceValues as Values
 
-@OptIn(ExperimentalCoroutinesApi::class)
 fun <T> Preference<T>.asImmediateFlow(block: (value: T) -> Unit): Flow<T> {
     block(get())
     return asFlow()
@@ -38,7 +36,6 @@ operator fun <T> Preference<Set<T>>.minusAssign(item: T) {
     set(get() - item)
 }
 
-@OptIn(ExperimentalCoroutinesApi::class)
 class PreferencesHelper(val context: Context) {
 
     private val prefs = PreferenceManager.getDefaultSharedPreferences(context)

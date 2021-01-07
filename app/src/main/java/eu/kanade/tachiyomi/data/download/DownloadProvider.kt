@@ -9,9 +9,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.util.storage.DiskUtil
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import timber.log.Timber
@@ -27,7 +25,7 @@ class DownloadProvider(private val context: Context) {
 
     private val preferences: PreferencesHelper by injectLazy()
 
-    private val scope = CoroutineScope(Job() + Dispatchers.Main)
+    private val scope = MainScope()
 
     /**
      * The root directory for downloads.

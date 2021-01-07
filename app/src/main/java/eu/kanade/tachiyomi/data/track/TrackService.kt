@@ -8,7 +8,6 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.network.NetworkHelper
 import okhttp3.OkHttpClient
-import rx.Observable
 import uy.kohesive.injekt.injectLazy
 
 abstract class TrackService(val id: Int) {
@@ -46,11 +45,11 @@ abstract class TrackService(val id: Int) {
 
     abstract suspend fun update(track: Track): Track
 
-    abstract fun bind(track: Track): Observable<Track>
+    abstract suspend fun bind(track: Track): Track
 
-    abstract fun search(query: String): Observable<List<TrackSearch>>
+    abstract suspend fun search(query: String): List<TrackSearch>
 
-    abstract fun refresh(track: Track): Observable<Track>
+    abstract suspend fun refresh(track: Track): Track
 
     abstract suspend fun login(username: String, password: String)
 

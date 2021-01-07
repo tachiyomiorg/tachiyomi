@@ -67,7 +67,7 @@ open class ExtensionController :
         binding.swipeRefresh.isRefreshing = true
         binding.swipeRefresh.refreshes()
             .onEach { presenter.findAvailableExtensions() }
-            .launchIn(scope)
+            .launchIn(viewScope)
 
         // Initialize adapter, scroll listener and recycler views
         adapter = ExtensionAdapter(this)
@@ -142,7 +142,7 @@ open class ExtensionController :
                 query = it.toString()
                 drawExtensions()
             }
-            .launchIn(scope)
+            .launchIn(viewScope)
     }
 
     override fun onItemClick(view: View, position: Int): Boolean {

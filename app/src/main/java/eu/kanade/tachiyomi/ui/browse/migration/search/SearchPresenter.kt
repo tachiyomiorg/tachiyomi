@@ -15,10 +15,8 @@ import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchCardItem
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchItem
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchPresenter
 import eu.kanade.tachiyomi.util.chapter.syncChaptersWithSource
-import eu.kanade.tachiyomi.util.lang.runAsObservable
-import rx.Observable
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
+import eu.kanade.tachiyomi.util.lang.launchIO
+import eu.kanade.tachiyomi.util.lang.launchUI
 import java.util.Date
 
 class SearchPresenter(
@@ -57,19 +55,14 @@ class SearchPresenter(
 
         replacingMangaRelay.call(true)
 
-        Observable.defer {
-            runAsObservable({
-                source.getChapterList(manga.toMangaInfo())
-                    .map { it.toSChapter() }
-            })
+        launchIO {
+            val chapters = source.getChapterList(manga.toMangaInfo())
+                .map { it.toSChapter() }
+
+            migrateMangaInternal(source, chapters, prevManga, manga, replace)
+        }.invokeOnCompletion {
+            launchUI { replacingMangaRelay.call(false) }
         }
-            .onErrorReturn { emptyList() }
-            .doOnNext { migrateMangaInternal(source, it, prevManga, manga, replace) }
-            .onErrorReturn { emptyList() }
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnUnsubscribe { replacingMangaRelay.call(false) }
-            .subscribe()
     }
 
     private fun migrateMangaInternal(

@@ -187,6 +187,7 @@ open class BrowseSourceController(bundle: Bundle) :
     }
 
     override fun cleanupFab(fab: ExtendedFloatingActionButton) {
+        fab.setOnClickListener(null)
         actionFabScrollListener?.let { recycler?.removeOnScrollListener(it) }
         actionFab = null
     }
@@ -224,7 +225,7 @@ open class BrowseSourceController(bundle: Bundle) :
                     .drop(1)
                     // Set again the adapter to recalculate the covers height
                     .onEach { adapter = this@BrowseSourceController.adapter }
-                    .launchIn(scope)
+                    .launchIn(viewScope)
 
                 (layoutManager as GridLayoutManager).spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                     override fun getSpanSize(position: Int): Int {
@@ -275,7 +276,7 @@ open class BrowseSourceController(bundle: Bundle) :
             .filter { router.backstack.lastOrNull()?.controller() == this@BrowseSourceController }
             .filterIsInstance<QueryTextEvent.QuerySubmitted>()
             .onEach { searchWithQuery(it.queryText.toString()) }
-            .launchIn(scope)
+            .launchIn(viewScope)
 
         searchItem.fixExpand(
             onExpand = { invalidateMenuOnExpand() },

@@ -77,7 +77,7 @@ class TrackSearchDialog : DialogController {
             .onEach { position ->
                 selectedItem = adapter.getItem(position)
             }
-            .launchIn(trackController.scope)
+            .launchIn(trackController.viewScope)
 
         // Do an initial search based on the manga's title
         if (savedState == null) {
@@ -99,7 +99,7 @@ class TrackSearchDialog : DialogController {
             .debounce(TimeUnit.SECONDS.toMillis(1))
             .filter { it.isNotBlank() }
             .onEach { search(it.toString()) }
-            .launchIn(trackController.scope)
+            .launchIn(trackController.viewScope)
     }
 
     private fun search(query: String) {

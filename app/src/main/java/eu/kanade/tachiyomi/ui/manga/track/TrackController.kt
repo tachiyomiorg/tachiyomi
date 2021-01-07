@@ -77,7 +77,7 @@ class TrackController :
         binding.swipeRefresh.isEnabled = false
         binding.swipeRefresh.refreshes()
             .onEach { presenter.refresh() }
-            .launchIn(scope)
+            .launchIn(viewScope)
     }
 
     override fun onDestroyView(view: View) {

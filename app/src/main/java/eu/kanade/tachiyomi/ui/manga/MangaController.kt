@@ -76,7 +76,6 @@ import eu.kanade.tachiyomi.util.view.shrinkOnScroll
 import eu.kanade.tachiyomi.util.view.snack
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import reactivecircus.flowbinding.android.view.clicks
 import reactivecircus.flowbinding.recyclerview.scrollEvents
 import reactivecircus.flowbinding.swiperefreshlayout.refreshes
 import timber.log.Timber
@@ -228,14 +227,14 @@ class MangaController :
 
         binding.recycler.scrollEvents()
             .onEach { updateToolbarTitleAlpha() }
-            .launchIn(scope)
+            .launchIn(viewScope)
 
         binding.swipeRefresh.refreshes()
             .onEach {
                 fetchMangaInfoFromSource(manualFetch = true)
                 fetchChaptersFromSource(manualFetch = true)
             }
-            .launchIn(scope)
+            .launchIn(viewScope)
 
         (activity!! as MainActivity).fixViewToBottom(binding.actionToolbar)
 
@@ -279,42 +278,42 @@ class MangaController :
         actionFab = fab
         fab.setText(R.string.action_start)
         fab.setIconResource(R.drawable.ic_play_arrow_24dp)
-        fab.clicks()
-            .onEach {
-                val item = presenter.getNextUnreadChapter()
-                if (item != null) {
-                    // Create animation listener
-                    val revealAnimationListener: Animator.AnimatorListener = object : AnimatorListenerAdapter() {
-                        override fun onAnimationStart(animation: Animator?) {
-                            openChapter(item.chapter, true)
-                        }
+        fab.setOnClickListener {
+            val item = presenter.getNextUnreadChapter()
+            if (item != null) {
+                // Create animation listener
+                val revealAnimationListener: Animator.AnimatorListener = object : AnimatorListenerAdapter() {
+                    override fun onAnimationStart(animation: Animator?) {
+                        openChapter(item.chapter, true)
                     }
-
-                    // Get coordinates and start animation
-                    actionFab?.getCoordinates()?.let { coordinates ->
-                        if (!binding.revealView.showRevealEffect(
-                                coordinates.x,
-                                coordinates.y,
-                                revealAnimationListener
-                            )
-                        ) {
-                            openChapter(item.chapter)
-                        }
-                    }
-                } else {
-                    view?.context?.toast(R.string.no_next_chapter)
                 }
+
+                // Get coordinates and start animation
+                actionFab?.getCoordinates()?.let { coordinates ->
+                    if (!binding.revealView.showRevealEffect(
+                            coordinates.x,
+                            coordinates.y,
+                            revealAnimationListener
+                        )
+                    ) {
+                        openChapter(item.chapter)
+                    }
+                }
+            } else {
+                view?.context?.toast(R.string.no_next_chapter)
             }
-            .launchIn(scope)
+        }
     }
 
     override fun cleanupFab(fab: ExtendedFloatingActionButton) {
+        fab.setOnClickListener(null)
         actionFabScrollListener?.let { binding.recycler.removeOnScrollListener(it) }
         actionFab = null
     }
 
     override fun onDestroyView(view: View) {
         destroyActionModeIfNeeded()
+        (activity!! as MainActivity).clearFixViewToBottom(binding.actionToolbar)
         binding.actionToolbar.destroy()
         mangaInfoAdapter = null
         chaptersHeaderAdapter = null

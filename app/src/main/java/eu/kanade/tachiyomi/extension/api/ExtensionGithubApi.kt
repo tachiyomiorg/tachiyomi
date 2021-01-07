@@ -71,14 +71,14 @@ internal class ExtensionGithubApi {
                 val versionCode = element.jsonObject["code"]!!.jsonPrimitive.int
                 val lang = element.jsonObject["lang"]!!.jsonPrimitive.content
                 val nsfw = element.jsonObject["nsfw"]!!.jsonPrimitive.int == 1
-                val icon = "$REPO_URL_PREFIX/icon/${apkName.replace(".apk", ".png")}"
+                val icon = "${REPO_URL_PREFIX}icon/${apkName.replace(".apk", ".png")}"
 
                 Extension.Available(name, pkgName, versionName, versionCode, lang, nsfw, apkName, icon)
             }
     }
 
     fun getApkUrl(extension: Extension.Available): String {
-        return "$REPO_URL_PREFIX/apk/${extension.apkName}"
+        return "${REPO_URL_PREFIX}apk/${extension.apkName}"
     }
 
     companion object {

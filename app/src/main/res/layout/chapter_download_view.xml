@@ -46,7 +46,7 @@
         android:scaleType="fitXY"
         android:visibility="gone"
         app:srcCompat="@drawable/ic_check_circle_24dp"
-        app:tint="@color/material_on_surface_emphasis_medium"
+        app:tint="?android:attr/textColorPrimary"
         tools:ignore="ContentDescription" />
 
     <ImageView

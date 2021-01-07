@@ -7,7 +7,7 @@
     android:background="?attr/selectableItemBackground"
     android:paddingStart="16dp"
     android:paddingTop="4dp"
-    android:paddingEnd="16dp"
+    android:paddingEnd="12dp"
     android:paddingBottom="4dp"
     tools:context=".ui.browse.source.browse.BrowseSourceController">
 

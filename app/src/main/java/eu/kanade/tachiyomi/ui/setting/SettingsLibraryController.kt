@@ -70,7 +70,7 @@ class SettingsLibraryController : SettingsController() {
                         summary = "${context.getString(R.string.portrait)}: $portrait, " +
                             "${context.getString(R.string.landscape)}: $landscape"
                     }
-                    .launchIn(scope)
+                    .launchIn(viewScope)
             }
             switchPreference {
                 key = Keys.jumpToChapters
@@ -144,13 +144,13 @@ class SettingsLibraryController : SettingsController() {
             multiSelectListPreference {
                 key = Keys.libraryUpdateRestriction
                 titleRes = R.string.pref_library_update_restriction
-                entriesRes = arrayOf(R.string.wifi, R.string.charging)
+                entriesRes = arrayOf(R.string.network_unmetered, R.string.charging)
                 entryValues = arrayOf("wifi", "ac")
                 summaryRes = R.string.pref_library_update_restriction_summary
                 defaultValue = setOf("wifi")
 
                 preferences.libraryUpdateInterval().asImmediateFlow { isVisible = it > 0 }
-                    .launchIn(scope)
+                    .launchIn(viewScope)
 
                 onChange {
                     // Post to event looper to allow the preference to be updated.
@@ -180,7 +180,7 @@ class SettingsLibraryController : SettingsController() {
                             selectedCategories.joinToString { it.name }
                         }
                     }
-                    .launchIn(scope)
+                    .launchIn(viewScope)
             }
             intListPreference {
                 key = Keys.libraryUpdatePrioritization

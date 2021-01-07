@@ -64,7 +64,7 @@ class SettingsBrowseController : SettingsController() {
                 titleRes = R.string.pref_label_nsfw_extension
                 defaultValue = true
 
-                preferences.showNsfwExtension().asImmediateFlow { isVisible = it }.launchIn(scope)
+                preferences.showNsfwExtension().asImmediateFlow { isVisible = it }.launchIn(viewScope)
             }
 
             infoPreference(R.string.parental_controls_info)

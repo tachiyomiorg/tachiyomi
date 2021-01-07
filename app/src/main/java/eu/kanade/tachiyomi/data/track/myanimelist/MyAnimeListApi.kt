@@ -63,6 +63,7 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
         return withContext(Dispatchers.IO) {
             val url = "$baseApiUrl/manga".toUri().buildUpon()
                 .appendQueryParameter("q", query)
+                .appendQueryParameter("nsfw", "true")
                 .build()
             authClient.newCall(GET(url.toString()))
                 .await()
@@ -164,6 +165,56 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
     }
 
     suspend fun findListItem(track: Track, offset: Int = 0): Track? {
+        val json = getListPage(offset)
+        val obj = json.jsonObject
+        val trackedManga = obj["data"]!!.jsonArray.find { data ->
+            data.jsonObject["node"]!!.jsonObject["id"]!!.jsonPrimitive.int == track.media_id
+        }
+
+        return when {
+            // Found the item in the list
+            trackedManga != null -> {
+                parseMangaItem(trackedManga.jsonObject["list_status"]!!.jsonObject, track)
+            }
+            // Check next page if there's more
+            !obj["paging"]!!.jsonObject["next"]?.jsonPrimitive?.contentOrNull.isNullOrBlank() -> {
+                findListItem(track, offset + listPaginationAmount)
+            }
+            // No more pages to check, item wasn't found
+            else -> {
+                null
+            }
+        }
+    }
+
+    suspend fun findListItems(query: String, offset: Int = 0): List<TrackSearch> {
+        return withContext(Dispatchers.IO) {
+            val json = getListPage(offset)
+            val obj = json.jsonObject
+
+            val matches = obj["data"]!!.jsonArray
+                .filter {
+                    it.jsonObject["node"]!!.jsonObject["title"]!!.jsonPrimitive.content.contains(
+                        query,
+                        ignoreCase = true
+                    )
+                }
+                .map {
+                    val id = it.jsonObject["node"]!!.jsonObject["id"]!!.jsonPrimitive.int
+                    async { getMangaDetails(id) }
+                }
+                .awaitAll()
+
+            // Check next page if there's more
+            if (!obj["paging"]!!.jsonObject["next"]?.jsonPrimitive?.contentOrNull.isNullOrBlank()) {
+                matches + findListItems(query, offset + listPaginationAmount)
+            } else {
+                matches
+            }
+        }
+    }
+
+    private suspend fun getListPage(offset: Int): JsonObject {
         return withContext(Dispatchers.IO) {
             val urlBuilder = "$baseApiUrl/users/@me/mangalist".toUri().buildUpon()
                 .appendQueryParameter("fields", "list_status")
@@ -178,28 +229,7 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
                 .build()
             authClient.newCall(request)
                 .await()
-                .parseAs<JsonObject>()
-                .let {
-                    val obj = it.jsonObject
-                    val trackedManga = obj["data"]!!.jsonArray.find { data ->
-                        data.jsonObject["node"]!!.jsonObject["id"]!!.jsonPrimitive.int == track.media_id
-                    }
-
-                    when {
-                        // Found the item in the list
-                        trackedManga != null -> {
-                            parseMangaItem(trackedManga.jsonObject["list_status"]!!.jsonObject, track)
-                        }
-                        // Check next page if there's more
-                        !obj["paging"]!!.jsonObject["next"]?.jsonPrimitive?.contentOrNull.isNullOrBlank() -> {
-                            findListItem(track, offset + listPaginationAmount)
-                        }
-                        // No more pages to check, item wasn't found
-                        else -> {
-                            null
-                        }
-                    }
-                }
+                .parseAs()
         }
     }
 

@@ -12,6 +12,9 @@ import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
 import com.bluelinelabs.conductor.RestoreViewOnCreateController
 import kotlinx.android.extensions.LayoutContainer
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.cancel
 import timber.log.Timber
 
 abstract class BaseController<VB : ViewBinding>(bundle: Bundle? = null) :
@@ -19,6 +22,8 @@ abstract class BaseController<VB : ViewBinding>(bundle: Bundle? = null) :
     LayoutContainer {
 
     lateinit var binding: VB
+
+    lateinit var viewScope: CoroutineScope
 
     init {
         addLifecycleListener(
@@ -28,6 +33,7 @@ abstract class BaseController<VB : ViewBinding>(bundle: Bundle? = null) :
                 }
 
                 override fun preCreateView(controller: Controller) {
+                    viewScope = MainScope()
                     Timber.d("Create view for ${controller.instance()}")
                 }
 
@@ -40,6 +46,7 @@ abstract class BaseController<VB : ViewBinding>(bundle: Bundle? = null) :
                 }
 
                 override fun preDestroyView(controller: Controller, view: View) {
+                    viewScope.cancel()
                     Timber.d("Destroy view for ${controller.instance()}")
                 }
             }

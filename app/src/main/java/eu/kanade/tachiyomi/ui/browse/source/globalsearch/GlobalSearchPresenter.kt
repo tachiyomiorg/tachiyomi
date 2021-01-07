@@ -15,6 +15,7 @@ import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.source.model.toSManga
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import eu.kanade.tachiyomi.ui.browse.source.browse.BrowseSourcePresenter
+import eu.kanade.tachiyomi.util.lang.await
 import eu.kanade.tachiyomi.util.lang.runAsObservable
 import rx.Observable
 import rx.Subscription
@@ -225,9 +226,10 @@ open class GlobalSearchPresenter(
         fetchImageSubscription?.unsubscribe()
         fetchImageSubscription = fetchImageSubject.observeOn(Schedulers.io())
             .flatMap { (first, source) ->
-                Observable.from(first).filter { it.thumbnail_url == null && !it.initialized }
+                Observable.from(first)
+                    .filter { it.thumbnail_url == null && !it.initialized }
                     .map { Pair(it, source) }
-                    .concatMap { getMangaDetailsObservable(it.first, it.second) }
+                    .concatMap { runAsObservable({ getMangaDetails(it.first, it.second) }) }
                     .map { Pair(source as CatalogueSource, it) }
             }
             .onBackpressureBuffer()
@@ -244,20 +246,17 @@ open class GlobalSearchPresenter(
     }
 
     /**
-     * Returns an observable of manga that initializes the given manga.
+     * Initializes the given manga.
      *
      * @param manga the manga to initialize.
-     * @return an observable of the manga to initialize
+     * @return The initialized manga.
      */
-    private fun getMangaDetailsObservable(manga: Manga, source: Source): Observable<Manga> {
-        return runAsObservable({
-            val networkManga = source.getMangaDetails(manga.toMangaInfo())
-            manga.copyFrom(networkManga.toSManga())
-            manga.initialized = true
-            db.insertManga(manga).executeAsBlocking()
-            manga
-        })
-            .onErrorResumeNext { Observable.just(manga) }
+    private suspend fun getMangaDetails(manga: Manga, source: Source): Manga {
+        val networkManga = source.getMangaDetails(manga.toMangaInfo())
+        manga.copyFrom(networkManga.toSManga())
+        manga.initialized = true
+        db.insertManga(manga).await()
+        return manga
     }
 
     /**

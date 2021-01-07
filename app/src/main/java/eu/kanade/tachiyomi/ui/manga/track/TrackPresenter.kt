@@ -12,10 +12,11 @@ import eu.kanade.tachiyomi.util.lang.await
 import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.lang.launchUI
 import eu.kanade.tachiyomi.util.system.toast
-import rx.Observable
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
@@ -33,17 +34,15 @@ class TrackPresenter(
     private val loggedServices by lazy { trackManager.services.filter { it.isLogged } }
 
     private var trackSubscription: Subscription? = null
-
-    private var searchSubscription: Subscription? = null
-
-    private var refreshSubscription: Subscription? = null
+    private var searchJob: Job? = null
+    private var refreshJob: Job? = null
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
         fetchTrackings()
     }
 
-    fun fetchTrackings() {
+    private fun fetchTrackings() {
         trackSubscription?.let { remove(it) }
         trackSubscription = db.getTracks(manga)
             .asRxObservable()
@@ -58,48 +57,49 @@ class TrackPresenter(
     }
 
     fun refresh() {
-        refreshSubscription?.let { remove(it) }
-        refreshSubscription = Observable.from(trackList)
-            .filter { it.track != null }
-            .flatMap { item ->
-                item.service.refresh(item.track!!)
-                    .flatMap { db.insertTrack(it).asRxObservable() }
-                    .map { item }
-                    .onErrorReturn { item }
+        refreshJob?.cancel()
+        refreshJob = launchIO {
+            try {
+                trackList
+                    .filter { it.track != null }
+                    .map {
+                        async {
+                            val track = it.service.refresh(it.track!!)
+                            db.insertTrack(track).await()
+                        }
+                    }
+                    .awaitAll()
+
+                view?.onRefreshDone()
+            } catch (e: Throwable) {
+                view?.onRefreshError(e)
             }
-            .toList()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeFirst(
-                { view, _ -> view.onRefreshDone() },
-                TrackController::onRefreshError
-            )
+        }
     }
 
     fun search(query: String, service: TrackService) {
-        searchSubscription?.let { remove(it) }
-        searchSubscription = service.search(query)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeLatestCache(
-                TrackController::onSearchResults,
-                TrackController::onSearchResultsError
-            )
+        searchJob?.cancel()
+        searchJob = launchIO {
+            try {
+                val results = service.search(query)
+                launchUI { view?.onSearchResults(results) }
+            } catch (e: Throwable) {
+                launchUI { view?.onSearchResultsError(e) }
+            }
+        }
     }
 
     fun registerTracking(item: Track?, service: TrackService) {
         if (item != null) {
             item.manga_id = manga.id!!
-            add(
-                service.bind(item)
-                    .flatMap { db.insertTrack(item).asRxObservable() }
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(
-                        { },
-                        { error -> context.toast(error.message) }
-                    )
-            )
+            launchIO {
+                try {
+                    service.bind(item)
+                    db.insertTrack(item).await()
+                } catch (e: Throwable) {
+                    launchUI { context.toast(e.message) }
+                }
+            }
         } else {
             unregisterTracking(service)
         }
@@ -116,12 +116,10 @@ class TrackPresenter(
                 db.insertTrack(track).await()
                 view?.onRefreshDone()
             } catch (e: Throwable) {
-                launchUI {
-                    view?.onRefreshError(e)
+                launchUI { view?.onRefreshError(e) }
 
-                    // Restart on error to set old values
-                    fetchTrackings()
-                }
+                // Restart on error to set old values
+                fetchTrackings()
             }
         }
     }

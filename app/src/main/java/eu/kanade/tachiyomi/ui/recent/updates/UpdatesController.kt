@@ -97,7 +97,7 @@ class UpdatesController :
                 val firstPos = layoutManager.findFirstCompletelyVisibleItemPosition()
                 binding.swipeRefresh.isEnabled = firstPos <= 0
             }
-            .launchIn(scope)
+            .launchIn(viewScope)
 
         binding.swipeRefresh.setDistanceToTriggerSync((2 * 64 * view.resources.displayMetrics.density).toInt())
         binding.swipeRefresh.refreshes()
@@ -107,13 +107,14 @@ class UpdatesController :
                 // It can be a very long operation, so we disable swipe refresh and show a toast.
                 binding.swipeRefresh.isRefreshing = false
             }
-            .launchIn(scope)
+            .launchIn(viewScope)
 
         (activity!! as MainActivity).fixViewToBottom(binding.actionToolbar)
     }
 
     override fun onDestroyView(view: View) {
         destroyActionModeIfNeeded()
+        (activity!! as MainActivity).clearFixViewToBottom(binding.actionToolbar)
         binding.actionToolbar.destroy()
         adapter = null
         super.onDestroyView(view)

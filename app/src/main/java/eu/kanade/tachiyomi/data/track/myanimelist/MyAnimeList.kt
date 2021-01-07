@@ -6,11 +6,9 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
-import eu.kanade.tachiyomi.util.lang.runAsObservable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import rx.Observable
 import uy.kohesive.injekt.injectLazy
 
 class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
@@ -22,6 +20,9 @@ class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
         const val DROPPED = 4
         const val PLAN_TO_READ = 6
         const val REREADING = 7
+
+        private const val SEARCH_ID_PREFIX = "id:"
+        private const val SEARCH_LIST_PREFIX = "my:"
     }
 
     private val json: Json by injectLazy()
@@ -70,31 +71,35 @@ class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
         return api.updateItem(track)
     }
 
-    override fun bind(track: Track): Observable<Track> {
-        return runAsObservable({
-            val remoteTrack = api.findListItem(track)
-            if (remoteTrack != null) {
-                track.copyPersonalFrom(remoteTrack)
-                track.media_id = remoteTrack.media_id
-                update(track)
-            } else {
-                add(track)
-            }
-        })
+    override suspend fun bind(track: Track): Track {
+        val remoteTrack = api.findListItem(track)
+        return if (remoteTrack != null) {
+            track.copyPersonalFrom(remoteTrack)
+            track.media_id = remoteTrack.media_id
+            update(track)
+        } else {
+            add(track)
+        }
     }
 
-    override fun search(query: String): Observable<List<TrackSearch>> {
-        if (query.startsWith("my:")) {
-            query.substringAfter("my:").toIntOrNull()?.let { id ->
-                return runAsObservable({ listOf(api.getMangaDetails(id)) })
+    override suspend fun search(query: String): List<TrackSearch> {
+        if (query.startsWith(SEARCH_ID_PREFIX)) {
+            query.substringAfter(SEARCH_ID_PREFIX).toIntOrNull()?.let { id ->
+                return listOf(api.getMangaDetails(id))
             }
         }
 
-        return runAsObservable({ api.search(query) })
+        if (query.startsWith(SEARCH_LIST_PREFIX)) {
+            query.substringAfter(SEARCH_LIST_PREFIX).let { title ->
+                return api.findListItems(title)
+            }
+        }
+
+        return api.search(query)
     }
 
-    override fun refresh(track: Track): Observable<Track> {
-        return runAsObservable({ api.getListItem(track) })
+    override suspend fun refresh(track: Track): Track {
+        return api.getListItem(track)
     }
 
     override suspend fun login(username: String, password: String) = login(password)

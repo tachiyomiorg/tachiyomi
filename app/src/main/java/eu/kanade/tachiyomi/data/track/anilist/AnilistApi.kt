@@ -6,10 +6,10 @@ import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.network.POST
 import eu.kanade.tachiyomi.network.await
+import eu.kanade.tachiyomi.network.jsonMime
 import eu.kanade.tachiyomi.network.parseAs
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.contentOrNull
@@ -21,17 +21,12 @@ import kotlinx.serialization.json.jsonPrimitive
 import kotlinx.serialization.json.long
 import kotlinx.serialization.json.put
 import kotlinx.serialization.json.putJsonObject
-import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody.Companion.toRequestBody
-import uy.kohesive.injekt.injectLazy
 import java.util.Calendar
 
 class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
 
-    private val json: Json by injectLazy()
-
-    private val jsonMime = "application/json; charset=utf-8".toMediaType()
     private val authClient = client.newBuilder().addInterceptor(interceptor).build()
 
     suspend fun addLibManga(track: Track): Track {

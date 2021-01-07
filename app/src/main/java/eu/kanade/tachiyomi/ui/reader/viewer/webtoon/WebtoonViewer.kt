@@ -16,6 +16,8 @@ import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.model.ViewerChapters
 import eu.kanade.tachiyomi.ui.reader.viewer.BaseViewer
 import eu.kanade.tachiyomi.ui.reader.viewer.ViewerNavigation.NavigationRegion
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.cancel
 import rx.subscriptions.CompositeSubscription
 import timber.log.Timber
 import kotlin.math.max
@@ -25,6 +27,8 @@ import kotlin.math.min
  * Implementation of a [BaseViewer] to display pages with a [RecyclerView].
  */
 class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = true) : BaseViewer {
+
+    private val scope = MainScope()
 
     /**
      * Recycler view used by this viewer.
@@ -59,7 +63,7 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
     /**
      * Configuration used by this viewer, like allow taps, or crop image borders.
      */
-    val config = WebtoonConfig()
+    val config = WebtoonConfig(scope)
 
     /**
      * Subscriptions to keep while this viewer is used.
@@ -168,6 +172,7 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
      */
     override fun destroy() {
         super.destroy()
+        scope.cancel()
         subscriptions.unsubscribe()
     }
 

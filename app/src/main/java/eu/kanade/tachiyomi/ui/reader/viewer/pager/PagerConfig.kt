@@ -6,14 +6,18 @@ import eu.kanade.tachiyomi.ui.reader.viewer.ViewerNavigation
 import eu.kanade.tachiyomi.ui.reader.viewer.navigation.EdgeNavigation
 import eu.kanade.tachiyomi.ui.reader.viewer.navigation.KindlishNavigation
 import eu.kanade.tachiyomi.ui.reader.viewer.navigation.LNavigation
+import kotlinx.coroutines.CoroutineScope
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
 /**
  * Configuration used by pager viewers.
  */
-class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelper = Injekt.get()) :
-    ViewerConfig(preferences) {
+class PagerConfig(
+    private val viewer: PagerViewer,
+    scope: CoroutineScope,
+    preferences: PreferencesHelper = Injekt.get()
+) : ViewerConfig(preferences, scope) {
 
     var imageScaleType = 1
         private set

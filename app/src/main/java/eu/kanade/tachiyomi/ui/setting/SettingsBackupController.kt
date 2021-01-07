@@ -133,14 +133,14 @@ class SettingsBackupController : SettingsController() {
                 }
 
                 preferences.backupInterval().asImmediateFlow { isVisible = it > 0 }
-                    .launchIn(scope)
+                    .launchIn(viewScope)
 
                 preferences.backupsDirectory().asFlow()
                     .onEach { path ->
                         val dir = UniFile.fromUri(context, path.toUri())
                         summary = dir.filePath + "/automatic"
                     }
-                    .launchIn(scope)
+                    .launchIn(viewScope)
             }
             intListPreference {
                 key = Keys.numberOfBackups
@@ -151,7 +151,7 @@ class SettingsBackupController : SettingsController() {
                 summary = "%s"
 
                 preferences.backupInterval().asImmediateFlow { isVisible = it > 0 }
-                    .launchIn(scope)
+                    .launchIn(viewScope)
             }
             switchPreference {
                 key = Keys.createLegacyBackup
@@ -159,7 +159,7 @@ class SettingsBackupController : SettingsController() {
                 defaultValue = true
 
                 preferences.backupInterval().asImmediateFlow { isVisible = it > 0 }
-                    .launchIn(scope)
+                    .launchIn(viewScope)
             }
         }
     }

@@ -9,9 +9,6 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.databinding.MangaChaptersHeaderBinding
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.system.getResourceColor
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.onEach
@@ -25,7 +22,6 @@ class MangaChaptersHeaderAdapter(
     private var numChapters: Int? = null
     private var hasActiveFilters: Boolean = false
 
-    private val scope = CoroutineScope(Job() + Dispatchers.Main)
     private lateinit var binding: MangaChaptersHeaderBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeaderViewHolder {
@@ -68,7 +64,7 @@ class MangaChaptersHeaderAdapter(
 
             merge(view.clicks(), binding.btnChaptersFilter.clicks())
                 .onEach { controller.showSettingsSheet() }
-                .launchIn(scope)
+                .launchIn(controller.viewScope)
         }
     }
 }

@@ -1,19 +1,30 @@
 package eu.kanade.tachiyomi.ui.base.presenter
 
 import android.os.Bundle
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.cancel
 import nucleus.presenter.RxPresenter
 import nucleus.presenter.delivery.Delivery
 import rx.Observable
 
 open class BasePresenter<V> : RxPresenter<V>() {
 
+    lateinit var presenterScope: CoroutineScope
+
     override fun onCreate(savedState: Bundle?) {
         try {
             super.onCreate(savedState)
+            presenterScope = MainScope()
         } catch (e: NullPointerException) {
             // Swallow this error. This should be fixed in the library but since it's not critical
             // (only used by restartables) it should be enough. It saves me a fork.
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenterScope.cancel()
     }
 
     /**

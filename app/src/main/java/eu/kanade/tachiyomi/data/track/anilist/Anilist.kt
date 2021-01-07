@@ -6,11 +6,9 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
-import eu.kanade.tachiyomi.util.lang.runAsObservable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import rx.Observable
 import uy.kohesive.injekt.injectLazy
 
 class Anilist(private val context: Context, id: Int) : TrackService(id) {
@@ -146,33 +144,29 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
         return api.updateLibManga(track)
     }
 
-    override fun bind(track: Track): Observable<Track> {
-        return runAsObservable({
-            val remoteTrack = api.findLibManga(track, getUsername().toInt())
-            if (remoteTrack != null) {
-                track.copyPersonalFrom(remoteTrack)
-                track.library_id = remoteTrack.library_id
-                update(track)
-            } else {
-                // Set default fields if it's not found in the list
-                track.score = DEFAULT_SCORE.toFloat()
-                track.status = DEFAULT_STATUS
-                add(track)
-            }
-        })
-    }
-
-    override fun search(query: String): Observable<List<TrackSearch>> {
-        return runAsObservable({ api.search(query) })
-    }
-
-    override fun refresh(track: Track): Observable<Track> {
-        return runAsObservable({
-            val remoteTrack = api.getLibManga(track, getUsername().toInt())
+    override suspend fun bind(track: Track): Track {
+        val remoteTrack = api.findLibManga(track, getUsername().toInt())
+        return if (remoteTrack != null) {
             track.copyPersonalFrom(remoteTrack)
-            track.total_chapters = remoteTrack.total_chapters
-            track
-        })
+            track.library_id = remoteTrack.library_id
+            update(track)
+        } else {
+            // Set default fields if it's not found in the list
+            track.score = DEFAULT_SCORE.toFloat()
+            track.status = DEFAULT_STATUS
+            add(track)
+        }
+    }
+
+    override suspend fun search(query: String): List<TrackSearch> {
+        return api.search(query)
+    }
+
+    override suspend fun refresh(track: Track): Track {
+        val remoteTrack = api.getLibManga(track, getUsername().toInt())
+        track.copyPersonalFrom(remoteTrack)
+        track.total_chapters = remoteTrack.total_chapters
+        return track
     }
 
     override suspend fun login(username: String, password: String) = login(password)

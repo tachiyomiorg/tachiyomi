@@ -6,13 +6,17 @@ import eu.kanade.tachiyomi.ui.reader.viewer.ViewerNavigation
 import eu.kanade.tachiyomi.ui.reader.viewer.navigation.EdgeNavigation
 import eu.kanade.tachiyomi.ui.reader.viewer.navigation.KindlishNavigation
 import eu.kanade.tachiyomi.ui.reader.viewer.navigation.LNavigation
+import kotlinx.coroutines.CoroutineScope
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
 /**
  * Configuration used by webtoon viewers.
  */
-class WebtoonConfig(preferences: PreferencesHelper = Injekt.get()) : ViewerConfig(preferences) {
+class WebtoonConfig(
+    scope: CoroutineScope,
+    preferences: PreferencesHelper = Injekt.get()
+) : ViewerConfig(preferences, scope) {
 
     var imageCropBorders = false
         private set

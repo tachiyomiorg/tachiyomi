@@ -67,6 +67,8 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
     private var isConfirmingExit: Boolean = false
     private var isHandlingShortcut: Boolean = false
 
+    private var fixedViewsToBottom = mutableMapOf<View, AppBarLayout.OnOffsetChangedListener>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -401,12 +403,17 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
      * the collapsing AppBarLayout.
      */
     fun fixViewToBottom(view: View) {
-        binding.appbar.addOnOffsetChangedListener(
-            AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
-                val maxAbsOffset = appBarLayout.measuredHeight - binding.tabs.measuredHeight
-                view.translationY = -maxAbsOffset - verticalOffset.toFloat()
-            }
-        )
+        val listener = AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+            val maxAbsOffset = appBarLayout.measuredHeight - binding.tabs.measuredHeight
+            view.translationY = -maxAbsOffset - verticalOffset.toFloat()
+        }
+        binding.appbar.addOnOffsetChangedListener(listener)
+        fixedViewsToBottom[view] = listener
+    }
+
+    fun clearFixViewToBottom(view: View) {
+        val listener = fixedViewsToBottom.remove(view)
+        binding.appbar.removeOnOffsetChangedListener(listener)
     }
 
     private fun setBottomNavBehaviorOnScroll() {

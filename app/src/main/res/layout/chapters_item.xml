@@ -6,7 +6,7 @@
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:background="@drawable/list_item_selector_background"
     android:paddingStart="16dp"
-    android:paddingEnd="8dp">
+    android:paddingEnd="4dp">
 
     <ImageView
         android:id="@+id/bookmark_icon"
@@ -31,7 +31,6 @@
         android:layout_marginTop="12dp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:paddingEnd="8dp"
         app:layout_constraintEnd_toStartOf="@+id/download"
         app:layout_constraintStart_toEndOf="@+id/bookmark_icon"
         app:layout_constraintTop_toTopOf="parent"
@@ -44,7 +43,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:ellipsize="end"
-        android:paddingEnd="8dp"
         android:singleLine="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/download"
@@ -55,6 +53,7 @@
         android:id="@+id/download"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingStart="4dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

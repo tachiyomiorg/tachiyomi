@@ -211,7 +211,7 @@ class BackupTest {
         networkManga.description = "This is a description"
         `when`(source.fetchMangaDetails(jsonManga)).thenReturn(Observable.just(networkManga))
 
-        val obs = legacyBackupManager.restoreMangaFetchObservable(source, jsonManga)
+        val obs = legacyBackupManager.fetchManga(source, jsonManga)
         val testSubscriber = TestSubscriber<Manga>()
         obs.subscribe(testSubscriber)
 
@@ -255,7 +255,7 @@ class BackupTest {
         `when`(source.fetchChapterList(manga)).thenReturn(Observable.just(chaptersRemote))
 
         // Call restoreChapterFetchObservable
-        val obs = legacyBackupManager.restoreChapterFetchObservable(source, manga, restoredChapters)
+        val obs = legacyBackupManager.restoreChapters(source, manga, restoredChapters)
         val testSubscriber = TestSubscriber<Pair<List<Chapter>, List<Chapter>>>()
         obs.subscribe(testSubscriber)
 

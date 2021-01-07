@@ -22,9 +22,7 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.base.controller.BaseController
 import eu.kanade.tachiyomi.ui.base.controller.RootController
 import eu.kanade.tachiyomi.util.system.getResourceColor
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.MainScope
 import rx.Observable
 import rx.Subscription
 import rx.subscriptions.CompositeSubscription
@@ -35,7 +33,7 @@ abstract class SettingsController : PreferenceController() {
 
     var preferenceKey: String? = null
     val preferences: PreferencesHelper = Injekt.get()
-    val scope = CoroutineScope(Job() + Dispatchers.Main)
+    val viewScope = MainScope()
 
     var untilDestroySubscriptions = CompositeSubscription()
         private set

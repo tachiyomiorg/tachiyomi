@@ -10,16 +10,14 @@ import eu.davidea.flexibleadapter.items.IFlexible
 import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.source.model.Filter
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.widget.textChanges
 
 open class TextItem(val filter: Filter.Text) : AbstractFlexibleItem<TextItem.Holder>() {
 
-    private val scope = CoroutineScope(Job() + Dispatchers.Main)
+    private val scope = MainScope()
 
     override fun getLayoutRes(): Int {
         return R.layout.navigation_view_text

@@ -176,7 +176,7 @@
     <string name="pref_show_nsfw_source">Show in sources list</string>
     <string name="pref_show_nsfw_extension">Show in extensions list</string>
     <string name="pref_label_nsfw_extension">Label in extensions list</string>
-    <string name="parental_controls_info">This does not prevent unofficial or potentially incorrectly flagged extensions from surfacing 18+ content within the app.</string>
+    <string name="parental_controls_info">This does not prevent unofficial or potentially incorrectly flagged extensions from surfacing NSFW (18+) content within the app.</string>
 
       <!-- Library section -->
     <string name="pref_category_display">Display</string>
@@ -201,7 +201,7 @@
     <string name="pref_library_update_prioritization">Library update order</string>
     <string name="pref_library_update_restriction">Library update restrictions</string>
     <string name="pref_library_update_restriction_summary">Update only when the conditions are met</string>
-    <string name="wifi">Wi-Fi</string>
+    <string name="network_unmetered">Unmetered network</string>
     <string name="charging">Charging</string>
     <string name="pref_update_only_non_completed">Only update ongoing manga</string>
     <string name="pref_library_update_refresh_metadata">Automatically refresh metadata</string>
@@ -240,7 +240,7 @@
     <string name="ext_version_info">Version: %1$s</string>
     <string name="ext_language_info">Language: %1$s</string>
     <string name="ext_nsfw_short">18+</string>
-    <string name="ext_nsfw_warning">May contain 18+ content</string>
+    <string name="ext_nsfw_warning">May contain NSFW (18+) content</string>
 
       <!-- Reader section -->
     <string name="pref_fullscreen">Fullscreen</string>
@@ -369,7 +369,7 @@
     <string name="tracker_not_logged_in">Not logged in: %1$s</string>
     <string name="backup_created">Backup created</string>
     <string name="invalid_backup_file">Invalid backup file</string>
-    <string name="invalid_backup_file_type">Invalid backup file: %1$s</string>
+    <string name="invalid_backup_file_type">Invalid backup file type: %1$s\nIt should end with ".proto.gz" or ".json".</string>
     <string name="invalid_backup_file_missing_data">File is missing data.</string>
     <string name="invalid_backup_file_missing_manga">Backup does not contain any manga.</string>
     <string name="backup_restore_missing_sources">Missing sources:</string>

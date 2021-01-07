@@ -48,8 +48,6 @@ import eu.kanade.tachiyomi.data.database.models.toMangaInfo
 import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.model.toSManga
-import eu.kanade.tachiyomi.util.lang.runAsObservable
-import rx.Observable
 import timber.log.Timber
 import kotlin.math.max
 
@@ -252,21 +250,20 @@ class LegacyBackupManager(context: Context, version: Int = CURRENT_VERSION) : Ab
     }
 
     /**
-     * [Observable] that fetches manga information
+     * Fetches manga information
      *
      * @param source source of manga
      * @param manga manga that needs updating
-     * @return [Observable] that contains manga
+     * @return Updated manga.
      */
-    fun restoreMangaFetchObservable(source: Source, manga: Manga): Observable<Manga> {
-        return runAsObservable({
-            val networkManga = source.getMangaDetails(manga.toMangaInfo())
-            manga.copyFrom(networkManga.toSManga())
-            manga.favorite = true
-            manga.initialized = true
-            manga.id = insertManga(manga)
-            manga
-        })
+    suspend fun fetchManga(source: Source, manga: Manga): Manga {
+        val networkManga = source.getMangaDetails(manga.toMangaInfo())
+        return manga.also {
+            it.copyFrom(networkManga.toSManga())
+            it.favorite = true
+            it.initialized = true
+            it.id = insertManga(manga)
+        }
     }
 
     /**

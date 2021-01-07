@@ -134,7 +134,7 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
                                             isChecked = enabled
                                             sourcePrefs.forEach { pref -> pref.isVisible = enabled }
                                         }
-                                        .launchIn(scope)
+                                        .launchIn(viewScope)
                                 }
 
                                 // Source enable/disable

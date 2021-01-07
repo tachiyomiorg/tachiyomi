@@ -116,7 +116,7 @@ class SettingsGeneralController : SettingsController() {
                 summary = "%s"
 
                 preferences.themeMode().asImmediateFlow { isVisible = it != Values.ThemeMode.dark }
-                    .launchIn(scope)
+                    .launchIn(viewScope)
 
                 onChange {
                     if (preferences.themeMode().get() != Values.ThemeMode.dark) {
@@ -142,7 +142,7 @@ class SettingsGeneralController : SettingsController() {
                 summary = "%s"
 
                 preferences.themeMode().asImmediateFlow { isVisible = it != Values.ThemeMode.light }
-                    .launchIn(scope)
+                    .launchIn(viewScope)
 
                 onChange {
                     if (preferences.themeMode().get() != Values.ThemeMode.light) {

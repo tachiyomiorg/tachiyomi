@@ -10,8 +10,8 @@ import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.util.chapter.NoChaptersException
+import eu.kanade.tachiyomi.util.lang.await
 import kotlinx.coroutines.Job
-import rx.Observable
 import uy.kohesive.injekt.injectLazy
 import java.io.File
 import java.text.SimpleDateFormat
@@ -58,48 +58,47 @@ abstract class AbstractBackupRestore<T : AbstractBackupManager>(protected val co
     }
 
     /**
-     * [Observable] that fetches chapter information
+     * Fetches chapter information.
      *
      * @param source source of manga
      * @param manga manga that needs updating
-     * @return [Observable] that contains manga
+     * @return Updated manga chapters.
      */
-    internal fun chapterFetchObservable(source: Source, manga: Manga, chapters: List<Chapter>): Observable<Pair<List<Chapter>, List<Chapter>>> {
-        return backupManager.restoreChapterFetchObservable(source, manga, chapters)
+    internal suspend fun updateChapters(source: Source, manga: Manga, chapters: List<Chapter>): Pair<List<Chapter>, List<Chapter>> {
+        return try {
+            backupManager.restoreChapters(source, manga, chapters)
+        } catch (e: Exception) {
             // If there's any error, return empty update and continue.
-            .onErrorReturn {
-                val errorMessage = if (it is NoChaptersException) {
-                    context.getString(R.string.no_chapters_error)
-                } else {
-                    it.message
-                }
-                errors.add(Date() to "${manga.title} - $errorMessage")
-                Pair(emptyList(), emptyList())
+            val errorMessage = if (e is NoChaptersException) {
+                context.getString(R.string.no_chapters_error)
+            } else {
+                e.message
             }
+            errors.add(Date() to "${manga.title} - $errorMessage")
+            Pair(emptyList(), emptyList())
+        }
     }
 
     /**
-     * [Observable] that refreshes tracking information
+     * Refreshes tracking information.
+     *
      * @param manga manga that needs updating.
      * @param tracks list containing tracks from restore file.
-     * @return [Observable] that contains updated track item
      */
-    internal fun trackingFetchObservable(manga: Manga, tracks: List<Track>): Observable<Track> {
-        return Observable.from(tracks)
-            .flatMap { track ->
-                val service = trackManager.getService(track.sync_id)
-                if (service != null && service.isLogged) {
-                    service.refresh(track)
-                        .doOnNext { db.insertTrack(it).executeAsBlocking() }
-                        .onErrorReturn {
-                            errors.add(Date() to "${manga.title} - ${it.message}")
-                            track
-                        }
-                } else {
-                    errors.add(Date() to "${manga.title} - ${context.getString(R.string.tracker_not_logged_in, service?.name)}")
-                    Observable.empty()
+    internal suspend fun updateTracking(manga: Manga, tracks: List<Track>) {
+        tracks.forEach { track ->
+            val service = trackManager.getService(track.sync_id)
+            if (service != null && service.isLogged) {
+                try {
+                    val updatedTrack = service.refresh(track)
+                    db.insertTrack(updatedTrack).await()
+                } catch (e: Exception) {
+                    errors.add(Date() to "${manga.title} - ${e.message}")
                 }
+            } else {
+                errors.add(Date() to "${manga.title} - ${context.getString(R.string.tracker_not_logged_in, service?.name)}")
             }
+        }
     }
 
     /**

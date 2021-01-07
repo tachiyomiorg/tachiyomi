@@ -222,7 +222,7 @@ class SourceController :
         searchView.queryTextEvents()
             .filterIsInstance<QueryTextEvent.QuerySubmitted>()
             .onEach { performGlobalSearch(it.queryText.toString()) }
-            .launchIn(scope)
+            .launchIn(viewScope)
     }
 
     private fun performGlobalSearch(query: String) {

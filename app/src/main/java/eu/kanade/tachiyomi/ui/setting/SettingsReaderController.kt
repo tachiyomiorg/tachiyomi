@@ -150,7 +150,7 @@ class SettingsReaderController : SettingsController() {
                 defaultValue = "0"
                 summary = "%s"
 
-                preferences.readWithTapping().asImmediateFlow { isVisible = it }.launchIn(scope)
+                preferences.readWithTapping().asImmediateFlow { isVisible = it }.launchIn(viewScope)
             }
             listPreference {
                 key = Keys.pagerNavInverted
@@ -170,7 +170,7 @@ class SettingsReaderController : SettingsController() {
                 defaultValue = TappingInvertMode.NONE.name
                 summary = "%s"
 
-                preferences.readWithTapping().asImmediateFlow { isVisible = it }.launchIn(scope)
+                preferences.readWithTapping().asImmediateFlow { isVisible = it }.launchIn(viewScope)
             }
             intListPreference {
                 key = Keys.imageScaleType
@@ -223,7 +223,7 @@ class SettingsReaderController : SettingsController() {
                 defaultValue = "0"
                 summary = "%s"
 
-                preferences.readWithTapping().asImmediateFlow { isVisible = it }.launchIn(scope)
+                preferences.readWithTapping().asImmediateFlow { isVisible = it }.launchIn(viewScope)
             }
             listPreference {
                 key = Keys.webtoonNavInverted
@@ -243,7 +243,7 @@ class SettingsReaderController : SettingsController() {
                 defaultValue = TappingInvertMode.NONE.name
                 summary = "%s"
 
-                preferences.readWithTapping().asImmediateFlow { isVisible = it }.launchIn(scope)
+                preferences.readWithTapping().asImmediateFlow { isVisible = it }.launchIn(viewScope)
             }
             intListPreference {
                 key = Keys.webtoonSidePadding
@@ -289,7 +289,7 @@ class SettingsReaderController : SettingsController() {
                 titleRes = R.string.pref_read_with_volume_keys_inverted
                 defaultValue = false
 
-                preferences.readWithVolumeKeys().asImmediateFlow { isVisible = it }.launchIn(scope)
+                preferences.readWithVolumeKeys().asImmediateFlow { isVisible = it }.launchIn(viewScope)
             }
         }
     }

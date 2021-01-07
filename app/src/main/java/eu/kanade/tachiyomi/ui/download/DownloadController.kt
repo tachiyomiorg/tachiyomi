@@ -18,9 +18,6 @@ import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.ui.base.controller.FabController
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.util.view.shrinkOnScroll
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
-import reactivecircus.flowbinding.android.view.clicks
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -104,23 +101,22 @@ class DownloadController :
 
     override fun configureFab(fab: ExtendedFloatingActionButton) {
         actionFab = fab
-        fab.clicks()
-            .onEach {
-                val context = applicationContext ?: return@onEach
+        fab.setOnClickListener {
+            val context = applicationContext ?: return@setOnClickListener
 
-                if (isRunning) {
-                    DownloadService.stop(context)
-                    presenter.pauseDownloads()
-                } else {
-                    DownloadService.start(context)
-                }
-
-                setInformationView()
+            if (isRunning) {
+                DownloadService.stop(context)
+                presenter.pauseDownloads()
+            } else {
+                DownloadService.start(context)
             }
-            .launchIn(scope)
+
+            setInformationView()
+        }
     }
 
     override fun cleanupFab(fab: ExtendedFloatingActionButton) {
+        fab.setOnClickListener(null)
         actionFabScrollListener?.let { binding.recycler.removeOnScrollListener(it) }
         actionFab = null
     }

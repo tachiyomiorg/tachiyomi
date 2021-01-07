@@ -39,7 +39,7 @@ class SettingsSecurityController : SettingsController() {
                 summary = "%s"
 
                 preferences.useBiometricLock().asImmediateFlow { isVisible = it }
-                    .launchIn(scope)
+                    .launchIn(viewScope)
             }
         }
 
