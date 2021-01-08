@@ -221,6 +221,8 @@ class PreferencesHelper(val context: Context) {
 
     fun filterCompleted() = flowPrefs.getInt(Keys.filterCompleted, ExtendedNavigationView.Item.TriStateGroup.State.IGNORE.value)
 
+    fun filterTracking() = flowPrefs.getInt(Keys.filterTracking, ExtendedNavigationView.Item.TriStateGroup.State.IGNORE.value)
+
     fun librarySortingMode() = flowPrefs.getInt(Keys.librarySortingMode, 0)
 
     fun librarySortingAscending() = flowPrefs.getBoolean("library_sorting_ascending", true)

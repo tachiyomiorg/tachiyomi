@@ -34,6 +34,7 @@
     <string name="action_filter">Filter</string>
     <string name="action_filter_downloaded">Downloaded</string>
     <string name="action_filter_bookmarked">Bookmarked</string>
+    <string name="action_filter_tracking">Tracking</string>
     <string name="action_filter_unread">Unread</string>
     <string name="action_filter_empty">Remove filter</string>
     <string name="action_sort_alpha">Alphabetically</string>

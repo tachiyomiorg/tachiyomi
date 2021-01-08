@@ -10,6 +10,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.database.models.MangaCategory
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.source.online.HttpSource
@@ -47,7 +48,8 @@ class LibraryPresenter(
     private val preferences: PreferencesHelper = Injekt.get(),
     private val coverCache: CoverCache = Injekt.get(),
     private val sourceManager: SourceManager = Injekt.get(),
-    private val downloadManager: DownloadManager = Injekt.get()
+    private val downloadManager: DownloadManager = Injekt.get(),
+    private val trackManager: TrackManager = Injekt.get()
 ) : BasePresenter<LibraryController>() {
 
     private val context = preferences.context
@@ -115,6 +117,7 @@ class LibraryPresenter(
         val filterDownloaded = preferences.filterDownloaded().get()
         val filterUnread = preferences.filterUnread().get()
         val filterCompleted = preferences.filterCompleted().get()
+        val tracking = preferences.filterTracking().get()
 
         val filterFnUnread: (LibraryItem) -> Boolean = unread@{ item ->
             if (filterUnread == State.IGNORE.value) return@unread true
@@ -144,11 +147,23 @@ class LibraryPresenter(
             else !isDownloaded
         }
 
+        val filterFnTracking: (LibraryItem) -> Boolean = tracking@{ item ->
+            if (tracking == State.IGNORE.value) return@tracking true
+
+            val tracks = db.getTracks(item.manga)
+                .executeAsBlocking()
+
+            val isTracking = tracks.map { trackManager.getService(it.sync_id)?.isLogged ?: false }.contains(true)
+
+            return@tracking if (tracking == State.INCLUDE.value) isTracking else !isTracking
+        }
+
         val filterFn: (LibraryItem) -> Boolean = filter@{ item ->
             return@filter !(
                 !filterFnUnread(item) ||
                     !filterFnCompleted(item) ||
-                    !filterFnDownloaded(item)
+                    !filterFnDownloaded(item) ||
+                    !filterFnTracking(item)
                 )
         }
 
