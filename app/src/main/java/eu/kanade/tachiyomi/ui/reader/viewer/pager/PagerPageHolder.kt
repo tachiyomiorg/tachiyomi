@@ -252,7 +252,7 @@ class PagerPageHolder(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnNext { isAnimated ->
-                if (!isAnimated && viewer.config.dualPageSplit) {
+                if (viewer.config.dualPageSplit) {
                     val (isDoublePage, stream) = when (page) {
                         is InsertPage -> Pair(true, openStream!!)
                         else -> ImageUtil.isDoublePage(openStream!!)
