@@ -27,8 +27,6 @@ class PagerViewerAdapter(private val viewer: PagerViewer) : ViewPagerAdapter() {
 
     var currentChapter: ReaderChapter? = null
 
-    private var doublePageSplit: MutableSet<Int> = mutableSetOf()
-
     /**
      * Updates this adapter with the given [chapters]. It handles setting a few pages of the
      * next/previous chapter to allow seamless transitions and inverting the pages if the viewer
@@ -84,7 +82,6 @@ class PagerViewerAdapter(private val viewer: PagerViewer) : ViewPagerAdapter() {
         }
 
         // Resets double-page splits, else insert pages get misplaced
-        doublePageSplit = mutableSetOf()
         items.filterIsInstance<InsertPage>().also { items.removeAll(it) }
 
         if (viewer is R2LPagerViewer) {
@@ -128,18 +125,35 @@ class PagerViewerAdapter(private val viewer: PagerViewer) : ViewPagerAdapter() {
         return POSITION_NONE
     }
 
-    fun onPageSplit(currentIndex: Int, placeAtIndex: Int, newPage: InsertPage) {
-        // If we have already split the double-page don't add another insert page
-        if (items[currentIndex] is InsertPage || items[placeAtIndex] is InsertPage || doublePageSplit.contains(currentIndex)) {
+    fun onPageSplit(current: Any?, newPage: InsertPage, clazz: Class<out PagerViewer>) {
+        if (current !is ReaderPage) return
+
+        val currentIndex = items.indexOf(current)
+
+        val placeAtIndex = when {
+            clazz.isAssignableFrom(L2RPagerViewer::class.java) -> currentIndex + 1
+            clazz.isAssignableFrom(R2LPagerViewer::class.java) -> currentIndex - 1
+            else -> currentIndex
+        }
+
+        if (items[placeAtIndex] is InsertPage) {
             return
         }
 
-        // Insert insert-page at given index
-        val end = items.toTypedArray().copyOfRange(placeAtIndex + 1, items.size)
-        items.removeAll(end)
-        items.add(newPage)
-        items.addAll(end)
-        doublePageSplit.add(currentIndex)
+        when {
+            clazz.isAssignableFrom(L2RPagerViewer::class.java) -> items = splitAndInsert(items, placeAtIndex, newPage)
+            clazz.isAssignableFrom(R2LPagerViewer::class.java) -> items = splitAndInsert(items, currentIndex, newPage)
+        }
+
         notifyDataSetChanged()
+    }
+
+    private fun splitAndInsert(items: MutableList<Any>, at: Int, newPage: InsertPage): MutableList<Any> {
+        val start = items.toTypedArray().copyOfRange(0, at).toMutableList()
+        val end = items.toTypedArray().copyOfRange(at, items.size).toMutableList()
+
+        start.add(newPage)
+        start.addAll(end)
+        return start
     }
 }

@@ -253,26 +253,7 @@ class PagerPageHolder(
             .observeOn(AndroidSchedulers.mainThread())
             .doOnNext { isAnimated ->
                 if (viewer.config.dualPageSplit) {
-                    val (isDoublePage, stream) = when (page) {
-                        is InsertPage -> Pair(true, openStream!!)
-                        else -> ImageUtil.isDoublePage(openStream!!)
-                    }
-                    openStream = stream
-                    if (isDoublePage && page is InsertPage) {
-                        openStream = when (viewer) {
-                            is L2RPagerViewer -> ImageUtil.splitInHalf(openStream!!, ImageUtil.Side.RIGHT)
-                            is R2LPagerViewer -> ImageUtil.splitInHalf(openStream!!, ImageUtil.Side.LEFT)
-                            else -> openStream
-                        }
-                    }
-                    if (isDoublePage && page !is InsertPage) {
-                        onPageSplit()
-                        openStream = when (viewer) {
-                            is L2RPagerViewer -> ImageUtil.splitInHalf(openStream!!, ImageUtil.Side.LEFT)
-                            is R2LPagerViewer -> ImageUtil.splitInHalf(openStream!!, ImageUtil.Side.RIGHT)
-                            else -> openStream
-                        }
-                    }
+                    openStream = processDualPageSplit(openStream!!)
                 }
                 if (!isAnimated) {
                     initSubsamplingImageView().setImage(ImageSource.inputStream(openStream!!))
@@ -286,27 +267,34 @@ class PagerPageHolder(
             .subscribe({}, {})
     }
 
-    private fun processPageSplit(pair: Pair<InputStream, InputStream?>): InputStream {
-        if (pair.second == null) return pair.first
-        val firstHalf = when (viewer) {
-            is L2RPagerViewer -> pair.second
-            is R2LPagerViewer -> pair.first
-            else -> pair.first
+    private fun processDualPageSplit(openStream: InputStream): InputStream {
+        var inputStream = openStream
+        val (isDoublePage, stream) = when (page) {
+            is InsertPage -> Pair(true, inputStream)
+            else -> ImageUtil.isDoublePage(inputStream)
         }
-        val secondHalf = when (viewer) {
-            is L2RPagerViewer -> pair.first
-            is R2LPagerViewer -> pair.second
-            else -> pair.second
+        inputStream = stream
+        if (isDoublePage && page is InsertPage) {
+            inputStream = when (viewer) {
+                is L2RPagerViewer -> ImageUtil.splitInHalf(inputStream, ImageUtil.Side.RIGHT)
+                is R2LPagerViewer -> ImageUtil.splitInHalf(inputStream, ImageUtil.Side.LEFT)
+                else -> inputStream
+            }
         }
-        if (page is InsertPage) {
-            return secondHalf!!
+        if (isDoublePage && page !is InsertPage) {
+            onPageSplit()
+            inputStream = when (viewer) {
+                is L2RPagerViewer -> ImageUtil.splitInHalf(inputStream, ImageUtil.Side.LEFT)
+                is R2LPagerViewer -> ImageUtil.splitInHalf(inputStream, ImageUtil.Side.RIGHT)
+                else -> inputStream
+            }
         }
-        return firstHalf!!
+        return inputStream
     }
 
     private fun onPageSplit() {
-        val page = InsertPage(page, -1)
-        viewer.onPageSplit(page)
+        val newPage = InsertPage(page)
+        viewer.onPageSplit(page, newPage)
     }
 
     /**
