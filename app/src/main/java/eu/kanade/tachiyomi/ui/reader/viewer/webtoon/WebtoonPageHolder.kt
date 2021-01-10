@@ -27,7 +27,6 @@ import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.source.model.Page
-import eu.kanade.tachiyomi.ui.reader.model.InsertPage
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.viewer.ReaderProgressBar
 import eu.kanade.tachiyomi.ui.webview.WebViewActivity
@@ -289,7 +288,12 @@ class WebtoonPageHolder(
             .observeOn(AndroidSchedulers.mainThread())
             .doOnNext { isAnimated ->
                 if (viewer.config.dualPageSplit) {
-                    openStream = processDualPageSplit(openStream!!)
+                    val (isDoublePage, stream) = ImageUtil.isDoublePage(openStream!!)
+                    openStream = if (!isDoublePage) {
+                        stream
+                    } else {
+                        ImageUtil.splitAndMerge(stream)
+                    }
                 }
                 if (!isAnimated) {
                     val subsamplingView = initSubsamplingImageView()
@@ -307,34 +311,6 @@ class WebtoonPageHolder(
             .subscribe({}, {})
 
         addSubscription(readImageHeaderSubscription)
-    }
-
-    private fun processDualPageSplit(openStream: InputStream): InputStream {
-        var inputStream = openStream
-        val (isDoublePage, stream) = when (page) {
-            is InsertPage -> Pair(true, inputStream)
-            else -> ImageUtil.isDoublePage(inputStream)
-        }
-        inputStream = stream
-        if (isDoublePage) {
-            val side = when (page) {
-                is InsertPage -> ImageUtil.Side.RIGHT
-                !is InsertPage -> ImageUtil.Side.LEFT
-                else -> error("We should choose a side!")
-            }
-
-            if (page !is InsertPage) {
-                onPageSplit()
-            }
-
-            inputStream = ImageUtil.splitInHalf(inputStream, side)
-        }
-        return inputStream
-    }
-
-    private fun onPageSplit() {
-        val newPage = InsertPage(page!!)
-        viewer.onPageSplit(page!!, newPage)
     }
 
     /**

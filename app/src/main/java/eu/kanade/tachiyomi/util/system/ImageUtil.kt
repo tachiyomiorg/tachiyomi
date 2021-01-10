@@ -112,6 +112,32 @@ object ImageUtil {
         return ByteArrayInputStream(output.toByteArray())
     }
 
+    /**
+     * Split the image into left and right parts, then merge them into a new image.
+     */
+    fun splitAndMerge(imageStream: InputStream): InputStream {
+        val imageBytes = imageStream.readBytes()
+
+        val imageBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+        val height = imageBitmap.height
+        val width = imageBitmap.width
+
+        val result = Bitmap.createBitmap(width / 2, height * 2, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(result)
+        // right -> upper
+        val rightPart = Rect(width - width / 2, 0, width, height)
+        val upperPart = Rect(0, 0, width / 2, height)
+        canvas.drawBitmap(imageBitmap, rightPart, upperPart, null)
+        // left -> bottom
+        val leftPart = Rect(0, 0, width / 2, height)
+        val bottomPart = Rect(0, height, width / 2, height * 2)
+        canvas.drawBitmap(imageBitmap, leftPart, bottomPart, null)
+
+        val output = ByteArrayOutputStream()
+        result.compress(Bitmap.CompressFormat.JPEG, 100, output)
+        return ByteArrayInputStream(output.toByteArray())
+    }
+
     enum class Side {
         RIGHT, LEFT
     }
