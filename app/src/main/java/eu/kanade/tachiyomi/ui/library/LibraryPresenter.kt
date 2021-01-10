@@ -153,7 +153,7 @@ class LibraryPresenter(
             val tracks = db.getTracks(item.manga)
                 .executeAsBlocking()
 
-            val isTracking = tracks.map { trackManager.getService(it.sync_id)?.isLogged ?: false }.contains(true)
+            val isTracking = tracks.any { trackManager.getService(it.sync_id)?.isLogged ?: false }
 
             return@tracking if (tracking == State.INCLUDE.value) isTracking else !isTracking
         }
