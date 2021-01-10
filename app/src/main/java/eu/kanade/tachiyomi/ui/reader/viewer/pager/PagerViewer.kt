@@ -132,12 +132,10 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
      */
     private fun onPageChange(position: Int) {
         val page = adapter.items.getOrNull(position)
-        Timber.d("Index of current page is ${adapter.items.indexOf(page)}")
         if (page != null && currentPage != page) {
             val allowPreload = checkAllowPreload(page as? ReaderPage)
             currentPage = page
             when (page) {
-                is InsertPage -> {}
                 is ReaderPage -> onReaderPageSelected(page, allowPreload)
                 is ChapterTransition -> onTransitionSelected(page)
             }
@@ -365,7 +363,6 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
     }
 
     fun onPageSplit(currentPage: ReaderPage, newPage: InsertPage) {
-        // Where the image needs to be placed differs for the viewer
         adapter.onPageSplit(currentPage, newPage, this::class.java)
     }
 }

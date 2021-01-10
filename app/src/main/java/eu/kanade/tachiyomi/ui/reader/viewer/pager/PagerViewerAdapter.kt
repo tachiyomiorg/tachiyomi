@@ -132,7 +132,7 @@ class PagerViewerAdapter(private val viewer: PagerViewer) : ViewPagerAdapter() {
 
         val placeAtIndex = when {
             clazz.isAssignableFrom(L2RPagerViewer::class.java) -> currentIndex + 1
-            clazz.isAssignableFrom(R2LPagerViewer::class.java) -> currentIndex - 1
+            clazz.isAssignableFrom(R2LPagerViewer::class.java) -> currentIndex
             else -> currentIndex
         }
 
@@ -140,20 +140,8 @@ class PagerViewerAdapter(private val viewer: PagerViewer) : ViewPagerAdapter() {
             return
         }
 
-        when {
-            clazz.isAssignableFrom(L2RPagerViewer::class.java) -> items = splitAndInsert(items, placeAtIndex, newPage)
-            clazz.isAssignableFrom(R2LPagerViewer::class.java) -> items = splitAndInsert(items, currentIndex, newPage)
-        }
+        items.add(placeAtIndex, newPage)
 
         notifyDataSetChanged()
-    }
-
-    private fun splitAndInsert(items: MutableList<Any>, at: Int, newPage: InsertPage): MutableList<Any> {
-        val start = items.toTypedArray().copyOfRange(0, at).toMutableList()
-        val end = items.toTypedArray().copyOfRange(at, items.size).toMutableList()
-
-        start.add(newPage)
-        start.addAll(end)
-        return start
     }
 }

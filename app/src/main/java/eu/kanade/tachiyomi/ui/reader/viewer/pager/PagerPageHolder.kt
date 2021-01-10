@@ -40,7 +40,6 @@ import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
-import timber.log.Timber
 import java.io.InputStream
 import java.util.concurrent.TimeUnit
 
@@ -229,17 +228,8 @@ class PagerPageHolder(
         retryButton?.isVisible = false
         decodeErrorLayout?.isVisible = false
 
-        if (page is InsertPage) {
-            Timber.d("Handleing insert page $page")
-            page.stream
-        }
-
         unsubscribeReadImageHeader()
         val streamFn = page.stream ?: return
-
-        if (page is InsertPage) {
-            Timber.d("Handleing insert page $page")
-        }
 
         var openStream: InputStream? = null
         readImageHeaderSubscription = Observable
@@ -274,20 +264,20 @@ class PagerPageHolder(
             else -> ImageUtil.isDoublePage(inputStream)
         }
         inputStream = stream
-        if (isDoublePage && page is InsertPage) {
-            inputStream = when (viewer) {
-                is L2RPagerViewer -> ImageUtil.splitInHalf(inputStream, ImageUtil.Side.RIGHT)
-                is R2LPagerViewer -> ImageUtil.splitInHalf(inputStream, ImageUtil.Side.LEFT)
-                else -> inputStream
+        if (isDoublePage) {
+            val side = when {
+                viewer is L2RPagerViewer && page is InsertPage -> ImageUtil.Side.RIGHT
+                viewer is R2LPagerViewer && page is InsertPage -> ImageUtil.Side.LEFT
+                viewer is L2RPagerViewer && page !is InsertPage -> ImageUtil.Side.LEFT
+                viewer is R2LPagerViewer && page !is InsertPage -> ImageUtil.Side.RIGHT
+                else -> error("We should choose a side!")
             }
-        }
-        if (isDoublePage && page !is InsertPage) {
-            onPageSplit()
-            inputStream = when (viewer) {
-                is L2RPagerViewer -> ImageUtil.splitInHalf(inputStream, ImageUtil.Side.LEFT)
-                is R2LPagerViewer -> ImageUtil.splitInHalf(inputStream, ImageUtil.Side.RIGHT)
-                else -> inputStream
+
+            if (page !is InsertPage) {
+                onPageSplit()
             }
+
+            inputStream = ImageUtil.splitInHalf(inputStream, side)
         }
         return inputStream
     }
