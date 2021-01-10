@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.ui.reader.viewer.pager
 import android.view.View
 import android.view.ViewGroup
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
+import eu.kanade.tachiyomi.ui.reader.model.InsertPage
 import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.model.ViewerChapters
@@ -18,7 +19,7 @@ class PagerViewerAdapter(private val viewer: PagerViewer) : ViewPagerAdapter() {
     /**
      * List of currently set items.
      */
-    var items: List<Any> = emptyList()
+    var items: MutableList<Any> = mutableListOf()
         private set
 
     var nextTransition: ChapterTransition.Next? = null
@@ -80,6 +81,9 @@ class PagerViewerAdapter(private val viewer: PagerViewer) : ViewPagerAdapter() {
             }
         }
 
+        // Resets double-page splits, else insert pages get misplaced
+        items.filterIsInstance<InsertPage>().also { items.removeAll(it) }
+
         if (viewer is R2LPagerViewer) {
             newItems.reverse()
         }
@@ -119,5 +123,32 @@ class PagerViewerAdapter(private val viewer: PagerViewer) : ViewPagerAdapter() {
             }
         }
         return POSITION_NONE
+    }
+
+    fun onPageSplit(current: Any?, newPage: InsertPage, clazz: Class<out PagerViewer>) {
+        if (current !is ReaderPage) return
+
+        val currentIndex = items.indexOf(current)
+
+        val placeAtIndex = when {
+            clazz.isAssignableFrom(L2RPagerViewer::class.java) -> currentIndex + 1
+            clazz.isAssignableFrom(VerticalPagerViewer::class.java) -> currentIndex + 1
+            clazz.isAssignableFrom(R2LPagerViewer::class.java) -> currentIndex
+            else -> currentIndex
+        }
+
+        // It will enter a endless cycle of insert pages
+        if (clazz.isAssignableFrom(R2LPagerViewer::class.java) && items[placeAtIndex - 1] is InsertPage) {
+            return
+        }
+
+        // Same here it will enter a endless cycle of insert pages
+        if (items[placeAtIndex] is InsertPage) {
+            return
+        }
+
+        items.add(placeAtIndex, newPage)
+
+        notifyDataSetChanged()
     }
 }

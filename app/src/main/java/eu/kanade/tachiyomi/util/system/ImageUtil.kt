@@ -79,31 +79,50 @@ object ImageUtil {
      * Check whether the image is too wide to read. If not, do nothing and return the stream, else
      * split it into left and right, then merge it into a new image.
      */
-    fun dualPageSplit(inputStream: InputStream): InputStream {
+
+    fun isDoublePage(inputStream: InputStream): Pair<Boolean, InputStream> {
         val bytes = inputStream.readBytes()
-        // check whether it is a dual image
+
         val options = BitmapFactory.Options()
         options.inJustDecodeBounds = true
         BitmapFactory.decodeByteArray(bytes, 0, bytes.size, options)
+
         val height = options.outHeight
         val width = options.outWidth
-        if (width <= height) {
-            return ByteArrayInputStream(bytes)
+
+        // check whether it is a dual image
+        return Pair(width > height, ByteArrayInputStream(bytes))
+    }
+
+    fun splitInHalf(inputStream: InputStream, side: Side): InputStream {
+        val bytes = inputStream.readBytes()
+
+        val options = BitmapFactory.Options()
+        options.inJustDecodeBounds = true
+        BitmapFactory.decodeByteArray(bytes, 0, bytes.size, options)
+
+        val height = options.outHeight
+        val width = options.outWidth
+
+        val transform = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+
+        val singlePage = Rect(0, 0, width / 2, height)
+
+        val half = Bitmap.createBitmap(width / 2, height, Bitmap.Config.ARGB_8888)
+        val part = when (side) {
+            Side.RIGHT -> Rect(width - width / 2, 0, width, height)
+            Side.LEFT -> Rect(0, 0, width / 2, height)
         }
 
-        val toTransform = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-        val result = Bitmap.createBitmap(width / 2, height * 2, Bitmap.Config.ARGB_8888)
-        val canvas = Canvas(result)
-        // right -> upper
-        val rightPart = Rect(width - width / 2, 0, width, height)
-        val upperPart = Rect(0, 0, width / 2, height)
-        canvas.drawBitmap(toTransform, rightPart, upperPart, null)
-        // left -> bottom
-        val leftPart = Rect(0, 0, width / 2, height)
-        val bottomPart = Rect(0, height, width / 2, height * 2)
-        canvas.drawBitmap(toTransform, leftPart, bottomPart, null)
+        val canvas = Canvas(half)
+        canvas.drawBitmap(transform, part, singlePage, null)
         val output = ByteArrayOutputStream()
-        result.compress(Bitmap.CompressFormat.JPEG, 100, output)
+        half.compress(Bitmap.CompressFormat.JPEG, 100, output)
+
         return ByteArrayInputStream(output.toByteArray())
+    }
+
+    enum class Side {
+        RIGHT, LEFT
     }
 }

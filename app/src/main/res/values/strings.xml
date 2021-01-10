@@ -244,7 +244,7 @@
 
       <!-- Reader section -->
     <string name="pref_fullscreen">Fullscreen</string>
-    <string name="pref_dual_page_split">Dual page split</string>
+    <string name="pref_dual_page_split">Dual page split (ALPHA)</string>
     <string name="pref_cutout_short">Show content in cutout area</string>
     <string name="pref_lock_orientation">Lock orientation</string>
     <string name="pref_page_transitions">Animate page transitions</string>
