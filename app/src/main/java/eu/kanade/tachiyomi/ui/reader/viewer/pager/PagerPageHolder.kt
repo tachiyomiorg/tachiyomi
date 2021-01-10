@@ -266,9 +266,9 @@ class PagerPageHolder(
         inputStream = stream
         if (isDoublePage) {
             val side = when {
-                viewer is L2RPagerViewer && page is InsertPage -> ImageUtil.Side.RIGHT
+                viewer is L2RPagerViewer || viewer is VerticalPagerViewer && page is InsertPage -> ImageUtil.Side.RIGHT
                 viewer is R2LPagerViewer && page is InsertPage -> ImageUtil.Side.LEFT
-                viewer is L2RPagerViewer && page !is InsertPage -> ImageUtil.Side.LEFT
+                viewer is L2RPagerViewer || viewer is VerticalPagerViewer && page !is InsertPage -> ImageUtil.Side.LEFT
                 viewer is R2LPagerViewer && page !is InsertPage -> ImageUtil.Side.RIGHT
                 else -> error("We should choose a side!")
             }

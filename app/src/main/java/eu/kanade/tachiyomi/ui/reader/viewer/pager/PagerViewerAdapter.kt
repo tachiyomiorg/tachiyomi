@@ -132,6 +132,7 @@ class PagerViewerAdapter(private val viewer: PagerViewer) : ViewPagerAdapter() {
 
         val placeAtIndex = when {
             clazz.isAssignableFrom(L2RPagerViewer::class.java) -> currentIndex + 1
+            clazz.isAssignableFrom(VerticalPagerViewer::class.java) -> currentIndex + 1
             clazz.isAssignableFrom(R2LPagerViewer::class.java) -> currentIndex
             else -> currentIndex
         }
