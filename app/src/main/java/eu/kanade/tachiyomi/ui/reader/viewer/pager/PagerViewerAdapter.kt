@@ -137,6 +137,12 @@ class PagerViewerAdapter(private val viewer: PagerViewer) : ViewPagerAdapter() {
             else -> currentIndex
         }
 
+        // It will enter a endless cycle of insert pages
+        if (clazz.isAssignableFrom(R2LPagerViewer::class.java) && items[placeAtIndex - 1] is InsertPage) {
+            return
+        }
+
+        // Same here it will enter a endless cycle of insert pages
         if (items[placeAtIndex] is InsertPage) {
             return
         }
