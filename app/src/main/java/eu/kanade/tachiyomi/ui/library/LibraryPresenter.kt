@@ -118,6 +118,7 @@ class LibraryPresenter(
         val filterUnread = preferences.filterUnread().get()
         val filterCompleted = preferences.filterCompleted().get()
         val tracking = preferences.filterTracking().get()
+        val isNotLogged = !trackManager.hasLoggedServices()
 
         val filterFnUnread: (LibraryItem) -> Boolean = unread@{ item ->
             if (filterUnread == State.IGNORE.value) return@unread true
@@ -148,7 +149,7 @@ class LibraryPresenter(
         }
 
         val filterFnTracking: (LibraryItem) -> Boolean = tracking@{ item ->
-            if (tracking == State.IGNORE.value) return@tracking true
+            if (isNotLogged || tracking == State.IGNORE.value) return@tracking true
 
             val isTracking = trackMap[item.manga.id ?: -1] ?: false
 
@@ -310,10 +311,13 @@ class LibraryPresenter(
      */
     private fun getTracksObservable(): Observable<Map<Long, Boolean>> {
         return db.getTracks().asRxObservable().map { tracks ->
-            tracks.associate { track ->
-                val isLogged = tracks.any { trackManager.getService(it.sync_id)?.isLogged ?: false }
-                Pair(track.manga_id, isLogged)
-            }
+            tracks.groupBy { it.manga_id }
+                .mapValues { tracksForMangaId ->
+                    // Check if any of the trackers is logged in for the current manga id
+                    tracksForMangaId.value.any {
+                        trackManager.getService(it.sync_id)?.isLogged ?: false
+                    }
+                }
         }.observeOn(Schedulers.io())
     }
 

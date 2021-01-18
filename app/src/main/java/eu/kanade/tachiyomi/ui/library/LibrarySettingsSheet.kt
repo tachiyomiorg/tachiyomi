@@ -7,10 +7,12 @@ import com.bluelinelabs.conductor.Router
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferenceValues.DisplayMode
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.widget.ExtendedNavigationView
 import eu.kanade.tachiyomi.widget.ExtendedNavigationView.Item.TriStateGroup.State
 import eu.kanade.tachiyomi.widget.TabbedBottomSheetDialog
 import uy.kohesive.injekt.injectLazy
+import uy.kohesive.injekt.injectValue
 
 class LibrarySettingsSheet(
     router: Router,
@@ -52,6 +54,8 @@ class LibrarySettingsSheet(
 
         private val filterGroup = FilterGroup()
 
+        private val trackManager: TrackManager by injectValue()
+
         init {
             setGroups(listOf(filterGroup))
         }
@@ -83,7 +87,14 @@ class LibrarySettingsSheet(
                 }
                 unread.state = preferences.filterUnread().get()
                 completed.state = preferences.filterCompleted().get()
-                tracking.state = preferences.filterTracking().get()
+
+                if (!trackManager.hasLoggedServices()) {
+                    tracking.state = State.IGNORE.value
+                    tracking.isVisible = false
+                } else {
+                    tracking.state = preferences.filterTracking().get()
+                    tracking.isVisible = true
+                }
             }
 
             override fun onItemClicked(item: Item) {

@@ -8,6 +8,7 @@ import androidx.annotation.AttrRes
 import androidx.annotation.CallSuper
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.util.system.getResourceColor
@@ -59,7 +60,7 @@ open class ExtendedNavigationView @JvmOverloads constructor(
         /**
          * An item with which needs more than two states (selected/deselected).
          */
-        abstract class MultiState(val resTitle: Int, var state: Int = 0, var enabled: Boolean = true) : Item() {
+        abstract class MultiState(val resTitle: Int, var state: Int = 0, var enabled: Boolean = true, var isVisible: Boolean = true) : Item() {
 
             /**
              * Returns the drawable associated to every possible each state.
@@ -258,6 +259,7 @@ open class ExtendedNavigationView @JvmOverloads constructor(
 
                     // Mimics checkbox/radio button
                     holder.text.alpha = if (item.enabled) 1f else 0.4f
+                    holder.itemView.isVisible = item.isVisible
                 }
             }
         }
