@@ -72,7 +72,7 @@ class LibrarySettingsSheet(
             private val downloaded = Item.TriStateGroup(R.string.action_filter_downloaded, this)
             private val unread = Item.TriStateGroup(R.string.action_filter_unread, this)
             private val completed = Item.TriStateGroup(R.string.completed, this)
-            private val tracking = Item.TriStateGroup(R.string.action_filter_tracking, this)
+            private val tracking = Item.TriStateGroup(R.string.action_filter_tracked, this)
 
             override val header = null
             override val items = listOf(downloaded, unread, completed, tracking)
