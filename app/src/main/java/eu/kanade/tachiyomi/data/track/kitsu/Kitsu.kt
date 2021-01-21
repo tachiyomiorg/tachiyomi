@@ -101,14 +101,10 @@ class Kitsu(private val context: Context, id: Int) : TrackService(id) {
     }
 
     override suspend fun login(username: String, password: String) {
-        try {
-            val token = api.login(username, password)
-            interceptor.newAuth(token)
-            val userId = api.getCurrentUser()
-            saveCredentials(username, userId)
-        } catch (e: Throwable) {
-            logout()
-        }
+        val token = api.login(username, password)
+        interceptor.newAuth(token)
+        val userId = api.getCurrentUser()
+        saveCredentials(username, userId)
     }
 
     override fun logout() {
