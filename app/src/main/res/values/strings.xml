@@ -102,6 +102,8 @@
     <string name="action_sort">Sort</string>
     <string name="action_sort_descending">Descending</string>
     <string name="action_reorganize_by">Reorder</string>
+    <string name="action_order_by_upload_date">By upload date</string>
+    <string name="action_order_by_chapter_number">By chapter number</string>
     <string name="action_newest">Newest</string>
     <string name="action_oldest">Oldest</string>
     <string name="action_bigest">Bigest</string>

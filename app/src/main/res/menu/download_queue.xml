@@ -8,17 +8,31 @@
         app:showAsAction="never">
         <menu>
             <item
-                android:id="@+id/newest"
-                android:title="@string/action_newest" />
+                android:id="@+id/action_sort_date"
+                android:title="@string/action_order_by_upload_date"
+                app:showAsAction="never">
+                <menu>
+                    <item
+                        android:id="@+id/newest"
+                        android:title="@string/action_newest" />
+                    <item
+                        android:id="@+id/oldest"
+                        android:title="@string/action_oldest" />
+                </menu>
+            </item>
             <item
-                android:id="@+id/oldest"
-                android:title="@string/action_oldest" />
-            <item
-                android:id="@+id/bigest"
-                android:title="@string/action_bigest" />
-            <item
-                android:id="@+id/smallest"
-                android:title="@string/action_smallest" />
+                android:id="@+id/action_sort_chapter"
+                android:title="@string/action_order_by_chapter_number"
+                app:showAsAction="never">
+                <menu>
+                    <item
+                        android:id="@+id/bigest"
+                        android:title="@string/action_bigest" />
+                    <item
+                        android:id="@+id/smallest"
+                        android:title="@string/action_smallest" />
+                </menu>
+            </item>
         </menu>
     </item>
 
