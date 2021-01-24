@@ -117,12 +117,11 @@ class LibraryPresenter(
         val filterDownloaded = preferences.filterDownloaded().get()
         val filterUnread = preferences.filterUnread().get()
         val filterCompleted = preferences.filterCompleted().get()
-        val loggedInTracks = trackManager.services
-            .filter { it.isLogged }
-            .associate {
-                Pair(it.id, preferences.filterTracking(it.name).get())
+        val loggedInServices = trackManager.services.filter { trackService -> trackService.isLogged }
+            .associate { trackService ->
+                Pair(trackService.id, preferences.filterTracking(trackService.name).get())
             }
-        val isNotLogged = !loggedInTracks.values.any()
+        val isNotAnyLoggedIn = !loggedInServices.values.any()
 
         val filterFnUnread: (LibraryItem) -> Boolean = unread@{ item ->
             if (filterUnread == State.IGNORE.value) return@unread true
@@ -153,37 +152,37 @@ class LibraryPresenter(
         }
 
         val filterFnTracking: (LibraryItem) -> Boolean = tracking@{ item ->
-            if (isNotLogged || (loggedInTracks.all { it.value == State.IGNORE.value } && !loggedInTracks.any { it.value == State.EXCLUDE.value || it.value == State.INCLUDE.value })) return@tracking true
+            if (isNotAnyLoggedIn || (loggedInServices.all { it.value == State.IGNORE.value } && !loggedInServices.any { it.value == State.EXCLUDE.value || it.value == State.INCLUDE.value })) return@tracking true
 
             val trackedManga = trackMap[item.manga.id ?: -1]
 
-            val exclude = loggedInTracks.filterValues { it == State.EXCLUDE.value }
-            val include = loggedInTracks.filterValues { it == State.INCLUDE.value }
+            var exclude: Collection<Boolean>
+            var include: Collection<Boolean>
+            val containsExclude = loggedInServices.filterValues { it == State.EXCLUDE.value }
+                .also { containsExclude ->
+                    exclude = trackedManga?.filterKeys { containsExclude.containsKey(it) }?.values ?: emptyList()
+                }
+                .any()
+            val containsInclude = loggedInServices.filterValues { it == State.INCLUDE.value }
+                .also { containsInclude ->
+                    include = trackedManga?.filterKeys { containsInclude.containsKey(it) }?.values ?: emptyList()
+                }
+                .any()
 
-            if (include.isNotEmpty() && exclude.isNotEmpty()) {
-                val e = trackedManga?.filterKeys { exclude.containsKey(it) }
-                    ?.values
-                val i = trackedManga?.filterKeys { include.containsKey(it) }
-                    ?.values
-                if (e?.isNotEmpty() ?: false) {
-                    return@tracking !(e?.any() ?: false)
+            if (containsInclude && containsExclude) {
+                return@tracking if (exclude.isNotEmpty()) {
+                    !exclude.any()
                 } else {
-                    return@tracking i?.any() ?: false
+                    include.any()
                 }
             }
 
-            if (include.isNotEmpty() && exclude.isEmpty()) {
-                return@tracking trackedManga?.filterKeys { include.containsKey(it) }
-                    ?.values
-                    ?.any() ?: false
+            if (containsInclude) {
+                return@tracking include.any()
             }
 
-            if (include.isEmpty() && exclude.isNotEmpty()) {
-                return@tracking !(
-                    trackedManga?.filterKeys { exclude.containsKey(it) }
-                        ?.values
-                        ?.any() ?: false
-                    )
+            if (containsExclude) {
+                return@tracking !exclude.any()
             }
 
             return@tracking true
