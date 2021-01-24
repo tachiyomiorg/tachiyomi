@@ -8,6 +8,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferenceValues.DisplayMode
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.track.TrackManager
+import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.track.anilist.Anilist
 import eu.kanade.tachiyomi.data.track.bangumi.Bangumi
 import eu.kanade.tachiyomi.data.track.kitsu.Kitsu
@@ -84,29 +85,31 @@ class LibrarySettingsSheet(
             override val footer = null
 
             init {
-                val loggedTrackers = trackManager.services
-                    .filter { it.isLogged }
-
-                trackFilters = loggedTrackers.associate { trackService ->
-                    val resId = if (loggedTrackers.size > 1) {
-                        when (trackService) {
-                            is Anilist -> R.string.anilist
-                            is MyAnimeList -> R.string.my_anime_list
-                            is Kitsu -> R.string.kitsu
-                            is Bangumi -> R.string.bangumi
-                            is Shikimori -> R.string.shikimori
-                            else -> R.string.unknown
+                trackManager.services.filter { service -> service.isLogged }
+                    .also { services ->
+                        val size = services.size
+                        trackFilters = services.associate { service ->
+                            Pair(service.name, Item.TriStateGroup(getServiceResId(service, size), this))
                         }
-                    } else {
-                        R.string.action_filter_tracked
+                        val list: MutableList<Item> = mutableListOf(downloaded, unread, completed)
+                        if (size > 1) list.add(Item.Header(R.string.action_filter_tracked))
+                        list.addAll(trackFilters.values)
+                        items = list
                     }
-                    Pair(trackService.name, Item.TriStateGroup(resId, this))
-                }
+            }
 
-                items = if (loggedTrackers.size > 1) {
-                    listOf(downloaded, unread, completed, Item.Header(R.string.action_filter_tracked), *this.trackFilters.values.toTypedArray())
-                } else {
-                    listOf(downloaded, unread, completed, *this.trackFilters.values.toTypedArray())
+            private fun getServiceResId(service: TrackService, size: Int): Int {
+                return if (size > 1) getServiceResId(service) else R.string.action_filter_tracked
+            }
+
+            private fun getServiceResId(service: TrackService): Int {
+                return when (service) {
+                    is Anilist -> R.string.anilist
+                    is MyAnimeList -> R.string.my_anime_list
+                    is Kitsu -> R.string.kitsu
+                    is Bangumi -> R.string.bangumi
+                    is Shikimori -> R.string.shikimori
+                    else -> R.string.unknown
                 }
             }
 
