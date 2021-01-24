@@ -747,4 +747,11 @@
     <string name="spen_previous_page">Previous page</string>
     <string name="spen_next_page">Next page</string>
 
+    <!-- Tracker names -->
+    <string name="anilist" translatable="false">AniList</string>
+    <string name="my_anime_list" translatable="false">MyAnimeList</string>
+    <string name="kitsu" translatable="false">Kitsu</string>
+    <string name="bangumi" translatable="false">Bangumi</string>
+    <string name="shikimori" translatable="false">Shikimori</string>
+
 </resources>

@@ -112,13 +112,17 @@ class LibraryPresenter(
      *
      * @param map the map to filter.
      */
-    private fun applyFilters(map: LibraryMap, trackMap: Map<Long, Boolean>): LibraryMap {
+    private fun applyFilters(map: LibraryMap, trackMap: Map<Long, Map<Int, Boolean>>): LibraryMap {
         val downloadedOnly = preferences.downloadedOnly().get()
         val filterDownloaded = preferences.filterDownloaded().get()
         val filterUnread = preferences.filterUnread().get()
         val filterCompleted = preferences.filterCompleted().get()
-        val tracking = preferences.filterTracking().get()
-        val isNotLogged = !trackManager.hasLoggedServices()
+        val loggedInTracks = trackManager.services
+            .filter { it.isLogged }
+            .associate {
+                Pair(it.id, preferences.filterTracking(it.name).get())
+            }
+        val isNotLogged = !loggedInTracks.values.any()
 
         val filterFnUnread: (LibraryItem) -> Boolean = unread@{ item ->
             if (filterUnread == State.IGNORE.value) return@unread true
@@ -149,11 +153,51 @@ class LibraryPresenter(
         }
 
         val filterFnTracking: (LibraryItem) -> Boolean = tracking@{ item ->
-            if (isNotLogged || tracking == State.IGNORE.value) return@tracking true
+            if (loggedInTracks.values.size > 1) {
+                // Exclude > Include
+                if (isNotLogged || (loggedInTracks.all { it.value == State.IGNORE.value } && !loggedInTracks.any { it.value == State.EXCLUDE.value || it.value == State.INCLUDE.value })) return@tracking true
 
-            val isTracking = trackMap[item.manga.id ?: -1] ?: false
+                val trackedManga = trackMap[item.manga.id ?: -1] ?: return@tracking false
 
-            return@tracking if (tracking == State.INCLUDE.value) isTracking else !isTracking
+                val exclude = loggedInTracks.filterValues { it == State.EXCLUDE.value }
+                val include = loggedInTracks.filterValues { it == State.INCLUDE.value }
+
+                if (include.isNotEmpty() && exclude.isNotEmpty()) {
+                    val e = trackedManga.filterKeys { exclude.containsKey(it) }
+                        .values
+                    val i = trackedManga.filterKeys { include.containsKey(it) }
+                        .values
+                    if (e.isNotEmpty()) {
+                        return@tracking !e.any()
+                    } else {
+                        return@tracking i.any()
+                    }
+                }
+
+                if (include.isNotEmpty() && exclude.isEmpty()) {
+                    return@tracking trackedManga.filterKeys { include.containsKey(it) }
+                        .values
+                        .any()
+                }
+
+                if (include.isEmpty() && exclude.isNotEmpty()) {
+                    return@tracking !trackedManga.filterKeys { exclude.containsKey(it) }
+                        .values
+                        .any()
+                }
+
+                return@tracking false
+            } else {
+                val key = loggedInTracks.keys.first()
+
+                if (isNotLogged || loggedInTracks[key] == State.IGNORE.value) return@tracking true
+
+                val trackedManga = trackMap[item.manga.id ?: -1] ?: return@tracking false
+
+                val isTracking = trackedManga[key] ?: false
+
+                return@tracking if (loggedInTracks[key] == State.INCLUDE.value) isTracking else !isTracking
+            }
         }
 
         val filterFn: (LibraryItem) -> Boolean = filter@{ item ->
@@ -300,7 +344,7 @@ class LibraryPresenter(
      *
      * @return an observable of tracked manga.
      */
-    private fun getFilterObservable(): Observable<Map<Long, Boolean>> {
+    private fun getFilterObservable(): Observable<Map<Long, Map<Int, Boolean>>> {
         return getTracksObservable().combineLatest(filterTriggerRelay.observeOn(Schedulers.io())) { tracks, _ -> tracks }
     }
 
@@ -309,13 +353,13 @@ class LibraryPresenter(
      *
      * @return an observable of tracked manga.
      */
-    private fun getTracksObservable(): Observable<Map<Long, Boolean>> {
+    private fun getTracksObservable(): Observable<Map<Long, Map<Int, Boolean>>> {
         return db.getTracks().asRxObservable().map { tracks ->
             tracks.groupBy { it.manga_id }
                 .mapValues { tracksForMangaId ->
                     // Check if any of the trackers is logged in for the current manga id
-                    tracksForMangaId.value.any {
-                        trackManager.getService(it.sync_id)?.isLogged ?: false
+                    tracksForMangaId.value.associate {
+                        Pair(it.sync_id, trackManager.getService(it.sync_id)?.isLogged ?: false)
                     }
                 }
         }.observeOn(Schedulers.io())
