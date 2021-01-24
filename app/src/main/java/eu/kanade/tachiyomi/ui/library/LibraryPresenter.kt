@@ -152,40 +152,27 @@ class LibraryPresenter(
         }
 
         val filterFnTracking: (LibraryItem) -> Boolean = tracking@{ item ->
-            if (isNotAnyLoggedIn || (loggedInServices.all { it.value == State.IGNORE.value } && !loggedInServices.any { it.value == State.EXCLUDE.value || it.value == State.INCLUDE.value })) return@tracking true
+            if (isNotAnyLoggedIn) return@tracking true
 
             val trackedManga = trackMap[item.manga.id ?: -1]
 
-            var exclude: Collection<Boolean>
-            var include: Collection<Boolean>
             val containsExclude = loggedInServices.filterValues { it == State.EXCLUDE.value }
-                .also { containsExclude ->
-                    exclude = trackedManga?.filterKeys { containsExclude.containsKey(it) }?.values ?: emptyList()
-                }
-                .any()
             val containsInclude = loggedInServices.filterValues { it == State.INCLUDE.value }
-                .also { containsInclude ->
-                    include = trackedManga?.filterKeys { containsInclude.containsKey(it) }?.values ?: emptyList()
-                }
-                .any()
 
-            if (containsInclude && containsExclude) {
-                return@tracking if (exclude.isNotEmpty()) {
-                    !exclude.any()
-                } else {
-                    include.any()
-                }
+            if (!containsExclude.any() && !containsInclude.any()) return@tracking true
+
+            val exclude = trackedManga?.filterKeys { containsExclude.containsKey(it) }?.values ?: emptyList()
+            val include = trackedManga?.filterKeys { containsInclude.containsKey(it) }?.values ?: emptyList()
+
+            if (containsInclude.any() && containsExclude.any()) {
+                return@tracking if (exclude.isNotEmpty()) !exclude.any() else include.any()
             }
 
-            if (containsInclude) {
-                return@tracking include.any()
-            }
+            if (containsExclude.any()) return@tracking !exclude.any()
 
-            if (containsExclude) {
-                return@tracking !exclude.any()
-            }
+            if (containsInclude.any()) return@tracking include.any()
 
-            return@tracking true
+            return@tracking false
         }
 
         val filterFn: (LibraryItem) -> Boolean = filter@{ item ->
