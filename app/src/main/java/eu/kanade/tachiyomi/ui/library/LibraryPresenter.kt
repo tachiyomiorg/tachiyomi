@@ -153,51 +153,40 @@ class LibraryPresenter(
         }
 
         val filterFnTracking: (LibraryItem) -> Boolean = tracking@{ item ->
-            if (loggedInTracks.values.size > 1) {
-                // Exclude > Include
-                if (isNotLogged || (loggedInTracks.all { it.value == State.IGNORE.value } && !loggedInTracks.any { it.value == State.EXCLUDE.value || it.value == State.INCLUDE.value })) return@tracking true
+            if (isNotLogged || (loggedInTracks.all { it.value == State.IGNORE.value } && !loggedInTracks.any { it.value == State.EXCLUDE.value || it.value == State.INCLUDE.value })) return@tracking true
 
-                val trackedManga = trackMap[item.manga.id ?: -1] ?: return@tracking false
+            val trackedManga = trackMap[item.manga.id ?: -1]
 
-                val exclude = loggedInTracks.filterValues { it == State.EXCLUDE.value }
-                val include = loggedInTracks.filterValues { it == State.INCLUDE.value }
+            val exclude = loggedInTracks.filterValues { it == State.EXCLUDE.value }
+            val include = loggedInTracks.filterValues { it == State.INCLUDE.value }
 
-                if (include.isNotEmpty() && exclude.isNotEmpty()) {
-                    val e = trackedManga.filterKeys { exclude.containsKey(it) }
-                        .values
-                    val i = trackedManga.filterKeys { include.containsKey(it) }
-                        .values
-                    if (e.isNotEmpty()) {
-                        return@tracking !e.any()
-                    } else {
-                        return@tracking i.any()
-                    }
+            if (include.isNotEmpty() && exclude.isNotEmpty()) {
+                val e = trackedManga?.filterKeys { exclude.containsKey(it) }
+                    ?.values
+                val i = trackedManga?.filterKeys { include.containsKey(it) }
+                    ?.values
+                if (e?.isNotEmpty() ?: false) {
+                    return@tracking !(e?.any() ?: false)
+                } else {
+                    return@tracking i?.any() ?: false
                 }
-
-                if (include.isNotEmpty() && exclude.isEmpty()) {
-                    return@tracking trackedManga.filterKeys { include.containsKey(it) }
-                        .values
-                        .any()
-                }
-
-                if (include.isEmpty() && exclude.isNotEmpty()) {
-                    return@tracking !trackedManga.filterKeys { exclude.containsKey(it) }
-                        .values
-                        .any()
-                }
-
-                return@tracking false
-            } else {
-                val key = loggedInTracks.keys.first()
-
-                if (isNotLogged || loggedInTracks[key] == State.IGNORE.value) return@tracking true
-
-                val trackedManga = trackMap[item.manga.id ?: -1] ?: return@tracking false
-
-                val isTracking = trackedManga[key] ?: false
-
-                return@tracking if (loggedInTracks[key] == State.INCLUDE.value) isTracking else !isTracking
             }
+
+            if (include.isNotEmpty() && exclude.isEmpty()) {
+                return@tracking trackedManga?.filterKeys { include.containsKey(it) }
+                    ?.values
+                    ?.any() ?: false
+            }
+
+            if (include.isEmpty() && exclude.isNotEmpty()) {
+                return@tracking !(
+                    trackedManga?.filterKeys { exclude.containsKey(it) }
+                        ?.values
+                        ?.any() ?: false
+                    )
+            }
+
+            return@tracking true
         }
 
         val filterFn: (LibraryItem) -> Boolean = filter@{ item ->
