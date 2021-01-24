@@ -77,19 +77,19 @@ class LibrarySettingsSheet(
             private val downloaded = Item.TriStateGroup(R.string.action_filter_downloaded, this)
             private val unread = Item.TriStateGroup(R.string.action_filter_unread, this)
             private val completed = Item.TriStateGroup(R.string.completed, this)
-            private val tracking: Map<String, Item.TriStateGroup>
+            private val trackFilters: Map<String, Item.TriStateGroup>
 
             override val header = null
             override val items: List<Item>
             override val footer = null
 
             init {
-                val trackers = trackManager.services
+                val loggedTrackers = trackManager.services
                     .filter { it.isLogged }
 
-                tracking = trackers.associate {
-                    val resId = if (trackers.size > 1) {
-                        when (it) {
+                trackFilters = loggedTrackers.associate { trackService ->
+                    val resId = if (loggedTrackers.size > 1) {
+                        when (trackService) {
                             is Anilist -> R.string.anilist
                             is MyAnimeList -> R.string.my_anime_list
                             is Kitsu -> R.string.kitsu
@@ -100,13 +100,13 @@ class LibrarySettingsSheet(
                     } else {
                         R.string.action_filter_tracked
                     }
-                    Pair(it.name, Item.TriStateGroup(resId, this))
+                    Pair(trackService.name, Item.TriStateGroup(resId, this))
                 }
 
-                items = if (trackers.size > 1) {
-                    listOf(downloaded, unread, completed, Item.Header(R.string.action_filter_tracked), *tracking.values.toTypedArray())
+                items = if (loggedTrackers.size > 1) {
+                    listOf(downloaded, unread, completed, Item.Header(R.string.action_filter_tracked), *this.trackFilters.values.toTypedArray())
                 } else {
-                    listOf(downloaded, unread, completed, *tracking.values.toTypedArray())
+                    listOf(downloaded, unread, completed, *this.trackFilters.values.toTypedArray())
                 }
             }
 
@@ -120,8 +120,8 @@ class LibrarySettingsSheet(
                 unread.state = preferences.filterUnread().get()
                 completed.state = preferences.filterCompleted().get()
 
-                tracking.forEach {
-                    it.value.state = preferences.filterTracking(it.key).get()
+                trackFilters.forEach { trackFilter ->
+                    trackFilter.value.state = preferences.filterTracking(trackFilter.key).get()
                 }
             }
 
@@ -139,9 +139,9 @@ class LibrarySettingsSheet(
                     unread -> preferences.filterUnread().set(newState)
                     completed -> preferences.filterCompleted().set(newState)
                     else -> {
-                        tracking.forEach {
-                            if (it.value == item) {
-                                preferences.filterTracking(it.key).set(newState)
+                        trackFilters.forEach { trackFilter ->
+                            if (trackFilter.value == item) {
+                                preferences.filterTracking(trackFilter.key).set(newState)
                             }
                         }
                     }
