@@ -1,7 +1,7 @@
 package eu.kanade.tachiyomi.data.database.mappers
 
-import android.content.ContentValues
 import android.database.Cursor
+import androidx.core.content.contentValuesOf
 import com.pushtorefresh.storio.sqlite.SQLiteTypeMapping
 import com.pushtorefresh.storio.sqlite.operations.delete.DefaultDeleteResolver
 import com.pushtorefresh.storio.sqlite.operations.get.DefaultGetResolver
@@ -35,12 +35,13 @@ class CategoryPutResolver : DefaultPutResolver<Category>() {
         .whereArgs(obj.id)
         .build()
 
-    override fun mapToContentValues(obj: Category) = ContentValues(4).apply {
-        put(COL_ID, obj.id)
-        put(COL_NAME, obj.name)
-        put(COL_ORDER, obj.order)
-        put(COL_FLAGS, obj.flags)
-    }
+    override fun mapToContentValues(obj: Category) =
+        contentValuesOf(
+            COL_ID to obj.id,
+            COL_NAME to obj.name,
+            COL_ORDER to obj.order,
+            COL_FLAGS to obj.flags
+        )
 }
 
 class CategoryGetResolver : DefaultGetResolver<Category>() {

@@ -1,7 +1,7 @@
 package eu.kanade.tachiyomi.data.database.mappers
 
-import android.content.ContentValues
 import android.database.Cursor
+import androidx.core.content.contentValuesOf
 import com.pushtorefresh.storio.sqlite.SQLiteTypeMapping
 import com.pushtorefresh.storio.sqlite.operations.delete.DefaultDeleteResolver
 import com.pushtorefresh.storio.sqlite.operations.get.DefaultGetResolver
@@ -43,20 +43,21 @@ class ChapterPutResolver : DefaultPutResolver<Chapter>() {
         .whereArgs(obj.id)
         .build()
 
-    override fun mapToContentValues(obj: Chapter) = ContentValues(11).apply {
-        put(COL_ID, obj.id)
-        put(COL_MANGA_ID, obj.manga_id)
-        put(COL_URL, obj.url)
-        put(COL_NAME, obj.name)
-        put(COL_READ, obj.read)
-        put(COL_SCANLATOR, obj.scanlator)
-        put(COL_BOOKMARK, obj.bookmark)
-        put(COL_DATE_FETCH, obj.date_fetch)
-        put(COL_DATE_UPLOAD, obj.date_upload)
-        put(COL_LAST_PAGE_READ, obj.last_page_read)
-        put(COL_CHAPTER_NUMBER, obj.chapter_number)
-        put(COL_SOURCE_ORDER, obj.source_order)
-    }
+    override fun mapToContentValues(obj: Chapter) =
+        contentValuesOf(
+            COL_ID to obj.id,
+            COL_MANGA_ID to obj.manga_id,
+            COL_URL to obj.url,
+            COL_NAME to obj.name,
+            COL_READ to obj.read,
+            COL_SCANLATOR to obj.scanlator,
+            COL_BOOKMARK to obj.bookmark,
+            COL_DATE_FETCH to obj.date_fetch,
+            COL_DATE_UPLOAD to obj.date_upload,
+            COL_LAST_PAGE_READ to obj.last_page_read,
+            COL_CHAPTER_NUMBER to obj.chapter_number,
+            COL_SOURCE_ORDER to obj.source_order
+        )
 }
 
 class ChapterGetResolver : DefaultGetResolver<Chapter>() {

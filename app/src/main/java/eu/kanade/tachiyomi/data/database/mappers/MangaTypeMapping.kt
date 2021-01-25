@@ -1,7 +1,7 @@
 package eu.kanade.tachiyomi.data.database.mappers
 
-import android.content.ContentValues
 import android.database.Cursor
+import androidx.core.content.contentValuesOf
 import com.pushtorefresh.storio.sqlite.SQLiteTypeMapping
 import com.pushtorefresh.storio.sqlite.operations.delete.DefaultDeleteResolver
 import com.pushtorefresh.storio.sqlite.operations.get.DefaultGetResolver
@@ -48,25 +48,26 @@ class MangaPutResolver : DefaultPutResolver<Manga>() {
         .whereArgs(obj.id)
         .build()
 
-    override fun mapToContentValues(obj: Manga) = ContentValues(17).apply {
-        put(COL_ID, obj.id)
-        put(COL_SOURCE, obj.source)
-        put(COL_URL, obj.url)
-        put(COL_ARTIST, obj.artist)
-        put(COL_AUTHOR, obj.author)
-        put(COL_DESCRIPTION, obj.description)
-        put(COL_GENRE, obj.genre)
-        put(COL_TITLE, obj.title)
-        put(COL_STATUS, obj.status)
-        put(COL_THUMBNAIL_URL, obj.thumbnail_url)
-        put(COL_FAVORITE, obj.favorite)
-        put(COL_LAST_UPDATE, obj.last_update)
-        put(COL_INITIALIZED, obj.initialized)
-        put(COL_VIEWER, obj.viewer)
-        put(COL_CHAPTER_FLAGS, obj.chapter_flags)
-        put(COL_COVER_LAST_MODIFIED, obj.cover_last_modified)
-        put(COL_DATE_ADDED, obj.date_added)
-    }
+    override fun mapToContentValues(obj: Manga) =
+        contentValuesOf(
+            COL_ID to obj.id,
+            COL_SOURCE to obj.source,
+            COL_URL to obj.url,
+            COL_ARTIST to obj.artist,
+            COL_AUTHOR to obj.author,
+            COL_DESCRIPTION to obj.description,
+            COL_GENRE to obj.genre,
+            COL_TITLE to obj.title,
+            COL_STATUS to obj.status,
+            COL_THUMBNAIL_URL to obj.thumbnail_url,
+            COL_FAVORITE to obj.favorite,
+            COL_LAST_UPDATE to obj.last_update,
+            COL_INITIALIZED to obj.initialized,
+            COL_VIEWER to obj.viewer,
+            COL_CHAPTER_FLAGS to obj.chapter_flags,
+            COL_COVER_LAST_MODIFIED to obj.cover_last_modified,
+            COL_DATE_ADDED to obj.date_added
+        )
 }
 
 interface BaseMangaGetResolver {

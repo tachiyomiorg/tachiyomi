@@ -1,6 +1,6 @@
 package eu.kanade.tachiyomi.data.database.resolvers
 
-import android.content.ContentValues
+import androidx.core.content.contentValuesOf
 import com.pushtorefresh.storio.sqlite.StorIOSQLite
 import com.pushtorefresh.storio.sqlite.operations.put.PutResolver
 import com.pushtorefresh.storio.sqlite.operations.put.PutResult
@@ -25,7 +25,8 @@ class MangaLastUpdatedPutResolver : PutResolver<Manga>() {
         .whereArgs(manga.id)
         .build()
 
-    fun mapToContentValues(manga: Manga) = ContentValues(1).apply {
-        put(MangaTable.COL_LAST_UPDATE, manga.last_update)
-    }
+    fun mapToContentValues(manga: Manga) =
+        contentValuesOf(
+            MangaTable.COL_LAST_UPDATE to manga.last_update
+        )
 }

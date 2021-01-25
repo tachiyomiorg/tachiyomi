@@ -1,6 +1,6 @@
 package eu.kanade.tachiyomi.data.database.resolvers
 
-import android.content.ContentValues
+import androidx.core.content.contentValuesOf
 import com.pushtorefresh.storio.sqlite.StorIOSQLite
 import com.pushtorefresh.storio.sqlite.operations.put.PutResolver
 import com.pushtorefresh.storio.sqlite.operations.put.PutResult
@@ -25,9 +25,10 @@ class ChapterBackupPutResolver : PutResolver<Chapter>() {
         .whereArgs(chapter.url)
         .build()
 
-    fun mapToContentValues(chapter: Chapter) = ContentValues(3).apply {
-        put(ChapterTable.COL_READ, chapter.read)
-        put(ChapterTable.COL_BOOKMARK, chapter.bookmark)
-        put(ChapterTable.COL_LAST_PAGE_READ, chapter.last_page_read)
-    }
+    fun mapToContentValues(chapter: Chapter) =
+        contentValuesOf(
+            ChapterTable.COL_READ to chapter.read,
+            ChapterTable.COL_BOOKMARK to chapter.bookmark,
+            ChapterTable.COL_LAST_PAGE_READ to chapter.last_page_read
+        )
 }

@@ -154,19 +154,19 @@ val Resources.isLTR
  * Property to get the notification manager from the context.
  */
 val Context.notificationManager: NotificationManager
-    get() = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    get() = getSystemService()!!
 
 /**
  * Property to get the connectivity manager from the context.
  */
 val Context.connectivityManager: ConnectivityManager
-    get() = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    get() = getSystemService()!!
 
 /**
  * Property to get the power manager from the context.
  */
 val Context.powerManager: PowerManager
-    get() = getSystemService(Context.POWER_SERVICE) as PowerManager
+    get() = getSystemService()!!
 
 /**
  * Convenience method to acquire a partial wake lock.

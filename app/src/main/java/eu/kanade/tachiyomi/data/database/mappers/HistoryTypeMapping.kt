@@ -1,7 +1,7 @@
 package eu.kanade.tachiyomi.data.database.mappers
 
-import android.content.ContentValues
 import android.database.Cursor
+import androidx.core.content.contentValuesOf
 import com.pushtorefresh.storio.sqlite.SQLiteTypeMapping
 import com.pushtorefresh.storio.sqlite.operations.delete.DefaultDeleteResolver
 import com.pushtorefresh.storio.sqlite.operations.get.DefaultGetResolver
@@ -35,12 +35,13 @@ open class HistoryPutResolver : DefaultPutResolver<History>() {
         .whereArgs(obj.id)
         .build()
 
-    override fun mapToContentValues(obj: History) = ContentValues(4).apply {
-        put(COL_ID, obj.id)
-        put(COL_CHAPTER_ID, obj.chapter_id)
-        put(COL_LAST_READ, obj.last_read)
-        put(COL_TIME_READ, obj.time_read)
-    }
+    override fun mapToContentValues(obj: History) =
+        contentValuesOf(
+            COL_ID to obj.id,
+            COL_CHAPTER_ID to obj.chapter_id,
+            COL_LAST_READ to obj.last_read,
+            COL_TIME_READ to obj.time_read
+        )
 }
 
 class HistoryGetResolver : DefaultGetResolver<History>() {

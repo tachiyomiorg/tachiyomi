@@ -1,6 +1,6 @@
 package eu.kanade.tachiyomi.data.database.resolvers
 
-import android.content.ContentValues
+import androidx.core.content.contentValuesOf
 import com.pushtorefresh.storio.sqlite.StorIOSQLite
 import com.pushtorefresh.storio.sqlite.operations.put.PutResolver
 import com.pushtorefresh.storio.sqlite.operations.put.PutResult
@@ -25,7 +25,8 @@ class ChapterSourceOrderPutResolver : PutResolver<Chapter>() {
         .whereArgs(chapter.url, chapter.manga_id)
         .build()
 
-    fun mapToContentValues(chapter: Chapter) = ContentValues(1).apply {
-        put(ChapterTable.COL_SOURCE_ORDER, chapter.source_order)
-    }
+    fun mapToContentValues(chapter: Chapter) =
+        contentValuesOf(
+            ChapterTable.COL_SOURCE_ORDER to chapter.source_order
+        )
 }

@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.ui.reader
 import android.view.ViewGroup
 import android.widget.SeekBar
 import androidx.annotation.ColorInt
+import androidx.core.graphics.*
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -156,16 +157,16 @@ class ReaderColorFilterSheet(private val activity: ReaderActivity) : BottomSheet
      * @param color integer containing color information
      */
     fun setValues(color: Int): Array<Int> {
-        val alpha = getAlphaFromColor(color)
-        val red = getRedFromColor(color)
-        val green = getGreenFromColor(color)
-        val blue = getBlueFromColor(color)
+        val alpha = color.alpha
+        val red = color.red
+        val green = color.green
+        val blue = color.blue
 
         // Initialize values
-        binding.txtColorFilterAlphaValue.text = alpha.toString()
-        binding.txtColorFilterRedValue.text = red.toString()
-        binding.txtColorFilterGreenValue.text = green.toString()
-        binding.txtColorFilterBlueValue.text = blue.toString()
+        binding.txtColorFilterAlphaValue.text = "$alpha"
+        binding.txtColorFilterRedValue.text = "$red"
+        binding.txtColorFilterGreenValue.text = "$green"
+        binding.txtColorFilterBlueValue.text = "$blue"
 
         return arrayOf(alpha, red, green, blue)
     }
@@ -230,42 +231,6 @@ class ReaderColorFilterSheet(private val activity: ReaderActivity) : BottomSheet
         val currentColor = preferences.colorFilterValue().get()
         val updatedColor = (color shl bitShift) or (currentColor and mask.inv().toInt())
         preferences.colorFilterValue().set(updatedColor)
-    }
-
-    /**
-     * Returns the alpha value from the Color Hex
-     * @param color color hex as int
-     * @return alpha of color
-     */
-    private fun getAlphaFromColor(color: Int): Int {
-        return color shr 24 and 0xFF
-    }
-
-    /**
-     * Returns the red value from the Color Hex
-     * @param color color hex as int
-     * @return red of color
-     */
-    private fun getRedFromColor(color: Int): Int {
-        return color shr 16 and 0xFF
-    }
-
-    /**
-     * Returns the green value from the Color Hex
-     * @param color color hex as int
-     * @return green of color
-     */
-    private fun getGreenFromColor(color: Int): Int {
-        return color shr 8 and 0xFF
-    }
-
-    /**
-     * Returns the blue value from the Color Hex
-     * @param color color hex as int
-     * @return blue of color
-     */
-    private fun getBlueFromColor(color: Int): Int {
-        return color and 0xFF
     }
 
     private companion object {

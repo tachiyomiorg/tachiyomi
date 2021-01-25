@@ -1,7 +1,7 @@
 package eu.kanade.tachiyomi.data.database.mappers
 
-import android.content.ContentValues
 import android.database.Cursor
+import androidx.core.content.contentValuesOf
 import com.pushtorefresh.storio.sqlite.SQLiteTypeMapping
 import com.pushtorefresh.storio.sqlite.operations.delete.DefaultDeleteResolver
 import com.pushtorefresh.storio.sqlite.operations.get.DefaultGetResolver
@@ -33,11 +33,12 @@ class MangaCategoryPutResolver : DefaultPutResolver<MangaCategory>() {
         .whereArgs(obj.id)
         .build()
 
-    override fun mapToContentValues(obj: MangaCategory) = ContentValues(3).apply {
-        put(COL_ID, obj.id)
-        put(COL_MANGA_ID, obj.manga_id)
-        put(COL_CATEGORY_ID, obj.category_id)
-    }
+    override fun mapToContentValues(obj: MangaCategory) =
+        contentValuesOf(
+            COL_ID to obj.id,
+            COL_MANGA_ID to obj.manga_id,
+            COL_CATEGORY_ID to obj.category_id
+        )
 }
 
 class MangaCategoryGetResolver : DefaultGetResolver<MangaCategory>() {
