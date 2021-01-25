@@ -36,9 +36,9 @@ class GroupItem(val filter: Filter.Group<*>) : AbstractExpandableHeaderItem<Grou
 
         holder.icon.setVectorCompat(
             if (isExpanded) {
-                R.drawable.ic_baseline_expand_less_24dp
+                R.drawable.ic_expand_less_24dp
             } else {
-                R.drawable.ic_baseline_expand_more_24dp
+                R.drawable.ic_expand_more_24dp
             }
         )
 
