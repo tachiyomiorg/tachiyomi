@@ -457,7 +457,7 @@ class LibraryPresenter(
     /**
      * Bulk update categories of mangas using old and new common categories.
      *
-     * @param newCategories the selected categories.
+     * @param newCommon the selected categories.
      * @param mangas the list of manga to move.
      * @param oldCommon the list of common categories pre-update
      */
