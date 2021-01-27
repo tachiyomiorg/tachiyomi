@@ -68,9 +68,8 @@ class HistoryHolder(
             binding.mangaSubtitle.text = Date(history.last_read).toTimestampString()
         }
 
-        val requestOptions = RequestOptions().apply {
-            transform(CenterCrop(), RoundedCorners(8))
-        }
+        val radius = itemView.context.resources.getDimensionPixelSize(R.dimen.card_radius)
+        val requestOptions = RequestOptions().transform(CenterCrop(), RoundedCorners(radius))
 
         // Set cover
         GlideApp.with(itemView.context).clear(binding.cover)
