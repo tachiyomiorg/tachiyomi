@@ -9,13 +9,13 @@
 
     <ImageView
         android:id="@+id/manga_cover"
-        android:layout_width="56dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:paddingStart="16dp"
-        android:paddingTop="8dp"
-        android:paddingEnd="0dp"
-        android:paddingBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="h,1:1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@mipmap/ic_launcher" />
@@ -27,7 +27,7 @@
         android:layout_marginStart="16dp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textAppearance="@style/TextAppearance.Regular.Body1"
+        android:textAppearance="@style/TextAppearance.Medium.Body2"
         app:layout_constraintBottom_toTopOf="@+id/chapter_title"
         app:layout_constraintEnd_toStartOf="@+id/download"
         app:layout_constraintStart_toEndOf="@+id/manga_cover"

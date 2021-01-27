@@ -2,6 +2,9 @@ package eu.kanade.tachiyomi.ui.recent.history
 
 import android.view.View
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.MangaChapterHistory
@@ -65,12 +68,16 @@ class HistoryHolder(
             binding.mangaSubtitle.text = Date(history.last_read).toTimestampString()
         }
 
+        val requestOptions = RequestOptions().apply {
+            transform(CenterCrop(), RoundedCorners(8))
+        }
+
         // Set cover
         GlideApp.with(itemView.context).clear(binding.cover)
         GlideApp.with(itemView.context)
             .load(manga.toMangaThumbnail())
             .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-            .centerCrop()
+            .apply(requestOptions)
             .into(binding.cover)
     }
 }
