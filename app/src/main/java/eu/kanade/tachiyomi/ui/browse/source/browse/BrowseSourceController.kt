@@ -613,7 +613,7 @@ open class BrowseSourceController(bundle: Bundle) :
      * @param mangas The list of manga to move to categories.
      * @param categories The list of categories where manga will be placed.
      */
-    override fun updateCategoriesForMangas(mangas: List<Manga>, categories: List<Category>) {
+    override fun updateCategoriesForMangas(mangas: List<Manga>, categories: List<Category>, preselected: List<Category>) {
         val manga = mangas.firstOrNull() ?: return
 
         presenter.changeMangaFavorite(manga)

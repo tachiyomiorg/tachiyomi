@@ -561,8 +561,8 @@ class LibraryController(
         DeleteLibraryMangasDialog(this, selectedMangas.toList()).showDialog(router)
     }
 
-    override fun updateCategoriesForMangas(mangas: List<Manga>, categories: List<Category>) {
-        presenter.moveMangasToCategories(categories, mangas)
+    override fun updateCategoriesForMangas(mangas: List<Manga>, categories: List<Category>, preselected: List<Category>) {
+        presenter.updateMangasToCategories(categories, mangas, preselected)
         destroyActionModeIfNeeded()
     }
 

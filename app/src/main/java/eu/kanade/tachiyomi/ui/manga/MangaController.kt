@@ -527,7 +527,7 @@ class MangaController :
             .showDialog(router)
     }
 
-    override fun updateCategoriesForMangas(mangas: List<Manga>, categories: List<Category>) {
+    override fun updateCategoriesForMangas(mangas: List<Manga>, categories: List<Category>, preselected: List<Category>) {
         val manga = mangas.firstOrNull() ?: return
 
         if (!manga.favorite) {
