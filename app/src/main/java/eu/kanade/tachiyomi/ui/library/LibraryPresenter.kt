@@ -461,10 +461,10 @@ class LibraryPresenter(
      * @param mangas the list of manga to move.
      * @param oldCommon the list of common categories pre-update
      */
-    fun updateMangasToCategories(newCategories: List<Category>, mangas: List<Manga>, oldCommon: List<Category> = emptyList<Category>()) {
+    fun updateMangasToCategories(newCommon: List<Category>, mangas: List<Manga>, oldCommon: List<Category> = emptyList<Category>()) {
         val mc = mutableListOf<MangaCategory>()
-        val removedCategories = oldCommon.filter { !newCategories.contains(it) }
-        val addedCategories = newCategories.filter { !oldCommon.contains(it) }
+        val removedCategories = oldCommon.filter { !newCommon.contains(it) }
+        val addedCategories = newCommon.filter { !oldCommon.contains(it) }
         for (manga in mangas) {
             val newCategories = db.getCategoriesForManga(manga).executeAsBlocking().filter { !removedCategories.contains(it) }.plus(addedCategories)
             newCategories.mapTo(mc) { MangaCategory.create(manga, it) }
