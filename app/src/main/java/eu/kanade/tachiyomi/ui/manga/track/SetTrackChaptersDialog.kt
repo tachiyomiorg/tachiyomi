@@ -16,14 +16,17 @@ import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
 class SetTrackChaptersDialog<T> : DialogController
-        where T : Controller, T : SetTrackChaptersDialog.Listener {
+        where T : Controller {
 
     private val item: TrackItem
 
-    constructor(target: T, item: TrackItem) : super(
+    private lateinit var listener: Listener
+
+    constructor(target: T, listener: Listener, item: TrackItem) : super(
         bundleOf(KEY_ITEM_TRACK to item.track)
     ) {
         targetController = target
+        this.listener = listener
         this.item = item
     }
 
@@ -46,7 +49,7 @@ class SetTrackChaptersDialog<T> : DialogController
                 val np: NumberPicker = view.findViewById(R.id.chapters_picker)
                 np.clearFocus()
 
-                (targetController as? Listener)?.setChaptersRead(item, np.value)
+                listener.setChaptersRead(item, np.value)
             }
             .negativeButton(android.R.string.cancel)
 

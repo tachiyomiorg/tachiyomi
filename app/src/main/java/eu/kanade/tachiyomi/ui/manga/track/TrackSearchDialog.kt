@@ -15,6 +15,7 @@ import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.databinding.TrackSearchDialogBinding
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
+import eu.kanade.tachiyomi.ui.manga.MangaController
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
@@ -36,9 +37,9 @@ class TrackSearchDialog : DialogController {
     private val service: TrackService
 
     private val trackController
-        get() = targetController as TrackController
+        get() = targetController as MangaController
 
-    constructor(target: TrackController, service: TrackService) : super(
+    constructor(target: MangaController, service: TrackService) : super(
         bundleOf(KEY_SERVICE to service.id)
     ) {
         targetController = target

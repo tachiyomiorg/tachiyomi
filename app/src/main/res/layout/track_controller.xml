@@ -5,20 +5,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <eu.kanade.tachiyomi.widget.ThemedSwipeRefreshLayout
-        android:id="@+id/swipe_refresh"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/track_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:orientation="vertical">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/track_recycler"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/track_item" />
-
-    </eu.kanade.tachiyomi.widget.ThemedSwipeRefreshLayout>
+        android:clipToPadding="false"
+        tools:listitem="@layout/track_item" />
 
 </LinearLayout>

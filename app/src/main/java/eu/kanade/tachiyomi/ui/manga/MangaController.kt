@@ -37,6 +37,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.DownloadService
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.databinding.MangaControllerBinding
 import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.Source
@@ -62,7 +63,9 @@ import eu.kanade.tachiyomi.ui.manga.chapter.DownloadCustomChaptersDialog
 import eu.kanade.tachiyomi.ui.manga.chapter.MangaChaptersHeaderAdapter
 import eu.kanade.tachiyomi.ui.manga.chapter.base.BaseChaptersAdapter
 import eu.kanade.tachiyomi.ui.manga.info.MangaInfoHeaderAdapter
-import eu.kanade.tachiyomi.ui.manga.track.TrackController
+import eu.kanade.tachiyomi.ui.manga.track.TrackItem
+import eu.kanade.tachiyomi.ui.manga.track.TrackSearchDialog
+import eu.kanade.tachiyomi.ui.manga.track.TrackSheet
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.ui.recent.history.HistoryController
 import eu.kanade.tachiyomi.ui.recent.updates.UpdatesController
@@ -160,6 +163,8 @@ class MangaController :
     private var isRefreshingInfo = false
     private var isRefreshingChapters = false
 
+    private var trackSheet: TrackSheet? = null
+
     init {
         setHasOptionsMenu(true)
     }
@@ -245,6 +250,8 @@ class MangaController :
                 chaptersAdapter?.notifyDataSetChanged()
             }
         }
+
+        trackSheet = TrackSheet(this, manga!!)
 
         updateFilterIconState()
     }
@@ -461,7 +468,7 @@ class MangaController :
     }
 
     fun onTrackingClick() {
-        router.pushController(TrackController(manga).withFadeTransaction())
+        trackSheet?.show()
     }
 
     private fun addToLibrary(manga: Manga) {
@@ -1029,6 +1036,33 @@ class MangaController :
     }
 
     // Chapters list - end
+
+    // Tracker sheet - start
+    fun onNextTrackings(trackings: List<TrackItem>) {
+        trackSheet?.onNextTrackings(trackings)
+    }
+
+    fun onRefreshDone() {
+    }
+
+    fun onRefreshError(error: Throwable) {
+        activity?.toast(error.message)
+    }
+
+    fun onSearchResults(results: List<TrackSearch>) {
+        getSearchDialog()?.onSearchResults(results)
+    }
+
+    @Suppress("UNUSED_PARAMETER")
+    fun onSearchResultsError(error: Throwable) {
+        Timber.e(error)
+        activity?.toast(error.message)
+        getSearchDialog()?.onSearchResultsError()
+    }
+
+    private fun getSearchDialog(): TrackSearchDialog? {
+        return trackSheet?.getSearchDialog()
+    }
 
     companion object {
         const val FROM_SOURCE_EXTRA = "from_source"
