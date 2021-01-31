@@ -103,7 +103,6 @@
     <string name="all">Alla</string>
     <string name="pref_library_update_restriction">Uppdateringsrestriktioner</string>
     <string name="pref_library_update_restriction_summary">Uppdatera endast när vilkoren är uppfyllda</string>
-    <string name="wifi">WiFi</string>
     <string name="charging">Laddning</string>
     <string name="pref_update_only_non_completed">Uppdatera endast pågående manga</string>
     <string name="pref_auto_update_manga_sync">Uppdatera kapitelförlopp efter läsning</string>
@@ -592,16 +591,16 @@
     <string name="channel_progress">Förlopp</string>
     <string name="download_notifier_download_finish">Nedladdningen slutförd</string>
     <plurals name="num_trackers">
-        <item quantity="one">1 tracker</item>
-        <item quantity="other">%d trackers</item>
+        <item quantity="one">1 spårare</item>
+        <item quantity="other">%d spårare</item>
     </plurals>
     <string name="no_pinned_sources">Du har inga fästa källor</string>
     <string name="pref_remove_bookmarked_chapters">Ta bort bokmärkta kapitel</string>
     <string name="pref_category_delete_chapters">Ta bort kapitel</string>
-    <string name="ext_nsfw_warning">Kan innehålla 18+ innehåll</string>
+    <string name="ext_nsfw_warning">Kan innehålla NSFW(18+) innehåll</string>
     <string name="ext_nsfw_short">18+</string>
-    <string name="backup_restore_missing_trackers">Trackers som inte har loggats in:</string>
-    <string name="parental_controls_info">Detta förhindrar inte inofficiella eller potentiellt felaktigt flaggade tillägg från att visa 18+ innehåll i appen.</string>
+    <string name="backup_restore_missing_trackers">Spårare som inte har loggats in:</string>
+    <string name="parental_controls_info">Detta förhindrar inte inofficiella eller potentiellt felaktigt flaggade tillägg från att visa NSFW(18+) innehåll i appen.</string>
     <string name="channel_errors">Fel</string>
     <string name="chapter_settings_updated">Uppdaterade standardinställningar för kapitel</string>
     <string name="confirm_set_chapter_settings">Vill du spara de här inställningarna som standard\?</string>
@@ -632,7 +631,8 @@
     <string name="full_restore_mode">Nätverksläge</string>
     <string name="pref_create_legacy_backup_summary">Kan används i äldre versioner av Tachiyomi</string>
     <string name="migration_help_guide">Migreringsguide för källor</string>
-    <string name="invalid_backup_file_type">Ogiltig säkerhetskopia: %1$s</string>
+    <string name="invalid_backup_file_type">Ogiltig säkerhetskopia: %1$s
+\nDet bör sluta med .proto.gz eller .json.</string>
     <string name="pref_backup_auto_create_legacy">Skapa också legacy säkerhetskopia</string>
     <string name="pref_create_legacy_backup">Skapa legacy säkerhetskopia</string>
     <string name="pref_category_nsfw_content">NSFW (18+) källor</string>
@@ -642,4 +642,26 @@
     <string name="file_picker_error">Ingen filväljare-app hittades</string>
     <string name="myanimelist_relogin">Vänligen logga in på MAL igen</string>
     <string name="myanimelist_creds_missing">Inloggningsuppgifter för MAL hittades inte</string>
+    <string name="channel_crash_logs">Kraschloggar</string>
+    <string name="crash_log_saved">Kraschloggar sparade</string>
+    <string name="pref_dump_crash_logs_summary">Sparar felloggar till en fil för delning med utvecklarna</string>
+    <string name="pref_dump_crash_logs">Dumpa kraschloggar</string>
+    <string name="default_nav">Standard</string>
+    <string name="action_desc">Fallande</string>
+    <string name="action_order_by_chapter_number">Efter kapitelnummer</string>
+    <string name="action_order_by_upload_date">Efter uppladdningsdatum</string>
+    <string name="action_asc">Stigande</string>
+    <string name="tracker_shikimori" translatable="false">Shikimori</string>
+    <string name="tracker_bangumi" translatable="false">Bangumi</string>
+    <string name="tracker_kitsu" translatable="false">Kitsu</string>
+    <string name="tracker_myanimelist" translatable="false">MyAnimeList</string>
+    <string name="tracker_anilist" translatable="false">AniList</string>
+    <string name="track_finished_reading_date">Avslutat läsdatum</string>
+    <string name="track_started_reading_date">Påbörjat läsdatum</string>
+    <string name="pref_viewer_nav">Navigationslayout</string>
+    <string name="edge_nav">Kant</string>
+    <string name="kindlish_nav">Kindle-ish</string>
+    <string name="l_nav">L-formad</string>
+    <string name="network_unmetered">Ouppmätt nätverk</string>
+    <string name="action_filter_tracked">Spåras</string>
 </resources>

@@ -51,7 +51,6 @@
     <string name="all">Összes</string>
     <string name="pref_library_update_restriction">Könyvtárfrissítési korlátozások</string>
     <string name="pref_library_update_restriction_summary">Frissítés csak akkor, ha a feltételek teljesülnek</string>
-    <string name="wifi">Wi-Fi</string>
     <string name="charging">Töltés</string>
     <string name="pref_update_only_non_completed">Csak a jelenleg futó mangákat frissítse</string>
     <string name="pref_start_screen">Kezdőképernyő</string>
@@ -162,7 +161,7 @@
     <string name="ext_installing">Telepítés</string>
     <string name="ext_installed">Telepítve</string>
     <string name="ext_available">Elérhető</string>
-    <string name="action_open_in_web_view">Webnézet</string>
+    <string name="action_open_in_web_view">WebView</string>
     <string name="label_help">Segítség</string>
     <string name="pref_library_update_prioritization">Könyvtárfrissítési sorrend</string>
     <string name="label_downloaded_only">Csak letöltött</string>
@@ -275,4 +274,5 @@
     <string name="ext_version_info">Verzió: %1$s</string>
     <string name="unofficial_extension_message">Ez a bővítmény nem a hivatalos Tachiyomi bővítménylistából származik.</string>
     <string name="obsolete_extension_message">Ez a bővítmény nem elérhető többé.</string>
+    <string name="action_web_view">WebView</string>
 </resources>

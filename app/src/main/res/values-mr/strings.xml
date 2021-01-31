@@ -182,7 +182,6 @@
     <string name="pref_category_library_categories">श्रेणीं</string>
     <string name="pref_update_only_non_completed">फक्त चालू असलेल्याच मांगा आधीतणीत करायचे</string>
     <string name="charging">चार्ज होत आहे</string>
-    <string name="wifi">वाय-फाय</string>
     <string name="pref_library_update_restriction_summary">अटी पूर्ण झाल्यावरच अध्यातन करावे</string>
     <string name="pref_library_update_restriction">लायब्ररी अद्ययावत प्रतिबंधी</string>
     <string name="pref_library_update_prioritization">लायब्ररी अद्ययावत क्रम</string>

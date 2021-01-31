@@ -131,7 +131,6 @@
     <string name="pref_library_update_refresh_metadata">Refrescar metadatos automáticamente</string>
     <string name="pref_update_only_non_completed">Actualiza só manga en curso</string>
     <string name="charging">Cargando</string>
-    <string name="wifi">Wi-Fi</string>
     <string name="pref_library_update_restriction_summary">Actualizar soamente cando as condicións se cumpren</string>
     <string name="pref_library_update_restriction">Restriccións de actualización da biblioteca</string>
     <string name="pref_library_update_prioritization">Orden de actualización da biblioteca</string>

@@ -572,7 +572,6 @@
         <item quantity="one">%d კატეგორია</item>
         <item quantity="other">%d კატეგორიები</item>
     </plurals>
-    <string name="wifi">Wi-Fi</string>
     <string name="pref_jump_to_chapters">გახსნილ თავებთან გადასვლა</string>
     <plurals name="lock_after_mins">
         <item quantity="one">1 წუთის შემდეგ</item>

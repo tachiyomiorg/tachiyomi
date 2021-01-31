@@ -103,7 +103,6 @@
     <string name="all">Tot</string>
     <string name="pref_library_update_restriction">Restriccions d\'actualització de la biblioteca</string>
     <string name="pref_library_update_restriction_summary">Actualitza només quan es compleixin les condicions</string>
-    <string name="wifi">Wi-Fi</string>
     <string name="charging">Carregant</string>
     <string name="pref_update_only_non_completed">Actualitza només el manga en curs</string>
     <string name="pref_auto_update_manga_sync">Actualitza el progrés dels capítols en llegir-los</string>
@@ -599,9 +598,9 @@
     <string name="backup_restore_missing_trackers">Seguidors sense sessió iniciada:</string>
     <string name="pref_remove_bookmarked_chapters">Suprimeix els capítols preferits</string>
     <string name="pref_category_delete_chapters">Suprimeix capítols</string>
-    <string name="ext_nsfw_warning">Pot contenir contingut +18</string>
+    <string name="ext_nsfw_warning">Pot contenir contingut NSFW (+18)</string>
     <string name="ext_nsfw_short">+18</string>
-    <string name="parental_controls_info">Això no evita que les extensions no oficials o possiblement mal etiquetades puguin mostrar contingut +18 a l\'aplicació.</string>
+    <string name="parental_controls_info">Això no evita que les extensions no oficials o possiblement mal etiquetades puguin mostrar contingut NSFW (+18) a l\'aplicació.</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Hi manca 1 capítol</item>
         <item quantity="other">Hi manquen %d capítols</item>
@@ -612,7 +611,7 @@
     <string name="also_set_chapter_settings_for_library">Aplica-ho també a tot el manga de la biblioteca</string>
     <string name="confirm_set_chapter_settings">Esteu segur que voleu desar aquesta configuració com a configuració per defecte\?</string>
     <string name="chapter_settings">Configuració dels capítols</string>
-    <string name="action_web_view">Visualització web</string>
+    <string name="action_web_view">WebView</string>
     <string name="share_page_info">%1$s: %2$s, pàgina %3$d</string>
     <string name="action_search_settings">Configuració de la cerca</string>
     <string name="downloaded_chapters">Capítols baixats</string>
@@ -633,7 +632,8 @@
     <string name="pref_create_legacy_backup_summary">Es pot utilitzar en versions més antigues del Tachiyomi</string>
     <string name="pref_create_legacy_backup">Crea una còpia de seguretat en format antic</string>
     <string name="migration_help_guide">Guia de migració de fonts</string>
-    <string name="invalid_backup_file_type">Fitxer de còpia de seguretat invàlid: %1$s</string>
+    <string name="invalid_backup_file_type">Tipus de fitxer de còpia de seguretat invàlid: %1$s
+\nHauria d\'acabar en .proto.gz o .json.</string>
     <string name="pref_category_nsfw_content">Fonts NSFW (+18)</string>
     <string name="file_picker_error">No s\'ha trobat cap aplicació de selecció de fitxers</string>
     <string name="pref_label_nsfw_extension">Etiqueta a la llista d\'extensions</string>
@@ -641,4 +641,27 @@
     <string name="pref_show_nsfw_source">Mostra a la llista de fonts</string>
     <string name="myanimelist_relogin">Torneu a iniciar la sessió a MAL</string>
     <string name="myanimelist_creds_missing">No s\'han trobat les credencials d\'inici de sessió a MAL</string>
+    <string name="channel_crash_logs">Registres de fallades</string>
+    <string name="track_finished_reading_date">Data en què el vau acabar a llegir</string>
+    <string name="track_started_reading_date">Data en què el vau començar a llegir</string>
+    <string name="crash_log_saved">S\'han desat els registres de fallades</string>
+    <string name="pref_dump_crash_logs_summary">Desa els registres d\'errors en un fitxer perquè el pugueu compartir amb els desenvolupadors</string>
+    <string name="pref_dump_crash_logs">Bolca els registres de fallades</string>
+    <string name="pref_viewer_nav">Disseny de navegació</string>
+    <string name="edge_nav">Vora</string>
+    <string name="kindlish_nav">Semblant al Kindle</string>
+    <string name="l_nav">En forma d\'L</string>
+    <string name="default_nav">Per defecte</string>
+    <string name="network_unmetered">Xarxa sense límit de dades</string>
+    <string name="action_desc">Descendent</string>
+    <string name="action_asc">Ascendent</string>
+    <string name="action_order_by_chapter_number">Per número de capítol</string>
+    <string name="action_order_by_upload_date">Per data de pujada</string>
+    <string name="action_filter_tracked">En seguiment</string>
+    <string name="tracker_shikimori" translatable="false">Shikimori</string>
+    <string name="tracker_bangumi" translatable="false">Bangumi</string>
+    <string name="tracker_kitsu" translatable="false">Kitsu</string>
+    <string name="tracker_myanimelist" translatable="false">MyAnimeList</string>
+    <string name="tracker_anilist" translatable="false">AniList</string>
+    <string name="action_display_show_number_of_items">Mostra el nombre d\'elements</string>
 </resources>

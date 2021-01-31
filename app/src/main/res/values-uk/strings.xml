@@ -103,7 +103,6 @@
     <string name="all">Всі</string>
     <string name="pref_library_update_restriction">Обмеження оновлення бібліотеки</string>
     <string name="pref_library_update_restriction_summary">Оновлювати коли умови виконано</string>
-    <string name="wifi">Wi-Fi</string>
     <string name="charging">Заряджається</string>
     <string name="pref_update_only_non_completed">Оновлювати тільки ongoing мангу</string>
     <string name="pref_auto_update_manga_sync">Оновлювати прогрес глав після прочитання</string>
@@ -618,9 +617,9 @@
     <string name="backup_restore_missing_trackers">Трекери не авторизовано:</string>
     <string name="pref_remove_bookmarked_chapters">Видалити глави з закладок</string>
     <string name="pref_category_delete_chapters">Видалити глави</string>
-    <string name="ext_nsfw_warning">Може містити контент 18+</string>
+    <string name="ext_nsfw_warning">Може містити контент NSFW (18+)</string>
     <string name="ext_nsfw_short">18+</string>
-    <string name="parental_controls_info">Це не заважає неофіційним або потенційно невірним розширенням розміщувати вміст 18+ у додатку.</string>
+    <string name="parental_controls_info">Це не заважає неофіційним або потенційно невірним розширенням розміщувати вміст NSFW (18+) у додатку.</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Відсутня 1 глава</item>
         <item quantity="few">Відсутні %d глави</item>
@@ -657,9 +656,27 @@
     <string name="file_picker_error">Додаток вибору файлів не знайдено</string>
     <string name="myanimelist_relogin">Будь ласка, увійдіть в MAL знову</string>
     <string name="myanimelist_creds_missing">Облікові дані входу в MAL не знайдено</string>
-    <string name="invalid_backup_file_type">Невірний файл резервної копії: %1$s</string>
+    <string name="invalid_backup_file_type">Невірний файл резервної копії: %1$s
+\nЙого розширення повинне бути .proto.gz or .json.</string>
     <string name="pref_label_nsfw_extension">Мітка в списку розширень</string>
     <string name="pref_show_nsfw_extension">Показувати в списку розширень</string>
     <string name="pref_show_nsfw_source">Показувати в списку джерел</string>
     <string name="pref_category_nsfw_content">NSFW (18+) джерела</string>
+    <string name="channel_crash_logs">Логи падінь</string>
+    <string name="track_finished_reading_date">Дата закінчення читання</string>
+    <string name="track_started_reading_date">Дата початку читання</string>
+    <string name="crash_log_saved">Логи падінь збережено</string>
+    <string name="pref_dump_crash_logs_summary">Зберігає логи помилок до файлу для надсилання розробникам</string>
+    <string name="pref_dump_crash_logs">Дамп логів про падіння</string>
+    <string name="pref_viewer_nav">Розмітка навігації</string>
+    <string name="edge_nav">Межа</string>
+    <string name="kindlish_nav">Kindle-подібна</string>
+    <string name="l_nav">L-подібна</string>
+    <string name="default_nav">За замовчуванням</string>
+    <string name="network_unmetered">Безлімітна мережа</string>
+    <string name="action_desc">За спаданням</string>
+    <string name="action_asc">За зростанням</string>
+    <string name="action_order_by_chapter_number">За номером глави</string>
+    <string name="action_order_by_upload_date">За датою завантаження</string>
+    <string name="action_filter_tracked">Відслідковуваний</string>
 </resources>

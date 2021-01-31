@@ -103,7 +103,6 @@
     <string name="all">Totus</string>
     <string name="pref_library_update_restriction">Restritziones a s\'agiornamentu de sa biblioteca</string>
     <string name="pref_library_update_restriction_summary">Agiorna petzi cando sas cunditziones benint rispetadas</string>
-    <string name="wifi">Wi-Fi</string>
     <string name="charging">Carrighende</string>
     <string name="pref_update_only_non_completed">Agiorna sos manga in cursu ebbia</string>
     <string name="pref_auto_update_manga_sync">Agiorna su progressu de sos capìtulos a pustis de sa leghidura</string>
@@ -648,4 +647,21 @@
     <string name="kindlish_nav">A tipu Kindle</string>
     <string name="l_nav">A forma de L</string>
     <string name="default_nav">Predefinidu</string>
+    <string name="channel_crash_logs">Registros de sos arrestos anòmalos</string>
+    <string name="track_finished_reading_date">Data de fine de sa leghidura</string>
+    <string name="track_started_reading_date">Data de incumintzu de sa leghidura</string>
+    <string name="tracker_shikimori" translatable="false">Shikimori</string>
+    <string name="tracker_bangumi" translatable="false">Bangumi</string>
+    <string name="tracker_kitsu" translatable="false">Kitsu</string>
+    <string name="tracker_myanimelist" translatable="false">MyAnimeList</string>
+    <string name="tracker_anilist" translatable="false">AniList</string>
+    <string name="crash_log_saved">Registros de sos arrestos anòmalos sarvados</string>
+    <string name="pref_dump_crash_logs_summary">Sarva sos registros de sos errores in unu documentu pro lu cumpartzire cun sos isvilupadores</string>
+    <string name="pref_dump_crash_logs">Iscàrriga sos registros de sos arrestos anòmalos</string>
+    <string name="network_unmetered">Retza chene lìmites de datos</string>
+    <string name="action_desc">In achirrada</string>
+    <string name="action_asc">Creschente</string>
+    <string name="action_order_by_chapter_number">Pro nùmeru de capìtulu</string>
+    <string name="action_order_by_upload_date">Pro data de carrigamentu</string>
+    <string name="action_filter_tracked">Arrastadu</string>
 </resources>

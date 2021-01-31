@@ -100,7 +100,6 @@
     <string name="all">সব</string>
     <string name="pref_library_update_restriction">সংগ্রহশালা হালনাগেদের সীমাবদ্ধতা</string>
     <string name="pref_library_update_restriction_summary">শুধু শর্ত মিললে হালনাগাদ করুন</string>
-    <string name="wifi">ওয়াই-ফাই</string>
     <string name="charging">চার্জ হচ্ছে</string>
     <string name="pref_update_only_non_completed">কেবল চলমান মাংগা হালনাগাদ করুন</string>
     <string name="pref_auto_update_manga_sync">পড়ার পর অধ্যায়গুলোর অগ্রগতি হালনাগাদ করুন</string>

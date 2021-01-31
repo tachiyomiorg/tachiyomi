@@ -297,7 +297,6 @@
     <string name="action_display_download_badge">다운로드 배지</string>
     <string name="action_open">열기</string>
     <string name="action_login">로그인</string>
-    <string name="wifi">Wi-Fi</string>
     <string name="pref_update_only_non_completed">연재 중인 만화만 업데이트</string>
     <string name="pref_auto_update_manga_sync">읽은 뒤 챕터 동기화</string>
     <string name="default_category_summary">항상 물어보기</string>
@@ -368,7 +367,7 @@
     <string name="download_notifier_no_network">네트워크 연결 사용 불가능</string>
     <string name="channel_common">일반</string>
     <string name="pref_read_with_long_tap">길게 눌러 대화상자 표시</string>
-    <string name="action_open_in_web_view">웹뷰로 열기</string>
+    <string name="action_open_in_web_view">WebView로 열기</string>
     <string name="pref_true_color">32비트 컬러</string>
     <string name="pref_skip_read_chapters">읽음 표시된 챕터 건너뛰기</string>
     <string name="pref_color_filter_mode">컬러 필터 블렌딩 모드</string>
@@ -380,4 +379,5 @@
     <string name="filter_mode_darken">번 / 어둡게하기</string>
     <string name="label_help">도움</string>
     <string name="email">이메일 주소</string>
+    <string name="action_web_view">WebView</string>
 </resources>

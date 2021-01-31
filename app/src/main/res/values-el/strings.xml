@@ -103,7 +103,6 @@
     <string name="all">Όλα</string>
     <string name="pref_library_update_restriction">Περιορισμοί ενημέρωσης βιβλιοθήκης</string>
     <string name="pref_library_update_restriction_summary">Ενημέρωση μόνο όταν πληρούνται οι προϋποθέσεις</string>
-    <string name="wifi">Wi-Fi</string>
     <string name="charging">Φορτίζει</string>
     <string name="pref_update_only_non_completed">Ενημέρωση μόνο manga σε εξέλιξη</string>
     <string name="pref_auto_update_manga_sync">Ενημέρωση προόδου κεφαλαίου μετά την ανάγνωση</string>
@@ -370,7 +369,7 @@
     <string name="channel_common">Κοινό</string>
     <string name="channel_library">Βιβλιοθήκη</string>
     <string name="pref_read_with_long_tap">Παράθυρο παρατεταμένου αγγίγματος</string>
-    <string name="action_open_in_web_view">Άνοιγμα σε WebView</string>
+    <string name="action_open_in_web_view">Άνοιγμα στο WebView</string>
     <string name="pref_true_color">Χρώμα 32-bit</string>
     <string name="pref_skip_read_chapters">Προσπέραση διαβασμένων κεφαλαίων</string>
     <string name="filter_mode_default">Προεπιλογή</string>
@@ -599,10 +598,10 @@
     <string name="channel_errors">Σφάλματα</string>
     <string name="backup_restore_missing_trackers">Ιχνηλάτες που δεν έχουν συνδεθεί:</string>
     <string name="pref_category_delete_chapters">Διαγραφή κεφαλαίων</string>
-    <string name="ext_nsfw_warning">Μπορεί να περιέχει 18+ περιεχόμενο</string>
+    <string name="ext_nsfw_warning">Μπορεί να περιέχει NSFW (18+) περιεχόμενο</string>
     <string name="ext_nsfw_short">18+</string>
     <string name="pref_remove_bookmarked_chapters">Διαγραφή κεφαλαίων με σελιδοδείκτη</string>
-    <string name="parental_controls_info">Αυτό δεν εμποδίζει τις ανεπίσημες ή ενδεχομένως εσφαλμένα επισημασμένες επεκτάσεις να εμφανίζουν περιεχόμενο 18+ περιεχόμενο στην εφαρμογή.</string>
+    <string name="parental_controls_info">Αυτό δεν εμποδίζει τις ανεπίσημες ή ενδεχομένως εσφαλμένα επισημασμένες επεκτάσεις να εμφανίζουν περιεχόμενο NSFW (18+) μέσα στην εφαρμογή.</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Λείπει 1 κεφάλαιο</item>
         <item quantity="other">Λείπουν %d κεφάλαια</item>
@@ -634,7 +633,8 @@
     <string name="pref_create_legacy_backup_summary">Μπορεί να χρησιμοποιηθεί σε παλαιότερες εκδόσεις του Tachiyomi</string>
     <string name="pref_create_legacy_backup">Δημιουργία αντιγράφου ασφαλείας παλαιού τύπου</string>
     <string name="migration_help_guide">Οδηγός μετανάστευσης πηγής</string>
-    <string name="invalid_backup_file_type">Μη έγκυρο αντίγραφο ασσφαλείας: %1$s</string>
+    <string name="invalid_backup_file_type">Μη έγκυρος τύπος αρχείου αντιγράφου ασφαλείας: %1$s
+\nΘα πρέπει να τελειώνει με .proto.gz ή .json.</string>
     <string name="pref_category_nsfw_content">Πηγές NSFW (18+)</string>
     <string name="pref_label_nsfw_extension">Ετικέτα στη λίστα επεκτάσεων</string>
     <string name="pref_show_nsfw_extension">Εμφάνιση στη λίστα επεκτάσεων</string>
@@ -647,4 +647,22 @@
     <string name="kindlish_nav">Kindle-ish</string>
     <string name="l_nav">Σχήματος L</string>
     <string name="default_nav">Προεπιλογή</string>
+    <string name="channel_crash_logs">Αρχεία καταγραφής σφαλμάτων</string>
+    <string name="track_finished_reading_date">Ημερομηνία ολοκλήρωσης ανάγνωσης</string>
+    <string name="track_started_reading_date">Ημερομηνία έναρξης ανάγνωσης</string>
+    <string name="tracker_shikimori" translatable="false">Shikimori</string>
+    <string name="tracker_bangumi" translatable="false">Bangumi</string>
+    <string name="tracker_kitsu" translatable="false">Kitsu</string>
+    <string name="tracker_myanimelist" translatable="false">MyAnimeList</string>
+    <string name="tracker_anilist" translatable="false">AniList</string>
+    <string name="crash_log_saved">Τα αρχεία καταγραφής σφαλμάτων αποθηκεύτηκαν</string>
+    <string name="pref_dump_crash_logs_summary">Αποθηκεύει αρχεία καταγραφής σφαλμάτων σε ένα αρχείο για κοινή χρήση με τους προγραμματιστές</string>
+    <string name="pref_dump_crash_logs">Άδειασμα αρχείων καταγραφής σφαλμάτων</string>
+    <string name="network_unmetered">Δίκτυο χωρίς μέτρηση</string>
+    <string name="action_desc">Φθίνουσα</string>
+    <string name="action_asc">Αύξουσα</string>
+    <string name="action_order_by_chapter_number">Κατά αριθμό κεφαλαίου</string>
+    <string name="action_order_by_upload_date">Κατά ημερομηνία μεταφόρτωσης</string>
+    <string name="action_filter_tracked">Παρακολουθούνται</string>
+    <string name="action_display_show_number_of_items">Εμφάνιση αριθμού στοιχείων</string>
 </resources>

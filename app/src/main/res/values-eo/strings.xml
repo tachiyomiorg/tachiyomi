@@ -1,2 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="label_categories">Kategorioj</string>
+    <string name="label_sources">Fontoj</string>
+    <string name="label_recent_manga">Historio</string>
+    <string name="label_recent_updates">Ĝisdatigoj</string>
+    <string name="label_library">Biblioteko</string>
+    <string name="label_download_queue">Elŝutos</string>
+    <string name="label_settings">Agordoj</string>
+    <string name="label_more">Plu</string>
+    <string name="name">Nomo</string>
+    <string name="information_no_recent">Neniuj ĝisdatigoj</string>
+    <string name="information_no_downloads">Neniu elŝuto</string>
+    <string name="label_help">Asistado</string>
+    <string name="label_extension_info">Konektprogramaro Informaĵo</string>
+    <string name="label_extensions">Konektoprogramaro</string>
+    <string name="label_migration">Migri</string>
+    <string name="label_backup">Arĥivo</string>
+</resources>

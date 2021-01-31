@@ -166,7 +166,6 @@
     <string name="all">Kaikki</string>
     <string name="pref_library_update_restriction">Kirjaston päivityksen rajoitukset</string>
     <string name="pref_library_update_restriction_summary">Päivitä vain kun vaatimukset täyttyvät</string>
-    <string name="wifi">Wi-Fi</string>
     <string name="charging">Latauksessa</string>
     <string name="pref_update_only_non_completed">Päivitä vain jatkuvat sarjat</string>
     <string name="pref_auto_update_manga_sync">Päivitä luvun edistyminen lukemisen jälkeen</string>
@@ -645,7 +644,24 @@
     <string name="myanimelist_creds_missing">MAL-kirjautumistietoja ei löytynyt</string>
     <string name="pref_viewer_nav">Navigointiasettelu</string>
     <string name="edge_nav">Reuna</string>
-    <string name="kindlish_nav">Kindle-ish</string>
+    <string name="kindlish_nav">Kindle tyylinen</string>
     <string name="l_nav">L-muotoinen</string>
     <string name="default_nav">Oletus</string>
+    <string name="pref_dump_crash_logs">Poista kaatumislokit</string>
+    <string name="channel_crash_logs">Kaatumislokit</string>
+    <string name="track_finished_reading_date">Lopetuspäivämäärä</string>
+    <string name="track_started_reading_date">Aloituspäivämäärä</string>
+    <string name="tracker_shikimori" translatable="false">Shikimori</string>
+    <string name="tracker_bangumi" translatable="false">Bangumi</string>
+    <string name="tracker_kitsu" translatable="false">Kitsu</string>
+    <string name="tracker_myanimelist" translatable="false">MyAnimeList</string>
+    <string name="tracker_anilist" translatable="false">AniList</string>
+    <string name="crash_log_saved">Kaatumislokit tallennettu</string>
+    <string name="pref_dump_crash_logs_summary">Tallentaa virhelokit tiedostoon jaettavaksi kehittäjien kanssa</string>
+    <string name="network_unmetered">Mittaamaton verkko</string>
+    <string name="action_desc">Laskeva</string>
+    <string name="action_asc">Nouseva</string>
+    <string name="action_order_by_chapter_number">Luvunumeron mukaan</string>
+    <string name="action_order_by_upload_date">Lisäyspäivämäärän mukaan</string>
+    <string name="action_filter_tracked">Seuratut</string>
 </resources>

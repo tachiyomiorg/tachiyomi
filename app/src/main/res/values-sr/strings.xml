@@ -103,7 +103,6 @@
     <string name="all">Sve</string>
     <string name="pref_library_update_restriction">Restrikcije ažuriranja biblioteke</string>
     <string name="pref_library_update_restriction_summary">Ažuriraj samo kada su uslovi zadovoljeni</string>
-    <string name="wifi">Wi-Fi</string>
     <string name="charging">Punjenje</string>
     <string name="pref_update_only_non_completed">Samo ažuriraj mangu koja je u toku</string>
     <string name="pref_auto_update_manga_sync">Sinhronizuj poglavlja nakon čitanja</string>
@@ -288,7 +287,7 @@
     <string name="download_all">Sve</string>
     <string name="download_unread">Nepročitano</string>
     <string name="confirm_delete_chapters">Da li ste sigurni da želite da obrišete sledeća poglavlja\?</string>
-    <string name="action_open_in_web_view">Otvori u Web pregledu</string>
+    <string name="action_open_in_web_view">Otvori u WebView</string>
     <string name="pref_true_color">32-bitna boja</string>
     <string name="pref_skip_read_chapters">Preskoči poglavlja označena kao pročitana</string>
     <string name="filter_mode_default">Normalno</string>
@@ -501,7 +500,7 @@
     <string name="action_display_comfortable_grid">Šira mreža</string>
     <string name="action_migrate">Migriraj</string>
     <string name="action_open_in_settings">Otvori u Podešavanjima</string>
-    <string name="action_web_view">WebPregled</string>
+    <string name="action_web_view">WebView</string>
     <string name="action_start">Počni</string>
     <string name="action_disable_all">Onemogući sve</string>
     <string name="action_enable_all">Omogući sve</string>
@@ -516,7 +515,7 @@
     <plurals name="num_categories">
         <item quantity="one">%d kategorija</item>
         <item quantity="few">%d kategorije</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="pref_library_update_error_notification">Prikaži greške pri ažuriranju u obavještenju</string>
     <string name="pref_library_update_refresh_metadata_summary">Provjeri da li postoje nove pozadine kada ažuriraš biblioteku</string>

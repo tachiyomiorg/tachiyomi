@@ -87,7 +87,6 @@
     <string name="all">Tất cả</string>
     <string name="pref_library_update_restriction">Hạn chế cập nhật thư viện</string>
     <string name="pref_library_update_restriction_summary">Chỉ cập nhật khi có đủ các điều kiện</string>
-    <string name="wifi">Wi-Fi</string>
     <string name="charging">Đang sạc</string>
     <string name="pref_update_only_non_completed">Chỉ cập nhật truyện đang tiến hành</string>
     <string name="pref_auto_update_manga_sync">Đồng bộ các chương sau khi đọc</string>

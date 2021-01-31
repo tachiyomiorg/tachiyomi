@@ -86,7 +86,6 @@
     <string name="all">すべて</string>
     <string name="pref_library_update_restriction">ライブラリ更新制限</string>
     <string name="pref_library_update_restriction_summary">条件が満たされた場合にのみ更新する</string>
-    <string name="wifi">Wi-Fi</string>
     <string name="charging">充電中</string>
     <string name="pref_update_only_non_completed">連載中のマンガのみ更新</string>
     <string name="pref_auto_update_manga_sync">読んだ後に章の読書進捗を更新</string>

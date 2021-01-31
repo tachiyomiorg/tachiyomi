@@ -100,7 +100,6 @@
     <string name="all">समस्त</string>
     <string name="pref_library_update_restriction">पुस्तकालय अद्यतन प्रतिबंध</string>
     <string name="pref_library_update_restriction_summary">अद्यतन तभी जब परिस्थिति अनुकूल हो</string>
-    <string name="wifi">वाई - फाई</string>
     <string name="charging">चार्ज होते समय</string>
     <string name="pref_update_only_non_completed">केवल चालू मंगा का अद्यतन करे</string>
     <string name="pref_auto_update_manga_sync">पढ़ने के बाद अध्याय प्रगति को अपडेट करें</string>

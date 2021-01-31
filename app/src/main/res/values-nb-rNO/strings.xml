@@ -92,7 +92,6 @@
     <string name="update_weekly">Ukentlig</string>
     <string name="update_monthly">Månedlig</string>
     <string name="all">Alle</string>
-    <string name="wifi">Wi-Fi</string>
     <string name="charging">Lading</string>
     <string name="pref_start_screen">Startskjerm</string>
     <string name="pref_language">Språk</string>
@@ -121,7 +120,7 @@
     <string name="pref_reader_navigation">Navigasjon</string>
     <string name="track">Sporing</string>
     <string name="action_global_search">Globalt søk</string>
-    <string name="action_open_in_web_view">Nettvisning</string>
+    <string name="action_open_in_web_view">Åpne i WebView</string>
     <string name="pref_category_tracking">Sporing</string>
     <string name="portrait">Stående</string>
     <string name="landscape">Liggende</string>
@@ -511,7 +510,7 @@
     <string name="unknown_status">Ukjent status</string>
     <string name="unknown_author">Ukjent forfatter</string>
     <string name="local_source_help_guide">Lokal kildeguide</string>
-    <string name="http_error_hint">Sjekk nettsted i nettvisning</string>
+    <string name="http_error_hint">Sjekk nettsted i WebView</string>
     <string name="badges_header">merker</string>
     <plurals name="download_queue_summary">
         <item quantity="one">1 gjenstående</item>

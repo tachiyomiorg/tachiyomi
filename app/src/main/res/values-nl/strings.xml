@@ -240,7 +240,6 @@
     <string name="portrait">Staand</string>
     <string name="landscape">Liggend</string>
     <string name="pref_library_update_restriction_summary">Update alleen wanneer de voorwaarden zijn voldaan</string>
-    <string name="wifi">Wi-Fi</string>
     <string name="charging">Aan het opladen</string>
     <string name="pref_reader_navigation">Navigatie</string>
     <string name="pref_read_with_volume_keys_inverted">Draai volumeknoppen om</string>

@@ -42,7 +42,6 @@
     <string name="pref_category_library_categories">Kategorije</string>
     <string name="pref_update_only_non_completed">Ažuriraj samo nastavljajuće mange</string>
     <string name="charging">Punjenje</string>
-    <string name="wifi">Wi-Fi</string>
     <string name="pref_library_update_restriction_summary">Ažuriraj samo kad su ispunjeni uvjeti</string>
     <string name="pref_library_update_restriction">Ograničenja za ažuriranje biblioteke</string>
     <string name="pref_library_update_prioritization">Redoslijed ažuriranja biblioteke</string>
@@ -188,7 +187,7 @@
     <string name="action_sort_total">Ukupan broj poglavlja</string>
     <string name="action_sort_alpha">Abecednim redom</string>
     <string name="action_filter_empty">Ukloni filtar</string>
-    <string name="action_filter_unread">Napročitano</string>
+    <string name="action_filter_unread">Nepročitano</string>
     <string name="action_filter_bookmarked">Zabilježeno</string>
     <string name="action_filter">Filtar</string>
     <string name="action_menu">Izbornik</string>
@@ -610,10 +609,10 @@
     <string name="channel_errors">Greške</string>
     <string name="pref_remove_bookmarked_chapters">Izbriši označena poglavlja</string>
     <string name="pref_category_delete_chapters">Izbriši poglavlja</string>
-    <string name="ext_nsfw_warning">Može sadržavati 18+ sadržaj</string>
+    <string name="ext_nsfw_warning">Može sadržavati neprikladan sadržaj (18+)</string>
     <string name="ext_nsfw_short">18+</string>
     <string name="backup_restore_missing_trackers">Praćenja bez prijave:</string>
-    <string name="parental_controls_info">To ne sprečava neslužbena ili potencijalno krivo označena proširenje prikazati sadržaj 18+ unutar aplikacije.</string>
+    <string name="parental_controls_info">To ne sprečava neslužbene ili potencijalno krivo označene dodatke prikazati neprikladan sadržaj (18+) unutar aplikacije.</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Nedostaje %d poglavlje</item>
         <item quantity="few">Nedostaju %d poglavlja</item>
@@ -646,12 +645,35 @@
     <string name="pref_create_legacy_backup_summary">Može se koristiti u starijim Tachiyomi verzijama</string>
     <string name="pref_create_legacy_backup">Stvori zastarjelu sigurnosnu kopiju</string>
     <string name="migration_help_guide">Vodič za migraciju izvora</string>
-    <string name="invalid_backup_file_type">Neispravna datoteka sigurnosne kopije: %1$s</string>
-    <string name="pref_category_nsfw_content">Neprikladan sadržaj (18+)</string>
+    <string name="invalid_backup_file_type">Neispravna datoteka sigurnosne kopije: %1$s
+\nTrebala bi završiti s .proto.gz ili .json.</string>
+    <string name="pref_category_nsfw_content">Izvori neprikladnog sadržaja (18+)</string>
     <string name="file_picker_error">Nije pronađen nijedan program za biranje datoteka</string>
     <string name="myanimelist_relogin">Ponovo se prijavi na MAL</string>
     <string name="myanimelist_creds_missing">Podaci za prijavu na MAL nisu pronađene</string>
     <string name="pref_label_nsfw_extension">Oznaka u popisu dodataka</string>
     <string name="pref_show_nsfw_extension">Pokaži u popisu dodataka</string>
     <string name="pref_show_nsfw_source">Pokaži u popisu izvora</string>
+    <string name="channel_crash_logs">Zapisi rušenja programa</string>
+    <string name="track_finished_reading_date">Datum kraja čitanja</string>
+    <string name="track_started_reading_date">Datum početka čitanja</string>
+    <string name="crash_log_saved">Zapisi rušenja programa su spremljeni</string>
+    <string name="pref_dump_crash_logs_summary">Sprema zapise grešaka u datoteku za obavještavanje programera</string>
+    <string name="pref_dump_crash_logs">Spremi zapise rušenja programa</string>
+    <string name="pref_viewer_nav">Način navigacije</string>
+    <string name="edge_nav">Edge</string>
+    <string name="kindlish_nav">Kao Kindle</string>
+    <string name="l_nav">U obliku slova L</string>
+    <string name="default_nav">Standardno</string>
+    <string name="network_unmetered">Neograničena mreža</string>
+    <string name="action_desc">Silazno</string>
+    <string name="action_asc">Uzlazno</string>
+    <string name="action_order_by_chapter_number">Po broju poglavlja</string>
+    <string name="action_order_by_upload_date">Po datumu preuzimanja</string>
+    <string name="action_filter_tracked">Praćeno</string>
+    <string name="tracker_shikimori" translatable="false">Shikimori</string>
+    <string name="tracker_bangumi" translatable="false">Bangumi</string>
+    <string name="tracker_kitsu" translatable="false">Kitsu</string>
+    <string name="tracker_myanimelist" translatable="false">MyAnimeList</string>
+    <string name="tracker_anilist" translatable="false">AniList</string>
 </resources>

@@ -99,7 +99,6 @@
     <string name="all">Semua</string>
     <string name="pref_library_update_restriction">Batasan kemas kini pustaka</string>
     <string name="pref_library_update_restriction_summary">Kemas kini hanya apabila syarat dipenuhi</string>
-    <string name="wifi">Wi-Fi</string>
     <string name="charging">Ketika mengecas</string>
     <string name="pref_update_only_non_completed">Hanya kemas kini manga yang masih berterusan</string>
     <string name="pref_auto_update_manga_sync">Kemas kini bab selepas dibaca</string>
@@ -589,9 +588,9 @@
     <string name="backup_restore_missing_trackers">Penjejak yang tidak dilog masuk:</string>
     <string name="pref_remove_bookmarked_chapters">Padam bab yang ditanda</string>
     <string name="pref_category_delete_chapters">Padam bab</string>
-    <string name="ext_nsfw_warning">Mungkin mengandungi kandungan(18+tahun keatas</string>
+    <string name="ext_nsfw_warning">Mungkin mengandungi kandungan 18+ tahun keatas</string>
     <string name="ext_nsfw_short">18+</string>
-    <string name="parental_controls_info">Ini tidak menghalang sambungan yang tidak rasmi atau berpotensi tidak menggunakan tetapan yang betul daripada menayangkan kandungan(18+) tahun keatas dalam aplikasi.</string>
+    <string name="parental_controls_info">Ini tidak menghalang sambungan yang tidak rasmi atau berpotensi tidak menggunakan tetapan yang betul daripada menayangkan kandungan 18+ tahun keatas dalam aplikasi.</string>
     <plurals name="missing_chapters_warning">
         <item quantity="other">Ada %d bab yang hilang</item>
     </plurals>
@@ -636,4 +635,21 @@
     <string name="edge_nav">isi</string>
     <string name="kindlish_nav">Serupa Kindle</string>
     <string name="l_nav">Bentuk L</string>
+    <string name="action_desc">Menurun</string>
+    <string name="action_asc">Menaik</string>
+    <string name="action_order_by_chapter_number">Mengikut nombor bab</string>
+    <string name="action_order_by_upload_date">Mengikut tarikh muat naik</string>
+    <string name="channel_crash_logs">Log kerosakan</string>
+    <string name="tracker_bangumi" translatable="false">Bangumi</string>
+    <string name="tracker_kitsu" translatable="false">Kitsu</string>
+    <string name="tracker_myanimelist" translatable="false">MyAnimeList</string>
+    <string name="tracker_anilist" translatable="false">AniList</string>
+    <string name="crash_log_saved">Log kerosakan disimpan</string>
+    <string name="pref_dump_crash_logs_summary">Simpan log ralat untuk dikongsi dengan pembangunan aplikasi</string>
+    <string name="pref_dump_crash_logs">Kumpulan log kerosakan</string>
+    <string name="network_unmetered">Rangkaian tidak bermeter</string>
+    <string name="tracker_shikimori" translatable="false">Shikimori</string>
+    <string name="track_started_reading_date">Tarikh mula membaca</string>
+    <string name="track_finished_reading_date">Tarikh selesai membaca</string>
+    <string name="action_filter_tracked">Dijejaki</string>
 </resources>

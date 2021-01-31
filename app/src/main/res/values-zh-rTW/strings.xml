@@ -99,7 +99,6 @@
     <string name="all">全部</string>
     <string name="pref_library_update_prioritization">書櫃更新順序</string>
     <string name="pref_library_update_restriction">書櫃更新限制</string>
-    <string name="wifi">僅限 Wi-Fi</string>
     <string name="charging">僅限充電時</string>
     <string name="pref_update_only_non_completed">僅更新連載中的漫畫</string>
     <string name="pref_start_screen">起始畫面</string>
@@ -613,7 +612,8 @@
     <string name="file_picker_error">找不到檔案選擇器</string>
     <string name="share_page_info">《%1$s》：%2$s，第 %3$d 頁</string>
     <string name="migration_help_guide">來源遷移說明</string>
-    <string name="invalid_backup_file_type">無效的備份檔：%1$s</string>
+    <string name="invalid_backup_file_type">無效的備份檔格式：%1$s
+\n副檔名應為 .proto.gz 或 .json</string>
     <string name="spen_next_page">下一頁</string>
     <string name="spen_previous_page">上一頁</string>
     <string name="myanimelist_relogin">請重新登入 MAL</string>
@@ -629,4 +629,20 @@
     <string name="pref_show_nsfw_extension">在擴充套件清單中顯示</string>
     <string name="pref_show_nsfw_source">在來源清單中顯示</string>
     <string name="default_nav">預設</string>
+    <string name="tracker_shikimori" translatable="false">Shikimori</string>
+    <string name="tracker_bangumi" translatable="false">Bangumi</string>
+    <string name="tracker_kitsu" translatable="false">Kitsu</string>
+    <string name="tracker_myanimelist" translatable="false">MyAnimeList</string>
+    <string name="tracker_anilist" translatable="false">AniList</string>
+    <string name="track_finished_reading_date">閱讀完畢日期</string>
+    <string name="track_started_reading_date">開始閱讀日期</string>
+    <string name="edge_nav">邊緣式</string>
+    <string name="kindlish_nav">Kindle 式</string>
+    <string name="l_nav">L 式</string>
+    <string name="action_filter_tracked">已紀錄歷程</string>
+    <string name="channel_crash_logs">當機記錄</string>
+    <string name="crash_log_saved">已產生當機記錄</string>
+    <string name="pref_dump_crash_logs_summary">產生錯誤記錄檔以便分享予開發人員</string>
+    <string name="pref_dump_crash_logs">傾印當機記錄</string>
+    <string name="pref_viewer_nav">輕觸翻頁模式</string>
 </resources>

@@ -229,7 +229,6 @@
     <string name="pref_library_update_refresh_metadata">Refrescar automaticamente los metadatos</string>
     <string name="pref_update_only_non_completed">Solo actualizar manga no finalizado</string>
     <string name="charging">Cargando</string>
-    <string name="wifi">Wi-Fi</string>
     <string name="pref_library_update_restriction_summary">Actualizar solo cuando se cumplan las condiciones</string>
     <string name="pref_library_update_restriction">Restricciones de actualización de biblioteca</string>
     <string name="pref_library_update_prioritization">Orden de actualización de la biblioteca</string>
@@ -614,7 +613,7 @@
     <string name="also_set_chapter_settings_for_library">Aplicar también a todos los mangas en mi biblioteca</string>
     <string name="confirm_set_chapter_settings">¿Estás seguro de que quieres guardar como predeterminadas estas configuraciones\?</string>
     <string name="chapter_settings">Ajustes del capítulo</string>
-    <string name="action_web_view">Vista de la web</string>
+    <string name="action_web_view">WebView</string>
     <string name="downloaded_chapters">Capítulos descargardos</string>
     <string name="manga_from_library">Manga de la biblioteca</string>
     <string name="pref_hide_bottom_bar_on_scroll">Ocultar la barra inferior al desplazar</string>
@@ -628,7 +627,8 @@
     <string name="spen_next_page">Siguiente página</string>
     <string name="spen_previous_page">Página previa</string>
     <string name="migration_help_guide">Guía de migración de fuentes</string>
-    <string name="invalid_backup_file_type">Archivo de copia de seguridad inválido: %1$s</string>
+    <string name="invalid_backup_file_type">Archivo de copia de seguridad inválido: %1$s
+\nDebería terminar con .proto.gz o .json.</string>
     <string name="full_restore_offline">Restaurar fuera de línea, termina rápidamente pero contiene solo lo que tu copia de seguridad posee</string>
     <string name="full_restore_online">Restaurar en línea, es más lento pero te da información y capítulos más actualizados</string>
     <string name="full_restore_mode">Modo de red</string>
@@ -642,4 +642,21 @@
     <string name="pref_label_nsfw_extension">Etiqueta en la lista de extensiones</string>
     <string name="pref_show_nsfw_extension">Mostrar en la lista de extensiones</string>
     <string name="pref_show_nsfw_source">Mostrar en la lista de fuentes</string>
+    <string name="channel_crash_logs">Registros de accidentes</string>
+    <string name="track_finished_reading_date">Fecha de lectura finalizada</string>
+    <string name="track_started_reading_date">Fecha de inicio de lectura</string>
+    <string name="crash_log_saved">Registros de fallos guardados</string>
+    <string name="pref_dump_crash_logs_summary">Guarda los registros de errores en un archivo para compartirlos con los desarrolladores</string>
+    <string name="pref_dump_crash_logs">Volcar registros de accidentes</string>
+    <string name="pref_viewer_nav">Estructura de navegación</string>
+    <string name="edge_nav">Borde</string>
+    <string name="kindlish_nav">Kindle-ish</string>
+    <string name="l_nav">En forma de L</string>
+    <string name="default_nav">Por Defecto</string>
+    <string name="network_unmetered">Red no medida</string>
+    <string name="action_desc">Descendiente</string>
+    <string name="action_asc">Ascendiente</string>
+    <string name="action_order_by_chapter_number">Por número de capítulo</string>
+    <string name="action_order_by_upload_date">Por fecha de subida</string>
+    <string name="action_filter_tracked">Rastreado</string>
 </resources>

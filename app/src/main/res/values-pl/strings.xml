@@ -166,7 +166,6 @@
     <string name="all">Wszystko</string>
     <string name="pref_library_update_restriction">Warunki aktualizacji biblioteki</string>
     <string name="pref_library_update_restriction_summary">Aktualizuje tylko, kiedy spełnione są te warunki</string>
-    <string name="wifi">Wi-Fi</string>
     <string name="charging">Ładowanie</string>
     <string name="pref_update_only_non_completed">Aktualizuj tylko nieukończone mangi</string>
     <string name="pref_auto_update_manga_sync">Aktualizuj postęp po przeczytaniu rozdziału</string>
@@ -653,11 +652,12 @@
     <string name="pref_remove_bookmarked_chapters">Usuwaj rozdziały dodane do zakładek</string>
     <string name="pref_hide_bottom_bar_on_scroll">Ukryj dolny pasek podczas przewijania</string>
     <string name="pref_category_delete_chapters">Usuń rozdziały</string>
-    <string name="ext_nsfw_warning">Może zawierać zawartość +18</string>
+    <string name="ext_nsfw_warning">Może zawierać zawartość NSFW (18+)</string>
     <string name="ext_nsfw_short">18+</string>
-    <string name="parental_controls_info">Nie zapobiega to nieoficjalnym lub potencjalnie niepoprawnie oflagowanym rozszerzeniom przed pokazywaniem zwartości +18 w aplikacji.</string>
+    <string name="parental_controls_info">Nie zapobiega to nieoficjalnym lub potencjalnie niepoprawnie oflagowanym rozszerzeniom przed pokazywaniem zwartości NSFW(18+) w aplikacji.</string>
     <string name="action_web_view">WebView</string>
-    <string name="invalid_backup_file_type">Nieprawidłowy plik kopii zapasowej: %1$s</string>
+    <string name="invalid_backup_file_type">Nieprawidłowe rozszczerzenie pliku kopii zapasowej: %1$s
+\nPowinno być .proto.gz albo .json.</string>
     <string name="pref_category_nsfw_content">NFSW Materiały 18+</string>
     <string name="file_picker_error">Nie znaleziono aplikacji do przeglądania plików</string>
     <string name="myanimelist_relogin">Wymagane ponowne zalogowanie do MAL</string>
@@ -665,4 +665,21 @@
     <string name="pref_label_nsfw_extension">Pokazuj etykiety na liście rozszerzeń</string>
     <string name="pref_show_nsfw_extension">Pokazuj na liście rozszerzeń</string>
     <string name="pref_show_nsfw_source">Pokazuj na liście źródeł</string>
+    <string name="channel_crash_logs">Logi crashy</string>
+    <string name="track_finished_reading_date">Data zakończenia czytania</string>
+    <string name="track_started_reading_date">Data rozpoczęcia czytania</string>
+    <string name="crash_log_saved">Logi crasha zapisane</string>
+    <string name="pref_dump_crash_logs_summary">Zapisuje logi błędów do pliku do udostępnienia programistom</string>
+    <string name="pref_dump_crash_logs">Zapisz logi crasha</string>
+    <string name="pref_viewer_nav">Styl nawigacji</string>
+    <string name="edge_nav">Przy krawędzi</string>
+    <string name="kindlish_nav">Podobnie jak w czytniku Kindle</string>
+    <string name="l_nav">W kształcie litery \"L\"</string>
+    <string name="default_nav">Domyślnie</string>
+    <string name="network_unmetered">Sieć bez limitu danych</string>
+    <string name="action_desc">Malejąco</string>
+    <string name="action_asc">Rosnąco</string>
+    <string name="action_order_by_chapter_number">Według numeru rozdziału</string>
+    <string name="action_order_by_upload_date">Po dacie dodania</string>
+    <string name="action_filter_tracked">Śledzone</string>
 </resources>

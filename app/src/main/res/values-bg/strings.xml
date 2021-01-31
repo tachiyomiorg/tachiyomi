@@ -87,7 +87,6 @@
     <string name="all">Всички</string>
     <string name="pref_library_update_restriction">Ограничения при обновяване</string>
     <string name="pref_library_update_restriction_summary">Обновявай само когато дадените условия са спазени</string>
-    <string name="wifi">Wi-Fi</string>
     <string name="charging">На зарядно устройство</string>
     <string name="pref_update_only_non_completed">Обновявай само излизаща манга</string>
     <string name="pref_auto_update_manga_sync">Обнови прогреса по заглавието след прочитане</string>

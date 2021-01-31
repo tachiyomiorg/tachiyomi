@@ -94,7 +94,6 @@
     <string name="all">Alle</string>
     <string name="pref_library_update_restriction">Bibliotheksaktualisierung einschränken</string>
     <string name="pref_library_update_restriction_summary">Nur aktualisieren, wenn diese Bedingungen zutreffen</string>
-    <string name="wifi">WLAN</string>
     <string name="charging">Am Laden</string>
     <string name="pref_update_only_non_completed">Nur fortlaufende Manga aktualisieren</string>
     <string name="pref_auto_update_manga_sync">Kapitelfortschritt nach dem Lesen aktualisieren</string>
@@ -333,7 +332,7 @@
 \n
 \nEine bösartige Erweiterung könnte in Tachiyomi gespeicherte Anmeldedaten auslesen oder einen schädlichen Code ausführen.
 \n
-\nDurch das Vertrauen dieses Zertifikats akzeptieren Sie diese Risiken.</string>
+\nDurch das Vertrauen dieses Zertifikats akzeptierst du diese Risiken.</string>
     <string name="ext_version_info">Version: %1$s</string>
     <string name="ext_language_info">Sprache: %1$s</string>
     <string name="double_tap_anim_speed_0">Keine Animation</string>
@@ -470,7 +469,7 @@
         <item quantity="other">%d Erweiterungsaktualisierungen verfügbar</item>
     </plurals>
     <string name="channel_ext_updates">Erweiterungsaktualisierungen</string>
-    <string name="http_error_hint">Website in WebView prüfen</string>
+    <string name="http_error_hint">Webseite in WebView prüfen</string>
     <string name="updating_library">Bibliothek wird aktualisiert</string>
     <string name="pref_skip_filtered_chapters">Überspringe gefilterte Kapitel</string>
     <string name="pref_category_reading">Beim Lesen</string>
@@ -482,7 +481,7 @@
     <string name="webtoon_side_padding_15">15 %</string>
     <string name="webtoon_side_padding_10">10 %</string>
     <string name="webtoon_side_padding_0">Keinen</string>
-    <string name="pref_webtoon_side_padding">Seitenpolster</string>
+    <string name="pref_webtoon_side_padding">Seitenränder</string>
     <string name="pinned_sources">Angeheftet</string>
     <string name="action_unpin">Loslösen</string>
     <string name="action_pin">Anheften</string>
@@ -504,7 +503,7 @@
     <string name="restore_in_progress">Wiederherstellung wird bereits durchgeführt</string>
     <string name="backup_in_progress">Sicherung wird bereits durchgeführt</string>
     <string name="error_invalid_date_supplied">Ungültiges Datum angegeben</string>
-    <string name="check_for_updates">Auf Aktualisierungen überprüfen</string>
+    <string name="check_for_updates">Nach Aktualisierungen suchen</string>
     <string name="last_used_source">Zuletzt genutzt</string>
     <string name="local_source_help_guide">Anleitung für lokale Quellen</string>
     <string name="restore_duration">%02d Min. %02d Sk.</string>
@@ -600,9 +599,9 @@
     <string name="backup_restore_missing_trackers">Nicht-angemeldete Tracker:</string>
     <string name="pref_remove_bookmarked_chapters">Mit Lesezeichen versehene Kapitel löschen</string>
     <string name="pref_category_delete_chapters">Kapitel löschen</string>
-    <string name="ext_nsfw_warning">Kann NSFW(Ü18-Inhalte enthalten</string>
+    <string name="ext_nsfw_warning">Kann NSFW/Ü18-Inhalte enthalten</string>
     <string name="ext_nsfw_short">Ü18</string>
-    <string name="parental_controls_info">Dies verhindert nicht, dass inoffizielle oder möglicherweise falsch gekennzeichnete Erweiterungen NSFW(Ü18)-Inhalte in der App anzeigen.</string>
+    <string name="parental_controls_info">Dies verhindert nicht, dass inoffizielle oder möglicherweise falsch gekennzeichnete Erweiterungen NSFW/Ü18-Inhalte in der App anzeigen.</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Es gibt 1 fehlendes Kapitel</item>
         <item quantity="other">Es gibt %d fehlende Kapitel</item>
@@ -636,7 +635,7 @@
     <string name="migration_help_guide">Quellenmigration</string>
     <string name="invalid_backup_file_type">Ungültiger Sicherungsdateientyp: %1$s
 \nDie Datei sollte mit .proto.gz oder .json enden.</string>
-    <string name="pref_category_nsfw_content">NSFW(18+)-Quellen</string>
+    <string name="pref_category_nsfw_content">NSFW/Ü18-Quellen</string>
     <string name="pref_label_nsfw_extension">In der Erweiterungsliste markieren</string>
     <string name="pref_show_nsfw_extension">In der Erweiterungsliste</string>
     <string name="pref_show_nsfw_source">In der Quellenliste anzeigen</string>
@@ -648,4 +647,22 @@
     <string name="kindlish_nav">Kindle-Stil</string>
     <string name="l_nav">L-förmig</string>
     <string name="default_nav">Standard</string>
+    <string name="channel_crash_logs">Absturzprotokolle</string>
+    <string name="track_finished_reading_date">Datum des Leseabschlusses</string>
+    <string name="track_started_reading_date">Datum des Lesebeginns</string>
+    <string name="tracker_shikimori" translatable="false">Shikimori</string>
+    <string name="tracker_bangumi" translatable="false">Bangumi</string>
+    <string name="tracker_kitsu" translatable="false">Kitsu</string>
+    <string name="tracker_myanimelist" translatable="false">MyAnimeList</string>
+    <string name="tracker_anilist" translatable="false">AniList</string>
+    <string name="crash_log_saved">Absturzprotokolle gespeichert</string>
+    <string name="pref_dump_crash_logs_summary">Speichert Fehlerprotokolle in einer Datei, die dann mit den Entwicklern geteilt wird</string>
+    <string name="pref_dump_crash_logs">Absturzprotokolle ausgeben</string>
+    <string name="network_unmetered">Unbegrenztes Netzwerk</string>
+    <string name="action_desc">Absteigend</string>
+    <string name="action_asc">Aufsteigend</string>
+    <string name="action_order_by_chapter_number">Nach Kapitelnummer</string>
+    <string name="action_order_by_upload_date">Nach Upload-Datum</string>
+    <string name="action_filter_tracked">Getrackt</string>
+    <string name="action_display_show_number_of_items">Anzahl der Elemente anzeigen</string>
 </resources>

@@ -96,7 +96,6 @@
     <string name="all">Todas</string>
     <string name="pref_library_update_restriction">Restrições de atualização da biblioteca</string>
     <string name="pref_library_update_restriction_summary">Atualizar apenas quando as condições se cumprirem</string>
-    <string name="wifi">Wi-Fi</string>
     <string name="charging">Carregando</string>
     <string name="pref_update_only_non_completed">Atualizar apenas os mangás em andamento</string>
     <string name="pref_auto_update_manga_sync">Atualizar o progresso do capítulo após a leitura</string>
@@ -648,4 +647,22 @@
     <string name="l_nav">Em forma de L</string>
     <string name="pref_viewer_nav">Layout de navegação</string>
     <string name="default_nav">Padrão</string>
+    <string name="channel_crash_logs">Erros de travamento</string>
+    <string name="track_finished_reading_date">Data de término da leitura</string>
+    <string name="track_started_reading_date">Data de início da leitura</string>
+    <string name="crash_log_saved">Registros de travamento salvos</string>
+    <string name="pref_dump_crash_logs_summary">Salva os registros de erro em um arquivo para o compartilhamento com os desenvolvedores</string>
+    <string name="pref_dump_crash_logs">Limpar os registros de travamentos</string>
+    <string name="network_unmetered">Rede ilimitada</string>
+    <string name="action_desc">Decrescente</string>
+    <string name="action_asc">Crescente</string>
+    <string name="action_order_by_chapter_number">Pelo número do capítulo</string>
+    <string name="action_order_by_upload_date">Pela data de envio</string>
+    <string name="action_filter_tracked">Monitorado</string>
+    <string name="tracker_shikimori" translatable="false">Shikimori</string>
+    <string name="tracker_bangumi" translatable="false">Bangumi</string>
+    <string name="tracker_kitsu" translatable="false">Kitsu</string>
+    <string name="tracker_myanimelist" translatable="false">MyAnimeList</string>
+    <string name="tracker_anilist" translatable="false">AniList</string>
+    <string name="action_display_show_number_of_items">Mostrar o número de itens</string>
 </resources>

@@ -83,7 +83,6 @@
     <string name="all">Tutte</string>
     <string name="pref_library_update_restriction">Restrizioni dell\'aggiornamento della libreria</string>
     <string name="pref_library_update_restriction_summary">Aggiorna solo quando sono soddisfatte le condizioni</string>
-    <string name="wifi">Wi-Fi</string>
     <string name="charging">Caricamento</string>
     <string name="pref_update_only_non_completed">Aggiorna solo manga in corso</string>
     <string name="pref_auto_update_manga_sync">Aggiorna l\'avanzamento del capitolo dopo la lettura</string>

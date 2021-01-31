@@ -96,7 +96,6 @@
     <string name="all">Semua</string>
     <string name="pref_library_update_restriction">Pembatasan pembaruan perpustakaan</string>
     <string name="pref_library_update_restriction_summary">Perbaharui hanya ketika kondisi terpenuhi</string>
-    <string name="wifi">Wi-Fi</string>
     <string name="charging">Sedang mengisi daya</string>
     <string name="pref_update_only_non_completed">Perbarui manga yang masih belum tamat saja</string>
     <string name="pref_auto_update_manga_sync">Perbaharui perkembangan bab setelah membaca</string>
@@ -369,7 +368,7 @@
     <string name="transition_no_previous">Tidak ada chapter sebelumnya</string>
     <string name="transition_pages_loading">Memuat halaman…</string>
     <string name="transition_pages_error">Gagal memuat halaman: %1$s</string>
-    <string name="action_open_in_web_view">Buka dalam mode Website</string>
+    <string name="action_open_in_web_view">Buka dalam WebView</string>
     <string name="pref_true_color">Warna 32-bit</string>
     <string name="pref_skip_read_chapters">Lewati bab yang sudah dibaca</string>
     <string name="pref_read_with_long_tap">Dialog ketuk dan tahan</string>
@@ -464,7 +463,7 @@
     <string name="pref_enable_automatic_extension_updates">Periksa untuk pembaruan extension</string>
     <string name="pref_category_reading">Membaca</string>
     <string name="action_sort_last_checked">Terakhir diperiksa</string>
-    <string name="information_webview_required">Tampilan web dibutuhkan untuk Tachiyomi</string>
+    <string name="information_webview_required">WebView dibutuhkan untuk Tachiyomi</string>
     <plurals name="update_check_notification_ext_updates">
         <item quantity="other">Terdapat %d perbaharuan ekstensi</item>
     </plurals>
@@ -475,7 +474,7 @@
     <string name="manga_info_expand">Selengkapnya</string>
     <string name="in_library">Dalam koleksi</string>
     <string name="add_to_library">Tambahkan ke koleksi</string>
-    <string name="http_error_hint">Cek halaman web dalam tampilan web</string>
+    <string name="http_error_hint">Cek dalam WebView</string>
     <string name="licenses">Lisensi terbuka</string>
     <string name="restoring_backup_error">Gagal memulihkan data dari cadangan</string>
     <string name="creating_backup_error">Pencadangan data gagal</string>
@@ -591,7 +590,7 @@
     <string name="ext_nsfw_short">18+</string>
     <string name="pref_remove_bookmarked_chapters">Hapus bab yang ditandai</string>
     <string name="pref_category_delete_chapters">Hapus bab</string>
-    <string name="parental_controls_info">Ini tidak mencegah ekstensi yang tidak dilabeli konten 18+ di dalam aplikasi.</string>
+    <string name="parental_controls_info">Hal ini tidak mencegah ekstensi tidak resmi atau yang berpotensi salahnya label untuk menampilkan konten NSFW (18+) dalam aplikasi.</string>
     <plurals name="missing_chapters_warning">
         <item quantity="other">Ada %d bab yang hilang</item>
     </plurals>
@@ -601,7 +600,7 @@
     <string name="also_set_chapter_settings_for_library">Juga terapkan untuk semua manga di perpustakaan saya</string>
     <string name="confirm_set_chapter_settings">Apakah anda yakin ingin menyimpan pengaturan ini sebagai default\?</string>
     <string name="chapter_settings">Pengaturan bab</string>
-    <string name="action_web_view">Tampilan Web</string>
+    <string name="action_web_view">WebView</string>
     <string name="share_page_info">%1$s: %2$s, halaman %3$d</string>
     <string name="action_search_settings">Cari pengaturan</string>
     <string name="downloaded_chapters">Bab terunduh</string>
@@ -633,4 +632,9 @@
     <string name="edge_nav">Tepi</string>
     <string name="l_nav">Berbentuk L</string>
     <string name="default_nav">Default</string>
+    <string name="action_desc">Urutan turun</string>
+    <string name="action_asc">Urutan naik</string>
+    <string name="action_order_by_chapter_number">Berdasarkan nomor bab</string>
+    <string name="action_order_by_upload_date">Berdasarkan tanggal unggahan</string>
+    <string name="action_filter_tracked">Dilacak</string>
 </resources>

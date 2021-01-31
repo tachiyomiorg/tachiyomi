@@ -59,7 +59,7 @@
     <string name="action_resume">Pokračovať</string>
     <string name="action_move">Presunúť</string>
     <string name="action_open_in_browser">Otvoriť v browseri</string>
-    <string name="action_open_in_web_view">Otvoriť vo web view</string>
+    <string name="action_open_in_web_view">Otvoriť vo WebView</string>
     <string name="action_display_mode">Zmeniť zobrazenie</string>
     <string name="action_display">Zobraziť</string>
     <string name="action_display_grid">Mriežka</string>
@@ -106,7 +106,6 @@
     <string name="pref_library_update_prioritization">Poradie aktualizácie knižnice</string>
     <string name="pref_library_update_restriction">Obmedzenia aktualizácii knižnice</string>
     <string name="pref_library_update_restriction_summary">Aktualizovať len vtedy, keď sú splnené podmienky</string>
-    <string name="wifi">Wi-Fi</string>
     <string name="charging">Nabíjanie</string>
     <string name="pref_update_only_non_completed">Aktualizovať iba nedokončenú Mangu</string>
     <string name="pref_auto_update_manga_sync">Synchronizovať kapitoly po prečítaní</string>
@@ -399,4 +398,5 @@
     <string name="action_newest">Najnovšie</string>
     <string name="action_oldest">Najstaršie</string>
     <string name="action_move_to_top">Presunúť navrch</string>
+    <string name="action_web_view">WebView</string>
 </resources>

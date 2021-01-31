@@ -103,7 +103,6 @@
     <string name="all">全部</string>
     <string name="pref_library_update_restriction">书架更新条件</string>
     <string name="pref_library_update_restriction_summary">仅在符合条件时更新</string>
-    <string name="wifi">已连接 Wi-Fi</string>
     <string name="charging">正在充电</string>
     <string name="pref_update_only_non_completed">仅更新连载中的漫画</string>
     <string name="pref_auto_update_manga_sync">阅读后更新章节进度</string>
@@ -589,9 +588,9 @@
     <string name="backup_restore_missing_trackers">未登录的同步源：</string>
     <string name="pref_remove_bookmarked_chapters">删除已添加书签的章节</string>
     <string name="pref_category_delete_chapters">删除章节</string>
-    <string name="ext_nsfw_warning">可能包含 18+ 内容</string>
+    <string name="ext_nsfw_warning">可能包含NSFW (18+) 内容</string>
     <string name="ext_nsfw_short">18+</string>
-    <string name="parental_controls_info">这并不能防止非官方或可能被错误标记的扩展插件在应用程序中显示 18+ 内容。</string>
+    <string name="parental_controls_info">这并不能防止非官方或可能被错误标记的扩展插件在应用程序中显示 NSFW (18+) 内容。</string>
     <plurals name="missing_chapters_warning">
         <item quantity="other">此处有 %d 章缺失</item>
     </plurals>
@@ -636,4 +635,21 @@
     <string name="kindlish_nav">Kindle 样式</string>
     <string name="l_nav">L 形</string>
     <string name="default_nav">默认</string>
+    <string name="tracker_anilist" translatable="false">AniList</string>
+    <string name="channel_crash_logs">崩溃记录</string>
+    <string name="track_finished_reading_date">完成阅读日期</string>
+    <string name="track_started_reading_date">开始阅读日期</string>
+    <string name="tracker_shikimori" translatable="false">Shikimori</string>
+    <string name="tracker_bangumi" translatable="false">Bangumi</string>
+    <string name="tracker_kitsu" translatable="false">Kitsu</string>
+    <string name="tracker_myanimelist" translatable="false">MyAnimeList</string>
+    <string name="crash_log_saved">崩溃记录已保存</string>
+    <string name="pref_dump_crash_logs_summary">将错误记录保存到文件中，以便与开发人员共享</string>
+    <string name="pref_dump_crash_logs">转储崩溃记录</string>
+    <string name="network_unmetered">不按流量计费的网络</string>
+    <string name="action_desc">降序</string>
+    <string name="action_asc">升序</string>
+    <string name="action_order_by_chapter_number">按章节数</string>
+    <string name="action_order_by_upload_date">按上传日期</string>
+    <string name="action_filter_tracked">已跟踪</string>
 </resources>

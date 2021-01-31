@@ -99,7 +99,6 @@
     <string name="all">Toate</string>
     <string name="pref_library_update_restriction">Restricții actualizare bibliotecă</string>
     <string name="pref_library_update_restriction_summary">Actualizează doar când condițiile sunt împlinite</string>
-    <string name="wifi">Wi-Fi</string>
     <string name="charging">Se încarcă</string>
     <string name="pref_update_only_non_completed">Actualizați doar manga în desfășurare</string>
     <string name="pref_auto_update_manga_sync">Actualizați progresul capitolului după citire</string>
@@ -369,7 +368,7 @@
     <string name="download_notifier_download_paused">Descărcare întreruptă</string>
     <string name="channel_common">General</string>
     <string name="channel_library">Bibliotecă</string>
-    <string name="action_open_in_web_view">Deschide în vizualizare web</string>
+    <string name="action_open_in_web_view">Deschide în WebView</string>
     <string name="pref_true_color">Culoare 32-bit</string>
     <string name="pref_color_filter_mode">Mod filtru de culoare</string>
     <string name="filter_mode_default">Implicit</string>
@@ -629,7 +628,7 @@
     <string name="downloaded_chapters">Capitole descărcate</string>
     <string name="manga_from_library">Manga din bibliotecă</string>
     <string name="pref_hide_bottom_bar_on_scroll">Ascundeți bara de jos când faceți scroll</string>
-    <string name="action_web_view">Webview</string>
+    <string name="action_web_view">WebView</string>
     <string name="action_search_settings">Setări de căutare</string>
     <string name="pref_incognito_mode_summary">Întrerupe citirea istoricului</string>
     <string name="pref_incognito_mode">Modul incognito</string>

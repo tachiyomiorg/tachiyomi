@@ -48,11 +48,11 @@
     <string name="action_stop">Остановить</string>
     <string name="action_update">Обновить</string>
     <string name="action_update_library">Обновить библиотеку</string>
-    <string name="all">Все</string>
+    <string name="all">Всё</string>
     <string name="backup">Резервная копия</string>
     <string name="black_background">Черный</string>
     <string name="build_time">Дата сборки</string>
-    <string name="cache_delete_error">Возникла ошибка при очистке кэша</string>
+    <string name="cache_delete_error">Возникла ошибка при удалении кэша</string>
     <string name="cache_deleted">Кэш очищен. %1$d файл(ов/а) был(о) удален(о)</string>
     <string name="chapter_downloaded">Загружено</string>
     <string name="chapter_downloading">Загружается</string>
@@ -197,7 +197,7 @@
     <string name="pref_update_only_non_completed">Обновлять только незавершенную мангу</string>
     <string name="pref_viewer_type">Режим чтения по умолчанию</string>
     <string name="pref_zoom_start">Стартовая позиция увеличения</string>
-    <string name="reading">Читаю</string>
+    <string name="reading">В процессе чтения</string>
     <string name="remove_from_library">Удалить из библиотеки</string>
     <string name="right_to_left_viewer">Справа налево</string>
     <string name="rotation_force_landscape">Горизонтальная</string>
@@ -254,7 +254,6 @@
     <string name="vertical_viewer">Вертикально</string>
     <string name="webtoon_viewer">Вебкомикс</string>
     <string name="white_background">Белый</string>
-    <string name="wifi">Wi-Fi</string>
     <string name="zoom_start_automatic">Автоматическая</string>
     <string name="zoom_start_center">Центральная</string>
     <string name="zoom_start_left">Слева</string>
@@ -266,7 +265,7 @@
     <string name="action_undo">Отменить</string>
     <string name="added_to_library">Манга была добавлена в библиотеку</string>
     <string name="backup_choice">Что вы хотите бэкапить\?</string>
-    <string name="backup_created">Бэкап создан</string>
+    <string name="backup_created">Резевная копия создана</string>
     <string name="backup_restore_content">При восстановлении используются данные из источников, что может вызвать большой расход трафика.
 \n
 \nУбедитесь, что установили и авторизовались во всех нужных расширениях и сервисах отслеживания перед восстановлением.</string>
@@ -279,7 +278,7 @@
     <string name="download_notifier_download_paused">Загрузка приостановлена</string>
     <string name="history">История</string>
     <string name="invalid_combination">Категория по умолчанию не может быть выбрана вместе с другими категориями</string>
-    <string name="local_source">Локальный источник</string>
+    <string name="local_source">Локальная манга</string>
     <string name="manga">Манга</string>
     <string name="no_more_results">Больше нет результатов</string>
     <string name="pref_backup_directory">Каталог бэкапа</string>
@@ -294,7 +293,7 @@
     <string name="pref_refresh_library_tracking_summary">Обновляет статус, оценку и последнюю прочитанную главу из сервисов отслеживания</string>
     <string name="pref_restore_backup">Восстановить из бэкапа</string>
     <string name="pref_restore_backup_summ">Восстановить библиотеку из бэкапа</string>
-    <string name="restore_completed">Восстановление закончено</string>
+    <string name="restore_completed">Восстановление завершено</string>
     <string name="restoring_backup">Восстановление из резервной копии</string>
     <string name="short_recent_updates">Обновления</string>
     <string name="snack_categories_deleted">Категории удалены</string>
@@ -330,10 +329,10 @@
     <string name="ext_untrusted">Ненадёжное</string>
     <string name="ext_uninstall">Удалить</string>
     <string name="ext_available">Доступно</string>
-    <string name="untrusted_extension">Ненадёжное расширение</string>
-    <string name="untrusted_extension_message">Это расширение подписано ненадёжным сертификатом и не было активировано.
+    <string name="untrusted_extension">Ненадежное расширение</string>
+    <string name="untrusted_extension_message">Это расширение было подписано ненадежным сертификатом и не было активировано. 
 \n
-\nВредоносное расширение может считывать любые учетные данные, хранящиеся в Tachiyomi, или выполнять произвольный код.
+\nВредоносное расширение может считывать любые учетные данные для входа, хранящиеся в Tachiyomi, или выполнять произвольный код. 
 \n
 \nДоверяя этому сертификату, вы принимаете эти риски.</string>
     <string name="ext_version_info">Версия: %1$s</string>
@@ -382,7 +381,7 @@
     <string name="filter_mode_darken">Затемнение</string>
     <string name="label_help">Помощь</string>
     <string name="pref_library_update_prioritization">Порядок обновления библиотеки</string>
-    <string name="no_results_found">Результатов не найдено</string>
+    <string name="no_results_found">Нет результатов</string>
     <string name="migration_selection_prompt">Выберите источник миграции</string>
     <string name="action_webview_back">Назад</string>
     <string name="action_webview_forward">Вперед</string>
@@ -390,7 +389,7 @@
     <string name="pref_category_library">Библиотека</string>
     <string name="invalid_download_dir">Недопустимая директория для скачивания</string>
     <string name="ext_obsolete">Устарело</string>
-    <string name="obsolete_extension_message">Это расширение больше недоступно.</string>
+    <string name="obsolete_extension_message">Это расширение больше не доступно.</string>
     <string name="pref_date_format">Формат даты</string>
     <string name="pref_category_library_update">Обновления</string>
     <string name="pref_category_library_categories">Категории</string>
@@ -398,7 +397,7 @@
     <string name="logout">Выйти</string>
     <string name="logout_success">Вы успешно вышли</string>
     <string name="currently_reading">Сейчас читаю</string>
-    <string name="paused">Приостановлено</string>
+    <string name="paused">На паузе</string>
     <string name="want_to_read">Хочу почитать</string>
     <string name="label_more">Ещё</string>
     <string name="action_sort_latest_chapter">Последняя глава</string>
@@ -464,7 +463,7 @@
         <item quantity="many">Доступны обновления для %d расширений</item>
         <item quantity="other">Доступны обновления для %d расширений</item>
     </plurals>
-    <string name="email">Адрес почты</string>
+    <string name="email">Адрес электронной почты</string>
     <string name="pref_always_show_chapter_transition">Всегда показывать переход между главами</string>
     <string name="pref_enable_automatic_extension_updates">Проверять обновления для расширений</string>
     <string name="hide_notification_content">Скрыть содержимое уведомлений</string>
@@ -490,7 +489,7 @@
     <string name="webtoon_side_padding_20">20%</string>
     <string name="webtoon_side_padding_15">15%</string>
     <string name="webtoon_side_padding_10">10%</string>
-    <string name="webtoon_side_padding_0">Без отступа</string>
+    <string name="webtoon_side_padding_0">Нет</string>
     <string name="pinned_sources">Закреплено</string>
     <string name="action_unpin">Открепить</string>
     <string name="action_pin">Закрепить</string>
@@ -503,14 +502,14 @@
     <string name="in_library">В библиотеке</string>
     <string name="add_to_library">Добавить в библиотеку</string>
     <string name="licenses">Лицензии открытого кода</string>
-    <string name="website">Вебсайт</string>
+    <string name="website">Веб-сайт</string>
     <string name="pref_confirm_exit">Подтвердить выход</string>
     <string name="recent_manga_time">Гл. %1$s - %2$s</string>
     <string name="error_invalid_date_supplied">Неправильно указана дата</string>
     <string name="local_source_help_guide">Руководство по локальным источникам</string>
     <string name="last_used_source">Последний использованный</string>
     <string name="downloaded_only_summary">Фильтрует всю мангу в вашей библиотеке</string>
-    <string name="check_for_updates">Проверить обновления</string>
+    <string name="check_for_updates">Проверять обновления</string>
     <string name="restoring_backup_canceled">Восстановление отменено</string>
     <string name="restoring_backup_error">Ошибка восстановления из бэкапа</string>
     <string name="restore_in_progress">Восстановление уже выполняется</string>
@@ -584,7 +583,7 @@
         <item quantity="other">%1$s глав</item>
     </plurals>
     <string name="action_sort_descending">По убыванию</string>
-    <string name="requires_app_restart">Требуется перезапуск приложения для вступления в силу</string>
+    <string name="requires_app_restart">Для вступления в силу требуется перезапуск приложения</string>
     <string name="pref_dns_over_https" translatable="false">DNS по HTTPS (Cloudflare)</string>
     <string name="label_network">Сеть</string>
     <string name="pref_jump_to_chapters">Переходить к главам при запуске</string>
@@ -670,4 +669,21 @@
     <string name="kindlish_nav">Kindle-подобная</string>
     <string name="l_nav">L-образная</string>
     <string name="default_nav">По умолчанию</string>
+    <string name="channel_crash_logs">Логи вылетов</string>
+    <string name="track_finished_reading_date">Дата окончания чтения</string>
+    <string name="track_started_reading_date">Дата начала чтения</string>
+    <string name="crash_log_saved">Логи вылета сохранены</string>
+    <string name="pref_dump_crash_logs_summary">Сохраняет логи ошибок в файл для обмена с разработчиками</string>
+    <string name="pref_dump_crash_logs">Сброс логов об вылетах</string>
+    <string name="network_unmetered">Безлимитная сеть</string>
+    <string name="action_desc">По убыванию</string>
+    <string name="action_asc">По возрастанию</string>
+    <string name="action_order_by_chapter_number">По номеру главы</string>
+    <string name="action_order_by_upload_date">По дате загрузки</string>
+    <string name="action_filter_tracked">Отслеживаемый</string>
+    <string name="tracker_anilist" translatable="false">AniList</string>
+    <string name="tracker_shikimori" translatable="false">Shikimori</string>
+    <string name="tracker_bangumi" translatable="false">Bangumi</string>
+    <string name="tracker_kitsu" translatable="false">Kitsu</string>
+    <string name="tracker_myanimelist" translatable="false">MyAnimeList</string>
 </resources>

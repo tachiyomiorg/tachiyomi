@@ -238,7 +238,6 @@
     <string name="pref_library_update_interval">Frekvence aktualizace knihovny</string>
     <string name="update_never">Ručně</string>
     <string name="all">Vše</string>
-    <string name="wifi">Wi-Fi</string>
     <string name="charging">Nabíjení</string>
     <string name="default_category">Výchozí kategorie</string>
     <string name="default_category_summary">Vždy se zeptat</string>
@@ -370,7 +369,7 @@
     <string name="download_notifier_downloader_title">Stahovač</string>
     <string name="channel_common">Běžný</string>
     <string name="label_help">Nápověda</string>
-    <string name="action_open_in_web_view">Otevřít ve web view</string>
+    <string name="action_open_in_web_view">Otevřít ve WebView</string>
     <string name="pref_read_with_long_tap">Nabídka při dlouhém podržení</string>
     <string name="pref_true_color">32-bitová barva</string>
     <string name="pref_skip_read_chapters">Přeskakovat přečtené kapitoly</string>
@@ -403,4 +402,5 @@
     <string name="label_sources">Zdroje</string>
     <string name="spen_previous_page">Předchozí stránka</string>
     <string name="spen_next_page">Následující stránka</string>
+    <string name="action_web_view">WebView</string>
 </resources>

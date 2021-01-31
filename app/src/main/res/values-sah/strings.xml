@@ -69,7 +69,6 @@
     <string name="pref_library_update_refresh_metadata">Метаданнайдары автоматическайдык саҥарт</string>
     <string name="pref_update_only_non_completed">Бүтэ илик маанганы эрэ, саҥарт</string>
     <string name="charging">Иитиллэр</string>
-    <string name="wifi">Wi-Fi</string>
     <string name="pref_library_update_restriction_summary">Усулуобуйалар толоруллубутугар эрэ, саҥарт</string>
     <string name="pref_library_update_restriction">Бэбэлэтиэкэ саҥардыытын хааччахтааһын</string>
     <string name="pref_library_update_prioritization">Бэбэлэтиэкэ саҥардыытын бэрээдэгэ</string>

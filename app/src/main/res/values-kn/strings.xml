@@ -284,7 +284,6 @@
     <string name="pref_category_library_categories">ವರ್ಗಗಳು</string>
     <string name="pref_update_only_non_completed">ಚಾಲ್ತಿಯಿರುವ ಮಾಂಗಾವನ್ನು ಮಾತ್ರ ನವೀಕರಿಸಿ</string>
     <string name="charging">ಚಾರ್ಜಿಂಗ್</string>
-    <string name="wifi">ವೈಫೈ</string>
     <string name="pref_library_update_restriction_summary">ಷರತ್ತುಗಳನ್ನು ಪೂರೈಸಿದಾಗ ಮಾತ್ರ ನವೀಕರಿಸಿ</string>
     <string name="pref_library_update_restriction">ಗ್ರಂಥಾಲಯ ನವೀಕರಣ ನಿರ್ಬಂಧಗಳು</string>
     <string name="pref_library_update_prioritization">ಗ್ರಂಥಾಲಯ ನವೀಕರಣ ಪಾಳಿ</string>

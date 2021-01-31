@@ -120,7 +120,6 @@
     <string name="pref_library_update_categories">หมวดหมู่ที่จะปรับปรุงข้อมูลทั้งหมด</string>
     <string name="pref_library_update_restriction">จำกัดการปรับปรุงห้องสมุด</string>
     <string name="pref_library_update_restriction_summary">ปรับปรุงตามเงื่อนไข</string>
-    <string name="wifi">Wi-Fi</string>
     <string name="pref_update_only_non_completed">ปรับปรุงเฉพาะมังงะที่ดำเนินต่อ</string>
     <string name="pref_auto_update_manga_sync">ซิงค์ตอนหลังการอ่าน</string>
     <string name="pref_start_screen">เปิดหน้าแรก</string>

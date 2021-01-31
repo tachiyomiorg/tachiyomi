@@ -73,7 +73,6 @@
     <string name="all">Tudo</string>
     <string name="pref_library_update_restriction">Restrições sobre a atualização da biblioteca</string>
     <string name="pref_library_update_restriction_summary">Atualizar apenas quando se cumprem as condições</string>
-    <string name="wifi">Wi-Fi</string>
     <string name="charging">A carregar</string>
     <string name="pref_update_only_non_completed">Atualizar apenas mangás a decorrer</string>
     <string name="pref_auto_update_manga_sync">Atualizar progresso do capítulo após leitura</string>
@@ -630,9 +629,9 @@
     <string name="backup_restore_missing_trackers">Monitorizadores sem sessão iniciada:</string>
     <string name="pref_remove_bookmarked_chapters">Eliminar capítulos marcados</string>
     <string name="pref_category_delete_chapters">Eliminar capítulos</string>
-    <string name="ext_nsfw_warning">Pode conter conteúdo 18+</string>
+    <string name="ext_nsfw_warning">Pode conter conteúdo NSFW (18+)</string>
     <string name="ext_nsfw_short">18+</string>
-    <string name="parental_controls_info">Isto não impede que extensões não oficiais ou potencialmente marcadas de forma incorreta surjam com conteúdos de 18+ dentro da aplicação.</string>
+    <string name="parental_controls_info">Isto não impede que extensões não oficiais ou potencialmente marcadas de forma incorreta surjam com conteúdos de NSFW (18+) dentro da aplicação.</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">Há 1 capítulo em falta</item>
         <item quantity="other">Há %d capítulos em falta</item>
@@ -659,7 +658,8 @@
     <string name="spen_next_page">Página seguinte</string>
     <string name="spen_previous_page">Página anterior</string>
     <string name="migration_help_guide">Guia de migração de fonte</string>
-    <string name="invalid_backup_file_type">Cópia de segurança inválida: %1$s</string>
+    <string name="invalid_backup_file_type">Tipo de ficheiro da cópia de segurança inválido: %1$s
+\nDeve terminar com .proto.gz ou .json.</string>
     <string name="full_restore_offline">Restaurar offline, termina rapidamente mas contém apenas o que a sua cópiad de segurança tem</string>
     <string name="full_restore_online">Restaurar online, muito mais lento mas dá-lhe mais informações e capítulos mais atualizados</string>
     <string name="full_restore_mode">Modo de Rede</string>
@@ -672,4 +672,21 @@
     <string name="pref_label_nsfw_extension">Nome na lista de extensões</string>
     <string name="pref_show_nsfw_extension">Mostrar na lista de extensões</string>
     <string name="pref_show_nsfw_source">Mostrar na lista de fontes</string>
+    <string name="pref_viewer_nav">Esquema de navegação</string>
+    <string name="kindlish_nav">Estilo Kindle</string>
+    <string name="l_nav">Em forma de L</string>
+    <string name="default_nav">Padrão</string>
+    <string name="network_unmetered">Rede ilimitada</string>
+    <string name="action_desc">Descendente</string>
+    <string name="action_asc">Ascendente</string>
+    <string name="action_order_by_chapter_number">Por número do capítulo</string>
+    <string name="action_order_by_upload_date">Por data de envio</string>
+    <string name="action_filter_tracked">Monitorizado</string>
+    <string name="edge_nav">Borda</string>
+    <string name="channel_crash_logs">Registos de falhas</string>
+    <string name="track_finished_reading_date">Data de fim de leitura</string>
+    <string name="track_started_reading_date">Data de início de leitura</string>
+    <string name="crash_log_saved">Registos de falhas guardados</string>
+    <string name="pref_dump_crash_logs">Guardar registos de falhas</string>
+    <string name="pref_dump_crash_logs_summary">Guarda registos de erros num ficheiro para partilhar com os desenvolvedores</string>
 </resources>
