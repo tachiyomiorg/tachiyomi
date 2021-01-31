@@ -106,7 +106,7 @@ class TrackSearchDialog : DialogController {
         val binding = binding ?: return
         binding.progress.isVisible = true
         binding.trackSearchList.isVisible = false
-        trackController.presenter.search(query, service)
+        trackController.presenter.trackingSearch(query, service)
     }
 
     fun onSearchResults(results: List<TrackSearch>) {

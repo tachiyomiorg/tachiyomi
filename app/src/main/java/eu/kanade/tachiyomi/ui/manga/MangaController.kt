@@ -1038,31 +1038,33 @@ class MangaController :
     // Chapters list - end
 
     // Tracker sheet - start
-    fun onNextTrackings(trackings: List<TrackItem>) {
-        trackSheet?.onNextTrackings(trackings)
+    fun onNextTrackers(trackers: List<TrackItem>) {
+        trackSheet?.onNextTrackers(trackers)
     }
 
-    fun onRefreshDone() {
+    fun onTrackingRefreshDone() {
     }
 
-    fun onRefreshError(error: Throwable) {
-        activity?.toast(error.message)
-    }
-
-    fun onSearchResults(results: List<TrackSearch>) {
-        getSearchDialog()?.onSearchResults(results)
-    }
-
-    @Suppress("UNUSED_PARAMETER")
-    fun onSearchResultsError(error: Throwable) {
+    fun onTrackingRefreshError(error: Throwable) {
         Timber.e(error)
         activity?.toast(error.message)
-        getSearchDialog()?.onSearchResultsError()
     }
 
-    private fun getSearchDialog(): TrackSearchDialog? {
+    fun onTrackingSearchResults(results: List<TrackSearch>) {
+        getTrackingSearchDialog()?.onSearchResults(results)
+    }
+
+    fun onTrackingSearchResultsError(error: Throwable) {
+        Timber.e(error)
+        activity?.toast(error.message)
+        getTrackingSearchDialog()?.onSearchResultsError()
+    }
+
+    private fun getTrackingSearchDialog(): TrackSearchDialog? {
         return trackSheet?.getSearchDialog()
     }
+
+    // Tracker sheet - end
 
     companion object {
         const val FROM_SOURCE_EXTRA = "from_source"

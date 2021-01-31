@@ -11,7 +11,6 @@ import eu.kanade.tachiyomi.databinding.TrackControllerBinding
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.system.copyToClipboard
 import eu.kanade.tachiyomi.widget.sheet.BaseBottomSheetDialog
-import uy.kohesive.injekt.api.get
 
 class TrackSheet(
     val controller: MangaController,
@@ -51,13 +50,13 @@ class TrackSheet(
 
     override fun show() {
         super.show()
-        controller.presenter.refresh()
+        controller.presenter.trackingRefresh()
         sheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
     }
 
-    fun onNextTrackings(trackings: List<TrackItem>) {
+    fun onNextTrackers(trackers: List<TrackItem>) {
         if (this::adapter.isInitialized) {
-            adapter.items = trackings
+            adapter.items = trackers
             adapter.notifyDataSetChanged()
         }
     }
@@ -117,21 +116,21 @@ class TrackSheet(
     }
 
     override fun setStatus(item: TrackItem, selection: Int) {
-        controller.presenter.setStatus(item, selection)
+        controller.presenter.setTrackerStatus(item, selection)
     }
 
     override fun setChaptersRead(item: TrackItem, chaptersRead: Int) {
-        controller.presenter.setLastChapterRead(item, chaptersRead)
+        controller.presenter.setTrackerLastChapterRead(item, chaptersRead)
     }
 
     override fun setScore(item: TrackItem, score: Int) {
-        controller.presenter.setScore(item, score)
+        controller.presenter.setTrackerScore(item, score)
     }
 
     override fun setReadingDate(item: TrackItem, type: SetTrackReadingDatesDialog.ReadingDate, date: Long) {
         when (type) {
-            SetTrackReadingDatesDialog.ReadingDate.Start -> controller.presenter.setStartDate(item, date)
-            SetTrackReadingDatesDialog.ReadingDate.Finish -> controller.presenter.setFinishDate(item, date)
+            SetTrackReadingDatesDialog.ReadingDate.Start -> controller.presenter.setTrackerStartDate(item, date)
+            SetTrackReadingDatesDialog.ReadingDate.Finish -> controller.presenter.setTrackerFinishDate(item, date)
         }
     }
 

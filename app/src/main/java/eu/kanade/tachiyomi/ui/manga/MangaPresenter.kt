@@ -151,7 +151,7 @@ class MangaPresenter(
 
         // Chapters list - end
 
-        fetchTrackings()
+        fetchTrackers()
     }
 
     // Manga info - start
@@ -664,8 +664,9 @@ class MangaPresenter(
 
     // Chapters list - end
 
-    // Tracker sheet - start
-    private fun fetchTrackings() {
+    // Track sheet - start
+
+    private fun fetchTrackers() {
         trackSubscription?.let { remove(it) }
         trackSubscription = db.getTracks(manga)
             .asRxObservable()
@@ -676,10 +677,10 @@ class MangaPresenter(
             }
             .observeOn(AndroidSchedulers.mainThread())
             .doOnNext { _trackList = it }
-            .subscribeLatestCache(MangaController::onNextTrackings)
+            .subscribeLatestCache(MangaController::onNextTrackers)
     }
 
-    fun refresh() {
+    fun trackingRefresh() {
         refreshJob?.cancel()
         refreshJob = launchIO {
             supervisorScope {
@@ -694,22 +695,22 @@ class MangaPresenter(
                         }
                         .awaitAll()
 
-                    withUIContext { view?.onRefreshDone() }
+                    withUIContext { view?.onTrackingRefreshDone() }
                 } catch (e: Throwable) {
-                    withUIContext { view?.onRefreshError(e) }
+                    withUIContext { view?.onTrackingRefreshError(e) }
                 }
             }
         }
     }
 
-    fun search(query: String, service: TrackService) {
+    fun trackingSearch(query: String, service: TrackService) {
         searchJob?.cancel()
         searchJob = launchIO {
             try {
                 val results = service.search(query)
-                withUIContext { view?.onSearchResults(results) }
+                withUIContext { view?.onTrackingSearchResults(results) }
             } catch (e: Throwable) {
-                withUIContext { view?.onSearchResultsError(e) }
+                withUIContext { view?.onTrackingSearchResultsError(e) }
             }
         }
     }
@@ -739,17 +740,17 @@ class MangaPresenter(
             try {
                 service.update(track)
                 db.insertTrack(track).executeAsBlocking()
-                withUIContext { view?.onRefreshDone() }
+                withUIContext { view?.onTrackingRefreshDone() }
             } catch (e: Throwable) {
-                withUIContext { view?.onRefreshError(e) }
+                withUIContext { view?.onTrackingRefreshError(e) }
 
                 // Restart on error to set old values
-                fetchTrackings()
+                fetchTrackers()
             }
         }
     }
 
-    fun setStatus(item: TrackItem, index: Int) {
+    fun setTrackerStatus(item: TrackItem, index: Int) {
         val track = item.track!!
         track.status = item.service.getStatusList()[index]
         if (track.status == item.service.getCompletionStatus() && track.total_chapters != 0) {
@@ -758,13 +759,13 @@ class MangaPresenter(
         updateRemote(track, item.service)
     }
 
-    fun setScore(item: TrackItem, index: Int) {
+    fun setTrackerScore(item: TrackItem, index: Int) {
         val track = item.track!!
         track.score = item.service.indexToScore(index)
         updateRemote(track, item.service)
     }
 
-    fun setLastChapterRead(item: TrackItem, chapterNumber: Int) {
+    fun setTrackerLastChapterRead(item: TrackItem, chapterNumber: Int) {
         val track = item.track!!
         track.last_chapter_read = chapterNumber
         if (track.total_chapters != 0 && track.last_chapter_read == track.total_chapters) {
@@ -773,15 +774,17 @@ class MangaPresenter(
         updateRemote(track, item.service)
     }
 
-    fun setStartDate(item: TrackItem, date: Long) {
+    fun setTrackerStartDate(item: TrackItem, date: Long) {
         val track = item.track!!
         track.started_reading_date = date
         updateRemote(track, item.service)
     }
 
-    fun setFinishDate(item: TrackItem, date: Long) {
+    fun setTrackerFinishDate(item: TrackItem, date: Long) {
         val track = item.track!!
         track.finished_reading_date = date
         updateRemote(track, item.service)
     }
+
+    // Track sheet - end
 }
