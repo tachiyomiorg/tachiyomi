@@ -392,7 +392,7 @@ open class BrowseSourceController(bundle: Bundle) :
             showProgressBar()
 
             adapter?.clear()
-            presenter.restartPager(filters = filterList)
+            presenter.restartPager("", filterList)
         } else {
             searchWithQuery(genreName)
         }
