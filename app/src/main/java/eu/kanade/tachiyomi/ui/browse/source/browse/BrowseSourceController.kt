@@ -30,6 +30,7 @@ import eu.kanade.tachiyomi.data.preference.asImmediateFlow
 import eu.kanade.tachiyomi.databinding.SourceControllerBinding
 import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.LocalSource
+import eu.kanade.tachiyomi.source.model.Filter
 import eu.kanade.tachiyomi.source.model.FilterList
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.base.controller.FabController
@@ -348,6 +349,53 @@ open class BrowseSourceController(bundle: Bundle) :
         adapter?.clear()
 
         presenter.restartPager(newQuery)
+    }
+
+    /**
+     * Attempts to restart the request with a new genre-filtered query.
+     * If the genre name can't be found the filters,
+     * the standard searchWithQuery search method is used instead.
+     *
+     * @param genreName the name of the genre
+     */
+    fun searchWithGenre(genreName: String) {
+        presenter.sourceFilters = presenter.source.getFilterList()
+
+        var filterList: FilterList? = null
+
+        filter@ for (sourceFilter in presenter.sourceFilters) {
+            if (sourceFilter is Filter.Group<*>) {
+                for (filter in sourceFilter.state) {
+                    if (filter is Filter<*> && filter.name.equals(genreName, true)) {
+                        when (filter) {
+                            is Filter.TriState -> filter.state = 1
+                            is Filter.CheckBox -> filter.state = true
+                        }
+                        filterList = FilterList(sourceFilter)
+                        break@filter
+                    }
+                }
+            } else if (sourceFilter is Filter.Select<*>) {
+                val index = sourceFilter.values.filterIsInstance<String>()
+                    .indexOfFirst { it.equals(genreName, true) }
+
+                if (index != -1) {
+                    sourceFilter.state = index
+                    filterList = FilterList(sourceFilter)
+                }
+            }
+        }
+
+        if (filterList != null) {
+            filterSheet?.setFilters(presenter.filterItems)
+
+            showProgressBar()
+
+            adapter?.clear()
+            presenter.restartPager(filters = filterList)
+        } else {
+            searchWithQuery(genreName)
+        }
     }
 
     /**
