@@ -1,8 +1,7 @@
-package eu.kanade.tachiyomi.ui.reader.viewer.pager
+package eu.kanade.tachiyomi.ui.reader.viewer.navigation
 
 import android.graphics.RectF
 import eu.kanade.tachiyomi.ui.reader.viewer.ViewerNavigation
-import eu.kanade.tachiyomi.ui.reader.viewer.navigation.LNavigation
 
 /**
  * Visualization of default state without any inversion
@@ -14,7 +13,7 @@ import eu.kanade.tachiyomi.ui.reader.viewer.navigation.LNavigation
  * | N | M | P |   N: Move Left
  * +---+---+---+
  */
-class PagerDefaultNavigation : ViewerNavigation() {
+class RightAndLeftNavigation : ViewerNavigation() {
 
     override var regions: List<Region> = listOf(
         Region(
@@ -27,5 +26,3 @@ class PagerDefaultNavigation : ViewerNavigation() {
         ),
     )
 }
-
-class VerticalPagerDefaultNavigation : LNavigation()
