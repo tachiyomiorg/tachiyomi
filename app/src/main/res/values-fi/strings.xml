@@ -161,7 +161,6 @@
     <string name="update_24hour">Päivittäin</string>
     <string name="update_48hour">Kahden päivän välein</string>
     <string name="update_weekly">Viikoittain</string>
-    <string name="update_monthly">Kuukausittain</string>
     <string name="pref_library_update_categories">Globaalin päivityksen sisältämät kategoriat</string>
     <string name="all">Kaikki</string>
     <string name="pref_library_update_restriction">Kirjaston päivityksen rajoitukset</string>
@@ -657,4 +656,6 @@
     <string name="action_order_by_chapter_number">Luvunumeron mukaan</string>
     <string name="action_order_by_upload_date">Lisäyspäivämäärän mukaan</string>
     <string name="action_filter_tracked">Seuratut</string>
+    <string name="action_display_show_number_of_items">Näytä kohteiden määrä</string>
+    <string name="right_and_left_nav">Oikea ja vasen</string>
 </resources>

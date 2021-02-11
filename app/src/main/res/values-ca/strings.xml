@@ -98,7 +98,6 @@
     <string name="update_24hour">Cada dia</string>
     <string name="update_48hour">Cada 2 dies</string>
     <string name="update_weekly">Cada setmana</string>
-    <string name="update_monthly">Cada mes</string>
     <string name="pref_library_update_categories">Categories a incloure a l\'actualització global</string>
     <string name="all">Tot</string>
     <string name="pref_library_update_restriction">Restriccions d\'actualització de la biblioteca</string>
@@ -658,4 +657,6 @@
     <string name="action_order_by_upload_date">Per data de pujada</string>
     <string name="action_filter_tracked">En seguiment</string>
     <string name="action_display_show_number_of_items">Mostra el nombre d\'elements</string>
+    <string name="right_and_left_nav">A la dreta i a l\'esquerra</string>
+    <string name="pref_dual_page_split">Dividit a doble pàgina (ALFA)</string>
 </resources>

@@ -231,7 +231,6 @@
     <string name="pref_library_update_restriction_summary">Actualizar solo cuando se cumplan las condiciones</string>
     <string name="pref_library_update_restriction">Restricciones de actualización de biblioteca</string>
     <string name="pref_library_update_prioritization">Orden de actualización de la biblioteca</string>
-    <string name="update_monthly">Mensual</string>
     <string name="update_weekly">Semanal</string>
     <string name="update_48hour">Cada 2 días</string>
     <string name="update_24hour">Diario</string>

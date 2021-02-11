@@ -95,7 +95,6 @@
     <string name="update_24hour">हर रोज़</string>
     <string name="update_48hour">हर २ दिन</string>
     <string name="update_weekly">साप्ताहिक</string>
-    <string name="update_monthly">मासिक</string>
     <string name="pref_library_update_categories">वैश्विक श्रेणियाँ जो अद्यतन में शामिल करनी है</string>
     <string name="all">समस्त</string>
     <string name="pref_library_update_restriction">पुस्तकालय अद्यतन प्रतिबंध</string>
@@ -598,9 +597,9 @@
     <string name="backup_restore_missing_trackers">ट्रैकर्स में लॉग इन नहीं किया गया:</string>
     <string name="pref_remove_bookmarked_chapters">बुकमार्क अध्यायों को हटाएं</string>
     <string name="pref_category_delete_chapters">अध्यायों को हटाएं</string>
-    <string name="ext_nsfw_warning">18+ सामग्री हो सकती है</string>
+    <string name="ext_nsfw_warning">इसमें NSFW (18+) सामग्री हो सकती है</string>
     <string name="ext_nsfw_short">18+</string>
-    <string name="parental_controls_info">यह अनौपचारिक या संभावित रूप से फ़्लैग किए गए एक्सटेंशन को ऐप के भीतर 18+ सामग्री के सामने आने से नहीं रोकता है।</string>
+    <string name="parental_controls_info">यह अनौपचारिक या संभावित रूप से फ़्लैग किए गए एक्सटेंशन को ऐप के भीतर NSFW (18+) सामग्री के सामने आने से नहीं रोकता है।</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">1 लापता अध्याय है</item>
         <item quantity="other">%d लापता अध्याय हैं</item>
@@ -622,7 +621,8 @@
     <string name="pref_clear_history">इतिहास मिटा दें</string>
     <string name="clear_history_confirmation">क्या आपको यकीन है\? सारा इतिहास खो जाएगा।</string>
     <string name="clear_history_completed">इतिहास हटाया गया</string>
-    <string name="invalid_backup_file_type">अमान्य बैकअप फ़ाइल: %1$s</string>
+    <string name="invalid_backup_file_type">अमान्य बैकअप फ़ाइल प्रकार: %1$s
+\nयह .proto.gz या .json के साथ समाप्त होना चाहिए।</string>
     <string name="spen_next_page">अगला पृष्ठ</string>
     <string name="spen_previous_page">पिछला पृष्ठ</string>
     <string name="migration_help_guide">स्रोत माइग्रेशन गाइड</string>
@@ -635,5 +635,27 @@
     <string name="pref_label_nsfw_extension">एक्सटेंशन सूची में लेबल</string>
     <string name="pref_show_nsfw_extension">एक्सटेंशन सूची में दिखाएं</string>
     <string name="pref_show_nsfw_source">स्रोत सूची में दिखाएं</string>
-    <string name="pref_category_nsfw_content">18+ सामग्री</string>
+    <string name="pref_category_nsfw_content">NSFW (18+) स्रोत</string>
+    <string name="channel_crash_logs">क्रैश लॉग</string>
+    <string name="file_picker_error">कोई फ़ाइल पिकर ऐप नहीं मिला</string>
+    <string name="myanimelist_relogin">कृपया फिर से MAL पर लॉगिन करें</string>
+    <string name="myanimelist_creds_missing">MAL लॉगिन क्रेडेंशियल नहीं मिला</string>
+    <string name="track_finished_reading_date">पढ़ना समाप्त की तिथि</string>
+    <string name="track_started_reading_date">पढ़ना शुरू करने की तारीख</string>
+    <string name="crash_log_saved">क्रैश लॉग सहेजे गए</string>
+    <string name="pref_dump_crash_logs_summary">डेवलपर्स के साथ साझा करने के लिए फ़ाइल में त्रुटि लॉग सहेजता है</string>
+    <string name="pref_dump_crash_logs">डंप क्रैश लॉग</string>
+    <string name="pref_viewer_nav">नेविगेशन लेआउट</string>
+    <string name="right_and_left_nav">दाएं और बाएं</string>
+    <string name="edge_nav">धार</string>
+    <string name="kindlish_nav">किंडल-ईश</string>
+    <string name="l_nav">एल आकार</string>
+    <string name="default_nav">डिफॉल्ट</string>
+    <string name="network_unmetered">अनमीटर्ड नेटवर्क</string>
+    <string name="action_desc">अवरोही</string>
+    <string name="action_asc">आरोही</string>
+    <string name="action_order_by_chapter_number">अध्याय संख्या से</string>
+    <string name="action_order_by_upload_date">अपलोड तिथि से</string>
+    <string name="action_display_show_number_of_items">वस्तुओं की संख्या दिखाएं</string>
+    <string name="action_filter_tracked">ट्रैक किए गए</string>
 </resources>

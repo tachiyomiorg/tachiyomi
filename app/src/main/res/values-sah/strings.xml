@@ -71,7 +71,6 @@
     <string name="pref_library_update_restriction_summary">Усулуобуйалар толоруллубутугар эрэ, саҥарт</string>
     <string name="pref_library_update_restriction">Бэбэлэтиэкэ саҥардыытын хааччахтааһын</string>
     <string name="pref_library_update_prioritization">Бэбэлэтиэкэ саҥардыытын бэрээдэгэ</string>
-    <string name="update_monthly">Ый аайы</string>
     <string name="update_weekly">Нэдиэлэ аайы</string>
     <string name="update_48hour">Икки күн аайы</string>
     <string name="update_24hour">Күн аайы</string>

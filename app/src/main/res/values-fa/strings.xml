@@ -348,7 +348,6 @@
     <string name="pref_library_update_restriction_summary">در چه شرایطی کتابخانه آپدیت شود</string>
     <string name="pref_library_update_restriction">محدودیت‌های آپدیت کتابخانه</string>
     <string name="pref_library_update_prioritization">ترتیب آپدیت کتابخانه</string>
-    <string name="update_monthly">ماهانه</string>
     <string name="update_weekly">هفتگی</string>
     <string name="update_48hour">هر ۴۸ ساعت یکبار</string>
     <string name="update_3hour">هر ۳ ساعت یکبار</string>

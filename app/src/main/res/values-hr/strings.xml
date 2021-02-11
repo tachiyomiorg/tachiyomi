@@ -45,7 +45,6 @@
     <string name="pref_library_update_restriction_summary">Ažuriraj samo kad su ispunjeni uvjeti</string>
     <string name="pref_library_update_restriction">Ograničenja za ažuriranje biblioteke</string>
     <string name="pref_library_update_prioritization">Redoslijed ažuriranja biblioteke</string>
-    <string name="update_monthly">Mjesečno</string>
     <string name="update_weekly">Tjedno</string>
     <string name="update_48hour">Svaki drugi dan</string>
     <string name="update_24hour">Dnevno</string>

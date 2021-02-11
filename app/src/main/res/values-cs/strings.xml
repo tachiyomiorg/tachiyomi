@@ -59,7 +59,6 @@
     <string name="update_24hour">Denně</string>
     <string name="update_48hour">Každé 2 dny</string>
     <string name="update_weekly">Týdně</string>
-    <string name="update_monthly">Měsíčně</string>
     <string name="pref_update_only_non_completed">Aktualizovat pouze vycházející mangy</string>
     <string name="pref_auto_update_manga_sync">Synchronizovat kapitoly po přečtení</string>
     <string name="pref_start_screen">Úvodní obrazovka</string>

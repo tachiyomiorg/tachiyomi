@@ -200,7 +200,6 @@
     <string name="pref_library_update_restriction_summary">עדכן רק כאשר מתקיימים התנאים</string>
     <string name="pref_library_update_restriction">מגבלות עדכון הספריה</string>
     <string name="pref_library_update_prioritization">סדר עדכון הספריה</string>
-    <string name="update_monthly">פעם בחודש</string>
     <string name="update_weekly">פעם בשבוע</string>
     <string name="update_48hour">פעם ביומיים</string>
     <string name="update_1hour">פעם בשעה</string>

@@ -95,7 +95,6 @@
     <string name="update_24hour">1일</string>
     <string name="update_48hour">2일</string>
     <string name="update_weekly">1주</string>
-    <string name="update_monthly">1달</string>
     <string name="pref_library_update_categories">전역 업데이트에 포함할 카테고리</string>
     <string name="all">전부</string>
     <string name="pref_library_update_restriction">서재 업데이트 제한</string>

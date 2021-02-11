@@ -94,7 +94,6 @@
     <string name="update_24hour">Zilnic</string>
     <string name="update_48hour">La fiecare 2 zile</string>
     <string name="update_weekly">Săptămânal</string>
-    <string name="update_monthly">In fiecare lună</string>
     <string name="pref_library_update_categories">Categorii de inclus în actualizarea globală</string>
     <string name="all">Toate</string>
     <string name="pref_library_update_restriction">Restricții actualizare bibliotecă</string>

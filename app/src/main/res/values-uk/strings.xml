@@ -98,7 +98,6 @@
     <string name="update_24hour">Щодня</string>
     <string name="update_48hour">Кожні 2 дні</string>
     <string name="update_weekly">Щонеділі</string>
-    <string name="update_monthly">Щомісяця</string>
     <string name="pref_library_update_categories">Категорії включені в глобальний пошук</string>
     <string name="all">Всі</string>
     <string name="pref_library_update_restriction">Обмеження оновлення бібліотеки</string>
@@ -123,9 +122,9 @@
     <string name="ext_uninstall">Видалити</string>
     <string name="ext_available">Доступно</string>
     <string name="untrusted_extension">Ненадійне розширення</string>
-    <string name="untrusted_extension_message">Це розширення було підписане ненадійним сертифікатом і не було активовано.
+    <string name="untrusted_extension_message">Це розширення було підписано ненадійним сертифікатом та не було активовано.
 \n
-\nЗловмисне розширення може прочитати будь-які дані для входу, що зберігаються в Tachiyomi, або виконати довільний код.
+\nЗловмисне розширення может зчитувати будь-які облікові дані для входу, що зберігаються в Tachiyomi, або виконувати довільний код.
 \n
 \nДовіряючи цьому сертифікату, ви приймаєте ці ризики.</string>
     <string name="ext_version_info">Версія:%1$s</string>
@@ -677,4 +676,6 @@
     <string name="action_order_by_chapter_number">За номером глави</string>
     <string name="action_order_by_upload_date">За датою завантаження</string>
     <string name="action_filter_tracked">Відслідковуваний</string>
+    <string name="action_display_show_number_of_items">Показати кількість об\'єктів</string>
+    <string name="right_and_left_nav">Праворуч та ліворуч</string>
 </resources>

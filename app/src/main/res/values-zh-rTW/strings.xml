@@ -57,7 +57,7 @@
     <string name="action_move">移動</string>
     <string name="action_open_in_browser">在瀏覽器中開啟</string>
     <string name="action_open_in_web_view">在 WebView 中開啟</string>
-    <string name="action_display_mode">顯示模式</string>
+    <string name="action_display_mode">檢視模式</string>
     <string name="action_display">檢視</string>
     <string name="action_display_grid">密集格狀</string>
     <string name="action_display_list">清單</string>
@@ -94,12 +94,11 @@
     <string name="update_24hour">每日</string>
     <string name="update_48hour">每 2 日</string>
     <string name="update_weekly">每週</string>
-    <string name="update_monthly">每月</string>
     <string name="pref_library_update_categories">自動更新的分類</string>
     <string name="all">全部</string>
     <string name="pref_library_update_prioritization">書櫃更新順序</string>
     <string name="pref_library_update_restriction">書櫃更新限制</string>
-    <string name="charging">僅限充電時</string>
+    <string name="charging">充電時</string>
     <string name="pref_update_only_non_completed">僅更新連載中的漫畫</string>
     <string name="pref_start_screen">起始畫面</string>
     <string name="pref_language">語言</string>
@@ -185,7 +184,7 @@
     <string name="update_check_no_new_updates">沒有可用的更新</string>
     <string name="update_check_look_for_updates">正在檢查更新…</string>
     <string name="update_check_notification_file_download">下載更新</string>
-    <string name="update_check_notification_download_in_progress">正在下載更新</string>
+    <string name="update_check_notification_download_in_progress">正在下載更新…</string>
     <string name="update_check_notification_download_complete">更新下載完成</string>
     <string name="update_check_notification_download_error">更新下載失敗</string>
     <string name="update_check_notification_update_available">有可用的更新！</string>
@@ -283,7 +282,7 @@
     <string name="show_chapter_number">章節編號</string>
     <string name="sorting_mode">排序依據</string>
     <string name="sort_by_source">遵循來源</string>
-    <string name="sort_by_number">章節順序</string>
+    <string name="sort_by_number">章節編號</string>
     <string name="download_1">後一章</string>
     <string name="download_5">後五章</string>
     <string name="download_10">後十章</string>
@@ -347,9 +346,9 @@
     <string name="untrusted_extension">不信任的擴充套件</string>
     <string name="untrusted_extension_message">這個擴充套件的憑證並不可靠，且尚未被啟用。
 \n
-\n惡意的擴充套件可能存取任何在 Tachiyomi 中的登錄憑證，或執行任意的程式碼。
+\n惡意的擴充套件可能存取任何儲存於 Tachiyomi 中的登錄憑證，或執行任意的程式碼。
 \n
-\n信任這個憑證，即代表你願意承擔上述的風險。</string>
+\n信任這個憑證，即表示你願意承擔上述風險。</string>
     <string name="last_read_chapter">最後閱讀的章節</string>
     <string name="pref_backup_slots">最大備份保留數</string>
     <string name="clear_database_confirmation">不在書櫃中的漫畫閱讀進度將被清除，你確定嗎？</string>
@@ -361,13 +360,13 @@
     <string name="latest">新上架</string>
     <string name="manga_not_in_db">該漫畫已從資料庫中移除。</string>
     <string name="manga_tracking_tab">歷程</string>
-    <string name="reading">閱讀中</string>
+    <string name="reading">翻閱</string>
     <string name="plan_to_read">準備讀</string>
     <string name="repeating">重溫中</string>
     <string name="track_start_date">創刊</string>
     <string name="track_type">類型</string>
     <string name="track_author">作者</string>
-    <string name="dialog_with_checkbox_remove_description">這將會清除此章節的閱讀日期，確定嗎？</string>
+    <string name="dialog_with_checkbox_remove_description">此章節的閱讀日期將被清除，你確定嗎？</string>
     <string name="transition_current">目前章節：</string>
     <string name="transition_previous">上一章：</string>
     <string name="migration_info">選擇需要遷移的來源</string>
@@ -498,7 +497,7 @@
     <string name="action_move_to_bottom">排至最後</string>
     <string name="action_move_to_top">排至最前</string>
     <string name="action_cancel_all">全部取消</string>
-    <string name="action_reorganize_by">重新排列</string>
+    <string name="action_reorganize_by">重新排序</string>
     <string name="sort_by_upload_date">上傳日期</string>
     <string name="action_sort_latest_chapter">最新章節</string>
     <string name="action_sort_last_checked">最近檢查</string>
@@ -638,4 +637,13 @@
     <string name="pref_dump_crash_logs_summary">產生錯誤記錄檔以便分享予開發人員</string>
     <string name="pref_dump_crash_logs">傾印當機記錄</string>
     <string name="pref_viewer_nav">輕觸翻頁模式</string>
+    <string name="right_and_left_nav">左右式</string>
+    <string name="action_order_by_upload_date">依上傳日期</string>
+    <string name="action_desc">遞減</string>
+    <string name="action_asc">遞增</string>
+    <string name="action_order_by_chapter_number">依章節編號</string>
+    <string name="action_display_show_number_of_items">顯示藏書數目</string>
+    <string name="manga_from_library">書櫃上的漫畫</string>
+    <string name="downloaded_chapters">已下載的章節</string>
+    <string name="network_unmetered">非計量付費網路</string>
 </resources>

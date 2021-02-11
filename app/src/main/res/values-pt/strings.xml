@@ -277,7 +277,6 @@
     <string name="action_login">Entrar</string>
     <string name="short_recent_updates">Atualizações</string>
     <string name="update_weekly">Semanalmente</string>
-    <string name="update_monthly">Mensalmente</string>
     <string name="pref_start_screen">Ecrã inicial</string>
     <string name="pref_language">Língua</string>
     <string name="system_default">Predefinição</string>
@@ -687,4 +686,5 @@
     <string name="crash_log_saved">Registos de falhas guardados</string>
     <string name="pref_dump_crash_logs">Guardar registos de falhas</string>
     <string name="pref_dump_crash_logs_summary">Guarda registos de erros num ficheiro para partilhar com os desenvolvedores</string>
+    <string name="action_display_show_number_of_items">Mostrar número de itens</string>
 </resources>

@@ -270,7 +270,6 @@
     <string name="pref_library_update_restriction_summary">Isapanahon kung nakamit ang (mga) kondisyon</string>
     <string name="pref_library_update_restriction">Kondisyon sa pag-update</string>
     <string name="pref_library_update_prioritization">Ayos ng pagsapanahon</string>
-    <string name="update_monthly">Buwan-buwan</string>
     <string name="update_weekly">Linggo-linggo</string>
     <string name="update_48hour">Kada 2 araw</string>
     <string name="update_24hour">Araw-araw</string>

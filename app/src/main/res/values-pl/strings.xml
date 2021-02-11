@@ -161,7 +161,6 @@
     <string name="update_24hour">Co 1 dzień</string>
     <string name="update_48hour">Co 2 dni</string>
     <string name="update_weekly">Co tydzień</string>
-    <string name="update_monthly">Co miesiąc</string>
     <string name="pref_library_update_categories">Kategorie zawarte w globalnej aktualizacji</string>
     <string name="all">Wszystko</string>
     <string name="pref_library_update_restriction">Warunki aktualizacji biblioteki</string>
@@ -680,4 +679,5 @@
     <string name="action_order_by_chapter_number">Według numeru rozdziału</string>
     <string name="action_order_by_upload_date">Po dacie dodania</string>
     <string name="action_filter_tracked">Śledzone</string>
+    <string name="action_display_show_number_of_items">Pokaż liczbę elementów</string>
 </resources>

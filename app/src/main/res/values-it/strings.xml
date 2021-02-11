@@ -299,7 +299,6 @@
     <string name="app_not_available">App non disponibile</string>
     <string name="short_recent_updates">Aggiornamenti</string>
     <string name="update_weekly">Settimanalmente</string>
-    <string name="update_monthly">Mensilmente</string>
     <string name="default_category">Categoria predefinita</string>
     <string name="track">Monitoraggio</string>
     <string name="pref_category_tracking">Monitoraggio</string>
@@ -630,7 +629,7 @@
     <string name="no_pinned_sources">Non hai fonti fissate</string>
     <string name="pref_remove_bookmarked_chapters">Elimina capitoli contrassegnati</string>
     <string name="pref_category_delete_chapters">Elimina capitoli</string>
-    <string name="ext_nsfw_warning">Potrebbe contenere materiale 18+</string>
+    <string name="ext_nsfw_warning">Potrebbe contenere materiale per adulti</string>
     <string name="ext_nsfw_short">18+</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">C\'è un capitolo mancante</item>
@@ -638,7 +637,7 @@
     </plurals>
     <string name="backup_restore_missing_trackers">Trackers non collegati:</string>
     <string name="no_chapters_error">Nessun capitolo trovato</string>
-    <string name="parental_controls_info">Questo non impedisce a estensioni non ufficiali o potenzialmente segnalate in modo errato di far mostrare contenuti 18+ all\'interno dell\'app.</string>
+    <string name="parental_controls_info">Non impedisce ad estensioni non ufficiali o classificate in modo errato/fuorviante di mostrare contenuti per adulti all\'interno dell\'app.</string>
     <string name="chapter_settings_updated">Impostazioni predefinite del capitolo aggiornate</string>
     <string name="share_page_info">%1$s: %2$s, pagina %3$d</string>
     <string name="set_chapter_settings_as_default">Imposta come predefinito</string>
@@ -658,7 +657,8 @@
     <string name="spen_next_page">Pagina successiva</string>
     <string name="spen_previous_page">Pagina precedente</string>
     <string name="migration_help_guide">Guida alla migrazione di origine</string>
-    <string name="invalid_backup_file_type">File di backup invalido: %1$s</string>
+    <string name="invalid_backup_file_type">File di backup non valido: %1$s
+\nDovrebbe terminare con .proto.gz oppure .json.</string>
     <string name="full_restore_offline">Ripristina fuori linea, termina rapidamente ma contiene solo ciò che ha il backup</string>
     <string name="full_restore_online">Ripristina in linea, molto più lentamente ma fornisce informazioni e capitoli più aggiornati</string>
     <string name="full_restore_mode">Modalità rete</string>
@@ -677,4 +677,18 @@
     <string name="edge_nav">Bordo</string>
     <string name="kindlish_nav">Tipo un Kindle</string>
     <string name="l_nav">A forma di L</string>
+    <string name="channel_crash_logs">Resoconto dei crash</string>
+    <string name="track_finished_reading_date">Data di fine lettura</string>
+    <string name="track_started_reading_date">Data di inizio lettura</string>
+    <string name="crash_log_saved">Resoconto salvato</string>
+    <string name="pref_dump_crash_logs_summary">Salva un resoconto degli errori su un file per condividerlo con gli sviluppatori</string>
+    <string name="pref_dump_crash_logs">Salva un resoconto dei crash</string>
+    <string name="network_unmetered">Connessione illimitata</string>
+    <string name="action_desc">Decrescente</string>
+    <string name="action_asc">Crescente</string>
+    <string name="action_order_by_chapter_number">Per numero di capitolo</string>
+    <string name="action_order_by_upload_date">Per data di caricamento</string>
+    <string name="action_filter_tracked">Tracciati</string>
+    <string name="action_display_show_number_of_items">Elementi visualizzati</string>
+    <string name="right_and_left_nav">Navigazione destra/sinistra</string>
 </resources>

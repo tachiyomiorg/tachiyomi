@@ -91,7 +91,6 @@
     <string name="update_24hour">Tiap hari</string>
     <string name="update_48hour">Tiap 2 hari</string>
     <string name="update_weekly">Tiap minggu</string>
-    <string name="update_monthly">Tiap bulan</string>
     <string name="pref_library_update_categories">Kategori untuk disertakan dalam pembaruan global</string>
     <string name="all">Semua</string>
     <string name="pref_library_update_restriction">Pembatasan pembaruan perpustakaan</string>
@@ -501,7 +500,7 @@
         <item quantity="other">%1$s lagi</item>
     </plurals>
     <string name="downloaded_only_summary">Filter semua manga di Perpustakaan</string>
-    <string name="check_for_updates">Cek pembaruan</string>
+    <string name="check_for_updates">Periksa pembaruan</string>
     <string name="restoring_backup_canceled">Pemulihan dibatalkan</string>
     <string name="restore_in_progress">Pemulihan masih dalam proses</string>
     <string name="backup_in_progress">Pencadangan masih dalam proses</string>
@@ -611,7 +610,8 @@
     <string name="clear_history_completed">Riwayat telah dihapus</string>
     <string name="pref_hide_bottom_bar_on_scroll">Sembunyikan bilah bawah saat menggulirkan halaman</string>
     <string name="pref_category_nsfw_content">Sumber NSFW (18+)</string>
-    <string name="invalid_backup_file_type">Cadangan tidak valid: %1$s</string>
+    <string name="invalid_backup_file_type">Tipe file berkas cadangan tidak valid: %1$s
+\nHarusnya nama file berakhir dengan .proto.gz atau .json.</string>
     <string name="pref_backup_auto_create_legacy">Buat cadangan versi lama juga</string>
     <string name="pref_create_legacy_backup">Buat cadangan versi</string>
     <string name="spen_next_page">Halaman selanjutnya</string>
@@ -635,4 +635,14 @@
     <string name="action_order_by_chapter_number">Berdasarkan nomor bab</string>
     <string name="action_order_by_upload_date">Berdasarkan tanggal unggahan</string>
     <string name="action_filter_tracked">Dilacak</string>
+    <string name="pref_dump_crash_logs">Buang log kerusakan</string>
+    <string name="channel_crash_logs">Log kerusakan</string>
+    <string name="track_finished_reading_date">Tanggal selesai membaca</string>
+    <string name="track_started_reading_date">Tanggal mulai membaca</string>
+    <string name="crash_log_saved">Log kerusakan disimpan</string>
+    <string name="pref_dump_crash_logs_summary">Simpan log kesalahan ke sebuah file untuk dibagikan dengan pengembang aplikasi</string>
+    <string name="pref_viewer_nav">Tata letak navigasi</string>
+    <string name="right_and_left_nav">Kanan dan Kiri</string>
+    <string name="network_unmetered">Jaringan yang tidak terukur</string>
+    <string name="action_display_show_number_of_items">Tampilkan jumlah item</string>
 </resources>

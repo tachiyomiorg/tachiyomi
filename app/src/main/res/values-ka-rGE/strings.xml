@@ -130,7 +130,6 @@
     <string name="update_24hour">ყოველდღე</string>
     <string name="update_48hour">ყოველ 2 დღეში ერთხელ</string>
     <string name="update_weekly">ყოველ კვირა</string>
-    <string name="update_monthly">ყოველთვე</string>
     <string name="pref_library_update_prioritization">ბიბლიოთეკის განახლების რიგითობა</string>
     <string name="pref_library_update_restriction">ბიბლიოთეკის განახლების შეზღუდვები</string>
     <string name="pref_library_update_restriction_summary">განაახლე მხოლოდ როცა პირობები დაკმაყოფილდება</string>
@@ -253,12 +252,12 @@
     <string name="backup_created">რეზერვი შექმნილია</string>
     <string name="invalid_backup_file">არასწორი სარეზერვო ფაილი</string>
     <string name="invalid_backup_file_missing_data">ფაილს აკლია მონაცემები.</string>
-    <string name="invalid_backup_file_missing_manga">რეზერვი არ შეიცავს არცერთ მანგას</string>
+    <string name="invalid_backup_file_missing_manga">რეზერვი არ შეიცავს არცერთ მანგას.</string>
     <string name="backup_restore_missing_sources">დაკარგული წყაროები:</string>
     <string name="restore_completed">აღდგენა შესრულებულია</string>
     <string name="restore_duration">%02d წუთი, %02d წამი</string>
     <string name="backup_in_progress">რეზერვის შემქნა პროგრესშია</string>
-    <string name="backup_choice">რას გსურს რომ შეუქმნა რეზერვი</string>
+    <string name="backup_choice">რას გსურს რომ შეუქმნა რეზერვი\?</string>
     <string name="creating_backup">რეზერვის შექმნა</string>
     <string name="creating_backup_error">რეზერვის შექმნა ვერ მოხერხდა</string>
     <string name="restore_in_progress">აღდგენა უკვე მიმდინარეობს</string>
@@ -333,7 +332,7 @@
     <string name="manga_removed_library">წაშლილია ბიბლიოთეკიდან</string>
     <string name="manga_info_expand">მეტი ინფორმაციის ჩვენება</string>
     <string name="manga_info_collapse">ნაკლები ინფორმაციის ჩვენება</string>
-    <string name="delete_downloads_for_manga">გადმოწერილი თავების წაშლა</string>
+    <string name="delete_downloads_for_manga">წაიშალოს გადმოწერილი თავები\?</string>
     <string name="copied_to_clipboard">დაკოპირებულია ბუფერში:
 \n%1$s</string>
     <string name="source_not_installed">წყარო არ არის დაინსტალირებული: %1$s</string>
@@ -392,7 +391,7 @@
     <string name="downloading">გადმოწერა…</string>
     <string name="download_progress">გადმოწერილია %1$d%%</string>
     <string name="chapter_progress">გვერდი: %1$d</string>
-    <string name="chapter_subtitle">თავი: %1$d</string>
+    <string name="chapter_subtitle">თავი: %1$s</string>
     <string name="no_next_chapter">შემდეგი თავი ვერ მოიძებნა</string>
     <string name="no_previous_chapter">წინა თავი ვერ მოიძებნა</string>
     <string name="decode_image_error">სურათის გადმოტვირთვა ვერ მოხერხდა</string>
@@ -408,7 +407,7 @@
     <string name="transition_pages_error">გვერდების ჩატვირთვა ვერ მოხერხდა: %1$s</string>
     <string name="page_list_empty_error">ვერცერთი გვერდი ვერ მოიძევნა</string>
     <string name="updating_library">ბიბლიოთეკის განახლება</string>
-    <string name="recent_manga_time">თავ. %1$s - %2$</string>
+    <string name="recent_manga_time">თავ. %1$s - %2$s</string>
     <string name="migration_info">დააჭირე რომ მონიშნო წყარო საიდანაც გინდა მიგრაცია</string>
     <string name="migration_dialog_what_to_include">ამოირჩიე მონაცემები შესაყვანად</string>
     <string name="migration_selection_prompt">ამოირჩიე წყარო საიდანაც გინდა მიგრაცია</string>
@@ -441,7 +440,7 @@
     <string name="description_cover">მანგას ყდა</string>
     <string name="information_no_downloads">გადმოწერები არ არის</string>
     <string name="information_no_recent">განახლებები არ არის</string>
-    <string name="information_empty_library">შენი ბიბლიოთეკა ცარიელია, დაამატე სერიები შენს ბიბლიოთეკაში \"დაათვალიერე\"-დან</string>
+    <string name="information_empty_library">შენი ბიბლიოთეკა ცარიელია, დაამატე სერიები შენს ბიბლიოთეკაში \"დაათვალიერე\"-დან.</string>
     <string name="download_notifier_text_only_wifi">Wi-Fi კავშირი არ არის ხელმისაწვდომი</string>
     <string name="download_notifier_no_network">ინტერნეტთან კავშირი არ არის ხელმისაწვდომი</string>
     <string name="download_notifier_download_paused">გადმოწერა დაპაუზებულია</string>
@@ -472,8 +471,8 @@
     <string name="ext_trust">ნდობა</string>
     <string name="ext_untrusted">არასანდო</string>
     <string name="untrusted_extension">არასანდო დამატება</string>
-    <string name="obsolete_extension_message">დამატება აღარ არის ხელმისაწვდომი</string>
-    <string name="unofficial_extension_message">დამატება არ არის Tachiyomi-ს ოფიციალური დამატებების სიიდან</string>
+    <string name="obsolete_extension_message">დამატება აღარ არის ხელმისაწვდომი.</string>
+    <string name="unofficial_extension_message">დამატება არ არის Tachiyomi-ს ოფიციალური დამატებების სიიდან.</string>
     <string name="pref_double_tap_anim_speed">ორჯერ დაჭერისას ანიმაციის სისწრაფე</string>
     <string name="pref_true_color_summary">აუმჯობესებს ხარისხს, თუმცა ამცირებს წარმადობას</string>
     <string name="pref_custom_brightness">გამოიყენე პერსონალიზებული სიკაშკაშე</string>
@@ -497,7 +496,7 @@
     <string name="page_downloaded">გვერდი დაკოპირდა %1$s -ში</string>
     <string name="confirm_set_image_as_cover">გამოვიყენოთ ეს სურათი ყდის ნახატად?</string>
     <string name="information_no_recent_manga">ბოლო ხანებში არაფერი არ არის წაკითხული</string>
-    <string name="information_empty_category">შენ არ გაქვს კატეგორიები, აირჩიე \"+\" ღილაკი რათა შექმნა ერთი, შენი ბიბლიოთეკის დასაორგანიზებლად</string>
+    <string name="information_empty_category">შენ არ გაქვს კატეგორიები, აირჩიე \"+\" ღილაკი რათა შექმნა ერთი, შენი ბიბლიოთეკის დასაორგანიზებლად.</string>
     <string name="information_webview_required">WebView არის აუცილებელი Tachiyomi-ს სამუშაოდ</string>
     <string name="information_webview_outdated">გთხოვთ განაახლოთ WebView აპლიკაცია უკეთესი თავსებდობისთვის</string>
     <string name="download_notifier_downloader_title">გადმომწერი</string>
@@ -507,15 +506,15 @@
     <string name="action_enable_all">ჩართე ყველა</string>
     <string name="action_disable_all">გამორთე ყველა</string>
     <string name="secure_screen_summary">აპლიკაციებს შორის გადართვისას შემადგენლობის დამალვა და სკრინშოტების დაბლოკვა</string>
-    <string name="untrusted_extension_message">ეს დამატება ხელმოწერილია უცნობი სერთიფიკატის მიერ და არ არის აქტივირებული\\n\\nმავნე დამატებას შეუძლია
+    <string name="untrusted_extension_message">ეს დამატება ხელმოწერილია უცნობი სერთიფიკატის მიერ და არ არის აქტივირებული.
 \n
-\nწაიკითხოს შესვლის მონაცემები შენახული ამ აპლიკაციაში ან გაუშვას თავისი კოდი \\n\\nამ სერტიფიკატის ნდობით თქვენ
+\nმავნე დამატებას შეუძლია წაიკითხოს შესვლის მონაცემები შენახული ამ აპლიკაციაში ან გაუშვას თავისი კოდი.
 \n
-\nთქვენს თავზე იღებთ რისკებს და პასუხისმგებლობას.</string>
+\nამ სერტიფიკატის ნდობით თქვენ თქვენს თავზე იღებთ რისკებს და პასუხისმგებლობას.</string>
     <string name="tracking_info">ცალმხრივი სინქრონიზაცია თვალყურის სადევნებელ სერვისებში თავების პროგრესის განსაახლებლად. მიადევნე თვალყური ინდივიდუალურ მანგებს მათი ჩანართებიდან</string>
-    <string name="backup_restore_content">აღდგენა იყენებს წყაროებს მონაცემების გადმოსაწერად.\\n\\nდარწმუნდი რომ გაქვს დაინსტალირებული ყველა
+    <string name="backup_restore_content">აღდგენა იყენებს წყაროებს მონაცემების გადმოსაწერად.
 \n
-\nსაჭირო დამატება და ხარ დალოგინებული წყაროებში და თვალყურის სადევნებელ სერვისებში ააღდგენამდე.</string>
+\nდარწმუნდი რომ გაქვს დაინსტალირებული ყველა საჭირო დამატება და ხარ დალოგინებული წყაროებში და თვალყურის სადევნებელ სერვისებში ააღდგენამდე.</string>
     <string name="pref_refresh_library_tracking_summary">ანახლებს სტატუსს, შეფასებას და ბოლო თავს წაკითხულს თვალყურის სადევნებელ სერვისებიდან</string>
     <string name="download_notifier_page_ready_error">გვერდი ვერ ჩაიტვირთა</string>
     <string name="filter_mode_overlay">გადაფარება</string>
@@ -584,4 +583,6 @@
     <string name="action_start">დაწყება</string>
     <string name="action_sort_date_added">დამატების თარიღი</string>
     <string name="action_download_unread">გადმოიწეროს წაუკითხავი თავები</string>
+    <string name="ext_nsfw_warning">შეიძლება შეიჩაცდეს უცენზურო(18+) კონტენტს</string>
+    <string name="ext_nsfw_short">18+</string>
 </resources>

@@ -273,7 +273,6 @@
     <string name="app_not_available">Aplicación no disponible</string>
     <string name="short_recent_updates">Actualizaciones</string>
     <string name="update_weekly">Semanalmente</string>
-    <string name="update_monthly">Mensualmente</string>
     <string name="pref_library_update_categories">Categorías que incluir en actualización global</string>
     <string name="all">Todos</string>
     <string name="pref_start_screen">Pantalla inicial</string>

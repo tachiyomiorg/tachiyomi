@@ -46,7 +46,6 @@
     <string name="update_24hour">Naponta</string>
     <string name="update_48hour">2 naponta</string>
     <string name="update_weekly">Hetente</string>
-    <string name="update_monthly">Havonta</string>
     <string name="pref_library_update_categories">Globális frissítésben tartalmazott kategóriák</string>
     <string name="all">Összes</string>
     <string name="pref_library_update_restriction">Könyvtárfrissítési korlátozások</string>

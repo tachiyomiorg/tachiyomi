@@ -89,7 +89,6 @@
     <string name="update_24hour">Täglich</string>
     <string name="update_48hour">Alle 2 Tage</string>
     <string name="update_weekly">Wöchentlich</string>
-    <string name="update_monthly">Monatlich</string>
     <string name="pref_library_update_categories">Kategorien für die globale Aktualisierung</string>
     <string name="all">Alle</string>
     <string name="pref_library_update_restriction">Bibliotheksaktualisierung einschränken</string>
@@ -480,7 +479,7 @@
     <string name="webtoon_side_padding_20">20 %</string>
     <string name="webtoon_side_padding_15">15 %</string>
     <string name="webtoon_side_padding_10">10 %</string>
-    <string name="webtoon_side_padding_0">Keinen</string>
+    <string name="webtoon_side_padding_0">Keine</string>
     <string name="pref_webtoon_side_padding">Seitenränder</string>
     <string name="pinned_sources">Angeheftet</string>
     <string name="action_unpin">Loslösen</string>
@@ -492,7 +491,7 @@
     <string name="add_to_library">Zur Bibliothek hinzufügen</string>
     <string name="confirm_exit">Zum Beenden nochmal die Zurück-Taste drücken</string>
     <string name="information_webview_required">WebView ist für Tachiyomi erforderlich</string>
-    <string name="licenses">Quelloffene Lizenzen</string>
+    <string name="licenses">Open Source-Lizenzen</string>
     <string name="website">Website</string>
     <string name="pref_confirm_exit">Beenden bestätigen</string>
     <string name="label_downloaded_only">Nur Heruntergeladenes</string>
@@ -658,4 +657,6 @@
     <string name="action_order_by_upload_date">Nach Upload-Datum</string>
     <string name="action_filter_tracked">Getrackt</string>
     <string name="action_display_show_number_of_items">Anzahl der Elemente anzeigen</string>
+    <string name="right_and_left_nav">Rechts und Links</string>
+    <string name="pref_dual_page_split">Doppelseitige Aufteilung (Alpha)</string>
 </resources>

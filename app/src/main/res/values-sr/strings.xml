@@ -98,7 +98,6 @@
     <string name="update_24hour">Dnevno</string>
     <string name="update_48hour">Svaka 2 dana</string>
     <string name="update_weekly">Nedeljno</string>
-    <string name="update_monthly">Mjesečno</string>
     <string name="pref_library_update_categories">Kategorije koje su ubrajane u globalnom ažuriranju</string>
     <string name="all">Sve</string>
     <string name="pref_library_update_restriction">Restrikcije ažuriranja biblioteke</string>

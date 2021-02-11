@@ -90,7 +90,6 @@
     <string name="update_24hour">Daglig</string>
     <string name="update_48hour">Annenhver dag</string>
     <string name="update_weekly">Ukentlig</string>
-    <string name="update_monthly">Månedlig</string>
     <string name="all">Alle</string>
     <string name="charging">Lading</string>
     <string name="pref_start_screen">Startskjerm</string>

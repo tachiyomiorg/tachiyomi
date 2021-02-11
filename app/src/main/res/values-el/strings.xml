@@ -20,7 +20,7 @@
     <string name="action_filter">Φίλτρο</string>
     <string name="action_filter_downloaded">Λήψεις</string>
     <string name="action_filter_bookmarked">Στους Σελιδοδείκτες</string>
-    <string name="action_filter_unread">Μη αναγνωσμένα</string>
+    <string name="action_filter_unread">Αδιάβαστα</string>
     <string name="action_filter_empty">Αφαίρεση φίλτρου</string>
     <string name="action_sort_alpha">Αλφαβητικά</string>
     <string name="action_sort_total">Σύνολο κεφαλαίων</string>
@@ -54,19 +54,19 @@
     <string name="action_previous_chapter">Προηγούμενο κεφάλαιο</string>
     <string name="action_next_chapter">Επόμενο κεφάλαιο</string>
     <string name="action_retry">Επανάληψη</string>
-    <string name="action_remove">Διαγραφή</string>
+    <string name="action_remove">Αφαίρεση</string>
     <string name="action_resume">Συνέχεια</string>
-    <string name="action_move">Μεταφορά</string>
+    <string name="action_move">Μετακίνηση</string>
     <string name="action_open_in_browser">Άνοιγμα σε πρόγραμμα περιήγησης</string>
     <string name="action_display_mode">Λειτουργία προβολής</string>
     <string name="action_display">Προβολή</string>
     <string name="action_display_grid">Συμπαγές πλέγμα</string>
     <string name="action_display_list">Λίστα</string>
     <string name="action_display_download_badge">Σήματα ληφθέντων</string>
-    <string name="action_cancel">Ακύρωση</string>
+    <string name="action_cancel">Άκυρο</string>
     <string name="action_sort">Ταξινόμηση</string>
     <string name="action_install">Εγκατάσταση</string>
-    <string name="action_share">Κοινή χρήση</string>
+    <string name="action_share">Κοινοποίηση</string>
     <string name="action_save">Αποθήκευση</string>
     <string name="action_reset">Επαναφορά</string>
     <string name="action_undo">Αναίρεση</string>
@@ -98,7 +98,6 @@
     <string name="update_24hour">Καθημερινά</string>
     <string name="update_48hour">Κάθε 2 ημέρες</string>
     <string name="update_weekly">Εβδομαδιαία</string>
-    <string name="update_monthly">Μηνιαία</string>
     <string name="pref_library_update_categories">Κατηγορίες που περιλαμβάνονται στην ολική ενημέρωση</string>
     <string name="all">Όλα</string>
     <string name="pref_library_update_restriction">Περιορισμοί ενημέρωσης βιβλιοθήκης</string>
@@ -282,9 +281,9 @@
     <string name="download_1">Επόμενου κεφαλαίου</string>
     <string name="download_5">Επόμενων 5 κεφαλαίων</string>
     <string name="download_10">Επόμενων 10 κεφαλαίων</string>
-    <string name="download_custom">Προσαρμοσμένη</string>
-    <string name="download_all">Όλων</string>
-    <string name="download_unread">Μη αναγνωσμένων</string>
+    <string name="download_custom">Προσαρμοσμένο</string>
+    <string name="download_all">Όλα</string>
+    <string name="download_unread">Αδιάβαστα</string>
     <string name="confirm_delete_chapters">Είστε βέβαιοι ότι θέλετε να διαγράψετε τα επιλεγμένα κεφάλαια;</string>
     <string name="manga_tracking_tab">Παρακολούθηση</string>
     <string name="reading">Ανάγνωση</string>
@@ -437,7 +436,7 @@
     <string name="email">Διεύθυνση ηλεκτ. ταχυδρομείου</string>
     <string name="check_for_updates">Έλεγχος για ενημερώσεις</string>
     <string name="licenses">Άδειες ανοιχτού κώδικα</string>
-    <string name="website">Ιστοσελίδα</string>
+    <string name="website">Ιστότοπος</string>
     <string name="battery_optimization_disabled">Η βελτιστοποίηση μπαταρίας είναι ήδη απενεργοποιημένη</string>
     <string name="pref_disable_battery_optimization_summary">Βοηθά στις ενημερώσεις βιβλιοθήκης και τα αντίγραφα ασφαλείας στο παρασκήνιο</string>
     <string name="pref_disable_battery_optimization">Απενεργοποίηση βελτιστοποίησης μπαταρίας</string>
@@ -658,4 +657,6 @@
     <string name="action_order_by_upload_date">Κατά ημερομηνία μεταφόρτωσης</string>
     <string name="action_filter_tracked">Παρακολουθούνται</string>
     <string name="action_display_show_number_of_items">Εμφάνιση αριθμού στοιχείων</string>
+    <string name="right_and_left_nav">Δεξιά και Aριστερά</string>
+    <string name="pref_dual_page_split">Διπλή διαίρεση σελίδας (ALPHA)</string>
 </resources>

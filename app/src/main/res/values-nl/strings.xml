@@ -81,7 +81,6 @@
     <string name="update_24hour">Dagelijks</string>
     <string name="update_48hour">Tweedagelijks</string>
     <string name="update_weekly">Wekelijks</string>
-    <string name="update_monthly">Maandelijks</string>
     <string name="all">Alles</string>
     <string name="pref_start_screen">Beginscherm</string>
     <string name="pref_language">Taal</string>
@@ -645,4 +644,17 @@
     <string name="kindlish_nav">Kindle-achtig</string>
     <string name="l_nav">L-vormig</string>
     <string name="default_nav">Standaard</string>
+    <string name="channel_crash_logs">Crashlogboeken</string>
+    <string name="track_finished_reading_date">Datum klaar met lezen</string>
+    <string name="track_started_reading_date">Datum begonnen met lezen</string>
+    <string name="crash_log_saved">Crashlogboeken opgeslagen</string>
+    <string name="pref_dump_crash_logs_summary">Slaat foutmeldingslogboeken op in een bestand om te delen met de ontwikkelaars</string>
+    <string name="pref_dump_crash_logs">Crashlogboeken opslaan</string>
+    <string name="network_unmetered">Onbeperkt netwerk</string>
+    <string name="action_desc">Aflopend</string>
+    <string name="action_asc">Oplopend</string>
+    <string name="action_order_by_chapter_number">Op hoofdstuknummer</string>
+    <string name="action_order_by_upload_date">Op uploaddatum</string>
+    <string name="action_display_show_number_of_items">Aantal items tonen</string>
+    <string name="action_filter_tracked">Getracked</string>
 </resources>

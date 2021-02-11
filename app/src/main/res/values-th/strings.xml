@@ -67,7 +67,6 @@
     <string name="update_24hour">ทุกวัน</string>
     <string name="update_48hour">ทุก 2 วัน</string>
     <string name="update_weekly">ทุกสัปดาห์</string>
-    <string name="update_monthly">ทุกเดือน</string>
     <string name="all">ทั้งหมด</string>
     <string name="charging">กำลังชาร์จ</string>
     <string name="pref_language">ภาษา</string>

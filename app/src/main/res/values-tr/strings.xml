@@ -98,7 +98,6 @@
     <string name="update_24hour">Her gün</string>
     <string name="update_48hour">2 günde bir</string>
     <string name="update_weekly">Her hafta</string>
-    <string name="update_monthly">Her ay</string>
     <string name="pref_library_update_categories">Genel güncellemeye eklenecek kategoriler</string>
     <string name="all">Tümü</string>
     <string name="pref_library_update_restriction">Kitaplık güncelleme kısıtlamaları</string>
@@ -658,4 +657,5 @@
     <string name="action_order_by_upload_date">Yükleme tarihine göre</string>
     <string name="action_filter_tracked">İzleniyor</string>
     <string name="action_display_show_number_of_items">Öge sayısını göster</string>
+    <string name="right_and_left_nav">Sağ ve Sol</string>
 </resources>

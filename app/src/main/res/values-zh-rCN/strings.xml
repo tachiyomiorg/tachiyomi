@@ -98,7 +98,6 @@
     <string name="update_24hour">每天</string>
     <string name="update_48hour">每 2 天</string>
     <string name="update_weekly">每周</string>
-    <string name="update_monthly">每月</string>
     <string name="pref_library_update_categories">全局更新时包含的分类</string>
     <string name="all">全部</string>
     <string name="pref_library_update_restriction">书架更新条件</string>
@@ -645,4 +644,6 @@
     <string name="action_order_by_chapter_number">按章节数</string>
     <string name="action_order_by_upload_date">按上传日期</string>
     <string name="action_filter_tracked">已跟踪</string>
+    <string name="action_display_show_number_of_items">显示条目数</string>
+    <string name="right_and_left_nav">右和左</string>
 </resources>

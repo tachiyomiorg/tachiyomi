@@ -298,7 +298,6 @@
     <string name="short_recent_updates">Обновления</string>
     <string name="snack_categories_deleted">Категории удалены</string>
     <string name="track">Отслеживание</string>
-    <string name="update_monthly">Ежемесячно</string>
     <string name="update_weekly">Еженедельно</string>
     <string name="action_sort_total">По количеству глав</string>
     <string name="action_open_log">Открыть лог</string>
@@ -671,12 +670,14 @@
     <string name="track_finished_reading_date">Дата окончания чтения</string>
     <string name="track_started_reading_date">Дата начала чтения</string>
     <string name="crash_log_saved">Логи вылета сохранены</string>
-    <string name="pref_dump_crash_logs_summary">Сохраняет логи ошибок в файл для обмена с разработчиками</string>
-    <string name="pref_dump_crash_logs">Сброс логов об вылетах</string>
+    <string name="pref_dump_crash_logs_summary">Сохраняет логи ошибок в файл для отправки разработчикам</string>
+    <string name="pref_dump_crash_logs">Выгрузка логов о вылетах</string>
     <string name="network_unmetered">Безлимитная сеть</string>
     <string name="action_desc">По убыванию</string>
     <string name="action_asc">По возрастанию</string>
     <string name="action_order_by_chapter_number">По номеру главы</string>
     <string name="action_order_by_upload_date">По дате загрузки</string>
-    <string name="action_filter_tracked">Отслеживаемый</string>
+    <string name="action_filter_tracked">Отслеживается</string>
+    <string name="action_display_show_number_of_items">Показать число объектов</string>
+    <string name="right_and_left_nav">Справа и слева</string>
 </resources>

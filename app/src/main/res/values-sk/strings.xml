@@ -100,7 +100,6 @@
     <string name="update_24hour">Raz za deň</string>
     <string name="update_48hour">Každé 2 dni</string>
     <string name="update_weekly">Každý týždeň</string>
-    <string name="update_monthly">Každý mesiac</string>
     <string name="pref_library_update_categories">Kategórie, ktoré sa majú zahrnúť do globálnej aktualizácie</string>
     <string name="all">Všetko</string>
     <string name="pref_library_update_prioritization">Poradie aktualizácie knižnice</string>

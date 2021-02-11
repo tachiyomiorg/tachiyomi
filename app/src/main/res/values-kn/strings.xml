@@ -287,7 +287,6 @@
     <string name="pref_library_update_restriction_summary">ಷರತ್ತುಗಳನ್ನು ಪೂರೈಸಿದಾಗ ಮಾತ್ರ ನವೀಕರಿಸಿ</string>
     <string name="pref_library_update_restriction">ಗ್ರಂಥಾಲಯ ನವೀಕರಣ ನಿರ್ಬಂಧಗಳು</string>
     <string name="pref_library_update_prioritization">ಗ್ರಂಥಾಲಯ ನವೀಕರಣ ಪಾಳಿ</string>
-    <string name="update_monthly">ತಿಂಗಳಿಗೊಮ್ಮೆ</string>
     <string name="update_weekly">ವಾರಕ್ಕೊಮ್ಮೆ</string>
     <string name="update_48hour">ಪ್ರತಿ 2 ದಿನಗಳಿಗೊಮ್ಮೆ</string>
     <string name="update_24hour">ಪ್ರತಿದಿನ</string>

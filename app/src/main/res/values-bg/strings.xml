@@ -308,7 +308,6 @@
     <string name="app_not_available">Приложението не е достъпно</string>
     <string name="short_recent_updates">Обновления</string>
     <string name="update_weekly">Ежеседмично</string>
-    <string name="update_monthly">Ежемесечно</string>
     <string name="default_category">Категория по подразбиране</string>
     <string name="default_category_summary">Питай всеки път</string>
     <string name="pref_crop_borders">Изрязвай границите</string>
