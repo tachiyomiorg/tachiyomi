@@ -55,6 +55,13 @@ class SettingsReaderController : SettingsController() {
             titleRes = R.string.pref_dual_page_split
             defaultValue = false
         }
+        switchPreference {
+            key = Keys.dualPageInvert
+            titleRes = R.string.pref_dual_page_invert
+            summaryRes = R.string.pref_dual_page_invert_summary
+            defaultValue = false
+            preferences.dualPageSplit().asImmediateFlow { isVisible = it }.launchIn(viewScope)
+        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             switchPreference {
                 key = Keys.trueColor

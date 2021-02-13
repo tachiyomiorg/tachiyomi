@@ -25,6 +25,8 @@ object PreferenceKeys {
 
     const val dualPageSplit = "pref_dual_page_split"
 
+    const val dualPageInvert = "pref_dual_page_invert"
+
     const val showReadingMode = "pref_show_reading_mode"
 
     const val trueColor = "pref_true_color_key"

@@ -9,11 +9,14 @@ import androidx.core.widget.NestedScrollView
 import com.tfcporciuncula.flow.Preference
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.preference.asImmediateFlow
 import eu.kanade.tachiyomi.databinding.ReaderSettingsSheetBinding
 import eu.kanade.tachiyomi.ui.reader.viewer.pager.PagerViewer
 import eu.kanade.tachiyomi.ui.reader.viewer.webtoon.WebtoonViewer
 import eu.kanade.tachiyomi.widget.IgnoreFirstSpinnerListener
 import eu.kanade.tachiyomi.widget.sheet.BaseBottomSheetDialog
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.flow.launchIn
 import uy.kohesive.injekt.injectLazy
 
 /**
@@ -24,6 +27,8 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BaseBottomShee
     private val preferences: PreferencesHelper by injectLazy()
 
     private val binding = ReaderSettingsSheetBinding.inflate(activity.layoutInflater, null, false)
+
+    private val viewScope = MainScope()
 
     init {
         val scroll = NestedScrollView(activity)
@@ -70,6 +75,10 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BaseBottomShee
         binding.longTap.bindToPreference(preferences.readWithLongTap())
         binding.alwaysShowChapterTransition.bindToPreference(preferences.alwaysShowChapterTransition())
         binding.pageTransitions.bindToPreference(preferences.pageTransitions())
+
+        // Makes so that dual page invert gets hidden away when turning of dual page split
+        preferences.dualPageSplit().asImmediateFlow { binding.dualPageInvert.isVisible = it }.launchIn(viewScope)
+        binding.dualPageInvert.bindToPreference(preferences.dualPageInvert())
 
         // If the preference is explicitly disabled, that means the setting was configured since there is a cutout
         if (activity.hasCutout || !preferences.cutoutShort().get()) {
