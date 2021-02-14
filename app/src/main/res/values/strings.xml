@@ -222,7 +222,9 @@
         <item quantity="other">%d categories</item>
     </plurals>
     <string name="pref_library_update_categories">Categories to include in global update</string>
+    <string name="pref_library_update_exclude_categories">Exclude manga tagged with given categories</string>
     <string name="all">All</string>
+    <string name="none">None</string>
 
       <!-- Extension section -->
     <string name="all_lang">All</string>

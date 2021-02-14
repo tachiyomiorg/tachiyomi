@@ -183,6 +183,25 @@ class SettingsLibraryController : SettingsController() {
                     }
                     .launchIn(viewScope)
             }
+            multiSelectListPreference {
+                key = Keys.libraryUpdateExcludeCategories
+                titleRes = R.string.pref_library_update_exclude_categories
+                entries = categories.map { it.name }.toTypedArray()
+                entryValues = categories.map { it.id.toString() }.toTypedArray()
+                preferences.libraryUpdateExcludeCategories().asFlow()
+                    .onEach { mutableSet ->
+                        val selectedCategories = mutableSet
+                            .mapNotNull { id -> categories.find { it.id == id.toInt() } }
+                            .sortedBy { it.order }
+
+                        summary = if (selectedCategories.isEmpty()) {
+                            context.getString(R.string.none)
+                        } else {
+                            selectedCategories.joinToString { it.name }
+                        }
+                    }
+                    .launchIn(viewScope)
+            }
             intListPreference {
                 key = Keys.libraryUpdatePrioritization
                 titleRes = R.string.pref_library_update_prioritization

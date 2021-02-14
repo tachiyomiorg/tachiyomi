@@ -205,6 +205,8 @@ class PreferencesHelper(val context: Context) {
 
     fun libraryUpdateCategories() = flowPrefs.getStringSet(Keys.libraryUpdateCategories, emptySet())
 
+    fun libraryUpdateExcludeCategories() = flowPrefs.getStringSet(Keys.libraryUpdateExcludeCategories, emptySet())
+
     fun libraryUpdatePrioritization() = flowPrefs.getInt(Keys.libraryUpdatePrioritization, 0)
 
     fun libraryDisplayMode() = flowPrefs.getEnum(Keys.libraryDisplayMode, DisplayMode.COMPACT_GRID)

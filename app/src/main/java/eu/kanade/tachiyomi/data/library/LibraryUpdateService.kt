@@ -224,13 +224,23 @@ class LibraryUpdateService(
             db.getLibraryMangas().executeAsBlocking().filter { it.category == categoryId }
         } else {
             val categoriesToUpdate = preferences.libraryUpdateCategories().get().map(String::toInt)
-            if (categoriesToUpdate.isNotEmpty()) {
+            val listToInclude = if (categoriesToUpdate.isNotEmpty()) {
                 db.getLibraryMangas().executeAsBlocking()
                     .filter { it.category in categoriesToUpdate }
                     .distinctBy { it.id }
             } else {
                 db.getLibraryMangas().executeAsBlocking().distinctBy { it.id }
             }
+
+            val categoriesToExclude = preferences.libraryUpdateExcludeCategories().get().map(String::toInt)
+            val listToExclude = if (categoriesToExclude.isNotEmpty()) {
+                db.getLibraryMangas().executeAsBlocking()
+                    .filter { it.category in categoriesToExclude }
+                    .distinctBy { it.id }
+            } else {
+                emptyList()
+            }
+            listToInclude.minus(listToExclude)
         }
         if (target == Target.CHAPTERS && preferences.updateOnlyNonCompleted()) {
             listToUpdate = listToUpdate.filter { it.status != SManga.COMPLETED }
