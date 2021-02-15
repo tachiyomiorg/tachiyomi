@@ -145,7 +145,7 @@ class SettingsReaderController : SettingsController() {
             intListPreference {
                 key = Keys.navigationModePager
                 titleRes = R.string.pref_viewer_nav
-                entries = resources?.getStringArray(R.array.webtoon_nav)?.also { values ->
+                entries = context.resources.getStringArray(R.array.pager_nav).also { values ->
                     entryValues = values.indices.map { index -> "$index" }.toTypedArray()
                 }
                 defaultValue = "0"
@@ -214,7 +214,7 @@ class SettingsReaderController : SettingsController() {
             intListPreference {
                 key = Keys.navigationModeWebtoon
                 titleRes = R.string.pref_viewer_nav
-                entries = resources?.getStringArray(R.array.webtoon_nav)?.also { values ->
+                entries = context.resources.getStringArray(R.array.webtoon_nav).also { values ->
                     entryValues = values.indices.map { index -> "$index" }.toTypedArray()
                 }
                 defaultValue = "0"
