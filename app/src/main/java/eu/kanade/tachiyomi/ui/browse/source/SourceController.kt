@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.ui.browse.source
 
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+import android.app.Activity
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -33,11 +34,6 @@ import eu.kanade.tachiyomi.ui.browse.BrowseController
 import eu.kanade.tachiyomi.ui.browse.source.browse.BrowseSourceController
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchController
 import eu.kanade.tachiyomi.ui.browse.source.latest.LatestUpdatesController
-import kotlinx.coroutines.flow.filterIsInstance
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
-import reactivecircus.flowbinding.appcompat.QueryTextEvent
-import reactivecircus.flowbinding.appcompat.queryTextEvents
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
@@ -59,6 +55,16 @@ class SourceController :
      * Adapter containing sources.
      */
     private var adapter: SourceAdapter? = null
+
+    /**
+     * Bool used to bypass the initial searchView being set to empty string after an onResume
+     */
+    private var storeNonSubmittedQuery: Boolean = false
+
+    /**
+     * Store the query text that has not been submitted to reassign it after an onResume, UI-only
+     */
+    private var nonSubmittedQuery: String = ""
 
     init {
         setHasOptionsMenu(true)
@@ -215,20 +221,56 @@ class SourceController :
         val searchView = searchItem.actionView as SearchView
         searchView.maxWidth = Int.MAX_VALUE
 
-        // Change hint to show global search.
-        searchView.queryHint = applicationContext?.getString(R.string.action_global_search_hint)
+        if (nonSubmittedQuery.isNotBlank()) {
+            searchItem.expandActionView()
+            searchView.setQuery(nonSubmittedQuery, false)
+            storeNonSubmittedQuery = true // searchView.requestFocus() does not seem to work here
+        } else {
+            // Change hint to show global search.
+            searchView.queryHint = applicationContext?.getString(R.string.action_global_search_hint)
+        }
 
-        // Create query listener which opens the global search view.
-        searchView.queryTextEvents()
-            .filterIsInstance<QueryTextEvent.QuerySubmitted>()
-            .onEach { performGlobalSearch(it.queryText.toString()) }
-            .launchIn(viewScope)
+        initSearchHandler(searchView)
+    }
+
+    private fun initSearchHandler(searchView: SearchView) {
+        searchView.setOnQueryTextFocusChangeListener { _, hasFocus ->
+            storeNonSubmittedQuery = hasFocus
+        }
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            // Save the query string whenever it changes to be able to store it for persistence
+            override fun onQueryTextChange(newText: String?): Boolean {
+                // Ignore events triggered when the search is not in focus
+                if (storeNonSubmittedQuery) {
+                    nonSubmittedQuery = newText ?: ""
+                }
+                return false
+            }
+
+            // Only perform search when the query is submitted
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                performGlobalSearch(query ?: "")
+                return true
+            }
+        })
+    }
+
+    override fun onActivityResumed(activity: Activity) {
+        super.onActivityResumed(activity)
+        // searchView.onQueryTextChange is triggered after this, and the query set to "", so we make
+        // sure not to save it (onActivityResumed --> onQueryTextChange
+        // --> OnQueryTextFocusChangeListener --> onCreateOptionsMenu)
+        storeNonSubmittedQuery = false
     }
 
     private fun performGlobalSearch(query: String) {
         parentController!!.router.pushController(
             GlobalSearchController(query).withFadeTransaction()
         )
+
+        // Clear the query since the user will now be in the GlobalSearchController
+        nonSubmittedQuery = ""
     }
 
     /**

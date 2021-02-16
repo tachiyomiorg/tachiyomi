@@ -1,12 +1,8 @@
 package eu.kanade.tachiyomi.ui.browse.source.globalsearch
 
+import android.app.Activity
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,11 +15,6 @@ import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.browse.source.browse.BrowseSourceController
 import eu.kanade.tachiyomi.ui.manga.MangaController
-import kotlinx.coroutines.flow.filterIsInstance
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
-import reactivecircus.flowbinding.appcompat.QueryTextEvent
-import reactivecircus.flowbinding.appcompat.queryTextEvents
 import uy.kohesive.injekt.injectLazy
 
 /**
@@ -44,6 +35,16 @@ open class GlobalSearchController(
      * Adapter containing search results grouped by lang.
      */
     protected var adapter: GlobalSearchAdapter? = null
+
+    /**
+     * Bool used to bypass the initial searchView being set to empty string after an onResume
+     */
+    private var storeNonSubmittedQuery: Boolean = false
+
+    /**
+     * Store the query text that has not been submitted to reassign it after an onResume, UI-only
+     */
+    private var nonSubmittedQuery: String = ""
 
     init {
         setHasOptionsMenu(true)
@@ -108,11 +109,45 @@ open class GlobalSearchController(
         val searchView = searchItem.actionView as SearchView
         searchView.maxWidth = Int.MAX_VALUE
 
+        // Restoring a query the user had not submitted
+        if (nonSubmittedQuery.isNotBlank()) {
+            searchItem.expandActionView()
+            searchView.setQuery(nonSubmittedQuery, false)
+            storeNonSubmittedQuery = true // searchView.requestFocus() does not seem to work here
+        }
+
+        // Handle query changes until they are submitted
+        searchView.setOnQueryTextFocusChangeListener { _, hasFocus ->
+            storeNonSubmittedQuery = hasFocus
+        }
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            // Save the query string whenever it changes to be able to store it for persistence
+            override fun onQueryTextChange(newText: String?): Boolean {
+                // Ignore events triggered when the search is not in focus
+                if (storeNonSubmittedQuery) {
+                    nonSubmittedQuery = newText ?: ""
+                }
+                return false
+            }
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                presenter.search(query ?: "")
+                searchItem.collapseActionView()
+                setTitle() // Update toolbar title
+                nonSubmittedQuery = ""
+
+                return false
+            }
+        })
+
         searchItem.setOnActionExpandListener(
             object : MenuItem.OnActionExpandListener {
                 override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
                     searchView.onActionViewExpanded() // Required to show the query in the view
-                    searchView.setQuery(presenter.query, false)
+                    if (nonSubmittedQuery.isBlank()) {
+                        searchView.setQuery(presenter.query, false)
+                    }
                     return true
                 }
 
@@ -121,15 +156,14 @@ open class GlobalSearchController(
                 }
             }
         )
+    }
 
-        searchView.queryTextEvents()
-            .filterIsInstance<QueryTextEvent.QuerySubmitted>()
-            .onEach {
-                presenter.search(it.queryText.toString())
-                searchItem.collapseActionView()
-                setTitle() // Update toolbar title
-            }
-            .launchIn(viewScope)
+    override fun onActivityResumed(activity: Activity) {
+        super.onActivityResumed(activity)
+        // searchView.onQueryTextChange is triggered after this, and the query set to "", so we make
+        // sure not to save it (onActivityResumed --> onQueryTextChange
+        // --> OnQueryTextFocusChangeListener --> onCreateOptionsMenu)
+        storeNonSubmittedQuery = false
     }
 
     /**
