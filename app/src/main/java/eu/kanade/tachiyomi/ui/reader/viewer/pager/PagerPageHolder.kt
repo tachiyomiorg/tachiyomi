@@ -275,10 +275,11 @@ class PagerPageHolder(
             else -> error("We should choose a side!")
         }
 
-        side = when {
-            viewer.config.dualPageInvert && side == ImageUtil.Side.RIGHT -> ImageUtil.Side.LEFT
-            viewer.config.dualPageInvert && side == ImageUtil.Side.LEFT -> ImageUtil.Side.RIGHT
-            else -> side
+        if (viewer.config.dualPageInvert) {
+            side = when (side) {
+                ImageUtil.Side.RIGHT -> ImageUtil.Side.LEFT
+                ImageUtil.Side.LEFT -> ImageUtil.Side.RIGHT
+            }
         }
 
         if (page !is InsertPage) {
