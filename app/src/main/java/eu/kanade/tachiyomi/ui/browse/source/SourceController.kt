@@ -1,16 +1,9 @@
 package eu.kanade.tachiyomi.ui.browse.source
 
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-import android.app.Activity
 import android.app.Dialog
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
-import androidx.appcompat.widget.SearchView
+import android.view.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItems
@@ -26,10 +19,7 @@ import eu.kanade.tachiyomi.databinding.SourceMainControllerBinding
 import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.Source
-import eu.kanade.tachiyomi.ui.base.controller.DialogController
-import eu.kanade.tachiyomi.ui.base.controller.NucleusController
-import eu.kanade.tachiyomi.ui.base.controller.requestPermissionsSafe
-import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
+import eu.kanade.tachiyomi.ui.base.controller.*
 import eu.kanade.tachiyomi.ui.browse.BrowseController
 import eu.kanade.tachiyomi.ui.browse.source.browse.BrowseSourceController
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchController
@@ -44,7 +34,7 @@ import uy.kohesive.injekt.api.get
  * [SourceAdapter.OnLatestClickListener] call function data on latest item click
  */
 class SourceController :
-    NucleusController<SourceMainControllerBinding, SourcePresenter>(),
+    SearchableNucleusController<SourceMainControllerBinding, SourcePresenter>(),
     FlexibleAdapter.OnItemClickListener,
     FlexibleAdapter.OnItemLongClickListener,
     SourceAdapter.OnSourceClickListener {
@@ -55,16 +45,6 @@ class SourceController :
      * Adapter containing sources.
      */
     private var adapter: SourceAdapter? = null
-
-    /**
-     * Bool used to bypass the initial searchView being set to empty string after an onResume
-     */
-    private var storeNonSubmittedQuery: Boolean = false
-
-    /**
-     * Store the query text that has not been submitted to reassign it after an onResume, UI-only
-     */
-    private var nonSubmittedQuery: String = ""
 
     init {
         setHasOptionsMenu(true)
@@ -207,73 +187,6 @@ class SourceController :
     }
 
     /**
-     * Adds items to the options menu.
-     *
-     * @param menu menu containing options.
-     * @param inflater used to load the menu xml.
-     */
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        // Inflate menu
-        inflater.inflate(R.menu.source_main, menu)
-
-        // Initialize search option.
-        val searchItem = menu.findItem(R.id.action_search)
-        val searchView = searchItem.actionView as SearchView
-        searchView.maxWidth = Int.MAX_VALUE
-
-        if (nonSubmittedQuery.isNotBlank()) {
-            searchItem.expandActionView()
-            searchView.setQuery(nonSubmittedQuery, false)
-            storeNonSubmittedQuery = true // searchView.requestFocus() does not seem to work here
-        } else {
-            // Change hint to show global search.
-            searchView.queryHint = applicationContext?.getString(R.string.action_global_search_hint)
-        }
-
-        initSearchHandler(searchView)
-    }
-
-    private fun initSearchHandler(searchView: SearchView) {
-        searchView.setOnQueryTextFocusChangeListener { _, hasFocus ->
-            storeNonSubmittedQuery = hasFocus
-        }
-
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            // Save the query string whenever it changes to be able to store it for persistence
-            override fun onQueryTextChange(newText: String?): Boolean {
-                // Ignore events triggered when the search is not in focus
-                if (storeNonSubmittedQuery) {
-                    nonSubmittedQuery = newText ?: ""
-                }
-                return false
-            }
-
-            // Only perform search when the query is submitted
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                performGlobalSearch(query ?: "")
-                return true
-            }
-        })
-    }
-
-    override fun onActivityResumed(activity: Activity) {
-        super.onActivityResumed(activity)
-        // searchView.onQueryTextChange is triggered after this, and the query set to "", so we make
-        // sure not to save it (onActivityResumed --> onQueryTextChange
-        // --> OnQueryTextFocusChangeListener --> onCreateOptionsMenu)
-        storeNonSubmittedQuery = false
-    }
-
-    private fun performGlobalSearch(query: String) {
-        parentController!!.router.pushController(
-            GlobalSearchController(query).withFadeTransaction()
-        )
-
-        // Clear the query since the user will now be in the GlobalSearchController
-        nonSubmittedQuery = ""
-    }
-
-    /**
      * Called when an option menu item has been selected by the user.
      *
      * @param item The selected item.
@@ -331,5 +244,26 @@ class SourceController :
                     dialog.dismiss()
                 }
         }
+    }
+
+    private fun performGlobalSearch(query: String) {
+        parentController!!.router.pushController(
+            GlobalSearchController(query).withFadeTransaction()
+        )
+
+        // Clear the query since the user will now be in the GlobalSearchController
+        nonSubmittedQuery = ""
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        commonCreateOptionsMenu(menu, inflater, R.menu.source_main, R.id.action_search, true)
+    }
+
+    override fun onSearchViewQueryTextChange(newText: String?) {
+        // nothing to do
+    }
+
+    override fun onSearchViewQueryTextSubmit(query: String?) {
+        performGlobalSearch(query ?: "")
     }
 }
