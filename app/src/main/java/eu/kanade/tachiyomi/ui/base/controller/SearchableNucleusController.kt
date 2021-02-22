@@ -6,8 +6,12 @@ import android.view.Menu
 import android.view.MenuInflater
 import androidx.appcompat.widget.SearchView
 import androidx.viewbinding.ViewBinding
-import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import reactivecircus.flowbinding.appcompat.QueryTextEvent
+import reactivecircus.flowbinding.appcompat.queryTextEvents
 
 /**
  * Implementation of the NucleusController that has a built-in ViewSearch
@@ -25,12 +29,16 @@ abstract class SearchableNucleusController<VB : ViewBinding, P : BasePresenter<*
      */
     protected var nonSubmittedQuery: String = ""
 
+    /**
+     * To be called by classes that extend this subclass in onCreateOptionsMenu
+     */
     protected fun commonCreateOptionsMenu(
         menu: Menu,
         inflater: MenuInflater,
         menuId: Int,
         searchItemId: Int,
-        useGlobalSearch: Boolean = false
+        queryHint: String = "",
+        restoreCurrentQuery: Boolean = true
     ) {
         // Inflate menu
         inflater.inflate(menuId, menu)
@@ -45,50 +53,49 @@ abstract class SearchableNucleusController<VB : ViewBinding, P : BasePresenter<*
             searchItem.expandActionView()
             searchView.setQuery(nonSubmittedQuery, false)
             storeNonSubmittedQuery = true // searchView.requestFocus() does not seem to work here
-        } else if (useGlobalSearch) {
-            // Change hint to show global search.
-            searchView.queryHint = applicationContext?.getString(R.string.action_global_search_hint)
         } else {
-            val query = presenter.query
+            if (queryHint.isNotBlank()) {
+                searchView.queryHint = queryHint
+            }
 
-            // Restoring a query the user had submitted
-            if (query.isNotBlank()) {
-                searchItem.expandActionView()
-                searchView.setQuery(query, true)
-                searchView.clearFocus()
+            if (restoreCurrentQuery) {
+                val query = presenter.query
+
+                // Restoring a query the user had submitted
+                if (query.isNotBlank()) {
+                    searchItem.expandActionView()
+                    searchView.setQuery(query, true)
+                    searchView.clearFocus()
+                }
             }
         }
 
-        initSearchHandler(searchView)
-    }
-
-    private fun initSearchHandler(searchView: SearchView) {
         searchView.setOnQueryTextFocusChangeListener { _, hasFocus ->
             storeNonSubmittedQuery = hasFocus
         }
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            // Save the query string whenever it changes to be able to store it for persistence
-            override fun onQueryTextChange(newText: String?): Boolean {
-                // Ignore events triggered when the search is not in focus
-                if (storeNonSubmittedQuery) {
-                    nonSubmittedQuery = newText ?: ""
-                }
-                // Abstract function for implementation
-                onSearchViewQueryTextChange(newText)
-                return false
-            }
+        searchView.queryTextEvents()
+            .debounce(300) // prevent overloading the controller as user types
+            .onEach {
+                val newText = it.queryText.toString()
 
-            // Only perform search when the query is submitted
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                // Abstract function for implementation
-                // Run it first in case the old query data is needed (like BrowseSourceController)
-                onSearchViewQueryTextSubmit(query)
-                presenter.query = query ?: ""
-                nonSubmittedQuery = ""
-                return true
+                if (it is QueryTextEvent.QuerySubmitted) {
+                    // Abstract function for implementation
+                    // Run it first in case the old query data is needed (like BrowseSourceController)
+                    onSearchViewQueryTextSubmit(newText)
+                    presenter.query = newText
+                    nonSubmittedQuery = ""
+                } else if ((it is QueryTextEvent.QueryChanged) && (presenter.query != newText)) {
+                    // Ignore events triggered when the search is not in focus
+                    if (storeNonSubmittedQuery) {
+                        nonSubmittedQuery = newText
+                    }
+
+                    // Abstract function for implementation
+                    onSearchViewQueryTextChange(newText)
+                }
             }
-        })
+            .launchIn(viewScope)
     }
 
     override fun onActivityResumed(activity: Activity) {
@@ -101,7 +108,11 @@ abstract class SearchableNucleusController<VB : ViewBinding, P : BasePresenter<*
 
     /**
      * Called by the SearchView since since the implementation of these can vary in subclasses
+     * Not abstract as they are optional
      */
-    protected abstract fun onSearchViewQueryTextChange(newText: String?)
-    protected abstract fun onSearchViewQueryTextSubmit(query: String?)
+    protected open fun onSearchViewQueryTextChange(newText: String?) {
+    }
+
+    protected open fun onSearchViewQueryTextSubmit(query: String?) {
+    }
 }
