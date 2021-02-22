@@ -1,6 +1,5 @@
 package eu.kanade.tachiyomi.ui.browse.source.globalsearch
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
@@ -129,14 +128,6 @@ open class GlobalSearchController(
         presenter.search(query ?: "")
         optionsMenuSearchItem?.collapseActionView()
         setTitle() // Update toolbar title
-    }
-
-    override fun onActivityResumed(activity: Activity) {
-        super.onActivityResumed(activity)
-        // searchView.onQueryTextChange is triggered after this, and the query set to "", so we make
-        // sure not to save it (onActivityResumed --> onQueryTextChange
-        // --> OnQueryTextFocusChangeListener --> onCreateOptionsMenu)
-        storeNonSubmittedQuery = false
     }
 
     /**
