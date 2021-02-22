@@ -105,23 +105,16 @@ open class GlobalSearchController(
         )
 
         optionsMenuSearchItem = menu.findItem(R.id.action_search)
+    }
+
+    override fun onSearchMenuItemActionExpand(item: MenuItem?) {
+        super.onSearchMenuItemActionExpand(item)
         val searchView = optionsMenuSearchItem?.actionView as SearchView
+        searchView.onActionViewExpanded() // Required to show the query in the view
 
-        optionsMenuSearchItem?.setOnActionExpandListener(
-            object : MenuItem.OnActionExpandListener {
-                override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
-                    searchView.onActionViewExpanded() // Required to show the query in the view
-                    if (nonSubmittedQuery.isBlank()) {
-                        searchView.setQuery(presenter.query, false)
-                    }
-                    return true
-                }
-
-                override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
-                    return true
-                }
-            }
-        )
+        if (nonSubmittedQuery.isBlank()) {
+            searchView.setQuery(presenter.query, false)
+        }
     }
 
     override fun onSearchViewQueryTextSubmit(query: String?) {

@@ -4,7 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
-import android.view.View
+import android.view.MenuItem
 import androidx.appcompat.widget.SearchView
 import androidx.viewbinding.ViewBinding
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
@@ -22,14 +22,14 @@ abstract class SearchableNucleusController<VB : ViewBinding, P : BasePresenter<*
     enum class SearchViewState(val state: Int) {
         LOADING(0),
         LOADED(1),
-        COLLAPSING(2)
+        COLLAPSING(2),
+        FOCUSED(3)
     }
 
     /**
-     * Bool used to bypass the initial searchView being set to empty string after an onResume
+     * Used to bypass the initial searchView being set to empty string after an onResume
      */
-    private var acceptEmptyQuery: Boolean = false
-    private var isLoaded: Boolean = false
+    private var currentSearchViewState: SearchViewState = SearchViewState.LOADING
 
     /**
      * Store the query text that has not been submitted to reassign it after an onResume, UI-only
@@ -60,7 +60,7 @@ abstract class SearchableNucleusController<VB : ViewBinding, P : BasePresenter<*
             .onEach {
                 val newText = it.queryText.toString()
 
-                if (newText.isNotBlank() or acceptEmptyQuery) {
+                if (newText.isNotBlank() or acceptEmptyQuery()) {
                     if (it is QueryTextEvent.QuerySubmitted) {
                         // Abstract function for implementation
                         // Run it first in case the old query data is needed (like BrowseSourceController)
@@ -74,6 +74,8 @@ abstract class SearchableNucleusController<VB : ViewBinding, P : BasePresenter<*
                         onSearchViewQueryTextChange(newText)
                     }
                 }
+                // clear the collapsing flag
+                setCurrentSearchViewState(SearchViewState.LOADED, SearchViewState.COLLAPSING)
             }
             .launchIn(viewScope)
 
@@ -103,28 +105,66 @@ abstract class SearchableNucleusController<VB : ViewBinding, P : BasePresenter<*
 
         // Workaround for weird behavior where searchView gets empty text change despite
         // query being set already, prevents the query from being cleared
-        searchView.postDelayed(
-            {
-                isLoaded = true
-                setAcceptEmptyQuery(true)
-            },
-            0
-        )
+        binding.root.post {
+            setCurrentSearchViewState(SearchViewState.LOADED, SearchViewState.LOADING)
+        }
 
         searchView.setOnQueryTextFocusChangeListener { _, hasFocus ->
-            setAcceptEmptyQuery(hasFocus)
+            if (hasFocus) {
+                setCurrentSearchViewState(SearchViewState.FOCUSED)
+            } else {
+                setCurrentSearchViewState(SearchViewState.LOADED, SearchViewState.FOCUSED)
+            }
         }
-    }
 
-    private fun setAcceptEmptyQuery(newValue: Boolean) {
-        acceptEmptyQuery = newValue && isLoaded
+        searchItem.setOnActionExpandListener(
+            object : MenuItem.OnActionExpandListener {
+                override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
+                    onSearchMenuItemActionExpand(item)
+                    return true
+                }
+
+                override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
+                    val searchView = searchItem.actionView as SearchView
+
+                    // if it is blank the flow event won't trigger so we would stay in a COLLAPSING state
+                    if (searchView.toString().isNotBlank()) {
+                        setCurrentSearchViewState(SearchViewState.COLLAPSING)
+                    }
+
+                    onSearchMenuItemActionCollapse(item)
+                    return true
+                }
+            }
+        )
     }
 
     override fun onActivityResumed(activity: Activity) {
         super.onActivityResumed(activity)
         // Until everything is up and running don't accept empty queries
-        isLoaded = false
-        setAcceptEmptyQuery(false)
+        setCurrentSearchViewState(SearchViewState.LOADING)
+    }
+
+    private fun acceptEmptyQuery(): Boolean {
+        return when (currentSearchViewState) {
+            SearchViewState.COLLAPSING, SearchViewState.FOCUSED -> true
+            else -> false
+        }
+    }
+
+    private fun setCurrentSearchViewState(newState: SearchViewState, fromState: SearchViewState? = null) {
+        // When loading ignore all requests other than loaded
+        if ((currentSearchViewState == SearchViewState.LOADING) && (newState != SearchViewState.LOADED)) {
+            return
+        }
+
+        // Prevent changing back to an unwanted state when using async flows (ie onFocus event doing
+        // COLLAPSING -> LOADED)
+        if ((fromState != null) && (currentSearchViewState != fromState)) {
+            return
+        }
+
+        currentSearchViewState = newState
     }
 
     /**
@@ -137,6 +177,12 @@ abstract class SearchableNucleusController<VB : ViewBinding, P : BasePresenter<*
     protected open fun onSearchViewQueryTextSubmit(query: String?) {
     }
 
+    protected open fun onSearchMenuItemActionExpand(item: MenuItem?) {
+    }
+
+    protected open fun onSearchMenuItemActionCollapse(item: MenuItem?) {
+    }
+
     /**
      * During the conversion to SearchableNucleusController (after which I plan to merge its code
      * into BaseController) this addresses an issue where the searchView.onTextFocus event is not
@@ -145,7 +191,7 @@ abstract class SearchableNucleusController<VB : ViewBinding, P : BasePresenter<*
     override fun invalidateMenuOnExpand(): Boolean {
         return if (expandActionViewFromInteraction) {
             activity?.invalidateOptionsMenu()
-            setAcceptEmptyQuery(true) // we are technically focused here
+            setCurrentSearchViewState(SearchViewState.FOCUSED) // we are technically focused here
             false
         } else {
             true
