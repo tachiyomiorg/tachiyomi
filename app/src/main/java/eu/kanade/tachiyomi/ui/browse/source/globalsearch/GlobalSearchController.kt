@@ -11,7 +11,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.databinding.GlobalSearchControllerBinding
 import eu.kanade.tachiyomi.source.CatalogueSource
-import eu.kanade.tachiyomi.ui.base.controller.NucleusController
+import eu.kanade.tachiyomi.ui.base.controller.SearchableNucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.browse.source.browse.BrowseSourceController
 import eu.kanade.tachiyomi.ui.manga.MangaController
@@ -25,7 +25,7 @@ import uy.kohesive.injekt.injectLazy
 open class GlobalSearchController(
     protected val initialQuery: String? = null,
     protected val extensionFilter: String? = null
-) : NucleusController<GlobalSearchControllerBinding, GlobalSearchPresenter>(),
+) : SearchableNucleusController<GlobalSearchControllerBinding, GlobalSearchPresenter>(),
     GlobalSearchCardAdapter.OnMangaClickListener,
     GlobalSearchAdapter.OnTitleClickListener {
 
@@ -37,14 +37,9 @@ open class GlobalSearchController(
     protected var adapter: GlobalSearchAdapter? = null
 
     /**
-     * Bool used to bypass the initial searchView being set to empty string after an onResume
+     * Ref to the OptionsMenu.SearchItem created in onCreateOptionsMenu
      */
-    private var storeNonSubmittedQuery: Boolean = false
-
-    /**
-     * Store the query text that has not been submitted to reassign it after an onResume, UI-only
-     */
-    private var nonSubmittedQuery: String = ""
+    private var optionsMenuSearchItem: MenuItem? = null
 
     init {
         setHasOptionsMenu(true)
@@ -101,47 +96,19 @@ open class GlobalSearchController(
      * @param inflater used to load the menu xml.
      */
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        // Inflate menu.
-        inflater.inflate(R.menu.global_search, menu)
+        commonCreateOptionsMenu(
+            menu,
+            inflater,
+            R.menu.global_search,
+            R.id.action_search,
+            "",
+            false // the onMenuItemActionExpand will handle this
+        )
 
-        // Initialize search menu
-        val searchItem = menu.findItem(R.id.action_search)
-        val searchView = searchItem.actionView as SearchView
-        searchView.maxWidth = Int.MAX_VALUE
+        optionsMenuSearchItem = menu.findItem(R.id.action_search)
+        val searchView = optionsMenuSearchItem?.actionView as SearchView
 
-        // Restoring a query the user had not submitted
-        if (nonSubmittedQuery.isNotBlank()) {
-            searchItem.expandActionView()
-            searchView.setQuery(nonSubmittedQuery, false)
-            storeNonSubmittedQuery = true // searchView.requestFocus() does not seem to work here
-        }
-
-        // Handle query changes until they are submitted
-        searchView.setOnQueryTextFocusChangeListener { _, hasFocus ->
-            storeNonSubmittedQuery = hasFocus
-        }
-
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            // Save the query string whenever it changes to be able to store it for persistence
-            override fun onQueryTextChange(newText: String?): Boolean {
-                // Ignore events triggered when the search is not in focus
-                if (storeNonSubmittedQuery) {
-                    nonSubmittedQuery = newText ?: ""
-                }
-                return false
-            }
-
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                presenter.search(query ?: "")
-                searchItem.collapseActionView()
-                setTitle() // Update toolbar title
-                nonSubmittedQuery = ""
-
-                return false
-            }
-        })
-
-        searchItem.setOnActionExpandListener(
+        optionsMenuSearchItem?.setOnActionExpandListener(
             object : MenuItem.OnActionExpandListener {
                 override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
                     searchView.onActionViewExpanded() // Required to show the query in the view
@@ -156,6 +123,12 @@ open class GlobalSearchController(
                 }
             }
         )
+    }
+
+    override fun onSearchViewQueryTextSubmit(query: String?) {
+        presenter.search(query ?: "")
+        optionsMenuSearchItem?.collapseActionView()
+        setTitle() // Update toolbar title
     }
 
     override fun onActivityResumed(activity: Activity) {

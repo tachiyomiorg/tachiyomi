@@ -8,7 +8,6 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.GridLayoutManager
@@ -277,10 +276,6 @@ open class BrowseSourceController(bundle: Bundle) :
             DisplayMode.LIST -> R.id.action_list
         }
         menu.findItem(displayItem).isChecked = true
-    }
-
-    override fun onSearchViewQueryTextChange(newText: String?) {
-        // nothing
     }
 
     override fun onSearchViewQueryTextSubmit(query: String?) {

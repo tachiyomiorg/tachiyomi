@@ -246,24 +246,20 @@ class SourceController :
         }
     }
 
-    private fun performGlobalSearch(query: String) {
-        parentController!!.router.pushController(
-            GlobalSearchController(query).withFadeTransaction()
-        )
-
-        // Clear the query since the user will now be in the GlobalSearchController
-        nonSubmittedQuery = ""
-    }
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        commonCreateOptionsMenu(menu, inflater, R.menu.source_main, R.id.action_search, true)
-    }
-
-    override fun onSearchViewQueryTextChange(newText: String?) {
-        // nothing to do
+        commonCreateOptionsMenu(
+            menu,
+            inflater,
+            R.menu.source_main,
+            R.id.action_search,
+            applicationContext?.getString(R.string.action_global_search_hint) ?: "",
+            false // GlobalSearch handles the searching here
+        )
     }
 
     override fun onSearchViewQueryTextSubmit(query: String?) {
-        performGlobalSearch(query ?: "")
+        parentController!!.router.pushController(
+            GlobalSearchController(query).withFadeTransaction()
+        )
     }
 }
