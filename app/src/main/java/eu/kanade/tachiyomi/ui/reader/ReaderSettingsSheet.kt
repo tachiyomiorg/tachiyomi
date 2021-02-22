@@ -68,17 +68,10 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BaseBottomShee
         binding.backgroundColor.bindToIntPreference(preferences.readerTheme(), R.array.reader_themes_values)
         binding.showPageNumber.bindToPreference(preferences.showPageNumber())
         binding.fullscreen.bindToPreference(preferences.fullscreen())
-        binding.dualPageSplit.bindToPreference(preferences.dualPageSplit())
         binding.keepscreen.bindToPreference(preferences.keepScreenOn())
         binding.longTap.bindToPreference(preferences.readWithLongTap())
         binding.alwaysShowChapterTransition.bindToPreference(preferences.alwaysShowChapterTransition())
         binding.pageTransitions.bindToPreference(preferences.pageTransitions())
-
-        // Makes so that dual page invert gets hidden away when turning of dual page split
-        preferences.dualPageSplit()
-            .asImmediateFlow { binding.dualPageInvert.isVisible = it }
-            .launchIn(activity.lifecycleScope)
-        binding.dualPageInvert.bindToPreference(preferences.dualPageInvert())
 
         // If the preference is explicitly disabled, that means the setting was configured since there is a cutout
         if (activity.hasCutout || !preferences.cutoutShort().get()) {
@@ -102,6 +95,13 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BaseBottomShee
         binding.pagerPrefsGroup.scaleType.bindToPreference(preferences.imageScaleType(), 1)
         binding.pagerPrefsGroup.zoomStart.bindToPreference(preferences.zoomStart(), 1)
         binding.pagerPrefsGroup.cropBorders.bindToPreference(preferences.cropBorders())
+
+        // Makes so that dual page invert gets hidden away when turning of dual page split
+        binding.dualPageSplit.bindToPreference(preferences.dualPageSplitPaged())
+        preferences.dualPageSplitPaged()
+            .asImmediateFlow { binding.dualPageInvert.isVisible = it }
+            .launchIn(activity.lifecycleScope)
+        binding.dualPageInvert.bindToPreference(preferences.dualPageInvertPaged())
     }
 
     /**
@@ -118,6 +118,13 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BaseBottomShee
         binding.webtoonPrefsGroup.webtoonNav.bindToPreference(preferences.navigationModeWebtoon())
         binding.webtoonPrefsGroup.cropBordersWebtoon.bindToPreference(preferences.cropBordersWebtoon())
         binding.webtoonPrefsGroup.webtoonSidePadding.bindToIntPreference(preferences.webtoonSidePadding(), R.array.webtoon_side_padding_values)
+
+        // Makes so that dual page invert gets hidden away when turning of dual page split
+        binding.dualPageSplit.bindToPreference(preferences.dualPageSplitWebtoon())
+        preferences.dualPageSplitWebtoon()
+            .asImmediateFlow { binding.dualPageInvert.isVisible = it }
+            .launchIn(activity.lifecycleScope)
+        binding.dualPageInvert.bindToPreference(preferences.dualPageInvertWebtoon())
     }
 
     /**

@@ -37,6 +37,12 @@ class WebtoonConfig(
 
         preferences.webtoonNavInverted()
             .register({ tappingInverted = it }, { navigator.invertMode = it })
+
+        preferences.dualPageSplitWebtoon()
+            .register({ dualPageSplit = it }, { imagePropertyChangedListener?.invoke() })
+
+        preferences.dualPageInvertWebtoon()
+            .register({ dualPageInvert = it }, { imagePropertyChangedListener?.invoke() })
     }
 
     override var navigator: ViewerNavigation = defaultNavigation()
