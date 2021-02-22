@@ -292,7 +292,8 @@ class WebtoonPageHolder(
                     openStream = if (!isDoublePage) {
                         stream
                     } else {
-                        ImageUtil.splitAndMerge(stream)
+                        val upperSide = if (viewer.config.dualPageInvert) ImageUtil.Side.LEFT else ImageUtil.Side.RIGHT
+                        ImageUtil.splitAndMerge(stream, upperSide)
                     }
                 }
                 if (!isAnimated) {

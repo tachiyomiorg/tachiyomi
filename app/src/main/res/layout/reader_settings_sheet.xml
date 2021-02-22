@@ -160,13 +160,23 @@
         app:layout_constraintTop_toBottomOf="@id/fullscreen" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/dual_page_invert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pref_dual_page_invert"
+        android:textColor="?android:attr/textColorSecondary"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/dual_page_split"
+        tools:visibility="visible" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/cutout_short"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/pref_cutout_short"
         android:textColor="?android:attr/textColorSecondary"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/dual_page_split"
+        app:layout_constraintTop_toBottomOf="@id/dual_page_invert"
         tools:visibility="visible" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial

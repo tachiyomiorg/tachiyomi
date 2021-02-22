@@ -25,6 +25,7 @@ abstract class ViewerConfig(preferences: PreferencesHelper, private val scope: C
     var trueColor = false
     var alwaysShowChapterTransition = true
     var dualPageSplit = false
+    var dualPageInvert = false
     var navigationMode = 0
         protected set
 
@@ -58,6 +59,9 @@ abstract class ViewerConfig(preferences: PreferencesHelper, private val scope: C
 
         preferences.dualPageSplit()
             .register({ dualPageSplit = it }, { imagePropertyChangedListener?.invoke() })
+
+        preferences.dualPageInvert()
+            .register({ dualPageInvert = it }, { imagePropertyChangedListener?.invoke() })
     }
 
     protected abstract fun defaultNavigation(): ViewerNavigation

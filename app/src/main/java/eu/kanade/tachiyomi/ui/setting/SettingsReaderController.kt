@@ -55,6 +55,13 @@ class SettingsReaderController : SettingsController() {
             titleRes = R.string.pref_dual_page_split
             defaultValue = false
         }
+        switchPreference {
+            key = Keys.dualPageInvert
+            titleRes = R.string.pref_dual_page_invert
+            summaryRes = R.string.pref_dual_page_invert_summary
+            defaultValue = false
+            preferences.dualPageSplit().asImmediateFlow { isVisible = it }.launchIn(viewScope)
+        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             switchPreference {
                 key = Keys.trueColor
@@ -145,13 +152,9 @@ class SettingsReaderController : SettingsController() {
             intListPreference {
                 key = Keys.navigationModePager
                 titleRes = R.string.pref_viewer_nav
-                entriesRes = arrayOf(
-                    R.string.default_nav,
-                    R.string.l_nav,
-                    R.string.kindlish_nav,
-                    R.string.edge_nav
-                )
-                entryValues = arrayOf("0", "1", "2", "3")
+                entries = context.resources.getStringArray(R.array.pager_nav).also { values ->
+                    entryValues = values.indices.map { index -> "$index" }.toTypedArray()
+                }
                 defaultValue = "0"
                 summary = "%s"
 
@@ -218,13 +221,9 @@ class SettingsReaderController : SettingsController() {
             intListPreference {
                 key = Keys.navigationModeWebtoon
                 titleRes = R.string.pref_viewer_nav
-                entriesRes = arrayOf(
-                    R.string.default_nav,
-                    R.string.l_nav,
-                    R.string.kindlish_nav,
-                    R.string.edge_nav
-                )
-                entryValues = arrayOf("0", "1", "2", "3")
+                entries = context.resources.getStringArray(R.array.webtoon_nav).also { values ->
+                    entryValues = values.indices.map { index -> "$index" }.toTypedArray()
+                }
                 defaultValue = "0"
                 summary = "%s"
 
