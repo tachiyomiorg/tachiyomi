@@ -154,6 +154,7 @@
     <string name="pref_theme_light">Light theme</string>
     <string name="theme_light_default">Default</string>
     <string name="theme_light_blue">Light blue</string>
+    <string name="theme_light_rose">Light rosé</string>
     <string name="pref_theme_dark">Dark theme</string>
     <string name="theme_dark_default">Default</string>
     <string name="theme_dark_blue">Dark blue</string>

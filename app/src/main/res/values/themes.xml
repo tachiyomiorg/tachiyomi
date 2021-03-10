@@ -103,6 +103,17 @@
         <item name="actionBarTheme">@style/Theme.Toolbar.Light</item>
     </style>
 
+    <style name="Theme.Tachiyomi.LightRose" parent="Theme.Base">
+
+        <item name="colorPrimary">@color/md_pink_200</item>
+        <item name="colorOnPrimary">@color/textColorPrimaryDark</item>
+        <item name="colorAccent">@color/md_pink_500</item>
+        <item name="colorAccentOnPrimary">@color/textColorPrimaryDark</item>
+        <item name="colorSecondary">@color/md_pink_500</item>
+        <item name="colorPrimaryVariant">@color/md_pink_300</item>
+        <item name="actionBarTheme">@style/Theme.Toolbar.Light</item>
+    </style>
+
     <!--=============-->
     <!-- Dark Themes -->
     <!--=============-->

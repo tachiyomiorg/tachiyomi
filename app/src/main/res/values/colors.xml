@@ -74,6 +74,10 @@
     <color name="md_blue_grey_900">#263238</color>
     <color name="md_blue_grey_800">#37474F</color>
 
+    <color name="md_pink_200">#F48FB1</color>
+    <color name="md_pink_300">#F06292</color>
+    <color name="md_pink_500">#E91E63</color>
+
     <color name="green">#47a84a</color>
 
 </resources>

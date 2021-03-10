@@ -25,6 +25,7 @@ abstract class BaseThemedActivity : AppCompatActivity() {
     private val lightTheme: Int by lazy {
         when (preferences.themeLight().get()) {
             Values.LightThemeVariant.blue -> R.style.Theme_Tachiyomi_LightBlue
+            Values.LightThemeVariant.rose -> R.style.Theme_Tachiyomi_LightRose
             else -> {
                 when {
                     // Light status + navigation bar
