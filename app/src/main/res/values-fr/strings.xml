@@ -24,8 +24,8 @@
     <string name="action_mark_as_unread">Marquer comme non lu</string>
     <string name="action_mark_previous_as_read">Marquer précédent comme lu</string>
     <string name="action_download">Télécharger</string>
-    <string name="action_bookmark">Ajouter un signet</string>
-    <string name="action_remove_bookmark">Enlever un signet</string>
+    <string name="action_bookmark">Marquer le chapitre</string>
+    <string name="action_remove_bookmark">Enlever le signet</string>
     <string name="action_delete">Supprimer</string>
     <string name="action_update">Mettre à jour</string>
     <string name="action_update_library">Mettre à jour la bibliothèque</string>
@@ -207,7 +207,7 @@
     <string name="completed">Complété</string>
     <string name="dropped">Abandonné</string>
     <string name="on_hold">En pause</string>
-    <string name="plan_to_read">A lire</string>
+    <string name="plan_to_read">À lire</string>
     <string name="score">Note</string>
     <string name="title">Titre</string>
     <string name="status">Statut</string>
@@ -269,7 +269,7 @@
     <string name="information_no_downloads">Aucun téléchargement</string>
     <string name="information_no_recent">Pas de mises à jour récentes</string>
     <string name="information_no_recent_manga">Rien de lu récemment</string>
-    <string name="information_empty_library">La bibliothèque est vide. Ajoutez des séries à votre bibliothèque depuis l\'onglet \"Explorer\".</string>
+    <string name="information_empty_library">La bibliothèque est vide. Ajoutez des séries à votre bibliothèque depuis l\'onglet « Explorer ».</string>
     <!-- Download Notification -->
     <string name="download_notifier_downloader_title">Téléchargement</string>
     <string name="download_notifier_title_error">Erreur</string>
@@ -430,7 +430,7 @@
     <string name="logout">Se déconnecter</string>
     <string name="logout_success">Vous êtes maintenant déconnecté</string>
     <string name="currently_reading">En cours de lecture</string>
-    <string name="paused">En suspens</string>
+    <string name="paused">En pause</string>
     <string name="want_to_read">À lire plus tard</string>
     <string name="label_more">Plus</string>
     <string name="action_sort_latest_chapter">Dernier chapitre</string>
@@ -692,4 +692,7 @@
     <string name="action_filter_tracked">Suivi</string>
     <string name="action_display_show_number_of_items">Afficher le nombre d’entrées</string>
     <string name="right_and_left_nav">Droite et gauche</string>
+    <string name="pref_dual_page_split">Double page partagée (ALPHA)</string>
+    <string name="pref_dual_page_invert_summary">Si le placement de la double page ne correspond pas au sens de lecture</string>
+    <string name="pref_dual_page_invert">Inverser le placement des doubles pages</string>
 </resources>

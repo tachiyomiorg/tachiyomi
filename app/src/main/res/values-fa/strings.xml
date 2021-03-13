@@ -570,7 +570,7 @@
     </plurals>
     <plurals name="manga_num_chapters">
         <item quantity="one">1 قسمت</item>
-        <item quantity="other">%1$ قسمت</item>
+        <item quantity="other">%1$s قسمت</item>
     </plurals>
     <string name="unknown_status">وضعیت ناشناخته</string>
     <string name="unknown_author">نویسنده ناشناخته</string>

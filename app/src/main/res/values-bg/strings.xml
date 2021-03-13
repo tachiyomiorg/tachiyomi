@@ -24,7 +24,7 @@
     <string name="action_mark_as_unread">Отбележи като непрочетена</string>
     <string name="action_mark_previous_as_read">Отбележи предните глави като прочетени</string>
     <string name="action_download">Изтегли</string>
-    <string name="action_bookmark">Отметни</string>
+    <string name="action_bookmark">Отметни главата</string>
     <string name="action_remove_bookmark">Премахни отметката</string>
     <string name="action_delete">Изтрий</string>
     <string name="action_update">Обнови</string>
@@ -626,10 +626,10 @@
     <string name="pref_remove_bookmarked_chapters">Изтрий главите с отметки</string>
     <string name="pref_category_delete_chapters">Изтрий глави</string>
     <string name="pref_category_reading_mode">Режим на четене</string>
-    <string name="ext_nsfw_warning">Може да има съдържание 18+</string>
+    <string name="ext_nsfw_warning">Може да съдържа неприличен материал 18+</string>
     <string name="ext_nsfw_short">18+</string>
     <string name="pref_jump_to_chapters">Отиди до глави при отваряне</string>
-    <string name="parental_controls_info">Тази настройка няма да спре неофициални или потенциално неправилно маркирани разширения да позволяват достъп до съдържание за възрастни в апликацията.</string>
+    <string name="parental_controls_info">Тази настройка няма да спре неофициални или потенциално неправилно маркирани разширения да позволяват достъп до съдържание за възрастни (18+) в апликацията.</string>
     <string name="pref_category_theme">Тема</string>
     <string name="action_download_unread">Изтегли непрочетените глави</string>
     <string name="action_sort_date_added">Добавено на</string>
@@ -638,4 +638,12 @@
         <item quantity="one">Има %d липсваща глава</item>
         <item quantity="other">Има %d липсващи глави</item>
     </plurals>
+    <string name="pref_category_nsfw_content">Не безопасни за работа (18+) източници</string>
+    <string name="action_desc">Низходящ</string>
+    <string name="action_asc">Възходящ</string>
+    <string name="action_order_by_chapter_number">По номер на глава</string>
+    <string name="action_order_by_upload_date">По дата на качване</string>
+    <string name="action_display_show_number_of_items">Покажи предметите</string>
+    <string name="action_search_settings">Настройки за търсения</string>
+    <string name="action_filter_tracked">Следени</string>
 </resources>

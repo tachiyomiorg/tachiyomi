@@ -170,8 +170,8 @@
     <string name="action_update_library">Ažuriraj biblioteku</string>
     <string name="action_update">Ažuriraj</string>
     <string name="action_delete">Izbriši</string>
-    <string name="action_remove_bookmark">Poništi zabilješku</string>
-    <string name="action_bookmark">Zabilježi</string>
+    <string name="action_remove_bookmark">Ukloni zabilješku poglavlja</string>
+    <string name="action_bookmark">Zabilježi poglavlje</string>
     <string name="action_download">Preuzmi</string>
     <string name="action_mark_previous_as_read">Označi prethodno kao pročitano</string>
     <string name="action_mark_as_unread">Označi kao nepročitano</string>
@@ -335,7 +335,7 @@
     <string name="migration_dialog_what_to_include">Odaberi podatke koje želiš uključiti</string>
     <string name="migration_info">Dodirni za biranje izvora iz kojeg se migrira</string>
     <string name="recent_manga_time">Pogl. %1$s – %2$s</string>
-    <string name="updating_library">Ažuriranje biblioteke</string>
+    <string name="updating_library">Aktualiziranje biblioteke</string>
     <string name="transition_pages_error">Neuspjelo učitavanje stranica: %1$s</string>
     <string name="transition_pages_loading">Učitavanje stranica …</string>
     <string name="transition_no_previous">Nema prethodnog poglavlja</string>
@@ -429,7 +429,7 @@
     <string name="manga_detail_tab">Podaci</string>
     <string name="manga_not_in_db">Ovaj je manga uklonjen iz baze podataka.</string>
     <string name="local_source_help_guide">Vodič za lokalni izvor</string>
-    <string name="browse">Izvori</string>
+    <string name="browse">Pretraži</string>
     <string name="latest">Najnovije</string>
     <string name="action_global_search_hint">Globalna pretraga …</string>
     <string name="added_to_library">Manga je dodan u biblioteku</string>
@@ -668,4 +668,6 @@
     <string name="action_order_by_chapter_number">Po broju poglavlja</string>
     <string name="action_order_by_upload_date">Po datumu preuzimanja</string>
     <string name="action_filter_tracked">Praćeno</string>
+    <string name="right_and_left_nav">Desno i lijevo</string>
+    <string name="action_display_show_number_of_items">Prikaži broj elemenata</string>
 </resources>

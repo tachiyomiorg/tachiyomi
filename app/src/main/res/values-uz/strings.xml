@@ -68,5 +68,5 @@
     <string name="label_download_queue">Yuklash navbati</string>
     <string name="label_settings">Sozlamalar</string>
     <string name="label_more">Kõproq</string>
-    <string name="name">Ism</string>
+    <string name="name">Name</string>
 </resources>

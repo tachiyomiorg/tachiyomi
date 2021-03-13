@@ -428,10 +428,10 @@
     <string name="theme_dark_amoled">Czarny AMOLED</string>
     <string name="theme_dark_blue">Ciemnoniebieski</string>
     <string name="theme_dark_default">Domyślny</string>
-    <string name="pref_theme_dark">Ciemny motyw</string>
+    <string name="pref_theme_dark">Wariant ciemnego motywu</string>
     <string name="theme_light_blue">Jasnoniebieski</string>
     <string name="theme_light_default">Domyślny</string>
-    <string name="pref_theme_light">Jasny motyw</string>
+    <string name="pref_theme_light">Wariant jasnego motywu</string>
     <string name="theme_system">Systemowy</string>
     <string name="theme_dark">Włącz</string>
     <string name="theme_light">Wyłącz</string>
@@ -601,7 +601,7 @@
     <string name="pref_category_reading_mode">Tryb czytania</string>
     <string name="pref_category_theme">Motyw</string>
     <string name="action_download_unread">Pobierz nieprzeczytane rozdziały</string>
-    <string name="action_sort_date_added">Dane dodane</string>
+    <string name="action_sort_date_added">Po dacie dodania</string>
     <string name="action_search_settings">Ustawienia szukania</string>
     <string name="full_restore_mode">Tryb sieciowy</string>
     <string name="spen_next_page">Następna strona</string>
@@ -680,4 +680,8 @@
     <string name="action_order_by_upload_date">Po dacie dodania</string>
     <string name="action_filter_tracked">Śledzone</string>
     <string name="action_display_show_number_of_items">Pokaż liczbę elementów</string>
+    <string name="right_and_left_nav">Prawa i Lewa</string>
+    <string name="pref_dual_page_invert_summary">Jeśli układ w podziale podwójnych stron nie pasuje do kierunku czytania</string>
+    <string name="pref_dual_page_invert">Odwróć układ w podziale podwójnych stron</string>
+    <string name="pref_dual_page_split">Podział podwójnych stron (ALPHA)</string>
 </resources>

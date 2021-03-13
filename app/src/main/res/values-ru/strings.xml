@@ -2,7 +2,7 @@
 <resources>
     <string name="action_add">Добавить</string>
     <string name="action_add_category">Добавить категорию</string>
-    <string name="action_bookmark">Закладка</string>
+    <string name="action_bookmark">Закладка главы</string>
     <string name="action_cancel">Отмена</string>
     <string name="action_delete">Удалить</string>
     <string name="action_display">Отобразить</string>
@@ -29,7 +29,7 @@
     <string name="action_pause">Пауза</string>
     <string name="action_previous_chapter">Предыдущая глава</string>
     <string name="action_remove">Удалить</string>
-    <string name="action_remove_bookmark">Удалить закладку</string>
+    <string name="action_remove_bookmark">Снять закладку с главы</string>
     <string name="action_rename_category">Переименовать категорию</string>
     <string name="action_reset">Сбросить</string>
     <string name="action_resume">Продолжить</string>
@@ -311,7 +311,7 @@
     <string name="other_source">Другие</string>
     <string name="action_global_search_hint">Глобальный поиск…</string>
     <string name="latest">Последняя</string>
-    <string name="browse">Поиск</string>
+    <string name="browse">Поисковик</string>
     <string name="channel_common">Общий</string>
     <string name="channel_library">Библиотека</string>
     <string name="information_empty_category">У вас нет категорий. Нажмите кнопку + чтобы создать категорию для организации вашей библиотеки.</string>
@@ -680,4 +680,7 @@
     <string name="action_filter_tracked">Отслеживается</string>
     <string name="action_display_show_number_of_items">Показать число объектов</string>
     <string name="right_and_left_nav">Справа и слева</string>
+    <string name="pref_dual_page_split">Двухстраничное разделение (АЛЬФА)</string>
+    <string name="pref_dual_page_invert">Инвертировать двухстраничное размещение разделения</string>
+    <string name="pref_dual_page_invert_summary">Если двухстраничное размещение разделения не соответствует направлению чтения</string>
 </resources>

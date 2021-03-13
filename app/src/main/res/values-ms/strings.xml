@@ -29,8 +29,8 @@
     <string name="action_mark_as_unread">Tandakan sebagai belum dibaca</string>
     <string name="action_mark_previous_as_read">Tandakan yang sebelum sebagai sudah dibaca</string>
     <string name="action_download">Muat turun</string>
-    <string name="action_bookmark">Penanda</string>
-    <string name="action_remove_bookmark">Buang penanda</string>
+    <string name="action_bookmark">Penanda bab</string>
+    <string name="action_remove_bookmark">Buang penanda bab</string>
     <string name="action_delete">Padam</string>
     <string name="action_update">Kemas kini</string>
     <string name="action_update_library">Kemas kini pustaka</string>
@@ -646,4 +646,7 @@
     <string name="action_filter_tracked">Dijejaki</string>
     <string name="action_display_show_number_of_items">Tunjuk jumlah bilangan</string>
     <string name="right_and_left_nav">Kanan dan kiri</string>
+    <string name="pref_dual_page_split">Memisah dua muka surat (ALPHA)</string>
+    <string name="pref_dual_page_invert_summary">Jika kedudukan memisah dua muka surat tidak sama dengan arah membaca</string>
+    <string name="pref_dual_page_invert">Songsangkan kedudukan memisah muka surat</string>
 </resources>

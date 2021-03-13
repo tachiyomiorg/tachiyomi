@@ -139,8 +139,8 @@
     <string name="action_update_library">Вулавӑша ҫӗнет</string>
     <string name="action_update">Ҫӗнет</string>
     <string name="action_delete">Катерт</string>
-    <string name="action_remove_bookmark">Карта катерт</string>
-    <string name="action_bookmark">Карт</string>
+    <string name="action_remove_bookmark">Сыпӑк картне катерт</string>
+    <string name="action_bookmark">Сыпӑк карт</string>
     <string name="action_download">Тиесе ил</string>
     <string name="action_mark_as_unread">Вуламан пек паллӑ ту</string>
     <string name="action_mark_as_read">Вуланӑ пек паллӑ ту</string>
@@ -651,4 +651,14 @@
     <string name="action_order_by_chapter_number">Сыпӑк шучӗпе</string>
     <string name="action_order_by_upload_date">Тиесе илни вӑхӑчӗпе</string>
     <string name="action_filter_tracked">Сӑнавланакан</string>
+    <string name="channel_crash_logs">Тухсан кайни ҫинчен логсем</string>
+    <string name="crash_log_saved">Тухса кайни ҫинчен логсем упраннӑ</string>
+    <string name="pref_dump_crash_logs_summary">Файлсенчи йӑнӑшсен логсене хатерлевҫӗсем патне яма упрать</string>
+    <string name="pref_dump_crash_logs">Тухса кайни инчен логсене тиесе яни</string>
+    <string name="pref_viewer_nav">Куҫӑм палли</string>
+    <string name="right_and_left_nav">Сылтӑмран сулахаялла</string>
+    <string name="pref_dual_page_invert_summary">Ик эллӗ уйарни вулав майлӑ мар пулсан</string>
+    <string name="pref_dual_page_invert">Ик эллӗ уйарнине ҫавӑр</string>
+    <string name="pref_dual_page_split">Ик эллӗ уйӑрни (АЛЬФФА)</string>
+    <string name="action_display_show_number_of_items">Япаласен шутне кӑтарт</string>
 </resources>

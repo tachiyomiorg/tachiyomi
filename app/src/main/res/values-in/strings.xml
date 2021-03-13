@@ -27,8 +27,8 @@
     <string name="action_mark_as_unread">Tandai sebagai belum dibaca</string>
     <string name="action_mark_previous_as_read">Tandai sebelumnya sebagai sudah dibaca</string>
     <string name="action_download">Unduh</string>
-    <string name="action_bookmark">Tandai</string>
-    <string name="action_remove_bookmark">Hapus penanda</string>
+    <string name="action_bookmark">Tandai bab</string>
+    <string name="action_remove_bookmark">Hapus penanda bab</string>
     <string name="action_delete">Hapus</string>
     <string name="action_update">Perbarui</string>
     <string name="action_update_library">Perbarui perpustakaan</string>
@@ -438,7 +438,7 @@
     <string name="notification_check_updates">Memeriksa untuk bab baru</string>
     <string name="pref_disable_battery_optimization">Nonaktifkan optimisasi baterai</string>
     <string name="battery_optimization_disabled">Optimalisasi baterai sudah dimatikan</string>
-    <string name="email">Alamat email</string>
+    <string name="email">Alamat surel</string>
     <string name="notices">Pemberitahuan</string>
     <string name="theme_light_default">Terang standar</string>
     <string name="secure_screen">Amankan layar</string>

@@ -32,8 +32,8 @@
     <string name="action_mark_as_unread">Okunmamış olarak işaretle</string>
     <string name="action_mark_previous_as_read">Öncekileri okunmuş olarak işaretle</string>
     <string name="action_download">İndir</string>
-    <string name="action_bookmark">İşaretle</string>
-    <string name="action_remove_bookmark">İşareti kaldır</string>
+    <string name="action_bookmark">Bölümü işaretle</string>
+    <string name="action_remove_bookmark">Bölümün işaretini kaldır</string>
     <string name="action_delete">Sil</string>
     <string name="action_update">Güncelle</string>
     <string name="action_update_library">Kitaplığı güncelle</string>
@@ -658,4 +658,7 @@
     <string name="action_filter_tracked">İzleniyor</string>
     <string name="action_display_show_number_of_items">Öge sayısını göster</string>
     <string name="right_and_left_nav">Sağ ve Sol</string>
+    <string name="pref_dual_page_split">Çift sayfalı bölme (ALFA)</string>
+    <string name="pref_dual_page_invert_summary">Çift sayfalı bölme yerleşimi okuma yönüyle eşleşmiyorsa</string>
+    <string name="pref_dual_page_invert">Çift sayfalı bölme yerleşimi ters çevir</string>
 </resources>

@@ -378,4 +378,5 @@
     <string name="filter_mode_darken">번 / 어둡게하기</string>
     <string name="label_help">도움</string>
     <string name="email">이메일 주소</string>
+    <string name="website">웹사이트</string>
 </resources>

@@ -32,8 +32,8 @@
     <string name="action_mark_as_unread">Markera som oläst</string>
     <string name="action_mark_previous_as_read">Markera tidigare som läst</string>
     <string name="action_download">Ladda ner</string>
-    <string name="action_bookmark">Bokmärke</string>
-    <string name="action_remove_bookmark">Radera bokmärke</string>
+    <string name="action_bookmark">Kapitel bokmärke</string>
+    <string name="action_remove_bookmark">Radera kapitel bokmärke</string>
     <string name="action_delete">Radera</string>
     <string name="action_update">Uppdatera</string>
     <string name="action_update_library">Uppdatera biblioteket</string>
@@ -658,4 +658,5 @@
     <string name="action_filter_tracked">Spåras</string>
     <string name="right_and_left_nav">Höger och Vänster</string>
     <string name="action_display_show_number_of_items">Visa antal objekt</string>
+    <string name="pref_dual_page_split">Delning av dubbelsidor (ALFA)</string>
 </resources>
