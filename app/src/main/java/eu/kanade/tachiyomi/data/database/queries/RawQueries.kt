@@ -39,9 +39,9 @@ fun getRecentsQuery() =
     SELECT ${Manga.TABLE}.${Manga.COL_URL} as mangaUrl, * FROM ${Manga.TABLE} JOIN ${Chapter.TABLE}
     ON ${Manga.TABLE}.${Manga.COL_ID} = ${Chapter.TABLE}.${Chapter.COL_MANGA_ID}
     WHERE ${Manga.COL_FAVORITE} = 1 
-    AND ${Chapter.COL_DATE_UPLOAD} > ?
+    AND ${Chapter.COL_DATE_FETCH} > ?
     AND ${Chapter.COL_DATE_FETCH} > ${Manga.COL_DATE_ADDED}
-    ORDER BY ${Chapter.COL_DATE_UPLOAD} DESC
+    ORDER BY ${Chapter.COL_DATE_FETCH} DESC
 """
 
 /**
