@@ -86,7 +86,7 @@ open class BrowseSourceController(bundle: Bundle) :
     /**
      * Adapter containing the list of manga from the catalogue.
      */
-    private var adapter: FlexibleAdapter<IFlexible<*>>? = null
+    protected var adapter: FlexibleAdapter<IFlexible<*>>? = null
 
     private var actionFab: ExtendedFloatingActionButton? = null
     private var actionFabScrollListener: RecyclerView.OnScrollListener? = null
