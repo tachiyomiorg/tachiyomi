@@ -158,10 +158,11 @@ class LibrarySettingsSheet(
             private val unread = Item.MultiSort(R.string.action_filter_unread, this)
             private val latestChapter = Item.MultiSort(R.string.action_sort_latest_chapter, this)
             private val dateAdded = Item.MultiSort(R.string.action_sort_date_added, this)
+            private val random = Item.MultiSort(R.string.action_sort_random, this)
 
             override val header = null
             override val items =
-                listOf(alphabetically, lastRead, lastChecked, unread, total, latestChapter, dateAdded)
+                listOf(alphabetically, lastRead, lastChecked, unread, total, latestChapter, dateAdded, random)
             override val footer = null
 
             override fun initModels() {
@@ -186,6 +187,8 @@ class LibrarySettingsSheet(
                     if (sorting == LibrarySort.LATEST_CHAPTER) order else Item.MultiSort.SORT_NONE
                 dateAdded.state =
                     if (sorting == LibrarySort.DATE_ADDED) order else Item.MultiSort.SORT_NONE
+                random.state =
+                    if (sorting == LibrarySort.RANDOM) order else Item.MultiSort.SORT_NONE
             }
 
             override fun onItemClicked(item: Item) {
@@ -212,6 +215,7 @@ class LibrarySettingsSheet(
                         total -> LibrarySort.TOTAL
                         latestChapter -> LibrarySort.LATEST_CHAPTER
                         dateAdded -> LibrarySort.DATE_ADDED
+                        random -> LibrarySort.RANDOM
                         else -> throw Exception("Unknown sorting")
                     }
                 )

@@ -9,6 +9,7 @@ object LibrarySort {
     const val TOTAL = 4
     const val LATEST_CHAPTER = 6
     const val DATE_ADDED = 7
+    const val RANDOM = 8
 
     @Deprecated("Removed in favor of searching by source")
     const val SOURCE = 5
