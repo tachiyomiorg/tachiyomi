@@ -68,7 +68,7 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 <details><summary>Code of Conduct</summary>
 
-See [CODE_OF_CONDUCT.md](./CONTRIBUTING.md).
+See [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md).
 </details>
 
 ## FAQ
