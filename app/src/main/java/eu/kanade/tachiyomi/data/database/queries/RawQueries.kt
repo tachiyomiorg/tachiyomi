@@ -42,6 +42,7 @@ fun getRecentsQuery() =
     AND ${Chapter.COL_DATE_FETCH} > ?
     AND ${Chapter.COL_DATE_FETCH} > ${Manga.COL_DATE_ADDED}
     ORDER BY ${Chapter.COL_DATE_FETCH} DESC
+    LIMIT 500
 """
 
 /**
