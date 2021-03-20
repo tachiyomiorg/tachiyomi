@@ -15,6 +15,8 @@ abstract class ViewerConfig(preferences: PreferencesHelper, private val scope: C
 
     var imagePropertyChangedListener: (() -> Unit)? = null
 
+    var navigationModeChangedListener: (() -> Unit)? = null
+
     var tappingEnabled = true
     var tappingInverted = TappingInvertMode.NONE
     var longTapEnabled = true
@@ -26,6 +28,10 @@ abstract class ViewerConfig(preferences: PreferencesHelper, private val scope: C
     var alwaysShowChapterTransition = true
     var navigationMode = 0
         protected set
+
+    var forceNavigationOverlay = false
+
+    var navigationOverlayOnStart = false
 
     var dualPageSplit = false
         protected set
@@ -60,6 +66,14 @@ abstract class ViewerConfig(preferences: PreferencesHelper, private val scope: C
 
         preferences.alwaysShowChapterTransition()
             .register({ alwaysShowChapterTransition = it })
+
+        forceNavigationOverlay = preferences.showNavigationOverlayNewUser().get()
+        if (forceNavigationOverlay) {
+            preferences.showNavigationOverlayNewUser().set(false)
+        }
+
+        preferences.showNavigationOverlayOnStart()
+            .register({ navigationOverlayOnStart = it })
     }
 
     protected abstract fun defaultNavigation(): ViewerNavigation

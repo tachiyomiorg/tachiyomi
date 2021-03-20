@@ -90,6 +90,7 @@ class PagerConfig(
             4 -> RightAndLeftNavigation()
             else -> defaultNavigation()
         }
+        navigationModeChangedListener?.invoke()
     }
 
     enum class ZoomType {

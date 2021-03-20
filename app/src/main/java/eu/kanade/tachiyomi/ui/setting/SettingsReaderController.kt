@@ -50,6 +50,11 @@ class SettingsReaderController : SettingsController() {
             summaryRes = R.string.pref_show_reading_mode_summary
             defaultValue = true
         }
+        switchPreference {
+            key = Keys.showNavigationOverlayOnStart
+            titleRes = R.string.pref_show_navigation_mode
+            defaultValue = false
+        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             switchPreference {
                 key = Keys.trueColor
