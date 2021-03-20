@@ -53,6 +53,7 @@ class SettingsReaderController : SettingsController() {
         switchPreference {
             key = Keys.showNavigationOverlayOnStart
             titleRes = R.string.pref_show_navigation_mode
+            summaryRes = R.string.pref_show_navigation_mode_summary
             defaultValue = false
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

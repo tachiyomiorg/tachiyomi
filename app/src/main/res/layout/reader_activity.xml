@@ -35,7 +35,6 @@
             android:textDirection="ltr"
             android:textStyle="bold" />
 
-
     </FrameLayout>
 
     <eu.kanade.tachiyomi.ui.reader.setting.ReaderColorFilterView

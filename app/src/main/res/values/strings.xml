@@ -252,6 +252,8 @@
 
       <!-- Reader section -->
     <string name="pref_fullscreen">Fullscreen</string>
+    <string name="pref_show_navigation_mode">Show navigation layout overlay</string>
+    <string name="pref_show_navigation_mode_summary">Show overlay when reader is opened</string>
     <string name="pref_dual_page_split">Dual page split (ALPHA)</string>
     <string name="pref_dual_page_invert">Invert dual page split placement</string>
     <string name="pref_dual_page_invert_summary">If the placement of the dual page split doesn\'t match reading direction</string>
@@ -758,6 +760,5 @@
     <!-- S Pen actions -->
     <string name="spen_previous_page">Previous page</string>
     <string name="spen_next_page">Next page</string>
-    <string name="pref_show_navigation_mode">Show navigation mode on start</string>
 
 </resources>

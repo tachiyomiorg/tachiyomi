@@ -30,16 +30,18 @@ class ReaderNavigationOverlayView(context: Context, attributeSet: AttributeSet) 
         this.navigation = navigation
         invalidate()
 
-        if (!isVisible) {
-            viewPropertyAnimator = animate()
-                .alpha(1f)
-                .setDuration(1000L)
-                .withStartAction {
-                    isVisible = true
-                    viewPropertyAnimator = null
-                }
-            viewPropertyAnimator?.start()
-        }
+        if (isVisible) return
+
+        viewPropertyAnimator = animate()
+            .alpha(1f)
+            .setDuration(1000L)
+            .withStartAction {
+                isVisible = true
+            }
+            .withEndAction {
+                viewPropertyAnimator = null
+            }
+        viewPropertyAnimator?.start()
     }
 
     private val textPaint = Paint().apply {
