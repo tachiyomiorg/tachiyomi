@@ -59,7 +59,7 @@ class SearchController(
     override fun onMangaClick(manga: Manga) {
         newManga = manga
         val dialog =
-            MigrationDialog(manga, newManga, this)
+            MigrationDialog(this.manga, newManga, this)
         dialog.targetController = this
         dialog.showDialog(router)
     }
