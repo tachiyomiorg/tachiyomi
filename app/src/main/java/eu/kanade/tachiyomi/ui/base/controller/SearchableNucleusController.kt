@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import androidx.annotation.StringRes
 import androidx.appcompat.widget.SearchView
 import androidx.viewbinding.ViewBinding
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
@@ -19,12 +20,7 @@ import reactivecircus.flowbinding.appcompat.queryTextEvents
 abstract class SearchableNucleusController<VB : ViewBinding, P : BasePresenter<*>>
 (bundle: Bundle? = null) : NucleusController<VB, P>(bundle) {
 
-    enum class SearchViewState(val state: Int) {
-        LOADING(0),
-        LOADED(1),
-        COLLAPSING(2),
-        FOCUSED(3)
-    }
+    enum class SearchViewState { LOADING, LOADED, COLLAPSING, FOCUSED }
 
     /**
      * Used to bypass the initial searchView being set to empty string after an onResume
@@ -39,12 +35,12 @@ abstract class SearchableNucleusController<VB : ViewBinding, P : BasePresenter<*
     /**
      * To be called by classes that extend this subclass in onCreateOptionsMenu
      */
-    protected fun commonCreateOptionsMenu(
+    protected fun createOptionsMenu(
         menu: Menu,
         inflater: MenuInflater,
         menuId: Int,
         searchItemId: Int,
-        queryHint: String = "",
+        @StringRes queryHint: Int? = null,
         restoreCurrentQuery: Boolean = true
     ) {
         // Inflate menu
@@ -87,8 +83,8 @@ abstract class SearchableNucleusController<VB : ViewBinding, P : BasePresenter<*
             searchView.setQuery(nonSubmittedQuery, false)
             onSearchViewQueryTextChange(nonSubmittedQuery)
         } else {
-            if (queryHint.isNotBlank()) {
-                searchView.queryHint = queryHint
+            if (queryHint != null) {
+                searchView.queryHint = applicationContext?.getString(queryHint)
             }
 
             if (restoreCurrentQuery) {
@@ -125,10 +121,10 @@ abstract class SearchableNucleusController<VB : ViewBinding, P : BasePresenter<*
                 }
 
                 override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
-                    val searchView = searchItem.actionView as SearchView
+                    val localSearchView = searchItem.actionView as SearchView
 
                     // if it is blank the flow event won't trigger so we would stay in a COLLAPSING state
-                    if (searchView.toString().isNotBlank()) {
+                    if (localSearchView.toString().isNotBlank()) {
                         setCurrentSearchViewState(SearchViewState.COLLAPSING)
                     }
 
@@ -152,19 +148,19 @@ abstract class SearchableNucleusController<VB : ViewBinding, P : BasePresenter<*
         }
     }
 
-    private fun setCurrentSearchViewState(newState: SearchViewState, fromState: SearchViewState? = null) {
+    private fun setCurrentSearchViewState(to: SearchViewState, from: SearchViewState? = null) {
         // When loading ignore all requests other than loaded
-        if ((currentSearchViewState == SearchViewState.LOADING) && (newState != SearchViewState.LOADED)) {
+        if ((currentSearchViewState == SearchViewState.LOADING) && (to != SearchViewState.LOADED)) {
             return
         }
 
         // Prevent changing back to an unwanted state when using async flows (ie onFocus event doing
         // COLLAPSING -> LOADED)
-        if ((fromState != null) && (currentSearchViewState != fromState)) {
+        if ((from != null) && (currentSearchViewState != from)) {
             return
         }
 
-        currentSearchViewState = newState
+        currentSearchViewState = to
     }
 
     /**

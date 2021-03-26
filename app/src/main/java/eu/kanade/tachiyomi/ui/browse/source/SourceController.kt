@@ -3,7 +3,12 @@ package eu.kanade.tachiyomi.ui.browse.source
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.app.Dialog
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItems
@@ -247,12 +252,12 @@ class SourceController :
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        commonCreateOptionsMenu(
+        createOptionsMenu(
             menu,
             inflater,
             R.menu.source_main,
             R.id.action_search,
-            applicationContext?.getString(R.string.action_global_search_hint) ?: "",
+            R.string.action_global_search_hint,
             false // GlobalSearch handles the searching here
         )
     }

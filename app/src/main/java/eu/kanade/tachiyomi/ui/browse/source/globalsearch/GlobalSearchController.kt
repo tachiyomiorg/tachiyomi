@@ -95,12 +95,12 @@ open class GlobalSearchController(
      * @param inflater used to load the menu xml.
      */
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        commonCreateOptionsMenu(
+        createOptionsMenu(
             menu,
             inflater,
             R.menu.global_search,
             R.id.action_search,
-            "",
+            null,
             false // the onMenuItemActionExpand will handle this
         )
 
