@@ -151,4 +151,10 @@ class PagerViewerAdapter(private val viewer: PagerViewer) : ViewPagerAdapter() {
 
         notifyDataSetChanged()
     }
+
+    fun cleanupPageSplit() {
+        val insertPages = items.filterIsInstance(InsertPage::class.java)
+        items.removeAll(insertPages)
+        notifyDataSetChanged()
+    }
 }

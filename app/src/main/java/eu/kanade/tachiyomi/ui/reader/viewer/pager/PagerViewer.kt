@@ -116,6 +116,12 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
             false
         }
 
+        config.dualPageSplitChangedListener = { enabled ->
+            if (!enabled) {
+                cleanupPageSplit()
+            }
+        }
+
         config.imagePropertyChangedListener = {
             refreshAdapter()
         }
@@ -380,5 +386,9 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
 
     fun onPageSplit(currentPage: ReaderPage, newPage: InsertPage) {
         adapter.onPageSplit(currentPage, newPage, this::class.java)
+    }
+
+    private fun cleanupPageSplit() {
+        adapter.cleanupPageSplit()
     }
 }
