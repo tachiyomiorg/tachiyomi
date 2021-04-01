@@ -135,7 +135,7 @@ class DownloadProvider(private val context: Context) {
     fun getChapterDirName(chapter: Chapter): String {
         return DiskUtil.buildValidFilename(
             when {
-                chapter.scanlator != null -> "${chapter.scanlator}_${chapter.name}"
+                !chapter.scanlator.isNullOrBlank() -> "${chapter.scanlator}_${chapter.name}"
                 else -> chapter.name
             }
         )
