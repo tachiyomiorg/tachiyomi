@@ -199,7 +199,9 @@
     <string name="update_1hour">Hourly</string>
     <string name="update_2hour">Every 2 hours</string>
     <string name="update_3hour">Every 3 hours</string>
+    <string name="update_4hour">Every 4 hours</string>
     <string name="update_6hour">Every 6 hours</string>
+    <string name="update_8hour">Every 8 hours</string>
     <string name="update_12hour">Every 12 hours</string>
     <string name="update_24hour">Daily</string>
     <string name="update_48hour">Every 2 days</string>
@@ -252,7 +254,11 @@
 
       <!-- Reader section -->
     <string name="pref_fullscreen">Fullscreen</string>
-    <string name="pref_dual_page_split">Dual page split (ALPHA)</string>
+    <string name="pref_show_navigation_mode">Show navigation layout overlay</string>
+    <string name="pref_show_navigation_mode_summary">Briefly show tap zones when reader is opened</string>
+    <string name="pref_dual_page_split">Dual page split</string>
+    <string name="pref_dual_page_invert">Invert dual page split placement</string>
+    <string name="pref_dual_page_invert_summary">If the placement of the dual page split doesn\'t match reading direction</string>
     <string name="pref_cutout_short">Show content in cutout area</string>
     <string name="pref_lock_orientation">Lock orientation</string>
     <string name="pref_page_transitions">Animate page transitions</string>
@@ -296,6 +302,10 @@
     <string name="kindlish_nav">Kindle-ish</string>
     <string name="edge_nav">Edge</string>
     <string name="right_and_left_nav">Right and Left</string>
+    <string name="nav_zone_prev">Prev</string>
+    <string name="nav_zone_next">Next</string>
+    <string name="nav_zone_left">Left</string>
+    <string name="nav_zone_right">Right</string>
     <string name="left_to_right_viewer">Left to right</string>
     <string name="right_to_left_viewer">Right to left</string>
     <string name="vertical_viewer">Vertical</string>
@@ -377,9 +387,6 @@
     <string name="pref_backup_service_category">Automatic backups</string>
     <string name="pref_backup_interval">Backup frequency</string>
     <string name="pref_backup_slots">Maximum backups</string>
-    <string name="full_restore_mode">Network Mode</string>
-    <string name="full_restore_online">Restore online, much slower but gives you more updated info and chapters</string>
-    <string name="full_restore_offline">Restore offline, finishes quickly but contains only what your backup has</string>
     <string name="source_not_found_name">Source not found: %1$s</string>
     <string name="tracker_not_logged_in">Not logged in: %1$s</string>
     <string name="backup_created">Backup created</string>
@@ -390,6 +397,7 @@
     <string name="backup_restore_missing_sources">Missing sources:</string>
     <string name="backup_restore_missing_trackers">Trackers not logged into:</string>
     <string name="backup_restore_content">Restore uses sources to fetch data, carrier costs may apply.\n\nMake sure you have installed all necessary extensions and are logged in to sources and tracking services before restoring.</string>
+    <string name="backup_restore_content_full">Data from the backup file will be restored.\n\nYou will need to install any missing extensions and log in to tracking services afterwards to use them.</string>
     <string name="restore_completed">Restore completed</string>
     <string name="restore_duration">%02d min, %02d sec</string>
     <plurals name="restore_completed_message">
@@ -408,7 +416,7 @@
       <!-- Advanced section -->
     <string name="label_network">Network</string>
     <string name="pref_clear_cookies">Clear cookies</string>
-    <string name="pref_dns_over_https" translatable="false">DNS over HTTPS (Cloudflare)</string>
+    <string name="pref_dns_over_https">DNS over HTTPS (Cloudflare)</string>
     <string name="requires_app_restart">Requires app restart to take effect</string>
     <string name="cookies_cleared">Cookies cleared</string>
     <string name="label_data">Data</string>
@@ -431,10 +439,6 @@
     <string name="pref_disable_battery_optimization_summary">Helps with background library updates and backups</string>
     <string name="battery_optimization_disabled">Battery optimization is already disabled</string>
     <string name="battery_optimization_setting_activity_not_found">Couldn\'t open device settings</string>
-    <string name="clear_history_completed">History deleted</string>
-    <string name="clear_history_confirmation">Are you sure? All history will be lost.</string>
-    <string name="pref_clear_history">Clear history</string>
-    <string name="pref_clear_history_summary">Delete reading history for all manga</string>
 
       <!-- About section -->
     <string name="website">Website</string>
@@ -650,6 +654,9 @@
 
     <!-- History fragment -->
     <string name="recent_manga_time">Ch. %1$s - %2$s</string>
+    <string name="pref_clear_history">Clear history</string>
+    <string name="clear_history_completed">History deleted</string>
+    <string name="clear_history_confirmation">Are you sure? All history will be lost.</string>
 
     <!-- Source migration screen -->
     <string name="migration_help_guide">Source migration guide</string>

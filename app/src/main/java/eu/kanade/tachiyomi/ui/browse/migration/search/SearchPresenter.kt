@@ -17,6 +17,8 @@ import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchPresenter
 import eu.kanade.tachiyomi.util.chapter.syncChaptersWithSource
 import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.lang.launchUI
+import eu.kanade.tachiyomi.util.lang.withUIContext
+import eu.kanade.tachiyomi.util.system.toast
 import java.util.Date
 
 class SearchPresenter(
@@ -56,11 +58,15 @@ class SearchPresenter(
         replacingMangaRelay.call(true)
 
         presenterScope.launchIO {
-            val chapters = source.getChapterList(manga.toMangaInfo())
-                .map { it.toSChapter() }
+            try {
+                val chapters = source.getChapterList(manga.toMangaInfo())
+                    .map { it.toSChapter() }
 
-            migrateMangaInternal(source, chapters, prevManga, manga, replace)
-        }.invokeOnCompletion {
+                migrateMangaInternal(source, chapters, prevManga, manga, replace)
+            } catch (e: Throwable) {
+                withUIContext { view?.applicationContext?.toast(e.message) }
+            }
+
             presenterScope.launchUI { replacingMangaRelay.call(false) }
         }
     }

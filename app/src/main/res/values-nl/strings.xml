@@ -24,8 +24,8 @@
     <string name="action_mark_as_unread">Als ongelezen markeren</string>
     <string name="action_mark_previous_as_read">Markeer vorige als gelezen</string>
     <string name="action_download">Downloaden</string>
-    <string name="action_bookmark">Bladwijzer toevoegen</string>
-    <string name="action_remove_bookmark">Bladwijzer verwijderen</string>
+    <string name="action_bookmark">Hoofdstuk toevoegen aan bladwijzers</string>
+    <string name="action_remove_bookmark">Hoofdstuk verwijderen uit bladwijzers</string>
     <string name="action_delete">Verwijderen</string>
     <string name="action_update">Bijwerken</string>
     <string name="action_edit">Bewerken</string>
@@ -657,4 +657,6 @@
     <string name="action_order_by_upload_date">Op uploaddatum</string>
     <string name="action_display_show_number_of_items">Aantal items tonen</string>
     <string name="action_filter_tracked">Getracked</string>
+    <string name="right_and_left_nav">Rechts en links</string>
+    <string name="pref_dual_page_split">Dubbele pagina\'s opsplitsen (Alpha)</string>
 </resources>

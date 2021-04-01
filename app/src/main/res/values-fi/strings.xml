@@ -22,8 +22,8 @@
     <string name="action_global_search">Globaali haku</string>
     <string name="action_mark_as_unread">Merkitse lukemattomaksi</string>
     <string name="action_mark_previous_as_read">Merkitse aiemmat luetuiksi</string>
-    <string name="action_bookmark">Kirjanmerkki</string>
-    <string name="action_remove_bookmark">Poista kirjanmerkki</string>
+    <string name="action_bookmark">Kirjanmerkitse luku</string>
+    <string name="action_remove_bookmark">Poista kirjanmerkitty luku</string>
     <string name="action_move_category">Aseta kategoriat</string>
     <string name="action_edit_cover">Muokkaa kantta</string>
     <string name="action_sort_up">Nouseva</string>
@@ -49,7 +49,7 @@
     <string name="transition_no_previous">Aiempaa lukua ei ole</string>
     <string name="transition_pages_loading">Ladataan sivuja…</string>
     <string name="transition_pages_error">Sivujen lataus epäonnistui: %1$s</string>
-    <string name="migration_info">Kosketa valitaksesi lähde josta vaihdetaan</string>
+    <string name="migration_info">Kosketa valitaksesi lähde, josta vaihdetaan</string>
     <string name="migration_dialog_what_to_include">Valitse sisällytettävä tieto</string>
     <string name="migrate">Vaihda</string>
     <string name="copy">Kopioi</string>
@@ -658,4 +658,7 @@
     <string name="action_filter_tracked">Seuratut</string>
     <string name="action_display_show_number_of_items">Näytä kohteiden määrä</string>
     <string name="right_and_left_nav">Oikea ja vasen</string>
+    <string name="pref_dual_page_split">Kahden sivun jako (ALPHA)</string>
+    <string name="pref_dual_page_invert_summary">Jos kaksisivuisen jaon sijainti ei vastaa lukusuuntaa</string>
+    <string name="pref_dual_page_invert">Käännä kahden sivun jaettu sijoittelu</string>
 </resources>

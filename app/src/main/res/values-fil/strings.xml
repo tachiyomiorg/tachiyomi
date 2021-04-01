@@ -65,7 +65,7 @@
     <string name="action_update_library">Isapanahon ang Aklatan</string>
     <string name="action_delete">Burahin</string>
     <string name="action_remove_bookmark">Wag na\'ng tandaan</string>
-    <string name="action_bookmark">Tandaan</string>
+    <string name="action_bookmark">Tandaan ang kabanata</string>
     <string name="action_download">I-download</string>
     <string name="action_mark_previous_as_read">Markaháng nabása bago (ang mga) ito</string>
     <string name="action_mark_as_read">Markaháng nabása</string>
@@ -597,8 +597,8 @@
     <string name="backup_restore_missing_trackers">Di naka-login sa (mga) tagasubaybay:</string>
     <string name="pref_remove_bookmarked_chapters">Burahin ang mga tinandaan</string>
     <string name="pref_category_delete_chapters">Magbura ng kabanata</string>
-    <string name="parental_controls_info">Hindi naiiwasan nito ang pagpakita ng mga 18+ ng mga di-opisyal o posibleng maling naka-flag na dugtong sa loob ng app.</string>
-    <string name="ext_nsfw_warning">Maaaring maglaman ng pang-18+</string>
+    <string name="parental_controls_info">Hindi nito naiiwasan ang pagpakita ng mga NSFW (18+) ng mga di-opisyal o posibleng maling naka-flag na dugtong sa loob ng app.</string>
+    <string name="ext_nsfw_warning">Maaaring maglaman ng NSFW (18+)</string>
     <string name="ext_nsfw_short">18+</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">May isang nawawalang kabanata</item>
@@ -627,7 +627,8 @@
     <string name="spen_next_page">Abante</string>
     <string name="spen_previous_page">Balik</string>
     <string name="file_picker_error">Walang nakitang app para makapili</string>
-    <string name="invalid_backup_file_type">Di mabasa ang backup: %1$s</string>
+    <string name="invalid_backup_file_type">Di mabasa ang backup: %1$s
+\nDapat nagtatapos ito sa .proto.gz o .json.</string>
     <string name="full_restore_offline">Offline ang pagpapanumbalik, mabilis matapos pero tanging ang mga nasa backup mo lang ang maibabalik</string>
     <string name="full_restore_online">Online ang pagpapanumbalik, mas mabagal nga lang pero mas updated ang mga impormasyon at kabanata</string>
     <string name="pref_backup_auto_create_legacy">Gawin din ang lumang pag-backup</string>
@@ -638,4 +639,26 @@
     <string name="pref_category_nsfw_content">Mga Pinagkukunang NSFW (pang-18+)</string>
     <string name="myanimelist_relogin">Mag-login muli po sa MAL</string>
     <string name="myanimelist_creds_missing">Di makita ang pag-login sa MAL</string>
+    <string name="channel_crash_logs">Crash log</string>
+    <string name="track_finished_reading_date">Natapos basáhin</string>
+    <string name="track_started_reading_date">Sinimulang basáhin</string>
+    <string name="pref_dump_crash_logs">Itambak ang mga crash log</string>
+    <string name="crash_log_saved">Nai-save na ang crash log</string>
+    <string name="pref_dump_crash_logs_summary">Sine-save ang mga error log sa isang file para maibahagi sa mga developer</string>
+    <string name="pref_viewer_nav">Layout ng navigation</string>
+    <string name="edge_nav">Sulok</string>
+    <string name="kindlish_nav">mala-Kindle</string>
+    <string name="l_nav">Hugis-L</string>
+    <string name="default_nav">Ipagpaubaya</string>
+    <string name="network_unmetered">Di-nakametrong network</string>
+    <string name="action_desc">Pababa</string>
+    <string name="action_asc">Pataas</string>
+    <string name="action_order_by_chapter_number">ayon sa kabanata</string>
+    <string name="action_order_by_upload_date">ayon sa petsa ng pag-upload</string>
+    <string name="action_filter_tracked">Sinundan</string>
+    <string name="right_and_left_nav">Kaliwa at Kanan</string>
+    <string name="pref_dual_page_split">Hatiang pandalawahan (ALPHA)</string>
+    <string name="action_display_show_number_of_items">Ipakita ng bilang ng item</string>
+    <string name="pref_dual_page_invert_summary">Kung sakaling hindi sumasakto sa direksyon ng pagbása ang paglalagay ng hati</string>
+    <string name="pref_dual_page_invert">Baligtarin ang paglagay ng hati</string>
 </resources>

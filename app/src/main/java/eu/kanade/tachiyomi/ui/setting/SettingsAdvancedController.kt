@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import androidx.core.net.toUri
@@ -64,27 +63,25 @@ class SettingsAdvancedController : SettingsController() {
             }
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            preference {
-                key = "pref_disable_battery_optimization"
-                titleRes = R.string.pref_disable_battery_optimization
-                summaryRes = R.string.pref_disable_battery_optimization_summary
+        preference {
+            key = "pref_disable_battery_optimization"
+            titleRes = R.string.pref_disable_battery_optimization
+            summaryRes = R.string.pref_disable_battery_optimization_summary
 
-                onClick {
-                    val packageName: String = context.packageName
-                    if (!context.powerManager.isIgnoringBatteryOptimizations(packageName)) {
-                        try {
-                            val intent = Intent().apply {
-                                action = Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
-                                data = "package:$packageName".toUri()
-                            }
-                            startActivity(intent)
-                        } catch (e: ActivityNotFoundException) {
-                            context.toast(R.string.battery_optimization_setting_activity_not_found)
+            onClick {
+                val packageName: String = context.packageName
+                if (!context.powerManager.isIgnoringBatteryOptimizations(packageName)) {
+                    try {
+                        val intent = Intent().apply {
+                            action = Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
+                            data = "package:$packageName".toUri()
                         }
-                    } else {
-                        context.toast(R.string.battery_optimization_disabled)
+                        startActivity(intent)
+                    } catch (e: ActivityNotFoundException) {
+                        context.toast(R.string.battery_optimization_setting_activity_not_found)
                     }
+                } else {
+                    context.toast(R.string.battery_optimization_disabled)
                 }
             }
         }
@@ -106,16 +103,6 @@ class SettingsAdvancedController : SettingsController() {
 
                 onClick {
                     val ctrl = ClearDatabaseDialogController()
-                    ctrl.targetController = this@SettingsAdvancedController
-                    ctrl.showDialog(router)
-                }
-            }
-            preference {
-                titleRes = R.string.pref_clear_history
-                summaryRes = R.string.pref_clear_history_summary
-
-                onClick {
-                    val ctrl = ClearHistoryDialogController()
                     ctrl.targetController = this@SettingsAdvancedController
                     ctrl.showDialog(router)
                 }
@@ -195,22 +182,6 @@ class SettingsAdvancedController : SettingsController() {
                 }
                 .negativeButton(android.R.string.cancel)
         }
-    }
-
-    class ClearHistoryDialogController : DialogController() {
-        override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-            return MaterialDialog(activity!!)
-                .message(R.string.clear_history_confirmation)
-                .positiveButton(android.R.string.ok) {
-                    (targetController as? SettingsAdvancedController)?.clearHistory()
-                }
-                .negativeButton(android.R.string.cancel)
-        }
-    }
-
-    private fun clearHistory() {
-        db.deleteHistory().executeAsBlocking()
-        activity?.toast(R.string.clear_history_completed)
     }
 
     private fun clearDatabase() {

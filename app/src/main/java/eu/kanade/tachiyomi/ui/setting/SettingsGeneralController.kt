@@ -201,6 +201,7 @@ class SettingsGeneralController : SettingsController() {
                     "lv",
                     "mr",
                     "ms",
+                    "my",
                     "nb-rNO",
                     "nl",
                     "pl",

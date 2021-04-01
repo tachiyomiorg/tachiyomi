@@ -2,13 +2,19 @@ package eu.kanade.tachiyomi.ui.reader.viewer
 
 import android.graphics.PointF
 import android.graphics.RectF
+import androidx.annotation.StringRes
+import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferenceValues
 import eu.kanade.tachiyomi.util.lang.invert
 
 abstract class ViewerNavigation {
 
-    enum class NavigationRegion {
-        NEXT, PREV, MENU, RIGHT, LEFT
+    sealed class NavigationRegion(@StringRes val nameRes: Int, val colorRes: Int) {
+        object MENU : NavigationRegion(R.string.action_menu, R.color.navigation_menu)
+        object PREV : NavigationRegion(R.string.nav_zone_prev, R.color.navigation_prev)
+        object NEXT : NavigationRegion(R.string.nav_zone_next, R.color.navigation_next)
+        object LEFT : NavigationRegion(R.string.nav_zone_left, R.color.navigation_left)
+        object RIGHT : NavigationRegion(R.string.nav_zone_right, R.color.navigation_right)
     }
 
     data class Region(

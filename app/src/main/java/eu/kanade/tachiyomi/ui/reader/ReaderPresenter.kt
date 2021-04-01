@@ -489,9 +489,9 @@ class ReaderPresenter(
     /**
      * Returns the viewer position used by this manga or the default one.
      */
-    fun getMangaViewer(): Int {
+    fun getMangaViewer(resolveDefault: Boolean = true): Int {
         val manga = manga ?: return preferences.defaultViewer()
-        return if (manga.viewer == 0) preferences.defaultViewer() else manga.viewer
+        return if (resolveDefault && manga.viewer == 0) preferences.defaultViewer() else manga.viewer
     }
 
     /**

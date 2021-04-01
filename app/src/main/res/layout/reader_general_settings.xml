@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <eu.kanade.tachiyomi.ui.reader.setting.SpinnerPreference
+            android:id="@+id/rotation_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/rotation_type"
+            app:title="@string/pref_rotation_type" />
+
+        <eu.kanade.tachiyomi.ui.reader.setting.SpinnerPreference
+            android:id="@+id/background_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/reader_themes"
+            app:title="@string/pref_reader_theme" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/show_page_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="@string/pref_show_page_number" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/fullscreen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="@string/pref_fullscreen" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/cutout_short"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pref_cutout_short"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/keepscreen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="@string/pref_keep_screen_on" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/long_tap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="@string/pref_read_with_long_tap" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/always_show_chapter_transition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="@string/pref_always_show_chapter_transition" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/page_transitions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="@string/pref_page_transitions" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

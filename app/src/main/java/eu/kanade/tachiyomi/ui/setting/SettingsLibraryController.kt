@@ -126,13 +126,15 @@ class SettingsLibraryController : SettingsController() {
                     R.string.update_1hour,
                     R.string.update_2hour,
                     R.string.update_3hour,
+                    R.string.update_4hour,
                     R.string.update_6hour,
+                    R.string.update_8hour,
                     R.string.update_12hour,
                     R.string.update_24hour,
                     R.string.update_48hour,
                     R.string.update_weekly
                 )
-                entryValues = arrayOf("0", "1", "2", "3", "6", "12", "24", "48", "168")
+                entryValues = arrayOf("0", "1", "2", "3", "4", "6", "8", "12", "24", "48", "168")
                 defaultValue = "24"
                 summary = "%s"
 

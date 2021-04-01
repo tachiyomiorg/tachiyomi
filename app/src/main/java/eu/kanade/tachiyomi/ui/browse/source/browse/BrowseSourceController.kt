@@ -8,7 +8,6 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.GridLayoutManager
@@ -33,7 +32,7 @@ import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.model.FilterList
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.base.controller.FabController
-import eu.kanade.tachiyomi.ui.base.controller.NucleusController
+import eu.kanade.tachiyomi.ui.base.controller.SearchableNucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchController
 import eu.kanade.tachiyomi.ui.library.ChangeMangaCategoriesDialog
@@ -51,12 +50,8 @@ import eu.kanade.tachiyomi.widget.AutofitRecyclerView
 import eu.kanade.tachiyomi.widget.EmptyView
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.drop
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.filterIsInstance
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import reactivecircus.flowbinding.appcompat.QueryTextEvent
-import reactivecircus.flowbinding.appcompat.queryTextEvents
 import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
 
@@ -64,7 +59,7 @@ import uy.kohesive.injekt.injectLazy
  * Controller to manage the catalogues available in the app.
  */
 open class BrowseSourceController(bundle: Bundle) :
-    NucleusController<SourceControllerBinding, BrowseSourcePresenter>(bundle),
+    SearchableNucleusController<SourceControllerBinding, BrowseSourcePresenter>(bundle),
     FabController,
     FlexibleAdapter.OnItemClickListener,
     FlexibleAdapter.OnItemLongClickListener,
@@ -86,7 +81,7 @@ open class BrowseSourceController(bundle: Bundle) :
     /**
      * Adapter containing the list of manga from the catalogue.
      */
-    private var adapter: FlexibleAdapter<IFlexible<*>>? = null
+    protected var adapter: FlexibleAdapter<IFlexible<*>>? = null
 
     private var actionFab: ExtendedFloatingActionButton? = null
     private var actionFabScrollListener: RecyclerView.OnScrollListener? = null
@@ -259,25 +254,8 @@ open class BrowseSourceController(bundle: Bundle) :
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.source_browse, menu)
-
-        // Initialize search menu
+        createOptionsMenu(menu, inflater, R.menu.source_browse, R.id.action_search)
         val searchItem = menu.findItem(R.id.action_search)
-        val searchView = searchItem.actionView as SearchView
-        searchView.maxWidth = Int.MAX_VALUE
-
-        val query = presenter.query
-        if (query.isNotBlank()) {
-            searchItem.expandActionView()
-            searchView.setQuery(query, true)
-            searchView.clearFocus()
-        }
-
-        searchView.queryTextEvents()
-            .filter { router.backstack.lastOrNull()?.controller() == this@BrowseSourceController }
-            .filterIsInstance<QueryTextEvent.QuerySubmitted>()
-            .onEach { searchWithQuery(it.queryText.toString()) }
-            .launchIn(viewScope)
 
         searchItem.fixExpand(
             onExpand = { invalidateMenuOnExpand() },
@@ -298,6 +276,10 @@ open class BrowseSourceController(bundle: Bundle) :
             DisplayMode.LIST -> R.id.action_list
         }
         menu.findItem(displayItem).isChecked = true
+    }
+
+    override fun onSearchViewQueryTextSubmit(query: String?) {
+        searchWithQuery(query ?: "")
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {

@@ -31,12 +31,25 @@
         <item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
 
         <item name="android:background">?attr/colorSurface</item>
+        <item name="shapeAppearanceOverlay">@style/Theme.MaterialAlertDialog.Style.ShapeAppearance</item>
+
+        <item name="materialAlertDialogTitleTextStyle">@style/Theme.MaterialAlertDialog.Style.Title</item>
         <item name="android:textColorPrimary">?attr/colorOnSurface</item>
         <item name="android:textColor">?attr/colorOnSurface</item>
 
         <item name="buttonBarPositiveButtonStyle">@style/Theme.Widget.Button</item>
         <item name="buttonBarNegativeButtonStyle">@style/Theme.Widget.Button</item>
         <item name="buttonBarNeutralButtonStyle">@style/Theme.Widget.Button</item>
+    </style>
+
+    <style name="Theme.MaterialAlertDialog.Style.ShapeAppearance" parent="">
+        <item name="cornerSize">@dimen/dialog_radius</item>
+    </style>
+
+    <style name="Theme.MaterialAlertDialog.Style.Title" parent="@style/MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:textSize">@dimen/md_title_textsize</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
     <style name="Theme.AlertDialog.Light" parent="Theme.AlertDialog">
@@ -65,8 +78,8 @@
 
     <style name="Theme.BottomSheet.Style.ShapeAppearance" parent="">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSizeTopRight">8dp</item>
-        <item name="cornerSizeTopLeft">8dp</item>
+        <item name="cornerSizeTopRight">@dimen/dialog_radius</item>
+        <item name="cornerSizeTopLeft">@dimen/dialog_radius</item>
         <item name="cornerSizeBottomRight">0dp</item>
         <item name="cornerSizeBottomLeft">0dp</item>
     </style>

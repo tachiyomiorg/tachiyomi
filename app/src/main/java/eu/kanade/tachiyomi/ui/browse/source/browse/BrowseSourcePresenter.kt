@@ -67,12 +67,6 @@ open class BrowseSourcePresenter(
     lateinit var source: CatalogueSource
 
     /**
-     * Query from the view.
-     */
-    var query = searchQuery ?: ""
-        private set
-
-    /**
      * Modifiable list of filters.
      */
     var sourceFilters = FilterList()
@@ -107,6 +101,10 @@ open class BrowseSourcePresenter(
      * Subscription for one request from the pager.
      */
     private var pageSubscription: Subscription? = null
+
+    init {
+        query = searchQuery ?: ""
+    }
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)

@@ -41,12 +41,12 @@ class ReaderTransitionView @JvmOverloads constructor(context: Context, attrs: At
         if (hasPrevChapter) {
             binding.upperText.textAlignment = TEXT_ALIGNMENT_TEXT_START
             binding.upperText.text = buildSpannedString {
-                bold { append(context.getString(R.string.transition_current)) }
-                append("\n${transition.from.chapter.name}")
-            }
-            binding.lowerText.text = buildSpannedString {
                 bold { append(context.getString(R.string.transition_previous)) }
                 append("\n${prevChapter!!.chapter.name}")
+            }
+            binding.lowerText.text = buildSpannedString {
+                bold { append(context.getString(R.string.transition_current)) }
+                append("\n${transition.from.chapter.name}")
             }
         } else {
             binding.upperText.textAlignment = TEXT_ALIGNMENT_CENTER

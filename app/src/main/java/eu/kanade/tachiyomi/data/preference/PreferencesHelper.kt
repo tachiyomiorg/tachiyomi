@@ -36,6 +36,10 @@ operator fun <T> Preference<Set<T>>.minusAssign(item: T) {
     set(get() - item)
 }
 
+fun Preference<Boolean>.toggle() {
+    set(!get())
+}
+
 class PreferencesHelper(val context: Context) {
 
     private val prefs = PreferenceManager.getDefaultSharedPreferences(context)
@@ -89,7 +93,13 @@ class PreferencesHelper(val context: Context) {
 
     fun showPageNumber() = flowPrefs.getBoolean(Keys.showPageNumber, true)
 
-    fun dualPageSplit() = flowPrefs.getBoolean(Keys.dualPageSplit, false)
+    fun dualPageSplitPaged() = flowPrefs.getBoolean(Keys.dualPageSplitPaged, false)
+
+    fun dualPageSplitWebtoon() = flowPrefs.getBoolean(Keys.dualPageSplitWebtoon, false)
+
+    fun dualPageInvertPaged() = flowPrefs.getBoolean(Keys.dualPageInvertPaged, false)
+
+    fun dualPageInvertWebtoon() = flowPrefs.getBoolean(Keys.dualPageInvertWebtoon, false)
 
     fun showReadingMode() = prefs.getBoolean(Keys.showReadingMode, true)
 
@@ -142,6 +152,10 @@ class PreferencesHelper(val context: Context) {
     fun navigationModePager() = flowPrefs.getInt(Keys.navigationModePager, 0)
 
     fun navigationModeWebtoon() = flowPrefs.getInt(Keys.navigationModeWebtoon, 0)
+
+    fun showNavigationOverlayNewUser() = flowPrefs.getBoolean(Keys.showNavigationOverlayNewUser, true)
+
+    fun showNavigationOverlayOnStart() = flowPrefs.getBoolean(Keys.showNavigationOverlayOnStart, false)
 
     fun portraitColumns() = flowPrefs.getInt(Keys.portraitColumns, 0)
 

@@ -65,6 +65,7 @@
                     style="@style/TextAppearance.Medium.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="bottom"
                     android:maxLines="3"
                     android:text="@string/manga_info_full_title_label"
                     android:textIsSelectable="false"

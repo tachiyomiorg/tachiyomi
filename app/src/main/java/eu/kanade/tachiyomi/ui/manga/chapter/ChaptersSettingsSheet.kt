@@ -17,7 +17,7 @@ class ChaptersSettingsSheet(
     private val router: Router,
     private val presenter: MangaPresenter,
     onGroupClickListener: (ExtendedNavigationView.Group) -> Unit
-) : TabbedBottomSheetDialog(router) {
+) : TabbedBottomSheetDialog(router.activity!!) {
 
     val filters: Filter
     private val sort: Sort

@@ -13,6 +13,7 @@ import eu.kanade.tachiyomi.util.lang.withIOContext
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.contentOrNull
 import kotlinx.serialization.json.int
 import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
@@ -46,6 +47,7 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
         return withIOContext {
             // read status update
             val sbody = FormBody.Builder()
+                .add("rating", track.score.toInt().toString())
                 .add("status", track.toBangumiStatus())
                 .build()
             authClient.newCall(POST("$apiUrl/collection/${track.media_id}/update", body = sbody))
@@ -91,12 +93,24 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
     }
 
     private fun jsonToSearch(obj: JsonObject): TrackSearch {
+        val coverUrl = if (obj["images"] is JsonObject) {
+            obj["images"]?.jsonObject?.get("common")?.jsonPrimitive?.contentOrNull ?: ""
+        } else {
+            // Sometimes JsonNull
+            ""
+        }
+        val totalChapters = if (obj["eps_count"] != null) {
+            obj["eps_count"]!!.jsonPrimitive.int
+        } else {
+            0
+        }
         return TrackSearch.create(TrackManager.BANGUMI).apply {
             media_id = obj["id"]!!.jsonPrimitive.int
             title = obj["name_cn"]!!.jsonPrimitive.content
-            cover_url = obj["images"]!!.jsonObject["common"]!!.jsonPrimitive.content
+            cover_url = coverUrl
             summary = obj["name"]!!.jsonPrimitive.content
             tracking_url = obj["url"]!!.jsonPrimitive.content
+            total_chapters = totalChapters
         }
     }
 
@@ -119,14 +133,21 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
                 .build()
 
             // TODO: get user readed chapter here
-            authClient.newCall(requestUserRead)
-                .await()
-                .parseAs<Collection>()
-                .let {
+            var response = authClient.newCall(requestUserRead).await()
+            var responseBody = response.body?.string().orEmpty()
+            if (responseBody.isEmpty()) {
+                throw Exception("Null Response")
+            }
+            if (responseBody.contains("\"code\":400")) {
+                null
+            } else {
+                json.decodeFromString<Collection>(responseBody).let {
                     track.status = it.status?.id!!
                     track.last_chapter_read = it.ep_status!!
+                    track.score = it.rating!!
                     track
                 }
+            }
         }
     }
 

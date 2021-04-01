@@ -12,13 +12,12 @@ import eu.kanade.tachiyomi.data.backup.full.models.BackupSerializer
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.database.models.Track
-import eu.kanade.tachiyomi.source.Source
 import okio.buffer
 import okio.gzip
 import okio.source
 import java.util.Date
 
-class FullBackupRestore(context: Context, notifier: BackupNotifier, private val online: Boolean) : AbstractBackupRestore<FullBackupManager>(context, notifier) {
+class FullBackupRestore(context: Context, notifier: BackupNotifier) : AbstractBackupRestore<FullBackupManager>(context, notifier) {
 
     override suspend fun performRestore(uri: Uri): Boolean {
         backupManager = FullBackupManager(context)
@@ -42,8 +41,10 @@ class FullBackupRestore(context: Context, notifier: BackupNotifier, private val 
                 return false
             }
 
-            restoreManga(it, backup.backupCategories, online)
+            restoreManga(it, backup.backupCategories)
         }
+
+        // TODO: optionally trigger online library + tracker update
 
         return true
     }
@@ -57,23 +58,17 @@ class FullBackupRestore(context: Context, notifier: BackupNotifier, private val 
         showRestoreProgress(restoreProgress, restoreAmount, context.getString(R.string.categories))
     }
 
-    private suspend fun restoreManga(backupManga: BackupManga, backupCategories: List<BackupCategory>, online: Boolean) {
+    private fun restoreManga(backupManga: BackupManga, backupCategories: List<BackupCategory>) {
         val manga = backupManga.getMangaImpl()
         val chapters = backupManga.getChaptersImpl()
         val categories = backupManga.categories
         val history = backupManga.history
         val tracks = backupManga.getTrackingImpl()
 
-        val source = backupManager.sourceManager.get(manga.source)
-        val sourceName = sourceMapping[manga.source] ?: manga.source.toString()
-
         try {
-            if (source != null || !online) {
-                restoreMangaData(manga, source, chapters, categories, history, tracks, backupCategories, online)
-            } else {
-                errors.add(Date() to "${manga.title} [$sourceName]: ${context.getString(R.string.source_not_found_name, sourceName)}")
-            }
+            restoreMangaData(manga, chapters, categories, history, tracks, backupCategories)
         } catch (e: Exception) {
+            val sourceName = sourceMapping[manga.source] ?: manga.source.toString()
             errors.add(Date() to "${manga.title} [$sourceName]: ${e.message}")
         }
 
@@ -85,33 +80,30 @@ class FullBackupRestore(context: Context, notifier: BackupNotifier, private val 
      * Returns a manga restore observable
      *
      * @param manga manga data from json
-     * @param source source to get manga data from
      * @param chapters chapters data from json
      * @param categories categories data from json
      * @param history history data from json
      * @param tracks tracking data from json
      */
-    private suspend fun restoreMangaData(
+    private fun restoreMangaData(
         manga: Manga,
-        source: Source?,
         chapters: List<Chapter>,
         categories: List<Int>,
         history: List<BackupHistory>,
         tracks: List<Track>,
-        backupCategories: List<BackupCategory>,
-        online: Boolean
+        backupCategories: List<BackupCategory>
     ) {
-        val dbManga = backupManager.getMangaFromDatabase(manga)
-
         db.inTransaction {
+            val dbManga = backupManager.getMangaFromDatabase(manga)
             if (dbManga == null) {
                 // Manga not in database
-                restoreMangaFetch(source, manga, chapters, categories, history, tracks, backupCategories, online)
-            } else { // Manga in database
+                restoreMangaFetch(manga, chapters, categories, history, tracks, backupCategories)
+            } else {
+                // Manga in database
                 // Copy information from manga already in database
                 backupManager.restoreMangaNoFetch(manga, dbManga)
                 // Fetch rest of manga information
-                restoreMangaNoFetch(source, manga, chapters, categories, history, tracks, backupCategories, online)
+                restoreMangaNoFetch(manga, chapters, categories, history, tracks, backupCategories)
             }
         }
     }
@@ -123,55 +115,37 @@ class FullBackupRestore(context: Context, notifier: BackupNotifier, private val 
      * @param chapters chapters of manga that needs updating
      * @param categories categories that need updating
      */
-    private suspend fun restoreMangaFetch(
-        source: Source?,
+    private fun restoreMangaFetch(
         manga: Manga,
         chapters: List<Chapter>,
         categories: List<Int>,
         history: List<BackupHistory>,
         tracks: List<Track>,
-        backupCategories: List<BackupCategory>,
-        online: Boolean
+        backupCategories: List<BackupCategory>
     ) {
         try {
-            val fetchedManga = backupManager.restoreMangaFetch(source, manga, online)
+            val fetchedManga = backupManager.restoreManga(manga)
             fetchedManga.id ?: return
 
-            if (online && source != null) {
-                updateChapters(source, fetchedManga, chapters)
-            } else {
-                backupManager.restoreChaptersForMangaOffline(fetchedManga, chapters)
-            }
+            backupManager.restoreChaptersForManga(fetchedManga, chapters)
 
             restoreExtraForManga(fetchedManga, categories, history, tracks, backupCategories)
-
-            updateTracking(fetchedManga, tracks)
         } catch (e: Exception) {
             errors.add(Date() to "${manga.title} - ${e.message}")
         }
     }
 
-    private suspend fun restoreMangaNoFetch(
-        source: Source?,
+    private fun restoreMangaNoFetch(
         backupManga: Manga,
         chapters: List<Chapter>,
         categories: List<Int>,
         history: List<BackupHistory>,
         tracks: List<Track>,
-        backupCategories: List<BackupCategory>,
-        online: Boolean
+        backupCategories: List<BackupCategory>
     ) {
-        if (online && source != null) {
-            if (!backupManager.restoreChaptersForManga(backupManga, chapters)) {
-                updateChapters(source, backupManga, chapters)
-            }
-        } else {
-            backupManager.restoreChaptersForMangaOffline(backupManga, chapters)
-        }
+        backupManager.restoreChaptersForManga(backupManga, chapters)
 
         restoreExtraForManga(backupManga, categories, history, tracks, backupCategories)
-
-        updateTracking(backupManga, tracks)
     }
 
     private fun restoreExtraForManga(manga: Manga, categories: List<Int>, history: List<BackupHistory>, tracks: List<Track>, backupCategories: List<BackupCategory>) {

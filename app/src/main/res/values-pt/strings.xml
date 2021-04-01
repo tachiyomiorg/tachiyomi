@@ -261,8 +261,8 @@
     <string name="action_sort_total">Total de capítulos</string>
     <string name="action_sort_last_read">Última leitura</string>
     <string name="action_global_search">Procura geral</string>
-    <string name="action_bookmark">Marcar</string>
-    <string name="action_remove_bookmark">Desmarcar</string>
+    <string name="action_bookmark">Marcar capítulo</string>
+    <string name="action_remove_bookmark">Desmarcar capítulo</string>
     <string name="action_add">Adicionar</string>
     <string name="action_close">Fechar</string>
     <string name="action_move">Mover</string>
@@ -278,8 +278,8 @@
     <string name="short_recent_updates">Atualizações</string>
     <string name="update_weekly">Semanalmente</string>
     <string name="pref_start_screen">Ecrã inicial</string>
-    <string name="pref_language">Língua</string>
-    <string name="system_default">Predefinição</string>
+    <string name="pref_language">Idioma</string>
+    <string name="system_default">Padrão</string>
     <string name="action_restore">Restaurar</string>
     <string name="app_not_available">App não disponível</string>
     <string name="default_category">Categoria padrão</string>
@@ -514,7 +514,7 @@
     <string name="action_select_inverse">Seleção inversa</string>
     <string name="action_sort_last_checked">Última verificação</string>
     <string name="label_sources">Fontes</string>
-    <string name="website">Website</string>
+    <string name="website">Sítio Web</string>
     <string name="restoring_backup_canceled">Restauro cancelado</string>
     <string name="restoring_backup_error">Restauro da cópia de segurança falhou</string>
     <string name="restore_in_progress">Restauro já em progresso</string>
@@ -687,4 +687,8 @@
     <string name="pref_dump_crash_logs">Guardar registos de falhas</string>
     <string name="pref_dump_crash_logs_summary">Guarda registos de erros num ficheiro para partilhar com os desenvolvedores</string>
     <string name="action_display_show_number_of_items">Mostrar número de itens</string>
+    <string name="right_and_left_nav">Direita e Esquerda</string>
+    <string name="pref_dual_page_split">Divisão de página dupla (ALPHA)</string>
+    <string name="pref_dual_page_invert_summary">Se o posicionamento da divisão de página dupla não corresponder à direção de leitura</string>
+    <string name="pref_dual_page_invert">Inverter posicionamento de divisão de página dupla</string>
 </resources>

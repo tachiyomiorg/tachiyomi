@@ -71,6 +71,7 @@ class LibraryUpdateService(
     private lateinit var notifier: LibraryUpdateNotifier
     private lateinit var ioScope: CoroutineScope
 
+    private var mangaToUpdate: List<LibraryManga> = mutableListOf()
     private var updateJob: Job? = null
 
     /**
@@ -85,6 +86,8 @@ class LibraryUpdateService(
     }
 
     companion object {
+
+        private var instance: LibraryUpdateService? = null
 
         /**
          * Key for category to update.
@@ -116,17 +119,18 @@ class LibraryUpdateService(
          * @return true if service newly started, false otherwise
          */
         fun start(context: Context, category: Category? = null, target: Target = Target.CHAPTERS): Boolean {
-            if (!isRunning(context)) {
+            return if (!isRunning(context)) {
                 val intent = Intent(context, LibraryUpdateService::class.java).apply {
                     putExtra(KEY_TARGET, target)
                     category?.let { putExtra(KEY_CATEGORY, it.id) }
                 }
                 ContextCompat.startForegroundService(context, intent)
 
-                return true
+                true
+            } else {
+                instance?.addMangaToQueue(category?.id ?: -1, target)
+                false
             }
-
-            return false
         }
 
         /**
@@ -163,6 +167,9 @@ class LibraryUpdateService(
         if (wakeLock.isHeld) {
             wakeLock.release()
         }
+        if (instance == this) {
+            instance = null
+        }
         super.onDestroy()
     }
 
@@ -186,23 +193,25 @@ class LibraryUpdateService(
         val target = intent.getSerializableExtra(KEY_TARGET) as? Target
             ?: return START_NOT_STICKY
 
-        // Unsubscribe from any previous subscription if needed.
+        instance = this
+
+        // Unsubscribe from any previous subscription if needed
         updateJob?.cancel()
 
-        // Update favorite manga. Destroy service when completed or in case of an error.
-        val selectedScheme = preferences.libraryUpdatePrioritization().get()
-        val mangaList = getMangaToUpdate(intent, target)
-            .sortedWith(rankingScheme[selectedScheme])
+        // Update favorite manga
+        val categoryId = intent.getIntExtra(KEY_CATEGORY, -1)
+        addMangaToQueue(categoryId, target)
 
+        // Destroy service when completed or in case of an error.
         val handler = CoroutineExceptionHandler { _, exception ->
             Timber.e(exception)
             stopSelf(startId)
         }
         updateJob = ioScope.launch(handler) {
             when (target) {
-                Target.CHAPTERS -> updateChapterList(mangaList)
-                Target.COVERS -> updateCovers(mangaList)
-                Target.TRACKING -> updateTrackings(mangaList)
+                Target.CHAPTERS -> updateChapterList()
+                Target.COVERS -> updateCovers()
+                Target.TRACKING -> updateTrackings()
             }
         }
         updateJob?.invokeOnCompletion { stopSelf(startId) }
@@ -211,25 +220,22 @@ class LibraryUpdateService(
     }
 
     /**
-     * Returns the list of manga to be updated.
+     * Adds list of manga to be updated.
      *
-     * @param intent the update intent.
+     * @param category the ID of the category to update, or -1 if no category specified.
      * @param target the target to update.
-     * @return a list of manga to update
      */
-    fun getMangaToUpdate(intent: Intent, target: Target): List<LibraryManga> {
-        val categoryId = intent.getIntExtra(KEY_CATEGORY, -1)
+    fun addMangaToQueue(categoryId: Int, target: Target) {
+        val libraryManga = db.getLibraryMangas().executeAsBlocking()
 
         var listToUpdate = if (categoryId != -1) {
-            db.getLibraryMangas().executeAsBlocking().filter { it.category == categoryId }
+            libraryManga.filter { it.category == categoryId }
         } else {
             val categoriesToUpdate = preferences.libraryUpdateCategories().get().map(String::toInt)
             val listToInclude = if (categoriesToUpdate.isNotEmpty()) {
-                db.getLibraryMangas().executeAsBlocking()
-                    .filter { it.category in categoriesToUpdate }
-                    .distinctBy { it.id }
+                libraryManga.filter { it.category in categoriesToUpdate }
             } else {
-                db.getLibraryMangas().executeAsBlocking().distinctBy { it.id }
+                libraryManga
             }
 
             val categoriesToExclude = preferences.libraryUpdateExcludeCategories().get().map(String::toInt)
@@ -243,10 +249,13 @@ class LibraryUpdateService(
             listToInclude.minus(listToExclude)
         }
         if (target == Target.CHAPTERS && preferences.updateOnlyNonCompleted()) {
-            listToUpdate = listToUpdate.filter { it.status != SManga.COMPLETED }
+            listToUpdate = listToUpdate.filterNot { it.status == SManga.COMPLETED }
         }
 
-        return listToUpdate
+        val selectedScheme = preferences.libraryUpdatePrioritization().get()
+        mangaToUpdate = listToUpdate
+            .distinctBy { it.id }
+            .sortedWith(rankingScheme[selectedScheme])
     }
 
     /**
@@ -258,7 +267,7 @@ class LibraryUpdateService(
      * @param mangaToUpdate the list to update
      * @return an observable delivering the progress of each update.
      */
-    suspend fun updateChapterList(mangaToUpdate: List<LibraryManga>) {
+    suspend fun updateChapterList() {
         val progressCount = AtomicInteger(0)
         val newUpdates = mutableListOf<Pair<LibraryManga, Array<Chapter>>>()
         val failedUpdates = mutableListOf<Pair<Manga, String?>>()
@@ -352,7 +361,7 @@ class LibraryUpdateService(
         return syncChaptersWithSource(db, chapters, manga, source)
     }
 
-    private suspend fun updateCovers(mangaToUpdate: List<LibraryManga>) {
+    private suspend fun updateCovers() {
         var progressCount = 0
 
         mangaToUpdate.forEach { manga ->
@@ -385,7 +394,7 @@ class LibraryUpdateService(
      * Method that updates the metadata of the connected tracking services. It's called in a
      * background thread, so it's safe to do heavy operations or network calls here.
      */
-    private suspend fun updateTrackings(mangaToUpdate: List<LibraryManga>) {
+    private suspend fun updateTrackings() {
         var progressCount = 0
         val loggedServices = trackManager.services.filter { it.isLogged }
 

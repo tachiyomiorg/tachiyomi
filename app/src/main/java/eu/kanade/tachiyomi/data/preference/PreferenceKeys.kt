@@ -23,7 +23,13 @@ object PreferenceKeys {
 
     const val showPageNumber = "pref_show_page_number_key"
 
-    const val dualPageSplit = "pref_dual_page_split"
+    const val dualPageSplitPaged = "pref_dual_page_split"
+
+    const val dualPageSplitWebtoon = "pref_dual_page_split_webtoon"
+
+    const val dualPageInvertPaged = "pref_dual_page_invert"
+
+    const val dualPageInvertWebtoon = "pref_dual_page_invert_webtoon"
 
     const val showReadingMode = "pref_show_reading_mode"
 
@@ -72,6 +78,10 @@ object PreferenceKeys {
     const val navigationModePager = "reader_navigation_mode_pager"
 
     const val navigationModeWebtoon = "reader_navigation_mode_webtoon"
+
+    const val showNavigationOverlayNewUser = "reader_navigation_overlay_new_user"
+
+    const val showNavigationOverlayOnStart = "reader_navigation_overlay_on_start"
 
     const val webtoonSidePadding = "webtoon_side_padding"
 

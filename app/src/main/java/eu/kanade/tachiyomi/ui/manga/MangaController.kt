@@ -72,6 +72,7 @@ import eu.kanade.tachiyomi.ui.recent.updates.UpdatesController
 import eu.kanade.tachiyomi.ui.webview.WebViewActivity
 import eu.kanade.tachiyomi.util.chapter.NoChaptersException
 import eu.kanade.tachiyomi.util.hasCustomCover
+import eu.kanade.tachiyomi.util.lang.launchUI
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.getCoordinates
@@ -289,23 +290,17 @@ class MangaController :
         fab.setOnClickListener {
             val item = presenter.getNextUnreadChapter()
             if (item != null) {
-                // Create animation listener
-                val revealAnimationListener: Animator.AnimatorListener = object : AnimatorListenerAdapter() {
-                    override fun onAnimationStart(animation: Animator?) {
-                        openChapter(item.chapter, true)
-                    }
-                }
-
                 // Get coordinates and start animation
                 actionFab?.getCoordinates()?.let { coordinates ->
-                    if (!binding.revealView.showRevealEffect(
-                            coordinates.x,
-                            coordinates.y,
-                            revealAnimationListener
-                        )
-                    ) {
-                        openChapter(item.chapter)
-                    }
+                    binding.revealView.showRevealEffect(
+                        coordinates.x,
+                        coordinates.y,
+                        object : AnimatorListenerAdapter() {
+                            override fun onAnimationStart(animation: Animator?) {
+                                openChapter(item.chapter, true)
+                            }
+                        }
+                    )
                 }
             } else {
                 view?.context?.toast(R.string.no_next_chapter)
@@ -608,8 +603,9 @@ class MangaController :
 
     override fun openMangaCoverPicker(manga: Manga) {
         if (manga.favorite) {
-            val intent = Intent(Intent.ACTION_GET_CONTENT)
-            intent.type = "image/*"
+            val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
+                type = "image/*"
+            }
             startActivityForResult(
                 Intent.createChooser(
                     intent,
@@ -988,7 +984,9 @@ class MangaController :
         chapters.forEach {
             chaptersAdapter?.updateItem(it)
         }
-        chaptersAdapter?.notifyDataSetChanged()
+        launchUI {
+            chaptersAdapter?.notifyDataSetChanged()
+        }
     }
 
     fun onChaptersDeletedError(error: Throwable) {

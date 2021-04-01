@@ -43,6 +43,12 @@
         android:layout_height="match_parent"
         android:visibility="gone" />
 
+    <eu.kanade.tachiyomi.ui.reader.ReaderNavigationOverlayView
+        android:id="@+id/navigation_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
     <FrameLayout
         android:id="@+id/reader_menu"
         android:layout_width="match_parent"
@@ -79,7 +85,7 @@
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_marginEnd="8dp"
-                    android:background="@drawable/reader_seekbar_background"
+                    android:background="@drawable/reader_seekbar_button"
                     android:contentDescription="@string/action_previous_chapter"
                     android:padding="@dimen/material_layout_keylines_screen_edge_margin"
                     app:srcCompat="@drawable/ic_skip_previous_24dp"
@@ -90,7 +96,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/reader_seekbar_button"
+                    android:background="@drawable/reader_seekbar_background"
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp">
 
@@ -145,20 +151,19 @@
                 android:layout_gravity="bottom"
                 android:background="?attr/colorPrimary">
 
-<!--                <ImageButton-->
-<!--                    android:id="@+id/action_reader_mode"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:background="?selectableItemBackgroundBorderless"-->
-<!--                    android:contentDescription="@string/viewer"-->
-<!--                    android:padding="@dimen/material_layout_keylines_screen_edge_margin"-->
-<!--                    app:layout_constraintEnd_toStartOf="@id/action_rotation"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toTopOf="parent"-->
-<!--                    app:srcCompat="@drawable/ic_book_24dp"-->
-<!--                    app:tint="?attr/colorOnPrimary" />-->
+                <ImageButton
+                    android:id="@+id/action_reading_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/viewer"
+                    android:padding="@dimen/material_layout_keylines_screen_edge_margin"
+                    app:layout_constraintEnd_toStartOf="@id/action_rotation"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_reader_default_24dp"
+                    app:tint="?attr/colorOnPrimary" />
 
-                <!-- app:layout_constraintStart_toEndOf="@+id/action_reader_mode" -->
                 <ImageButton
                     android:id="@+id/action_rotation"
                     android:layout_width="wrap_content"
@@ -166,23 +171,23 @@
                     android:background="?selectableItemBackgroundBorderless"
                     android:contentDescription="@string/pref_rotation_type"
                     android:padding="@dimen/material_layout_keylines_screen_edge_margin"
-                    app:layout_constraintEnd_toStartOf="@id/action_custom_filter"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/action_crop_borders"
+                    app:layout_constraintStart_toEndOf="@+id/action_reading_mode"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_screen_rotation_24dp"
                     app:tint="?attr/colorOnPrimary" />
 
                 <ImageButton
-                    android:id="@+id/action_custom_filter"
+                    android:id="@+id/action_crop_borders"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:background="?selectableItemBackgroundBorderless"
-                    android:contentDescription="@string/custom_filter"
+                    android:contentDescription="@string/pref_crop_borders"
                     android:padding="@dimen/material_layout_keylines_screen_edge_margin"
                     app:layout_constraintEnd_toStartOf="@id/action_settings"
                     app:layout_constraintStart_toEndOf="@+id/action_rotation"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_brightness_4_24dp"
+                    app:srcCompat="@drawable/ic_crop_24dp"
                     app:tint="?attr/colorOnPrimary" />
 
                 <ImageButton
@@ -193,7 +198,7 @@
                     android:contentDescription="@string/action_settings"
                     android:padding="@dimen/material_layout_keylines_screen_edge_margin"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/action_custom_filter"
+                    app:layout_constraintStart_toEndOf="@id/action_crop_borders"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_settings_24dp"
                     app:tint="?attr/colorOnPrimary" />

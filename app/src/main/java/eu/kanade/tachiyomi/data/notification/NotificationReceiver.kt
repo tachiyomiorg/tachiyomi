@@ -73,7 +73,7 @@ class NotificationReceiver : BroadcastReceiver() {
                 shareFile(
                     context,
                     intent.getParcelableExtra(EXTRA_URI),
-                    if (intent.getBooleanExtra(EXTRA_IS_LEGACY_BACKUP, false)) "application/json" else "application/octet-stream+gzip",
+                    if (intent.getBooleanExtra(EXTRA_IS_LEGACY_BACKUP, false)) "application/json" else "application/x-protobuf+gzip",
                     intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1)
                 )
             ACTION_CANCEL_RESTORE -> cancelRestore(

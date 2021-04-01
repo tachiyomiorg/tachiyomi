@@ -2,7 +2,6 @@ package eu.kanade.tachiyomi.network
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.webkit.WebSettings
@@ -114,10 +113,7 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
                         latch.countDown()
                     }
 
-                    // HTTP error codes are only received since M
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
-                        url == origRequestUrl && !challengeFound
-                    ) {
+                    if (url == origRequestUrl && !challengeFound) {
                         // The first request didn't return the challenge, abort.
                         latch.countDown()
                     }
@@ -171,6 +167,6 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
 
     companion object {
         private val SERVER_CHECK = arrayOf("cloudflare-nginx", "cloudflare")
-        private val COOKIE_NAMES = listOf("__cfduid", "cf_clearance")
+        private val COOKIE_NAMES = listOf("cf_clearance")
     }
 }

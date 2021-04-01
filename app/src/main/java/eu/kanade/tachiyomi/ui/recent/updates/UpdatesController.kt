@@ -210,6 +210,7 @@ class UpdatesController :
      */
     private fun downloadChapters(chapters: List<UpdatesItem>) {
         presenter.downloadChapters(chapters)
+        destroyActionModeIfNeeded()
     }
 
     /**
@@ -251,6 +252,7 @@ class UpdatesController :
         if (presenter.preferences.removeAfterMarkedAsRead()) {
             deleteChapters(chapters)
         }
+        destroyActionModeIfNeeded()
     }
 
     /**
@@ -259,10 +261,12 @@ class UpdatesController :
      */
     private fun markAsUnread(chapters: List<UpdatesItem>) {
         presenter.markChapterRead(chapters, false)
+        destroyActionModeIfNeeded()
     }
 
     override fun deleteChapters(chaptersToDelete: List<UpdatesItem>) {
         presenter.deleteChapters(chaptersToDelete)
+        destroyActionModeIfNeeded()
     }
 
     private fun destroyActionModeIfNeeded() {

@@ -32,8 +32,8 @@
     <string name="action_mark_as_unread">Σήμανση ως μη αναγνωσμένο</string>
     <string name="action_mark_previous_as_read">Σήμανση προηγούμενου ως αναγνωσμένο</string>
     <string name="action_download">Λήψη</string>
-    <string name="action_bookmark">Προσθήκη σελιδοδείκτη</string>
-    <string name="action_remove_bookmark">Κατάργηση σελιδοδείκτη</string>
+    <string name="action_bookmark">Προσθήκη σελιδοδείκτη κεφαλαίου</string>
+    <string name="action_remove_bookmark">Κατάργηση σελιδοδείκτη κεφαλαίου</string>
     <string name="action_delete">Διαγραφή</string>
     <string name="action_update">Ενημέρωση</string>
     <string name="action_update_library">Ενημέρωση βιβλιοθήκης</string>
@@ -659,4 +659,6 @@
     <string name="action_display_show_number_of_items">Εμφάνιση αριθμού στοιχείων</string>
     <string name="right_and_left_nav">Δεξιά και Aριστερά</string>
     <string name="pref_dual_page_split">Διπλή διαίρεση σελίδας (ALPHA)</string>
+    <string name="pref_dual_page_invert_summary">Εάν η τοποθέτηση του διαχωρισμού διπλής σελίδας δεν ταιριάζει με την κατεύθυνση ανάγνωσης</string>
+    <string name="pref_dual_page_invert">Αντιστροφή τοποθέτησης διαχωρισμού διπλής σελίδας</string>
 </resources>

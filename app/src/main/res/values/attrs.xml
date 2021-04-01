@@ -11,6 +11,12 @@
         <attr name="max_seek" format="integer"/>
     </declare-styleable>
 
+    <declare-styleable name="SpinnerPreference">
+        <attr name="title" format="reference|string"/>
+        <attr name="android:entries"/>
+        <attr name="summary" format="reference|string" />
+    </declare-styleable>
+
     <attr name="colorLibrarySelection" format="reference|integer"/>
     <attr name="colorLibrarySelectionActive" format="reference|integer"/>
     <attr name="colorFilterActive" format="reference|integer"/>

@@ -104,18 +104,14 @@ open class ExtensionController :
     override fun onButtonClick(position: Int) {
         val extension = (adapter?.getItem(position) as? ExtensionItem)?.extension ?: return
         when (extension) {
+            is Extension.Available -> presenter.installExtension(extension)
+            is Extension.Untrusted -> openTrustDialog(extension)
             is Extension.Installed -> {
                 if (!extension.hasUpdate) {
                     openDetails(extension)
                 } else {
                     presenter.updateExtension(extension)
                 }
-            }
-            is Extension.Available -> {
-                presenter.installExtension(extension)
-            }
-            is Extension.Untrusted -> {
-                openTrustDialog(extension)
             }
         }
     }
@@ -147,12 +143,11 @@ open class ExtensionController :
 
     override fun onItemClick(view: View, position: Int): Boolean {
         val extension = (adapter?.getItem(position) as? ExtensionItem)?.extension ?: return false
-        if (extension is Extension.Installed) {
-            openDetails(extension)
-        } else if (extension is Extension.Untrusted) {
-            openTrustDialog(extension)
+        when (extension) {
+            is Extension.Available -> presenter.installExtension(extension)
+            is Extension.Untrusted -> openTrustDialog(extension)
+            is Extension.Installed -> openDetails(extension)
         }
-
         return false
     }
 

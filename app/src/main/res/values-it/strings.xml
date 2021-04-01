@@ -24,8 +24,8 @@
     <string name="action_mark_as_unread">Segna come non letto</string>
     <string name="action_mark_previous_as_read">Segna precedenti come letti</string>
     <string name="action_download">Scarica</string>
-    <string name="action_bookmark">Aggiungi segnalibro</string>
-    <string name="action_remove_bookmark">Rimuovi segnalibro</string>
+    <string name="action_bookmark">Segna il capitolo</string>
+    <string name="action_remove_bookmark">Rimuovi il segnalibro</string>
     <string name="action_delete">Cancella</string>
     <string name="action_update">Aggiorna</string>
     <string name="action_update_library">Aggiorna libreria</string>
@@ -159,7 +159,7 @@
     <string name="clear_database_completed">Elementi eliminati</string>
     <!-- About section -->
     <string name="version">Versione</string>
-    <string name="build_time">Data della build</string>
+    <string name="build_time">Data della versione</string>
     <!-- ACRA -->
     <string name="pref_enable_acra">Invia segnalazioni</string>
     <string name="pref_acra_summary">Aiuta a correggere eventuali bug. Non verranno inviati dati sensibili</string>
@@ -438,7 +438,7 @@
     <string name="pref_theme_mode">Tema scuro</string>
     <string name="theme_light">Disattivo</string>
     <string name="theme_dark">Attivo</string>
-    <string name="theme_system">Segui l\'mpostazione di sistema</string>
+    <string name="theme_system">Segui l\'impostazione di sistema</string>
     <string name="pref_theme_dark">Tema scuro</string>
     <string name="theme_dark_default">Predefinito</string>
     <string name="theme_dark_blue">Blu scuro</string>
@@ -629,7 +629,7 @@
     <string name="no_pinned_sources">Non hai fonti fissate</string>
     <string name="pref_remove_bookmarked_chapters">Elimina capitoli contrassegnati</string>
     <string name="pref_category_delete_chapters">Elimina capitoli</string>
-    <string name="ext_nsfw_warning">Potrebbe contenere materiale per adulti</string>
+    <string name="ext_nsfw_warning">Potrebbe contenere materiale 18+</string>
     <string name="ext_nsfw_short">18+</string>
     <plurals name="missing_chapters_warning">
         <item quantity="one">C\'è un capitolo mancante</item>
@@ -637,7 +637,7 @@
     </plurals>
     <string name="backup_restore_missing_trackers">Trackers non collegati:</string>
     <string name="no_chapters_error">Nessun capitolo trovato</string>
-    <string name="parental_controls_info">Non impedisce ad estensioni non ufficiali o classificate in modo errato/fuorviante di mostrare contenuti per adulti all\'interno dell\'app.</string>
+    <string name="parental_controls_info">Questo non impedisce a estensioni non ufficiali o potenzialmente segnalate in modo errato mostrare contenuti 18+ all\'interno dell\'applicazione.</string>
     <string name="chapter_settings_updated">Impostazioni predefinite del capitolo aggiornate</string>
     <string name="share_page_info">%1$s: %2$s, pagina %3$d</string>
     <string name="set_chapter_settings_as_default">Imposta come predefinito</string>
@@ -691,4 +691,7 @@
     <string name="action_filter_tracked">Tracciati</string>
     <string name="action_display_show_number_of_items">Elementi visualizzati</string>
     <string name="right_and_left_nav">Navigazione destra/sinistra</string>
+    <string name="pref_dual_page_split">Dividi pagine doppie (ALPHA)</string>
+    <string name="pref_dual_page_invert_summary">Se il posizionamento della divisione a doppia pagina non corrisponde alla direzione di lettura</string>
+    <string name="pref_dual_page_invert">Inverti il posizionamento delle doppie pagine divise</string>
 </resources>

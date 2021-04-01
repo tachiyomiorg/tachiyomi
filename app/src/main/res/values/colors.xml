@@ -76,4 +76,11 @@
 
     <color name="green">#47a84a</color>
 
+    <!-- Navigation overlay colors -->
+    <color name="navigation_next">#CB84E296</color>
+    <color name="navigation_prev">#CCFF7733</color>
+    <color name="navigation_menu">#CC95818D</color>
+    <color name="navigation_right">#CCA6CFD5</color>
+    <color name="navigation_left">#CC7D1128</color>
+
 </resources>

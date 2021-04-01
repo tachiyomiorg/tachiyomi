@@ -1,19 +1,21 @@
-package eu.kanade.tachiyomi.ui.reader
+package eu.kanade.tachiyomi.ui.reader.setting
 
-import android.view.ViewGroup
+import android.content.Context
+import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.widget.SeekBar
 import androidx.annotation.ColorInt
 import androidx.core.graphics.alpha
 import androidx.core.graphics.blue
 import androidx.core.graphics.green
 import androidx.core.graphics.red
+import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.lifecycleScope
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.databinding.ReaderColorFilterSheetBinding
+import eu.kanade.tachiyomi.databinding.ReaderColorFilterSettingsBinding
+import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.widget.IgnoreFirstSpinnerListener
 import eu.kanade.tachiyomi.widget.SimpleSeekBarListener
-import eu.kanade.tachiyomi.widget.sheet.BaseBottomSheetDialog
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.sample
@@ -22,30 +24,27 @@ import uy.kohesive.injekt.injectLazy
 /**
  * Color filter sheet to toggle custom filter and brightness overlay.
  */
-class ReaderColorFilterSheet(private val activity: ReaderActivity) : BaseBottomSheetDialog(activity) {
+class ReaderColorFilterSettings @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
+    NestedScrollView(context, attrs) {
 
     private val preferences: PreferencesHelper by injectLazy()
 
-    private var sheetBehavior: BottomSheetBehavior<*>? = null
-
-    private val binding = ReaderColorFilterSheetBinding.inflate(activity.layoutInflater, null, false)
+    private val binding = ReaderColorFilterSettingsBinding.inflate(LayoutInflater.from(context), this, false)
 
     init {
-        setContentView(binding.root)
-
-        sheetBehavior = BottomSheetBehavior.from(binding.root.parent as ViewGroup)
+        addView(binding.root)
 
         preferences.colorFilter().asFlow()
             .onEach { setColorFilter(it) }
-            .launchIn(activity.lifecycleScope)
+            .launchIn((context as ReaderActivity).lifecycleScope)
 
         preferences.colorFilterMode().asFlow()
             .onEach { setColorFilter(preferences.colorFilter().get()) }
-            .launchIn(activity.lifecycleScope)
+            .launchIn(context.lifecycleScope)
 
         preferences.customBrightness().asFlow()
             .onEach { setCustomBrightness(it) }
-            .launchIn(activity.lifecycleScope)
+            .launchIn(context.lifecycleScope)
 
         // Get color and update values
         val color = preferences.colorFilterValue().get()
@@ -130,12 +129,6 @@ class ReaderColorFilterSheet(private val activity: ReaderActivity) : BaseBottomS
         )
     }
 
-    override fun onStart() {
-        super.onStart()
-        sheetBehavior?.skipCollapsed = true
-        sheetBehavior?.state = BottomSheetBehavior.STATE_EXPANDED
-    }
-
     /**
      * Set enabled status of seekBars belonging to color filter
      * @param enabled determines if seekBar gets enabled
@@ -183,7 +176,7 @@ class ReaderColorFilterSheet(private val activity: ReaderActivity) : BaseBottomS
             preferences.customBrightnessValue().asFlow()
                 .sample(100)
                 .onEach { setCustomBrightnessValue(it) }
-                .launchIn(activity.lifecycleScope)
+                .launchIn((context as ReaderActivity).lifecycleScope)
         } else {
             setCustomBrightnessValue(0, true)
         }
@@ -211,7 +204,7 @@ class ReaderColorFilterSheet(private val activity: ReaderActivity) : BaseBottomS
             preferences.colorFilterValue().asFlow()
                 .sample(100)
                 .onEach { setColorFilterValue(it) }
-                .launchIn(activity.lifecycleScope)
+                .launchIn((context as ReaderActivity).lifecycleScope)
         }
         setColorFilterSeekBar(enabled)
     }

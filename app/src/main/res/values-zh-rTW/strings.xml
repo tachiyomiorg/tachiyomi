@@ -31,8 +31,8 @@
     <string name="action_mark_as_unread">標示為未讀</string>
     <string name="action_mark_previous_as_read">標示過往章節為已讀</string>
     <string name="action_download">下載</string>
-    <string name="action_bookmark">新增書籤</string>
-    <string name="action_remove_bookmark">移除書籤</string>
+    <string name="action_bookmark">將章節加上書籤</string>
+    <string name="action_remove_bookmark">將章節移除書籤</string>
     <string name="action_delete">刪除</string>
     <string name="action_update">更新</string>
     <string name="action_update_library">更新書櫃</string>
@@ -517,7 +517,7 @@
     <plurals name="manga_num_chapters">
         <item quantity="other">共 %1$s 章</item>
     </plurals>
-    <string name="tracking_info">將章節進度單向同步至閱讀歷程平台，請逕行前往個別作品的「歷程」頁面以設置。</string>
+    <string name="tracking_info">將章節進度單向同步至閱讀歷程平台，請逕行前往個別作品的「歷程」專區以設置。</string>
     <plurals name="num_categories">
         <item quantity="other">%d 個分類</item>
     </plurals>
@@ -646,4 +646,7 @@
     <string name="manga_from_library">書櫃上的漫畫</string>
     <string name="downloaded_chapters">已下載的章節</string>
     <string name="network_unmetered">非計量付費網路</string>
+    <string name="pref_dual_page_split">雙頁分割 (ALPHA)</string>
+    <string name="pref_dual_page_invert_summary">若分割後的排版方向與翻閱順序不符</string>
+    <string name="pref_dual_page_invert">反轉雙頁分割排版</string>
 </resources>

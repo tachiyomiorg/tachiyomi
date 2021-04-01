@@ -115,7 +115,7 @@ object ImageUtil {
     /**
      * Split the image into left and right parts, then merge them into a new image.
      */
-    fun splitAndMerge(imageStream: InputStream): InputStream {
+    fun splitAndMerge(imageStream: InputStream, upperSide: Side): InputStream {
         val imageBytes = imageStream.readBytes()
 
         val imageBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
@@ -125,11 +125,17 @@ object ImageUtil {
         val result = Bitmap.createBitmap(width / 2, height * 2, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(result)
         // right -> upper
-        val rightPart = Rect(width - width / 2, 0, width, height)
+        val rightPart = when (upperSide) {
+            Side.RIGHT -> Rect(width - width / 2, 0, width, height)
+            Side.LEFT -> Rect(0, 0, width / 2, height)
+        }
         val upperPart = Rect(0, 0, width / 2, height)
         canvas.drawBitmap(imageBitmap, rightPart, upperPart, null)
         // left -> bottom
-        val leftPart = Rect(0, 0, width / 2, height)
+        val leftPart = when (upperSide) {
+            Side.LEFT -> Rect(width - width / 2, 0, width, height)
+            Side.RIGHT -> Rect(0, 0, width / 2, height)
+        }
         val bottomPart = Rect(0, height, width / 2, height * 2)
         canvas.drawBitmap(imageBitmap, leftPart, bottomPart, null)
 

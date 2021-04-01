@@ -28,8 +28,8 @@
     <string name="action_mark_as_unread">Marcar como não lido</string>
     <string name="action_mark_previous_as_read">Marcar anteriores como lidos</string>
     <string name="action_download">Fazer download</string>
-    <string name="action_bookmark">Adicionar aos favoritos</string>
-    <string name="action_remove_bookmark">Remover dos favoritos</string>
+    <string name="action_bookmark">Adicionar capítulo aos favoritos</string>
+    <string name="action_remove_bookmark">Remover capítulo dos favoritos</string>
     <string name="action_delete">Remover</string>
     <string name="action_update">Atualizar</string>
     <string name="action_update_library">Atualizar biblioteca</string>
@@ -658,4 +658,7 @@
     <string name="action_filter_tracked">Monitorado</string>
     <string name="action_display_show_number_of_items">Mostrar o número de itens</string>
     <string name="right_and_left_nav">Direita e Esquerda</string>
+    <string name="pref_dual_page_split">Dividir as páginas duplas (ALPHA)</string>
+    <string name="pref_dual_page_invert_summary">Se a posição das páginas duplas divididas não se adequar ao modo de leitura</string>
+    <string name="pref_dual_page_invert">Inverter a posição das páginas duplas divididas</string>
 </resources>

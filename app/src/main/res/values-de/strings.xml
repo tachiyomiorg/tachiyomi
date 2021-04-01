@@ -66,7 +66,7 @@
     <string name="action_open_log">Protokoll öffnen</string>
     <string name="action_create">Erstellen</string>
     <string name="action_restore">Wiederherstellen</string>
-    <string name="loading">Wird geladen…</string>
+    <string name="loading">Wird geladen …</string>
     <string name="app_not_available">App nicht verfügbar</string>
     <string name="short_recent_updates">Neu</string>
     <string name="pref_category_general">Allgemein</string>
@@ -150,11 +150,11 @@
     <string name="pref_remove_after_read">Nach dem Lesen</string>
     <string name="custom_dir">Eigener Speicherort</string>
     <string name="disabled">Deaktiviert</string>
-    <string name="last_read_chapter">Zuletzt gelesenes Kapitel</string>
-    <string name="second_to_last">Zweitletzt gelesenes Kapitel</string>
-    <string name="third_to_last">Drittletzt gelesenes Kapitel</string>
-    <string name="fourth_to_last">Viertletzt gelesenes Kapitel</string>
-    <string name="fifth_to_last">Fünftletzt gelesenes Kapitel</string>
+    <string name="last_read_chapter">ab zuletzt gelesenem Kapitel</string>
+    <string name="second_to_last">ab zweitletzt gelesenem Kapitel</string>
+    <string name="third_to_last">ab drittletzt gelesenem Kapitel</string>
+    <string name="fourth_to_last">ab viertletzt gelesenem Kapitel</string>
+    <string name="fifth_to_last">ab fünftletzt gelesenem Kapitel</string>
     <string name="pref_download_new">Neue Kapitel herunterladen</string>
     <string name="pref_download_new_categories">Kategorien, die heruntergeladen werden sollen</string>
     <string name="services">Anbieter</string>
@@ -173,8 +173,8 @@
 \n
 \nVergewissere dich zudem, dass du alle benötigten Seitenanmeldungsdaten bereitgestellt hast, bevor du mit dem Wiederherstellen beginnst.</string>
     <string name="backup_choice">Was möchtest du sichern\?</string>
-    <string name="restoring_backup">Sicherung wird wiederhergestellt</string>
-    <string name="creating_backup">Erstelle Datensicherung</string>
+    <string name="restoring_backup">Datensicherung wird wiederhergestellt</string>
+    <string name="creating_backup">Datensicherung wird erstellt</string>
     <string name="pref_clear_chapter_cache">Kapitel-Zwischenspeicher leeren</string>
     <string name="used_cache">Belegt: %1$s</string>
     <string name="cache_deleted">Zwischenspeicher geleert. %1$d Dateien wurden gelöscht</string>
@@ -184,7 +184,7 @@
     <string name="choices_reset">Standardantworten zurücksetzen</string>
     <string name="pref_clear_database">Datenbank leeren</string>
     <string name="pref_clear_database_summary">Verlauf für Manga löschen, die nicht in deiner Bibliothek gespeichert sind</string>
-    <string name="clear_database_confirmation">Bist du sicher\? Gelesene Kapitel und der Fortschritt von Manga, die nicht in der Bibliothek sind gehen verloren</string>
+    <string name="clear_database_confirmation">Bist du sicher\? Der Lesestatus aller Manga, die nicht in der Bibliothek sind, wird gelöscht</string>
     <string name="clear_database_completed">Einträge gelöscht</string>
     <string name="pref_refresh_library_tracking">Tracking aktualisieren</string>
     <string name="pref_refresh_library_tracking_summary">Synchronisiert den Lesestatus, die Bewertung und das zuletzt gelesene Kapitel mit den angemeldeten Trackinganbietern</string>
@@ -244,7 +244,7 @@
     <string name="completed">Abgeschlossen</string>
     <string name="dropped">Abgebrochen</string>
     <string name="on_hold">Pausiert</string>
-    <string name="plan_to_read">Lesen geplant</string>
+    <string name="plan_to_read">Plane ich zu lesen</string>
     <string name="score">Bewertung</string>
     <string name="title">Titel</string>
     <string name="status">Status</string>
@@ -420,7 +420,7 @@
         <item quantity="one">Nach 1 Minute</item>
         <item quantity="other">Nach %1$s Minuten</item>
     </plurals>
-    <string name="secure_screen">Sicherheitsbildschirm</string>
+    <string name="secure_screen">Sicherer Bildschirm</string>
     <string name="ext_updates_pending">Aktualisierungen ausstehend</string>
     <string name="pref_cutout_short">Inhalt im Ausschnittbereich anzeigen</string>
     <string name="information_cloudflare_bypass_failure">Fehler beim Umgehen von Cloudflare</string>
@@ -444,7 +444,7 @@
     <string name="notification_check_updates">Überprüfe auf neue Kapitel</string>
     <string name="pref_disable_battery_optimization">Akkuverbrauch-Optimierung deaktivieren</string>
     <string name="pref_disable_battery_optimization_summary">Hilft bei Bibliotheksaktualisierungen und -sicherungen im Hintergrund</string>
-    <string name="battery_optimization_disabled">Akkuverbrauch-Optimierung ist bereits deaktiviert</string>
+    <string name="battery_optimization_disabled">Optimierung des Akkuverbrauchs ist schon deaktiviert</string>
     <string name="email">E-Mail-Adresse</string>
     <string name="pref_always_show_chapter_transition">Kapitelübergang immer anzeigen</string>
     <plurals name="notification_new_chapters_summary">
@@ -484,7 +484,7 @@
     <string name="pinned_sources">Angeheftet</string>
     <string name="action_unpin">Loslösen</string>
     <string name="action_pin">Anheften</string>
-    <string name="add_tracking">Tracking hinzufügen</string>
+    <string name="add_tracking">Verfolgung hinzufügen</string>
     <string name="manga_info_collapse">Weniger</string>
     <string name="manga_info_expand">Mehr</string>
     <string name="in_library">In der Bibliothek</string>
@@ -564,7 +564,7 @@
         <item quantity="other">%1$s Kapitel</item>
     </plurals>
     <string name="action_open_in_settings">In den Einstellungen öffnen</string>
-    <string name="requires_app_restart">App muss neu gestartet werden, um die Einstellung zu übernehmen</string>
+    <string name="requires_app_restart">Erfordert einen Neustart der Anwendung, um wirksam zu werden</string>
     <string name="label_network">Netzwerk</string>
     <string name="pref_jump_to_chapters">Beim Öffnen zu den Kapiteln springen</string>
     <string name="pref_read_with_tapping_inverted">Tippen invertieren</string>
@@ -626,7 +626,7 @@
     <string name="full_restore_mode">Netzwerk-Modus</string>
     <string name="full_restore_offline">Offline wiederherstellen; ist schnell, aber beinhaltet nur den Inhalt deiner Datensicherung</string>
     <string name="full_restore_online">Online wiederherstellen; viel langsamer, aber mit aktuelleren Informationen und Kapiteln</string>
-    <string name="pref_backup_auto_create_legacy">Auch ein Legacy-Sicherung erstellen</string>
+    <string name="pref_backup_auto_create_legacy">Auch eine Legacy-Sicherung erstellen</string>
     <string name="pref_create_legacy_backup_summary">Können in älteren Versionen von Tachiyomi verwendet werden</string>
     <string name="pref_create_legacy_backup">Legacy-Sicherung erstellen</string>
     <string name="migration_help_guide">Quellenmigration</string>
@@ -658,5 +658,7 @@
     <string name="action_filter_tracked">Getrackt</string>
     <string name="action_display_show_number_of_items">Anzahl der Elemente anzeigen</string>
     <string name="right_and_left_nav">Rechts und Links</string>
-    <string name="pref_dual_page_split">Doppelseitige Aufteilung (Alpha)</string>
+    <string name="pref_dual_page_split">Doppelseiten aufteilen (ALPHA)</string>
+    <string name="pref_dual_page_invert_summary">Falls die Platzierung der aufgeteilten Doppelseite nicht mit der Leserichtung übereinstimmt</string>
+    <string name="pref_dual_page_invert">Doppelseiten-Platzierung invertieren</string>
 </resources>

@@ -32,8 +32,8 @@
     <string name="action_mark_as_unread">Позначити як непрочитане</string>
     <string name="action_mark_previous_as_read">Позначити попередні як прочитані</string>
     <string name="action_download">Завантажити</string>
-    <string name="action_bookmark">Закладка</string>
-    <string name="action_remove_bookmark">Видалити закладку</string>
+    <string name="action_bookmark">Закладка глави</string>
+    <string name="action_remove_bookmark">Видалити закладку глави</string>
     <string name="action_delete">Видалити</string>
     <string name="action_update">Оновити</string>
     <string name="action_update_library">Оновити бібліотеку</string>
@@ -528,7 +528,7 @@
         <item quantity="other">%1$s залишилось</item>
     </plurals>
     <string name="downloaded_only_summary">Фільтрувати усю мангу в вашій бібліотеці</string>
-    <string name="check_for_updates">Перевітити оновлення</string>
+    <string name="check_for_updates">Перевірити оновлення</string>
     <string name="battery_optimization_setting_activity_not_found">Не вдалось відкрити налаштування пристрою</string>
     <string name="pref_refresh_library_covers">Оновити обкладинки манги у бібліотеці</string>
     <string name="label_data">Дані</string>
@@ -572,8 +572,8 @@
     <string name="action_start">Розпочати</string>
     <string name="loader_not_implemented_error">Джерело не знайдено</string>
     <plurals name="manga_num_chapters">
-        <item quantity="one">Немає глав</item>
-        <item quantity="few">1 глава</item>
+        <item quantity="one">1 глава</item>
+        <item quantity="few">%1$s глав</item>
         <item quantity="many">%1$s глав</item>
         <item quantity="other">%1$s глав</item>
     </plurals>
@@ -678,4 +678,7 @@
     <string name="action_filter_tracked">Відслідковуваний</string>
     <string name="action_display_show_number_of_items">Показати кількість об\'єктів</string>
     <string name="right_and_left_nav">Праворуч та ліворуч</string>
+    <string name="pref_dual_page_split">Подвійний поділ сторінки (АЛЬФА)</string>
+    <string name="pref_dual_page_invert_summary">Якщо двосторінкове розміщення не відповідає напрямку читання</string>
+    <string name="pref_dual_page_invert">Інвертувати двосторінковий поділ</string>
 </resources>
