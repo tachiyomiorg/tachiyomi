@@ -10,12 +10,7 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.view.KeyEvent
-import android.view.Menu
-import android.view.MenuItem
-import android.view.MotionEvent
-import android.view.View
-import android.view.WindowManager
+import android.view.*
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.SeekBar
@@ -26,7 +21,6 @@ import androidx.core.view.isVisible
 import androidx.core.view.setPadding
 import androidx.lifecycle.lifecycleScope
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
-import com.google.android.material.snackbar.Snackbar
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
@@ -62,7 +56,6 @@ import eu.kanade.tachiyomi.util.view.hideBar
 import eu.kanade.tachiyomi.util.view.isDefaultBar
 import eu.kanade.tachiyomi.util.view.setTooltip
 import eu.kanade.tachiyomi.util.view.showBar
-import eu.kanade.tachiyomi.util.view.snack
 import eu.kanade.tachiyomi.widget.SimpleAnimationListener
 import eu.kanade.tachiyomi.widget.SimpleSeekBarListener
 import kotlinx.coroutines.delay
@@ -127,6 +120,8 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
 
     private var menuToggleToast: Toast? = null
 
+    private var readingModeToast: Toast? = null
+
     /**
      * Called when the activity is created. Initializes the presenter and configuration.
      */
@@ -175,6 +170,8 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
         viewer?.destroy()
         viewer = null
         config = null
+        menuToggleToast?.cancel()
+        readingModeToast?.cancel()
         progressDialog?.dismiss()
         progressDialog = null
     }
@@ -533,7 +530,7 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
         binding.viewerContainer.addView(newViewer.getView())
 
         if (preferences.showReadingMode()) {
-            showReadingModeSnackbar(presenter.getMangaViewer())
+            showReadingModeToast(presenter.getMangaViewer())
         }
 
         binding.toolbar.title = manga.title
@@ -551,9 +548,13 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
         binding.pleaseWait.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in_long))
     }
 
-    private fun showReadingModeSnackbar(mode: Int) {
+    private fun showReadingModeToast(mode: Int) {
         val strings = resources.getStringArray(R.array.viewers_selector)
-        binding.root.snack(strings[mode], Snackbar.LENGTH_SHORT)
+        readingModeToast?.cancel()
+        readingModeToast = Toast.makeText(this, strings[mode], Toast.LENGTH_SHORT).also {
+            it.setGravity(Gravity.CENTER_VERTICAL or Gravity.CENTER_HORIZONTAL, 0, 0)
+            it.show()
+        }
     }
 
     /**
