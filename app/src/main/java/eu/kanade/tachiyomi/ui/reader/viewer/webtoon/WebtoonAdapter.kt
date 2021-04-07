@@ -6,6 +6,7 @@ import android.widget.LinearLayout
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
+import eu.kanade.tachiyomi.ui.reader.model.InsertPage
 import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.model.ViewerChapters
@@ -19,10 +20,31 @@ class WebtoonAdapter(val viewer: WebtoonViewer) : RecyclerView.Adapter<RecyclerV
     /**
      * List of currently set items.
      */
-    var items: List<Any> = emptyList()
+    var items: MutableList<Any> = mutableListOf()
         private set
 
     var currentChapter: ReaderChapter? = null
+    fun onPageSplitWebtoon(current: Any?, newPage: InsertPage, clazz: Class<out WebtoonViewer>) {
+        if (current !is ReaderPage) return
+
+        val currentIndex = items.indexOf(current)
+
+        val placeAtIndex = currentIndex + 1
+
+        // It will enter a endless cycle of insert pages
+        if (clazz.isAssignableFrom(WebtoonViewer::class.java) && items[placeAtIndex - 1] is InsertPage) {
+            return
+        }
+
+        // Same here it will enter a endless cycle of insert pages
+        if (items[placeAtIndex] is InsertPage) {
+            return
+        }
+
+        items.add(placeAtIndex, newPage)
+
+        notifyDataSetChanged()
+    }
 
     /**
      * Updates this adapter with the given [chapters]. It handles setting a few pages of the

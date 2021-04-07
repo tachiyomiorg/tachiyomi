@@ -56,6 +56,12 @@ class SettingsReaderController : SettingsController() {
             summaryRes = R.string.pref_show_navigation_mode_summary
             defaultValue = false
         }
+        switchPreference {
+            key = Keys.pageSplitWebtoon
+            titleRes = R.string.pref_page_split_webtoon
+            summaryRes = R.string.pref_page_split_webtoon_summary
+            defaultValue = false
+        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             switchPreference {
                 key = Keys.trueColor

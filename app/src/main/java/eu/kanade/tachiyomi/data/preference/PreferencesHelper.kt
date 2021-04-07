@@ -101,6 +101,8 @@ class PreferencesHelper(val context: Context) {
 
     fun dualPageInvertWebtoon() = flowPrefs.getBoolean(Keys.dualPageInvertWebtoon, false)
 
+    fun pageSplitWebtoon() = flowPrefs.getBoolean(Keys.pageSplitWebtoon, false)
+
     fun showReadingMode() = prefs.getBoolean(Keys.showReadingMode, true)
 
     fun trueColor() = flowPrefs.getBoolean(Keys.trueColor, false)

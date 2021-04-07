@@ -259,6 +259,8 @@
     <string name="pref_dual_page_split">Dual page split</string>
     <string name="pref_dual_page_invert">Invert dual page split placement</string>
     <string name="pref_dual_page_invert_summary">If the placement of the dual page split doesn\'t match reading direction</string>
+    <string name="pref_page_split_webtoon">Page Split Webtoon (ALPHA)</string>
+    <string name="pref_page_split_webtoon_summary">Split long webtoon image</string>
     <string name="pref_cutout_short">Show content in cutout area</string>
     <string name="pref_lock_orientation">Lock orientation</string>
     <string name="pref_page_transitions">Animate page transitions</string>
