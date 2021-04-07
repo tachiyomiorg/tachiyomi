@@ -56,12 +56,6 @@ class SettingsReaderController : SettingsController() {
             summaryRes = R.string.pref_show_navigation_mode_summary
             defaultValue = false
         }
-        switchPreference {
-            key = Keys.pageSplitWebtoon
-            titleRes = R.string.pref_page_split_webtoon
-            summaryRes = R.string.pref_page_split_webtoon_summary
-            defaultValue = false
-        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             switchPreference {
                 key = Keys.trueColor
@@ -291,6 +285,12 @@ class SettingsReaderController : SettingsController() {
                 summaryRes = R.string.pref_dual_page_invert_summary
                 defaultValue = false
                 preferences.dualPageSplitWebtoon().asImmediateFlow { isVisible = it }.launchIn(viewScope)
+            }
+            switchPreference {
+                key = Keys.pageSplitWebtoon
+                titleRes = R.string.pref_page_split_webtoon
+                summaryRes = R.string.pref_page_split_webtoon_summary
+                defaultValue = false
             }
         }
 

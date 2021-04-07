@@ -133,6 +133,12 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
             false
         }
 
+        config.pageSplitWebtoonChangedListener = { enabled ->
+            if (!enabled) {
+                cleanupPageSplit()
+            }
+        }
+
         config.imagePropertyChangedListener = {
             refreshAdapter()
         }
@@ -329,5 +335,9 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
             max(0, position - 3),
             min(position + 3, adapter.itemCount - 1)
         )
+    }
+
+    private fun cleanupPageSplit() {
+        adapter.cleanupPageSplit()
     }
 }

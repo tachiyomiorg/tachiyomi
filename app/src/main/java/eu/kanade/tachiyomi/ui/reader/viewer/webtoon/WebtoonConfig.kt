@@ -22,6 +22,10 @@ class WebtoonConfig(
     preferences: PreferencesHelper = Injekt.get()
 ) : ViewerConfig(preferences, scope) {
 
+    var pageSplitWebtoonChangedListener: ((Boolean) -> Unit)? = null
+
+    var pageSplitWebtoon = false
+
     var imageCropBorders = false
         private set
 
@@ -50,6 +54,15 @@ class WebtoonConfig(
 
         preferences.dualPageInvertWebtoon()
             .register({ dualPageInvert = it }, { imagePropertyChangedListener?.invoke() })
+
+        preferences.pageSplitWebtoon()
+            .register(
+                { pageSplitWebtoon = it },
+                {
+                    imagePropertyChangedListener?.invoke()
+                    pageSplitWebtoonChangedListener?.invoke(it)
+                }
+            )
     }
 
     override var navigator: ViewerNavigation = defaultNavigation()

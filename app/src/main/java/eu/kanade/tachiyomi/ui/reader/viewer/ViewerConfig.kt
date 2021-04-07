@@ -33,7 +33,6 @@ abstract class ViewerConfig(preferences: PreferencesHelper, private val scope: C
 
     var navigationOverlayOnStart = false
 
-    var pageSplitWebtoon = false
     var dualPageSplit = false
         protected set
 
@@ -67,8 +66,6 @@ abstract class ViewerConfig(preferences: PreferencesHelper, private val scope: C
 
         preferences.alwaysShowChapterTransition()
             .register({ alwaysShowChapterTransition = it })
-        preferences.pageSplitWebtoon()
-                .register({ pageSplitWebtoon = it }, { imagePropertyChangedListener?.invoke() })
 
         forceNavigationOverlay = preferences.showNavigationOverlayNewUser().get()
         if (forceNavigationOverlay) {

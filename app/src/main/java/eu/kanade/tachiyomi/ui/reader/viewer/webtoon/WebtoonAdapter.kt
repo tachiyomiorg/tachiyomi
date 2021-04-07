@@ -206,4 +206,10 @@ class WebtoonAdapter(val viewer: WebtoonViewer) : RecyclerView.Adapter<RecyclerV
          */
         const val TRANSITION_VIEW = 1
     }
+
+    fun cleanupPageSplit() {
+        val insertPages = items.filterIsInstance(InsertPage::class.java)
+        items.removeAll(insertPages)
+        notifyDataSetChanged()
+    }
 }
