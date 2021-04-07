@@ -820,7 +820,7 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
          * Sets the visibility of the bottom page indicator according to [visible].
          */
         fun setPageNumberVisibility(visible: Boolean) {
-            binding.pageNumber.visibility = if (visible) View.VISIBLE else View.INVISIBLE
+            binding.pageNumber.isVisible = visible
         }
 
         /**

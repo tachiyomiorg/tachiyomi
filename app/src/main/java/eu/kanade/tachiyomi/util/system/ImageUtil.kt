@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Rect
+import androidx.core.graphics.createBitmap
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
@@ -99,7 +100,7 @@ object ImageUtil {
 
         val singlePage = Rect(0, 0, width / 2, height)
 
-        val half = Bitmap.createBitmap(width / 2, height, Bitmap.Config.ARGB_8888)
+        val half = createBitmap(width / 2, height)
         val part = when (side) {
             Side.RIGHT -> Rect(width - width / 2, 0, width, height)
             Side.LEFT -> Rect(0, 0, width / 2, height)
@@ -122,7 +123,7 @@ object ImageUtil {
         val height = imageBitmap.height
         val width = imageBitmap.width
 
-        val result = Bitmap.createBitmap(width / 2, height * 2, Bitmap.Config.ARGB_8888)
+        val result = createBitmap(width / 2, height * 2)
         val canvas = Canvas(result)
         // right -> upper
         val rightPart = when (upperSide) {
