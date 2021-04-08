@@ -42,15 +42,10 @@ class TrackSheet(
         adapter.items = controller.presenter.trackList
     }
 
-    override fun onStart() {
-        super.onStart()
-        sheetBehavior.skipCollapsed = true
-    }
-
     override fun show() {
         super.show()
         controller.presenter.refreshTrackers()
-        sheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+        sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
     }
 
     fun onNextTrackers(trackers: List<TrackItem>) {
