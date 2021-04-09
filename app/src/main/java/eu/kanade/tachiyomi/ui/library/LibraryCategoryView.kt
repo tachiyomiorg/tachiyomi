@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.FrameLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import dev.chrisbanes.insetter.applyInsetter
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.SelectableAdapter
 import eu.kanade.tachiyomi.R
@@ -79,6 +80,12 @@ class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: Att
         } else {
             (binding.swipeRefresh.inflate(R.layout.library_grid_recycler) as AutofitRecyclerView).apply {
                 spanCount = controller.mangaPerRow
+            }
+        }
+
+        recycler.applyInsetter {
+            type(navigationBars = true) {
+                padding()
             }
         }
 

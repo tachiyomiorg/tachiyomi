@@ -17,6 +17,7 @@ import androidx.preference.PreferenceGroup
 import androidx.preference.PreferenceScreen
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
+import dev.chrisbanes.insetter.applyInsetter
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.base.controller.BaseController
@@ -47,6 +48,12 @@ abstract class SettingsController : PreferenceController() {
 
         if (this is RootController) {
             view.updatePadding(bottom = view.context.resources.getDimensionPixelSize(R.dimen.action_toolbar_list_padding))
+        }
+
+        listView.applyInsetter {
+            type(navigationBars = true) {
+                padding()
+            }
         }
 
         return view

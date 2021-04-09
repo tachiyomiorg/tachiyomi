@@ -3,6 +3,7 @@
     <!-- Application Colors -->
     <color name="colorPrimary">#54759E</color>
     <color name="colorPrimaryDark">#435E7E</color>
+    <color name="colorPrimary_70">#B354759E</color>
 
     <!-- Dark Application Colors -->
     <color name="colorDarkPrimary">#242529</color>

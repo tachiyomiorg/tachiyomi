@@ -13,7 +13,7 @@ abstract class BaseThemedActivity : AppCompatActivity() {
 
     val preferences: PreferencesHelper by injectLazy()
 
-    private val isDarkMode: Boolean by lazy {
+    val isDarkMode: Boolean by lazy {
         val themeMode = preferences.themeMode().get()
         (themeMode == Values.ThemeMode.dark) ||
             (
