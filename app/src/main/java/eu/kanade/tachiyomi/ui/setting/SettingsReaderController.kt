@@ -289,7 +289,6 @@ class SettingsReaderController : SettingsController() {
             switchPreference {
                 key = Keys.pageSplitWebtoon
                 titleRes = R.string.pref_page_split_webtoon
-                summaryRes = R.string.pref_page_split_webtoon_summary
                 defaultValue = false
             }
         }

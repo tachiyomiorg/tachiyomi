@@ -169,7 +169,7 @@ object ImageUtil {
 
         val singlePage = Rect(0, 0, width, height / 2)
 
-        val half = Bitmap.createBitmap(width, height / 2, Bitmap.Config.ARGB_8888)
+        val half = createBitmap(width, height / 2)
         val part = when (upperSide) {
             Side.LEFT -> Rect(0, 0, width, height - height / 2)
             Side.RIGHT -> Rect(0, height / 2, width, height)

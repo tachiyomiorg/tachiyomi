@@ -25,6 +25,7 @@ class WebtoonConfig(
     var pageSplitWebtoonChangedListener: ((Boolean) -> Unit)? = null
 
     var pageSplitWebtoon = false
+        private set
 
     var imageCropBorders = false
         private set
