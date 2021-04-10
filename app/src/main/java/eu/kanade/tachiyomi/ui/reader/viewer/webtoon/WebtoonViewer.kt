@@ -226,10 +226,6 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
         }
     }
 
-    fun onPageSplitWebtoon(currentPage: ReaderPage, newPage: InsertPage) {
-        adapter.onPageSplitWebtoon(currentPage, newPage, this::class.java)
-    }
-
     /**
      * Tells this viewer to set the given [chapters] as active.
      */
@@ -337,7 +333,12 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
         )
     }
 
+    fun onPageSplitWebtoon(currentPage: ReaderPage, newPage: InsertPage) {
+        adapter.onPageSplitWebtoon(currentPage, newPage, this::class.java)
+    }
+
     private fun cleanupPageSplit() {
         adapter.cleanupPageSplit()
     }
+
 }
