@@ -334,7 +334,7 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
     }
 
     fun onPageSplitWebtoon(currentPage: ReaderPage, newPage: InsertPage) {
-        adapter.onPageSplitWebtoon(currentPage, newPage, this::class.java)
+        adapter.onPageSplitWebtoon(currentPage, newPage)
     }
 
     private fun cleanupPageSplit() {
