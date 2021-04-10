@@ -331,25 +331,29 @@ class WebtoonPageHolder(
             else -> ImageUtil.isWebtoonPage(inputStream)
         }
         inputStream = stream
-        if (isWebtoonPage) {
-            val upperSide = when {
-                page !is InsertPage -> ImageUtil.Side.LEFT
-                page is InsertPage -> ImageUtil.Side.RIGHT
-                else -> error("We should choose a side!")
-            }
-
-            if (page !is InsertPage) {
-                onPageSplitWebtoon()
-            }
-
-            inputStream = ImageUtil.splitWebtoon(inputStream, upperSide)
+        
+        if (!isWebtoonPage) {
+            return inputStream
         }
+        
+        val upperSide = when {
+            page !is InsertPage -> ImageUtil.Side.LEFT
+            page is InsertPage -> ImageUtil.Side.RIGHT
+            else -> error("We should choose a side!")
+        }
+
+        if (page !is InsertPage) {
+            onPageSplitWebtoon()
+        }
+
+        inputStream = ImageUtil.splitWebtoon(inputStream, upperSide)
         return inputStream
     }
 
     private fun onPageSplitWebtoon() {
-        val newPage = page?.let { InsertPage(it) }
-        page?.let { newPage?.let { it1 -> viewer.onPageSplitWebtoon(it, it1) } }
+        if (page == null) return
+        val newPage = InsertPage(page!!)
+        viewer.onPageSplitWebtoon(page!!, newPage)
     }
 
     /**

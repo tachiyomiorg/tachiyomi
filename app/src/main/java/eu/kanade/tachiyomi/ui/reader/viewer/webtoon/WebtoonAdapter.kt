@@ -24,21 +24,15 @@ class WebtoonAdapter(val viewer: WebtoonViewer) : RecyclerView.Adapter<RecyclerV
         private set
 
     var currentChapter: ReaderChapter? = null
-    fun onPageSplitWebtoon(current: Any?, newPage: InsertPage, clazz: Class<out WebtoonViewer>) {
-        if (current !is ReaderPage) return
+    fun onPageSplitWebtoon(current: ReaderPage?, newPage: InsertPage) {
+        if (current is InsertPage) return
 
         val currentIndex = items.indexOf(current)
 
         val placeAtIndex = currentIndex + 1
 
-        // It will enter a endless cycle of insert pages
-        if (clazz.isAssignableFrom(WebtoonViewer::class.java) && items[placeAtIndex - 1] is InsertPage) {
-            return
-        }
-
-        // Same here it will enter a endless cycle of insert pages
         if (items[placeAtIndex] is InsertPage) {
-            return
+            return // We return here to not insert more of the already split page
         }
 
         items.add(placeAtIndex, newPage)
@@ -209,6 +203,7 @@ class WebtoonAdapter(val viewer: WebtoonViewer) : RecyclerView.Adapter<RecyclerV
 
     fun cleanupPageSplit() {
         val insertPages = items.filterIsInstance(InsertPage::class.java)
+        if (insertPages.size == 0) return
         items.removeAll(insertPages)
         notifyDataSetChanged()
     }
