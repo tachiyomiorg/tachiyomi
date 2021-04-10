@@ -340,5 +340,4 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
     private fun cleanupPageSplit() {
         adapter.cleanupPageSplit()
     }
-
 }

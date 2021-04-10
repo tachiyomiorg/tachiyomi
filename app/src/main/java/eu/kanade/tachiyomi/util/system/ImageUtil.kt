@@ -89,7 +89,7 @@ object ImageUtil {
     }
 
     /**
-     * Check whether the image is a webtoon image (width * 3 < height), return the result and original stream
+     * Check whether the image is a webtoon image (Height > 10.000px), return the result and original stream
      */
     fun isWebtoonPage(imageStream: InputStream): Pair<Boolean, InputStream> {
         val imageBytes = imageStream.readBytes()
@@ -97,7 +97,7 @@ object ImageUtil {
         val options = BitmapFactory.Options().apply { inJustDecodeBounds = true }
         BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size, options)
 
-        return Pair(options.outWidth * 3 < options.outHeight, ByteArrayInputStream(imageBytes))
+        return Pair(options.outHeight > 10000, ByteArrayInputStream(imageBytes))
     }
 
     /**

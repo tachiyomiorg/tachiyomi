@@ -24,6 +24,7 @@ class WebtoonAdapter(val viewer: WebtoonViewer) : RecyclerView.Adapter<RecyclerV
         private set
 
     var currentChapter: ReaderChapter? = null
+
     fun onPageSplitWebtoon(current: ReaderPage?, newPage: InsertPage) {
         if (current is InsertPage) return
 
@@ -37,6 +38,13 @@ class WebtoonAdapter(val viewer: WebtoonViewer) : RecyclerView.Adapter<RecyclerV
 
         items.add(placeAtIndex, newPage)
 
+        notifyDataSetChanged()
+    }
+
+    fun cleanupPageSplit() {
+        val insertPages = items.filterIsInstance(InsertPage::class.java)
+        if (insertPages.size == 0) return
+        items.removeAll(insertPages)
         notifyDataSetChanged()
     }
 
@@ -199,12 +207,5 @@ class WebtoonAdapter(val viewer: WebtoonViewer) : RecyclerView.Adapter<RecyclerV
          * View holder type of a chapter transition view.
          */
         const val TRANSITION_VIEW = 1
-    }
-
-    fun cleanupPageSplit() {
-        val insertPages = items.filterIsInstance(InsertPage::class.java)
-        if (insertPages.size == 0) return
-        items.removeAll(insertPages)
-        notifyDataSetChanged()
     }
 }
