@@ -9,7 +9,6 @@
     <string name="label_settings">Instellingen</string>
     <string name="label_library">Bibliotheek</string>
     <string name="label_recent_manga">Geschiedenis</string>
-    <string name="label_categories">Categorieën</string>
     <string name="label_backup">Back-up</string>
     <string name="action_settings">Instellingen</string>
     <string name="action_filter">Filter</string>
@@ -24,8 +23,8 @@
     <string name="action_mark_as_unread">Als ongelezen markeren</string>
     <string name="action_mark_previous_as_read">Markeer vorige als gelezen</string>
     <string name="action_download">Downloaden</string>
-    <string name="action_bookmark">Bladwijzer toevoegen</string>
-    <string name="action_remove_bookmark">Bladwijzer verwijderen</string>
+    <string name="action_bookmark">Hoofdstuk toevoegen aan bladwijzers</string>
+    <string name="action_remove_bookmark">Hoofdstuk verwijderen uit bladwijzers</string>
     <string name="action_delete">Verwijderen</string>
     <string name="action_update">Bijwerken</string>
     <string name="action_edit">Bewerken</string>
@@ -71,7 +70,7 @@
     <string name="pref_category_advanced">Geavanceerd</string>
     <string name="pref_library_columns">Elementen per rij</string>
     <string name="default_columns">Standaard</string>
-    <string name="pref_library_update_interval">Verversfrequentie bibliotheek</string>
+    <string name="pref_library_update_interval">Updatefrequentie</string>
     <string name="update_never">Handmatig</string>
     <string name="update_1hour">Ieder uur</string>
     <string name="update_2hour">Iedere 2 uur</string>
@@ -265,13 +264,11 @@
     <string name="information_no_recent_manga">Niks recent gelezen</string>
     <string name="download_notifier_unknown_error">Kon dit hoofdstuk niet downloaden door een onverwachte fout</string>
     <string name="download_notifier_page_error">Er ontbreekt een pagina in de map</string>
-    <string name="pref_library_update_restriction">Bibliotheek updatebeperkingen</string>
-    <string name="pref_library_update_categories">Categorieën om op te nemen in globale update</string>
+    <string name="pref_library_update_restriction">Updatebeperkingen</string>
     <string name="pref_update_only_non_completed">Update alleen lopende manga</string>
     <string name="pref_auto_update_manga_sync">Hoofdstukvoortgang bijwerken na lezen</string>
-    <string name="pref_lock_orientation">Vergrendel oriëntatie</string>
+    <string name="pref_lock_orientation">Scherm niet draaien</string>
     <string name="pref_keep_screen_on">Scherm aanhouden</string>
-    <string name="pref_download_new_categories">Categorieën om op te nemen in de download</string>
     <string name="clear_database_confirmation">Weet je het zeker\? Gelezen hoofdstukken en voortgang voor manga die niet in de bibliotheek zitten zullen verloren gaan</string>
     <string name="clear_database_completed">Database geleegd</string>
     <string name="source_requires_login">Deze bron vereist dat je inlogt</string>
@@ -376,7 +373,7 @@
     <string name="filter_mode_multiply">Vermenigvuldigen</string>
     <string name="filter_mode_screen">Bleken</string>
     <string name="label_help">Help</string>
-    <string name="pref_library_update_prioritization">Updatevolgorde bibliotheken</string>
+    <string name="pref_library_update_prioritization">Updatevolgorde</string>
     <string name="pref_color_filter_mode">Mengmodus kleurfilter</string>
     <string name="filter_mode_lighten">Tegenhouden / Lichter</string>
     <string name="filter_mode_darken">Doordrukken / Donkerder</string>
@@ -390,8 +387,7 @@
     <string name="ext_obsolete">Verouderd</string>
     <string name="obsolete_extension_message">Deze extensie is niet meer beschikbaar.</string>
     <string name="pref_date_format">Datumformaat</string>
-    <string name="pref_category_library_update">Updates</string>
-    <string name="pref_category_library_categories">Categorieën</string>
+    <string name="pref_category_library_update">Globale update</string>
     <string name="logout_title">Uitloggen bij %1$s\?</string>
     <string name="logout">Uitloggen</string>
     <string name="logout_success">U bent nu uitgelogd</string>
@@ -412,7 +408,7 @@
     <string name="theme_dark_amoled">AMOLED-zwart</string>
     <string name="pref_manage_notifications">Meldingen beheren</string>
     <string name="pref_category_security">Beveiliging</string>
-    <string name="lock_with_biometrics">Biometrisch vergrendelen</string>
+    <string name="lock_with_biometrics">Ontgrendelen vereisen</string>
     <string name="lock_when_idle">Vergrendelen indien niet in gebruik</string>
     <string name="lock_always">Altijd</string>
     <string name="lock_never">Nooit</string>
@@ -501,7 +497,7 @@
     <string name="pref_always_show_chapter_transition">Hoofdstukovergangen altijd weergeven</string>
     <string name="vertical_plus_viewer">Doorlopend verticaal</string>
     <string name="pref_skip_filtered_chapters">Gefilterde hoofdstukken overslaan</string>
-    <string name="pref_cutout_short">Toon inhoud in uitgesneden gebied</string>
+    <string name="pref_cutout_short">Inhoud in uitgesneden gebied laten zien</string>
     <string name="pref_enable_automatic_extension_updates">Zoeken naar updates voor extensies</string>
     <string name="hide_notification_content">Meldingsinhoud verbergen</string>
     <string name="pref_confirm_exit">Bevestig sluiten</string>
@@ -616,16 +612,12 @@
     <string name="manga_from_library">Manga uit de bibliotheek</string>
     <string name="pref_incognito_mode_summary">Pauzeert leesgeschiedenis</string>
     <string name="pref_incognito_mode">Incognitomodus</string>
-    <string name="pref_clear_history_summary">Verwijder leesgeschiedenis voor alle manga</string>
     <string name="pref_clear_history">Geschiedenis wissen</string>
     <string name="clear_history_confirmation">Weet je dit zeker\? Alle geschiedenis zal verloren gaan.</string>
     <string name="clear_history_completed">Geschiedenis verwijderd</string>
     <string name="pref_hide_bottom_bar_on_scroll">Navigatiebalk verbergen bij het scrollen</string>
     <string name="spen_next_page">Volgende pagina</string>
     <string name="spen_previous_page">Vorige pagina</string>
-    <string name="full_restore_offline">Herstel offline, sneller klaar maar bevat alleen wat de backup heeft</string>
-    <string name="full_restore_online">Herstel online, veel langzamer maar geeft bijgewerkte informatie en hoofdstukken</string>
-    <string name="full_restore_mode">Netwerkmodus</string>
     <string name="pref_backup_auto_create_legacy">Maak ook een verouderde backup</string>
     <string name="pref_create_legacy_backup_summary">Kan gebruikt worden in oudere versies van Tachiyomi</string>
     <string name="pref_create_legacy_backup">Verourderde back-up maken</string>
@@ -657,4 +649,27 @@
     <string name="action_order_by_upload_date">Op uploaddatum</string>
     <string name="action_display_show_number_of_items">Aantal items tonen</string>
     <string name="action_filter_tracked">Getracked</string>
+    <string name="right_and_left_nav">Rechts en links</string>
+    <string name="pref_dual_page_split">Dubbele pagina\'s opsplitsen</string>
+    <string name="backup_restore_content_full">Data uit het back-upbestand zal worden teruggezet.
+\n
+\nJe zult missende extensies opnieuw moeten installeren, en opnieuw moeten inloggen bij de trackingdiensten om deze weer te gebruiken.</string>
+    <string name="nav_zone_right">Rechts</string>
+    <string name="nav_zone_left">Links</string>
+    <string name="nav_zone_next">Volgende</string>
+    <string name="nav_zone_prev">Vorige</string>
+    <string name="pref_dual_page_invert_summary">Als de plaats van de dubble-paginasplitsing niet overeenkomt met de leesrichting</string>
+    <string name="pref_dual_page_invert">Plaatsing van dubbele-paginasplitsing omkeren</string>
+    <string name="pref_show_navigation_mode_summary">Laat de tikzones zien als de lezer wordt geopend</string>
+    <string name="pref_show_navigation_mode">Navigatielayout als overlay laten zien</string>
+    <string name="update_8hour">Elke 8 uur</string>
+    <string name="update_4hour">Elke 4 uur</string>
+    <string name="pref_dns_over_https">DNS over HTTPS</string>
+    <string name="pref_download_new_categories_details">Manga in uitgezonderde categorieën worden niet gedownload, zelfs niet als ze onder opgenomen categorieën vallen.</string>
+    <string name="pref_category_auto_download">Automatisch downloaden</string>
+    <string name="exclude">Uitgezonderd: %s</string>
+    <string name="include">Inbegrepen: %s</string>
+    <string name="pref_library_update_categories_details">Manga in uitgesloten categorieën worden niet bijgewerkt, zelfs niet als ze onder opgenomen categorieën vallen.</string>
+    <string name="action_sort_chapter_fetch_date">Datum opgehaald</string>
+    <string name="none">Geen</string>
 </resources>

@@ -5,10 +5,13 @@ import android.os.Bundle
 import androidx.core.view.isVisible
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItemsMultiChoice
+import com.bluelinelabs.conductor.Controller
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
+import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.browse.migration.MigrationFlags
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchController
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchPresenter
@@ -39,16 +42,16 @@ class SearchController(
         newManga = savedInstanceState.getSerializable(::newManga.name) as? Manga
     }
 
-    fun migrateManga() {
-        val manga = manga ?: return
-        val newManga = newManga ?: return
+    fun migrateManga(manga: Manga? = null, newManga: Manga?) {
+        manga ?: return
+        newManga ?: return
 
         (presenter as? SearchPresenter)?.migrateManga(manga, newManga, true)
     }
 
-    fun copyManga() {
-        val manga = manga ?: return
-        val newManga = newManga ?: return
+    fun copyManga(manga: Manga? = null, newManga: Manga?) {
+        manga ?: return
+        newManga ?: return
 
         (presenter as? SearchPresenter)?.migrateManga(manga, newManga, false)
     }
@@ -56,7 +59,7 @@ class SearchController(
     override fun onMangaClick(manga: Manga) {
         newManga = manga
         val dialog =
-            MigrationDialog()
+            MigrationDialog(this.manga, newManga, this)
         dialog.targetController = this
         dialog.showDialog(router)
     }
@@ -75,7 +78,7 @@ class SearchController(
         }
     }
 
-    class MigrationDialog : DialogController() {
+    class MigrationDialog(private val manga: Manga? = null, private val newManga: Manga? = null, private val callingController: Controller? = null) : DialogController() {
 
         private val preferences: PreferencesHelper by injectLazy()
 
@@ -88,7 +91,7 @@ class SearchController(
                 )
 
             return MaterialDialog(activity!!)
-                .message(R.string.migration_dialog_what_to_include)
+                .title(R.string.migration_dialog_what_to_include)
                 .listItemsMultiChoice(
                     items = MigrationFlags.titles.map { resources?.getString(it) as CharSequence },
                     initialSelection = preselected.toIntArray()
@@ -101,12 +104,28 @@ class SearchController(
                     preferences.migrateFlags().set(newValue)
                 }
                 .positiveButton(R.string.migrate) {
-                    (targetController as? SearchController)?.migrateManga()
+                    if (callingController != null) {
+                        if (callingController.javaClass == SourceSearchController::class.java) {
+                            router.popController(callingController)
+                        }
+                    }
+                    (targetController as? SearchController)?.migrateManga(manga, newManga)
                 }
                 .negativeButton(R.string.copy) {
-                    (targetController as? SearchController)?.copyManga()
+                    if (callingController != null) {
+                        if (callingController.javaClass == SourceSearchController::class.java) {
+                            router.popController(callingController)
+                        }
+                    }
+                    (targetController as? SearchController)?.copyManga(manga, newManga)
                 }
                 .neutralButton(android.R.string.cancel)
         }
+    }
+
+    override fun onTitleClick(source: CatalogueSource) {
+        presenter.preferences.lastUsedSource().set(source.id)
+
+        router.pushController(SourceSearchController(manga, source, presenter.query).withFadeTransaction())
     }
 }

@@ -5,6 +5,8 @@ package eu.kanade.tachiyomi.data.preference
  */
 object PreferenceValues {
 
+    /* ktlint-disable experimental:enum-entry-name-case */
+
     // Keys are lowercase to match legacy string values
     enum class ThemeMode {
         light,
@@ -24,6 +26,8 @@ object PreferenceValues {
         blue,
         amoled,
     }
+
+    /* ktlint-enable experimental:enum-entry-name-case */
 
     enum class DisplayMode {
         COMPACT_GRID,

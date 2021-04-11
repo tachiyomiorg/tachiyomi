@@ -9,7 +9,6 @@
     <string name="label_library">書櫃</string>
     <string name="label_recent_manga">記錄</string>
     <string name="label_recent_updates">新刊</string>
-    <string name="label_categories">分類</string>
     <string name="label_backup">備份</string>
     <string name="label_migration">遷移</string>
     <string name="label_extensions">擴充套件</string>
@@ -31,8 +30,8 @@
     <string name="action_mark_as_unread">標示為未讀</string>
     <string name="action_mark_previous_as_read">標示過往章節為已讀</string>
     <string name="action_download">下載</string>
-    <string name="action_bookmark">新增書籤</string>
-    <string name="action_remove_bookmark">移除書籤</string>
+    <string name="action_bookmark">將章節加上書籤</string>
+    <string name="action_remove_bookmark">將章節移除書籤</string>
     <string name="action_delete">刪除</string>
     <string name="action_update">更新</string>
     <string name="action_update_library">更新書櫃</string>
@@ -94,7 +93,6 @@
     <string name="update_24hour">每日</string>
     <string name="update_48hour">每 2 日</string>
     <string name="update_weekly">每週</string>
-    <string name="pref_library_update_categories">自動更新的分類</string>
     <string name="all">全部</string>
     <string name="pref_library_update_prioritization">書櫃更新順序</string>
     <string name="pref_library_update_restriction">書櫃更新限制</string>
@@ -140,7 +138,6 @@
     <string name="custom_dir">自訂位置</string>
     <string name="disabled">停用</string>
     <string name="pref_download_new">自動下載新章節</string>
-    <string name="pref_download_new_categories">欲啟用自動下載的分類</string>
     <string name="services">服務</string>
     <string name="backup">備份</string>
     <string name="pref_create_backup">建立備份</string>
@@ -436,7 +433,6 @@
     <string name="action_display_comfortable_grid">鬆散格狀</string>
     <string name="pref_category_for_this_series">適用於這套叢書</string>
     <string name="pref_category_reading">翻閱</string>
-    <string name="pref_category_library_categories">分類</string>
     <string name="pref_category_library_update">更新</string>
     <string name="battery_optimization_disabled">已停用電池效能最佳化</string>
     <string name="battery_optimization_setting_activity_not_found">無法前往裝置設定</string>
@@ -517,7 +513,7 @@
     <plurals name="manga_num_chapters">
         <item quantity="other">共 %1$s 章</item>
     </plurals>
-    <string name="tracking_info">將章節進度單向同步至閱讀歷程平台，請逕行前往個別作品的「歷程」頁面以設置。</string>
+    <string name="tracking_info">將章節進度單向同步至閱讀歷程平台，請逕行前往個別作品的「歷程」專區以設置。</string>
     <plurals name="num_categories">
         <item quantity="other">%d 個分類</item>
     </plurals>
@@ -597,13 +593,10 @@
     <string name="set_chapter_settings_as_default">保存為預設值</string>
     <string name="clear_history_completed">已刪除記錄</string>
     <string name="clear_history_confirmation">所有的閱讀記錄將會遺失，你確定嗎？</string>
-    <string name="pref_clear_history_summary">將所有漫畫的閱讀記錄刪除</string>
     <string name="pref_clear_history">清除閱讀記錄</string>
     <string name="pref_hide_bottom_bar_on_scroll">捲動時隱藏底部功能表</string>
     <string name="pref_incognito_mode_summary">暫停閱讀記錄</string>
     <string name="pref_incognito_mode">無痕模式</string>
-    <string name="full_restore_online">線上還原：耗時較久，但提供較新的章節與資訊</string>
-    <string name="full_restore_offline">離線還原：即刻完成，但僅包含備份檔裡的內容</string>
     <string name="myanimelist_creds_missing">找不到 MAL 登入憑證</string>
     <string name="http_error_hint">在 WebView 中檢查網站</string>
     <string name="file_picker_error">找不到檔案選擇器</string>
@@ -614,7 +607,6 @@
     <string name="spen_next_page">下一頁</string>
     <string name="spen_previous_page">上一頁</string>
     <string name="myanimelist_relogin">請重新登入 MAL</string>
-    <string name="full_restore_mode">網路模式</string>
     <string name="pref_backup_auto_create_legacy">同時建立舊版備份</string>
     <string name="pref_create_legacy_backup_summary">可供舊版 Tachiyomi 還原</string>
     <string name="pref_create_legacy_backup">建立適用於舊版的備份</string>
@@ -646,4 +638,7 @@
     <string name="manga_from_library">書櫃上的漫畫</string>
     <string name="downloaded_chapters">已下載的章節</string>
     <string name="network_unmetered">非計量付費網路</string>
+    <string name="pref_dual_page_split">雙頁分割 (ALPHA)</string>
+    <string name="pref_dual_page_invert_summary">若分割後的排版方向與翻閱順序不符</string>
+    <string name="pref_dual_page_invert">反轉雙頁分割排版</string>
 </resources>

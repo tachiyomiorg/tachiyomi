@@ -23,7 +23,13 @@ object PreferenceKeys {
 
     const val showPageNumber = "pref_show_page_number_key"
 
-    const val dualPageSplit = "pref_dual_page_split"
+    const val dualPageSplitPaged = "pref_dual_page_split"
+
+    const val dualPageSplitWebtoon = "pref_dual_page_split_webtoon"
+
+    const val dualPageInvertPaged = "pref_dual_page_invert"
+
+    const val dualPageInvertWebtoon = "pref_dual_page_invert_webtoon"
 
     const val showReadingMode = "pref_show_reading_mode"
 
@@ -73,6 +79,10 @@ object PreferenceKeys {
 
     const val navigationModeWebtoon = "reader_navigation_mode_webtoon"
 
+    const val showNavigationOverlayNewUser = "reader_navigation_overlay_new_user"
+
+    const val showNavigationOverlayOnStart = "reader_navigation_overlay_on_start"
+
     const val webtoonSidePadding = "webtoon_side_padding"
 
     const val portraitColumns = "pref_library_columns_portrait_key"
@@ -114,6 +124,7 @@ object PreferenceKeys {
     const val libraryUpdateRestriction = "library_update_restriction"
 
     const val libraryUpdateCategories = "library_update_categories"
+    const val libraryUpdateCategoriesExclude = "library_update_categories_exclude"
 
     const val libraryUpdatePrioritization = "library_update_prioritization"
 
@@ -154,6 +165,7 @@ object PreferenceKeys {
     const val downloadNew = "download_new"
 
     const val downloadNewCategories = "download_new_categories"
+    const val downloadNewCategoriesExclude = "download_new_categories_exclude"
 
     const val libraryDisplayMode = "pref_display_mode_library"
 
@@ -179,7 +191,7 @@ object PreferenceKeys {
 
     const val searchPinnedSourcesOnly = "search_pinned_sources_only"
 
-    const val enableDoh = "enable_doh"
+    const val dohProvider = "doh_provider"
 
     const val defaultChapterFilterByRead = "default_chapter_filter_by_read"
 

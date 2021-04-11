@@ -12,6 +12,11 @@ open class BasePresenter<V> : RxPresenter<V>() {
 
     lateinit var presenterScope: CoroutineScope
 
+    /**
+     * Query from the view where applicable
+     */
+    var query: String = ""
+
     override fun onCreate(savedState: Bundle?) {
         try {
             super.onCreate(savedState)

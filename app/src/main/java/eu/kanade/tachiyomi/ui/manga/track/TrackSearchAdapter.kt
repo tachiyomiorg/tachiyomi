@@ -55,24 +55,24 @@ class TrackSearchAdapter(context: Context) :
                     .into(binding.trackSearchCover)
             }
 
-            if (track.publishing_status.isBlank()) {
-                binding.trackSearchStatus.isVisible = false
-                binding.trackSearchStatusResult.isVisible = false
-            } else {
+            val hasStatus = track.publishing_status.isNotBlank()
+            binding.trackSearchStatus.isVisible = hasStatus
+            binding.trackSearchStatusResult.isVisible = hasStatus
+            if (hasStatus) {
                 binding.trackSearchStatusResult.text = track.publishing_status.capitalize()
             }
 
-            if (track.publishing_type.isBlank()) {
-                binding.trackSearchType.isVisible = false
-                binding.trackSearchTypeResult.isVisible = false
-            } else {
+            val hasType = track.publishing_type.isNotBlank()
+            binding.trackSearchType.isVisible = hasType
+            binding.trackSearchTypeResult.isVisible = hasType
+            if (hasType) {
                 binding.trackSearchTypeResult.text = track.publishing_type.capitalize()
             }
 
-            if (track.start_date.isBlank()) {
-                binding.trackSearchStart.isVisible = false
-                binding.trackSearchStartResult.isVisible = false
-            } else {
+            val hasStartDate = track.start_date.isNotBlank()
+            binding.trackSearchStart.isVisible = hasStartDate
+            binding.trackSearchStartResult.isVisible = hasStartDate
+            if (hasStartDate) {
                 binding.trackSearchStartResult.text = track.start_date
             }
         }

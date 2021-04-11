@@ -12,6 +12,7 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.Page
+import eu.kanade.tachiyomi.util.lang.launchIO
 import rx.Observable
 import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
@@ -211,16 +212,16 @@ class DownloadManager(private val context: Context) {
      */
     fun deleteChapters(chapters: List<Chapter>, manga: Manga, source: Source): List<Chapter> {
         val filteredChapters = getChaptersToDelete(chapters)
+        launchIO {
+            removeFromDownloadQueue(filteredChapters)
 
-        removeFromDownloadQueue(filteredChapters)
-
-        val chapterDirs = provider.findChapterDirs(filteredChapters, manga, source)
-        chapterDirs.forEach { it.delete() }
-        cache.removeChapters(filteredChapters, manga)
-        if (cache.getDownloadCount(manga) == 0) { // Delete manga directory if empty
-            chapterDirs.firstOrNull()?.parentFile?.delete()
+            val chapterDirs = provider.findChapterDirs(filteredChapters, manga, source)
+            chapterDirs.forEach { it.delete() }
+            cache.removeChapters(filteredChapters, manga)
+            if (cache.getDownloadCount(manga) == 0) { // Delete manga directory if empty
+                chapterDirs.firstOrNull()?.parentFile?.delete()
+            }
         }
-
         return filteredChapters
     }
 
@@ -249,9 +250,11 @@ class DownloadManager(private val context: Context) {
      * @param source the source of the manga.
      */
     fun deleteManga(manga: Manga, source: Source) {
-        downloader.queue.remove(manga)
-        provider.findMangaDir(manga, source)?.delete()
-        cache.removeManga(manga)
+        launchIO {
+            downloader.queue.remove(manga)
+            provider.findMangaDir(manga, source)?.delete()
+            cache.removeManga(manga)
+        }
     }
 
     /**

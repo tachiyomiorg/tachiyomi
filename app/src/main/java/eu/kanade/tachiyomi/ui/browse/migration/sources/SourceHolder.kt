@@ -15,8 +15,8 @@ class SourceHolder(view: View, val adapter: SourceAdapter) :
     fun bind(item: SourceItem) {
         val source = item.source
 
-        binding.title.text = source.name
-        binding.subtitle.isVisible = true
+        binding.title.text = "${source.name} (${item.mangaCount})"
+        binding.subtitle.isVisible = source.lang != ""
         binding.subtitle.text = LocaleHelper.getDisplayName(source.lang)
 
         itemView.post {

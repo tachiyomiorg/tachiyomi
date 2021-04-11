@@ -10,7 +10,6 @@
     <string name="label_library">ライブラリ</string>
     <string name="label_recent_manga">履歴</string>
     <string name="label_recent_updates">アップデート</string>
-    <string name="label_categories">カテゴリ</string>
     <string name="label_backup">バックアップ</string>
     <string name="action_settings">設定</string>
     <string name="action_filter">絞り込む</string>
@@ -25,8 +24,8 @@
     <string name="action_global_search">グローバル検索</string>
     <string name="action_select_all">すべて選択</string>
     <string name="action_download">ダウンロード</string>
-    <string name="action_bookmark">ブックマーク</string>
-    <string name="action_remove_bookmark">ブックマークを削除</string>
+    <string name="action_bookmark">章にブックマークを追加</string>
+    <string name="action_remove_bookmark">章のブックマークを削除</string>
     <string name="action_display_grid">コンパクトグリッド</string>
     <string name="action_display_list">リスト</string>
     <string name="action_sort">ソート</string>
@@ -81,7 +80,6 @@
     <string name="update_24hour">毎日</string>
     <string name="update_48hour">2日ごと</string>
     <string name="update_weekly">毎週</string>
-    <string name="pref_library_update_categories">グローバル更新に含まれるカテゴリ</string>
     <string name="all">すべて</string>
     <string name="pref_library_update_restriction">ライブラリ更新制限</string>
     <string name="pref_library_update_restriction_summary">条件が満たされた場合にのみ更新する</string>
@@ -157,7 +155,6 @@
     <string name="disabled">無効</string>
     <string name="second_to_last">最後に読んだ章の2番目</string>
     <string name="pref_download_new">新しい章をダウンロード</string>
-    <string name="pref_download_new_categories">ダウンロードに含まれるカテゴリ</string>
     <string name="backup">バックアップ</string>
     <string name="pref_create_backup">バックアップを作成</string>
     <string name="pref_create_backup_summ">現在のライブラリを復元するために使用できます</string>
@@ -384,7 +381,6 @@
     <string name="obsolete_extension_message">この拡張機能は利用不可になりました。</string>
     <string name="pref_date_format">日付形式</string>
     <string name="pref_category_library_update">更新</string>
-    <string name="pref_category_library_categories">カテゴリー</string>
     <string name="logout_title">%1$sからログアウトしますか？</string>
     <string name="logout">ログアウト</string>
     <string name="logout_success">ログアウトしました</string>
@@ -605,15 +601,11 @@
     <string name="pref_hide_bottom_bar_on_scroll">スクロール時ボトムバーを非表示</string>
     <string name="pref_incognito_mode_summary">閲覧履歴の記録を一時停止します</string>
     <string name="pref_incognito_mode">シークレット モード</string>
-    <string name="pref_clear_history_summary">すべてのマンガの閲覧履歴を削除</string>
     <string name="pref_clear_history">履歴を全消去</string>
     <string name="clear_history_confirmation">履歴がすべて失われます。続行しますか？</string>
     <string name="clear_history_completed">履歴を削除しました</string>
     <string name="spen_next_page">次のページ</string>
     <string name="spen_previous_page">前のページ</string>
-    <string name="full_restore_offline">オフラインで復元（速いですが、バックアップそのまましか復元しません）</string>
-    <string name="full_restore_online">オンラインで復元（復元には時間がかかりますが、最新の情報と章を取得できます）</string>
-    <string name="full_restore_mode">ネットワーク モード</string>
     <string name="pref_backup_auto_create_legacy">同じくレガシー バックアップを作成</string>
     <string name="pref_create_legacy_backup_summary">古いバージョンのTachiyomiで利用可能</string>
     <string name="pref_create_legacy_backup">レガシー バックアップを作成</string>
@@ -646,4 +638,18 @@
     <string name="network_unmetered">従量制データではないネットワーク</string>
     <string name="action_desc">降順</string>
     <string name="action_asc">昇順</string>
+    <string name="pref_dual_page_invert_summary">分割したダブルページは閲覧方向に一致しない場合は有効にしてください</string>
+    <string name="pref_dual_page_invert">分割したダブルページの順位を反転</string>
+    <string name="pref_dual_page_split">ダブルページを分割</string>
+    <string name="backup_restore_content_full">バックアップファイルからデータを復旧します。
+\n
+\n後で手動で必要な拡張機能をインストールし、使用したい追跡サービスにログインしてください。</string>
+    <string name="update_8hour">8時間ごと</string>
+    <string name="update_4hour">4時間ごと</string>
+    <string name="nav_zone_right">右</string>
+    <string name="nav_zone_left">左</string>
+    <string name="nav_zone_next">次へ</string>
+    <string name="nav_zone_prev">前へ</string>
+    <string name="pref_show_navigation_mode_summary">ビューアが立ち上がるとタップゾーンをしばらく表示します</string>
+    <string name="pref_show_navigation_mode">ﾅﾋﾞｹﾞｰｼｮﾝﾚｲｱｳﾄｵｰﾊﾞｰﾚｲを表示</string>
 </resources>

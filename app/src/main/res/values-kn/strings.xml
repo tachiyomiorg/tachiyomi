@@ -14,7 +14,7 @@
     <string name="lock_never">ಎಂದಿಗೂ ಇಲ್ಲ</string>
     <string name="lock_always">ಯಾವಾಗಲೂ</string>
     <string name="lock_when_idle">ನಿಷ್ಕ್ರಿಯವಾಗಿದ್ದಾಗ ಲಾಕ್ ಮಾಡಿ</string>
-    <string name="lock_with_biometrics">ಬಯೋಮೆಟ್ರಿಕ್ಸ್‌ನೊಂದಿಗೆ ಲಾಕ್ ಮಾಡಿ</string>
+    <string name="lock_with_biometrics">"ಬೆರಳಚ್ಚ  ಬದ್ರತೆ"</string>
     <string name="pref_category_security">ಭದ್ರತೆ</string>
     <string name="pref_manage_notifications">ಸೂಚನೆಗಳನ್ನು ನಿರ್ವಹಿಸಿ</string>
     <string name="pref_confirm_exit">ನಿರ್ಗಮನವನ್ನು ಖಚಿತಪಡಿಸಿ</string>
@@ -98,8 +98,8 @@
     <string name="action_update_library">ಗ್ರಂಥಾಲಯ ನವೀಕರಿಸಿ</string>
     <string name="action_update">ನವೀಕರಿಸಿ</string>
     <string name="action_delete">ತೆಗೆದು ಹಾಕು</string>
-    <string name="action_remove_bookmark">ಬುಕ್‌ಮಾರ್ಕ್ ತೆಗೆದುಹಾಕಿ</string>
-    <string name="action_bookmark">ಬುಕ್ಮಾರ್ಕ್</string>
+    <string name="action_remove_bookmark">ಅಧ್ಯಾಯದ ಬುಕ್‌ಮಾರ್ಕ್ ತೆಗೆದುಹಾಕಿ</string>
+    <string name="action_bookmark">ಬುಕ್ ಮಾರ್ಕ್ ಅಧ್ಯಾಯ</string>
     <string name="action_download">ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ</string>
     <string name="action_mark_previous_as_read">ಹಿಂದಿನದನ್ನು ಓದಿದಂತೆ ಗುರುತಿಸಿ</string>
     <string name="action_mark_as_unread">ಓದಿಲ್ಲ ಎಂದು ಗುರುತಿಸಿ</string>
@@ -137,7 +137,6 @@
     <string name="label_extensions">ವಿಸ್ತರಣೆಗಳು</string>
     <string name="label_migration">ಮೂಲ ಸ್ಥಳಾಂತರ</string>
     <string name="label_backup">ಬ್ಯಾಕಪ್</string>
-    <string name="label_categories">ವರ್ಗಗಳು</string>
     <string name="label_sources">ಮೂಲಗಳು</string>
     <string name="label_recent_manga">ಇತಿಹಾಸ</string>
     <string name="label_recent_updates">ನವೀಕರಣಗಳು</string>
@@ -167,7 +166,6 @@
     <string name="tracking_info">ಟ್ರ್ಯಾಕಿಂಗ್ ಸೇವೆಗಳಲ್ಲಿ ಅಧ್ಯಾಯದ ಪ್ರಗತಿಯನ್ನು ನವೀಕರಿಸಲು ಏಕಮುಖ ಸಿಂಕ್. ಅವರ ಟ್ರ್ಯಾಕಿಂಗ್ ಬಟನ್ ನಿಂದ ಪ್ರತ್ಯೇಕ ಮಾಂಗಾ ನಮೂದುಗಳಿಗಾಗಿ ಟ್ರ್ಯಾಕಿಂಗ್ ಅನ್ನು ಹೊಂದಿಸಿ.</string>
     <string name="services">ಸೇವೆಗಳು</string>
     <string name="pref_auto_update_manga_sync">ಓದಿದ ನಂತರ ಅಧ್ಯಾಯದ ಪ್ರಗತಿಯನ್ನು ನವೀಕರಿಸಿ</string>
-    <string name="pref_download_new_categories">ಡೌನ್‌ಲೋಡ್‌ನಲ್ಲಿ ಸೇರಿಸಬೇಕಾದ ವರ್ಗಗಳು</string>
     <string name="pref_download_new">ಹೊಸ ಅಧ್ಯಾಯಗಳನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ</string>
     <string name="fifth_to_last">ಕೊನೆಯ ಅಧ್ಯಾಯದಿಂದ ಐದನೆಯದು</string>
     <string name="fourth_to_last">ಕೊನೆಯ ಅಧ್ಯಾಯದಿಂದ ನಾಲ್ಕನೆಯದು</string>
@@ -274,14 +272,12 @@
     <string name="ext_updates_pending">ಬಾಕಿ ಉಳಿದಿರುವ ನವೀಕರಣಗಳು</string>
     <string name="all_lang">ಎಲ್ಲಾ</string>
     <string name="all">ಎಲ್ಲಾ</string>
-    <string name="pref_library_update_categories">ಜಾಗತಿಕ ನವೀಕರಣದಲ್ಲಿ ಸೇರಿಸಬೇಕಾದ ವರ್ಗಗಳು</string>
     <plurals name="num_categories">
         <item quantity="one">%d ವರ್ಗ</item>
         <item quantity="other">%d ವರ್ಗಗಳು</item>
     </plurals>
     <string name="default_category_summary">ಯಾವಾಗಲೂ ಕೇಳಿ</string>
     <string name="default_category">ಡೀಫಾಲ್ಟ್ ವರ್ಗ</string>
-    <string name="pref_category_library_categories">ವರ್ಗಗಳು</string>
     <string name="pref_update_only_non_completed">ಚಾಲ್ತಿಯಿರುವ ಮಾಂಗಾವನ್ನು ಮಾತ್ರ ನವೀಕರಿಸಿ</string>
     <string name="charging">ಚಾರ್ಜಿಂಗ್</string>
     <string name="pref_library_update_restriction_summary">ಷರತ್ತುಗಳನ್ನು ಪೂರೈಸಿದಾಗ ಮಾತ್ರ ನವೀಕರಿಸಿ</string>
@@ -623,14 +619,10 @@
     <string name="myanimelist_creds_missing">MAL ಲಾಗಿನ್ ರುಜುವಾತುಗಳು ಕಂಡುಬಂದಿಲ್ಲ</string>
     <string name="pref_incognito_mode_summary">ಓದುವ ಇತಿಹಾಸವನ್ನು ವಿರಾಮಗೊಳಿಸುತ್ತದೆ</string>
     <string name="pref_incognito_mode">ಅಜ್ಞಾತ ಮೋಡ್</string>
-    <string name="pref_clear_history_summary">ಎಲ್ಲಾ ಮಾಂಗಾಗಳ ಓದುವ ಇತಿಹಾಸವನ್ನು ಅಳಿಸಿ</string>
     <string name="pref_clear_history">ಇತಿಹಾಸವನ್ನು ತೆರವುಗೊಳಿಸಿ</string>
     <string name="clear_history_confirmation">ನೀವು ಖಚಿತವಾಗಿರುವಿರಾ\? ಎಲ್ಲಾ ಇತಿಹಾಸವೂ ಕಳೆದುಹೋಗುತ್ತದೆ.</string>
     <string name="clear_history_completed">ಇತಿಹಾಸವನ್ನು ಅಳಿಸಲಾಗಿದೆ</string>
     <string name="invalid_backup_file_type">ಅಮಾನ್ಯ ಬ್ಯಾಕಪ್ ಫೈಲ್:%1$s</string>
-    <string name="full_restore_offline">ಆಫ್‌ಲೈನ್ ಅಲ್ಲಿ ಮರುಸ್ಥಾಪಿಸಿ, ತ್ವರಿತವಾಗಿ ಮುಗಿಸುತ್ತದೆ ಆದರೆ ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಹೊಂದಿರುವದನ್ನು ಮಾತ್ರ ಒಳಗೊಂಡಿದೆ</string>
-    <string name="full_restore_online">ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಮರುಸ್ಥಾಪಿಸಿ, ಹೆಚ್ಚು ನಿಧಾನ ಆದರೆ ನಿಮಗೆ ಹೆಚ್ಚು ನವೀಕರಿಸಿದ ಮಾಹಿತಿ ಮತ್ತು ಅಧ್ಯಾಯಗಳನ್ನು ನೀಡುತ್ತದೆ</string>
-    <string name="full_restore_mode">ನೆಟ್ವರ್ಕ್ ಮೋಡ್</string>
     <string name="pref_backup_auto_create_legacy">ಹಳೆಯ ಪ್ರಕಾರದ ಬ್ಯಾಕಪ್ ಅನ್ನು ಸಹ ರಚಿಸಿ</string>
     <string name="pref_create_legacy_backup_summary">ತಚಿಯೋಮಿಯ ಹಳೆಯ ಆವೃತ್ತಿಗಳಲ್ಲಿ ಬಳಸಬಹುದು</string>
     <string name="pref_create_legacy_backup">ಹಳೆಯ ಪ್ರಕಾರದ ಬ್ಯಾಕಪ್ ರಚಿಸಿ</string>
@@ -638,4 +630,13 @@
     <string name="pref_show_nsfw_extension">ವಿಸ್ತರಣೆಗಳ ಪಟ್ಟಿಯಲ್ಲಿ ತೋರಿಸಿ</string>
     <string name="pref_show_nsfw_source">ಮೂಲಗಳ ಪಟ್ಟಿಯಲ್ಲಿ ತೋರಿಸಿ</string>
     <string name="pref_category_nsfw_content">ವಯಸ್ಕ (18+) ಮೂಲಗಳು</string>
+    <string name="action_filter_tracked">ಟ್ರ್ಯಾಕ್ ಮಾಡಲಾದ</string>
+    <string name="update_8hour">ಪ್ರತಿ ೮ ಗಂಟೆಗೆ</string>
+    <string name="update_4hour">ಪ್ರತಿ ೪ ಗಂಟೆಗೆ</string>
+    <string name="action_desc">ಮೊದಲು ಚಿಕ್ಕದು</string>
+    <string name="action_asc">ಮೊದಲ ಸಾಣ್ಣದ್ದು</string>
+    <string name="action_order_by_chapter_number">ಅಧ್ಯಾಯ ಸಾಂಖ್ಯಯಂತೆ</string>
+    <string name="action_order_by_upload_date">ದಿನಾಂಕ ದಂತೆ</string>
+    <string name="action_display_show_number_of_items">"ವಸ್ತುವಿನ   ಸಾಂಖ್ಯ   ತೋರಿಸಿ"</string>
+    <string name="action_sort_chapter_fetch_date">ಪಡೆಯುಲಾದ ಮಾಹಿತಿ</string>
 </resources>

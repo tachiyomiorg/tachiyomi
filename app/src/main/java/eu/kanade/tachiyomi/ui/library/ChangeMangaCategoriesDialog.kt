@@ -14,9 +14,7 @@ class ChangeMangaCategoriesDialog<T>(bundle: Bundle? = null) :
     DialogController(bundle) where T : Controller, T : ChangeMangaCategoriesDialog.Listener {
 
     private var mangas = emptyList<Manga>()
-
     private var categories = emptyList<Category>()
-
     private var preselected = emptyArray<Int>()
 
     constructor(

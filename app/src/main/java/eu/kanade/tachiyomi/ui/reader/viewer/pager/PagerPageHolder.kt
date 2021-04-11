@@ -264,24 +264,29 @@ class PagerPageHolder(
             else -> ImageUtil.isDoublePage(inputStream)
         }
         inputStream = stream
-        if (isDoublePage) {
-            val side = when {
-                viewer is L2RPagerViewer && page is InsertPage -> ImageUtil.Side.RIGHT
-                viewer is R2LPagerViewer && page is InsertPage -> ImageUtil.Side.LEFT
-                viewer is L2RPagerViewer && page !is InsertPage -> ImageUtil.Side.LEFT
-                viewer is R2LPagerViewer && page !is InsertPage -> ImageUtil.Side.RIGHT
-                viewer is VerticalPagerViewer && page !is InsertPage -> ImageUtil.Side.RIGHT
-                viewer is VerticalPagerViewer && page is InsertPage -> ImageUtil.Side.LEFT
-                else -> error("We should choose a side!")
-            }
 
-            if (page !is InsertPage) {
-                onPageSplit()
-            }
+        if (!isDoublePage) return inputStream
 
-            inputStream = ImageUtil.splitInHalf(inputStream, side)
+        var side = when {
+            viewer is L2RPagerViewer && page is InsertPage -> ImageUtil.Side.RIGHT
+            (viewer is R2LPagerViewer || viewer is VerticalPagerViewer) && page is InsertPage -> ImageUtil.Side.LEFT
+            viewer is L2RPagerViewer && page !is InsertPage -> ImageUtil.Side.LEFT
+            (viewer is R2LPagerViewer || viewer is VerticalPagerViewer) && page !is InsertPage -> ImageUtil.Side.RIGHT
+            else -> error("We should choose a side!")
         }
-        return inputStream
+
+        if (viewer.config.dualPageInvert) {
+            side = when (side) {
+                ImageUtil.Side.RIGHT -> ImageUtil.Side.LEFT
+                ImageUtil.Side.LEFT -> ImageUtil.Side.RIGHT
+            }
+        }
+
+        if (page !is InsertPage) {
+            onPageSplit()
+        }
+
+        return ImageUtil.splitInHalf(inputStream, side)
     }
 
     private fun onPageSplit() {

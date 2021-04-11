@@ -22,6 +22,7 @@ import androidx.preference.PreferenceScreen
 import androidx.preference.SwitchPreferenceCompat
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
+import dev.chrisbanes.insetter.applyInsetter
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.EmptyPreferenceDataStore
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
@@ -67,6 +68,11 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
         val themedInflater = inflater.cloneInContext(getPreferenceThemeContext())
         binding = ExtensionDetailControllerBinding.inflate(themedInflater)
+        binding.extensionPrefsRecycler.applyInsetter {
+            type(navigationBars = true) {
+                padding()
+            }
+        }
         return binding.root
     }
 

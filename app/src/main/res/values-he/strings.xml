@@ -191,10 +191,8 @@
     <string name="ext_updates_pending">עדכונים ממתינים</string>
     <string name="all_lang">הכל</string>
     <string name="all">הכל</string>
-    <string name="pref_library_update_categories">קטגוריות שיש לכלול בעדכון כללי</string>
     <string name="default_category_summary">שאל תמיד</string>
     <string name="default_category">קטגוריית ברירת המחדל</string>
-    <string name="pref_category_library_categories">קטגוריות</string>
     <string name="pref_update_only_non_completed">עדכן רק מאנגה מתמשכת</string>
     <string name="charging">טוען</string>
     <string name="pref_library_update_restriction_summary">עדכן רק כאשר מתקיימים התנאים</string>
@@ -332,7 +330,6 @@
     <string name="backup">גיבוי</string>
     <string name="services">שירותים</string>
     <string name="pref_auto_update_manga_sync">סנכרן פרקים לאחר סיום קריאה</string>
-    <string name="pref_download_new_categories">קטגוריות שיש לכלול בהורדה</string>
     <string name="pref_download_new">הורד פרקים חדשים</string>
     <string name="fifth_to_last">פרק חמישי מהסוף</string>
     <string name="fourth_to_last">פרק רביעי מהסוף</string>
@@ -432,7 +429,6 @@
     <string name="label_extensions">הרחבות</string>
     <string name="label_migration">להעביר</string>
     <string name="label_backup">גיבוי</string>
-    <string name="label_categories">קטגוריות</string>
     <string name="label_sources">מקורות</string>
     <string name="label_recent_manga">היסטורייה</string>
     <string name="label_recent_updates">עדכונים</string>

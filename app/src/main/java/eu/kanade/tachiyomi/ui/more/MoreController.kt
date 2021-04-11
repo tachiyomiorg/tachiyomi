@@ -78,7 +78,7 @@ class MoreController :
                 }
             }
             preference {
-                titleRes = R.string.label_categories
+                titleRes = R.string.categories
                 iconRes = R.drawable.ic_label_24dp
                 iconTint = tintColor
                 onClick {

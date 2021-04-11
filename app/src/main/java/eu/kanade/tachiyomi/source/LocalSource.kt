@@ -27,7 +27,7 @@ import java.util.zip.ZipFile
 class LocalSource(private val context: Context) : CatalogueSource {
     companion object {
         const val ID = 0L
-        const val HELP_URL = "https://tachiyomi.org/help/guides/reading-local-manga/"
+        const val HELP_URL = "https://tachiyomi.org/help/guides/local-manga/"
 
         private const val COVER_NAME = "cover.jpg"
         private val SUPPORTED_ARCHIVE_TYPES = setOf("zip", "rar", "cbr", "cbz", "epub")

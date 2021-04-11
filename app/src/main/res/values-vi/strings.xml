@@ -7,7 +7,6 @@
     <string name="label_library">Thư Viện</string>
     <string name="label_recent_manga">Lịch Sử</string>
     <string name="label_recent_updates">Mới</string>
-    <string name="label_categories">Danh mục</string>
     <string name="label_backup">Sao lưu</string>
     <!-- Actions -->
     <string name="action_settings">Cài đặt</string>
@@ -83,7 +82,6 @@
     <string name="update_12hour">Mỗi 12 tiếng</string>
     <string name="update_24hour">Mỗi ngày</string>
     <string name="update_48hour">Mỗi 2 ngày</string>
-    <string name="pref_library_update_categories">Các danh mục được cập nhật toàn bộ</string>
     <string name="all">Tất cả</string>
     <string name="pref_library_update_restriction">Hạn chế cập nhật thư viện</string>
     <string name="pref_library_update_restriction_summary">Chỉ cập nhật khi có đủ các điều kiện</string>
@@ -345,7 +343,6 @@
     <string name="double_tap_anim_speed_0">Không có hiệu ứng</string>
     <string name="double_tap_anim_speed_normal">Bình thường</string>
     <string name="double_tap_anim_speed_fast">Nhanh</string>
-    <string name="pref_download_new_categories">Danh mục để đưa vào tải xuống</string>
     <string name="pref_create_backup">Tạo bản sao lưu</string>
     <string name="pref_create_backup_summ">Có thể sử dụng để khôi phục thư viện hiện tại</string>
     <string name="pref_restore_backup">Khôi phục sao lưu</string>
@@ -450,7 +447,6 @@
     <string name="obsolete_extension_message">Tiện ích bổ sung này không còn tồn tại.</string>
     <string name="ext_obsolete">Lỗi thời</string>
     <string name="ext_updates_pending">Cập nhật đang chờ</string>
-    <string name="pref_category_library_categories">Thể loại</string>
     <string name="pref_category_library_update">Cập nhật</string>
     <string name="pref_category_display">Hiển thị</string>
     <string name="hide_notification_content">Ẩn nội dung thông báo</string>

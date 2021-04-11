@@ -59,7 +59,6 @@
     <string name="label_library">Biblioteca</string>
     <string name="label_settings">Configuración</string>
     <string name="name">Nombre</string>
-    <string name="label_categories">Categorías</string>
     <string name="label_sources">Fuentes</string>
     <string name="action_remove_bookmark">Quitar marcador</string>
     <string name="action_bookmark">Añadir marcador</string>
@@ -104,7 +103,6 @@
     <string name="tracking_info">Sincronización unidireccional para actualizar el progreso del capítulo en los servicios de seguimiento. Configure el seguimiento de las entradas de manga individuales desde su botón de seguimiento.</string>
     <string name="services">Servicios</string>
     <string name="pref_auto_update_manga_sync">Actualizar el progreso del capítulo después de la lectura</string>
-    <string name="pref_download_new_categories">Categorías a incluir en la descarga</string>
     <string name="pref_download_new">Descargar capítulos nuevos</string>
     <string name="fifth_to_last">Quinto al último capítulo</string>
     <string name="fourth_to_last">Cuarto al último capítulo</string>
@@ -215,14 +213,12 @@
     <string name="ext_updates_pending">Actualizaciones pendientes</string>
     <string name="all_lang">Todos</string>
     <string name="all">Todos</string>
-    <string name="pref_library_update_categories">Categorías que incluir en actualización global</string>
     <plurals name="num_categories">
         <item quantity="one">%d categoría</item>
         <item quantity="other">%d categorías</item>
     </plurals>
     <string name="default_category_summary">Preguntar siempre</string>
     <string name="default_category">Categoría por defecto</string>
-    <string name="pref_category_library_categories">Categorías</string>
     <string name="pref_library_update_error_notification">Mostrar notificaciones de errores de actualización</string>
     <string name="pref_library_update_refresh_metadata_summary">Comprobar nueva portada y los detalles cuando actualizes la biblioteca</string>
     <string name="pref_library_update_refresh_metadata">Refrescar automaticamente los metadatos</string>
@@ -617,7 +613,6 @@
     <string name="action_search_settings">Opciones de búsqueda</string>
     <string name="pref_incognito_mode_summary">Pausar historial de lectura</string>
     <string name="pref_incognito_mode">Modo incógnito</string>
-    <string name="pref_clear_history_summary">Eliminar historial de lectura para todos los mangas</string>
     <string name="pref_clear_history">Limpiar historial</string>
     <string name="clear_history_confirmation">¿Estás seguro\? Todo el historial se perderá.</string>
     <string name="clear_history_completed">Historial borrado</string>
@@ -626,9 +621,6 @@
     <string name="migration_help_guide">Guía de migración de fuentes</string>
     <string name="invalid_backup_file_type">Archivo de copia de seguridad inválido: %1$s
 \nDebería terminar con .proto.gz o .json.</string>
-    <string name="full_restore_offline">Restaurar fuera de línea, termina rápidamente pero contiene solo lo que tu copia de seguridad posee</string>
-    <string name="full_restore_online">Restaurar en línea, es más lento pero te da información y capítulos más actualizados</string>
-    <string name="full_restore_mode">Modo de red</string>
     <string name="pref_backup_auto_create_legacy">También crear copia de seguridad heredada</string>
     <string name="pref_create_legacy_backup_summary">Puede usarse en versiones anteriores de Tachiyomi</string>
     <string name="pref_create_legacy_backup">Crear copia de seguridad heredada</string>
@@ -656,4 +648,8 @@
     <string name="action_order_by_chapter_number">Por número de capítulo</string>
     <string name="action_order_by_upload_date">Por fecha de subida</string>
     <string name="action_filter_tracked">Rastreado</string>
+    <string name="right_and_left_nav">Derecha e izquierda</string>
+    <string name="update_8hour">Cada 8 horas</string>
+    <string name="update_4hour">Cada 4 horas</string>
+    <string name="action_display_show_number_of_items">Mostrar cantidad de elementos</string>
 </resources>

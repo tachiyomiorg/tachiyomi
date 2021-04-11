@@ -9,7 +9,6 @@
     <string name="label_download_queue">Downloadwarteschlange</string>
     <string name="label_library">Bibliothek</string>
     <string name="label_recent_manga">Verlauf</string>
-    <string name="label_categories">Kategorien</string>
     <string name="label_backup">Datensicherung</string>
     <string name="action_settings">Einstellungen</string>
     <string name="action_filter">Filter</string>
@@ -66,7 +65,7 @@
     <string name="action_open_log">Protokoll öffnen</string>
     <string name="action_create">Erstellen</string>
     <string name="action_restore">Wiederherstellen</string>
-    <string name="loading">Wird geladen…</string>
+    <string name="loading">Wird geladen …</string>
     <string name="app_not_available">App nicht verfügbar</string>
     <string name="short_recent_updates">Neu</string>
     <string name="pref_category_general">Allgemein</string>
@@ -79,7 +78,7 @@
     <string name="portrait">Hochformat</string>
     <string name="landscape">Querformat</string>
     <string name="default_columns">Standard</string>
-    <string name="pref_library_update_interval">Häufigkeit der Bibliotheksaktualisierung</string>
+    <string name="pref_library_update_interval">Häufigkeit der Aktualisierung</string>
     <string name="update_never">Manuell</string>
     <string name="update_1hour">Stündlich</string>
     <string name="update_2hour">Alle 2 Stunden</string>
@@ -89,9 +88,8 @@
     <string name="update_24hour">Täglich</string>
     <string name="update_48hour">Alle 2 Tage</string>
     <string name="update_weekly">Wöchentlich</string>
-    <string name="pref_library_update_categories">Kategorien für die globale Aktualisierung</string>
     <string name="all">Alle</string>
-    <string name="pref_library_update_restriction">Bibliotheksaktualisierung einschränken</string>
+    <string name="pref_library_update_restriction">Aktualisierung einschränken</string>
     <string name="pref_library_update_restriction_summary">Nur aktualisieren, wenn diese Bedingungen zutreffen</string>
     <string name="charging">Am Laden</string>
     <string name="pref_update_only_non_completed">Nur fortlaufende Manga aktualisieren</string>
@@ -150,13 +148,12 @@
     <string name="pref_remove_after_read">Nach dem Lesen</string>
     <string name="custom_dir">Eigener Speicherort</string>
     <string name="disabled">Deaktiviert</string>
-    <string name="last_read_chapter">Zuletzt gelesenes Kapitel</string>
-    <string name="second_to_last">Zweitletzt gelesenes Kapitel</string>
-    <string name="third_to_last">Drittletzt gelesenes Kapitel</string>
-    <string name="fourth_to_last">Viertletzt gelesenes Kapitel</string>
-    <string name="fifth_to_last">Fünftletzt gelesenes Kapitel</string>
+    <string name="last_read_chapter">ab zuletzt gelesenem Kapitel</string>
+    <string name="second_to_last">ab zweitletzt gelesenem Kapitel</string>
+    <string name="third_to_last">ab drittletzt gelesenem Kapitel</string>
+    <string name="fourth_to_last">ab viertletzt gelesenem Kapitel</string>
+    <string name="fifth_to_last">ab fünftletzt gelesenem Kapitel</string>
     <string name="pref_download_new">Neue Kapitel herunterladen</string>
-    <string name="pref_download_new_categories">Kategorien, die heruntergeladen werden sollen</string>
     <string name="services">Anbieter</string>
     <string name="backup">Sichern</string>
     <string name="pref_create_backup">Datensicherung erstellen</string>
@@ -173,8 +170,8 @@
 \n
 \nVergewissere dich zudem, dass du alle benötigten Seitenanmeldungsdaten bereitgestellt hast, bevor du mit dem Wiederherstellen beginnst.</string>
     <string name="backup_choice">Was möchtest du sichern\?</string>
-    <string name="restoring_backup">Sicherung wird wiederhergestellt</string>
-    <string name="creating_backup">Erstelle Datensicherung</string>
+    <string name="restoring_backup">Datensicherung wird wiederhergestellt</string>
+    <string name="creating_backup">Datensicherung wird erstellt</string>
     <string name="pref_clear_chapter_cache">Kapitel-Zwischenspeicher leeren</string>
     <string name="used_cache">Belegt: %1$s</string>
     <string name="cache_deleted">Zwischenspeicher geleert. %1$d Dateien wurden gelöscht</string>
@@ -184,7 +181,7 @@
     <string name="choices_reset">Standardantworten zurücksetzen</string>
     <string name="pref_clear_database">Datenbank leeren</string>
     <string name="pref_clear_database_summary">Verlauf für Manga löschen, die nicht in deiner Bibliothek gespeichert sind</string>
-    <string name="clear_database_confirmation">Bist du sicher\? Gelesene Kapitel und der Fortschritt von Manga, die nicht in der Bibliothek sind gehen verloren</string>
+    <string name="clear_database_confirmation">Bist du sicher\? Der Lesestatus aller Manga, die nicht in der Bibliothek sind, wird gelöscht</string>
     <string name="clear_database_completed">Einträge gelöscht</string>
     <string name="pref_refresh_library_tracking">Tracking aktualisieren</string>
     <string name="pref_refresh_library_tracking_summary">Synchronisiert den Lesestatus, die Bewertung und das zuletzt gelesene Kapitel mit den angemeldeten Trackinganbietern</string>
@@ -244,7 +241,7 @@
     <string name="completed">Abgeschlossen</string>
     <string name="dropped">Abgebrochen</string>
     <string name="on_hold">Pausiert</string>
-    <string name="plan_to_read">Lesen geplant</string>
+    <string name="plan_to_read">Plane ich zu lesen</string>
     <string name="score">Bewertung</string>
     <string name="title">Titel</string>
     <string name="status">Status</string>
@@ -379,7 +376,7 @@
     <string name="pref_color_filter_mode">Farbfilter Mischmodus</string>
     <string name="filter_mode_lighten">Abwedeln / Aufhellen</string>
     <string name="label_help">Hilfe</string>
-    <string name="pref_library_update_prioritization">Reihenfolge der Bibliotheksaktualisierung</string>
+    <string name="pref_library_update_prioritization">Reihenfolge der Aktualisierung</string>
     <string name="no_results_found">Keine Ergebnisse gefunden</string>
     <string name="migration_selection_prompt">Wähle eine Quelle, aus welcher du migrieren möchtest</string>
     <string name="action_webview_back">Zurück</string>
@@ -390,8 +387,7 @@
     <string name="ext_obsolete">Veraltet</string>
     <string name="obsolete_extension_message">Diese Erweiterung ist nicht länger verfügbar.</string>
     <string name="pref_date_format">Datumsformat</string>
-    <string name="pref_category_library_update">Aktualisierungen</string>
-    <string name="pref_category_library_categories">Kategorien</string>
+    <string name="pref_category_library_update">Globale Aktualisierung</string>
     <string name="logout_title">Aus %1$s abmelden\?</string>
     <string name="logout">Abmelden</string>
     <string name="logout_success">Du bist jetzt abgemeldet</string>
@@ -412,7 +408,7 @@
     <string name="theme_dark_amoled">AMOLED Schwarz</string>
     <string name="pref_manage_notifications">Benachrichtigungen verwalten</string>
     <string name="pref_category_security">Sicherheit</string>
-    <string name="lock_with_biometrics">Mit Biometrie sperren</string>
+    <string name="lock_with_biometrics">Entsperren erforderlich</string>
     <string name="lock_when_idle">Während Inaktivität sperren</string>
     <string name="lock_always">Immer</string>
     <string name="lock_never">Nie</string>
@@ -420,7 +416,7 @@
         <item quantity="one">Nach 1 Minute</item>
         <item quantity="other">Nach %1$s Minuten</item>
     </plurals>
-    <string name="secure_screen">Sicherheitsbildschirm</string>
+    <string name="secure_screen">Sicherer Bildschirm</string>
     <string name="ext_updates_pending">Aktualisierungen ausstehend</string>
     <string name="pref_cutout_short">Inhalt im Ausschnittbereich anzeigen</string>
     <string name="information_cloudflare_bypass_failure">Fehler beim Umgehen von Cloudflare</string>
@@ -444,7 +440,7 @@
     <string name="notification_check_updates">Überprüfe auf neue Kapitel</string>
     <string name="pref_disable_battery_optimization">Akkuverbrauch-Optimierung deaktivieren</string>
     <string name="pref_disable_battery_optimization_summary">Hilft bei Bibliotheksaktualisierungen und -sicherungen im Hintergrund</string>
-    <string name="battery_optimization_disabled">Akkuverbrauch-Optimierung ist bereits deaktiviert</string>
+    <string name="battery_optimization_disabled">Optimierung des Akkuverbrauchs ist schon deaktiviert</string>
     <string name="email">E-Mail-Adresse</string>
     <string name="pref_always_show_chapter_transition">Kapitelübergang immer anzeigen</string>
     <plurals name="notification_new_chapters_summary">
@@ -484,7 +480,7 @@
     <string name="pinned_sources">Angeheftet</string>
     <string name="action_unpin">Loslösen</string>
     <string name="action_pin">Anheften</string>
-    <string name="add_tracking">Tracking hinzufügen</string>
+    <string name="add_tracking">Verfolgung hinzufügen</string>
     <string name="manga_info_collapse">Weniger</string>
     <string name="manga_info_expand">Mehr</string>
     <string name="in_library">In der Bibliothek</string>
@@ -553,7 +549,7 @@
     <string name="page_list_empty_error">Keine Seiten gefunden</string>
     <string name="action_disable_all">Alles deaktivieren</string>
     <string name="action_enable_all">Alles aktivieren</string>
-    <string name="pref_show_reading_mode_summary">Kurz den aktuellen Modus anzeigen, wenn der Reader geöffnet wird</string>
+    <string name="pref_show_reading_mode_summary">Kurz den aktuellen Modus anzeigen, wenn der Leser geöffnet wird</string>
     <string name="pref_show_reading_mode">Lesemodus anzeigen</string>
     <string name="action_start">Starten</string>
     <string name="loader_not_implemented_error">Quelle nicht gefunden</string>
@@ -564,7 +560,7 @@
         <item quantity="other">%1$s Kapitel</item>
     </plurals>
     <string name="action_open_in_settings">In den Einstellungen öffnen</string>
-    <string name="requires_app_restart">App muss neu gestartet werden, um die Einstellung zu übernehmen</string>
+    <string name="requires_app_restart">Erfordert einen Neustart der Anwendung, um wirksam zu werden</string>
     <string name="label_network">Netzwerk</string>
     <string name="pref_jump_to_chapters">Beim Öffnen zu den Kapiteln springen</string>
     <string name="pref_read_with_tapping_inverted">Tippen invertieren</string>
@@ -579,7 +575,7 @@
     <string name="whats_new">Was ist neu</string>
     <string name="download_insufficient_space">Herunterladen von Kapiteln aufgrund von zu wenig Speicherplatz nicht möglich</string>
     <string name="action_global_search_query">Nach „%1$s“ überall suchen</string>
-    <string name="action_sort_date_added">Hinzufügedatum</string>
+    <string name="action_sort_date_added">Datum hinzugefügt</string>
     <string name="pref_category_reading_mode">Lesemodus</string>
     <string name="pref_category_theme">Thema</string>
     <string name="pref_category_locale">Lokal</string>
@@ -617,16 +613,12 @@
     <string name="pref_hide_bottom_bar_on_scroll">Untere Leiste beim Scrollen ausblenden</string>
     <string name="pref_incognito_mode_summary">Leseverlauf pausieren</string>
     <string name="pref_incognito_mode">Inkognito-Modus</string>
-    <string name="pref_clear_history_summary">Leseverlauf für alle Manga löschen</string>
     <string name="pref_clear_history">Verlauf löschen</string>
     <string name="clear_history_confirmation">Bist du sicher\? Der gesamte Verlauf wird verloren sein.</string>
     <string name="clear_history_completed">Verlauf gelöscht</string>
     <string name="spen_next_page">Nächste Seite</string>
     <string name="spen_previous_page">Vorherige Seite</string>
-    <string name="full_restore_mode">Netzwerk-Modus</string>
-    <string name="full_restore_offline">Offline wiederherstellen; ist schnell, aber beinhaltet nur den Inhalt deiner Datensicherung</string>
-    <string name="full_restore_online">Online wiederherstellen; viel langsamer, aber mit aktuelleren Informationen und Kapiteln</string>
-    <string name="pref_backup_auto_create_legacy">Auch ein Legacy-Sicherung erstellen</string>
+    <string name="pref_backup_auto_create_legacy">Auch eine Legacy-Sicherung erstellen</string>
     <string name="pref_create_legacy_backup_summary">Können in älteren Versionen von Tachiyomi verwendet werden</string>
     <string name="pref_create_legacy_backup">Legacy-Sicherung erstellen</string>
     <string name="migration_help_guide">Quellenmigration</string>
@@ -658,5 +650,26 @@
     <string name="action_filter_tracked">Getrackt</string>
     <string name="action_display_show_number_of_items">Anzahl der Elemente anzeigen</string>
     <string name="right_and_left_nav">Rechts und Links</string>
-    <string name="pref_dual_page_split">Doppelseitige Aufteilung (Alpha)</string>
+    <string name="pref_dual_page_split">Doppelseiten aufteilen</string>
+    <string name="pref_dual_page_invert_summary">Falls die Platzierung der aufgeteilten Doppelseite nicht mit der Leserichtung übereinstimmt</string>
+    <string name="pref_dual_page_invert">Doppelseiten-Platzierung invertieren</string>
+    <string name="backup_restore_content_full">Die Daten der Sicherungsdatei werden wiederhergestellt.
+\n
+\nDu musst jegliche fehlende Erweiterungen installieren und dich anschließend bei den Tracking-Anbietern einloggen, um sie zu benutzen.</string>
+    <string name="update_8hour">Alle 8 Stunden</string>
+    <string name="update_4hour">Alle 4 Stunden</string>
+    <string name="pref_show_navigation_mode_summary">Tipp-Zonen anzeigen, wenn der Leser geöffnet wird</string>
+    <string name="pref_show_navigation_mode">Navigationslayout-Overlay anzeigen</string>
+    <string name="nav_zone_right">Rechts</string>
+    <string name="nav_zone_left">Links</string>
+    <string name="nav_zone_next">Weiter</string>
+    <string name="nav_zone_prev">Zurück</string>
+    <string name="pref_dns_over_https">DNS over HTTPS</string>
+    <string name="exclude">Ausschließen: %s</string>
+    <string name="include">Einschließen: %s</string>
+    <string name="none">Nichts</string>
+    <string name="action_sort_chapter_fetch_date">Datum abgerufen</string>
+    <string name="pref_download_new_categories_details">Manga in ausgeschlossenen Kategorien werden nicht heruntergeladen, auch wenn sie in eingeschlossenen Kategorien vorhanden sind.</string>
+    <string name="pref_category_auto_download">Automatisches Herunterladen</string>
+    <string name="pref_library_update_categories_details">Manga in ausgeschlossenen Kategorien werden nicht aktualisiert, auch wenn sie in eingeschlossenen Kategorien vorhanden sind.</string>
 </resources>

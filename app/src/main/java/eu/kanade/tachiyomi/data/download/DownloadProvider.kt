@@ -53,8 +53,8 @@ class DownloadProvider(private val context: Context) {
             return downloadsDir
                 .createDirectory(getSourceDirName(source))
                 .createDirectory(getMangaDirName(manga))
-        } catch (e: NullPointerException) {
-            Timber.w(e)
+        } catch (e: Throwable) {
+            Timber.e(e, "Invalid download directory")
             throw Exception(context.getString(R.string.invalid_download_dir))
         }
     }

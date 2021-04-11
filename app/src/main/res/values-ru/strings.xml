@@ -2,7 +2,7 @@
 <resources>
     <string name="action_add">Добавить</string>
     <string name="action_add_category">Добавить категорию</string>
-    <string name="action_bookmark">Закладка</string>
+    <string name="action_bookmark">Закладка главы</string>
     <string name="action_cancel">Отмена</string>
     <string name="action_delete">Удалить</string>
     <string name="action_display">Отобразить</string>
@@ -29,7 +29,7 @@
     <string name="action_pause">Пауза</string>
     <string name="action_previous_chapter">Предыдущая глава</string>
     <string name="action_remove">Удалить</string>
-    <string name="action_remove_bookmark">Удалить закладку</string>
+    <string name="action_remove_bookmark">Снять закладку с главы</string>
     <string name="action_rename_category">Переименовать категорию</string>
     <string name="action_reset">Сбросить</string>
     <string name="action_resume">Продолжить</string>
@@ -114,7 +114,6 @@
     <string name="information_no_recent_manga">В последнее время ничего не прочитано</string>
     <string name="invalid_login">Ошибка входа</string>
     <string name="label_backup">Резервная копия</string>
-    <string name="label_categories">Категории</string>
     <string name="label_download_queue">Очередь загрузки</string>
     <string name="label_library">Библиотека</string>
     <string name="label_recent_manga">История</string>
@@ -180,9 +179,8 @@
     <string name="pref_keep_screen_on">Держать экран включенным</string>
     <string name="pref_language">Язык</string>
     <string name="pref_library_columns">Количество элементов в строке</string>
-    <string name="pref_library_update_categories">Категории, включенные в глобальное обновление</string>
-    <string name="pref_library_update_interval">Частота обновления библиотеки</string>
-    <string name="pref_library_update_restriction">Ограничения обновления библиотеки</string>
+    <string name="pref_library_update_interval">Частота обновления</string>
+    <string name="pref_library_update_restriction">Ограничения обновления</string>
     <string name="pref_library_update_restriction_summary">Обновлять только когда выполнены условия</string>
     <string name="pref_lock_orientation">Блокировать ориентацию</string>
     <string name="pref_read_with_tapping">Нажатие</string>
@@ -288,7 +286,6 @@
     <string name="pref_create_backup">Создать бэкап</string>
     <string name="pref_create_backup_summ">Можно использовать для восстановления текущей библиотеки</string>
     <string name="pref_crop_borders">Обрезать поля</string>
-    <string name="pref_download_new_categories">Категории для включения в загружаемые</string>
     <string name="pref_refresh_library_tracking">Обновить отслеживание</string>
     <string name="pref_refresh_library_tracking_summary">Обновляет статус, оценку и последнюю прочитанную главу из сервисов отслеживания</string>
     <string name="pref_restore_backup">Восстановить из бэкапа</string>
@@ -311,7 +308,7 @@
     <string name="other_source">Другие</string>
     <string name="action_global_search_hint">Глобальный поиск…</string>
     <string name="latest">Последняя</string>
-    <string name="browse">Поиск</string>
+    <string name="browse">Поисковик</string>
     <string name="channel_common">Общий</string>
     <string name="channel_library">Библиотека</string>
     <string name="information_empty_category">У вас нет категорий. Нажмите кнопку + чтобы создать категорию для организации вашей библиотеки.</string>
@@ -361,8 +358,8 @@
     <string name="track_author">Автор</string>
     <string name="transition_finished">Закончено:</string>
     <string name="transition_current">Текущий:</string>
-    <string name="transition_next">Следующий:</string>
-    <string name="transition_previous">Предыдущий:</string>
+    <string name="transition_next">Следующая:</string>
+    <string name="transition_previous">Предыдущая:</string>
     <string name="transition_no_next">Следующей главы нет</string>
     <string name="transition_no_previous">Предыдущей главы нет</string>
     <string name="transition_pages_loading">Идёт загрузка страниц…</string>
@@ -379,7 +376,7 @@
     <string name="filter_mode_lighten">Осветление</string>
     <string name="filter_mode_darken">Затемнение</string>
     <string name="label_help">Помощь</string>
-    <string name="pref_library_update_prioritization">Порядок обновления библиотеки</string>
+    <string name="pref_library_update_prioritization">Порядок обновления</string>
     <string name="no_results_found">Нет результатов</string>
     <string name="migration_selection_prompt">Выберите источник миграции</string>
     <string name="action_webview_back">Назад</string>
@@ -390,8 +387,7 @@
     <string name="ext_obsolete">Устарело</string>
     <string name="obsolete_extension_message">Это расширение больше не доступно.</string>
     <string name="pref_date_format">Формат даты</string>
-    <string name="pref_category_library_update">Обновления</string>
-    <string name="pref_category_library_categories">Категории</string>
+    <string name="pref_category_library_update">Глобальное обновление</string>
     <string name="logout_title">Выйти из %1$s\?</string>
     <string name="logout">Выйти</string>
     <string name="logout_success">Вы успешно вышли</string>
@@ -412,7 +408,7 @@
     <string name="theme_dark_amoled">AMOLED черная</string>
     <string name="pref_manage_notifications">Управлять уведомлениями</string>
     <string name="pref_category_security">Безопасность</string>
-    <string name="lock_with_biometrics">Блокировать отпечатком</string>
+    <string name="lock_with_biometrics">Требовать разблокировку</string>
     <string name="lock_when_idle">Блокировать при бездействии</string>
     <string name="lock_always">Всегда</string>
     <string name="lock_never">Никогда</string>
@@ -508,7 +504,7 @@
     <string name="local_source_help_guide">Руководство по локальным источникам</string>
     <string name="last_used_source">Последний использованный</string>
     <string name="downloaded_only_summary">Фильтрует всю мангу в вашей библиотеке</string>
-    <string name="check_for_updates">Проверять обновления</string>
+    <string name="check_for_updates">Проверить обновления</string>
     <string name="restoring_backup_canceled">Восстановление отменено</string>
     <string name="restoring_backup_error">Ошибка восстановления из бэкапа</string>
     <string name="restore_in_progress">Восстановление уже выполняется</string>
@@ -639,15 +635,11 @@
     <string name="pref_hide_bottom_bar_on_scroll">Скрыть нижнюю панель при прокрутке</string>
     <string name="pref_incognito_mode_summary">Приостанавливает историю чтения</string>
     <string name="pref_incognito_mode">Режим инкогнито</string>
-    <string name="pref_clear_history_summary">Удалить историю чтения для всей манги</string>
     <string name="pref_clear_history">Очистить историю</string>
     <string name="clear_history_confirmation">Вы уверены\? Вся история будет удалена.</string>
     <string name="clear_history_completed">История удалена</string>
     <string name="spen_next_page">Следующая страница</string>
     <string name="spen_previous_page">Предыдущая страница</string>
-    <string name="full_restore_offline">Оффлайн восстановление - работает быстрее, но восстанавливает только то, что было в вашей резервной копии</string>
-    <string name="full_restore_online">Онлайн восстановление - работает гораздо медленнее, но подгружает более актуальные главы и информацию</string>
-    <string name="full_restore_mode">Сетевой режим</string>
     <string name="pref_backup_auto_create_legacy">Также создавать резервную копию старого формата</string>
     <string name="pref_create_legacy_backup_summary">Может быть использован в предыдущих версиях Tachiyomi</string>
     <string name="pref_create_legacy_backup">Создать резервную копию старого формата</string>
@@ -680,4 +672,26 @@
     <string name="action_filter_tracked">Отслеживается</string>
     <string name="action_display_show_number_of_items">Показать число объектов</string>
     <string name="right_and_left_nav">Справа и слева</string>
+    <string name="pref_dual_page_split">Двухстраничное разделение</string>
+    <string name="pref_dual_page_invert">Инвертировать двухстраничное размещение разделения</string>
+    <string name="pref_dual_page_invert_summary">Если двухстраничное размещение разделения не соответствует направлению чтения</string>
+    <string name="backup_restore_content_full">Данные из файла резевной копии будут восстановлены.
+\n
+\nВам будет нужно установить все недостающие расширения, и после этого войти в сервисы отслеживания для их использования.</string>
+    <string name="update_8hour">Каждые 8 часов</string>
+    <string name="update_4hour">Каждые 4 часа</string>
+    <string name="nav_zone_left">Слева</string>
+    <string name="nav_zone_right">Справа</string>
+    <string name="nav_zone_next">Следующая</string>
+    <string name="nav_zone_prev">Предыдущая</string>
+    <string name="pref_show_navigation_mode_summary">Показывать зоны касания когда читалка открыта</string>
+    <string name="pref_show_navigation_mode">Показывать наложение схемы навигации</string>
+    <string name="pref_dns_over_https">DNS по HTTPS</string>
+    <string name="none">Нет</string>
+    <string name="exclude">Исключать: %s</string>
+    <string name="include">Включать: %s</string>
+    <string name="action_sort_chapter_fetch_date">Дата получения</string>
+    <string name="pref_download_new_categories_details">Манга в исключенных категориях не будет загруженна, даже если она также находится во включенных категориях.</string>
+    <string name="pref_library_update_categories_details">Манга в исключенных категориях не будет обновляться, даже если она также находится во включенных категориях.</string>
+    <string name="pref_category_auto_download">Автозагрузка</string>
 </resources>

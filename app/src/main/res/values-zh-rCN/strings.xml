@@ -10,7 +10,6 @@
     <string name="label_library">书架</string>
     <string name="label_recent_manga">历史</string>
     <string name="label_recent_updates">更新</string>
-    <string name="label_categories">分类</string>
     <string name="label_backup">备份</string>
     <string name="label_extensions">扩展插件</string>
     <string name="label_extension_info">扩展插件信息</string>
@@ -29,8 +28,8 @@
     <string name="action_mark_as_read">标记为已读</string>
     <string name="action_mark_as_unread">标记为未读</string>
     <string name="action_download">下载</string>
-    <string name="action_bookmark">添加书签</string>
-    <string name="action_remove_bookmark">移除书签</string>
+    <string name="action_bookmark">添加章节到书签</string>
+    <string name="action_remove_bookmark">从书签中移除章节</string>
     <string name="action_delete">删除</string>
     <string name="action_update">更新</string>
     <string name="action_update_library">更新书架</string>
@@ -88,7 +87,7 @@
     <string name="portrait">纵向</string>
     <string name="landscape">横向</string>
     <string name="default_columns">预设</string>
-    <string name="pref_library_update_interval">书架更新频率</string>
+    <string name="pref_library_update_interval">更新频率</string>
     <string name="update_never">手动</string>
     <string name="update_1hour">每小时</string>
     <string name="update_2hour">每 2 小时</string>
@@ -98,9 +97,8 @@
     <string name="update_24hour">每天</string>
     <string name="update_48hour">每 2 天</string>
     <string name="update_weekly">每周</string>
-    <string name="pref_library_update_categories">全局更新时包含的分类</string>
     <string name="all">全部</string>
-    <string name="pref_library_update_restriction">书架更新条件</string>
+    <string name="pref_library_update_restriction">更新限制</string>
     <string name="pref_library_update_restriction_summary">仅在符合条件时更新</string>
     <string name="charging">正在充电</string>
     <string name="pref_update_only_non_completed">仅更新连载中的漫画</string>
@@ -189,7 +187,6 @@
     <string name="fourth_to_last">倒数第四章</string>
     <string name="fifth_to_last">倒数第五章</string>
     <string name="pref_download_new">自动下载新章节</string>
-    <string name="pref_download_new_categories">自动下载的分类</string>
     <string name="services">服务</string>
     <string name="backup">备份</string>
     <string name="pref_create_backup">创建备份</string>
@@ -243,7 +240,7 @@
     <string name="local_source">本地图源</string>
     <string name="other_source">其它</string>
     <string name="invalid_combination">默认分类不能与其它分类一起选择</string>
-    <string name="added_to_library">此漫画已添加至书架</string>
+    <string name="added_to_library">此漫画已添加至你的书架</string>
     <string name="action_global_search_hint">全局搜索…</string>
     <string name="latest">最近更新</string>
     <string name="browse">浏览</string>
@@ -374,7 +371,7 @@
     <string name="pref_color_filter_mode">滤镜调和模式</string>
     <string name="filter_mode_default">默认</string>
     <string name="label_help">帮助</string>
-    <string name="pref_library_update_prioritization">书架更新顺序</string>
+    <string name="pref_library_update_prioritization">更新顺序</string>
     <string name="filter_mode_overlay">覆盖</string>
     <string name="filter_mode_multiply">色彩增值</string>
     <string name="filter_mode_screen">滤色</string>
@@ -390,8 +387,7 @@
     <string name="ext_obsolete">失效</string>
     <string name="obsolete_extension_message">此扩展插件不再可用。</string>
     <string name="pref_date_format">日期格式</string>
-    <string name="pref_category_library_update">更新</string>
-    <string name="pref_category_library_categories">分类</string>
+    <string name="pref_category_library_update">全局更新</string>
     <string name="logout_title">登出 %1$s？</string>
     <string name="logout">登出</string>
     <string name="logout_success">你已登出</string>
@@ -427,7 +423,7 @@
     <string name="pref_theme_dark">深色主题</string>
     <string name="channel_new_chapters">章节更新</string>
     <string name="hide_notification_content">隐藏通知内容</string>
-    <string name="lock_with_biometrics">启用生物识别锁定</string>
+    <string name="lock_with_biometrics">需要解锁</string>
     <string name="pref_cutout_short">在刘海屏区域显示内容</string>
     <plurals name="notification_chapters_generic">
         <item quantity="other">%1$d 个新章节</item>
@@ -491,7 +487,7 @@
     <string name="in_library">在书架中</string>
     <string name="label_downloaded_only">仅已下载</string>
     <string name="creating_backup_error">备份失败</string>
-    <string name="restoring_backup_canceled">取消还原</string>
+    <string name="restoring_backup_canceled">取消了还原</string>
     <string name="restoring_backup_error">还原备份失败</string>
     <string name="restore_in_progress">还原已在进行</string>
     <string name="backup_in_progress">备份已在进行</string>
@@ -564,7 +560,7 @@
     <string name="unknown_status">未知状态</string>
     <string name="unknown_author">未知作者</string>
     <string name="updated_version">已更新到 v%1$s</string>
-    <string name="whats_new">更新日志</string>
+    <string name="whats_new">更新记录</string>
     <string name="action_download_unread">下载未读章节</string>
     <string name="download_insufficient_space">由于磁盘空间不足，无法下载所选章节</string>
     <string name="action_global_search_query">全局搜索\"%1$s\"</string>
@@ -605,15 +601,11 @@
     <string name="pref_hide_bottom_bar_on_scroll">滚动时隐藏底栏</string>
     <string name="pref_incognito_mode_summary">暂停记录阅读历史</string>
     <string name="pref_incognito_mode">隐身模式</string>
-    <string name="pref_clear_history_summary">删除所有漫画的阅读历史</string>
     <string name="pref_clear_history">清除历史</string>
     <string name="clear_history_confirmation">你确定吗？所有的历史都将丢失。</string>
     <string name="clear_history_completed">历史已删除</string>
     <string name="spen_next_page">下一页</string>
     <string name="spen_previous_page">上一页</string>
-    <string name="full_restore_offline">离线恢复，完成得很快，但只包含备份文件有的内容</string>
-    <string name="full_restore_online">在线恢复，速度要慢得多但给你更多更新的信息和章节</string>
-    <string name="full_restore_mode">网络模式</string>
     <string name="pref_backup_auto_create_legacy">同时创建旧版本备份</string>
     <string name="pref_create_legacy_backup_summary">可用于旧版本的 Tachiyomi</string>
     <string name="pref_create_legacy_backup">创建旧版本备份</string>
@@ -646,4 +638,26 @@
     <string name="action_filter_tracked">已跟踪</string>
     <string name="action_display_show_number_of_items">显示条目数</string>
     <string name="right_and_left_nav">右和左</string>
+    <string name="pref_dual_page_split">双页拆分</string>
+    <string name="pref_dual_page_invert">反转双页拆分放置</string>
+    <string name="pref_dual_page_invert_summary">如果双页拆分的放置与阅读方向不匹配</string>
+    <string name="backup_restore_content_full">来自备份文件的数据将被还原。
+\n
+\n你将需要安装所有缺少的扩展，之后登录到跟踪服务以使用它们。</string>
+    <string name="update_4hour">每 4 小时</string>
+    <string name="update_8hour">每 8 小时</string>
+    <string name="nav_zone_right">右边</string>
+    <string name="nav_zone_left">左边</string>
+    <string name="nav_zone_next">下一个</string>
+    <string name="nav_zone_prev">前一个</string>
+    <string name="pref_show_navigation_mode_summary">打开阅读器时显示点按区域</string>
+    <string name="pref_show_navigation_mode">显示导航布局叠加</string>
+    <string name="pref_dns_over_https">DNS over HTTPS</string>
+    <string name="none">无</string>
+    <string name="exclude">排除：%s</string>
+    <string name="include">包含：%s</string>
+    <string name="action_sort_chapter_fetch_date">取得了日期</string>
+    <string name="pref_library_update_categories_details">应用不会更新位于排除分类中的漫画，即使它们同样位于包括的分类中。</string>
+    <string name="pref_download_new_categories_details">应用不会下载位于排除分类中的漫画，即使它们同样位于包括的分类中。</string>
+    <string name="pref_category_auto_download">自动下载</string>
 </resources>

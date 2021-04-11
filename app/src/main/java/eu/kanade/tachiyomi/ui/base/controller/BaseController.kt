@@ -121,7 +121,7 @@ abstract class BaseController<VB : ViewBinding>(bundle: Bundle? = null) :
      * [expandActionViewFromInteraction] should be set to true in [onOptionsItemSelected] when the expandable item is selected
      * This method should be called as part of [MenuItem.OnActionExpandListener.onMenuItemActionExpand]
      */
-    fun invalidateMenuOnExpand(): Boolean {
+    open fun invalidateMenuOnExpand(): Boolean {
         return if (expandActionViewFromInteraction) {
             activity?.invalidateOptionsMenu()
             false

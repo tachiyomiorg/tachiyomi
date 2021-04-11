@@ -48,12 +48,6 @@ open class GlobalSearchPresenter(
     val sources by lazy { getSourcesToQuery() }
 
     /**
-     * Query from the view.
-     */
-    var query = ""
-        private set
-
-    /**
      * Fetches the different sources by user settings.
      */
     private var fetchSourcesSubscription: Subscription? = null

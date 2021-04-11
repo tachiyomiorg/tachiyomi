@@ -11,7 +11,6 @@
     <string name="label_library">Biblioteca</string>
     <string name="label_recent_manga">Historial</string>
     <string name="label_recent_updates">Novetats</string>
-    <string name="label_categories">Categories</string>
     <string name="label_backup">Còpia de seguretat</string>
     <string name="label_migration">Migració</string>
     <string name="label_extensions">Extensions</string>
@@ -32,8 +31,8 @@
     <string name="action_mark_as_unread">Marca com a no llegit</string>
     <string name="action_mark_previous_as_read">Marca els anteriors com a llegits</string>
     <string name="action_download">Baixa</string>
-    <string name="action_bookmark">Marca</string>
-    <string name="action_remove_bookmark">Desmarca</string>
+    <string name="action_bookmark">Marca el capítol</string>
+    <string name="action_remove_bookmark">Desmarca el capítol</string>
     <string name="action_delete">Suprimeix</string>
     <string name="action_update">Actualitza</string>
     <string name="action_update_library">Actualitza la biblioteca</string>
@@ -98,7 +97,6 @@
     <string name="update_24hour">Cada dia</string>
     <string name="update_48hour">Cada 2 dies</string>
     <string name="update_weekly">Cada setmana</string>
-    <string name="pref_library_update_categories">Categories a incloure a l\'actualització global</string>
     <string name="all">Tot</string>
     <string name="pref_library_update_restriction">Restriccions d\'actualització de la biblioteca</string>
     <string name="pref_library_update_restriction_summary">Actualitza només quan es compleixin les condicions</string>
@@ -189,7 +187,6 @@
     <string name="fourth_to_last">Anteantepenúltim capítol</string>
     <string name="fifth_to_last">Anteanteantepenúltim capítol</string>
     <string name="pref_download_new">Baixa capítols nous</string>
-    <string name="pref_download_new_categories">Categories a incloure a la baixada</string>
     <string name="services">Serveis</string>
     <string name="backup">Còpia de seguretat</string>
     <string name="pref_create_backup">Crea una còpia de seguretat</string>
@@ -391,7 +388,6 @@
     <string name="obsolete_extension_message">Aquesta extensió ja no està disponible.</string>
     <string name="pref_date_format">Format de data</string>
     <string name="pref_category_library_update">Actualitzacions</string>
-    <string name="pref_category_library_categories">Categories</string>
     <string name="logout_title">Voleu tancar la sessió a %1$s\?</string>
     <string name="logout">Tanca la sessió</string>
     <string name="logout_success">S\'ha tancat la sessió</string>
@@ -618,14 +614,10 @@
     <string name="clear_history_confirmation">"N\'esteu segur\? Es perdrà  tot l\'historial."</string>
     <string name="pref_incognito_mode_summary">Pausa l\'historial de lectura</string>
     <string name="pref_incognito_mode">Mode d\'incògnit</string>
-    <string name="pref_clear_history_summary">Suprimeix l\'historial de lectura de tot el manga</string>
     <string name="pref_clear_history">Suprimeix l\'historial</string>
     <string name="clear_history_completed">S\'ha buidat l\'historial</string>
     <string name="spen_next_page">Pàgina següent</string>
     <string name="spen_previous_page">Pàgina anterior</string>
-    <string name="full_restore_offline">Restaura sense connexió: acaba ràpidament però conté només el que contingui la còpia de seguretat</string>
-    <string name="full_restore_online">Restaura en línia: molt més lent, però us proporciona informació més actualitzada i capítols</string>
-    <string name="full_restore_mode">Mode de xarxa</string>
     <string name="pref_backup_auto_create_legacy">Crea també una còpia de seguretat en format antic</string>
     <string name="pref_create_legacy_backup_summary">Es pot utilitzar en versions més antigues del Tachiyomi</string>
     <string name="pref_create_legacy_backup">Crea una còpia de seguretat en format antic</string>
@@ -659,4 +651,11 @@
     <string name="action_display_show_number_of_items">Mostra el nombre d\'elements</string>
     <string name="right_and_left_nav">A la dreta i a l\'esquerra</string>
     <string name="pref_dual_page_split">Dividit a doble pàgina (ALFA)</string>
+    <string name="pref_dual_page_invert_summary">Si la ubicació de la divisió a doble pàgina no encaixa amb la direcció de lectura</string>
+    <string name="pref_dual_page_invert">Inverteix la ubicació de la divisió a doble pàgina</string>
+    <string name="backup_restore_content_full">Es restauraran les dades del fitxer de còpia de seguretat.
+\n
+\nCaldrà que instal·leu les extensions que manquin i que després inicieu la sessió als serveis de seguiment per a utilitzar-los.</string>
+    <string name="update_8hour">Cada 8 hores</string>
+    <string name="update_4hour">Cada 4 hores</string>
 </resources>

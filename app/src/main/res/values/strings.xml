@@ -18,7 +18,6 @@
     <string name="label_recent_updates">Updates</string>
     <string name="label_recent_manga">History</string>
     <string name="label_sources">Sources</string>
-    <string name="label_categories">Categories</string>
     <string name="label_backup">Backup</string>
     <string name="label_migration">Migrate</string>
     <string name="label_extensions">Extensions</string>
@@ -42,6 +41,7 @@
     <string name="action_sort_last_read">Last read</string>
     <string name="action_sort_last_checked">Last checked</string>
     <string name="action_sort_latest_chapter">Latest chapter</string>
+    <string name="action_sort_chapter_fetch_date">Date fetched</string>
     <string name="action_sort_date_added">Date added</string>
     <string name="action_search">Search</string>
     <string name="action_search_settings">Search settings</string>
@@ -119,6 +119,7 @@
     <string name="action_reset">Reset</string>
     <string name="action_undo">Undo</string>
     <string name="action_open_log">Open log</string>
+    <string name="action_show_errors">Show errors</string>
     <string name="action_create">Create</string>
     <string name="action_restore">Restore</string>
     <string name="action_open">Open</string>
@@ -167,7 +168,7 @@
     <string name="pref_manage_notifications">Manage notifications</string>
 
     <string name="pref_category_security">Security</string>
-    <string name="lock_with_biometrics">Lock with biometrics</string>
+    <string name="lock_with_biometrics">Require unlock</string>
     <string name="lock_when_idle">Lock when idle</string>
     <string name="lock_always">Always</string>
     <string name="lock_never">Never</string>
@@ -193,19 +194,21 @@
     <string name="default_columns">Default</string>
     <string name="pref_jump_to_chapters">Jump to chapters on open</string>
 
-    <string name="pref_category_library_update">Updates</string>
-    <string name="pref_library_update_interval">Library update frequency</string>
+    <string name="pref_category_library_update">Global update</string>
+    <string name="pref_library_update_interval">Update frequency</string>
     <string name="update_never">Manual</string>
     <string name="update_1hour">Hourly</string>
     <string name="update_2hour">Every 2 hours</string>
     <string name="update_3hour">Every 3 hours</string>
+    <string name="update_4hour">Every 4 hours</string>
     <string name="update_6hour">Every 6 hours</string>
+    <string name="update_8hour">Every 8 hours</string>
     <string name="update_12hour">Every 12 hours</string>
     <string name="update_24hour">Daily</string>
     <string name="update_48hour">Every 2 days</string>
     <string name="update_weekly">Weekly</string>
-    <string name="pref_library_update_prioritization">Library update order</string>
-    <string name="pref_library_update_restriction">Library update restrictions</string>
+    <string name="pref_library_update_prioritization">Update order</string>
+    <string name="pref_library_update_restriction">Update restrictions</string>
     <string name="pref_library_update_restriction_summary">Update only when the conditions are met</string>
     <string name="network_unmetered">Unmetered network</string>
     <string name="charging">Charging</string>
@@ -214,15 +217,17 @@
     <string name="pref_library_update_refresh_metadata_summary">Check for new cover and details when updating library</string>
     <string name="pref_library_update_error_notification">Show update errors notifications</string>
 
-    <string name="pref_category_library_categories">Categories</string>
     <string name="default_category">Default category</string>
     <string name="default_category_summary">Always ask</string>
     <plurals name="num_categories">
         <item quantity="one">%d category</item>
         <item quantity="other">%d categories</item>
     </plurals>
-    <string name="pref_library_update_categories">Categories to include in global update</string>
+    <string name="pref_library_update_categories_details">Manga in excluded categories will not be updated even if they are also in included categories.</string>
     <string name="all">All</string>
+    <string name="none">None</string>
+    <string name="include">Include: %s</string>
+    <string name="exclude">Exclude: %s</string>
 
       <!-- Extension section -->
     <string name="all_lang">All</string>
@@ -250,7 +255,11 @@
 
       <!-- Reader section -->
     <string name="pref_fullscreen">Fullscreen</string>
-    <string name="pref_dual_page_split">Dual page split (ALPHA)</string>
+    <string name="pref_show_navigation_mode">Show navigation layout overlay</string>
+    <string name="pref_show_navigation_mode_summary">Show tap zones when reader is opened</string>
+    <string name="pref_dual_page_split">Dual page split</string>
+    <string name="pref_dual_page_invert">Invert dual page split placement</string>
+    <string name="pref_dual_page_invert_summary">If the placement of the dual page split doesn\'t match reading direction</string>
     <string name="pref_cutout_short">Show content in cutout area</string>
     <string name="pref_lock_orientation">Lock orientation</string>
     <string name="pref_page_transitions">Animate page transitions</string>
@@ -294,6 +303,10 @@
     <string name="kindlish_nav">Kindle-ish</string>
     <string name="edge_nav">Edge</string>
     <string name="right_and_left_nav">Right and Left</string>
+    <string name="nav_zone_prev">Prev</string>
+    <string name="nav_zone_next">Next</string>
+    <string name="nav_zone_left">Left</string>
+    <string name="nav_zone_right">Right</string>
     <string name="left_to_right_viewer">Left to right</string>
     <string name="right_to_left_viewer">Right to left</string>
     <string name="vertical_viewer">Vertical</string>
@@ -350,8 +363,9 @@
     <string name="third_to_last">Third to last chapter</string>
     <string name="fourth_to_last">Fourth to last chapter</string>
     <string name="fifth_to_last">Fifth to last chapter</string>
+    <string name="pref_category_auto_download">Auto-download</string>
     <string name="pref_download_new">Download new chapters</string>
-    <string name="pref_download_new_categories">Categories to include in download</string>
+    <string name="pref_download_new_categories_details">Manga in excluded categories will not be downloaded even if they are also in included categories.</string>
 
       <!-- Tracking section -->
     <string name="pref_auto_update_manga_sync">Update chapter progress after reading</string>
@@ -375,9 +389,6 @@
     <string name="pref_backup_service_category">Automatic backups</string>
     <string name="pref_backup_interval">Backup frequency</string>
     <string name="pref_backup_slots">Maximum backups</string>
-    <string name="full_restore_mode">Network Mode</string>
-    <string name="full_restore_online">Restore online, much slower but gives you more updated info and chapters</string>
-    <string name="full_restore_offline">Restore offline, finishes quickly but contains only what your backup has</string>
     <string name="source_not_found_name">Source not found: %1$s</string>
     <string name="tracker_not_logged_in">Not logged in: %1$s</string>
     <string name="backup_created">Backup created</string>
@@ -388,6 +399,7 @@
     <string name="backup_restore_missing_sources">Missing sources:</string>
     <string name="backup_restore_missing_trackers">Trackers not logged into:</string>
     <string name="backup_restore_content">Restore uses sources to fetch data, carrier costs may apply.\n\nMake sure you have installed all necessary extensions and are logged in to sources and tracking services before restoring.</string>
+    <string name="backup_restore_content_full">Data from the backup file will be restored.\n\nYou will need to install any missing extensions and log in to tracking services afterwards to use them.</string>
     <string name="restore_completed">Restore completed</string>
     <string name="restore_duration">%02d min, %02d sec</string>
     <plurals name="restore_completed_message">
@@ -406,7 +418,7 @@
       <!-- Advanced section -->
     <string name="label_network">Network</string>
     <string name="pref_clear_cookies">Clear cookies</string>
-    <string name="pref_dns_over_https" translatable="false">DNS over HTTPS (Cloudflare)</string>
+    <string name="pref_dns_over_https">DNS over HTTPS</string>
     <string name="requires_app_restart">Requires app restart to take effect</string>
     <string name="cookies_cleared">Cookies cleared</string>
     <string name="label_data">Data</string>
@@ -429,10 +441,6 @@
     <string name="pref_disable_battery_optimization_summary">Helps with background library updates and backups</string>
     <string name="battery_optimization_disabled">Battery optimization is already disabled</string>
     <string name="battery_optimization_setting_activity_not_found">Couldn\'t open device settings</string>
-    <string name="clear_history_completed">History deleted</string>
-    <string name="clear_history_confirmation">Are you sure? All history will be lost.</string>
-    <string name="pref_clear_history">Clear history</string>
-    <string name="pref_clear_history_summary">Delete reading history for all manga</string>
 
       <!-- About section -->
     <string name="website">Website</string>
@@ -648,6 +656,9 @@
 
     <!-- History fragment -->
     <string name="recent_manga_time">Ch. %1$s - %2$s</string>
+    <string name="pref_clear_history">Clear history</string>
+    <string name="clear_history_completed">History deleted</string>
+    <string name="clear_history_confirmation">Are you sure? All history will be lost.</string>
 
     <!-- Source migration screen -->
     <string name="migration_help_guide">Source migration guide</string>

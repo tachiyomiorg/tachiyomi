@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Rect
+import androidx.core.graphics.createBitmap
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
@@ -99,7 +100,7 @@ object ImageUtil {
 
         val singlePage = Rect(0, 0, width / 2, height)
 
-        val half = Bitmap.createBitmap(width / 2, height, Bitmap.Config.ARGB_8888)
+        val half = createBitmap(width / 2, height)
         val part = when (side) {
             Side.RIGHT -> Rect(width - width / 2, 0, width, height)
             Side.LEFT -> Rect(0, 0, width / 2, height)
@@ -115,21 +116,27 @@ object ImageUtil {
     /**
      * Split the image into left and right parts, then merge them into a new image.
      */
-    fun splitAndMerge(imageStream: InputStream): InputStream {
+    fun splitAndMerge(imageStream: InputStream, upperSide: Side): InputStream {
         val imageBytes = imageStream.readBytes()
 
         val imageBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
         val height = imageBitmap.height
         val width = imageBitmap.width
 
-        val result = Bitmap.createBitmap(width / 2, height * 2, Bitmap.Config.ARGB_8888)
+        val result = createBitmap(width / 2, height * 2)
         val canvas = Canvas(result)
         // right -> upper
-        val rightPart = Rect(width - width / 2, 0, width, height)
+        val rightPart = when (upperSide) {
+            Side.RIGHT -> Rect(width - width / 2, 0, width, height)
+            Side.LEFT -> Rect(0, 0, width / 2, height)
+        }
         val upperPart = Rect(0, 0, width / 2, height)
         canvas.drawBitmap(imageBitmap, rightPart, upperPart, null)
         // left -> bottom
-        val leftPart = Rect(0, 0, width / 2, height)
+        val leftPart = when (upperSide) {
+            Side.LEFT -> Rect(width - width / 2, 0, width, height)
+            Side.RIGHT -> Rect(0, 0, width / 2, height)
+        }
         val bottomPart = Rect(0, height, width / 2, height * 2)
         canvas.drawBitmap(imageBitmap, leftPart, bottomPart, null)
 

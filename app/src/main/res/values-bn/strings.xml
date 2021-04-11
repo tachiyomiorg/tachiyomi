@@ -11,7 +11,6 @@
     <string name="label_library">সংগ্রহশালা</string>
     <string name="label_recent_manga">ইতিহাস</string>
     <string name="label_recent_updates">হালনাগাদ সমূহ</string>
-    <string name="label_categories">বিভাগ সমূহ</string>
     <string name="label_backup">ব্যাকআপ</string>
     <string name="action_settings">সেটিংস</string>
     <string name="action_filter">বিশোধন</string>
@@ -95,7 +94,6 @@
     <string name="update_24hour">প্রতিদিন</string>
     <string name="update_48hour">প্রতি ২ দিন</string>
     <string name="update_weekly">সাপ্তাহিক</string>
-    <string name="pref_library_update_categories">সার্বজনীন হালনাগাদের জন্য যে বিভাগসমূহ অন্তর্ভুক্ত করবেন</string>
     <string name="all">সব</string>
     <string name="pref_library_update_restriction">সংগ্রহশালা হালনাগেদের সীমাবদ্ধতা</string>
     <string name="pref_library_update_restriction_summary">শুধু শর্ত মিললে হালনাগাদ করুন</string>
@@ -162,7 +160,6 @@
     <string name="fourth_to_last">৪র্থ থেকে শেষ অধ্যায়</string>
     <string name="fifth_to_last">৫ম থেকে শেষ অধ্যায়</string>
     <string name="pref_download_new">নতুন অধ্যায়গুলো ডাউনলোড করুন</string>
-    <string name="pref_download_new_categories">ডাউনলোডে যোগ করার জন্য বিভাগসমূহ</string>
     <string name="services">সেবা সমূহ</string>
     <string name="backup">ব্যাকআপ</string>
     <string name="pref_create_backup">ব্যাকআপ তৈরী করুন</string>
@@ -497,7 +494,6 @@
     <string name="ext_updates_pending">অনিষ্পন্ন হালনাগাদ</string>
     <string name="pref_library_update_error_notification">হালনাগাদের ত্রুটিগুলোর বিজ্ঞপ্তি দেখান</string>
     <string name="pref_library_update_refresh_metadata_summary">সংগ্রহশালা হালনাগেদের সময় নতুন মোড়ক এবং বর্ণনা খুঁজুন</string>
-    <string name="pref_category_library_categories">বিভাগসমূহ</string>
     <string name="pref_jump_to_chapters">খোলার পর অধ্যায়ে যান</string>
     <plurals name="notification_chapters_multiple_and_more">
         <item quantity="one">%1$s অধ্যায়সমূহ এবং ১টি আরও</item>
@@ -612,7 +608,6 @@
     <string name="notices">প্রিভিউ বিল্ড বিজ্ঞপ্তি</string>
     <string name="whats_new">কি কি নতুন</string>
     <string name="website">ওয়েবসাইট</string>
-    <string name="pref_clear_history_summary">সব মাঙ্গার পড়ার ইতিহাস মুছুন</string>
     <string name="pref_clear_history">ইতিহাস সাফ করুন</string>
     <string name="clear_history_confirmation">আপনি নিশ্চিত\? সব ইতিহাস মুছে যাবে।</string>
     <string name="clear_history_completed">ইতিহাস মুছে ফেলা হয়েছে</string>
@@ -621,8 +616,6 @@
     <string name="pref_disable_battery_optimization_summary">পিছেনে লাইব্রেরী হালনাগাদ ও ব্যাকআপে সাহায্য করে</string>
     <string name="pref_disable_battery_optimization">ব্যাটারি অপ্টিমাইজেশন অক্ষম করুন</string>
     <string name="tracking_info">ট্র্যাকিং সার্ভিসে অধ্যায়ের অগ্রগতি হালনাগাদের একমুখী পথ। স্বতন্ত্র মাঙ্গার ট্র্যকিং সেটাপের জন্য তাদের নিজস্ব ট্র্যাকিং বাটন ব্যবহার করুন।</string>
-    <string name="full_restore_online">অনলাইন পুনরুদ্ধার, অনেক ধীর কিন্তু আপনাকে আরও আপডেট করা তথ্য এবং অধ্যায় দিবে</string>
-    <string name="full_restore_mode">নেটওয়ার্ক মোডে</string>
     <string name="pref_backup_auto_create_legacy">লিগ্যাসি ব্যাকআপও তৈরি করুন</string>
     <string name="pref_create_legacy_backup_summary">পুরাতন তাচ্চিওমির ভার্সন গুলোতে ব্যবহার করা যাবে</string>
     <string name="pref_create_legacy_backup">উত্তরাধিকার এর ব্যাকআপ তৈরি করা</string>
@@ -646,7 +639,6 @@
     <string name="pref_dump_crash_logs_summary">বিকাশকারীদের সাথে সেয়ার করার জন্য এরর লগগুলো একটি ফাইলে সংরক্ষণ করে</string>
     <string name="invalid_backup_file_type">অকার্যকর ব্যাকআপ ফাইল ধরণ: %1$s
 \nএটা .proto.gz বা .json দিয়ে শেষ হওয়া উচিত।</string>
-    <string name="full_restore_offline">অফলাইন পুনরুদ্ধার, দ্রুত শেষ হয় তবে আপনার ব্যাকআপে যা ছিল শুধু তাই থাকে</string>
     <string name="right_and_left_nav">ডান ও বাম</string>
     <string name="edge_nav">কিনার</string>
     <string name="kindlish_nav">কিন্ডেলের মতো</string>

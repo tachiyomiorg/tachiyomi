@@ -146,7 +146,6 @@
     <string name="label_extensions">افزونه‌ها</string>
     <string name="label_migration">تغییر منبع</string>
     <string name="label_backup">پشتیبان گیری</string>
-    <string name="label_categories">دسته بندی ها</string>
     <string name="label_sources">منابع</string>
     <string name="label_recent_manga">سابقه</string>
     <string name="label_recent_updates">آپدیت ها</string>
@@ -195,7 +194,6 @@
     <string name="pref_enable_automatic_extension_updates">بررسی برای به افزونه‌های آپدیت‌شده</string>
     <string name="services">خدمات</string>
     <string name="pref_auto_update_manga_sync">بعد از خوانده‌شدن، وضعیت قسمت بروزرسانی شود</string>
-    <string name="pref_download_new_categories">دسته بندی هایی که در دانلود شامل می شوند</string>
     <string name="pref_download_new">دانلود قسمت‌های جدید</string>
     <string name="fifth_to_last">پنجم به آخرین قسمت خوانده شده</string>
     <string name="fourth_to_last">چهارم به آخرین قسمت خوانده شده</string>
@@ -336,10 +334,8 @@
     <string name="ext_updates_pending">آپدیت‌های در انتظار</string>
     <string name="all_lang">همه</string>
     <string name="all">همه</string>
-    <string name="pref_library_update_categories">دسته بندی هایی که در به آپدیت سراسری شامل می شوند</string>
     <string name="default_category_summary">همیشه بپرس</string>
     <string name="default_category">دسته بندی پیشفرض</string>
-    <string name="pref_category_library_categories">دسته بندی ها</string>
     <string name="pref_library_update_error_notification">خطاهای آپدیت در اعلان‌ها نمایش داده شود</string>
     <string name="pref_library_update_refresh_metadata_summary">هنگام آپدیت عکس روی جلد و اطلاعات مانگا ها (در صورت تغییر) آپدیت شوند</string>
     <string name="pref_library_update_refresh_metadata">متادیتا فقط به صورت خودکار آپدیت شود</string>
@@ -570,7 +566,7 @@
     </plurals>
     <plurals name="manga_num_chapters">
         <item quantity="one">1 قسمت</item>
-        <item quantity="other">%1$ قسمت</item>
+        <item quantity="other">%1$s قسمت</item>
     </plurals>
     <string name="unknown_status">وضعیت ناشناخته</string>
     <string name="unknown_author">نویسنده ناشناخته</string>
@@ -601,10 +597,6 @@
     <string name="clear_history_confirmation">آیا مطمئن هستید؟ تمام سابقه از دست خواهد رفت.</string>
     <string name="clear_history_completed">سابقه پاک شد</string>
     <string name="invalid_backup_file_type">فایل پشتیبان نامعتبر: %1$s</string>
-    <string name="full_restore_online">بازگردانی آنلاین، بسیار کندتر اما به شما اطلاعات به روز شده و قسمت های بیشتری ارائه میکند</string>
-    <string name="full_restore_offline">بازگردانی آفلاین، به سرعت به پایان می رسد اما فقط شامل آنچه فایل پشتیبان شما دارد میشود</string>
-    <string name="full_restore_mode">حالت شبکه</string>
-    <string name="pref_clear_history_summary">پاک کردن سابقه ی خواندن برای تمام مانگاها</string>
     <string name="pref_create_legacy_backup_summary">در نسخه های قدیمی تر Tachiyomi قابل استفاده است</string>
     <string name="ext_nsfw_short">18+</string>
     <string name="pref_category_nsfw_content">منابع محتوای جنسی (+18)</string>

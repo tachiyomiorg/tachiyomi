@@ -7,9 +7,7 @@
     android:layout_gravity="center_vertical"
     android:background="@drawable/list_item_selector_background"
     android:paddingStart="8dp"
-    android:paddingEnd="8dp"
-    tools:layout_editor_absoluteX="0dp"
-    tools:layout_editor_absoluteY="25dp">
+    android:paddingEnd="8dp">
 
     <ImageView
         android:id="@+id/thumbnail"

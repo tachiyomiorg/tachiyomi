@@ -15,7 +15,6 @@
     <string name="action_settings">ตั้งค่า</string>
     <string name="action_filter">ตัวกรอง</string>
     <string name="label_recent_updates">อัพเดทห้องสมุด</string>
-    <string name="label_categories">ประเภท</string>
     <string name="action_filter_downloaded">ดาวน์โหลดแล้ว</string>
     <string name="action_filter_unread">ยังไม่ได้อ่าน</string>
     <string name="action_filter_empty">ลบตัวกรอง</string>
@@ -116,7 +115,6 @@
     <string name="landscape">แนวนอน</string>
     <string name="pref_library_update_interval">ความถี่การปรับปรุงข้อมูลห้องสมุด</string>
     <string name="update_never">คู่มือ</string>
-    <string name="pref_library_update_categories">หมวดหมู่ที่จะปรับปรุงข้อมูลทั้งหมด</string>
     <string name="pref_library_update_restriction">จำกัดการปรับปรุงห้องสมุด</string>
     <string name="pref_library_update_restriction_summary">ปรับปรุงตามเงื่อนไข</string>
     <string name="pref_update_only_non_completed">ปรับปรุงเฉพาะมังงะที่ดำเนินต่อ</string>
@@ -191,7 +189,6 @@
     <string name="fourth_to_last">4 บท ถึง บทสุดท้าย</string>
     <string name="fifth_to_last">5 บท ถึง บทสุดท้าย</string>
     <string name="pref_download_new">ดาวน์โหลดบทใหม่</string>
-    <string name="pref_download_new_categories">ประเภทที่จะรวมในการดาวน์โหลด</string>
     <string name="services">บริการ</string>
     <string name="backup">การสำรองข้อมูล</string>
     <string name="pref_create_backup">สร้างการสำรองข้อมูล</string>

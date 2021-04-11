@@ -8,7 +8,6 @@
     <string name="history">Előzmények</string>
     <string name="label_settings">Beállítások</string>
     <string name="label_recent_manga">Előzmények</string>
-    <string name="label_categories">Kategóriák</string>
     <string name="label_backup">Biztonsági mentés</string>
     <string name="action_settings">Beállítások</string>
     <string name="action_search">Keresés</string>
@@ -46,7 +45,6 @@
     <string name="update_24hour">Naponta</string>
     <string name="update_48hour">2 naponta</string>
     <string name="update_weekly">Hetente</string>
-    <string name="pref_library_update_categories">Globális frissítésben tartalmazott kategóriák</string>
     <string name="all">Összes</string>
     <string name="pref_library_update_restriction">Könyvtárfrissítési korlátozások</string>
     <string name="pref_library_update_restriction_summary">Frissítés csak akkor, ha a feltételek teljesülnek</string>
@@ -147,7 +145,7 @@
     <string name="vertical_viewer">Függőlegesen</string>
     <string name="webtoon_viewer">Folytonos</string>
     <string name="scale_type_fit_screen">Képernyőhöz igazítás</string>
-    <string name="label_migration">Forrás váltása</string>
+    <string name="label_migration">Áttelepítés</string>
     <string name="label_extensions">Bővítmények</string>
     <string name="ext_untrusted">Nem megbízható</string>
     <string name="ext_uninstall">Eltávolítás</string>
@@ -254,7 +252,6 @@
         <item quantity="one">%d kategória</item>
         <item quantity="other">%d kategóriák</item>
     </plurals>
-    <string name="pref_category_library_categories">Kategóriák</string>
     <string name="pref_library_update_error_notification">Frissítési hibaértesítések megjelenítése</string>
     <string name="pref_library_update_refresh_metadata_summary">Új borító és részletek keresése a könyvtár frissítésekor</string>
     <string name="pref_library_update_refresh_metadata">Metaadatokat frissítse automatikusan</string>
@@ -273,4 +270,75 @@
     <string name="ext_version_info">Verzió: %1$s</string>
     <string name="unofficial_extension_message">Ez a bővítmény nem a hivatalos Tachiyomi bővítménylistából származik.</string>
     <string name="obsolete_extension_message">Ez a bővítmény nem elérhető többé.</string>
+    <string name="add_to_library">Könyvtárhoz adás</string>
+    <string name="unknown_status">Ismeretlen állapot</string>
+    <string name="unknown_author">Ismeretlen szerző</string>
+    <string name="unknown">Ismeretlen</string>
+    <string name="description">Leírás</string>
+    <string name="manga_detail_tab">Infó</string>
+    <string name="login_success">Bejelentkezve</string>
+    <string name="remove_from_library">Eltávolítva a könyvtárból</string>
+    <string name="in_library">A könyvtárban</string>
+    <string name="pref_category_reading">Olvasás</string>
+    <string name="label_data">Adat</string>
+    <string name="backup_created">Biztonsági mentés létrehozva</string>
+    <string name="information_empty_category">Nincsenek kategóriái. Érintse meg a plusz gombot, hogy létrehozzon egyet a könyvtára rendezéséhez.</string>
+    <string name="pinned_sources">Kitűzött</string>
+    <string name="other_source">Egyéb</string>
+    <string name="manga_tracking_tab">Követés</string>
+    <string name="manga_chapters_tab">Fejezetek</string>
+    <string name="copied_to_clipboard">Vágólapra másolva:
+\n%1$s</string>
+    <string name="delete_downloads_for_manga">Törli a kijelölt fejezeteket\?</string>
+    <plurals name="manga_num_chapters">
+        <item quantity="one">1 fejezet</item>
+        <item quantity="other">%1$s fejezet</item>
+    </plurals>
+    <string name="spen_previous_page">Előző oldal</string>
+    <string name="chapter_error">Hiba</string>
+    <string name="website">Weboldal</string>
+    <string name="check_for_updates">Frissítések keresése</string>
+    <string name="licenses">Nyílt forráskódú licenc</string>
+    <string name="show_password">Jelszó megjelenítése</string>
+    <string name="tabs_header">Lapok</string>
+    <string name="badges_header">Jelvények</string>
+    <string name="manga_from_library">Manga a könyvtárból</string>
+    <string name="nav_zone_prev">Előző</string>
+    <string name="notification_chapters_single">%1$s. fejezet</string>
+    <plurals name="notification_chapters_generic">
+        <item quantity="one">1 új fejezet</item>
+        <item quantity="other">%1$d új fejezet</item>
+    </plurals>
+    <plurals name="notification_update_error">
+        <item quantity="one">%1$d frissítés sikertelen</item>
+        <item quantity="other">%1$d frissítés sikertelen</item>
+    </plurals>
+    <string name="cover_updated">Borító frissítve</string>
+    <string name="set_as_cover">Beállítás borítóként</string>
+    <string name="custom_filter">Egyedi szűrő</string>
+    <string name="manga_chapter_no_title">Nincs cím</string>
+    <string name="manga_removed_library">Eltávolítva a könyvtárból</string>
+    <string name="manga_added_library">Könyvtárhoz adva</string>
+    <string name="manga_info_full_title_label">Cím</string>
+    <string name="spen_next_page">Következő oldal</string>
+    <string name="group_backup_restore">Mentés és visszaállítás</string>
+    <string name="group_downloader">Letöltések</string>
+    <string name="channel_errors">Hibák</string>
+    <string name="channel_complete">Befejezve</string>
+    <string name="channel_progress">Előrehaladás</string>
+    <string name="zoom_start_center">Központ</string>
+    <string name="zoom_start_right">Jobb</string>
+    <string name="zoom_start_left">Bal</string>
+    <string name="tapping_inverted_both">Mindkettő</string>
+    <string name="tapping_inverted_vertical">Függőleges</string>
+    <string name="tapping_inverted_horizontal">Vízszintes</string>
+    <string name="information_no_recent_manga">Semmit nem olvasott a közelmúltban</string>
+    <string name="nav_zone_right">Jobb</string>
+    <string name="nav_zone_left">Bal</string>
+    <string name="nav_zone_next">Következő</string>
+    <string name="right_and_left_nav">Jobb és bal</string>
+    <string name="default_nav">Alapértelmezett</string>
+    <string name="filter_mode_default">Alapértelmezett</string>
+    <string name="copy">Másolás</string>
+    <string name="migrate">Áttelepítés</string>
 </resources>

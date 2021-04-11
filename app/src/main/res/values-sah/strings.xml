@@ -48,7 +48,6 @@
     <string name="label_extensions">Кэҥэтии</string>
     <string name="label_migration">Көһүү</string>
     <string name="label_backup">Хаппаас куопуйа</string>
-    <string name="label_categories">Бөлөхтөр</string>
     <string name="label_sources">Төрүттэр</string>
     <string name="label_recent_manga">Остуоруйа</string>
     <string name="label_recent_updates">Саҥардыылар</string>
@@ -62,7 +61,6 @@
     </plurals>
     <string name="default_category_summary">Наар ыйыт</string>
     <string name="default_category">Куолутунан бөлөх</string>
-    <string name="pref_category_library_categories">Бөлөхтөр</string>
     <string name="pref_library_update_error_notification">Саҥардыы сыаһатын туһунан биллэриилэри көрдөр</string>
     <string name="pref_library_update_refresh_metadata_summary">Саҥа тас уонна кыра чаастар баалларын, бэрэбиэркэлээ</string>
     <string name="pref_library_update_refresh_metadata">Метаданнайдары автоматическайдык саҥарт</string>
@@ -284,7 +282,6 @@
     <string name="ext_updates_pending">Саҥардыылары кэтэһэбит</string>
     <string name="all_lang">Барыта</string>
     <string name="all">Барыта</string>
-    <string name="pref_library_update_categories">Толору көрдөөһүннэ киирбит бөлөхтөр</string>
     <string name="pref_clear_cookies">Кукины ырааста</string>
     <string name="label_network">Ситим</string>
     <string name="restoring_backup_canceled">Төнүҥнэри тохтоото</string>
@@ -325,7 +322,6 @@
     <string name="tracking_info">Биир өттүттэн мэнэйдэһии, кэтээһин өҥөлөргө баар түһүмэхтэр туруктарын саҥардыыга. Маанга туспа суругун уонна талкыйын кэтээһинин түстэлгэ уларыт.</string>
     <string name="services">Өҥөлөр</string>
     <string name="pref_auto_update_manga_sync">Түһүмэх туругун ааҕы кэннэ саҥарт</string>
-    <string name="pref_download_new_categories">Хачайдааһыҥҥа киирбит бөлөхтөр</string>
     <string name="pref_download_new">Саҥа түһүмэхтэри хачайдаа</string>
     <string name="fifth_to_last">Бүтэһик түһүмэхтэн бэһис</string>
     <string name="fourth_to_last">Бүтэһик түһүмэхтэн төрдүс</string>
@@ -534,7 +530,6 @@
     <string name="manga_from_library">Бэбэлэтиэкэттэн маанга</string>
     <string name="pref_incognito_mode_summary">Ааҕы остуоруйатын тохтотор</string>
     <string name="pref_incognito_mode">Кистэлэҥ эрэһиимэ</string>
-    <string name="pref_clear_history_summary">Маангаҕа барытыгар ааҕы остуоруйатын сотторуу</string>
     <string name="pref_clear_history">Остуоруйаны сотторуу</string>
     <string name="clear_history_confirmation">Эрэллээххин дуо\? Остуоруйа барыта сотторуллуоҕа.</string>
     <string name="clear_history_completed">Остуоруйа сотторулунна</string>
@@ -549,9 +544,6 @@
     <string name="myanimelist_creds_missing">MAL учуотнай дааннайдара булуллубата</string>
     <string name="invalid_backup_file_type">Хаппаас куопуйа сыыһа ааттах: %1$s
 \n.proto.gz or .json. диэн бүтүөхтээх</string>
-    <string name="full_restore_offline">Оффлайн чөлүгэр түһэрии - түргэнник үлэлиир, ол эрээри хаппаас куопуйаҕа эрэ баары таһаарар</string>
-    <string name="full_restore_online">Онлайн чөлүгэр түһэрии - бытааннык үлэлиир , ол эрээри эһиэхэ ордук саҥа информацияны уонна түһүмэхтэри таһаарар</string>
-    <string name="full_restore_mode">Ситимнээх эрэһиим</string>
     <string name="pref_backup_auto_create_legacy">Урукку формаатынан хаппас куопуйаны эбии оҥоруу</string>
     <string name="pref_create_legacy_backup_summary">Tachiyomi урукку биэрсийэлэригэр туттуллуон сөп</string>
     <string name="pref_create_legacy_backup">Урукку формаатынан хаппаас куопуйаны оҥоруу</string>

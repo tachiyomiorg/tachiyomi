@@ -43,12 +43,11 @@ class BackupRestoreService : Service() {
          * @param context context of application
          * @param uri path of Uri
          */
-        fun start(context: Context, uri: Uri, mode: Int, online: Boolean?) {
+        fun start(context: Context, uri: Uri, mode: Int) {
             if (!isRunning(context)) {
                 val intent = Intent(context, BackupRestoreService::class.java).apply {
                     putExtra(BackupConst.EXTRA_URI, uri)
                     putExtra(BackupConst.EXTRA_MODE, mode)
-                    online?.let { putExtra(BackupConst.EXTRA_TYPE, it) }
                 }
                 ContextCompat.startForegroundService(context, intent)
             }
@@ -119,13 +118,12 @@ class BackupRestoreService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val uri = intent?.getParcelableExtra<Uri>(BackupConst.EXTRA_URI) ?: return START_NOT_STICKY
         val mode = intent.getIntExtra(BackupConst.EXTRA_MODE, BackupConst.BACKUP_TYPE_FULL)
-        val online = intent.getBooleanExtra(BackupConst.EXTRA_TYPE, true)
 
         // Cancel any previous job if needed.
         backupRestore?.job?.cancel()
 
         backupRestore = when (mode) {
-            BackupConst.BACKUP_TYPE_FULL -> FullBackupRestore(this, notifier, online)
+            BackupConst.BACKUP_TYPE_FULL -> FullBackupRestore(this, notifier)
             else -> LegacyBackupRestore(this, notifier)
         }
 

@@ -71,25 +71,24 @@ jobs:
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
 
-      - name: Create release
+      - name: Clean up build artifacts
         if: startsWith(github.ref, 'refs/tags/') && github.repository == 'tachiyomiorg/tachiyomi'
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cp ${{ env.SIGNED_RELEASE_FILE }} tachiyomi-${{ env.VERSION_TAG }}.apk
+          md5=`md5sum tachiyomi-${{ env.VERSION_TAG }}.apk | awk '{ print $1 }'`
+          echo "APK_MD5=$md5" >> $GITHUB_ENV
+
+      - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'tachiyomiorg/tachiyomi'
+        uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ env.VERSION_TAG }}
-          release_name: Tachiyomi ${{ env.VERSION_TAG }}
-          draft: true
+          name: Tachiyomi ${{ env.VERSION_TAG }}
+          body: |
+            MD5: ${{ env.APK_MD5 }}
+          files: |
+            tachiyomi-${{ env.VERSION_TAG }}.apk
+          draft: ${{ github.event.inputs.dry-run != '' }}
           prerelease: false
-
-      - name: Upload APK to release
-        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'tachiyomiorg/tachiyomi'
-        uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ env.SIGNED_RELEASE_FILE }}
-          asset_name: tachiyomi-${{ env.VERSION_TAG }}.apk
-          asset_content_type: application/vnd.android.package-archive

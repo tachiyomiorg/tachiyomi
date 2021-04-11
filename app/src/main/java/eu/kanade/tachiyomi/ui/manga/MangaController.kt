@@ -26,6 +26,7 @@ import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.snackbar.Snackbar
+import dev.chrisbanes.insetter.applyInsetter
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.SelectableAdapter
 import eu.kanade.tachiyomi.R
@@ -72,6 +73,7 @@ import eu.kanade.tachiyomi.ui.recent.updates.UpdatesController
 import eu.kanade.tachiyomi.ui.webview.WebViewActivity
 import eu.kanade.tachiyomi.util.chapter.NoChaptersException
 import eu.kanade.tachiyomi.util.hasCustomCover
+import eu.kanade.tachiyomi.util.lang.launchUI
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.getCoordinates
@@ -199,6 +201,11 @@ class MangaController :
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
         binding = MangaControllerBinding.inflate(inflater)
+        binding.recycler.applyInsetter {
+            type(navigationBars = true) {
+                padding()
+            }
+        }
         return binding.root
     }
 
@@ -608,8 +615,9 @@ class MangaController :
 
     override fun openMangaCoverPicker(manga: Manga) {
         if (manga.favorite) {
-            val intent = Intent(Intent.ACTION_GET_CONTENT)
-            intent.type = "image/*"
+            val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
+                type = "image/*"
+            }
             startActivityForResult(
                 Intent.createChooser(
                     intent,
@@ -988,7 +996,9 @@ class MangaController :
         chapters.forEach {
             chaptersAdapter?.updateItem(it)
         }
-        chaptersAdapter?.notifyDataSetChanged()
+        launchUI {
+            chaptersAdapter?.notifyDataSetChanged()
+        }
     }
 
     fun onChaptersDeletedError(error: Throwable) {

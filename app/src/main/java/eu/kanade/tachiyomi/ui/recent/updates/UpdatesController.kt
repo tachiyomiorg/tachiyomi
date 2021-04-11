@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
 import androidx.recyclerview.widget.LinearLayoutManager
+import dev.chrisbanes.insetter.applyInsetter
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.SelectableAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
@@ -76,6 +77,11 @@ class UpdatesController :
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
         binding = UpdatesControllerBinding.inflate(inflater)
+        binding.recycler.applyInsetter {
+            type(navigationBars = true) {
+                padding()
+            }
+        }
         return binding.root
     }
 
@@ -210,6 +216,7 @@ class UpdatesController :
      */
     private fun downloadChapters(chapters: List<UpdatesItem>) {
         presenter.downloadChapters(chapters)
+        destroyActionModeIfNeeded()
     }
 
     /**
@@ -251,6 +258,7 @@ class UpdatesController :
         if (presenter.preferences.removeAfterMarkedAsRead()) {
             deleteChapters(chapters)
         }
+        destroyActionModeIfNeeded()
     }
 
     /**
@@ -259,10 +267,12 @@ class UpdatesController :
      */
     private fun markAsUnread(chapters: List<UpdatesItem>) {
         presenter.markChapterRead(chapters, false)
+        destroyActionModeIfNeeded()
     }
 
     override fun deleteChapters(chaptersToDelete: List<UpdatesItem>) {
         presenter.deleteChapters(chaptersToDelete)
+        destroyActionModeIfNeeded()
     }
 
     private fun destroyActionModeIfNeeded() {

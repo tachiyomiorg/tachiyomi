@@ -11,7 +11,6 @@
     <string name="label_library">Pustaka</string>
     <string name="label_recent_manga">Sejarah</string>
     <string name="label_recent_updates">Kemas kini</string>
-    <string name="label_categories">Kategori</string>
     <string name="label_backup">Sandaran</string>
     <string name="action_settings">Tetapan</string>
     <string name="action_filter">Tapis</string>
@@ -29,8 +28,8 @@
     <string name="action_mark_as_unread">Tandakan sebagai belum dibaca</string>
     <string name="action_mark_previous_as_read">Tandakan yang sebelum sebagai sudah dibaca</string>
     <string name="action_download">Muat turun</string>
-    <string name="action_bookmark">Penanda</string>
-    <string name="action_remove_bookmark">Buang penanda</string>
+    <string name="action_bookmark">Penanda bab</string>
+    <string name="action_remove_bookmark">Buang penanda bab</string>
     <string name="action_delete">Padam</string>
     <string name="action_update">Kemas kini</string>
     <string name="action_update_library">Kemas kini pustaka</string>
@@ -84,7 +83,7 @@
     <string name="portrait">Potret</string>
     <string name="landscape">Landskap</string>
     <string name="default_columns">Lalai</string>
-    <string name="pref_library_update_interval">Kekerapan kemas kini pustaka</string>
+    <string name="pref_library_update_interval">Kekerapan kemas kini</string>
     <string name="update_never">Manual</string>
     <string name="update_1hour">Setiap jam</string>
     <string name="update_2hour">Setiap 2 jam</string>
@@ -94,9 +93,8 @@
     <string name="update_24hour">Setiap hari</string>
     <string name="update_48hour">Setiap 2 hari</string>
     <string name="update_weekly">Setiap minggu</string>
-    <string name="pref_library_update_categories">Kategori bagi kemas kini keseluruhan</string>
     <string name="all">Semua</string>
-    <string name="pref_library_update_restriction">Batasan kemas kini pustaka</string>
+    <string name="pref_library_update_restriction">Batasan kemas kini</string>
     <string name="pref_library_update_restriction_summary">Kemas kini hanya apabila syarat dipenuhi</string>
     <string name="charging">Ketika mengecas</string>
     <string name="pref_update_only_non_completed">Hanya kemas kini manga yang masih berterusan</string>
@@ -161,7 +159,6 @@
     <string name="fourth_to_last">Bab keempat terakhir</string>
     <string name="fifth_to_last">Bab kelima terakhir</string>
     <string name="pref_download_new">Muat turun bab baharu</string>
-    <string name="pref_download_new_categories">Kategori untuk disertakan bagi muat turun</string>
     <string name="services">Perkhidmatan</string>
     <string name="backup">Sandaran</string>
     <string name="pref_create_backup">Buat sandaran</string>
@@ -233,7 +230,7 @@
     <string name="chapter_downloaded">Dimuat turun</string>
     <string name="chapter_queued">Diaturkan</string>
     <string name="chapter_downloading">Muat turun dalam progres</string>
-    <string name="chapter_downloading_progress">Muat turun dalam progres (%1$d/%2$d)</string>
+    <string name="chapter_downloading_progress">Memuat turun (%1$d/%2$d)</string>
     <string name="chapter_error">Ralat</string>
     <string name="chapter_paused">Dihenti sebentar</string>
     <string name="fetch_chapters_error">Tidak berhasil mendapatkan bab</string>
@@ -373,7 +370,7 @@
     <string name="information_empty_category">Tiada kategori dijumpai. Tekan butang tambah untuk membuat satu bagi menyusun pustaka.</string>
     <string name="pref_color_filter_mode">Mod turas warna campuran</string>
     <string name="label_help">Bantuan</string>
-    <string name="pref_library_update_prioritization">Susunan kemas kini pustaka</string>
+    <string name="pref_library_update_prioritization">Susunan kemas kini</string>
     <string name="filter_mode_default">Biasa</string>
     <string name="filter_mode_overlay">Lapisan atas</string>
     <string name="filter_mode_multiply">Berganda</string>
@@ -390,8 +387,7 @@
     <string name="ext_obsolete">Usang</string>
     <string name="obsolete_extension_message">Sambungan ini tidak lagi ada.</string>
     <string name="pref_date_format">Format tarikh</string>
-    <string name="pref_category_library_update">Pengemaskinian</string>
-    <string name="pref_category_library_categories">Kategori</string>
+    <string name="pref_category_library_update">Kemas kini keseluruhan</string>
     <string name="logout_title">Log keluar daripada %1$s\?</string>
     <string name="logout">Log keluar</string>
     <string name="logout_success">Anda telah log keluar</string>
@@ -412,7 +408,7 @@
     <string name="theme_dark_amoled">AMOLED</string>
     <string name="pref_manage_notifications">Uruskan pemberitahuan</string>
     <string name="pref_category_security">Keselamatan</string>
-    <string name="lock_with_biometrics">Kunci dengan biometrik</string>
+    <string name="lock_with_biometrics">Memerlukan buka kunci</string>
     <string name="lock_when_idle">Kunci apabila terbiar</string>
     <string name="lock_always">Selalu</string>
     <string name="lock_never">Tidak</string>
@@ -566,7 +562,7 @@
     <string name="unknown_author">Pengarang tidak diketahui</string>
     <string name="action_download_unread">Muat turun bab belum dibaca</string>
     <string name="updated_version">Dikemaskini ke v%1$s</string>
-    <string name="whats_new">Pembaharuan baharu</string>
+    <string name="whats_new">Apa yang terbaharu</string>
     <string name="action_sort_date_added">Tarikh ditambah</string>
     <string name="download_insufficient_space">Memuat turun tidak berjaya kerana kekurangan ruang storan</string>
     <string name="action_global_search_query">Cari untuk \"%1$s\" menggunakan carian keseluruhan</string>
@@ -605,15 +601,11 @@
     <string name="pref_hide_bottom_bar_on_scroll">Sembunyi bar bawah bila skrol</string>
     <string name="pref_incognito_mode_summary">Menjeda sejarah membaca</string>
     <string name="pref_incognito_mode">Mod inkognito</string>
-    <string name="pref_clear_history_summary">Padam sejarah membaca untuk semua manga</string>
     <string name="pref_clear_history">Padamkan sejarah</string>
     <string name="clear_history_confirmation">Anda pasti\? Semua sejarah akan hilang.</string>
     <string name="clear_history_completed">Sejarah dipadamkan</string>
     <string name="spen_next_page">Halaman seterusnya</string>
     <string name="spen_previous_page">Halaman terdahulu</string>
-    <string name="full_restore_offline">Pulih secara luar talian, selesai dengan cepat tetapi hanya ada apa yang ada dalam fail sandaran</string>
-    <string name="full_restore_online">Pulih secara dalam talian, ia perlahan tetapi memberikan maklumat and bab</string>
-    <string name="full_restore_mode">Mod Rangkaian</string>
     <string name="pref_backup_auto_create_legacy">Buat juga sandaran legasi</string>
     <string name="pref_create_legacy_backup_summary">Boleh digunakan pada versi Tachiyomi yang</string>
     <string name="pref_create_legacy_backup">Buat sandaran legasi</string>
@@ -629,7 +621,7 @@
     <string name="myanimelist_relogin">Sila log masuk ke MAL sekali lagi</string>
     <string name="default_nav">Lalai</string>
     <string name="pref_viewer_nav">Tataletak navigasi</string>
-    <string name="edge_nav">isi</string>
+    <string name="edge_nav">Sisi</string>
     <string name="kindlish_nav">Serupa Kindle</string>
     <string name="l_nav">Bentuk L</string>
     <string name="action_desc">Menurun</string>
@@ -646,4 +638,26 @@
     <string name="action_filter_tracked">Dijejaki</string>
     <string name="action_display_show_number_of_items">Tunjuk jumlah bilangan</string>
     <string name="right_and_left_nav">Kanan dan kiri</string>
+    <string name="pref_dual_page_split">Memisah dua muka surat</string>
+    <string name="pref_dual_page_invert_summary">Jika kedudukan memisah dua muka surat tidak sama dengan arah membaca</string>
+    <string name="pref_dual_page_invert">Songsangkan kedudukan memisah muka surat</string>
+    <string name="backup_restore_content_full">Data dari fail sandaran akan dipulihkan.
+\n
+\nAnda perlu memasang sambungan yang hilang dan log masuk ke penjejakan untuk menggunakannya.</string>
+    <string name="update_8hour">Setiap 8 jam</string>
+    <string name="update_4hour">Setiap 4 jam</string>
+    <string name="nav_zone_prev">Sebelumnya</string>
+    <string name="pref_show_navigation_mode_summary">Tunjukkan zon ketik apabila pembaca dibuka</string>
+    <string name="nav_zone_right">Kanan</string>
+    <string name="nav_zone_left">Kiri</string>
+    <string name="pref_show_navigation_mode">Tunjuk tindanan susun atur navigasi</string>
+    <string name="nav_zone_next">Seterusnya</string>
+    <string name="pref_dns_over_https">DNS melalui HTTPS</string>
+    <string name="action_sort_chapter_fetch_date">Tarikh diambil</string>
+    <string name="exclude">Kecuali: %s</string>
+    <string name="include">Hanya: %s</string>
+    <string name="none">Tiada</string>
+    <string name="pref_library_update_categories_details">Manga di dalam kategori berkecuali tidak akan dikemaskini walaupun ianya ada di dalam kategori hanya.</string>
+    <string name="pref_download_new_categories_details">Manga di dalam kategori berkecuali tidak akan dimuat turun walaupun ianya ada di dalam kategori hanya.</string>
+    <string name="pref_category_auto_download">Muat turun automatik</string>
 </resources>

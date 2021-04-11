@@ -11,7 +11,6 @@
     <string name="label_library">Bibliotek</string>
     <string name="label_recent_manga">Historik</string>
     <string name="label_recent_updates">Nytt</string>
-    <string name="label_categories">Kategorier</string>
     <string name="label_backup">Säkerhetskopiering</string>
     <string name="label_migration">Migrera</string>
     <string name="label_extensions">Tillägg</string>
@@ -32,8 +31,8 @@
     <string name="action_mark_as_unread">Markera som oläst</string>
     <string name="action_mark_previous_as_read">Markera tidigare som läst</string>
     <string name="action_download">Ladda ner</string>
-    <string name="action_bookmark">Bokmärke</string>
-    <string name="action_remove_bookmark">Radera bokmärke</string>
+    <string name="action_bookmark">Kapitel bokmärke</string>
+    <string name="action_remove_bookmark">Radera kapitel bokmärke</string>
     <string name="action_delete">Radera</string>
     <string name="action_update">Uppdatera</string>
     <string name="action_update_library">Uppdatera biblioteket</string>
@@ -98,7 +97,6 @@
     <string name="update_24hour">Dagligen</string>
     <string name="update_48hour">Varannan dag</string>
     <string name="update_weekly">Varje vecka</string>
-    <string name="pref_library_update_categories">Kategorier för global uppdatering</string>
     <string name="all">Alla</string>
     <string name="pref_library_update_restriction">Uppdateringsrestriktioner</string>
     <string name="pref_library_update_restriction_summary">Uppdatera endast när vilkoren är uppfyllda</string>
@@ -114,7 +112,7 @@
     <string name="ext_update">Uppdatera</string>
     <string name="ext_install">Installera</string>
     <string name="ext_pending">Väntade</string>
-    <string name="ext_downloading">Hämtar</string>
+    <string name="ext_downloading">Laddar ner</string>
     <string name="ext_installing">Installerar</string>
     <string name="ext_installed">Installerad</string>
     <string name="ext_trust">Förtroende</string>
@@ -189,7 +187,6 @@
     <string name="fourth_to_last">Fjärde till sista kapitlet</string>
     <string name="fifth_to_last">Femte till sista kapitlet</string>
     <string name="pref_download_new">Ladda ner nya kapitel</string>
-    <string name="pref_download_new_categories">Kategorier att inkludera i nedladdning</string>
     <string name="services">Tjänster</string>
     <string name="backup">Säkerhetskopiering</string>
     <string name="pref_create_backup">Skapa säkerhetskopia</string>
@@ -240,10 +237,10 @@
     <string name="select_source">Välj en källa</string>
     <string name="no_valid_sources">Vänligen aktivera minst en giltig källa</string>
     <string name="no_more_results">Inga mer resultat</string>
-    <string name="local_source">Lokal källa</string>
+    <string name="local_source">Lokal manga</string>
     <string name="other_source">Andra</string>
     <string name="invalid_combination">Standard kan inte väljas med andra kategorier</string>
-    <string name="added_to_library">Mangan har lagts till i din bibliotek</string>
+    <string name="added_to_library">Mangan har lagts till i ditt bibliotek</string>
     <string name="action_global_search_hint">Global sökning…</string>
     <string name="latest">Senaste</string>
     <string name="browse">Bläddra</string>
@@ -390,8 +387,7 @@
     <string name="ext_obsolete">Obsolet</string>
     <string name="obsolete_extension_message">Detta tillägg är inte längre tillgänglig.</string>
     <string name="pref_date_format">Datumformat</string>
-    <string name="pref_category_library_update">Uppdateringar</string>
-    <string name="pref_category_library_categories">Kategorier</string>
+    <string name="pref_category_library_update">Global uppdatering</string>
     <string name="logout_title">Logga ut från %1$s\?</string>
     <string name="logout">Logga ut</string>
     <string name="logout_success">Du är nu utloggad</string>
@@ -412,7 +408,7 @@
     <string name="theme_dark_amoled">AMOLED svart</string>
     <string name="pref_manage_notifications">Hantera aviseringar</string>
     <string name="pref_category_security">Säkerhet</string>
-    <string name="lock_with_biometrics">Lås med biometri</string>
+    <string name="lock_with_biometrics">Kräv upplåsning</string>
     <string name="lock_when_idle">Lås vid inaktivitet</string>
     <string name="lock_always">Alltid</string>
     <string name="lock_never">Aldrig</string>
@@ -615,7 +611,6 @@
     <string name="manga_from_library">Manga från biblioteket</string>
     <string name="pref_incognito_mode_summary">Pausar läshistoriken</string>
     <string name="pref_incognito_mode">Inkognitoläge</string>
-    <string name="pref_clear_history_summary">Radera läshistorik för all manga</string>
     <string name="pref_clear_history">Rensa historik</string>
     <string name="clear_history_confirmation">Är du säker\? All historik kommer att försvinna.</string>
     <string name="clear_history_completed">Historiken har tagits bort</string>
@@ -623,9 +618,6 @@
     <string name="action_search_settings">Sök inställningar</string>
     <string name="spen_next_page">Nästa sida</string>
     <string name="spen_previous_page">Föregående sida</string>
-    <string name="full_restore_offline">Återställ offline, klar snabbt men innehåller bara vad din säkerhetskopia har</string>
-    <string name="full_restore_online">Återställ online, mycket segare men ger dig mer uppdaterad infomration och kapitel</string>
-    <string name="full_restore_mode">Nätverksläge</string>
     <string name="pref_create_legacy_backup_summary">Kan används i äldre versioner av Tachiyomi</string>
     <string name="migration_help_guide">Migreringsguide för källor</string>
     <string name="invalid_backup_file_type">Ogiltig säkerhetskopia: %1$s
@@ -658,4 +650,26 @@
     <string name="action_filter_tracked">Spåras</string>
     <string name="right_and_left_nav">Höger och Vänster</string>
     <string name="action_display_show_number_of_items">Visa antal objekt</string>
+    <string name="pref_dual_page_split">Delning av dubbelsidor</string>
+    <string name="backup_restore_content_full">Data från säkerhetskopian återställs.
+\n
+\nDu måste installera eventuella tillägg som saknas och logga in på spårningstjänster efteråt för att kunna använda dem.</string>
+    <string name="nav_zone_right">Höger</string>
+    <string name="nav_zone_left">Vänster</string>
+    <string name="nav_zone_next">Nästa</string>
+    <string name="nav_zone_prev">Föregående</string>
+    <string name="pref_dual_page_invert_summary">Om placeringen av dubbelsidesdelningen inte matchar läsriktningen</string>
+    <string name="pref_dual_page_invert">Invertera dubbelsidig delad placering</string>
+    <string name="pref_show_navigation_mode_summary">Visa tryckzoner kort när läsaren öppnas</string>
+    <string name="pref_show_navigation_mode">Visa överlägg för navigeringslayout</string>
+    <string name="update_8hour">Var 8:e timme</string>
+    <string name="update_4hour">Var 4:e timme</string>
+    <string name="pref_dns_over_https">DNS över HTTPS</string>
+    <string name="exclude">Exkludera: %s</string>
+    <string name="include">Inkludera: %s</string>
+    <string name="none">Ingen</string>
+    <string name="action_sort_chapter_fetch_date">Datum hämtat</string>
+    <string name="pref_download_new_categories_details">Manga i uteslutna kategorier laddas inte ner även om de också ingår i inkluderade kategorier.</string>
+    <string name="pref_category_auto_download">Ladda ned automatiskt</string>
+    <string name="pref_library_update_categories_details">Manga i uteslutna kategorier uppdateras inte även om de också ingår i inkluderade kategorier.</string>
 </resources>

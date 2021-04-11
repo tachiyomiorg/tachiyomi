@@ -17,9 +17,13 @@ import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService.Target
 import eu.kanade.tachiyomi.network.NetworkHelper
+import eu.kanade.tachiyomi.network.PREF_DOH_CLOUDFLARE
+import eu.kanade.tachiyomi.network.PREF_DOH_GOOGLE
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.util.CrashLogUtil
 import eu.kanade.tachiyomi.util.preference.defaultValue
+import eu.kanade.tachiyomi.util.preference.intListPreference
+import eu.kanade.tachiyomi.util.preference.onChange
 import eu.kanade.tachiyomi.util.preference.onClick
 import eu.kanade.tachiyomi.util.preference.preference
 import eu.kanade.tachiyomi.util.preference.preferenceCategory
@@ -110,16 +114,6 @@ class SettingsAdvancedController : SettingsController() {
                     ctrl.showDialog(router)
                 }
             }
-            preference {
-                titleRes = R.string.pref_clear_history
-                summaryRes = R.string.pref_clear_history_summary
-
-                onClick {
-                    val ctrl = ClearHistoryDialogController()
-                    ctrl.targetController = this@SettingsAdvancedController
-                    ctrl.showDialog(router)
-                }
-            }
         }
 
         preferenceCategory {
@@ -134,11 +128,26 @@ class SettingsAdvancedController : SettingsController() {
                     activity?.toast(R.string.cookies_cleared)
                 }
             }
-            switchPreference {
-                key = Keys.enableDoh
+            intListPreference {
+                key = Keys.dohProvider
                 titleRes = R.string.pref_dns_over_https
-                summaryRes = R.string.requires_app_restart
-                defaultValue = false
+                entries = arrayOf(
+                    context.getString(R.string.disabled),
+                    "Cloudflare",
+                    "Google",
+                )
+                entryValues = arrayOf(
+                    "-1",
+                    PREF_DOH_CLOUDFLARE.toString(),
+                    PREF_DOH_GOOGLE.toString(),
+                )
+                defaultValue = "-1"
+                summary = "%s"
+
+                onChange {
+                    activity?.toast(R.string.requires_app_restart)
+                    true
+                }
             }
         }
 
@@ -195,22 +204,6 @@ class SettingsAdvancedController : SettingsController() {
                 }
                 .negativeButton(android.R.string.cancel)
         }
-    }
-
-    class ClearHistoryDialogController : DialogController() {
-        override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-            return MaterialDialog(activity!!)
-                .message(R.string.clear_history_confirmation)
-                .positiveButton(android.R.string.ok) {
-                    (targetController as? SettingsAdvancedController)?.clearHistory()
-                }
-                .negativeButton(android.R.string.cancel)
-        }
-    }
-
-    private fun clearHistory() {
-        db.deleteHistory().executeAsBlocking()
-        activity?.toast(R.string.clear_history_completed)
     }
 
     private fun clearDatabase() {

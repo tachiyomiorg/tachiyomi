@@ -2,11 +2,16 @@ package eu.kanade.tachiyomi.ui.main
 
 import android.app.SearchManager
 import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
 import androidx.lifecycle.lifecycleScope
@@ -18,6 +23,7 @@ import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.behavior.HideBottomViewOnScrollBehavior
+import dev.chrisbanes.insetter.applyInsetter
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.Migrations
 import eu.kanade.tachiyomi.R
@@ -43,6 +49,7 @@ import eu.kanade.tachiyomi.ui.recent.history.HistoryController
 import eu.kanade.tachiyomi.ui.recent.updates.UpdatesController
 import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.lang.launchUI
+import eu.kanade.tachiyomi.util.system.toast
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import timber.log.Timber
@@ -83,6 +90,35 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
 
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
+
+        // Draw edge-to-edge
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        binding.appbar.applyInsetter {
+            type(navigationBars = true, statusBars = true) {
+                padding(left = true, top = true, right = true)
+            }
+        }
+        binding.bottomNav.applyInsetter {
+            type(navigationBars = true) {
+                padding()
+            }
+        }
+        binding.rootFab.applyInsetter {
+            type(navigationBars = true) {
+                margin()
+            }
+        }
+
+        // Make sure navigation bar is on bottom when making it transparent
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
+            if (insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom > 0) {
+                // Keep scrim on light theme if windowLightNavigationBar is not available
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1 || isDarkMode) {
+                    window.navigationBarColor = Color.TRANSPARENT
+                }
+            }
+            insets
+        }
 
         tabAnimator = ViewHeightAnimator(binding.tabs, 0L)
         bottomNavAnimator = ViewHeightAnimator(binding.bottomNav)
@@ -301,11 +337,8 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
 
     private suspend fun resetExitConfirmation() {
         isConfirmingExit = true
-        val toast = Toast.makeText(this, R.string.confirm_exit, Toast.LENGTH_LONG)
-        toast.show()
-
+        val toast = toast(R.string.confirm_exit, Toast.LENGTH_LONG)
         delay(2000)
-
         toast.cancel()
         isConfirmingExit = false
     }

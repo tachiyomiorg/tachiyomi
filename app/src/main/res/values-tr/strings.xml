@@ -11,7 +11,6 @@
     <string name="label_library">Kitaplık</string>
     <string name="label_recent_manga">Geçmiş</string>
     <string name="label_recent_updates">Güncellemeler</string>
-    <string name="label_categories">Kategoriler</string>
     <string name="label_backup">Yedekleme</string>
     <string name="label_migration">Taşın</string>
     <string name="label_extensions">Uzantılar</string>
@@ -32,8 +31,8 @@
     <string name="action_mark_as_unread">Okunmamış olarak işaretle</string>
     <string name="action_mark_previous_as_read">Öncekileri okunmuş olarak işaretle</string>
     <string name="action_download">İndir</string>
-    <string name="action_bookmark">İşaretle</string>
-    <string name="action_remove_bookmark">İşareti kaldır</string>
+    <string name="action_bookmark">Bölümü işaretle</string>
+    <string name="action_remove_bookmark">Bölümün işaretini kaldır</string>
     <string name="action_delete">Sil</string>
     <string name="action_update">Güncelle</string>
     <string name="action_update_library">Kitaplığı güncelle</string>
@@ -88,7 +87,7 @@
     <string name="portrait">Dikey</string>
     <string name="landscape">Yatay</string>
     <string name="default_columns">Öntanımlı</string>
-    <string name="pref_library_update_interval">Kitaplık güncelleme sıklığı</string>
+    <string name="pref_library_update_interval">Güncelleme sıklığı</string>
     <string name="update_never">Elle</string>
     <string name="update_1hour">Her saat</string>
     <string name="update_2hour">2 saatte bir</string>
@@ -98,9 +97,8 @@
     <string name="update_24hour">Her gün</string>
     <string name="update_48hour">2 günde bir</string>
     <string name="update_weekly">Her hafta</string>
-    <string name="pref_library_update_categories">Genel güncellemeye eklenecek kategoriler</string>
     <string name="all">Tümü</string>
-    <string name="pref_library_update_restriction">Kitaplık güncelleme kısıtlamaları</string>
+    <string name="pref_library_update_restriction">Güncelleme kısıtlamaları</string>
     <string name="pref_library_update_restriction_summary">Yalnızca koşullar sağlandığında güncelle</string>
     <string name="charging">Şarj oluyor</string>
     <string name="pref_update_only_non_completed">Yalnızca devam eden mangaları güncelleme</string>
@@ -189,7 +187,6 @@
     <string name="fourth_to_last">Sondan dördüncü bölüm</string>
     <string name="fifth_to_last">Sondan beşinci bölüm</string>
     <string name="pref_download_new">Yeni bölümleri indir</string>
-    <string name="pref_download_new_categories">İndirmeye eklenecek kategoriler</string>
     <string name="services">Hizmetler</string>
     <string name="backup">Yedekleme</string>
     <string name="pref_create_backup">Yedek oluştur</string>
@@ -379,7 +376,7 @@
     <string name="filter_mode_lighten">Kaçınma / Aydınlatma</string>
     <string name="filter_mode_darken">Yakma / Karartma</string>
     <string name="label_help">Yardım</string>
-    <string name="pref_library_update_prioritization">Kitaplık güncelleme sırası</string>
+    <string name="pref_library_update_prioritization">Güncelleme sırası</string>
     <string name="no_results_found">Sonuç bulunmadı</string>
     <string name="migration_selection_prompt">Taşınılacak bir kaynak seçin</string>
     <string name="action_webview_back">Geri</string>
@@ -390,10 +387,9 @@
     <string name="ext_obsolete">Eski</string>
     <string name="obsolete_extension_message">Bu uzantı artık kullanılamaz.</string>
     <string name="pref_date_format">Tarih biçimi</string>
-    <string name="pref_category_library_update">Güncellemeler</string>
-    <string name="pref_category_library_categories">Kategoriler</string>
+    <string name="pref_category_library_update">Genel güncelleme</string>
     <string name="logout_title">%1$s \'den çıkılsın mı\?</string>
-    <string name="logout">Çıkış</string>
+    <string name="logout">Çıkış yap</string>
     <string name="logout_success">Şimdi çıktınız</string>
     <string name="currently_reading">Şu anda okunan</string>
     <string name="paused">Duraklatıldı</string>
@@ -412,7 +408,7 @@
     <string name="theme_dark_amoled">AMOLED siyah</string>
     <string name="pref_manage_notifications">Bildirimleri yönet</string>
     <string name="pref_category_security">Güvenlik</string>
-    <string name="lock_with_biometrics">Biyometriyle kilitle</string>
+    <string name="lock_with_biometrics">Kilit açma gerektir</string>
     <string name="lock_when_idle">Boştayken kilitle</string>
     <string name="lock_always">Her zaman</string>
     <string name="lock_never">Asla</string>
@@ -617,15 +613,11 @@
     <string name="pref_hide_bottom_bar_on_scroll">Kaydırmada alt çubuğu gizle</string>
     <string name="pref_incognito_mode_summary">Okuma geçmişini duraklatır</string>
     <string name="pref_incognito_mode">Gizli kip</string>
-    <string name="pref_clear_history_summary">Tüm mangaların okuma geçmişini sil</string>
     <string name="pref_clear_history">Geçmişi temizle</string>
     <string name="clear_history_confirmation">Emin misiniz\? Tüm geçmiş kaybolacak.</string>
     <string name="clear_history_completed">Geçmiş silindi</string>
     <string name="spen_next_page">Sonraki sayfa</string>
     <string name="spen_previous_page">Önceki sayfa</string>
-    <string name="full_restore_offline">Çevrim dışı olarak geri yükle, hızlı bir şekilde tamamlanır ancak yalnızca yedeklemenizde bulunan şeyleri içerir</string>
-    <string name="full_restore_online">Çevrim içi olarak geri yükle, çok daha yavaş ancak size daha güncel bilgi ve bölümler sağlar</string>
-    <string name="full_restore_mode">Ağ Kipi</string>
     <string name="pref_backup_auto_create_legacy">Ayrıca eski yedekleme oluştur</string>
     <string name="pref_create_legacy_backup_summary">Tachiyomi\'nin eski sürümlerinde kullanılabilir</string>
     <string name="pref_create_legacy_backup">Eski yedekleme oluştur</string>
@@ -658,4 +650,26 @@
     <string name="action_filter_tracked">İzleniyor</string>
     <string name="action_display_show_number_of_items">Öge sayısını göster</string>
     <string name="right_and_left_nav">Sağ ve Sol</string>
+    <string name="pref_dual_page_split">Çift sayfalı bölme</string>
+    <string name="pref_dual_page_invert_summary">Çift sayfalı bölme yerleşimi okuma yönüyle eşleşmiyorsa</string>
+    <string name="pref_dual_page_invert">Çift sayfalı bölme yerleşimi ters çevir</string>
+    <string name="backup_restore_content_full">Yedek dosyadaki veriler geri yüklenecek.
+\n
+\nEksik uzantıları yüklemeniz ve daha sonra bunları kullanmak için izleme hizmetlerinde oturum açmanız gerekecektir.</string>
+    <string name="update_8hour">8 saatte bir</string>
+    <string name="update_4hour">4 saatte bir</string>
+    <string name="nav_zone_right">Sağ</string>
+    <string name="nav_zone_left">Sol</string>
+    <string name="nav_zone_next">Sonraki</string>
+    <string name="nav_zone_prev">Önceki</string>
+    <string name="pref_show_navigation_mode_summary">Okuyucu açıldığında dokunma bölgelerini göster</string>
+    <string name="pref_show_navigation_mode">Gezinme düzeni kaplamasını göster</string>
+    <string name="pref_dns_over_https">HTTPS üzerinden DNS</string>
+    <string name="exclude">Hariç tut: %s</string>
+    <string name="include">Dahil et: %s</string>
+    <string name="none">Yok</string>
+    <string name="action_sort_chapter_fetch_date">Alındığı tarih</string>
+    <string name="pref_download_new_categories_details">Hariç tutulan kategorilerdeki manga, dahil edilen kategorilerde olsa bile indirilmeyecektir.</string>
+    <string name="pref_category_auto_download">Otomatik indir</string>
+    <string name="pref_library_update_categories_details">Hariç tutulan kategorilerdeki manga, dahil edilen kategorilerde olsa bile güncellenmeyecektir.</string>
 </resources>

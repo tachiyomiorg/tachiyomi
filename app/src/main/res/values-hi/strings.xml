@@ -11,7 +11,6 @@
     <string name="label_library">पुस्तकालय</string>
     <string name="label_recent_manga">इतिहास</string>
     <string name="label_recent_updates">अद्यतन</string>
-    <string name="label_categories">श्रेणियाँ</string>
     <string name="label_backup">बैकअप</string>
     <string name="action_settings">सेटिंग</string>
     <string name="action_filter">फिल्टर</string>
@@ -29,8 +28,8 @@
     <string name="action_mark_as_unread">अपठित चिह्न करे</string>
     <string name="action_mark_previous_as_read">पिछले को पढ़ा हुआ चिह्न करे</string>
     <string name="action_download">डाउनलोड</string>
-    <string name="action_bookmark">पृष्ठ स्मृति करे</string>
-    <string name="action_remove_bookmark">पृष्ठ स्मृति हटाये</string>
+    <string name="action_bookmark">बुकमार्क अध्याय</string>
+    <string name="action_remove_bookmark">अध्याय बुकमार्क हटाये</string>
     <string name="action_delete">हटाये</string>
     <string name="action_update">अद्यतन</string>
     <string name="action_update_library">अद्यतन पुस्तकालय</string>
@@ -95,7 +94,6 @@
     <string name="update_24hour">हर रोज़</string>
     <string name="update_48hour">हर २ दिन</string>
     <string name="update_weekly">साप्ताहिक</string>
-    <string name="pref_library_update_categories">वैश्विक श्रेणियाँ जो अद्यतन में शामिल करनी है</string>
     <string name="all">समस्त</string>
     <string name="pref_library_update_restriction">पुस्तकालय अद्यतन प्रतिबंध</string>
     <string name="pref_library_update_restriction_summary">अद्यतन तभी जब परिस्थिति अनुकूल हो</string>
@@ -162,7 +160,6 @@
     <string name="fourth_to_last">चतुर्थ अंतिम अध्याय</string>
     <string name="fifth_to_last">अंतिम अध्याय के लिए पांचवां</string>
     <string name="pref_download_new">नए अध्याय डाउनलोड करें</string>
-    <string name="pref_download_new_categories">श्रेणियाँ डाउनलोड में शामिल करने के लिए</string>
     <string name="services">सेवाएं</string>
     <string name="backup">बैकअप</string>
     <string name="pref_create_backup">बैकअप बनाये</string>
@@ -391,7 +388,6 @@
     <string name="obsolete_extension_message">यह एक्सटेंशन अब उपलब्ध नहीं है।</string>
     <string name="pref_date_format">दिनांक स्वरूप</string>
     <string name="pref_category_library_update">अद्यतन</string>
-    <string name="pref_category_library_categories">श्रेणियाँ</string>
     <string name="logout_title">%1$s से लॉगआउट करें\?</string>
     <string name="logout">लॉग आउट</string>
     <string name="logout_success">अब आप लॉग आउट है</string>
@@ -617,7 +613,6 @@
     <string name="action_search_settings">खोज सेंटिंग</string>
     <string name="pref_incognito_mode_summary">इतिहास पढ़ने से रोक देता है</string>
     <string name="pref_incognito_mode">इंकॉग्निटो मोड</string>
-    <string name="pref_clear_history_summary">सभी मंगा के लिए पढ़ने का इतिहास हटाएं</string>
     <string name="pref_clear_history">इतिहास मिटा दें</string>
     <string name="clear_history_confirmation">क्या आपको यकीन है\? सारा इतिहास खो जाएगा।</string>
     <string name="clear_history_completed">इतिहास हटाया गया</string>
@@ -626,9 +621,6 @@
     <string name="spen_next_page">अगला पृष्ठ</string>
     <string name="spen_previous_page">पिछला पृष्ठ</string>
     <string name="migration_help_guide">स्रोत माइग्रेशन गाइड</string>
-    <string name="full_restore_offline">ऑफ़लाइन पुनर्स्थापित करें, जल्दी समाप्त हो जाता है, लेकिन केवल वही होता है जिसमें आपका बैकअप होता है</string>
-    <string name="full_restore_online">ऑनलाइन पुनर्स्थापित करें, बहुत धीमा लेकिन आपको अधिक अद्यतन जानकारी और अध्याय देता है</string>
-    <string name="full_restore_mode">नेटवर्क मोड</string>
     <string name="pref_backup_auto_create_legacy">विरासत बैकअप भी बनाएं</string>
     <string name="pref_create_legacy_backup_summary">Tachiyomi के पुराने संस्करणों में उपयोग किया जा सकता है</string>
     <string name="pref_create_legacy_backup">विरासत बैकअप बनाएँ</string>
@@ -658,4 +650,12 @@
     <string name="action_order_by_upload_date">अपलोड तिथि से</string>
     <string name="action_display_show_number_of_items">वस्तुओं की संख्या दिखाएं</string>
     <string name="action_filter_tracked">ट्रैक किए गए</string>
+    <string name="backup_restore_content_full">बैकअप फ़ाइल से डेटा बहाल किया जाएगा।
+\n
+\nआपको किसी भी लापता एक्सटेंशन को इंस्टॉल करना होगा और बाद में सेवाओं को ट्रैक करने के लिए लॉग इन करना होगा ताकि उनका उपयोग किया जा सके।</string>
+    <string name="pref_dual_page_invert_summary">यदि दोहरे पृष्ठ विभाजन की नियुक्ति पढ़ने की दिशा से मेल नहीं खाती है</string>
+    <string name="pref_dual_page_invert">दोहरे पृष्ठ विभाजन प्लेसमेंट को पलटना</string>
+    <string name="pref_dual_page_split">दोहरी पृष्ठ विभाजन (अल्फा)</string>
+    <string name="update_8hour">हर 8 घंटे में</string>
+    <string name="update_4hour">हर 4 घंटे में</string>
 </resources>

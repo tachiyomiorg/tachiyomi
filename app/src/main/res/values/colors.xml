@@ -3,6 +3,7 @@
     <!-- Application Colors -->
     <color name="colorPrimary">#54759E</color>
     <color name="colorPrimaryDark">#435E7E</color>
+    <color name="colorPrimary_70">#B354759E</color>
 
     <!-- Dark Application Colors -->
     <color name="colorDarkPrimary">#242529</color>
@@ -75,5 +76,12 @@
     <color name="md_blue_grey_800">#37474F</color>
 
     <color name="green">#47a84a</color>
+
+    <!-- Navigation overlay colors -->
+    <color name="navigation_next">#CB84E296</color>
+    <color name="navigation_prev">#CCFF7733</color>
+    <color name="navigation_menu">#CC95818D</color>
+    <color name="navigation_right">#CCA6CFD5</color>
+    <color name="navigation_left">#CC7D1128</color>
 
 </resources>

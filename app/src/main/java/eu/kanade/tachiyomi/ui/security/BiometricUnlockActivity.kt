@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricPrompt
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.util.system.BiometricUtil
 import uy.kohesive.injekt.injectLazy
 import java.util.Date
 import java.util.concurrent.Executors
@@ -38,12 +39,15 @@ class BiometricUnlockActivity : AppCompatActivity() {
             }
         )
 
-        val promptInfo = BiometricPrompt.PromptInfo.Builder()
+        var promptInfo = BiometricPrompt.PromptInfo.Builder()
             .setTitle(getString(R.string.unlock_app))
-            .setDeviceCredentialAllowed(true)
+            .setAllowedAuthenticators(BiometricUtil.getSupportedAuthenticators(this))
             .setConfirmationRequired(false)
-            .build()
 
-        biometricPrompt.authenticate(promptInfo)
+        if (!BiometricUtil.isDeviceCredentialAllowed(this)) {
+            promptInfo = promptInfo.setNegativeButtonText(getString(R.string.action_cancel))
+        }
+
+        biometricPrompt.authenticate(promptInfo.build())
     }
 }

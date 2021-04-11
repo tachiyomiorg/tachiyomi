@@ -10,7 +10,6 @@
     <string name="label_library">ბიბლიოთეკა</string>
     <string name="label_recent_updates">განახლებები</string>
     <string name="label_recent_manga">ისტორია</string>
-    <string name="label_categories">კატეგორიები</string>
     <string name="label_help">დახმარება</string>
     <string name="action_settings">პარამეტრები</string>
     <string name="action_menu">მენიუ</string>
@@ -137,7 +136,6 @@
     <string name="pref_update_only_non_completed">მხოლოდ განაახლე მიმდინარე მანგა</string>
     <string name="pref_library_update_refresh_metadata">ავტომატურად განაახლე მეტადატა</string>
     <string name="label_migration">მიგრაცია</string>
-    <string name="pref_category_library_categories">კატეგორიები</string>
     <string name="default_category">ნაგულისხმევი კატეგორია</string>
     <string name="theme_light_default">ნაგულისხმევი</string>
     <string name="theme_dark_default">ნაგულისხმევი</string>
@@ -146,7 +144,6 @@
     <string name="default_category_summary">ყოველთვის მკითხე</string>
     <string name="all">ყველა</string>
     <string name="all_lang">ყველა</string>
-    <string name="pref_library_update_categories">კატეგორიები გლობალურ განახლებაში შესაყვანად</string>
     <string name="ext_update">განაცლება</string>
     <string name="ext_install">დაინსტალირება</string>
     <string name="ext_installing">ინსტალირდება</string>
@@ -234,7 +231,6 @@
     <string name="fourth_to_last">ბოლოდან მეოთხე წაკითხული თავი</string>
     <string name="fifth_to_last">ბოლოდან მეხუთე წაკითხული თავი</string>
     <string name="pref_download_new">გადმოწერე ახალი თავები</string>
-    <string name="pref_download_new_categories">კატეგორიები გადმოსაწერთა სიაში</string>
     <string name="services">სერვისები</string>
     <string name="pref_auto_update_manga_sync">განაახლე თავის პროგრესი წაკითხვის შემდეგ</string>
     <string name="pref_enable_automatic_extension_updates">მოძებნე გავრცობის განახლებები</string>
@@ -585,4 +581,11 @@
     <string name="action_download_unread">გადმოიწეროს წაუკითხავი თავები</string>
     <string name="ext_nsfw_warning">შეიძლება შეიჩაცდეს უცენზურო(18+) კონტენტს</string>
     <string name="ext_nsfw_short">18+</string>
+    <string name="pref_remove_bookmarked_chapters">მონიშნული თავების წაშლა</string>
+    <string name="pref_category_delete_chapters">თავების წაშლა</string>
+    <string name="right_and_left_nav">მარჯვენა და მარცხენა</string>
+    <string name="pref_dual_page_split">გვერდების ორმაგი გაყოფა (ალფა)</string>
+    <string name="parental_controls_info">ეს არ აღმოფხვრავს პროგრამაში NSFW (18+) შიგთავსის არაოფიციალურ, ან შესაძლო არასწორად მონიშნული გაფართოებებოიდან გამოჩენას.</string>
+    <string name="action_display_show_number_of_items">საგნების რაოდენობის ჩვენება</string>
+    <string name="action_search_settings">პარამეტრების ძიება</string>
 </resources>

@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
+import androidx.core.text.buildSpannedString
 import androidx.preference.PreferenceScreen
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
@@ -28,6 +29,8 @@ import eu.kanade.tachiyomi.util.preference.summaryRes
 import eu.kanade.tachiyomi.util.preference.switchPreference
 import eu.kanade.tachiyomi.util.preference.titleRes
 import eu.kanade.tachiyomi.widget.MinMaxNumberPicker
+import eu.kanade.tachiyomi.widget.materialdialogs.QuadStateCheckBox
+import eu.kanade.tachiyomi.widget.materialdialogs.listItemsQuadStateMultiChoice
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -80,7 +83,7 @@ class SettingsLibraryController : SettingsController() {
         }
 
         preferenceCategory {
-            titleRes = R.string.pref_category_library_categories
+            titleRes = R.string.categories
 
             preference {
                 key = "pref_action_edit_categories"
@@ -126,13 +129,15 @@ class SettingsLibraryController : SettingsController() {
                     R.string.update_1hour,
                     R.string.update_2hour,
                     R.string.update_3hour,
+                    R.string.update_4hour,
                     R.string.update_6hour,
+                    R.string.update_8hour,
                     R.string.update_12hour,
                     R.string.update_24hour,
                     R.string.update_48hour,
                     R.string.update_weekly
                 )
-                entryValues = arrayOf("0", "1", "2", "3", "6", "12", "24", "48", "168")
+                entryValues = arrayOf("0", "1", "2", "3", "4", "6", "8", "12", "24", "48", "168")
                 defaultValue = "24"
                 summary = "%s"
 
@@ -164,23 +169,44 @@ class SettingsLibraryController : SettingsController() {
                 titleRes = R.string.pref_update_only_non_completed
                 defaultValue = false
             }
-            multiSelectListPreference {
+            preference {
                 key = Keys.libraryUpdateCategories
-                titleRes = R.string.pref_library_update_categories
-                entries = categories.map { it.name }.toTypedArray()
-                entryValues = categories.map { it.id.toString() }.toTypedArray()
-                preferences.libraryUpdateCategories().asFlow()
-                    .onEach { mutableSet ->
-                        val selectedCategories = mutableSet
-                            .mapNotNull { id -> categories.find { it.id == id.toInt() } }
-                            .sortedBy { it.order }
+                titleRes = R.string.categories
+                onClick {
+                    LibraryGlobalUpdateCategoriesDialog().showDialog(router)
+                }
 
-                        summary = if (selectedCategories.isEmpty()) {
-                            context.getString(R.string.all)
-                        } else {
-                            selectedCategories.joinToString { it.name }
-                        }
+                fun updateSummary() {
+                    val selectedCategories = preferences.libraryUpdateCategories().get()
+                        .mapNotNull { id -> categories.find { it.id == id.toInt() } }
+                        .sortedBy { it.order }
+                    val includedItemsText = if (selectedCategories.isEmpty()) {
+                        context.getString(R.string.all)
+                    } else {
+                        selectedCategories.joinToString { it.name }
                     }
+
+                    val excludedCategories = preferences.libraryUpdateCategoriesExclude().get()
+                        .mapNotNull { id -> categories.find { it.id == id.toInt() } }
+                        .sortedBy { it.order }
+                    val excludedItemsText = if (excludedCategories.isEmpty()) {
+                        context.getString(R.string.none)
+                    } else {
+                        excludedCategories.joinToString { it.name }
+                    }
+
+                    summary = buildSpannedString {
+                        append(context.getString(R.string.include, includedItemsText))
+                        appendLine()
+                        append(context.getString(R.string.exclude, excludedItemsText))
+                    }
+                }
+
+                preferences.libraryUpdateCategories().asFlow()
+                    .onEach { updateSummary() }
+                    .launchIn(viewScope)
+                preferences.libraryUpdateCategoriesExclude().asFlow()
+                    .onEach { updateSummary() }
                     .launchIn(viewScope)
             }
             intListPreference {
@@ -262,6 +288,52 @@ class SettingsLibraryController : SettingsController() {
                     landscape = newValue
                 }
             }
+        }
+    }
+
+    class LibraryGlobalUpdateCategoriesDialog : DialogController() {
+
+        private val preferences: PreferencesHelper = Injekt.get()
+        private val db: DatabaseHelper = Injekt.get()
+
+        override fun onCreateDialog(savedViewState: Bundle?): Dialog {
+            val dbCategories = db.getCategories().executeAsBlocking()
+            val categories = listOf(Category.createDefault()) + dbCategories
+
+            val items = categories.map { it.name }
+            val preselected = categories
+                .map {
+                    when (it.id.toString()) {
+                        in preferences.libraryUpdateCategories().get() -> QuadStateCheckBox.State.CHECKED.ordinal
+                        in preferences.libraryUpdateCategoriesExclude().get() -> QuadStateCheckBox.State.INVERSED.ordinal
+                        else -> QuadStateCheckBox.State.UNCHECKED.ordinal
+                    }
+                }
+                .toIntArray()
+
+            return MaterialDialog(activity!!)
+                .title(R.string.categories)
+                .message(R.string.pref_library_update_categories_details)
+                .listItemsQuadStateMultiChoice(
+                    items = items,
+                    initialSelected = preselected
+                ) { selections ->
+                    val included = selections
+                        .mapIndexed { index, value -> if (value == QuadStateCheckBox.State.CHECKED.ordinal) index else null }
+                        .filterNotNull()
+                        .map { categories[it].id.toString() }
+                        .toSet()
+                    val excluded = selections
+                        .mapIndexed { index, value -> if (value == QuadStateCheckBox.State.INVERSED.ordinal) index else null }
+                        .filterNotNull()
+                        .map { categories[it].id.toString() }
+                        .toSet()
+
+                    preferences.libraryUpdateCategories().set(included)
+                    preferences.libraryUpdateCategoriesExclude().set(excluded)
+                }
+                .positiveButton(android.R.string.ok)
+                .negativeButton(android.R.string.cancel)
         }
     }
 }

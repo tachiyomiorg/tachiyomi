@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MD_ListItem.Choice">
+
+    <eu.kanade.tachiyomi.widget.materialdialogs.QuadStateCheckBox
+        android:id="@+id/md_quad_state_control"
+        style="@style/MD_ListItem_Control" />
+
+    <com.afollestad.materialdialogs.internal.rtl.RtlTextView
+        android:id="@+id/md_quad_state_title"
+        style="@style/MD_ListItemText.Choice"
+        tools:text="Item" />
+
+</LinearLayout>

@@ -164,4 +164,14 @@ interface MangaQueries : DbProvider {
                 .build()
         )
         .prepare()
+
+    fun getChapterFetchDateManga() = db.get()
+        .listOfObjects(Manga::class.java)
+        .withQuery(
+            RawQuery.builder()
+                .query(getChapterFetchDateMangaQuery())
+                .observesTables(MangaTable.TABLE)
+                .build()
+        )
+        .prepare()
 }

@@ -27,6 +27,9 @@ internal class DownloadNotifier(private val context: Context) {
     private val progressNotificationBuilder by lazy {
         context.notificationBuilder(Notifications.CHANNEL_DOWNLOADER_PROGRESS) {
             setLargeIcon(BitmapFactory.decodeResource(context.resources, R.mipmap.ic_launcher))
+            setAutoCancel(false)
+            setOngoing(true)
+            setOnlyAlertOnce(true)
         }
     }
 
@@ -84,7 +87,6 @@ internal class DownloadNotifier(private val context: Context) {
             // Check if first call.
             if (!isDownloading) {
                 setSmallIcon(android.R.drawable.stat_sys_download)
-                setAutoCancel(false)
                 clearActions()
                 // Open download manager when clicked
                 setContentIntent(NotificationHandler.openDownloadManagerPendingActivity(context))
@@ -127,7 +129,6 @@ internal class DownloadNotifier(private val context: Context) {
             setContentTitle(context.getString(R.string.chapter_paused))
             setContentText(context.getString(R.string.download_notifier_download_paused))
             setSmallIcon(R.drawable.ic_pause_24dp)
-            setAutoCancel(false)
             setProgress(0, 0, false)
             clearActions()
             // Open download manager when clicked
@@ -217,7 +218,6 @@ internal class DownloadNotifier(private val context: Context) {
             setContentText(error ?: context.getString(R.string.download_notifier_unknown_error))
             setSmallIcon(android.R.drawable.stat_sys_warning)
             clearActions()
-            setAutoCancel(false)
             setContentIntent(NotificationHandler.openDownloadManagerPendingActivity(context))
             setProgress(0, 0, false)
 

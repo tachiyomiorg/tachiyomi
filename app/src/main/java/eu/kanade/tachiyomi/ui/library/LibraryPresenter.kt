@@ -235,7 +235,12 @@ class LibraryPresenter(
             var counter = 0
             db.getLatestChapterManga().executeAsBlocking().associate { it.id!! to counter++ }
         }
+        val chapterFetchDateManga by lazy {
+            var counter = 0
+            db.getChapterFetchDateManga().executeAsBlocking().associate { it.id!! to counter++ }
+        }
 
+        val sortAscending = preferences.librarySortingAscending().get()
         val sortFn: (LibraryItem, LibraryItem) -> Int = { i1, i2 ->
             when (sortingMode) {
                 LibrarySort.ALPHA -> i1.manga.title.compareTo(i2.manga.title, true)
@@ -246,7 +251,13 @@ class LibraryPresenter(
                     manga1LastRead.compareTo(manga2LastRead)
                 }
                 LibrarySort.LAST_CHECKED -> i2.manga.last_update.compareTo(i1.manga.last_update)
-                LibrarySort.UNREAD -> i1.manga.unread.compareTo(i2.manga.unread)
+                LibrarySort.UNREAD -> when {
+                    // Ensure unread content comes first
+                    i1.manga.unread == i2.manga.unread -> 0
+                    i1.manga.unread == 0 -> if (sortAscending) 1 else -1
+                    i2.manga.unread == 0 -> if (sortAscending) -1 else 1
+                    else -> i1.manga.unread.compareTo(i2.manga.unread)
+                }
                 LibrarySort.TOTAL -> {
                     val manga1TotalChapter = totalChapterManga[i1.manga.id!!] ?: 0
                     val mange2TotalChapter = totalChapterManga[i2.manga.id!!] ?: 0
@@ -259,12 +270,19 @@ class LibraryPresenter(
                         ?: latestChapterManga.size
                     manga1latestChapter.compareTo(manga2latestChapter)
                 }
+                LibrarySort.CHAPTER_FETCH_DATE -> {
+                    val manga1chapterFetchDate = chapterFetchDateManga[i1.manga.id!!]
+                        ?: chapterFetchDateManga.size
+                    val manga2chapterFetchDate = chapterFetchDateManga[i2.manga.id!!]
+                        ?: chapterFetchDateManga.size
+                    manga1chapterFetchDate.compareTo(manga2chapterFetchDate)
+                }
                 LibrarySort.DATE_ADDED -> i2.manga.date_added.compareTo(i1.manga.date_added)
                 else -> throw Exception("Unknown sorting mode")
             }
         }
 
-        val comparator = if (preferences.librarySortingAscending().get()) {
+        val comparator = if (sortAscending) {
             Comparator(sortFn)
         } else {
             Collections.reverseOrder(sortFn)

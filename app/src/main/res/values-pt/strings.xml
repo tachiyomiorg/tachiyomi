@@ -7,7 +7,6 @@
     <string name="label_library">Biblioteca</string>
     <string name="label_recent_manga">Histórico</string>
     <string name="label_recent_updates">Atualizações</string>
-    <string name="label_categories">Categorias</string>
     <string name="label_backup">Cópia de segurança</string>
     <!-- Actions -->
     <string name="action_settings">Definições</string>
@@ -69,7 +68,6 @@
     <string name="update_12hour">A cada 12 horas</string>
     <string name="update_24hour">Diariamente</string>
     <string name="update_48hour">A cada 2 dias</string>
-    <string name="pref_library_update_categories">Categorias a incluir na atualização global</string>
     <string name="all">Tudo</string>
     <string name="pref_library_update_restriction">Restrições sobre a atualização da biblioteca</string>
     <string name="pref_library_update_restriction_summary">Atualizar apenas quando se cumprem as condições</string>
@@ -261,8 +259,8 @@
     <string name="action_sort_total">Total de capítulos</string>
     <string name="action_sort_last_read">Última leitura</string>
     <string name="action_global_search">Procura geral</string>
-    <string name="action_bookmark">Marcar</string>
-    <string name="action_remove_bookmark">Desmarcar</string>
+    <string name="action_bookmark">Marcar capítulo</string>
+    <string name="action_remove_bookmark">Desmarcar capítulo</string>
     <string name="action_add">Adicionar</string>
     <string name="action_close">Fechar</string>
     <string name="action_move">Mover</string>
@@ -278,8 +276,8 @@
     <string name="short_recent_updates">Atualizações</string>
     <string name="update_weekly">Semanalmente</string>
     <string name="pref_start_screen">Ecrã inicial</string>
-    <string name="pref_language">Língua</string>
-    <string name="system_default">Predefinição</string>
+    <string name="pref_language">Idioma</string>
+    <string name="system_default">Padrão</string>
     <string name="action_restore">Restaurar</string>
     <string name="app_not_available">App não disponível</string>
     <string name="default_category">Categoria padrão</string>
@@ -326,7 +324,6 @@
     <string name="pref_double_tap_anim_speed">Velocidade de animação de toque duplo</string>
     <string name="pager_viewer">Paginação</string>
     <string name="color_filter_r_value">R</string>
-    <string name="pref_download_new_categories">Categorias para incluir na transferência</string>
     <string name="pref_backup_directory">Localização de cópia de segurança</string>
     <string name="backup_created">Cópia de segurança criada</string>
     <string name="restore_completed">Restauro completo</string>
@@ -421,7 +418,6 @@
     <string name="obsolete_extension_message">Esta extensão já não está disponível.</string>
     <string name="pref_date_format">Formato da data</string>
     <string name="pref_category_library_update">Atualizações</string>
-    <string name="pref_category_library_categories">Categorias</string>
     <string name="logout_title">Terminar sessão em %1$s\?</string>
     <string name="logout">Terminar sessão</string>
     <string name="logout_success">Sua sessão está agora encerrada</string>
@@ -514,7 +510,7 @@
     <string name="action_select_inverse">Seleção inversa</string>
     <string name="action_sort_last_checked">Última verificação</string>
     <string name="label_sources">Fontes</string>
-    <string name="website">Website</string>
+    <string name="website">Sítio Web</string>
     <string name="restoring_backup_canceled">Restauro cancelado</string>
     <string name="restoring_backup_error">Restauro da cópia de segurança falhou</string>
     <string name="restore_in_progress">Restauro já em progresso</string>
@@ -647,7 +643,6 @@
     <string name="pref_hide_bottom_bar_on_scroll">Esconder a barra inferior ao rodar</string>
     <string name="pref_incognito_mode_summary">Pausa histórico de leitura</string>
     <string name="pref_incognito_mode">Modo incógnito</string>
-    <string name="pref_clear_history_summary">Eliminar histórico de leitura de todas as mangás</string>
     <string name="pref_clear_history">Eliminar histórico</string>
     <string name="clear_history_confirmation">Tem a certeza\? Todo o histórico será perdido.</string>
     <string name="clear_history_completed">Histórico eliminado</string>
@@ -657,9 +652,6 @@
     <string name="migration_help_guide">Guia de migração de fonte</string>
     <string name="invalid_backup_file_type">Tipo de ficheiro da cópia de segurança inválido: %1$s
 \nDeve terminar com .proto.gz ou .json.</string>
-    <string name="full_restore_offline">Restaurar offline, termina rapidamente mas contém apenas o que a sua cópiad de segurança tem</string>
-    <string name="full_restore_online">Restaurar online, muito mais lento mas dá-lhe mais informações e capítulos mais atualizados</string>
-    <string name="full_restore_mode">Modo de Rede</string>
     <string name="pref_backup_auto_create_legacy">Criar também cópia de segurança antiga</string>
     <string name="pref_create_legacy_backup_summary">Pode ser usado em versões mais antigas do Tachiyomi</string>
     <string name="pref_create_legacy_backup">Criar cópia de segurança antiga</string>
@@ -687,4 +679,19 @@
     <string name="pref_dump_crash_logs">Guardar registos de falhas</string>
     <string name="pref_dump_crash_logs_summary">Guarda registos de erros num ficheiro para partilhar com os desenvolvedores</string>
     <string name="action_display_show_number_of_items">Mostrar número de itens</string>
+    <string name="right_and_left_nav">Direita e Esquerda</string>
+    <string name="pref_dual_page_split">Divisão de página dupla</string>
+    <string name="pref_dual_page_invert_summary">Se o posicionamento da divisão de página dupla não corresponder à direção de leitura</string>
+    <string name="pref_dual_page_invert">Inverter posicionamento de divisão de página dupla</string>
+    <string name="backup_restore_content_full">Os dados da cópia de segurança serão restaurados.
+\n
+\nPrecisas instalar as extensões em falta e iniciar sessão nos serviços de monitorização para usá-los depois.</string>
+    <string name="nav_zone_right">Direita</string>
+    <string name="nav_zone_left">Esquerda</string>
+    <string name="nav_zone_next">Seguinte</string>
+    <string name="nav_zone_prev">Anterior</string>
+    <string name="pref_show_navigation_mode_summary">Brevemente mostrar zonas de toque quando o leitor é aberto</string>
+    <string name="pref_show_navigation_mode">Mostrar sobreposição da disposição de navegação</string>
+    <string name="update_8hour">A cada 8 horas</string>
+    <string name="update_4hour">A cada 4 horas</string>
 </resources>

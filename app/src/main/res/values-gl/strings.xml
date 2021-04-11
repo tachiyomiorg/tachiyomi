@@ -118,14 +118,12 @@
     <string name="ext_updates_pending">Actualizacións pendentes</string>
     <string name="all_lang">Todas</string>
     <string name="all">Todas</string>
-    <string name="pref_library_update_categories">Categorías a incluír nas actualizacións globais</string>
     <plurals name="num_categories">
         <item quantity="one">%d categoría</item>
         <item quantity="other">%d categorías</item>
     </plurals>
     <string name="default_category_summary">Preguntar sempre</string>
     <string name="default_category">Categoría por defecto</string>
-    <string name="pref_category_library_categories">Categorías</string>
     <string name="pref_library_update_error_notification">Mostra notificacións de erros nas actualizacións</string>
     <string name="pref_library_update_refresh_metadata_summary">Comprobar novas portadas e detalles cando se actualiza a biblioteca</string>
     <string name="pref_library_update_refresh_metadata">Refrescar metadatos automáticamente</string>
@@ -308,6 +306,5 @@
     <string name="label_extensions">Extensións</string>
     <string name="label_migration">Migrar</string>
     <string name="label_backup">Copia de seguridade</string>
-    <string name="label_categories">Categorías</string>
     <string name="manga">Manga</string>
 </resources>

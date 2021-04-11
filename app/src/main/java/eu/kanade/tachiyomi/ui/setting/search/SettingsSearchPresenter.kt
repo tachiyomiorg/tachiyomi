@@ -12,12 +12,6 @@ import uy.kohesive.injekt.api.get
  */
 open class SettingsSearchPresenter : BasePresenter<SettingsSearchController>() {
 
-    /**
-     * Query from the view.
-     */
-    var query = ""
-        private set
-
     val preferences: PreferencesHelper = Injekt.get()
 
     override fun onCreate(savedState: Bundle?) {
