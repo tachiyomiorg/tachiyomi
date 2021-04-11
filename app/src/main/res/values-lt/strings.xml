@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_filter_downloaded">Atsiųsta</string>
+    <string name="action_filter">Filtras</string>
+    <string name="action_menu">Meniu</string>
+    <string name="action_settings">Nustatymai</string>
+    <string name="confirm_exit">Paspauskite atgal, kad išeitumėte</string>
+    <string name="unlock_app">Atrakinkite Tachijomi</string>
+    <string name="history">Istorija</string>
+    <string name="track">Sekimas</string>
+    <string name="chapters">Chapteriai</string>
+    <string name="manga">Manga</string>
+    <string name="categories">Kategorijos</string>
+    <string name="information_empty_category">Neturite jokių kategorijų. Paspauskite plius mygtuką, kad sukurtumėte kategoriją jūsų lentynos organizavimui</string>
+    <string name="information_empty_library">Jūsų lentyna tuščia. Pridėkite serijų į jūsų lentyną iš Naršyklės.</string>
+    <string name="information_no_recent_manga">Niekas nebuvo neskaityta</string>
+    <string name="information_no_recent">Nėra dabartinių naujinių</string>
+    <string name="information_no_downloads">Nėra jokių atsiuntimų</string>
+    <string name="label_help">Pagalba</string>
+    <string name="label_extension_info">Papildinių info</string>
+    <string name="label_extensions">Papildiniai</string>
+    <string name="label_migration">Migruoti</string>
+    <string name="label_backup">Backupas</string>
+    <string name="label_sources">Šaltiniai</string>
+    <string name="label_recent_manga">Istorija</string>
+    <string name="label_recent_updates">Atnaujinimai</string>
+    <string name="label_library">Biblioteka</string>
+    <string name="label_download_queue">Atsiuntimų eilė</string>
+    <string name="label_settings">Nustatymai</string>
+    <string name="label_more">Daugiau</string>
+    <string name="name">Vardas</string>
+</resources>

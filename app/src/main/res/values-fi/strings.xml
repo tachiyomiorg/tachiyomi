@@ -9,7 +9,6 @@
     <string name="label_download_queue">Latausjono</string>
     <string name="label_library">Kirjasto</string>
     <string name="label_recent_manga">Historia</string>
-    <string name="label_categories">Kategoriat</string>
     <string name="action_settings">Asetukset</string>
     <string name="action_sort_last_read">Viimeksi luettu</string>
     <string name="action_mark_as_read">Merkitse luetuksi</string>
@@ -151,7 +150,7 @@
     <string name="portrait">Pystysuunnassa</string>
     <string name="landscape">Vaakatasossa</string>
     <string name="default_columns">Oletus</string>
-    <string name="pref_library_update_interval">Kirjaston automaattipäivitys</string>
+    <string name="pref_library_update_interval">Päivitystiheys</string>
     <string name="update_never">Manuaalinen</string>
     <string name="update_1hour">Tunnin välein</string>
     <string name="update_2hour">Kahden tunnin välein</string>
@@ -161,9 +160,8 @@
     <string name="update_24hour">Päivittäin</string>
     <string name="update_48hour">Kahden päivän välein</string>
     <string name="update_weekly">Viikoittain</string>
-    <string name="pref_library_update_categories">Globaalin päivityksen sisältämät kategoriat</string>
     <string name="all">Kaikki</string>
-    <string name="pref_library_update_restriction">Kirjaston päivityksen rajoitukset</string>
+    <string name="pref_library_update_restriction">Päivityksen rajoitukset</string>
     <string name="pref_library_update_restriction_summary">Päivitä vain kun vaatimukset täyttyvät</string>
     <string name="charging">Latauksessa</string>
     <string name="pref_update_only_non_completed">Päivitä vain jatkuvat sarjat</string>
@@ -255,7 +253,6 @@
     <string name="fourth_to_last">Neljänneksi viimeinen luku</string>
     <string name="fifth_to_last">Viidenneksi viimeinen luku</string>
     <string name="pref_download_new">Lataa uudet luvut</string>
-    <string name="pref_download_new_categories">Kategoriat jotka sisällytetään latauksiin</string>
     <string name="services">Palvelut</string>
     <string name="pref_create_backup_summ">Voidaan käyttää nykyisen kirjaston palauttamiseen</string>
     <string name="pref_restore_backup_summ">Palauta kirjasto varmuuskopiointi-tiedostosta</string>
@@ -379,7 +376,7 @@
     <string name="filter_mode_lighten">Väitävä / Vaalentava</string>
     <string name="filter_mode_darken">Polttava / Tummentava</string>
     <string name="label_help">Apu</string>
-    <string name="pref_library_update_prioritization">Kirjaston päivitys järjestys</string>
+    <string name="pref_library_update_prioritization">Päivitys järjestys</string>
     <string name="no_results_found">Ei tuloksia</string>
     <string name="migration_selection_prompt">Valitse lähde josta vaihdetaan</string>
     <string name="action_webview_back">Takaisin</string>
@@ -390,8 +387,7 @@
     <string name="ext_obsolete">Vanhentunut</string>
     <string name="obsolete_extension_message">Tämä laajennus ei ole enää saatavilla.</string>
     <string name="pref_date_format">Päivämäärän muoto</string>
-    <string name="pref_category_library_update">Päivitykset</string>
-    <string name="pref_category_library_categories">Kategoriat</string>
+    <string name="pref_category_library_update">Globaali päivitys</string>
     <string name="logout_title">Kirjaa ulos kohteesta %1$s\?</string>
     <string name="logout">Kirjaudu ulos</string>
     <string name="logout_success">Kirjauduttu ulos</string>
@@ -412,7 +408,7 @@
     <string name="theme_dark_amoled">AMOLED musta</string>
     <string name="pref_manage_notifications">Hallitse ilmoituksia</string>
     <string name="pref_category_security">Turvallisuus</string>
-    <string name="lock_with_biometrics">Lukitse biometrisillä tiedoilla</string>
+    <string name="lock_with_biometrics">Vaadi lukituksen avaaminen</string>
     <string name="lock_always">Aina</string>
     <string name="lock_never">Ei koskaan</string>
     <plurals name="lock_after_mins">
@@ -462,7 +458,7 @@
     <string name="action_move_to_top">Siirrä alkuun</string>
     <string name="action_move_to_bottom">Siirrä loppuun</string>
     <string name="action_sort_last_checked">Viimeksi tarkistettu</string>
-    <string name="pref_enable_automatic_extension_updates">Tarkista laajennuspäivitykset automaattisesti</string>
+    <string name="pref_enable_automatic_extension_updates">Tarkista laajennuspäivitykset</string>
     <plurals name="update_check_notification_ext_updates">
         <item quantity="one">Laajennuspäivitys saatavilla</item>
         <item quantity="other">%d laajennuspäivitystä saatavilla</item>
@@ -617,15 +613,11 @@
     <string name="pref_hide_bottom_bar_on_scroll">Piilota alapalkki selatessa</string>
     <string name="pref_incognito_mode_summary">Keskeyttää lukuhistorian</string>
     <string name="pref_incognito_mode">Incognito-tila</string>
-    <string name="pref_clear_history_summary">Poista kaikkien mangojen lukuhistoria</string>
     <string name="pref_clear_history">Tyhjennä historia</string>
     <string name="clear_history_confirmation">Oletko varma\? Koko historia menetetään.</string>
     <string name="clear_history_completed">Historia poistettu</string>
     <string name="spen_next_page">Seuraava sivu</string>
     <string name="spen_previous_page">Edellinen sivu</string>
-    <string name="full_restore_offline">Palauta offline-tilassa, päättyy nopeasti, mutta sisältää vain sen, mitä varmuuskopiossa on</string>
-    <string name="full_restore_online">Palauta verkossa, paljon hitaampi, mutta antaa sinulle enemmän päivitettyjä tietoja ja lukuja</string>
-    <string name="full_restore_mode">Verkkotila</string>
     <string name="pref_backup_auto_create_legacy">Luo myös vanha varmuuskopio</string>
     <string name="pref_create_legacy_backup_summary">Voidaan käyttää Tachiyomin vanhemmissa versioissa</string>
     <string name="pref_create_legacy_backup">Luo vanha varmuuskopio</string>
@@ -658,7 +650,26 @@
     <string name="action_filter_tracked">Seuratut</string>
     <string name="action_display_show_number_of_items">Näytä kohteiden määrä</string>
     <string name="right_and_left_nav">Oikea ja vasen</string>
-    <string name="pref_dual_page_split">Kahden sivun jako (ALPHA)</string>
+    <string name="pref_dual_page_split">Kahden sivun jako</string>
     <string name="pref_dual_page_invert_summary">Jos kaksisivuisen jaon sijainti ei vastaa lukusuuntaa</string>
     <string name="pref_dual_page_invert">Käännä kahden sivun jaettu sijoittelu</string>
+    <string name="backup_restore_content_full">Varmuuskopiotiedoston tiedot palautetaan.
+\n
+\nSinun on asennattava puuttuvat laajennukset ja kirjauduttava seurantapalveluihin jälkeenpäin käyttääksesi niitä.</string>
+    <string name="update_8hour">Kahdeksan tunnin välein</string>
+    <string name="update_4hour">Neljän tunnin välein</string>
+    <string name="nav_zone_right">Oikea</string>
+    <string name="nav_zone_left">Vasen</string>
+    <string name="nav_zone_next">Seuraava</string>
+    <string name="nav_zone_prev">Edellinen</string>
+    <string name="pref_show_navigation_mode_summary">Näytä napautusalueet, kun lukija avataan</string>
+    <string name="pref_show_navigation_mode">Näytä navigointiasettelun peittokuva</string>
+    <string name="pref_dns_over_https">DNS HTTPS:n kautta</string>
+    <string name="exclude">Lukuun ottamatta: %s</string>
+    <string name="include">Sisällytä: %s</string>
+    <string name="none">Ei mitään</string>
+    <string name="action_sort_chapter_fetch_date">Haettu päivämäärä</string>
+    <string name="pref_download_new_categories_details">Poissuljettuihin kategorioihin kuuluvia mangoja ei ladata, vaikka ne olisivat myös sisällytetyissä kategorioissa.</string>
+    <string name="pref_category_auto_download">Automaattinen lataus</string>
+    <string name="pref_library_update_categories_details">Poissuljettuihin kategorioihin sisältyvää mangaa ei päivitetä, vaikka ne olisivat myös sisällytetyissä kategorioissa.</string>
 </resources>

@@ -15,7 +15,6 @@
     <string name="action_select_all">Zaznacz wszystko</string>
     <string name="label_library">Biblioteka</string>
     <string name="label_recent_updates">Aktualizacje</string>
-    <string name="label_categories">Kategorie</string>
     <string name="label_backup">Kopia zapasowa</string>
     <string name="action_filter_bookmarked">Zakładki</string>
     <string name="action_filter_empty">Usuń filtrowanie</string>
@@ -82,7 +81,7 @@
     <string name="download_5">5 następnych rozdziałów</string>
     <string name="download_10">10 następnych rozdziałów</string>
     <string name="download_all">Wszystko</string>
-    <string name="download_unread">Nieprzeczytane</string>
+    <string name="download_unread">Pobierz nieprzeczytane</string>
     <string name="confirm_delete_chapters">Czy na pewno chcesz usunąć wybrane rozdziały?</string>
     <string name="reading">Czytane</string>
     <string name="completed">Ukończone</string>
@@ -144,7 +143,7 @@
     <string name="description">Opis</string>
     <string name="manga_not_in_db">Ta manga została usunięta z bazy danych.</string>
     <string name="no_more_results">Nie znaleziono więcej wyników</string>
-    <string name="added_to_library">Manga została dodana do twojej biblioteki</string>
+    <string name="added_to_library">Dodano do biblioteki</string>
     <string name="action_open_log">Otwórz log</string>
     <string name="show_title">Tytuł</string>
     <string name="show_chapter_number">Numer rozdziału</string>
@@ -161,7 +160,6 @@
     <string name="update_24hour">Co 1 dzień</string>
     <string name="update_48hour">Co 2 dni</string>
     <string name="update_weekly">Co tydzień</string>
-    <string name="pref_library_update_categories">Kategorie zawarte w globalnej aktualizacji</string>
     <string name="all">Wszystko</string>
     <string name="pref_library_update_restriction">Warunki aktualizacji biblioteki</string>
     <string name="pref_library_update_restriction_summary">Aktualizuje tylko, kiedy spełnione są te warunki</string>
@@ -170,7 +168,7 @@
     <string name="pref_auto_update_manga_sync">Aktualizuj postęp po przeczytaniu rozdziału</string>
     <string name="pref_start_screen">Ekran startowy</string>
     <string name="pref_language">Język</string>
-    <string name="system_default">Domyślnie</string>
+    <string name="system_default">Systemowy</string>
     <string name="default_category">Domyślna kategoria</string>
     <string name="default_category_summary">Zawsze pytaj</string>
     <string name="pref_fullscreen">Pełny ekran</string>
@@ -231,7 +229,6 @@
     <string name="manga">Manga</string>
     <string name="pref_category_tracking">Śledzenie</string>
     <string name="pref_reader_navigation">Nawigacja</string>
-    <string name="pref_download_new_categories">Kategorie do auto-pobierania</string>
     <string name="pref_create_backup">Utwórz kopię zapasową</string>
     <string name="pref_create_backup_summ">Może być użyta do przywrócenia aktualnej biblioteki</string>
     <string name="pref_restore_backup">Przywróć kopię zapasową</string>
@@ -391,13 +388,12 @@
     <string name="obsolete_extension_message">To rozszerzenie nie jest już dostępne.</string>
     <string name="pref_date_format">Format daty</string>
     <string name="pref_category_library_update">Aktualizacje</string>
-    <string name="pref_category_library_categories">Kategorie</string>
     <string name="logout_title">Wylogować z %1$s\?</string>
     <string name="logout">Wyloguj</string>
     <string name="logout_success">Wylogowano</string>
-    <string name="currently_reading">Obecnie czytane ponownie</string>
+    <string name="currently_reading">Teraz czytane</string>
     <string name="paused">Wstrzymane</string>
-    <string name="want_to_read">Chcę przeczytać</string>
+    <string name="want_to_read">Do przeczytania</string>
     <string name="webtoon_side_padding_25">25%</string>
     <string name="webtoon_side_padding_20">20%</string>
     <string name="webtoon_side_padding_15">15%</string>
@@ -422,7 +418,7 @@
     </plurals>
     <string name="lock_never">Nigdy</string>
     <string name="lock_always">Zawsze</string>
-    <string name="lock_with_biometrics">Zablokuj odciskiem palca</string>
+    <string name="lock_with_biometrics">Wymagaj odblokowania</string>
     <string name="pref_category_security">Bezpieczeństwo</string>
     <string name="pref_manage_notifications">Zarządzaj powiadomieniami</string>
     <string name="theme_dark_amoled">Czarny AMOLED</string>
@@ -465,8 +461,8 @@
     <string name="pref_disable_battery_optimization_summary">Pomaga z aktualizacjami biblioteki i backupami w tle</string>
     <string name="pref_disable_battery_optimization">Wyłącz oszczędzanie baterii</string>
     <string name="restoring_backup_canceled">Anulowano przywracanie</string>
-    <string name="restore_in_progress">Kopia zapasowa jest już przywracana</string>
-    <string name="backup_in_progress">Kopia zapasowa jest już tworzona</string>
+    <string name="restore_in_progress">Kopia zapasowa jest w trakcie przywracania</string>
+    <string name="backup_in_progress">Kopia zapasowa jest już w trakcie tworzenia</string>
     <string name="restore_duration">%02d min, %02d s</string>
     <string name="pref_search_pinned_sources_only">Pokazuj tylko przypięte źródła</string>
     <string name="pref_webtoon_side_padding">Odstępy po bokach</string>
@@ -603,7 +599,6 @@
     <string name="action_download_unread">Pobierz nieprzeczytane rozdziały</string>
     <string name="action_sort_date_added">Po dacie dodania</string>
     <string name="action_search_settings">Ustawienia szukania</string>
-    <string name="full_restore_mode">Tryb sieciowy</string>
     <string name="spen_next_page">Następna strona</string>
     <string name="spen_previous_page">Poprzednia strona</string>
     <string name="group_backup_restore">Kopia zapasowa i odzyskiwanie</string>
@@ -637,13 +632,10 @@
     <string name="manga_from_library">Manga z biblioteki</string>
     <string name="pref_incognito_mode_summary">Wstrzymuje zapisywanie do historii czytania</string>
     <string name="pref_incognito_mode">Tryb incognito</string>
-    <string name="pref_clear_history_summary">Usuń całą historię czytania dla wszystkich tytułów</string>
     <string name="pref_clear_history">Wyczyść historię</string>
     <string name="clear_history_confirmation">Jesteś pewien\? CAŁA historia zostanie usunięta.</string>
     <string name="clear_history_completed">Historia usunięta</string>
     <string name="backup_restore_missing_trackers">Serwisy, do których nie zalogowono:</string>
-    <string name="full_restore_offline">Przywróć offline, szybkie, ale korzysta tylko z informacji zawartych w kopii zapasowej</string>
-    <string name="full_restore_online">Przywróć online, dużo wolniejsze ale przywraca zaktualizowane informacje i rozdziały</string>
     <string name="pref_backup_auto_create_legacy">Dodatkowo stwórz kopię zapasową w starym formacie</string>
     <string name="pref_create_legacy_backup_summary">Może być użyta w starszych wersjach Tachiyomi</string>
     <string name="pref_create_legacy_backup">Utwórz kopię zapasową w starym formacie</string>
@@ -683,5 +675,20 @@
     <string name="right_and_left_nav">Prawa i Lewa</string>
     <string name="pref_dual_page_invert_summary">Jeśli układ w podziale podwójnych stron nie pasuje do kierunku czytania</string>
     <string name="pref_dual_page_invert">Odwróć układ w podziale podwójnych stron</string>
-    <string name="pref_dual_page_split">Podział podwójnych stron (ALPHA)</string>
+    <string name="pref_dual_page_split">Podział podwójnych stron</string>
+    <string name="pref_dns_over_https">DNS przez HTTPS (Cloudflare)</string>
+    <string name="backup_restore_content_full">Dane z pliku kopii zapasowej zostaną przywrócone.
+\n
+\nBędziesz musiał zainstalować brakujące rozszerzenia i zalogować się do usług śledzących, aby móc z nich korzystać.</string>
+    <string name="nav_zone_right">Prawe</string>
+    <string name="nav_zone_left">Lewe</string>
+    <string name="nav_zone_next">Następne</string>
+    <string name="nav_zone_prev">Poprzednie</string>
+    <string name="pref_show_navigation_mode_summary">Pokazuj strefy klikania kiedy czytnik zostaje otwarty</string>
+    <string name="update_8hour">Co 8 godzin</string>
+    <string name="update_4hour">Co 4 godziny</string>
+    <string name="pref_show_navigation_mode">Pokazuj nakładkę układu nawigacji</string>
+    <string name="exclude">Wyklucz: %s</string>
+    <string name="include">Uwzględnij: %s</string>
+    <string name="none">Brak</string>
 </resources>

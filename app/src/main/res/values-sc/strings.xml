@@ -11,7 +11,6 @@
     <string name="label_library">Biblioteca</string>
     <string name="label_recent_manga">Cronologia</string>
     <string name="label_recent_updates">Agiornamentos</string>
-    <string name="label_categories">Categorias</string>
     <string name="label_backup">Còpia de seguresa</string>
     <string name="label_migration">Tràmuda</string>
     <string name="label_extensions">Estensiones</string>
@@ -98,7 +97,6 @@
     <string name="update_24hour">Cada die</string>
     <string name="update_48hour">Cada 2 dies</string>
     <string name="update_weekly">Cada chida</string>
-    <string name="pref_library_update_categories">Categorias de incluire in s\'agiornamentu globale</string>
     <string name="all">Totus</string>
     <string name="pref_library_update_restriction">Restritziones a s\'agiornamentu de sa biblioteca</string>
     <string name="pref_library_update_restriction_summary">Agiorna petzi cando sas cunditziones benint rispetadas</string>
@@ -190,7 +188,6 @@
     <string name="fourth_to_last">Cuartùrtimu capìtulu</string>
     <string name="fifth_to_last">Cuintùrtimu capìtulu</string>
     <string name="pref_download_new">Iscàrriga sos capìtulos noos</string>
-    <string name="pref_download_new_categories">Categorias de incluire in s\'iscarrigamentu</string>
     <string name="services">Servìtzios</string>
     <string name="backup">Còpia de seguresa</string>
     <string name="pref_create_backup">Crea una còpia de seguresa</string>
@@ -391,7 +388,6 @@
     <string name="obsolete_extension_message">Cust\'estensione no est prus a disponimentu.</string>
     <string name="pref_date_format">Formadu de sa data</string>
     <string name="pref_category_library_update">Agiornamentos</string>
-    <string name="pref_category_library_categories">Categorias</string>
     <string name="logout_title">Essire dae %1$s\?</string>
     <string name="logout">Essi</string>
     <string name="logout_success">Ses essidu</string>
@@ -412,7 +408,7 @@
     <string name="theme_dark_amoled">Nieddu AMOLED</string>
     <string name="pref_manage_notifications">Amministra sas notìficas</string>
     <string name="pref_category_security">Seguresa</string>
-    <string name="lock_with_biometrics">Bloca cun sa biometria</string>
+    <string name="lock_with_biometrics">Tocat a l\'isblocare</string>
     <string name="lock_when_idle">Bloca cando no est ativu</string>
     <string name="lock_always">Semper</string>
     <string name="lock_never">Mai</string>
@@ -617,15 +613,11 @@
     <string name="pref_hide_bottom_bar_on_scroll">Cua sa barra inferiore in s\'iscurridura</string>
     <string name="pref_incognito_mode_summary">Ponet in pàusa sa registratzione de sa cronologia de leghidura</string>
     <string name="pref_incognito_mode">Modalidade anònima</string>
-    <string name="pref_clear_history_summary">Iscantzella totu sa cronologia de leghidura pro totu sos manga</string>
     <string name="pref_clear_history">Isbòida sa cronologia</string>
     <string name="clear_history_confirmation">Seguru ses\? As a pèrdere totu sa cronologia.</string>
     <string name="clear_history_completed">Cronologia iscantzellada</string>
     <string name="spen_next_page">Pàgina imbeniente</string>
     <string name="spen_previous_page">Pàgina anteposta</string>
-    <string name="full_restore_online">Riprìstinat in lìnia, meda prus lenta ma ti frunit informatziones e capìtulos prus agiornados</string>
-    <string name="full_restore_offline">Riprìstinat chene lìnia, acabat in presse ma cuntenet petzi su chi b\'at in sa còpia de seguresa tua</string>
-    <string name="full_restore_mode">Modalidade de retza</string>
     <string name="pref_backup_auto_create_legacy">Crea fintzas una còpia de seguresa de casta betza</string>
     <string name="pref_create_legacy_backup_summary">Podet èssere impreada in versiones prus betzas de Tachiyomi</string>
     <string name="pref_create_legacy_backup">Crea una còpia de seguresa de casta betza</string>
@@ -658,7 +650,23 @@
     <string name="action_filter_tracked">Arrastadu</string>
     <string name="action_display_show_number_of_items">Ammustra su nùmeru de elementos</string>
     <string name="right_and_left_nav">Destra e manca</string>
-    <string name="pref_dual_page_split">Partzidura a duas pàginas (ALFA)</string>
+    <string name="pref_dual_page_split">Partzidura a duas pàginas</string>
     <string name="pref_dual_page_invert_summary">Si sa positzione de sa partzidura de sa pàgina dòpia non currispondet a sa diretzione de leghidura</string>
     <string name="pref_dual_page_invert">Fùrria su positzionamentu de sa partzidura a duas pàginas</string>
+    <string name="backup_restore_content_full">Sos datos dae su documentu de sa còpia de seguresa s\'ant a ripristinare.
+\n
+\nA pustis as a dèpere installare sas estensiones chi mancant e atzèdere a sos servìtzios de arrastamentu pro los pòdere impreare.</string>
+    <string name="update_8hour">Cada 8 oras</string>
+    <string name="update_4hour">Cada 4 oras</string>
+    <string name="nav_zone_right">Destra</string>
+    <string name="nav_zone_left">Manca</string>
+    <string name="nav_zone_next">Imbeniente</string>
+    <string name="nav_zone_prev">Antepostu</string>
+    <string name="pref_show_navigation_mode_summary">Ammustra sas zonas de tocu cando aberis su leghidore</string>
+    <string name="pref_show_navigation_mode">Ammustra sa subrapositzione de sa dispositzione pro sa navigatzione</string>
+    <string name="pref_dns_over_https">DNS pro mèdiu de HTTPS (Cloudflare)</string>
+    <string name="exclude">Esclude: %s</string>
+    <string name="include">Include: %s</string>
+    <string name="none">Perunu</string>
+    <string name="action_sort_chapter_fetch_date">Data recuperada</string>
 </resources>

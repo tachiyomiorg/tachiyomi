@@ -16,7 +16,7 @@
     <string name="action_oldest">အဟောင်းဆုံး</string>
     <string name="action_newest">အသစ်ဆုံး</string>
     <string name="action_order_by_chapter_number">အခန်းနံပါတ်အလိုက်</string>
-    <string name="action_order_by_upload_date">တင်သည့်အချိန်အလိုက်</string>
+    <string name="action_order_by_upload_date">တင်သည့်နေ့စွဲအလိုက်</string>
     <string name="action_reorganize_by">ပြန်စဉ်သည်</string>
     <string name="action_sort_descending">ကြီးစဉ်ငယ်လိုက်</string>
     <string name="action_sort">စဉ်သည်</string>
@@ -31,9 +31,9 @@
     <string name="action_display_download_badge">ဒေါင်းလုဒ်အမှတ်အသားများ</string>
     <string name="action_display_comfortable_grid">အနေတော်ဇယား</string>
     <string name="action_display_list">စာရင်းစဉ်</string>
-    <string name="action_display_grid">ဇယားကျဉ်း</string>
-    <string name="action_display">ပြပုံ</string>
-    <string name="action_display_mode">ပြသည့်ပုံစံ</string>
+    <string name="action_display_grid">ဇယားအကျဉ်း</string>
+    <string name="action_display">ပြသပုံ</string>
+    <string name="action_display_mode">ပြသသည့်ပုံစံ</string>
     <string name="action_migrate">ရွှေ့ပြောင်းသည်</string>
     <string name="action_open_in_settings">ဆက်တင်တွင်ဖွင့်သည်</string>
     <string name="action_open_in_web_view">WebView တွင်ဖွင့်သည်</string>
@@ -42,7 +42,7 @@
     <string name="action_resume">ဆက်လုပ်သည်</string>
     <string name="action_start">စတင်သည်</string>
     <string name="action_remove">ဖယ်ရှားသည်</string>
-    <string name="action_retry">ထပ်လုပ်သည်</string>
+    <string name="action_retry">ပြန်လုပ်မည်</string>
     <string name="action_next_chapter">နောက်အခန်း</string>
     <string name="action_previous_chapter">ရှေ့အခန်း</string>
     <string name="action_close">ပိတ်</string>
@@ -78,7 +78,7 @@
     <string name="action_search_settings">ရှာဖွေမှုဆက်တင်များ</string>
     <string name="action_search">ရှာဖွေရန်</string>
     <string name="action_sort_date_added">ထည့်ခဲ့သောရက်စွဲအရ</string>
-    <string name="action_sort_latest_chapter">နောက်ဆုံးအခန်းအရ</string>
+    <string name="action_sort_latest_chapter">နောက်ဆုံးထွက်အခန်းအရ</string>
     <string name="action_sort_last_checked">နောက်ဆုံးစစ်ဆေးပြီးသော</string>
     <string name="action_sort_last_read">နောက်ဆုံးဖတ်ခဲ့သော</string>
     <string name="action_sort_total">အခန်းစုစုပေါင်း</string>
@@ -108,7 +108,6 @@
     <string name="label_extensions">ထပ်တိုးများ</string>
     <string name="label_migration">ပြောင်းရွှေ့သည်</string>
     <string name="label_backup">အရံ</string>
-    <string name="label_categories">အမျိုးအစားများ</string>
     <string name="label_sources">ပင်မနေရာများ</string>
     <string name="label_recent_manga">မှတ်တမ်း</string>
     <string name="label_recent_updates">အပ်ဒိတ်များ</string>
@@ -117,4 +116,17 @@
     <string name="label_settings">ဆက်တင်များ</string>
     <string name="label_more">နောက်ထပ်</string>
     <string name="name">အမည်</string>
+    <string name="pref_category_reader">စာဖတ်ကိရိယာ</string>
+    <string name="pref_category_about">အကြောင်း</string>
+    <string name="pref_category_advanced">ပိုမိုဆက်လက်၍</string>
+    <string name="pref_category_tracking">ခြေရာခံခြင်း</string>
+    <string name="pref_category_downloads">Download များ</string>
+    <string name="pref_category_library">စာကြည့်တိုက်</string>
+    <string name="pref_category_general">အထွေထွေ</string>
+    <string name="short_recent_updates">အသစ်များ</string>
+    <string name="app_not_available">App မရနိုင်ပါ</string>
+    <string name="loading">လုပ်ဆောင်နေသည်…</string>
+    <string name="action_webview_refresh">ပြန်ရယူမည်</string>
+    <string name="action_webview_forward">ရှေ့သို့</string>
+    <string name="action_webview_back">နောက်သို့</string>
 </resources>

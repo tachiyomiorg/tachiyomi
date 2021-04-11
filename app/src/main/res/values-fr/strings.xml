@@ -7,7 +7,6 @@
     <string name="label_library">Bibliothèque</string>
     <string name="label_recent_manga">Historique</string>
     <string name="label_recent_updates">Nouveautés</string>
-    <string name="label_categories">Catégories</string>
     <string name="label_backup">Sauvegarde</string>
     <!-- Actions -->
     <string name="action_settings">Paramètres</string>
@@ -82,7 +81,6 @@
     <string name="update_12hour">Toutes les 12 heures</string>
     <string name="update_24hour">Tous les jours</string>
     <string name="update_48hour">Tous les 2 jours</string>
-    <string name="pref_library_update_categories">Catégories à inclure dans une mise à jour globale</string>
     <string name="all">Tout</string>
     <string name="pref_library_update_restriction">Restrictions de mise à jour de la bibliothèque</string>
     <string name="pref_library_update_restriction_summary">Mettre à jour uniquement lorsque les conditions sont remplies</string>
@@ -319,7 +317,6 @@
     <string name="track">Suivi</string>
     <string name="action_sort_total">Nombre de chapitres</string>
     <string name="short_recent_updates">Mises à jour</string>
-    <string name="pref_download_new_categories">Catégories à inclure dans le téléchargement</string>
     <string name="pref_create_backup">Créer une sauvegarde</string>
     <string name="pref_create_backup_summ">Peut être utilisé pour restaurer la bibliothèque actuelle</string>
     <string name="pref_restore_backup">Restaurer une sauvegarde</string>
@@ -420,7 +417,6 @@
     <string name="obsolete_extension_message">Cette extension n’est plus disponible.</string>
     <string name="pref_date_format">Format de date</string>
     <string name="pref_category_library_update">Mises à jour</string>
-    <string name="pref_category_library_categories">Catégories</string>
     <string name="action_webview_back">Précédent</string>
     <string name="action_webview_forward">Suivant</string>
     <string name="action_webview_refresh">Actualiser</string>
@@ -446,7 +442,7 @@
     <string name="theme_dark_amoled">Noir AMOLED</string>
     <string name="pref_manage_notifications">Notifications</string>
     <string name="pref_category_security">Sécurité</string>
-    <string name="lock_with_biometrics">Verrouillage biométrique</string>
+    <string name="lock_with_biometrics">Déverrouillage obligatoire</string>
     <string name="lock_when_idle">Verrouiller quand inactif</string>
     <string name="lock_always">Toujours</string>
     <string name="lock_never">Jamais</string>
@@ -608,12 +604,12 @@
     <string name="unknown_status">Statut inconnu</string>
     <string name="unknown_author">Auteur inconnu</string>
     <string name="pref_jump_to_chapters">Aller aux chapitres à l\'ouverture</string>
-    <string name="whats_new">Les nouveautés</string>
+    <string name="whats_new">Quoi de neuf</string>
     <string name="updated_version">Mise à jour de v%1$s</string>
     <string name="action_download_unread">Télécharger les chapitres non lus</string>
     <string name="download_insufficient_space">Impossible de télécharger les chapitres, l\'espace de stockage est insuffisant</string>
     <string name="action_global_search_query">Rechercher « %1$s » partout</string>
-    <string name="action_sort_date_added">Date d\'ajout</string>
+    <string name="action_sort_date_added">Date ajoutée</string>
     <string name="pref_category_reading_mode">Mode de lecture</string>
     <string name="pref_category_locale">Local</string>
     <string name="pref_category_theme">Thème</string>
@@ -651,16 +647,12 @@
     <string name="pref_incognito_mode_summary">Pause dans l\'enregistrement de l\'historique</string>
     <string name="clear_history_confirmation">Êtes-vous sûr(e) \? Tout l\'Historique sera perdue.</string>
     <string name="pref_incognito_mode">Mode navigation privée</string>
-    <string name="pref_clear_history_summary">Supprimer l\'historique de lecture pour tous les mangas</string>
     <string name="pref_clear_history">Effacer l\'historique</string>
     <string name="clear_history_completed">Historique supprimé</string>
     <string name="chapter_settings_updated">Paramétrage des chapitres par défaut enregistré</string>
     <string name="spen_next_page">Page suivante</string>
     <string name="spen_previous_page">Page précédente</string>
     <string name="migration_help_guide">Guide de migration des sources</string>
-    <string name="full_restore_offline">Restauration hors ligne, se termine rapidement mais ne contient que ce que votre sauvegarde</string>
-    <string name="full_restore_online">Restauration en ligne, beaucoup plus lente mais vous donne plus d\'informations et de chapitres à jour</string>
-    <string name="full_restore_mode">Mode réseau</string>
     <string name="pref_backup_auto_create_legacy">Créez également une sauvegarde héritée</string>
     <string name="pref_create_legacy_backup_summary">Peut être utilisé dans les anciennes versions de Tachiyomi</string>
     <string name="pref_create_legacy_backup">Créer des sauvegardes héritées</string>
@@ -692,7 +684,26 @@
     <string name="action_filter_tracked">Suivi</string>
     <string name="action_display_show_number_of_items">Afficher le nombre d’entrées</string>
     <string name="right_and_left_nav">Droite et gauche</string>
-    <string name="pref_dual_page_split">Double page partagée (ALPHA)</string>
+    <string name="pref_dual_page_split">Double page partagée</string>
     <string name="pref_dual_page_invert_summary">Si le placement de la double page ne correspond pas au sens de lecture</string>
     <string name="pref_dual_page_invert">Inverser le placement des doubles pages</string>
+    <string name="backup_restore_content_full">Les données du fichier de sauvegarde seront restaurées.
+\n
+\nVous devrez installer les extensions manquantes et vous connecter ensuite aux services de suivi pour les utiliser.</string>
+    <string name="update_8hour">Toutes les 8 heures</string>
+    <string name="update_4hour">Toutes les 4 heures</string>
+    <string name="nav_zone_prev">Précédent</string>
+    <string name="pref_dns_over_https">DNS via HTTPS (Cloudflare)</string>
+    <string name="nav_zone_right">Droite</string>
+    <string name="nav_zone_left">Gauche</string>
+    <string name="nav_zone_next">Suivant</string>
+    <string name="pref_show_navigation_mode_summary">Afficher les zones tactiles quand le lecteur est ouvert</string>
+    <string name="pref_show_navigation_mode">Afficher la superposition de la disposition de la navigation</string>
+    <string name="exclude">Exclure : %s</string>
+    <string name="include">Inclure : %s</string>
+    <string name="none">Aucun</string>
+    <string name="action_sort_chapter_fetch_date">Date récupérée</string>
+    <string name="pref_library_update_categories_details">Les mangas dans les catégories exclus ne seront pas mises a jour meme s\'ils sont aussi dans les catégories inlcus.</string>
+    <string name="pref_download_new_categories_details">Les mangas dans les catégories exclus ne seront pas mise a jour meme s\'ils sont aussi dans les catégories inclus.</string>
+    <string name="pref_category_auto_download">Téléchargement Automatique</string>
 </resources>

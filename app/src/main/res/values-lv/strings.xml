@@ -11,7 +11,6 @@
     <string name="label_library">Bibliotēka</string>
     <string name="label_recent_manga">Vēsture</string>
     <string name="label_recent_updates">Atjauninājumi</string>
-    <string name="label_categories">Kategorijas</string>
     <string name="label_backup">Rezerves kopija</string>
     <string name="action_settings">Iestatījumi</string>
     <string name="action_filter">Filtrs</string>
@@ -203,5 +202,19 @@
     <string name="action_move_to_top">Pārvietot uz augšu</string>
     <string name="action_oldest">Vecākais</string>
     <string name="action_display_download_badge">Lejuplādes žetoni</string>
-    <string name="action_display_unread_badge">Nelasīti žetoni</string>
+    <string name="action_display_unread_badge">Nelasītas nozīmes</string>
+    <string name="action_desc">Dilstoši</string>
+    <string name="action_asc">Augoši</string>
+    <string name="action_order_by_chapter_number">Pēc nodaļas numura</string>
+    <string name="action_display_show_number_of_items">Parādīt lietu skaitu</string>
+    <string name="updating_library">Atjauninās bibliotēka</string>
+    <string name="action_filter_tracked">Izsekots</string>
+    <string name="default_category">Noklusētā kategorija</string>
+    <string name="action_search_settings">Meklēt Uzstādījumos</string>
+    <string name="completed">Pabeigts</string>
+    <string name="licensed">Licencēts</string>
+    <string name="unknown">Nezināms</string>
+    <string name="ongoing">Vēl turpinās</string>
+    <string name="description">Apraksts</string>
+    <string name="title">Nosaukums</string>
 </resources>

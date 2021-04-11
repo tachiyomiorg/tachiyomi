@@ -7,7 +7,6 @@
     <string name="label_library">Libreria</string>
     <string name="label_recent_manga">Cronologia</string>
     <string name="label_recent_updates">Aggiornamenti</string>
-    <string name="label_categories">Categorie</string>
     <string name="label_backup">Backup</string>
     <!-- Actions -->
     <string name="action_settings">Impostazioni</string>
@@ -70,7 +69,7 @@
     <string name="portrait">Orientamento verticale</string>
     <string name="landscape">Orientamento orizzontale</string>
     <string name="default_columns">Predefinito</string>
-    <string name="pref_library_update_interval">Frequenza di aggiornamento della libreria</string>
+    <string name="pref_library_update_interval">Frequenza di aggiornamento</string>
     <string name="update_never">Manuale</string>
     <string name="update_1hour">Ogni ora</string>
     <string name="update_2hour">Ogni 2 ore</string>
@@ -79,9 +78,8 @@
     <string name="update_12hour">Ogni 12 ore</string>
     <string name="update_24hour">Quotidiana</string>
     <string name="update_48hour">Ogni 2 giorni</string>
-    <string name="pref_library_update_categories">Categorie da includere nell\'aggiornamento globale</string>
     <string name="all">Tutte</string>
-    <string name="pref_library_update_restriction">Restrizioni dell\'aggiornamento della libreria</string>
+    <string name="pref_library_update_restriction">Restrizioni dell\'aggiornamento</string>
     <string name="pref_library_update_restriction_summary">Aggiorna solo quando sono soddisfatte le condizioni</string>
     <string name="charging">Caricamento</string>
     <string name="pref_update_only_non_completed">Aggiorna solo manga in corso</string>
@@ -305,7 +303,6 @@
     <string name="default_category_summary">Chiedi sempre</string>
     <string name="pref_crop_borders">Ritaglia bordi</string>
     <string name="pref_read_with_volume_keys_inverted">Inverti i tasti del volume</string>
-    <string name="pref_download_new_categories">Categorie da includere nello scaricamento</string>
     <string name="pref_create_backup">Crea backup</string>
     <string name="pref_create_backup_summ">Potrà essere utilizzato per ripristinare la libreria attuale</string>
     <string name="pref_restore_backup">Ripristina backup</string>
@@ -412,7 +409,7 @@
     <string name="filter_mode_lighten">Schiarisci</string>
     <string name="filter_mode_darken">Scurisci</string>
     <string name="label_help">Aiuto</string>
-    <string name="pref_library_update_prioritization">Ordine di aggiornamento della libreria</string>
+    <string name="pref_library_update_prioritization">Ordine di aggiornamento</string>
     <string name="no_results_found">Nessun risultato trovato</string>
     <string name="migration_selection_prompt">Seleziona una sorgente da cui migrare</string>
     <string name="action_webview_back">Indietro</string>
@@ -423,8 +420,7 @@
     <string name="ext_obsolete">Obsoleta</string>
     <string name="obsolete_extension_message">Questa estensione non è più disponibile.</string>
     <string name="pref_date_format">Formato della data</string>
-    <string name="pref_category_library_update">Aggiornamenti</string>
-    <string name="pref_category_library_categories">Categorie</string>
+    <string name="pref_category_library_update">Aggiornamenti globali</string>
     <string name="logout_title">Disconnettersi da %1$s\?</string>
     <string name="logout">Esci</string>
     <string name="logout_success">Ora sei disconnesso/a</string>
@@ -445,7 +441,7 @@
     <string name="theme_dark_amoled">Nero AMOLED</string>
     <string name="pref_manage_notifications">Gestisci le notifiche</string>
     <string name="pref_category_security">Sicurezza</string>
-    <string name="lock_with_biometrics">Blocco con biometria</string>
+    <string name="lock_with_biometrics">Sblocco richiesto</string>
     <string name="lock_when_idle">Blocca quando inattivo</string>
     <string name="lock_always">Sempre</string>
     <string name="lock_never">Mai</string>
@@ -615,7 +611,7 @@
     <string name="pref_category_reading_mode">Modalità di lettura</string>
     <string name="pref_category_locale">Locale</string>
     <string name="pref_category_theme">Tema</string>
-    <string name="action_sort_date_added">Data di aggiunta</string>
+    <string name="action_sort_date_added">Data aggiunta</string>
     <plurals name="num_trackers">
         <item quantity="one">1 tracciatore</item>
         <item quantity="other">%d tracciatori</item>
@@ -650,7 +646,6 @@
     <string name="pref_hide_bottom_bar_on_scroll">Nascondi la barra dei pulsanti quando scorri</string>
     <string name="pref_incognito_mode_summary">Sospendi cronologia di lettura</string>
     <string name="pref_incognito_mode">Modalità incognito</string>
-    <string name="pref_clear_history_summary">Cancella cronologia di lettura di tutti i manga</string>
     <string name="pref_clear_history">Svuota cronologia</string>
     <string name="clear_history_confirmation">Sei sicuro\? Tutta la cronologia verrà cancellata.</string>
     <string name="clear_history_completed">Cronologia cancellata</string>
@@ -659,9 +654,6 @@
     <string name="migration_help_guide">Guida alla migrazione di origine</string>
     <string name="invalid_backup_file_type">File di backup non valido: %1$s
 \nDovrebbe terminare con .proto.gz oppure .json.</string>
-    <string name="full_restore_offline">Ripristina fuori linea, termina rapidamente ma contiene solo ciò che ha il backup</string>
-    <string name="full_restore_online">Ripristina in linea, molto più lentamente ma fornisce informazioni e capitoli più aggiornati</string>
-    <string name="full_restore_mode">Modalità rete</string>
     <string name="pref_backup_auto_create_legacy">Crea anche backup legacy</string>
     <string name="pref_create_legacy_backup_summary">Può essere utilizzato nelle versioni precedenti di Tachiyomi</string>
     <string name="pref_create_legacy_backup">Crea backup legacy</string>
@@ -691,7 +683,23 @@
     <string name="action_filter_tracked">Tracciati</string>
     <string name="action_display_show_number_of_items">Elementi visualizzati</string>
     <string name="right_and_left_nav">Navigazione destra/sinistra</string>
-    <string name="pref_dual_page_split">Dividi pagine doppie (ALPHA)</string>
+    <string name="pref_dual_page_split">Dividi pagine doppie</string>
     <string name="pref_dual_page_invert_summary">Se il posizionamento della divisione a doppia pagina non corrisponde alla direzione di lettura</string>
     <string name="pref_dual_page_invert">Inverti il posizionamento delle doppie pagine divise</string>
+    <string name="backup_restore_content_full">I dati dal file di backup verranno recuperati.
+\n
+\nAvrai bisogno di installare le estensioni mancanti ed effettuare il login nei trackers per utilizzarli.</string>
+    <string name="update_8hour">Ogni 8 ore</string>
+    <string name="update_4hour">Ogni 4 ore</string>
+    <string name="exclude">Escludi: %s</string>
+    <string name="include">Includi: %s</string>
+    <string name="none">Nessuno</string>
+    <string name="action_sort_chapter_fetch_date">Data recuperata</string>
+    <string name="pref_category_auto_download">Download automatico</string>
+    <string name="nav_zone_next">Successivo</string>
+    <string name="nav_zone_prev">Precedente</string>
+    <string name="pref_download_new_categories_details">Manga che si trovano in categorie escluse non saranno scaricati anche se si trovano in categorie incluse.</string>
+    <string name="nav_zone_right">Destra</string>
+    <string name="nav_zone_left">Sinistra</string>
+    <string name="pref_library_update_categories_details">Manga che si trovano in categorie escluse non saranno aggiornati anche se si trovano in categorie incluse.</string>
 </resources>

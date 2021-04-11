@@ -11,7 +11,6 @@
     <string name="label_library">Βιβλιοθήκη</string>
     <string name="label_recent_manga">Ιστορικό</string>
     <string name="label_recent_updates">Ενημερώσεις</string>
-    <string name="label_categories">Κατηγορίες</string>
     <string name="label_backup">Αντίγραφο ασφάλειας</string>
     <string name="label_migration">Μεταφορά</string>
     <string name="label_extensions">Επεκτάσεις</string>
@@ -82,13 +81,13 @@
     <string name="pref_category_reader">Αναγνώστης</string>
     <string name="pref_category_downloads">Λήψεις</string>
     <string name="pref_category_tracking">Παρακολούθηση</string>
-    <string name="pref_category_advanced">Προχωρημένες ρυθμίσεις</string>
+    <string name="pref_category_advanced">Για προχωρημένους</string>
     <string name="pref_category_about">Περί</string>
     <string name="pref_library_columns">Στοιχεία ανά σειρά</string>
     <string name="portrait">Κατακόρυφα</string>
     <string name="landscape">Οριζόντια</string>
     <string name="default_columns">Προεπιλογή</string>
-    <string name="pref_library_update_interval">Συχνότητα ενημέρωσης βιβλιοθήκης</string>
+    <string name="pref_library_update_interval">Συχνότητα ενημέρωσης</string>
     <string name="update_never">Χειροκίνητα</string>
     <string name="update_1hour">Ωριαία</string>
     <string name="update_2hour">Κάθε 2 ώρες</string>
@@ -98,9 +97,8 @@
     <string name="update_24hour">Καθημερινά</string>
     <string name="update_48hour">Κάθε 2 ημέρες</string>
     <string name="update_weekly">Εβδομαδιαία</string>
-    <string name="pref_library_update_categories">Κατηγορίες που περιλαμβάνονται στην ολική ενημέρωση</string>
     <string name="all">Όλα</string>
-    <string name="pref_library_update_restriction">Περιορισμοί ενημέρωσης βιβλιοθήκης</string>
+    <string name="pref_library_update_restriction">Περιορισμοί ενημέρωσης</string>
     <string name="pref_library_update_restriction_summary">Ενημέρωση μόνο όταν πληρούνται οι προϋποθέσεις</string>
     <string name="charging">Φορτίζει</string>
     <string name="pref_update_only_non_completed">Ενημέρωση μόνο manga σε εξέλιξη</string>
@@ -189,7 +187,6 @@
     <string name="fourth_to_last">Προ-προ-προτελευταίο αναγνωσμένο κεφάλαιο</string>
     <string name="fifth_to_last">Προ-προ-προ-προτελευταίο αναγνωσμένο κεφάλαιο</string>
     <string name="pref_download_new">Λήψη νέων κεφαλαίων</string>
-    <string name="pref_download_new_categories">Κατηγορίες που να συμπεριλαμβάνονται στην λήψη</string>
     <string name="services">Υπηρεσίες</string>
     <string name="backup">Αντίγραφο ασφαλείας</string>
     <string name="pref_create_backup">Δημιουργία αντιγράφου ασφαλείας</string>
@@ -242,7 +239,7 @@
     <string name="no_more_results">Δεν υπάρχουν άλλα αποτελέσματα</string>
     <string name="local_source">Τοπική πηγή</string>
     <string name="other_source">Άλλα</string>
-    <string name="invalid_combination">Δεν είναι δυνατή η επιλογή της προεπιλογής με άλλες κατηγορίες</string>
+    <string name="invalid_combination">Η προεπιλογή δεν μπορεί να επιλεγεί με άλλες κατηγορίες</string>
     <string name="added_to_library">Το manga έχει προστεθεί στη βιβλιοθήκη σας</string>
     <string name="action_global_search_hint">Καθολική αναζήτηση…</string>
     <string name="latest">Νεότερα</string>
@@ -376,7 +373,7 @@
     <string name="filter_mode_multiply">Πολλαπλασιασμός</string>
     <string name="filter_mode_screen">Οθόνη</string>
     <string name="label_help">Βοήθεια</string>
-    <string name="pref_library_update_prioritization">Σειρά ενημέρωσης βιβλιοθήκης</string>
+    <string name="pref_library_update_prioritization">Σειρά ενημέρωσης</string>
     <string name="pref_color_filter_mode">Μέθοδος μίξης χρωματικού φίλτρου</string>
     <string name="filter_mode_lighten">Dodge / Φώτισε</string>
     <string name="filter_mode_darken">Burn / Σκουραίωσε</string>
@@ -458,8 +455,7 @@
     <string name="pref_cutout_short">Εμφάνιση περιεχομένου στην περιοχή αποκοπής</string>
     <string name="pref_enable_automatic_extension_updates">Έλεγχος για ενημερώσεις επεκτάσεων</string>
     <string name="ext_updates_pending">Εκκρεμούν ενημερώσεις</string>
-    <string name="pref_category_library_categories">Κατηγορίες</string>
-    <string name="pref_category_library_update">Ενημερώσεις</string>
+    <string name="pref_category_library_update">Καθολική ενημέρωση</string>
     <string name="pref_category_display">Προβολή</string>
     <string name="hide_notification_content">Απόκρυψη περιεχομένου ειδοποιήσεων</string>
     <string name="secure_screen_summary">Απόκρυψη περιεχομένων εφαρμογής κατά την εναλλαγή εφαρμογών και τον αποκλεισμό στιγμιότυπων οθόνης</string>
@@ -471,7 +467,7 @@
     <string name="lock_never">Ποτέ</string>
     <string name="lock_always">Πάντα</string>
     <string name="lock_when_idle">Κλείδωμα όταν είναι αδρανής</string>
-    <string name="lock_with_biometrics">Κλείδωμα με βιομετρικά στοιχεία</string>
+    <string name="lock_with_biometrics">Απαιτείται ξεκλείδωμα</string>
     <string name="pref_category_security">Ασφάλεια</string>
     <string name="pref_manage_notifications">Διαχείριση ειδοποιήσεων</string>
     <string name="pref_confirm_exit">Επιβεβαίωση εξόδου</string>
@@ -606,9 +602,9 @@
     </plurals>
     <string name="no_chapters_error">Δεν βρέθηκαν κεφάλαια</string>
     <string name="chapter_settings_updated">Ενημερώθηκαν οι προεπιλεγμένες ρυθμίσεις κεφαλαίου</string>
-    <string name="set_chapter_settings_as_default">Ορισμός ως προεπιλογή</string>
+    <string name="set_chapter_settings_as_default">Ορισμός ως προεπιλογής</string>
     <string name="also_set_chapter_settings_for_library">Εφαρμογή επίσης σε όλα τα manga στη βιβλιοθήκη μου</string>
-    <string name="confirm_set_chapter_settings">Είστε βέβαιοι ότι θέλετε να αποθηκεύσετε αυτές τις ρυθμίσεις ως προεπιλεγμένες;</string>
+    <string name="confirm_set_chapter_settings">Είστε σίγουροι ότι θέλετε να αποθηκεύσετε αυτές τις ρυθμίσεις ως προεπιλεγμένες;</string>
     <string name="chapter_settings">Ρυθμίσεις κεφαλαίου</string>
     <string name="share_page_info">%1$s: %2$s, σελίδα %3$d</string>
     <string name="action_search_settings">Αναζήτηση ρυθμίσεων</string>
@@ -617,15 +613,11 @@
     <string name="pref_hide_bottom_bar_on_scroll">Απόκρυψη της κάτω μπάρας κατά την κύλιση</string>
     <string name="pref_incognito_mode_summary">Παύει το ιστορικό ανάγνωσης</string>
     <string name="pref_incognito_mode">Λειτουργία ανώνυμης περιήγησης</string>
-    <string name="pref_clear_history_summary">Διαγραφή ιστορικού ανάγνωσης για όλα τα manga</string>
     <string name="pref_clear_history">Διαγραφή ιστορικού</string>
     <string name="clear_history_confirmation">Είστε σίγουροι\? Όλο το ιστορικό θα χαθεί.</string>
     <string name="clear_history_completed">Το ιστορικό διαγράφηκε</string>
     <string name="spen_next_page">Επόμενη σελίδα</string>
     <string name="spen_previous_page">Προηγούμενη σελίδα</string>
-    <string name="full_restore_offline">Επαναφορά εκτός σύνδεσης, ολοκληρώνεται γρήγορα, αλλά περιέχει μόνο ό,τι έχει το αντίγραφο ασφαλείας σας</string>
-    <string name="full_restore_online">Επαναφορά σε σύνδεση, πολύ πιο αργή, αλλά σας δίνει πιο ενημερωμένες πληροφορίες και κεφάλαια</string>
-    <string name="full_restore_mode">Λειτουργία δικτύου</string>
     <string name="pref_backup_auto_create_legacy">Επίσης, δημιουργία αντιγράφου ασφαλείας παλαιού τύπου</string>
     <string name="pref_create_legacy_backup_summary">Μπορεί να χρησιμοποιηθεί σε παλαιότερες εκδόσεις του Tachiyomi</string>
     <string name="pref_create_legacy_backup">Δημιουργία αντιγράφου ασφαλείας παλαιού τύπου</string>
@@ -658,7 +650,26 @@
     <string name="action_filter_tracked">Παρακολουθούνται</string>
     <string name="action_display_show_number_of_items">Εμφάνιση αριθμού στοιχείων</string>
     <string name="right_and_left_nav">Δεξιά και Aριστερά</string>
-    <string name="pref_dual_page_split">Διπλή διαίρεση σελίδας (ALPHA)</string>
+    <string name="pref_dual_page_split">Διπλή διαίρεση σελίδας</string>
     <string name="pref_dual_page_invert_summary">Εάν η τοποθέτηση του διαχωρισμού διπλής σελίδας δεν ταιριάζει με την κατεύθυνση ανάγνωσης</string>
     <string name="pref_dual_page_invert">Αντιστροφή τοποθέτησης διαχωρισμού διπλής σελίδας</string>
+    <string name="backup_restore_content_full">Τα δεδομένα από το αντίγραφο ασφαλείας θα αποκατασταθούν
+\n
+\nΘα χρειαστεί να εγκαταστήσετε τυχόν επεκτάσεις που λείπουν και στη συνέχεια να συνδεθείτε στις υπηρεσίες παρακολούθησης για να τις χρησιμοποιήσετε.</string>
+    <string name="update_8hour">Κάθε 8 ώρες</string>
+    <string name="update_4hour">Κάθε 4 ώρες</string>
+    <string name="pref_show_navigation_mode_summary">Εμφάνιση ζωνών πατήματος όταν ανοίγει ο αναγνώστης</string>
+    <string name="pref_show_navigation_mode">Εμφάνιση επικάλυψης διάταξης πλοήγησης</string>
+    <string name="nav_zone_right">Δεξιά</string>
+    <string name="nav_zone_left">Αριστερά</string>
+    <string name="nav_zone_next">Επόμενο</string>
+    <string name="nav_zone_prev">Προηγούμενο</string>
+    <string name="pref_dns_over_https">DNS μέσω HTTPS</string>
+    <string name="exclude">Εξαίρεση: %s</string>
+    <string name="include">Συμπερίληψη: %s</string>
+    <string name="none">Κανένα</string>
+    <string name="action_sort_chapter_fetch_date">Ημερομηνία ανάκτησης</string>
+    <string name="pref_download_new_categories_details">Τα Manga σε εξαιρούμενες κατηγορίες δεν θα ληφθούν ακόμα κι αν ανήκουν και σε κατηγορίες που περιλαμβάνονται.</string>
+    <string name="pref_category_auto_download">Αυτόματη λήψη</string>
+    <string name="pref_library_update_categories_details">Τα manga στις αποκλεισμένες κατηγορίες δεν θα ενημερώνονται ακόμη και αν βρίσκονται επίσης στις συμπεριλαμβανόμενες κατηγορίες.</string>
 </resources>

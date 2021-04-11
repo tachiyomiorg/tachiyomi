@@ -7,7 +7,6 @@
     <string name="label_library">Biblioteca</string>
     <string name="label_recent_manga">Historial</string>
     <string name="label_recent_updates">Actualizaciones</string>
-    <string name="label_categories">Categorías</string>
     <string name="label_backup">Copia de seguridad</string>
     <!-- Actions -->
     <string name="action_settings">Configuración</string>
@@ -156,7 +155,7 @@
     <!-- Manga info fragment -->
     <string name="manga_detail_tab">Info</string>
     <string name="description">Descripción</string>
-    <string name="ongoing">En curso</string>
+    <string name="ongoing">En publicación</string>
     <string name="unknown">Desconocido</string>
     <string name="licensed">Licenciado</string>
     <string name="remove_from_library">Eliminar de biblioteca</string>
@@ -185,7 +184,7 @@
     <string name="confirm_delete_chapters">¿Estás seguro de que deseas eliminar los capítulos seleccionados\?</string>
     <!-- MyAnimeList fragment -->
     <string name="reading">Leyendo</string>
-    <string name="completed">Completo</string>
+    <string name="completed">Finalizado</string>
     <string name="dropped">Abandonado</string>
     <string name="on_hold">En espera</string>
     <string name="plan_to_read">Para leer luego</string>
@@ -273,7 +272,6 @@
     <string name="app_not_available">Aplicación no disponible</string>
     <string name="short_recent_updates">Actualizaciones</string>
     <string name="update_weekly">Semanalmente</string>
-    <string name="pref_library_update_categories">Categorías que incluir en actualización global</string>
     <string name="all">Todos</string>
     <string name="pref_start_screen">Pantalla inicial</string>
     <string name="pref_language">Idioma</string>
@@ -294,7 +292,6 @@
     <string name="fourth_to_last">Cuarto al último capítulo</string>
     <string name="fifth_to_last">Quinto al último capítulo</string>
     <string name="pref_download_new">Descargar capítulos nuevos</string>
-    <string name="pref_download_new_categories">Categorías a incluir en la descarga</string>
     <string name="pref_create_backup">Crear copia de seguridad</string>
     <string name="pref_create_backup_summ">Se puede utilizar para restaurar la biblioteca actual</string>
     <string name="pref_restore_backup">Restaurar copia de seguridad</string>
@@ -423,7 +420,6 @@
     <string name="obsolete_extension_message">Esta extensión ya no está disponible.</string>
     <string name="pref_date_format">Formato de fecha</string>
     <string name="pref_category_library_update">Actualizaciones</string>
-    <string name="pref_category_library_categories">Categorías</string>
     <string name="logout">Cerrar sesión</string>
     <string name="logout_success">Has cerrado sesión</string>
     <string name="currently_reading">Leyendo actualmente</string>
@@ -648,15 +644,11 @@
     <string name="pref_hide_bottom_bar_on_scroll">Ocultar la barra inferior al desplazar</string>
     <string name="pref_incognito_mode_summary">Pausar historial de lectura</string>
     <string name="pref_incognito_mode">Modo incognito</string>
-    <string name="pref_clear_history_summary">Eliminar el historial de lectura para toda la manga</string>
     <string name="pref_clear_history">Borrar historial</string>
     <string name="clear_history_confirmation">¿Está seguro\? Toda la historia se perderá.</string>
     <string name="clear_history_completed">Historial eliminado</string>
     <string name="spen_next_page">Siguiente página</string>
     <string name="spen_previous_page">Página anterior</string>
-    <string name="full_restore_offline">Restaura fuera de línea, termina rápidamente pero sólo contiene lo que tiene tu copia de seguridad</string>
-    <string name="full_restore_online">Restaurar en línea, es mucho más lento pero te da más información actualizada y capítulos</string>
-    <string name="full_restore_mode">Modo de red</string>
     <string name="pref_backup_auto_create_legacy">También crear copia de seguridad heredada</string>
     <string name="pref_create_legacy_backup_summary">Se puede utilizar en versiones anteriores de Tachiyomi</string>
     <string name="pref_create_legacy_backup">Crear una copia de seguridad heredada</string>
@@ -687,4 +679,5 @@
     <string name="action_order_by_chapter_number">Por número de capítulo</string>
     <string name="action_order_by_upload_date">Por fecha de subida</string>
     <string name="action_filter_tracked">Rastreado</string>
+    <string name="right_and_left_nav">Derecha e Izquierda</string>
 </resources>

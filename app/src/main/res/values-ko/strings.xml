@@ -5,7 +5,6 @@
     <string name="manga">만화</string>
     <string name="chapters">챕터</string>
     <string name="track">동기화</string>
-    <string name="label_categories">카테고리</string>
     <string name="label_backup">백업</string>
     <string name="action_settings">설정</string>
     <string name="action_filter">필터</string>
@@ -95,7 +94,6 @@
     <string name="update_24hour">1일</string>
     <string name="update_48hour">2일</string>
     <string name="update_weekly">1주</string>
-    <string name="pref_library_update_categories">전역 업데이트에 포함할 카테고리</string>
     <string name="all">전부</string>
     <string name="pref_library_update_restriction">서재 업데이트 제한</string>
     <string name="pref_library_update_restriction_summary">조건들이 충족 될 때에만 업데이트</string>
@@ -320,7 +318,6 @@
     <string name="third_to_last">세번째 챕터에서 끝까지</string>
     <string name="fourth_to_last">네번째 챕터에서 끝까지</string>
     <string name="fifth_to_last">다섯번째 챕터에서 끝까지</string>
-    <string name="pref_download_new_categories">다운로드에 포함할 카테고리</string>
     <string name="backup_restore_content">복원시 소스에서 데이터를 가져오며, 통신 비용이 청구 될 수 있습니다.
 \n또한 복원 전에 필요한 소스에 제대로 로그인이 되어있는지 확인하십시오.</string>
     <string name="backup_choice">어떤 항목들을 백업하겠습니까\?</string>

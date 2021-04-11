@@ -23,14 +23,12 @@
     <string name="ext_updates_pending">ዝመናዎች በመጠባበቅ ላይ ናቸው</string>
     <string name="all_lang">ሁሉም</string>
     <string name="all">ሁሉም</string>
-    <string name="pref_library_update_categories">በአለምአቀፍ ዝመና ውስጥ የሚካተቱባቸው ምድቦች</string>
     <plurals name="num_categories">
         <item quantity="one">%d ምድብ</item>
         <item quantity="other">%d ምድቦች</item>
     </plurals>
     <string name="default_category_summary">ሁል ጊዜም ይጠይቁ</string>
     <string name="default_category">ነባሪ ምድብ</string>
-    <string name="pref_category_library_categories">ምድቦች</string>
     <string name="pref_library_update_error_notification">የዝማኔ ስህተቶችን ማሳወቂያዎችን አሳይ</string>
     <string name="pref_library_update_refresh_metadata_summary">ቤተ-መጽሐፍትን ሲያዘምኑ አዲስ ሽፋን እና ዝርዝሮችን ይፈልጉ</string>
     <string name="pref_library_update_refresh_metadata">ዲበ ውሂብን በራስ-ሰር አድስ</string>
@@ -203,7 +201,6 @@
     <string name="label_extension_info">የኤክስቴንሽን መረጃ</string>
     <string name="label_migration">ፍልሰት</string>
     <string name="label_backup">ምትኬ</string>
-    <string name="label_categories">ምድቦች</string>
     <string name="label_sources">ምንጮች</string>
     <string name="label_recent_manga">ታሪክ</string>
     <string name="label_recent_updates">ዝመናዎች</string>
@@ -336,7 +333,6 @@
     <string name="tracking_info">በክትትል አገልግሎቶች ውስጥ የምዕራፍ እድገትን ለማዘመን የአንድ-መንገድ ማመሳሰል። ከመከታተያ አዝራራቸው የግለሰቦችን የማንጋ ግቤቶች መከታተልን ያዘጋጁ።</string>
     <string name="services">አገልግሎቶች</string>
     <string name="pref_auto_update_manga_sync">ካነበቡ በኋላ የምዕራፍ እድገትን ያዘምኑ</string>
-    <string name="pref_download_new_categories">በማውረድ ውስጥ ለማካተት ምድቦች</string>
     <string name="pref_download_new">አዳዲስ ምዕራፎችን ያውርዱ</string>
     <string name="fifth_to_last">አምስተኛው እስከ መጨረሻው ምዕራፍ</string>
     <string name="fourth_to_last">ከአራተኛ እስከ መጨረሻው ምዕራፍ</string>

@@ -11,7 +11,6 @@
     <string name="label_library">Biblioteka</string>
     <string name="label_recent_manga">Istorija</string>
     <string name="label_recent_updates">Apdejti</string>
-    <string name="label_categories">Kategorije</string>
     <string name="label_backup">Rezerva</string>
     <string name="label_migration">Migracija</string>
     <string name="label_extensions">Dodaci</string>
@@ -98,7 +97,6 @@
     <string name="update_24hour">Dnevno</string>
     <string name="update_48hour">Svaka 2 dana</string>
     <string name="update_weekly">Nedeljno</string>
-    <string name="pref_library_update_categories">Kategorije koje su ubrajane u globalnom ažuriranju</string>
     <string name="all">Sve</string>
     <string name="pref_library_update_restriction">Restrikcije ažuriranja biblioteke</string>
     <string name="pref_library_update_restriction_summary">Ažuriraj samo kada su uslovi zadovoljeni</string>
@@ -189,7 +187,6 @@
     <string name="fourth_to_last">Četiri prije pročitanog poglavlja</string>
     <string name="fifth_to_last">Pet do pročitanog poglavlja</string>
     <string name="pref_download_new">Preuzmi nova poglavlja</string>
-    <string name="pref_download_new_categories">Kategorije ubrajane u preuzimanju</string>
     <string name="services">Servisi</string>
     <string name="backup">Rezerna kopija</string>
     <string name="pref_create_backup">Napravi rezernu kopiju</string>
@@ -301,7 +298,6 @@
     <string name="obsolete_extension_message">Ova ekstenzija nije više dostupna.</string>
     <string name="pref_date_format">Format datuma</string>
     <string name="pref_category_library_update">Apdejti</string>
-    <string name="pref_category_library_categories">Kategorije</string>
     <string name="logout_title">Izloguj se od %1$s\?</string>
     <string name="logout">Izloguj se</string>
     <string name="logout_success">Sada ste izlogovani</string>
@@ -521,4 +517,5 @@
     <string name="pref_jump_to_chapters">Idi na poglevlje sa otvaranjem</string>
     <string name="parental_controls_info">Ovo ne znači da će svi potencijalno neoficijalni ili pogrešno označeni dodaci koji sadrže 18+ sadržaj biti uklonjeni.</string>
     <string name="pref_category_locale">Jezik</string>
+    <string name="action_filter_tracked">Praćeno</string>
 </resources>

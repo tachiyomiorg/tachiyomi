@@ -11,7 +11,6 @@
     <string name="label_library">Knižnica</string>
     <string name="label_recent_manga">Nedávno čítané</string>
     <string name="label_recent_updates">Updaty</string>
-    <string name="label_categories">Kategórie</string>
     <string name="label_backup">Záloha</string>
     <string name="label_migration">Presun zdrojov</string>
     <string name="label_extensions">Rozšírenia</string>
@@ -100,7 +99,6 @@
     <string name="update_24hour">Raz za deň</string>
     <string name="update_48hour">Každé 2 dni</string>
     <string name="update_weekly">Každý týždeň</string>
-    <string name="pref_library_update_categories">Kategórie, ktoré sa majú zahrnúť do globálnej aktualizácie</string>
     <string name="all">Všetko</string>
     <string name="pref_library_update_prioritization">Poradie aktualizácie knižnice</string>
     <string name="pref_library_update_restriction">Obmedzenia aktualizácii knižnice</string>
@@ -202,7 +200,6 @@
     <string name="fourth_to_last">Štvrtá kapitola od konca</string>
     <string name="fifth_to_last">Piata kapitola od konca</string>
     <string name="pref_download_new">Stiahnuť nové kapitoly</string>
-    <string name="pref_download_new_categories">Kategórie, ktoré sa majú zahrnúť do sťahovania</string>
     <string name="services">Služby</string>
     <string name="backup">Zálohovanie</string>
     <string name="pref_create_backup">Vytvoriť zálohu</string>

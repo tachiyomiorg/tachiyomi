@@ -42,7 +42,6 @@
     <string name="label_extension_info">एक्स्टेन्शन माहिती</string>
     <string name="label_extensions">एक्स्टेन्शन</string>
     <string name="label_migration">स्त्रोत स्तालांतर</string>
-    <string name="label_categories">श्रेण्या</string>
     <string name="label_sources">स्त्रोत</string>
     <string name="label_recent_updates">अद्यतनित करा</string>
     <string name="label_library">संग्रहालय</string>
@@ -176,10 +175,8 @@
     <string name="ext_updates_pending">प्रलंबित अध्यातणे</string>
     <string name="all_lang">सगडे</string>
     <string name="all">सगडे</string>
-    <string name="pref_library_update_categories">जागतिक अध्यतानामध्ये समाविष्ट होणाऱ्या श्रेणी</string>
     <string name="default_category_summary">नेहमी विचारायचे</string>
     <string name="default_category">मूलभूत श्रेणी</string>
-    <string name="pref_category_library_categories">श्रेणीं</string>
     <string name="pref_update_only_non_completed">फक्त चालू असलेल्याच मांगा आधीतणीत करायचे</string>
     <string name="charging">चार्ज होत आहे</string>
     <string name="pref_library_update_restriction_summary">अटी पूर्ण झाल्यावरच अध्यातन करावे</string>

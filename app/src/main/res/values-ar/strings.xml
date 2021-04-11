@@ -4,14 +4,13 @@
     <string name="categories">الفئات</string>
     <string name="manga">المانجا</string>
     <string name="chapters">الفصول</string>
-    <string name="track">التتبع</string>
+    <string name="track">التعقب</string>
     <string name="history">السجل</string>
     <string name="label_settings">اﻹعدادات</string>
     <string name="label_download_queue">لائحة التنزيل</string>
     <string name="label_library">المكتبة</string>
     <string name="label_recent_manga">السجل</string>
     <string name="label_recent_updates">التحديثات</string>
-    <string name="label_categories">الفئات</string>
     <string name="label_backup">النسخة الإحتياطية</string>
     <string name="action_settings">اﻹعدادات</string>
     <string name="action_filter">المُرشح</string>
@@ -91,7 +90,6 @@
     <string name="update_24hour">يومياً</string>
     <string name="update_48hour">كل يومان</string>
     <string name="update_weekly">أسبوعياً</string>
-    <string name="pref_library_update_categories">الفئات المتضمنة فى التحديث الشامل</string>
     <string name="all">الكل</string>
     <string name="pref_library_update_restriction">قيود تحديثات المكتبة</string>
     <string name="pref_library_update_restriction_summary">تحديث فقط عندما يتم استيفاء الشروط</string>
@@ -154,7 +152,6 @@
     <string name="fourth_to_last">من الفصل الرابع إلى اﻷخير</string>
     <string name="fifth_to_last">من الفصل الخامس إلى اﻷخير</string>
     <string name="pref_download_new">تنزيل الفصول الجديدة</string>
-    <string name="pref_download_new_categories">الفئات المتضمنة فى التنزيل</string>
     <string name="services">الخدمات</string>
     <string name="backup">النسخ الإحتياطي</string>
     <string name="pref_create_backup">إنشاء نسخة إحتياطية</string>
@@ -313,7 +310,7 @@
     <string name="channel_common">عامٌّ</string>
     <string name="channel_library">المكتبة</string>
     <string name="label_migration">ترحيل</string>
-    <string name="label_extensions">اﻹضافات</string>
+    <string name="label_extensions">الإضافات</string>
     <string name="label_extension_info">معلومات اﻹضافة</string>
     <string name="action_display_download_badge">شارات لعدد الفصول المُنزلة</string>
     <string name="all_lang">الكل</string>
@@ -429,7 +426,6 @@
     <string name="obsolete_extension_message">هذه الإضافة لم تعد متوفرة.</string>
     <string name="ext_obsolete">قديم جدًا</string>
     <string name="ext_updates_pending">التحديثات معلقة</string>
-    <string name="pref_category_library_categories">الفئات</string>
     <string name="pref_category_library_update">التحديثات</string>
     <string name="pref_category_display">العرض</string>
     <string name="hide_notification_content">اخفاء محتوى الإشعارات</string>
@@ -667,14 +663,10 @@
     <string name="clear_history_completed">تم حذف السجل</string>
     <string name="pref_incognito_mode_summary">إيقاف سجل القراءة</string>
     <string name="pref_incognito_mode">الوضع المخفي</string>
-    <string name="pref_clear_history_summary">مسح سجل القراءة لجميع المانجا</string>
     <string name="pref_clear_history">مسح السجل</string>
     <string name="spen_next_page">صفحة التالية</string>
     <string name="spen_previous_page">الصفحة سابقة</string>
     <string name="migration_help_guide">دليل ترحيل المصدر</string>
-    <string name="full_restore_offline">الاستعادة في وضع عدم الاتصال، تنتهي بسرعة ولكنها تحتوي فقط على ما يحتويه نسختك الاحتياطية</string>
-    <string name="full_restore_online">الاستعادة عبر الإنترنت، أبطأ بكثير ولكنها تمنحك المزيد من المعلومات والفصول المحدثة</string>
-    <string name="full_restore_mode">وضع الشبكة</string>
     <string name="pref_backup_auto_create_legacy">قم أيضًا بإنشاء نسخة إحتياطية قديمة</string>
     <string name="pref_create_legacy_backup_summary">يمكن إستخدامه في الإصدارات القديمة من Tachiyomi</string>
     <string name="pref_create_legacy_backup">إنشاء نسخة احتياطية قديمة</string>
@@ -703,10 +695,22 @@
     <string name="right_and_left_nav">يميناً و يساراً</string>
     <string name="pref_dual_page_invert_summary">إذا كان موضع تقسيم الصفحات المزدوجة لا يتطابق مع اتجاه القراءة</string>
     <string name="pref_dual_page_invert">عكس موضع تقسيم الصفحة المزدوجة</string>
-    <string name="pref_dual_page_split">شق الصفحه لنصفين</string>
+    <string name="pref_dual_page_split">شق الصفحة لنصفين</string>
     <string name="network_unmetered">شبكة غير مصنفة</string>
     <string name="action_desc">تنازلياً</string>
     <string name="action_asc">تصاعدياً</string>
     <string name="action_order_by_upload_date">حسب تاريخ الرفع</string>
     <string name="action_order_by_chapter_number">حسب رقم الفصل</string>
+    <string name="pref_dns_over_https">DNS باستعمال التشفير (Cloudflare)</string>
+    <string name="backup_restore_content_full">تم استيراد البيانات من ملف نسخ الاحتياطي.
+\n
+\nيتوجب تثبيت الإضافات المفقودة و تسجيل الدخول إلى منصات التعقب تالياً لاستعمالهم.</string>
+    <string name="nav_zone_right">يمين</string>
+    <string name="nav_zone_left">يسار</string>
+    <string name="nav_zone_next">التالي</string>
+    <string name="nav_zone_prev">السابق</string>
+    <string name="pref_show_navigation_mode_summary">عرض أماكن الضغط للتنقل عند فتح القارئ</string>
+    <string name="pref_show_navigation_mode">إظهار حدود التنقل</string>
+    <string name="update_8hour">كل ثمان ساعات</string>
+    <string name="update_4hour">كل أربع ساعات</string>
 </resources>

@@ -11,7 +11,6 @@
     <string name="label_library">Biblioteca</string>
     <string name="label_recent_manga">Istoric</string>
     <string name="label_recent_updates">Actualizări</string>
-    <string name="label_categories">Categorii</string>
     <string name="label_backup">Copie de rezervă</string>
     <string name="label_migration">Migreaza</string>
     <string name="label_extensions">Extensii</string>
@@ -32,8 +31,8 @@
     <string name="action_mark_as_unread">Marchează ca necitit</string>
     <string name="action_mark_previous_as_read">Marchează capitolele precedente ca citite</string>
     <string name="action_download">Descarcă</string>
-    <string name="action_bookmark">Semn de carte</string>
-    <string name="action_remove_bookmark">Demarcați</string>
+    <string name="action_bookmark">Marchează Capitolul</string>
+    <string name="action_remove_bookmark">Demarcați capitolul</string>
     <string name="action_delete">Șterge</string>
     <string name="action_update">Actualizează</string>
     <string name="action_update_library">Actualizează biblioteca</string>
@@ -94,7 +93,6 @@
     <string name="update_24hour">Zilnic</string>
     <string name="update_48hour">La fiecare 2 zile</string>
     <string name="update_weekly">Săptămânal</string>
-    <string name="pref_library_update_categories">Categorii de inclus în actualizarea globală</string>
     <string name="all">Toate</string>
     <string name="pref_library_update_restriction">Restricții actualizare bibliotecă</string>
     <string name="pref_library_update_restriction_summary">Actualizează doar când condițiile sunt împlinite</string>
@@ -189,7 +187,6 @@
     <string name="fourth_to_last">Al patrulea capitol până la sfârșit</string>
     <string name="fifth_to_last">Al cincilea capitol până la sfârșit</string>
     <string name="pref_download_new">Descarcă capitole noi</string>
-    <string name="pref_download_new_categories">Categorii de inclus în descărcate</string>
     <string name="services">Servicii</string>
     <string name="backup">Copie de rezervă</string>
     <string name="pref_create_backup">Crează copie de rezervă</string>
@@ -391,7 +388,6 @@
     <string name="obsolete_extension_message">Această extensie nu mai este disponibilă.</string>
     <string name="pref_date_format">Formatul datei</string>
     <string name="pref_category_library_update">Actualizări</string>
-    <string name="pref_category_library_categories">Categorii</string>
     <string name="logout_title">Deconectează-te de la %1$s\?</string>
     <string name="logout">Deconectează-te</string>
     <string name="logout_success">Acum ești deconectat</string>
@@ -629,7 +625,6 @@
     <string name="action_search_settings">Setări de căutare</string>
     <string name="pref_incognito_mode_summary">Întrerupe citirea istoricului</string>
     <string name="pref_incognito_mode">Modul incognito</string>
-    <string name="pref_clear_history_summary">Ștergeți istoricul de lectură pentru toate manga</string>
     <string name="pref_clear_history">Sterge istoricul</string>
     <string name="clear_history_confirmation">Esti sigur\? Toată istoria se va pierde.</string>
     <string name="clear_history_completed">Istoric șters</string>
@@ -637,9 +632,6 @@
     <string name="spen_previous_page">Pagina anterioară</string>
     <string name="migration_help_guide">Ghid de migrare a sursei</string>
     <string name="invalid_backup_file_type">Fișierul copiei de rezervă este nevalid: %1$s</string>
-    <string name="full_restore_offline">Restaurare offline, se termină rapid, dar conține numai ceea ce are copia de rezervă</string>
-    <string name="full_restore_online">Restaurați online, mult mai lent, dar vă oferă mai multe informații și capitole actualizate</string>
-    <string name="full_restore_mode">Mod rețea</string>
     <string name="pref_backup_auto_create_legacy">De asemenea, creați copii de rezervă de moștenire</string>
     <string name="pref_create_legacy_backup_summary">Poate fi utilizat în versiuni mai vechi de Tachiyomi</string>
     <string name="pref_create_legacy_backup">Crează copie de rezervă de moștenire</string>
@@ -650,4 +642,15 @@
     <string name="file_picker_error">Nicio aplicație de ales fișiere nu a fost găsite</string>
     <string name="myanimelist_relogin">Te rugăm să te loghezi la MAL din nou</string>
     <string name="myanimelist_creds_missing">Datele de conectare la site-ul MAL nu au fost găsite</string>
+    <string name="pref_dual_page_invert">Inversează plasamentul paginilor duble despărțite</string>
+    <string name="pref_dual_page_split">împărțirea paginilor duble</string>
+    <string name="pref_show_navigation_mode_summary">Afișați scurt zonele de atingere când cititorul este deschis</string>
+    <string name="pref_show_navigation_mode">Afișați suprapunerea aspectului de navigare</string>
+    <string name="network_unmetered">Rețea nemăsurată</string>
+    <string name="update_8hour">O dată la 8 ore</string>
+    <string name="update_4hour">O dată la 4 ore</string>
+    <string name="action_desc">Descendent</string>
+    <string name="action_asc">Ascendent</string>
+    <string name="action_order_by_chapter_number">După numărul capitolului</string>
+    <string name="action_order_by_upload_date">După data postării</string>
 </resources>
