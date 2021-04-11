@@ -238,16 +238,16 @@ open class BrowseSourceController(bundle: Bundle) :
         if (filterSheet != null) {
             // Add bottom padding if filter FAB is visible
             recycler.updatePadding(bottom = view.resources.getDimensionPixelOffset(R.dimen.fab_list_padding))
-            recycler.applyInsetter {
-                type(navigationBars = true) {
-                    padding()
-                }
-            }
             recycler.clipToPadding = false
 
             actionFab?.shrinkOnScroll(recycler)
         }
 
+        recycler.applyInsetter {
+            type(navigationBars = true) {
+                padding()
+            }
+        }
         recycler.setHasFixedSize(true)
         recycler.adapter = adapter
 
