@@ -336,9 +336,9 @@ class WebtoonPageHolder(
             return inputStream
         }
 
-        val upperSide = when {
-            page !is InsertPage -> ImageUtil.Side.LEFT
-            page is InsertPage -> ImageUtil.Side.RIGHT
+        val upperSide = when (page) {
+            is InsertPage -> ImageUtil.Side.RIGHT
+            !is InsertPage -> ImageUtil.Side.LEFT
             else -> error("We should choose a side!")
         }
 
