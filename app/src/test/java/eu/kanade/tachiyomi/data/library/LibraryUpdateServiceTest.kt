@@ -98,9 +98,10 @@ class LibraryUpdateServiceTest {
         `when`(source.fetchChapterList(favManga[2])).thenReturn(Observable.just(chapters3))
 
         val intent = Intent()
+        val categoryId = intent.getIntExtra(LibraryUpdateService.KEY_CATEGORY, -1)
         val target = LibraryUpdateService.Target.CHAPTERS
         runBlocking {
-            service.addMangaToQueue(intent, target)
+            service.addMangaToQueue(categoryId, target)
             service.updateChapterList()
 
             // There are 3 network attempts and 2 insertions (1 request failed)
