@@ -86,8 +86,8 @@ class SettingsReaderController : SettingsController() {
                     R.string.rotation_force_landscape,
                 )
                 entryValues = OrientationType.values().drop(1)
-                        .filterNot { value -> value == OrientationType.LOCKED_LANDSCAPE } // Lock has two types in this enum while only being one option
-                        .map { value -> "${value.mask}" }.toTypedArray()
+                    .filterNot { value -> value == OrientationType.LOCKED_LANDSCAPE } // Lock has two types in this enum while only being one option
+                    .map { value -> "${value.mask}" }.toTypedArray()
                 defaultValue = "${OrientationType.FREE.mask}"
                 summary = "%s"
             }
