@@ -556,11 +556,20 @@ class ReaderPresenter(
         notifier.onClear()
 
         // Pictures directory.
-        val destDir = File(
-            Environment.getExternalStorageDirectory().absolutePath +
+        val destDirFolder: String
+        val destDirDefault = Environment.getExternalStorageDirectory().absolutePath +
                 File.separator + Environment.DIRECTORY_PICTURES +
                 File.separator + context.getString(R.string.app_name)
-        )
+
+        val destDirMultipleFolders = File.separator + manga.title
+
+        destDirFolder = if (preferences.folderPerManga()) {
+            destDirDefault + destDirMultipleFolders
+        } else {
+            destDirDefault
+        }
+
+        val destDir = File(destDirFolder)
 
         // Copy file in background.
         Observable.fromCallable { saveImage(page, destDir, manga) }

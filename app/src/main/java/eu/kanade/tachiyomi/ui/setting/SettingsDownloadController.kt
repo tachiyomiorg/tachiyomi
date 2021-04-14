@@ -27,6 +27,7 @@ import eu.kanade.tachiyomi.util.preference.preference
 import eu.kanade.tachiyomi.util.preference.preferenceCategory
 import eu.kanade.tachiyomi.util.preference.switchPreference
 import eu.kanade.tachiyomi.util.preference.titleRes
+import eu.kanade.tachiyomi.util.preference.summaryRes
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.widget.materialdialogs.QuadStateCheckBox
 import eu.kanade.tachiyomi.widget.materialdialogs.listItemsQuadStateMultiChoice
@@ -66,6 +67,36 @@ class SettingsDownloadController : SettingsController() {
             titleRes = R.string.pref_download_only_over_wifi
             defaultValue = true
         }
+<<<<<<< HEAD
+=======
+
+        // SY -->
+        switchPreference {
+            key = Keys.saveChaptersAsCBZ
+            titleRes = R.string.save_chapter_as_cbz
+            defaultValue = false
+        }
+
+        intListPreference {
+            titleRes = R.string.save_chapter_as_cbz_level
+            key = Keys.saveChaptersAsCBZLevel
+            entries = arrayOf("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
+            entryValues = entries
+            defaultValue = "0"
+
+            preferences.saveChaptersAsCBZ().asImmediateFlow { isVisible = it }
+                .launchIn(viewScope)
+        }
+
+        switchPreference {
+            key = Keys.folderPerManga
+            titleRes = R.string.pref_create_folder_per_manga
+            summaryRes = R.string.pref_create_folder_per_manga_summary
+            defaultValue = false
+        }
+        // SY <--
+
+>>>>>>> 97a659f8d (added setting to save manga pages into separate folders)
         preferenceCategory {
             titleRes = R.string.pref_category_delete_chapters
 

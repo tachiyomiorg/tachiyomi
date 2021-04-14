@@ -109,6 +109,8 @@ object PreferenceKeys {
 
     const val downloadOnlyOverWifi = "pref_download_only_over_wifi_key"
 
+    const val folderPerManga = "create_folder_per_manga"
+
     const val numberOfBackups = "backup_slots"
 
     const val backupInterval = "backup_interval"

@@ -366,6 +366,8 @@
     <string name="pref_category_auto_download">Auto-download</string>
     <string name="pref_download_new">Download new chapters</string>
     <string name="pref_download_new_categories_details">Manga in excluded categories will not be downloaded even if they are also in included categories.</string>
+    <string name="pref_create_folder_per_manga">Saves pages into separate folders</string>
+    <string name="pref_create_folder_per_manga_summary">Creates folders according to manga title</string>
 
       <!-- Tracking section -->
     <string name="pref_auto_update_manga_sync">Update chapter progress after reading</string>
