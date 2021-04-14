@@ -493,11 +493,10 @@ class ReaderPresenter(
      */
     fun getMangaReadingMode(resolveDefault: Boolean = true): Int {
         val default = preferences.defaultReadingMode()
-        val readingModeType = when {
+        return when {
             resolveDefault && manga?.readingModeType == ReadingModeType.DEFAULT.mask -> default
             else -> manga?.readingModeType ?: default
         }
-        return ReadingModeType.valueOf(readingModeType).prefValue
     }
 
     /**
@@ -528,11 +527,10 @@ class ReaderPresenter(
      */
     fun getMangaRotationType(): Int {
         val default = preferences.defaultOrientationType()
-        val orientationType = when (manga?.orientationType) {
+        return when (manga?.orientationType) {
             OrientationType.DEFAULT.mask -> default
             else -> manga?.orientationType ?: default
         }
-        return OrientationType.valueOf(orientationType).prefValue
     }
 
     /**

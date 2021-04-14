@@ -17,14 +17,8 @@ enum class OrientationType(val prefValue: Int, val flag: Int, @StringRes val str
     companion object {
         const val MASK = 0x00000038
 
-        fun fromPreference(preference: Int): OrientationType =
-            values().find { it.prefValue == preference } ?: FREE
+        fun fromPreference(preference: Int?): OrientationType = values().find { it.mask == preference } ?: FREE
 
-        // TODO Clean up
-        fun valueAtPosition(position: Int?) = values().find { it.prefValue == position }
-            ?: DEFAULT
-
-        fun valueOf(value: Int?) = values().find { it.mask == value }
-            ?: DEFAULT
+        fun fromSpinner(position: Int?) = values().find { value -> value.prefValue == position } ?: DEFAULT
     }
 }

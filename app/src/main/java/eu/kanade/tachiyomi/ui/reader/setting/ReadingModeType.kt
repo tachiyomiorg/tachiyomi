@@ -16,18 +16,13 @@ enum class ReadingModeType(val prefValue: Int, @StringRes val stringRes: Int, @D
     companion object {
         const val MASK = 0x00000007
 
-        fun fromPreference(preference: Int): ReadingModeType = values().find { it.prefValue == preference } ?: DEFAULT
+        fun fromPreference(preference: Int?): ReadingModeType = values().find { it.mask == preference } ?: DEFAULT
 
         fun isPagerType(preference: Int): Boolean {
             val mode = fromPreference(preference)
             return mode == LEFT_TO_RIGHT || mode == RIGHT_TO_LEFT || mode == VERTICAL
         }
 
-        // TODO Clean up
-        fun valueAtPosition(position: Int?) = values().find { it.prefValue == position }
-            ?: DEFAULT
-
-        fun valueOf(value: Int?) = values().find { it.mask == value }
-            ?: DEFAULT
+        fun fromSpinner(position: Int?) = values().find { value -> value.prefValue == position } ?: DEFAULT
     }
 }
