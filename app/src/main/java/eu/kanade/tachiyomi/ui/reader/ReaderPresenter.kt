@@ -523,9 +523,9 @@ class ReaderPresenter(
     }
 
     /**
-     * Returns the rotation type used by this manga or the default one.
+     * Returns the orientation type used by this manga or the default one.
      */
-    fun getMangaRotationType(): Int {
+    fun getMangaOrientationType(): Int {
         val default = preferences.defaultOrientationType()
         return when (manga?.orientationType) {
             OrientationType.DEFAULT.mask -> default
@@ -534,9 +534,9 @@ class ReaderPresenter(
     }
 
     /**
-     * Updates the rotation type for the open manga.
+     * Updates the orientation type for the open manga.
      */
-    fun setMangaRotationType(rotationType: Int) {
+    fun setMangaOrientationType(rotationType: Int) {
         val manga = manga ?: return
         manga.orientationType = rotationType
         db.updateViewerFlags(manga).executeAsBlocking()
@@ -547,7 +547,7 @@ class ReaderPresenter(
             .subscribeFirst({ view, _ ->
                 val currChapters = viewerChaptersRelay.value
                 if (currChapters != null) {
-                    view.setOrientation(getMangaRotationType())
+                    view.setOrientation(getMangaOrientationType())
                 }
             })
     }

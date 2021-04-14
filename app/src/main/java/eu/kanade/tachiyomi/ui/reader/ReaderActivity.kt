@@ -383,7 +383,7 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
                 ) {
                     val newOrientation = OrientationType.fromPreference(itemId)
 
-                    presenter.setMangaRotationType(newOrientation.mask)
+                    presenter.setMangaOrientationType(newOrientation.mask)
 
                     updateRotationShortcut(newOrientation.prefValue)
 
@@ -538,7 +538,7 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
             else -> R2LPagerViewer(this)
         }
 
-        setOrientation(presenter.getMangaRotationType())
+        setOrientation(presenter.getMangaOrientationType())
 
         // Destroy previous viewer if there was one
         if (prevViewer != null) {

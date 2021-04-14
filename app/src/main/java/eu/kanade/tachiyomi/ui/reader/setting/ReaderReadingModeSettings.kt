@@ -57,7 +57,7 @@ class ReaderReadingModeSettings @JvmOverloads constructor(context: Context, attr
 
         binding.rotationMode.onItemSelectedListener = { position ->
             val rotationType = OrientationType.fromSpinner(position)
-            (context as ReaderActivity).presenter.setMangaRotationType(rotationType.mask)
+            (context as ReaderActivity).presenter.setMangaOrientationType(rotationType.mask)
         }
         binding.rotationMode.setSelection((context as ReaderActivity).presenter.manga?.orientationType.let { OrientationType.fromPreference(it).prefValue })
     }
