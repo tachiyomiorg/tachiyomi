@@ -141,7 +141,12 @@ object Migrations {
             }
             if (oldVersion < 59) {
                 // Reset rotation to Free after replacing Lock
-                preferences.rotation().set(1)
+                val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+                if (prefs.contains("pref_rotation_type_key")) {
+                    prefs.edit {
+                        putInt("pref_rotation_type_key", 1)
+                    }
+                }
             }
             return true
         }

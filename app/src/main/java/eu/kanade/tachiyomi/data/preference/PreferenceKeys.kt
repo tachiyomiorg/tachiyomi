@@ -15,8 +15,6 @@ object PreferenceKeys {
 
     const val hideBottomBar = "pref_hide_bottom_bar_on_scroll"
 
-    const val rotation = "pref_rotation_type_key"
-
     const val enableTransitions = "pref_enable_transitions_key"
 
     const val doubleTapAnimationSpeed = "pref_double_tap_anim_speed"
@@ -51,7 +49,9 @@ object PreferenceKeys {
 
     const val colorFilterMode = "color_filter_mode"
 
-    const val defaultViewer = "pref_default_viewer_key"
+    const val defaultReadingMode = "pref_default_reading_mode_key"
+
+    const val defaultOrientationType = "pref_default_orientation_type_key"
 
     const val imageScaleType = "pref_image_scale_type_key"
 

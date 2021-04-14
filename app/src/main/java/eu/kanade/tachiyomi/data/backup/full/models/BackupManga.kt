@@ -48,7 +48,7 @@ data class BackupManga(
             favorite = this@BackupManga.favorite
             source = this@BackupManga.source
             date_added = this@BackupManga.dateAdded
-            viewer = this@BackupManga.viewer
+            viewer_flags = this@BackupManga.viewer
             chapter_flags = this@BackupManga.chapterFlags
         }
     }
@@ -79,7 +79,7 @@ data class BackupManga(
                 favorite = manga.favorite,
                 source = manga.source,
                 dateAdded = manga.date_added,
-                viewer = manga.viewer,
+                viewer = manga.viewer_flags,
                 chapterFlags = manga.chapter_flags
             )
         }

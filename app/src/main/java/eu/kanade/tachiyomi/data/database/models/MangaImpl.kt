@@ -30,7 +30,7 @@ open class MangaImpl : Manga {
 
     override var initialized: Boolean = false
 
-    override var viewer: Int = 0
+    override var viewer_flags: Int = 0
 
     override var chapter_flags: Int = 0
 

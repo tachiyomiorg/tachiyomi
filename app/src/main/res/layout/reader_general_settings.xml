@@ -11,13 +11,6 @@
         android:orientation="vertical">
 
         <eu.kanade.tachiyomi.widget.MaterialSpinnerView
-            android:id="@+id/rotation_mode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:entries="@array/rotation_type"
-            app:title="@string/pref_rotation_type" />
-
-        <eu.kanade.tachiyomi.widget.MaterialSpinnerView
             android:id="@+id/background_color"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

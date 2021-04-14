@@ -32,7 +32,6 @@ class ReaderGeneralSettings @JvmOverloads constructor(context: Context, attrs: A
      * Init general reader preferences.
      */
     private fun initGeneralPreferences() {
-        binding.rotationMode.bindToPreference(preferences.rotation(), 1)
         binding.backgroundColor.bindToIntPreference(preferences.readerTheme(), R.array.reader_themes_values)
         binding.showPageNumber.bindToPreference(preferences.showPageNumber())
         binding.fullscreen.bindToPreference(preferences.fullscreen())
