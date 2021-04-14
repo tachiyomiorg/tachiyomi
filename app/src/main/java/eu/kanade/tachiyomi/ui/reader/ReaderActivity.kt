@@ -385,7 +385,7 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
 
                     presenter.setMangaOrientationType(newOrientation.mask)
 
-                    updateRotationShortcut(newOrientation.prefValue)
+                    updateOrientationShortcut(newOrientation.mask)
 
                     menuToggleToast?.cancel()
                     menuToggleToast = toast(newOrientation.stringRes)
@@ -429,7 +429,7 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
         }
     }
 
-    private fun updateRotationShortcut(preference: Int) {
+    private fun updateOrientationShortcut(preference: Int) {
         val orientation = OrientationType.fromPreference(preference)
         binding.actionRotation.setImageResource(orientation.iconRes)
     }
