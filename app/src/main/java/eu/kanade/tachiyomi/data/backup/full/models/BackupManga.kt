@@ -34,7 +34,7 @@ data class BackupManga(
     @ProtoNumber(100) var favorite: Boolean = true,
     @ProtoNumber(101) var chapterFlags: Int = 0,
     @ProtoNumber(102) var history: List<BackupHistory> = emptyList(),
-    @ProtoNumber(103) var viewer_flags: Int = 0
+    @ProtoNumber(103) var viewer_flags: Int? = null
 ) {
     fun getMangaImpl(): MangaImpl {
         return MangaImpl().apply {
@@ -49,7 +49,7 @@ data class BackupManga(
             favorite = this@BackupManga.favorite
             source = this@BackupManga.source
             date_added = this@BackupManga.dateAdded
-            viewer_flags = this@BackupManga.viewer_flags
+            viewer_flags = this@BackupManga.viewer_flags ?: this@BackupManga.viewer
             chapter_flags = this@BackupManga.chapterFlags
         }
     }
