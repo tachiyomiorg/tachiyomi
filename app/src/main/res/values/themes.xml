@@ -201,7 +201,7 @@
         <item name="android:colorBackground">@color/colorAmoledPrimary</item>
 
         <!-- Some ROMs make black navbars white (e.g. OxygenOS) -->
-        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">#000001</item>
 
         <!-- Custom Attributes-->
         <item name="colorLibrarySelection">@color/selectorColorDark</item>
