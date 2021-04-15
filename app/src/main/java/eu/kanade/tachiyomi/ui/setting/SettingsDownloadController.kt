@@ -67,15 +67,12 @@ class SettingsDownloadController : SettingsController() {
             titleRes = R.string.pref_download_only_over_wifi
             defaultValue = true
         }
-<<<<<<< HEAD
-=======      
         switchPreference {
             key = Keys.folderPerManga
             titleRes = R.string.pref_create_folder_per_manga
             summaryRes = R.string.pref_create_folder_per_manga_summary
             defaultValue = false
         }
->>>>>>> 97a659f8d (added setting to save manga pages into separate folders)
         preferenceCategory {
             titleRes = R.string.pref_category_delete_chapters
 
