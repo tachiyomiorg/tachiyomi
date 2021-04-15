@@ -2,14 +2,12 @@ package eu.kanade.tachiyomi.ui.library
 
 import android.view.View
 import androidx.core.view.isVisible
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
+import coil.clear
+import coil.load
+import coil.transform.RoundedCornersTransformation
+import com.commit451.coiltransformations.CropTransformation
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.glide.GlideApp
-import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.databinding.SourceListItemBinding
 import eu.kanade.tachiyomi.util.isLocal
 
@@ -62,15 +60,14 @@ class LibraryListHolder(
         }
 
         // Update the cover.
-        GlideApp.with(itemView.context).clear(binding.thumbnail)
-
-        val radius = view.context.resources.getDimensionPixelSize(R.dimen.card_radius)
-        val requestOptions = RequestOptions().transform(CenterCrop(), RoundedCorners(radius))
-        GlideApp.with(itemView.context)
-            .load(item.manga.toMangaThumbnail())
-            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-            .apply(requestOptions)
-            .dontAnimate()
-            .into(binding.thumbnail)
+        // TODO: thumbnail caching based on last modified
+        val radius = view.context.resources.getDimension(R.dimen.card_radius)
+        binding.thumbnail.clear()
+        binding.thumbnail.load(item.manga.thumbnail_url) {
+            transformations(
+                CropTransformation(CropTransformation.CropType.CENTER),
+                RoundedCornersTransformation(radius)
+            )
+        }
     }
 }

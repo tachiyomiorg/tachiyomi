@@ -15,6 +15,7 @@
         android:layout_height="@dimen/material_component_lists_single_line_with_avatar_height"
         android:layout_gravity="center_vertical"
         android:padding="8dp"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

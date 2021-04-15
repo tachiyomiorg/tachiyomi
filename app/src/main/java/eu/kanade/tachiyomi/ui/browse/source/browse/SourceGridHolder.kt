@@ -1,11 +1,13 @@
 package eu.kanade.tachiyomi.ui.browse.source.browse
 
 import android.view.View
-import com.bumptech.glide.load.engine.DiskCacheStrategy
+import coil.clear
+import coil.imageLoader
+import coil.request.CachePolicy
+import coil.request.ImageRequest
+import com.commit451.coiltransformations.CropTransformation
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.glide.GlideApp
-import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.databinding.SourceComfortableGridItemBinding
 import eu.kanade.tachiyomi.widget.StateImageViewTarget
 
@@ -42,14 +44,17 @@ open class SourceGridHolder(private val view: View, private val adapter: Flexibl
         // For rounded corners
         binding.card.clipToOutline = true
 
-        GlideApp.with(view.context).clear(binding.thumbnail)
+        binding.thumbnail.clear()
         if (!manga.thumbnail_url.isNullOrEmpty()) {
-            GlideApp.with(view.context)
-                .load(manga.toMangaThumbnail())
-                .diskCacheStrategy(DiskCacheStrategy.DATA)
-                .centerCrop()
-                .placeholder(android.R.color.transparent)
-                .into(StateImageViewTarget(binding.thumbnail, binding.progress))
+            // TODO: thumbnail caching based on last modified
+            val request = ImageRequest.Builder(view.context)
+                .data(manga.thumbnail_url)
+                .memoryCachePolicy(CachePolicy.DISABLED)
+                .diskCachePolicy(CachePolicy.DISABLED)
+                .transformations(CropTransformation(CropTransformation.CropType.CENTER))
+                .target(StateImageViewTarget(binding.thumbnail, binding.progress))
+                .build()
+            itemView.context.imageLoader.enqueue(request)
         }
     }
 }

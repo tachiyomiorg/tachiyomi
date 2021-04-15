@@ -6,13 +6,13 @@ import android.widget.ImageView
 import android.widget.ImageView.ScaleType
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.isVisible
-import com.bumptech.glide.request.target.ImageViewTarget
-import com.bumptech.glide.request.transition.Transition
+import androidx.lifecycle.LifecycleOwner
+import coil.target.ImageViewTarget
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.util.system.getResourceColor
 
 /**
- * A glide target to display an image with an optional view to show while loading and a configurable
+ * A Coil target to display an image with an optional view to show while loading and a configurable
  * error drawable.
  *
  * @param view the view where the image will be loaded
@@ -25,22 +25,16 @@ class StateImageViewTarget(
     val progress: View? = null,
     private val errorDrawableRes: Int = R.drawable.ic_broken_image_grey_24dp,
     private val errorScaleType: ScaleType = ScaleType.CENTER
-) : ImageViewTarget<Drawable>(view) {
-
-    private var resource: Drawable? = null
+) : ImageViewTarget(view) {
 
     private val imageScaleType = view.scaleType
 
-    override fun setResource(resource: Drawable?) {
-        view.setImageDrawable(resource)
-    }
-
-    override fun onLoadStarted(placeholder: Drawable?) {
+    override fun onStart(owner: LifecycleOwner) {
         progress?.isVisible = true
-        super.onLoadStarted(placeholder)
+        super.onStart(owner)
     }
 
-    override fun onLoadFailed(errorDrawable: Drawable?) {
+    override fun onError(error: Drawable?) {
         progress?.isVisible = false
         view.scaleType = errorScaleType
 
@@ -49,15 +43,15 @@ class StateImageViewTarget(
         view.setImageDrawable(vector)
     }
 
-    override fun onLoadCleared(placeholder: Drawable?) {
+    override fun onClear() {
         progress?.isVisible = false
-        super.onLoadCleared(placeholder)
+        super.onClear()
     }
 
-    override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
+    override fun onSuccess(result: Drawable) {
         progress?.isVisible = false
         view.scaleType = imageScaleType
-        super.onResourceReady(resource, transition)
-        this.resource = resource
+        super.onSuccess(result)
+        view.setImageDrawable(result)
     }
 }

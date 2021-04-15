@@ -1,9 +1,9 @@
 package eu.kanade.tachiyomi.ui.browse.extension
 
 import android.view.View
+import coil.load
 import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.databinding.ExtensionCardItemBinding
 import eu.kanade.tachiyomi.extension.model.Extension
@@ -41,11 +41,8 @@ class ExtensionHolder(view: View, val adapter: ExtensionAdapter) :
             else -> ""
         }.toUpperCase()
 
-        GlideApp.with(itemView.context).clear(binding.image)
         if (extension is Extension.Available) {
-            GlideApp.with(itemView.context)
-                .load(extension.iconUrl)
-                .into(binding.image)
+            binding.image.load(extension.iconUrl)
         } else {
             extension.getApplicationIcon(itemView.context)?.let { binding.image.setImageDrawable(it) }
         }

@@ -17,6 +17,7 @@
             android:layout_height="0dp"
             android:layout_marginBottom="44dp"
             android:alpha="0.2"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,6 +51,7 @@
                 android:background="@drawable/rounded_rectangle"
                 android:contentDescription="@string/description_cover"
                 android:maxWidth="100dp"
+                android:scaleType="centerCrop"
                 tools:src="@mipmap/ic_launcher" />
 
             <LinearLayout

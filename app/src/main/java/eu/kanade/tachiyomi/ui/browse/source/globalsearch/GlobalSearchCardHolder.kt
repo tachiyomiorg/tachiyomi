@@ -1,11 +1,13 @@
 package eu.kanade.tachiyomi.ui.browse.source.globalsearch
 
 import android.view.View
-import com.bumptech.glide.load.engine.DiskCacheStrategy
+import coil.clear
+import coil.imageLoader
+import coil.request.CachePolicy
+import coil.request.ImageRequest
+import com.commit451.coiltransformations.CropTransformation
 import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.glide.GlideApp
-import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.databinding.GlobalSearchControllerCardItemBinding
 import eu.kanade.tachiyomi.widget.StateImageViewTarget
 
@@ -42,15 +44,17 @@ class GlobalSearchCardHolder(view: View, adapter: GlobalSearchCardAdapter) :
     }
 
     fun setImage(manga: Manga) {
-        GlideApp.with(itemView.context).clear(binding.cover)
+        binding.cover.clear()
         if (!manga.thumbnail_url.isNullOrEmpty()) {
-            GlideApp.with(itemView.context)
-                .load(manga.toMangaThumbnail())
-                .diskCacheStrategy(DiskCacheStrategy.DATA)
-                .centerCrop()
-                .skipMemoryCache(true)
-                .placeholder(android.R.color.transparent)
-                .into(StateImageViewTarget(binding.cover, binding.progress))
+            // TODO: thumbnail caching based on last modified
+            val request = ImageRequest.Builder(itemView.context)
+                .data(manga.thumbnail_url)
+                .memoryCachePolicy(CachePolicy.DISABLED)
+                .diskCachePolicy(CachePolicy.DISABLED)
+                .transformations(CropTransformation(CropTransformation.CropType.CENTER))
+                .target(StateImageViewTarget(binding.cover, binding.progress))
+                .build()
+            itemView.context.imageLoader.enqueue(request)
         }
     }
 }

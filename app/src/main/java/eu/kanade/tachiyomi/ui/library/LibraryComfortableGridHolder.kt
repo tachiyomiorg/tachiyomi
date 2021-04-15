@@ -3,11 +3,11 @@ package eu.kanade.tachiyomi.ui.library
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.load.engine.DiskCacheStrategy
+import coil.clear
+import coil.load
+import com.commit451.coiltransformations.CropTransformation
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
-import eu.kanade.tachiyomi.data.glide.GlideApp
-import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.databinding.SourceComfortableGridItemBinding
 import eu.kanade.tachiyomi.util.isLocal
 
@@ -57,12 +57,10 @@ class LibraryComfortableGridHolder(
         binding.card.clipToOutline = true
 
         // Update the cover.
-        GlideApp.with(view.context).clear(binding.thumbnail)
-        GlideApp.with(view.context)
-            .load(item.manga.toMangaThumbnail())
-            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-            .centerCrop()
-            .dontAnimate()
-            .into(binding.thumbnail)
+        // TODO: thumbnail caching based on last modified
+        binding.thumbnail.clear()
+        binding.thumbnail.load(item.manga.thumbnail_url) {
+            transformations(CropTransformation(CropTransformation.CropType.CENTER))
+        }
     }
 }

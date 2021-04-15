@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.load.engine.DiskCacheStrategy
+import coil.load
+import com.commit451.coiltransformations.CropTransformation
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.data.glide.MangaThumbnail
 import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.data.track.TrackManager
@@ -249,16 +249,15 @@ class MangaInfoHeaderAdapter(
             setFavoriteButtonState(manga.favorite)
 
             // Set cover if changed.
+            // TODO: thumbnail caching based on last modified
             val mangaThumbnail = manga.toMangaThumbnail()
             if (mangaThumbnail != currentMangaThumbnail) {
                 currentMangaThumbnail = mangaThumbnail
                 listOf(binding.mangaCover, binding.backdrop)
                     .forEach {
-                        GlideApp.with(view.context)
-                            .load(mangaThumbnail)
-                            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                            .centerCrop()
-                            .into(it)
+                        it.load(manga.thumbnail_url) {
+                            transformations(CropTransformation(CropTransformation.CropType.CENTER))
+                        }
                     }
             }
 

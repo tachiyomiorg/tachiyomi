@@ -5,9 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.core.view.isVisible
-import com.bumptech.glide.load.engine.DiskCacheStrategy
+import coil.clear
+import coil.load
+import com.commit451.coiltransformations.CropTransformation
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.databinding.TrackSearchItemBinding
 import eu.kanade.tachiyomi.util.view.inflate
@@ -46,13 +47,11 @@ class TrackSearchAdapter(context: Context) :
         fun onSetValues(track: TrackSearch) {
             binding.trackSearchTitle.text = track.title
             binding.trackSearchSummary.text = track.summary
-            GlideApp.with(view.context).clear(binding.trackSearchCover)
+            binding.trackSearchCover.clear()
             if (track.cover_url.isNotEmpty()) {
-                GlideApp.with(view.context)
-                    .load(track.cover_url)
-                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                    .centerCrop()
-                    .into(binding.trackSearchCover)
+                binding.trackSearchCover.load(track.cover_url) {
+                    transformations(CropTransformation(CropTransformation.CropType.CENTER))
+                }
             }
 
             val hasStatus = track.publishing_status.isNotBlank()
