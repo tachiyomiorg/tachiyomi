@@ -6,6 +6,7 @@ import coil.loadAny
 import coil.transform.RoundedCornersTransformation
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.coil.MangaCoverFetcher
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.databinding.SourceListItemBinding
 import eu.kanade.tachiyomi.util.system.getResourceColor
@@ -47,6 +48,7 @@ class SourceListHolder(private val view: View, adapter: FlexibleAdapter<*>) :
         if (!manga.thumbnail_url.isNullOrEmpty()) {
             val radius = view.context.resources.getDimension(R.dimen.card_radius)
             binding.thumbnail.loadAny(manga) {
+                setParameter(MangaCoverFetcher.USE_CUSTOM_COVER, false)
                 transformations(RoundedCornersTransformation(radius))
             }
         }

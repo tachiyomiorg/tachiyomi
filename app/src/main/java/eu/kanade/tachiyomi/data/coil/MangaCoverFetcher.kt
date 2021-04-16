@@ -7,6 +7,7 @@ import coil.fetch.FetchResult
 import coil.fetch.Fetcher
 import coil.fetch.SourceResult
 import coil.network.HttpException
+import coil.request.get
 import coil.size.Size
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.models.Manga
@@ -28,6 +29,12 @@ import uy.kohesive.injekt.injectLazy
 import java.io.File
 import java.util.Date
 
+/**
+ * Coil component that fetches [Manga] cover while using the cached file in disk when available.
+ *
+ * Available request parameter:
+ * - [USE_CUSTOM_COVER]: Use custom cover if set by user, default is true
+ */
 class MangaCoverFetcher : Fetcher<Manga> {
     private val coverCache: CoverCache by injectLazy()
     private val sourceManager: SourceManager by injectLazy()
@@ -40,8 +47,9 @@ class MangaCoverFetcher : Fetcher<Manga> {
 
     override suspend fun fetch(pool: BitmapPool, data: Manga, size: Size, options: Options): FetchResult {
         // Use custom cover if exists
+        val useCustomCover = options.parameters[USE_CUSTOM_COVER] as? Boolean ?: true
         val customCoverFile = coverCache.getCustomCoverFile(data)
-        if (customCoverFile.exists()) {
+        if (useCustomCover && customCoverFile.exists()) {
             return fileLoader(customCoverFile)
         }
 
@@ -156,6 +164,8 @@ class MangaCoverFetcher : Fetcher<Manga> {
     }
 
     companion object {
+        const val USE_CUSTOM_COVER = "use_custom_cover"
+
         private val CACHE_CONTROL_FORCE_NETWORK_NO_CACHE = CacheControl.Builder().noCache().noStore().build()
         private val CACHE_CONTROL_NO_NETWORK_NO_CACHE = CacheControl.Builder().noCache().onlyIfCached().build()
     }

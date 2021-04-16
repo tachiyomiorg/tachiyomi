@@ -6,6 +6,7 @@ import coil.imageLoader
 import coil.request.CachePolicy
 import coil.request.ImageRequest
 import eu.davidea.flexibleadapter.FlexibleAdapter
+import eu.kanade.tachiyomi.data.coil.MangaCoverFetcher
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.databinding.SourceComfortableGridItemBinding
 import eu.kanade.tachiyomi.widget.StateImageViewTarget
@@ -47,6 +48,7 @@ class SourceComfortableGridHolder(private val view: View, private val adapter: F
         if (!manga.thumbnail_url.isNullOrEmpty()) {
             val request = ImageRequest.Builder(view.context)
                 .data(manga)
+                .setParameter(MangaCoverFetcher.USE_CUSTOM_COVER, false)
                 .memoryCachePolicy(CachePolicy.DISABLED)
                 .diskCachePolicy(CachePolicy.DISABLED)
                 .target(StateImageViewTarget(binding.thumbnail, binding.progress))
