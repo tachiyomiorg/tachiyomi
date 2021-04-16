@@ -158,14 +158,14 @@ class BackupTest {
     fun testRestoreManga() {
         // Add manga to database
         val manga = getSingleManga("One Piece")
-        manga.readingModeType = ReadingModeType.VERTICAL.mask
-        manga.orientationType = OrientationType.PORTRAIT.mask
+        manga.readingModeType = ReadingModeType.VERTICAL.flagValue
+        manga.orientationType = OrientationType.PORTRAIT.flagValue
         manga.id = db.insertManga(manga).executeAsBlocking().insertedId()
 
         var favoriteManga = legacyBackupManager.databaseHelper.getFavoriteMangas().executeAsBlocking()
         assertThat(favoriteManga).hasSize(1)
-        assertThat(favoriteManga[0].readingModeType).isEqualTo(ReadingModeType.VERTICAL.mask)
-        assertThat(favoriteManga[0].orientationType).isEqualTo(OrientationType.PORTRAIT.mask)
+        assertThat(favoriteManga[0].readingModeType).isEqualTo(ReadingModeType.VERTICAL.flagValue)
+        assertThat(favoriteManga[0].orientationType).isEqualTo(OrientationType.PORTRAIT.flagValue)
 
         // Update json with all options enabled
         mangaEntries.add(legacyBackupManager.backupMangaObject(manga, 1))
@@ -177,8 +177,8 @@ class BackupTest {
 
         favoriteManga = legacyBackupManager.databaseHelper.getFavoriteMangas().executeAsBlocking()
         assertThat(favoriteManga).hasSize(1)
-        assertThat(favoriteManga[0].readingModeType).isEqualTo(ReadingModeType.DEFAULT.mask)
-        assertThat(favoriteManga[0].orientationType).isEqualTo(OrientationType.DEFAULT.mask)
+        assertThat(favoriteManga[0].readingModeType).isEqualTo(ReadingModeType.DEFAULT.flagValue)
+        assertThat(favoriteManga[0].orientationType).isEqualTo(OrientationType.DEFAULT.flagValue)
 
         // Restore local manga
         legacyBackupManager.restoreMangaNoFetch(manga, dbManga)
@@ -186,8 +186,8 @@ class BackupTest {
         // Test if restore successful
         favoriteManga = legacyBackupManager.databaseHelper.getFavoriteMangas().executeAsBlocking()
         assertThat(favoriteManga).hasSize(1)
-        assertThat(favoriteManga[0].readingModeType).isEqualTo(ReadingModeType.VERTICAL.mask)
-        assertThat(favoriteManga[0].orientationType).isEqualTo(OrientationType.PORTRAIT.mask)
+        assertThat(favoriteManga[0].readingModeType).isEqualTo(ReadingModeType.VERTICAL.flagValue)
+        assertThat(favoriteManga[0].orientationType).isEqualTo(OrientationType.PORTRAIT.flagValue)
 
         // Clear database to test manga fetch
         clearDatabase()
@@ -213,8 +213,8 @@ class BackupTest {
             // Check if restore successful
             val dbCats = legacyBackupManager.databaseHelper.getFavoriteMangas().executeAsBlocking()
             assertThat(dbCats).hasSize(1)
-            assertThat(dbCats[0].readingModeType).isEqualTo(ReadingModeType.VERTICAL.mask)
-            assertThat(dbCats[0].orientationType).isEqualTo(OrientationType.PORTRAIT.mask)
+            assertThat(dbCats[0].readingModeType).isEqualTo(ReadingModeType.VERTICAL.flagValue)
+            assertThat(dbCats[0].orientationType).isEqualTo(OrientationType.PORTRAIT.flagValue)
             assertThat(dbCats[0].description).isEqualTo("This is a description")
         }
     }

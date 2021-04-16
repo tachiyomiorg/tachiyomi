@@ -5,7 +5,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import eu.kanade.tachiyomi.R
 
-enum class OrientationType(val prefValue: Int, val flag: Int, @StringRes val stringRes: Int, @DrawableRes val iconRes: Int, val mask: Int) {
+enum class OrientationType(val prefValue: Int, val flag: Int, @StringRes val stringRes: Int, @DrawableRes val iconRes: Int, val flagValue: Int) {
     // TODO Default icon
     DEFAULT(0, ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED, R.string.default_rotation_type, R.drawable.ic_screen_rotation_24dp, 0x00000000),
     FREE(1, ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED, R.string.rotation_free, R.drawable.ic_screen_rotation_24dp, 0x00000008),
@@ -17,7 +17,7 @@ enum class OrientationType(val prefValue: Int, val flag: Int, @StringRes val str
     companion object {
         const val MASK = 0x00000038
 
-        fun fromPreference(preference: Int?): OrientationType = values().find { it.mask == preference } ?: FREE
+        fun fromPreference(preference: Int?): OrientationType = values().find { it.flagValue == preference } ?: FREE
 
         fun fromSpinner(position: Int?) = values().find { value -> value.prefValue == position } ?: DEFAULT
     }

@@ -121,9 +121,9 @@ class PreferencesHelper(val context: Context) {
 
     fun colorFilterMode() = flowPrefs.getInt(Keys.colorFilterMode, 0)
 
-    fun defaultReadingMode() = prefs.getInt(Keys.defaultReadingMode, ReadingModeType.RIGHT_TO_LEFT.mask)
+    fun defaultReadingMode() = prefs.getInt(Keys.defaultReadingMode, ReadingModeType.RIGHT_TO_LEFT.flagValue)
 
-    fun defaultOrientationType() = prefs.getInt(Keys.defaultOrientationType, OrientationType.FREE.mask)
+    fun defaultOrientationType() = prefs.getInt(Keys.defaultOrientationType, OrientationType.FREE.flagValue)
 
     fun imageScaleType() = flowPrefs.getInt(Keys.imageScaleType, 1)
 

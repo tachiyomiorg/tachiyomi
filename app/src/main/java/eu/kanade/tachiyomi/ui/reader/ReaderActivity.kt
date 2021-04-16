@@ -356,12 +356,12 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
 
             setOnClickListener {
                 popupMenu(
-                    items = ReadingModeType.values().map { it.mask to it.stringRes },
+                    items = ReadingModeType.values().map { it.flagValue to it.stringRes },
                     selectedItemId = presenter.getMangaReadingMode(resolveDefault = false),
                 ) {
                     val newReadingMode = ReadingModeType.fromPreference(itemId)
 
-                    presenter.setMangaReadingMode(newReadingMode.mask)
+                    presenter.setMangaReadingMode(newReadingMode.flagValue)
 
                     menuToggleToast?.cancel()
                     if (!preferences.showReadingMode()) {
@@ -377,15 +377,15 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
 
             setOnClickListener {
                 popupMenu(
-                    items = OrientationType.values().map { it.mask to it.stringRes },
+                    items = OrientationType.values().map { it.flagValue to it.stringRes },
                     selectedItemId = presenter.manga?.orientationType
                         ?: preferences.defaultOrientationType(),
                 ) {
                     val newOrientation = OrientationType.fromPreference(itemId)
 
-                    presenter.setMangaOrientationType(newOrientation.mask)
+                    presenter.setMangaOrientationType(newOrientation.flagValue)
 
-                    updateOrientationShortcut(newOrientation.mask)
+                    updateOrientationShortcut(newOrientation.flagValue)
 
                     menuToggleToast?.cancel()
                     menuToggleToast = toast(newOrientation.stringRes)

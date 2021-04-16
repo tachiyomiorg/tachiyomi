@@ -153,14 +153,14 @@ object Migrations {
                 // Migrate Rotation and Viewer values to default values for viewer_flags
                 val prefs = PreferenceManager.getDefaultSharedPreferences(context)
                 val newOrientation = when (prefs.getInt("pref_rotation_type_key", 1)) {
-                    1 -> OrientationType.FREE.mask
-                    2 -> OrientationType.LOCKED_PORTRAIT.mask
-                    3 -> OrientationType.PORTRAIT.mask
-                    4 -> OrientationType.LANDSCAPE.mask
-                    else -> OrientationType.FREE.mask
+                    1 -> OrientationType.FREE.flagValue
+                    2 -> OrientationType.LOCKED_PORTRAIT.flagValue
+                    3 -> OrientationType.PORTRAIT.flagValue
+                    4 -> OrientationType.LANDSCAPE.flagValue
+                    else -> OrientationType.FREE.flagValue
                 }
 
-                // Reading mode mask and prefValue is the same value
+                // Reading mode flag and prefValue is the same value
                 val newReadingMode = prefs.getInt("pref_default_viewer_key", 1)
 
                 prefs.edit {

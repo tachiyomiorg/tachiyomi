@@ -44,10 +44,10 @@ class ReaderReadingModeSettings @JvmOverloads constructor(context: Context, attr
     private fun initGeneralPreferences() {
         binding.viewer.onItemSelectedListener = { position ->
             val readingModeType = ReadingModeType.fromSpinner(position)
-            (context as ReaderActivity).presenter.setMangaReadingMode(readingModeType.mask)
+            (context as ReaderActivity).presenter.setMangaReadingMode(readingModeType.flagValue)
 
             val mangaViewer = (context as ReaderActivity).presenter.getMangaReadingMode()
-            if (mangaViewer == ReadingModeType.WEBTOON.mask || mangaViewer == ReadingModeType.CONTINUOUS_VERTICAL.mask) {
+            if (mangaViewer == ReadingModeType.WEBTOON.flagValue || mangaViewer == ReadingModeType.CONTINUOUS_VERTICAL.flagValue) {
                 initWebtoonPreferences()
             } else {
                 initPagerPreferences()
@@ -57,7 +57,7 @@ class ReaderReadingModeSettings @JvmOverloads constructor(context: Context, attr
 
         binding.rotationMode.onItemSelectedListener = { position ->
             val rotationType = OrientationType.fromSpinner(position)
-            (context as ReaderActivity).presenter.setMangaOrientationType(rotationType.mask)
+            (context as ReaderActivity).presenter.setMangaOrientationType(rotationType.flagValue)
         }
         binding.rotationMode.setSelection((context as ReaderActivity).presenter.manga?.orientationType.let { OrientationType.fromPreference(it).prefValue })
     }
