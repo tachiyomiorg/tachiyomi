@@ -1,9 +1,11 @@
 package eu.kanade.tachiyomi
 
+import android.app.ActivityManager
 import android.app.Application
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Build
+import androidx.core.content.getSystemService
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
@@ -85,7 +87,7 @@ open class App : Application(), LifecycleObserver, ImageLoaderFactory {
             }
             okHttpClient(Injekt.get<NetworkHelper>().coilClient)
             crossfade(true)
-            allowRgb565(true)
+            allowRgb565(getSystemService<ActivityManager>()!!.isLowRamDevice)
         }.build()
     }
 
