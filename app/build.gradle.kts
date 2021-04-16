@@ -198,11 +198,6 @@ dependencies {
     implementation("com.github.inorichi.injekt:injekt-core:65b0440")
 
     // Image library
-    val glideVersion = "4.12.0"
-    implementation("com.github.bumptech.glide:glide:$glideVersion")
-    implementation("com.github.bumptech.glide:okhttp3-integration:$glideVersion")
-    kapt("com.github.bumptech.glide:compiler:$glideVersion")
-
     val coilVersion = "1.2.0"
     implementation("io.coil-kt:coil:$coilVersion")
     implementation("io.coil-kt:coil-gif:$coilVersion")
