@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.commit451.coiltransformations.CropTransformation
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.glide.MangaThumbnail
@@ -255,9 +254,7 @@ class MangaInfoHeaderAdapter(
                 currentMangaThumbnail = mangaThumbnail
                 listOf(binding.mangaCover, binding.backdrop)
                     .forEach {
-                        it.load(manga.thumbnail_url) {
-                            transformations(CropTransformation(CropTransformation.CropType.CENTER))
-                        }
+                        it.load(manga.thumbnail_url)
                     }
             }
 

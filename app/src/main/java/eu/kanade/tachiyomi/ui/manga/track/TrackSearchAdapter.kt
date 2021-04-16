@@ -7,7 +7,6 @@ import android.widget.ArrayAdapter
 import androidx.core.view.isVisible
 import coil.clear
 import coil.load
-import com.commit451.coiltransformations.CropTransformation
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.databinding.TrackSearchItemBinding
@@ -49,9 +48,7 @@ class TrackSearchAdapter(context: Context) :
             binding.trackSearchSummary.text = track.summary
             binding.trackSearchCover.clear()
             if (track.cover_url.isNotEmpty()) {
-                binding.trackSearchCover.load(track.cover_url) {
-                    transformations(CropTransformation(CropTransformation.CropType.CENTER))
-                }
+                binding.trackSearchCover.load(track.cover_url)
             }
 
             val hasStatus = track.publishing_status.isNotBlank()

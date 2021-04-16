@@ -4,7 +4,6 @@ import android.view.View
 import coil.clear
 import coil.load
 import coil.transform.RoundedCornersTransformation
-import com.commit451.coiltransformations.CropTransformation
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
@@ -49,10 +48,7 @@ class SourceListHolder(private val view: View, adapter: FlexibleAdapter<*>) :
             // TODO: thumbnail caching based on last modified
             val radius = view.context.resources.getDimension(R.dimen.card_radius)
             binding.thumbnail.load(manga.thumbnail_url) {
-                transformations(
-                    CropTransformation(CropTransformation.CropType.CENTER),
-                    RoundedCornersTransformation(radius)
-                )
+                transformations(RoundedCornersTransformation(radius))
             }
         }
     }

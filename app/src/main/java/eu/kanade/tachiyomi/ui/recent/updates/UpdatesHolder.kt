@@ -5,7 +5,6 @@ import androidx.core.view.isVisible
 import coil.clear
 import coil.load
 import coil.transform.RoundedCornersTransformation
-import com.commit451.coiltransformations.CropTransformation
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.databinding.UpdatesItemBinding
 import eu.kanade.tachiyomi.source.LocalSource
@@ -60,10 +59,7 @@ class UpdatesHolder(private val view: View, private val adapter: UpdatesAdapter)
         val radius = itemView.context.resources.getDimension(R.dimen.card_radius)
         binding.mangaCover.clear()
         binding.mangaCover.load(item.manga.thumbnail_url) {
-            transformations(
-                CropTransformation(CropTransformation.CropType.CENTER),
-                RoundedCornersTransformation(radius)
-            )
+            transformations(RoundedCornersTransformation(radius))
         }
     }
 }

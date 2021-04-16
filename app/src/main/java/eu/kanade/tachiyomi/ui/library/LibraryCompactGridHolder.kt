@@ -4,7 +4,6 @@ import android.view.View
 import androidx.core.view.isVisible
 import coil.clear
 import coil.load
-import com.commit451.coiltransformations.CropTransformation
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.databinding.SourceCompactGridItemBinding
 import eu.kanade.tachiyomi.util.isLocal
@@ -57,8 +56,6 @@ open class LibraryCompactGridHolder(
         // Update the cover.
         // TODO: thumbnail caching based on last modified
         binding.thumbnail.clear()
-        binding.thumbnail.load(item.manga.thumbnail_url) {
-            transformations(CropTransformation(CropTransformation.CropType.CENTER))
-        }
+        binding.thumbnail.load(item.manga.thumbnail_url)
     }
 }

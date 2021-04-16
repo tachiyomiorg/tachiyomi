@@ -206,7 +206,6 @@ dependencies {
     val coilVersion = "1.2.0"
     implementation("io.coil-kt:coil:$coilVersion")
     implementation("io.coil-kt:coil-gif:$coilVersion")
-    implementation("com.github.Commit451.coil-transformations:transformations:1.0.0")
 
     implementation("com.github.tachiyomiorg:subsampling-scale-image-view:547d9c0")
 
