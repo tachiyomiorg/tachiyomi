@@ -386,6 +386,7 @@ class LibraryUpdateService(
             }
         }
 
+        coverCache.clearMemoryCache()
         notifier.cancelProgressNotification()
     }
 

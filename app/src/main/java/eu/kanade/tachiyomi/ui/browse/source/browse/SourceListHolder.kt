@@ -2,7 +2,7 @@ package eu.kanade.tachiyomi.ui.browse.source.browse
 
 import android.view.View
 import coil.clear
-import coil.load
+import coil.loadAny
 import coil.transform.RoundedCornersTransformation
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.R
@@ -45,9 +45,8 @@ class SourceListHolder(private val view: View, adapter: FlexibleAdapter<*>) :
     override fun setImage(manga: Manga) {
         binding.thumbnail.clear()
         if (!manga.thumbnail_url.isNullOrEmpty()) {
-            // TODO: thumbnail caching based on last modified
             val radius = view.context.resources.getDimension(R.dimen.card_radius)
-            binding.thumbnail.load(manga.thumbnail_url) {
+            binding.thumbnail.loadAny(manga) {
                 transformations(RoundedCornersTransformation(radius))
             }
         }

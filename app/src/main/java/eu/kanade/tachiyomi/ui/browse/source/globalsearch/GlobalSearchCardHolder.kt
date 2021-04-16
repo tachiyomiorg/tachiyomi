@@ -45,9 +45,8 @@ class GlobalSearchCardHolder(view: View, adapter: GlobalSearchCardAdapter) :
     fun setImage(manga: Manga) {
         binding.cover.clear()
         if (!manga.thumbnail_url.isNullOrEmpty()) {
-            // TODO: thumbnail caching based on last modified
             val request = ImageRequest.Builder(itemView.context)
-                .data(manga.thumbnail_url)
+                .data(manga)
                 .memoryCachePolicy(CachePolicy.DISABLED)
                 .diskCachePolicy(CachePolicy.DISABLED)
                 .target(StateImageViewTarget(binding.cover, binding.progress))

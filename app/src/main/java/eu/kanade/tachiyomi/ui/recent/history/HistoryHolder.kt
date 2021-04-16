@@ -2,7 +2,7 @@ package eu.kanade.tachiyomi.ui.recent.history
 
 import android.view.View
 import coil.clear
-import coil.load
+import coil.loadAny
 import coil.transform.RoundedCornersTransformation
 import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
@@ -66,10 +66,9 @@ class HistoryHolder(
         }
 
         // Set cover
-        // TODO: thumbnail caching based on last modified
         val radius = itemView.context.resources.getDimension(R.dimen.card_radius)
         binding.cover.clear()
-        binding.cover.load(item.manga.thumbnail_url) {
+        binding.cover.loadAny(item.manga) {
             transformations(RoundedCornersTransformation(radius))
         }
     }

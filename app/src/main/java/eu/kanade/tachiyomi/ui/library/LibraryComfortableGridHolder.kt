@@ -4,7 +4,7 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import coil.clear
-import coil.load
+import coil.loadAny
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.databinding.SourceComfortableGridItemBinding
@@ -56,8 +56,7 @@ class LibraryComfortableGridHolder(
         binding.card.clipToOutline = true
 
         // Update the cover.
-        // TODO: thumbnail caching based on last modified
         binding.thumbnail.clear()
-        binding.thumbnail.load(item.manga.thumbnail_url)
+        binding.thumbnail.loadAny(item.manga)
     }
 }

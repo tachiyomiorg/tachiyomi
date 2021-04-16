@@ -7,11 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
+import coil.loadAny
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.glide.MangaThumbnail
-import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.databinding.MangaInfoHeaderBinding
 import eu.kanade.tachiyomi.source.Source
@@ -46,7 +44,6 @@ class MangaInfoHeaderAdapter(
     private lateinit var binding: MangaInfoHeaderBinding
 
     private var initialLoad: Boolean = true
-    private var currentMangaThumbnail: MangaThumbnail? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeaderViewHolder {
         binding = MangaInfoHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -248,14 +245,8 @@ class MangaInfoHeaderAdapter(
             setFavoriteButtonState(manga.favorite)
 
             // Set cover if changed.
-            // TODO: thumbnail caching based on last modified
-            val mangaThumbnail = manga.toMangaThumbnail()
-            if (mangaThumbnail != currentMangaThumbnail) {
-                currentMangaThumbnail = mangaThumbnail
-                listOf(binding.mangaCover, binding.backdrop)
-                    .forEach {
-                        it.load(manga.thumbnail_url)
-                    }
+            listOf(binding.mangaCover, binding.backdrop).forEach {
+                it.loadAny(manga)
             }
 
             // Manga info section

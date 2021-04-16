@@ -3,7 +3,7 @@ package eu.kanade.tachiyomi.ui.recent.updates
 import android.view.View
 import androidx.core.view.isVisible
 import coil.clear
-import coil.load
+import coil.loadAny
 import coil.transform.RoundedCornersTransformation
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.databinding.UpdatesItemBinding
@@ -55,10 +55,9 @@ class UpdatesHolder(private val view: View, private val adapter: UpdatesAdapter)
         binding.download.setState(item.status, item.progress)
 
         // Set cover
-        // TODO: thumbnail caching based on last modified
         val radius = itemView.context.resources.getDimension(R.dimen.card_radius)
         binding.mangaCover.clear()
-        binding.mangaCover.load(item.manga.thumbnail_url) {
+        binding.mangaCover.loadAny(item.manga) {
             transformations(RoundedCornersTransformation(radius))
         }
     }

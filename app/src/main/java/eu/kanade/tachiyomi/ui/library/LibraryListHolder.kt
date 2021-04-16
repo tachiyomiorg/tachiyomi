@@ -3,7 +3,7 @@ package eu.kanade.tachiyomi.ui.library
 import android.view.View
 import androidx.core.view.isVisible
 import coil.clear
-import coil.load
+import coil.loadAny
 import coil.transform.RoundedCornersTransformation
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.R
@@ -59,10 +59,9 @@ class LibraryListHolder(
         }
 
         // Update the cover.
-        // TODO: thumbnail caching based on last modified
         val radius = view.context.resources.getDimension(R.dimen.card_radius)
         binding.thumbnail.clear()
-        binding.thumbnail.load(item.manga.thumbnail_url) {
+        binding.thumbnail.loadAny(item.manga) {
             transformations(RoundedCornersTransformation(radius))
         }
     }

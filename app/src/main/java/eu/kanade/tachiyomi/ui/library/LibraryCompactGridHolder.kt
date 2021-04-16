@@ -3,7 +3,7 @@ package eu.kanade.tachiyomi.ui.library
 import android.view.View
 import androidx.core.view.isVisible
 import coil.clear
-import coil.load
+import coil.loadAny
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.databinding.SourceCompactGridItemBinding
 import eu.kanade.tachiyomi.util.isLocal
@@ -54,8 +54,7 @@ open class LibraryCompactGridHolder(
         binding.card.clipToOutline = true
 
         // Update the cover.
-        // TODO: thumbnail caching based on last modified
         binding.thumbnail.clear()
-        binding.thumbnail.load(item.manga.thumbnail_url)
+        binding.thumbnail.loadAny(item.manga)
     }
 }

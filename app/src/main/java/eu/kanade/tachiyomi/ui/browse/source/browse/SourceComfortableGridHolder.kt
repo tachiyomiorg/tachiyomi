@@ -45,9 +45,8 @@ class SourceComfortableGridHolder(private val view: View, private val adapter: F
 
         binding.thumbnail.clear()
         if (!manga.thumbnail_url.isNullOrEmpty()) {
-            // TODO: thumbnail caching based on last modified
             val request = ImageRequest.Builder(view.context)
-                .data(manga.thumbnail_url)
+                .data(manga)
                 .memoryCachePolicy(CachePolicy.DISABLED)
                 .diskCachePolicy(CachePolicy.DISABLED)
                 .target(StateImageViewTarget(binding.thumbnail, binding.progress))

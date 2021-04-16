@@ -621,6 +621,7 @@ class ReaderPresenter(
                     if (manga.favorite) {
                         coverCache.setCustomCoverToCache(manga, stream())
                         manga.updateCoverLastModified(db)
+                        coverCache.clearMemoryCache()
                         SetAsCoverResult.Success
                     } else {
                         SetAsCoverResult.AddToLibraryFirst

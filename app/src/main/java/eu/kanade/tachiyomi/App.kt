@@ -14,6 +14,7 @@ import coil.ImageLoaderFactory
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import eu.kanade.tachiyomi.data.coil.ByteBufferFetcher
+import eu.kanade.tachiyomi.data.coil.MangaCoverFetcher
 import eu.kanade.tachiyomi.data.notification.Notifications
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.network.NetworkHelper
@@ -80,6 +81,7 @@ open class App : Application(), LifecycleObserver, ImageLoaderFactory {
                     add(GifDecoder())
                 }
                 add(ByteBufferFetcher())
+                add(MangaCoverFetcher())
             }
             okHttpClient(Injekt.get<NetworkHelper>().coilClient)
             crossfade(true)

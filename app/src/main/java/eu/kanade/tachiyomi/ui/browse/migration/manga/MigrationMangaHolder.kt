@@ -2,7 +2,7 @@ package eu.kanade.tachiyomi.ui.browse.migration.manga
 
 import android.view.View
 import coil.clear
-import coil.load
+import coil.loadAny
 import coil.transform.RoundedCornersTransformation
 import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
@@ -25,10 +25,9 @@ class MigrationMangaHolder(
         binding.title.text = item.manga.title
 
         // Update the cover.
-        // TODO: thumbnail caching based on last modified
         val radius = itemView.context.resources.getDimension(R.dimen.card_radius)
         binding.thumbnail.clear()
-        binding.thumbnail.load(item.manga.thumbnail_url) {
+        binding.thumbnail.loadAny(item.manga) {
             transformations(RoundedCornersTransformation(radius))
         }
     }
