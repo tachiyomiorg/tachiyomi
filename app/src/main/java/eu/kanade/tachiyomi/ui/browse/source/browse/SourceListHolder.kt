@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.ui.browse.source.browse
 import android.view.View
 import coil.clear
 import coil.loadAny
+import coil.request.CachePolicy
 import coil.transform.RoundedCornersTransformation
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.R
@@ -50,6 +51,7 @@ class SourceListHolder(private val view: View, adapter: FlexibleAdapter<*>) :
             binding.thumbnail.loadAny(manga) {
                 setParameter(MangaCoverFetcher.USE_CUSTOM_COVER, false)
                 transformations(RoundedCornersTransformation(radius))
+                diskCachePolicy(CachePolicy.DISABLED)
             }
         }
     }

@@ -49,7 +49,6 @@ open class SourceGridHolder(private val view: View, private val adapter: Flexibl
             val request = ImageRequest.Builder(view.context)
                 .data(manga)
                 .setParameter(MangaCoverFetcher.USE_CUSTOM_COVER, false)
-                .memoryCachePolicy(CachePolicy.DISABLED)
                 .diskCachePolicy(CachePolicy.DISABLED)
                 .target(StateImageViewTarget(binding.thumbnail, binding.progress))
                 .build()

@@ -49,7 +49,6 @@ class GlobalSearchCardHolder(view: View, adapter: GlobalSearchCardAdapter) :
             val request = ImageRequest.Builder(itemView.context)
                 .data(manga)
                 .setParameter(MangaCoverFetcher.USE_CUSTOM_COVER, false)
-                .memoryCachePolicy(CachePolicy.DISABLED)
                 .diskCachePolicy(CachePolicy.DISABLED)
                 .target(StateImageViewTarget(binding.cover, binding.progress))
                 .build()
