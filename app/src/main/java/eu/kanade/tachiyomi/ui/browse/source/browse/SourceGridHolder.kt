@@ -5,6 +5,7 @@ import coil.clear
 import coil.imageLoader
 import coil.request.CachePolicy
 import coil.request.ImageRequest
+import coil.transition.CrossfadeTransition
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.data.coil.MangaCoverFetcher
 import eu.kanade.tachiyomi.data.database.models.Manga
@@ -46,11 +47,14 @@ open class SourceGridHolder(private val view: View, private val adapter: Flexibl
 
         binding.thumbnail.clear()
         if (!manga.thumbnail_url.isNullOrEmpty()) {
+            val crossfadeDuration = view.context.imageLoader.defaults.transition.let {
+                if (it is CrossfadeTransition) it.durationMillis else 0
+            }
             val request = ImageRequest.Builder(view.context)
                 .data(manga)
                 .setParameter(MangaCoverFetcher.USE_CUSTOM_COVER, false)
                 .diskCachePolicy(CachePolicy.DISABLED)
-                .target(StateImageViewTarget(binding.thumbnail, binding.progress))
+                .target(StateImageViewTarget(binding.thumbnail, binding.progress, crossfadeDuration))
                 .build()
             itemView.context.imageLoader.enqueue(request)
         }

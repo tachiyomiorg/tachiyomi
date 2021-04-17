@@ -3,55 +3,41 @@ package eu.kanade.tachiyomi.widget
 import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
-import android.widget.ImageView.ScaleType
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.isVisible
-import androidx.lifecycle.LifecycleOwner
+import coil.drawable.CrossfadeDrawable
 import coil.target.ImageViewTarget
-import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.util.system.getResourceColor
 
 /**
- * A Coil target to display an image with an optional view to show while loading and a configurable
- * error drawable.
+ * A Coil target to display an image with an optional view to show while loading.
  *
- * @param view the view where the image will be loaded
- * @param progress an optional view to show when the image is loading.
- * @param errorDrawableRes the error drawable resource to show.
- * @param errorScaleType the scale type for the error drawable, [ScaleType.CENTER] by default.
+ * @param target the view where the image will be loaded
+ * @param progress the view to show when the image is loading.
+ * @param crossfadeDuration duration in millisecond to crossfade the result drawable
  */
 class StateImageViewTarget(
-    view: ImageView,
-    val progress: View? = null,
-    private val errorDrawableRes: Int = R.drawable.ic_broken_image_grey_24dp,
-    private val errorScaleType: ScaleType = ScaleType.CENTER
-) : ImageViewTarget(view) {
-
-    private val imageScaleType = view.scaleType
-
-    override fun onStart(owner: LifecycleOwner) {
-        progress?.isVisible = true
-        super.onStart(owner)
-    }
-
-    override fun onError(error: Drawable?) {
-        progress?.isVisible = false
-        view.scaleType = errorScaleType
-
-        val vector = AppCompatResources.getDrawable(view.context, errorDrawableRes)
-        vector?.setTint(view.context.getResourceColor(R.attr.colorOnBackground, 0.38f))
-        view.setImageDrawable(vector)
-    }
-
-    override fun onClear() {
-        progress?.isVisible = false
-        super.onClear()
+    private val target: ImageView,
+    private val progress: View,
+    private val crossfadeDuration: Int = 0
+) : ImageViewTarget(target) {
+    override fun onStart(placeholder: Drawable?) {
+        progress.isVisible = true
     }
 
     override fun onSuccess(result: Drawable) {
-        progress?.isVisible = false
-        view.scaleType = imageScaleType
-        super.onSuccess(result)
-        view.setImageDrawable(result)
+        progress.isVisible = false
+        if (crossfadeDuration > 0) {
+            val crossfadeResult = CrossfadeDrawable(target.drawable, result, durationMillis = crossfadeDuration)
+            target.setImageDrawable(crossfadeResult)
+            crossfadeResult.start()
+        } else {
+            target.setImageDrawable(result)
+        }
+    }
+
+    override fun onError(error: Drawable?) {
+        progress.isVisible = false
+        if (error != null) {
+            target.setImageDrawable(error)
+        }
     }
 }
