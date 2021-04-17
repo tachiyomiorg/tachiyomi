@@ -86,7 +86,7 @@ open class App : Application(), LifecycleObserver, ImageLoaderFactory {
                 add(MangaCoverFetcher())
             }
             okHttpClient(Injekt.get<NetworkHelper>().coilClient)
-            crossfade(true)
+            crossfade(300)
             allowRgb565(getSystemService<ActivityManager>()!!.isLowRamDevice)
         }.build()
     }
