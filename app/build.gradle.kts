@@ -57,15 +57,9 @@ android {
             applicationIdSuffix = ".debug"
         }
         named("release") {
-            /*named("postprocessing") {
-                postprocessing {
-                    isObfuscate = false
-                    isOptimizeCode = true
-                    isRemoveUnusedCode = false
-                    isRemoveUnusedResources = true
-                }
-                setProguardFiles(listOf(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"))
-            }*/
+            isShrinkResources = true
+            isMinifyEnabled = true
+            proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
         }
     }
 
