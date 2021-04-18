@@ -225,7 +225,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:padding="@dimen/material_component_text_fields_floating_label_padding_between_label_and_input_text"
+            android:padding="8dp"
             app:layout_constraintEnd_toStartOf="@id/txt_brightness_seekbar_value"
             app:layout_constraintStart_toEndOf="@id/txt_brightness_seekbar_icon"
             app:layout_constraintTop_toBottomOf="@id/custom_brightness"

@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:drawablePadding="@dimen/material_component_lists_icon_left_padding"
+        android:drawablePadding="16dp"
         android:gravity="center_vertical|start"
         android:maxLines="1"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />

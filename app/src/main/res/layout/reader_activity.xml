@@ -88,7 +88,7 @@
                     android:layout_marginEnd="8dp"
                     android:background="@drawable/reader_seekbar_button"
                     android:contentDescription="@string/action_previous_chapter"
-                    android:padding="@dimen/material_layout_keylines_screen_edge_margin"
+                    android:padding="@dimen/screen_edge_margin"
                     app:srcCompat="@drawable/ic_skip_previous_24dp"
                     app:tint="?attr/colorOnPrimary" />
 
@@ -140,7 +140,7 @@
                     android:layout_marginStart="8dp"
                     android:background="@drawable/reader_seekbar_button"
                     android:contentDescription="@string/action_next_chapter"
-                    android:padding="@dimen/material_layout_keylines_screen_edge_margin"
+                    android:padding="@dimen/screen_edge_margin"
                     app:srcCompat="@drawable/ic_skip_next_24dp"
                     app:tint="?attr/colorOnPrimary" />
 
@@ -158,7 +158,7 @@
                     android:layout_height="match_parent"
                     android:background="?selectableItemBackgroundBorderless"
                     android:contentDescription="@string/viewer"
-                    android:padding="@dimen/material_layout_keylines_screen_edge_margin"
+                    android:padding="@dimen/screen_edge_margin"
                     app:layout_constraintEnd_toStartOf="@id/action_crop_borders"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -171,7 +171,7 @@
                     android:layout_height="match_parent"
                     android:background="?selectableItemBackgroundBorderless"
                     android:contentDescription="@string/pref_crop_borders"
-                    android:padding="@dimen/material_layout_keylines_screen_edge_margin"
+                    android:padding="@dimen/screen_edge_margin"
                     app:layout_constraintEnd_toStartOf="@id/action_rotation"
                     app:layout_constraintStart_toEndOf="@+id/action_reading_mode"
                     app:layout_constraintTop_toTopOf="parent"
@@ -184,7 +184,7 @@
                     android:layout_height="match_parent"
                     android:background="?selectableItemBackgroundBorderless"
                     android:contentDescription="@string/pref_rotation_type"
-                    android:padding="@dimen/material_layout_keylines_screen_edge_margin"
+                    android:padding="@dimen/screen_edge_margin"
                     app:layout_constraintEnd_toStartOf="@id/action_settings"
                     app:layout_constraintStart_toEndOf="@+id/action_crop_borders"
                     app:layout_constraintTop_toTopOf="parent"
@@ -197,7 +197,7 @@
                     android:layout_height="match_parent"
                     android:background="?selectableItemBackgroundBorderless"
                     android:contentDescription="@string/action_settings"
-                    android:padding="@dimen/material_layout_keylines_screen_edge_margin"
+                    android:padding="@dimen/screen_edge_margin"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/action_rotation"
                     app:layout_constraintTop_toTopOf="parent"

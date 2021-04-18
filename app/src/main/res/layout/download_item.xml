@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="@dimen/material_component_lists_padding_above_list">
+    android:paddingTop="8dp">
 
     <ImageView
         android:id="@+id/reorder"
-        android:layout_width="@dimen/material_component_lists_single_line_with_avatar_height"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_gravity="start"
+        android:padding="16dp"
         android:scaleType="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,13 +86,13 @@
 
     <ImageButton
         android:id="@+id/menu"
-        android:layout_width="44dp"
-        android:layout_height="@dimen/material_component_lists_single_line_with_avatar_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_toEndOf="@id/download_progress_text"
         android:background="?selectableItemBackgroundBorderless"
         android:contentDescription="@string/action_menu"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
+        android:paddingVertical="16dp"
+        android:paddingHorizontal="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
