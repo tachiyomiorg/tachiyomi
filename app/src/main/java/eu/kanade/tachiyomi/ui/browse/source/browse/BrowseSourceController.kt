@@ -269,6 +269,7 @@ open class BrowseSourceController(bundle: Bundle) :
                 if (router.backstackSize >= 2 && router.backstack[router.backstackSize - 2].controller() is GlobalSearchController) {
                     router.popController(this)
                 } else {
+                    nonSubmittedQuery = ""
                     searchWithQuery("")
                 }
 
