@@ -87,6 +87,7 @@
             android:theme="@style/Theme.Splash" />
         <activity
             android:name=".ui.webview.WebViewActivity"
+            android:theme="@style/Theme.Webview"
             android:configChanges="uiMode|orientation|screenSize" />
         <activity
             android:name=".ui.setting.track.AnilistLoginActivity"

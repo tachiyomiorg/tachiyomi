@@ -260,4 +260,9 @@
         <item name="android:navigationBarColor">?attr/colorBackgroundSplash</item>
     </style>
 
+    <style name="Theme.Webview" parent="Theme.Tachiyomi.Light.Blue">
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item name="android:navigationBarColor">?attr/colorOnPrimary</item>
+    </style>
+
 </resources>
