@@ -84,7 +84,7 @@
         </activity>
         <activity
             android:name=".ui.security.BiometricUnlockActivity"
-            android:theme="@style/Theme.Splash" />
+            android:theme="@style/Theme.Base" />
         <activity
             android:name=".ui.webview.WebViewActivity"
             android:theme="@style/Theme.Webview"
