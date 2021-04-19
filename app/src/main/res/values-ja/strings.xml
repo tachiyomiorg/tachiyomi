@@ -70,7 +70,7 @@
     <string name="portrait">縦向き</string>
     <string name="landscape">横向き</string>
     <string name="default_columns">デフォルト</string>
-    <string name="pref_library_update_interval">ライブラリ更新頻度</string>
+    <string name="pref_library_update_interval">更新頻度</string>
     <string name="update_never">マニュアル</string>
     <string name="update_1hour">毎時間</string>
     <string name="update_2hour">2時間ごと</string>
@@ -81,7 +81,7 @@
     <string name="update_48hour">2日ごと</string>
     <string name="update_weekly">毎週</string>
     <string name="all">すべて</string>
-    <string name="pref_library_update_restriction">ライブラリ更新制限</string>
+    <string name="pref_library_update_restriction">更新制限</string>
     <string name="pref_library_update_restriction_summary">条件が満たされた場合にのみ更新する</string>
     <string name="charging">充電中</string>
     <string name="pref_update_only_non_completed">連載中のマンガのみ更新</string>
@@ -369,7 +369,7 @@
     <string name="filter_mode_default">既定</string>
     <string name="filter_mode_overlay">オーバーレイ</string>
     <string name="filter_mode_screen">スクリーン</string>
-    <string name="pref_library_update_prioritization">ライブラリ更新の順</string>
+    <string name="pref_library_update_prioritization">更新の順</string>
     <string name="no_results_found">結果が見つかりませんでした</string>
     <string name="migration_selection_prompt">移行元を選択</string>
     <string name="action_webview_back">前へ</string>
@@ -380,7 +380,7 @@
     <string name="ext_obsolete">廃止済み</string>
     <string name="obsolete_extension_message">この拡張機能は利用不可になりました。</string>
     <string name="pref_date_format">日付形式</string>
-    <string name="pref_category_library_update">更新</string>
+    <string name="pref_category_library_update">グローバルアップデート</string>
     <string name="logout_title">%1$sからログアウトしますか？</string>
     <string name="logout">ログアウト</string>
     <string name="logout_success">ログアウトしました</string>
@@ -402,7 +402,7 @@
     <string name="theme_dark_amoled">AMOLEDブラック</string>
     <string name="pref_manage_notifications">通知設定</string>
     <string name="pref_category_security">セキュリティ</string>
-    <string name="lock_with_biometrics">生体認証</string>
+    <string name="lock_with_biometrics">アンロックを必要とする</string>
     <string name="lock_when_idle">タイムアウトロック</string>
     <string name="lock_always">常時</string>
     <string name="lock_never">しない</string>
@@ -650,6 +650,15 @@
     <string name="nav_zone_left">左</string>
     <string name="nav_zone_next">次へ</string>
     <string name="nav_zone_prev">前へ</string>
-    <string name="pref_show_navigation_mode_summary">ビューアが立ち上がるとタップゾーンをしばらく表示します</string>
+    <string name="pref_show_navigation_mode_summary">ビューアが立ち上がるとタップゾーンを表示します</string>
     <string name="pref_show_navigation_mode">ﾅﾋﾞｹﾞｰｼｮﾝﾚｲｱｳﾄｵｰﾊﾞｰﾚｲを表示</string>
+    <string name="pref_dns_over_https">DNS over HTTPS</string>
+    <string name="pref_download_new_categories_details">含まれているカテゴリーに入っていても、除外対象カテゴリーにあるマンガは更新されません。</string>
+    <string name="pref_category_auto_download">自動ダウンロード</string>
+    <string name="exclude">下記を除外：%s</string>
+    <string name="include">下記を含む：%s</string>
+    <string name="none">なし</string>
+    <string name="pref_library_update_categories_details">含まれているカテゴリーに入っていても、除外対象カテゴリーにあるマンガは更新されません。</string>
+    <string name="action_show_errors">エラーを表示</string>
+    <string name="action_sort_chapter_fetch_date">日付を取得しました</string>
 </resources>

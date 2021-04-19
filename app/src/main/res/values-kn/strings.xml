@@ -14,7 +14,7 @@
     <string name="lock_never">ಎಂದಿಗೂ ಇಲ್ಲ</string>
     <string name="lock_always">ಯಾವಾಗಲೂ</string>
     <string name="lock_when_idle">ನಿಷ್ಕ್ರಿಯವಾಗಿದ್ದಾಗ ಲಾಕ್ ಮಾಡಿ</string>
-    <string name="lock_with_biometrics">"ಬೆರಳಚ್ಚ  ಬದ್ರತೆ"</string>
+    <string name="lock_with_biometrics">ಅನ್ ಲಾಕ್ ಅಗತ್ಯವಿದೆ</string>
     <string name="pref_category_security">ಭದ್ರತೆ</string>
     <string name="pref_manage_notifications">ಸೂಚನೆಗಳನ್ನು ನಿರ್ವಹಿಸಿ</string>
     <string name="pref_confirm_exit">ನಿರ್ಗಮನವನ್ನು ಖಚಿತಪಡಿಸಿ</string>
@@ -281,8 +281,8 @@
     <string name="pref_update_only_non_completed">ಚಾಲ್ತಿಯಿರುವ ಮಾಂಗಾವನ್ನು ಮಾತ್ರ ನವೀಕರಿಸಿ</string>
     <string name="charging">ಚಾರ್ಜಿಂಗ್</string>
     <string name="pref_library_update_restriction_summary">ಷರತ್ತುಗಳನ್ನು ಪೂರೈಸಿದಾಗ ಮಾತ್ರ ನವೀಕರಿಸಿ</string>
-    <string name="pref_library_update_restriction">ಗ್ರಂಥಾಲಯ ನವೀಕರಣ ನಿರ್ಬಂಧಗಳು</string>
-    <string name="pref_library_update_prioritization">ಗ್ರಂಥಾಲಯ ನವೀಕರಣ ಪಾಳಿ</string>
+    <string name="pref_library_update_restriction">ನವೀಕರಣ ನಿರ್ಬಂಧಗಳು</string>
+    <string name="pref_library_update_prioritization">ನವೀಕರಣ ಪಾಳಿ</string>
     <string name="update_weekly">ವಾರಕ್ಕೊಮ್ಮೆ</string>
     <string name="update_48hour">ಪ್ರತಿ 2 ದಿನಗಳಿಗೊಮ್ಮೆ</string>
     <string name="update_24hour">ಪ್ರತಿದಿನ</string>
@@ -292,7 +292,7 @@
     <string name="update_2hour">ಪ್ರತಿ 2 ಗಂಟೆಗಳಿಗೊಮ್ಮೆ</string>
     <string name="update_1hour">ಗಂಟೆ</string>
     <string name="update_never">ಸ್ವಂತ ಮಾಡು</string>
-    <string name="pref_library_update_interval">ಗ್ರಂಥಾಲಯ ನವೀಕರಣ ಆವರ್ತನ</string>
+    <string name="pref_library_update_interval">ನವೀಕರಣ ಆವರ್ತನ</string>
     <string name="pref_category_library_update">ನವೀಕರಣಗಳು</string>
     <string name="default_columns">ಡೀಫಾಲ್ಟ್</string>
     <string name="source_requires_login">ಈ ಮೂಲದ ಬಳಕೆಗೆ ಲಾಗಿನ್ ಆಗುವ ಅಗತ್ಯವಿದೆ</string>
@@ -607,7 +607,7 @@
     <string name="backup_restore_missing_trackers">ಟ್ರ್ಯಾಕರ್ ಗಳು ಲಾಗಿನ್ ಆಗಿಲ್ಲ:</string>
     <string name="pref_remove_bookmarked_chapters">ಬುಕ್ ಮಾರ್ಕ್ ಮಾಡಿದ ಅಧ್ಯಾಯಗಳನ್ನು ಅಳಿಸಿ</string>
     <string name="pref_category_delete_chapters">ಅಧ್ಯಾಯಗಳನ್ನು ಅಳಿಸಿ</string>
-    <string name="ext_nsfw_warning">18+ ವಿಷಯವನ್ನು ಹೊಂದಿರಬಹುದು</string>
+    <string name="ext_nsfw_warning">NSFW (18+) ವಿಷಯವನ್ನು ಹೊಂದಿರಬಹುದು</string>
     <string name="ext_nsfw_short">18+</string>
     <string name="pref_hide_bottom_bar_on_scroll">ಸ್ಕ್ರಾಲ್‌ ಮಾಡಿದಾಗ ಕೆಳಗಿನ ಪಟ್ಟಿಯನ್ನು ಮರೆಮಾಡಿ</string>
     <string name="action_search_settings">ಸಂಯೋಜನೆಗಳಲ್ಲಿ ಹುಡುಕಿ</string>
@@ -622,7 +622,8 @@
     <string name="pref_clear_history">ಇತಿಹಾಸವನ್ನು ತೆರವುಗೊಳಿಸಿ</string>
     <string name="clear_history_confirmation">ನೀವು ಖಚಿತವಾಗಿರುವಿರಾ\? ಎಲ್ಲಾ ಇತಿಹಾಸವೂ ಕಳೆದುಹೋಗುತ್ತದೆ.</string>
     <string name="clear_history_completed">ಇತಿಹಾಸವನ್ನು ಅಳಿಸಲಾಗಿದೆ</string>
-    <string name="invalid_backup_file_type">ಅಮಾನ್ಯ ಬ್ಯಾಕಪ್ ಫೈಲ್:%1$s</string>
+    <string name="invalid_backup_file_type">ಅಮಾನ್ಯ ಬ್ಯಾಕಪ್ ಫೈಲ್ ಪ್ರಕಾರ:%1$s
+\nಫೈಲ್ ಪ್ರಕಾರ .proto.gz ಅಥವಾ .json ನೊಂದಿಗೆ ಕೊನೆಗೊಳ್ಳಬೇಕು.</string>
     <string name="pref_backup_auto_create_legacy">ಹಳೆಯ ಪ್ರಕಾರದ ಬ್ಯಾಕಪ್ ಅನ್ನು ಸಹ ರಚಿಸಿ</string>
     <string name="pref_create_legacy_backup_summary">ತಚಿಯೋಮಿಯ ಹಳೆಯ ಆವೃತ್ತಿಗಳಲ್ಲಿ ಬಳಸಬಹುದು</string>
     <string name="pref_create_legacy_backup">ಹಳೆಯ ಪ್ರಕಾರದ ಬ್ಯಾಕಪ್ ರಚಿಸಿ</string>
@@ -635,8 +636,41 @@
     <string name="update_4hour">ಪ್ರತಿ ೪ ಗಂಟೆಗೆ</string>
     <string name="action_desc">ಮೊದಲು ಚಿಕ್ಕದು</string>
     <string name="action_asc">ಮೊದಲ ಸಾಣ್ಣದ್ದು</string>
-    <string name="action_order_by_chapter_number">ಅಧ್ಯಾಯ ಸಾಂಖ್ಯಯಂತೆ</string>
-    <string name="action_order_by_upload_date">ದಿನಾಂಕ ದಂತೆ</string>
-    <string name="action_display_show_number_of_items">"ವಸ್ತುವಿನ   ಸಾಂಖ್ಯ   ತೋರಿಸಿ"</string>
-    <string name="action_sort_chapter_fetch_date">ಪಡೆಯುಲಾದ ಮಾಹಿತಿ</string>
+    <string name="action_order_by_chapter_number">ಅಧ್ಯಾಯ ಸಂಖ್ಯೆಯಿಂದ</string>
+    <string name="action_order_by_upload_date">ಅಪ್ಲೋಡ್ ದಿನಾಂಕ ದಂತೆ</string>
+    <string name="action_display_show_number_of_items">ವಸ್ತುಗಳ ಸಂಖ್ಯೆಯನ್ನು ತೋರಿಸಿ</string>
+    <string name="action_sort_chapter_fetch_date">ಸಿಕ್ಕ ಮಾಹಿತಿ</string>
+    <string name="channel_crash_logs">ಕ್ರ್ಯಾಶ್ ಲಾಗ್ ಗಳು</string>
+    <string name="track_finished_reading_date">ಓದಿ ಮುಗಿಸಿದ ದಿನಾಂಕ</string>
+    <string name="track_started_reading_date">ಓದಲು ಪ್ರಾರಂಭಿಸಿದ ದಿನಾಂಕ</string>
+    <string name="crash_log_saved">ಕ್ರ್ಯಾಶ್ ಲಾಗ್‌ಗಳನ್ನು ಉಳಿಸಲಾಗಿದೆ</string>
+    <string name="pref_dump_crash_logs_summary">ಡೆವಲಪರ್‌ಗಳೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಲು ದೋಷದೆ ಲಾಗ್‌ಗಳನ್ನು ಫೈಲ್‌ಗೆ ಸೇರಿಸಿ</string>
+    <string name="pref_dump_crash_logs">ಕ್ರ್ಯಾಶ್ ಲಾಗ್‌ಗಳನ್ನು ಡಂಪ್ ಮಾಡಿ</string>
+    <string name="pref_dns_over_https">HTTPS ಮೇಲೆ DNS ಬಳಸಿ</string>
+    <string name="backup_restore_content_full">ಬ್ಯಾಕಪ್ ಫೈಲ್‌ನಿಂದ ಡೇಟಾವನ್ನು ಮರುಸ್ಥಾಪಿಸಲಾಗುತ್ತದೆ.
+\n
+\nಕಾಣೆಯಾದ ಯಾವುದೇ ವಿಸ್ತರಣೆಗಳನ್ನು ನೀವು ಪುನಃ ಸ್ಥಾಪಿಸಬೇಕಾಗುತ್ತದೆ ಮತ್ತು ಅವುಗಳನ್ನು ಬಳಸಲು ಟ್ರ್ಯಾಕಿಂಗ್ ಸೇವೆಗಳಿಗೆ ಲಾಗ್ ಇನ್ ಮಾಡಬೇಕಾಗುತ್ತದೆ.</string>
+    <string name="pref_download_new_categories_details">ಹೊರಗಿಡಲಾದ ವಿಭಾಗಗಳಲ್ಲಿ ಮಾಂಗಾವನ್ನು ಸೇರಿಸಿದ ವಿಭಾಗಗಳಲ್ಲಿದ್ದರೂ ಅವುಗಳನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗುವುದಿಲ್ಲ.</string>
+    <string name="pref_category_auto_download">ಸ್ವಯಂ ಡೌನ್‌ಲೋಡ್</string>
+    <string name="pref_viewer_nav">ನ್ಯಾವಿಗೇಶನ್ ಲೇಔಟ್</string>
+    <string name="nav_zone_right">ಬಲಕ್ಕೆ</string>
+    <string name="nav_zone_left">ಎಡಕ್ಕೆ</string>
+    <string name="nav_zone_next">ಮುಂದಿನ</string>
+    <string name="nav_zone_prev">ಹಿಂದಿನ</string>
+    <string name="right_and_left_nav">ಬಲ ಮತ್ತು ಎಡ</string>
+    <string name="edge_nav">ಅಂಚು</string>
+    <string name="kindlish_nav">ಕಿಂಡಲ್-ಇಶ್</string>
+    <string name="l_nav">L ಆಕಾರದ</string>
+    <string name="default_nav">ಪೂರ್ವನಿಯೋಜಿತ</string>
+    <string name="pref_dual_page_invert_summary">ಡ್ಯುಯಲ್ ಪೇಜ್ ಸ್ಪ್ಲಿಟ್ ನ ಪ್ಲೇಸ್ ಮೆಂಟ್ ಓದುವ ದಿಕ್ಕಿಗೆ ಹೊಂದಿಕೆಯಾಗದಿದ್ದರೆ</string>
+    <string name="pref_dual_page_invert">ಡ್ಯುಯಲ್ ಪೇಜ್ ಸ್ಪ್ಲಿಟ್ ಪ್ಲೇಸ್‌ಮೆಂಟ್ ಅನ್ನು ತಿರುಗಿಸಿ</string>
+    <string name="pref_dual_page_split">ಡ್ಯುಯಲ್ ಪುಟ ವಿಭಜನೆ</string>
+    <string name="pref_show_navigation_mode_summary">ರೀಡರ್ ತೆರೆದಾಗ ಟ್ಯಾಪ್ ವಲಯಗಳನ್ನು ತೋರಿಸಿ</string>
+    <string name="pref_show_navigation_mode">ನ್ಯಾವಿಗೇಶನ್ ಲೇಔಟ್ ಓವರ್ ಲೇ ತೋರಿಸಿ</string>
+    <string name="exclude">ಹೊರಗಿಡಿ: %s</string>
+    <string name="include">ಸೇರಿಸಿ: %s</string>
+    <string name="none">ಯಾವುದು ಅಲ್ಲ</string>
+    <string name="pref_library_update_categories_details">ಹೊರಗಿಡಲಾದ ವರ್ಗಗಳಲ್ಲಿನ ಮಾಂಗಾ ಸೇರಿಸಿದ ವಿಭಾಗಗಳಲ್ಲಿದ್ದರೂ ನವೀಕರಿಸಲಾಗುವುದಿಲ್ಲ.</string>
+    <string name="network_unmetered">ಅಳತೆಯಿಲ್ಲದ ನೆಟ್‌ವರ್ಕ್</string>
+    <string name="action_show_errors">ದೋಷಗಳನ್ನು ತೋರಿಸು</string>
 </resources>

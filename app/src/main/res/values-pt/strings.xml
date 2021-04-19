@@ -59,7 +59,7 @@
     <string name="portrait">Retrato</string>
     <string name="landscape">Paisagem</string>
     <string name="default_columns">Padrão</string>
-    <string name="pref_library_update_interval">Frequência de atualização da biblioteca</string>
+    <string name="pref_library_update_interval">Frequência de atualização</string>
     <string name="update_never">Manual</string>
     <string name="update_1hour">Hora à hora</string>
     <string name="update_2hour">A cada 2 horas</string>
@@ -69,7 +69,7 @@
     <string name="update_24hour">Diariamente</string>
     <string name="update_48hour">A cada 2 dias</string>
     <string name="all">Tudo</string>
-    <string name="pref_library_update_restriction">Restrições sobre a atualização da biblioteca</string>
+    <string name="pref_library_update_restriction">Restrições sobre a atualização</string>
     <string name="pref_library_update_restriction_summary">Atualizar apenas quando se cumprem as condições</string>
     <string name="charging">A carregar</string>
     <string name="pref_update_only_non_completed">Atualizar apenas mangás a decorrer</string>
@@ -181,7 +181,7 @@
     <string name="sort_by_source">Por fonte</string>
     <string name="sort_by_number">Por número de capítulo</string>
     <string name="manga_download">Transferir</string>
-    <string name="download_1">Próximo capítulo</string>
+    <string name="download_1">Capítulo seguinte</string>
     <string name="download_5">Próximos 5 capítulos</string>
     <string name="download_10">Próximos 10 capítulos</string>
     <string name="download_all">Tudo</string>
@@ -406,7 +406,7 @@
     <string name="pref_color_filter_mode">Modo de mistura do filtro de cores</string>
     <string name="filter_mode_lighten">Sub-exposição / Clarear</string>
     <string name="label_help">Ajuda</string>
-    <string name="pref_library_update_prioritization">Ordem de atualização da biblioteca</string>
+    <string name="pref_library_update_prioritization">Ordem de atualização</string>
     <string name="no_results_found">Nenhum resultado encontrado</string>
     <string name="migration_selection_prompt">Selecione uma fonte da qual migrar</string>
     <string name="action_webview_back">Voltar</string>
@@ -417,7 +417,7 @@
     <string name="ext_obsolete">Obsoleto</string>
     <string name="obsolete_extension_message">Esta extensão já não está disponível.</string>
     <string name="pref_date_format">Formato da data</string>
-    <string name="pref_category_library_update">Atualizações</string>
+    <string name="pref_category_library_update">Atualização global</string>
     <string name="logout_title">Terminar sessão em %1$s\?</string>
     <string name="logout">Terminar sessão</string>
     <string name="logout_success">Sua sessão está agora encerrada</string>
@@ -438,7 +438,7 @@
     <string name="theme_dark_amoled">Preto AMOLED</string>
     <string name="pref_manage_notifications">Gerir notificações</string>
     <string name="pref_category_security">Segurança</string>
-    <string name="lock_with_biometrics">Bloqueio com biometria</string>
+    <string name="lock_with_biometrics">Requerer desbloqueio</string>
     <string name="lock_when_idle">Bloquear automaticamente</string>
     <string name="lock_always">Sempre</string>
     <string name="lock_never">Nunca</string>
@@ -690,8 +690,19 @@
     <string name="nav_zone_left">Esquerda</string>
     <string name="nav_zone_next">Seguinte</string>
     <string name="nav_zone_prev">Anterior</string>
-    <string name="pref_show_navigation_mode_summary">Brevemente mostrar zonas de toque quando o leitor é aberto</string>
+    <string name="pref_show_navigation_mode_summary">Mostrar zonas de toque quando o leitor é aberto</string>
     <string name="pref_show_navigation_mode">Mostrar sobreposição da disposição de navegação</string>
     <string name="update_8hour">A cada 8 horas</string>
     <string name="update_4hour">A cada 4 horas</string>
+    <string name="none">Nenhum</string>
+    <string name="pref_dns_over_https">DNS por HTTPS</string>
+    <string name="pref_category_auto_download">Transferir automaticamente</string>
+    <string name="update_check_eol">Esta versão do Android não é mais suportada</string>
+    <string name="clipboard_copy_error">Falha ao copiar para a área de transferência</string>
+    <string name="pref_download_new_categories_details">Mangá nas categorias excluídas não será transferida mesmo que também esteja em categorias incluídas.</string>
+    <string name="exclude">Excluir: %s</string>
+    <string name="include">Incluir: %s</string>
+    <string name="pref_library_update_categories_details">Mangá em categorias excluídas não será atualizada mesmo que também estejam nas categorias incluídas.</string>
+    <string name="action_show_errors">Mostrar erros</string>
+    <string name="action_sort_chapter_fetch_date">Data de procura</string>
 </resources>

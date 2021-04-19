@@ -672,4 +672,7 @@
     <string name="pref_download_new_categories_details">Manga i uteslutna kategorier laddas inte ner även om de också ingår i inkluderade kategorier.</string>
     <string name="pref_category_auto_download">Ladda ned automatiskt</string>
     <string name="pref_library_update_categories_details">Manga i uteslutna kategorier uppdateras inte även om de också ingår i inkluderade kategorier.</string>
+    <string name="action_show_errors">Visa fel</string>
+    <string name="update_check_eol">Denna Android-version stöds inte längre</string>
+    <string name="clipboard_copy_error">Kunde inte kopiera till urklipp</string>
 </resources>

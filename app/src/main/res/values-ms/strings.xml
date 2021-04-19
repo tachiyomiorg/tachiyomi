@@ -101,7 +101,7 @@
     <string name="pref_auto_update_manga_sync">Kemas kini bab selepas dibaca</string>
     <string name="pref_start_screen">Skrin permulaan</string>
     <string name="pref_language">Bahasa</string>
-    <string name="system_default">Lalai</string>
+    <string name="system_default">Sistem asal</string>
     <string name="default_category">Kategori lalai</string>
     <string name="default_category_summary">Sentiasa tanya</string>
     <string name="pref_fullscreen">Skrin penuh</string>
@@ -152,7 +152,7 @@
     <string name="pref_remove_after_marked_as_read">Selepas ditandakan sebagai dibaca secara manual</string>
     <string name="pref_remove_after_read">Setelah membaca</string>
     <string name="custom_dir">Lokasi tersuai</string>
-    <string name="disabled">Dinyahaktifkan</string>
+    <string name="disabled">Di nyahkan</string>
     <string name="last_read_chapter">Bab terakhir dibaca</string>
     <string name="second_to_last">Bab kedua terakhir</string>
     <string name="third_to_last">Bab ketiga terakhir</string>
@@ -212,7 +212,7 @@
     <string name="local_source">Sumber lokal</string>
     <string name="other_source">Lain</string>
     <string name="invalid_combination">Lalai tidak boleh dipilih bersama kategori lain</string>
-    <string name="added_to_library">Manga ini telah ditambahkan ke pustaka anda</string>
+    <string name="added_to_library">Ditambah ke pustaka</string>
     <string name="action_global_search_hint">Carian keseluruhan…</string>
     <string name="latest">Terkini</string>
     <string name="browse">Semak imbas</string>
@@ -232,7 +232,7 @@
     <string name="chapter_downloading">Muat turun dalam progres</string>
     <string name="chapter_downloading_progress">Memuat turun (%1$d/%2$d)</string>
     <string name="chapter_error">Ralat</string>
-    <string name="chapter_paused">Dihenti sebentar</string>
+    <string name="chapter_paused">Ditangguh</string>
     <string name="fetch_chapters_error">Tidak berhasil mendapatkan bab</string>
     <string name="show_title">Tajuk sumber</string>
     <string name="show_chapter_number">Nombor bab</string>
@@ -244,7 +244,7 @@
     <string name="download_5">5 bab seterusnya</string>
     <string name="download_10">10 bab seterusnya</string>
     <string name="download_all">Semua</string>
-    <string name="download_unread">Belum dibaca</string>
+    <string name="download_unread">Muat turun yang belum di baca</string>
     <string name="confirm_delete_chapters">Adakah anda pasti ingin memadamkan bab yang dipilih\?</string>
     <string name="manga_tracking_tab">Penjejakan</string>
     <string name="reading">Sedang baca</string>
@@ -274,7 +274,7 @@
     <string name="chapter_subtitle">Bab %1$s</string>
     <string name="no_next_chapter">Bab seterusnya tidak dijumpai</string>
     <string name="no_previous_chapter">Bab sebelumnya tidak dijumpai</string>
-    <string name="decode_image_error">Imej tidak dapat dimuatkan</string>
+    <string name="decode_image_error">Imej tidak dapat di muatkan</string>
     <string name="confirm_set_image_as_cover">Guna imej ini sebagai muka hadapan\?</string>
     <string name="download_queue_error">Memuat turun bab tidak berjaya. Anda boleh mencuba lagi di bahagian muat turun</string>
     <string name="notification_update_progress">Progres kemas kini: %1$d/%2$d</string>
@@ -319,7 +319,7 @@
     <string name="ext_update">Kemaskini</string>
     <string name="ext_install">Pasang</string>
     <string name="ext_pending">Masih menunggu</string>
-    <string name="ext_downloading">Muat turun dalam progres</string>
+    <string name="ext_downloading">Menuat turun</string>
     <string name="ext_installing">Memasang</string>
     <string name="ext_installed">Dipasang</string>
     <string name="ext_trust">Dipercayai</string>
@@ -391,9 +391,9 @@
     <string name="logout_title">Log keluar daripada %1$s\?</string>
     <string name="logout">Log keluar</string>
     <string name="logout_success">Anda telah log keluar</string>
-    <string name="currently_reading">Sedang baca</string>
+    <string name="currently_reading">Sedang di baca</string>
     <string name="paused">Ditangguh</string>
-    <string name="want_to_read">Ingin baca</string>
+    <string name="want_to_read">Hendak di baca</string>
     <string name="label_more">Lain-lain</string>
     <string name="action_sort_latest_chapter">Bab terkini</string>
     <string name="action_view_chapters">Buka bab</string>
@@ -408,7 +408,7 @@
     <string name="theme_dark_amoled">AMOLED</string>
     <string name="pref_manage_notifications">Uruskan pemberitahuan</string>
     <string name="pref_category_security">Keselamatan</string>
-    <string name="lock_with_biometrics">Memerlukan buka kunci</string>
+    <string name="lock_with_biometrics">Kunci dengan biometrik</string>
     <string name="lock_when_idle">Kunci apabila terbiar</string>
     <string name="lock_always">Selalu</string>
     <string name="lock_never">Tidak</string>
@@ -474,8 +474,8 @@
     <string name="add_tracking">Tambah penjejakan</string>
     <string name="manga_info_collapse">Tutup</string>
     <string name="manga_info_expand">Buka</string>
-    <string name="in_library">Dalam pustaka</string>
-    <string name="add_to_library">Tambah ke pustaka</string>
+    <string name="in_library">Dalam Pustaka</string>
+    <string name="add_to_library">Tambah ke Pustaka</string>
     <string name="pinned_sources">Disematkan</string>
     <string name="licenses">Lesen perisian sumber terbuka</string>
     <string name="website">Laman web</string>
@@ -660,4 +660,7 @@
     <string name="pref_library_update_categories_details">Manga di dalam kategori berkecuali tidak akan dikemaskini walaupun ianya ada di dalam kategori hanya.</string>
     <string name="pref_download_new_categories_details">Manga di dalam kategori berkecuali tidak akan dimuat turun walaupun ianya ada di dalam kategori hanya.</string>
     <string name="pref_category_auto_download">Muat turun automatik</string>
+    <string name="action_show_errors">Tunjuk ralat</string>
+    <string name="update_check_eol">Versi Android ini tidak lagi disokong</string>
+    <string name="clipboard_copy_error">Gagal menyalin ke papan keratan</string>
 </resources>

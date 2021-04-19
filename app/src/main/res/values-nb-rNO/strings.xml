@@ -122,8 +122,8 @@
     <string name="pref_category_tracking">Sporing</string>
     <string name="portrait">Stående</string>
     <string name="landscape">Liggende</string>
-    <string name="pref_library_update_interval">Frekvens for oppdatering av bibliotek</string>
-    <string name="pref_library_update_restriction">Restriksjoner for oppdatering av bibliotek</string>
+    <string name="pref_library_update_interval">Oppdateringsfrekvens</string>
+    <string name="pref_library_update_restriction">Oppdateringsrestriksjoner</string>
     <string name="pref_library_update_restriction_summary">Kun oppdater når disse vilkårene oppfylles</string>
     <string name="pref_update_only_non_completed">Kun oppdater pågående manga</string>
     <string name="pref_auto_update_manga_sync">Oppdater kapittelfremdrift etter lesing</string>
@@ -376,7 +376,7 @@
     <string name="filter_mode_multiply">Multiplisere</string>
     <string name="filter_mode_lighten">Unngå / lysne</string>
     <string name="filter_mode_darken">Brenn / mørkere</string>
-    <string name="pref_library_update_prioritization">Rekkefølge for biblioteksoppdatering</string>
+    <string name="pref_library_update_prioritization">Oppdateringsrekkefølge</string>
     <string name="no_results_found">Resultatløst</string>
     <string name="migration_selection_prompt">Velg en kilde å migrere fra</string>
     <string name="action_webview_back">Tilbake</string>
@@ -387,7 +387,7 @@
     <string name="ext_obsolete">Foreldet</string>
     <string name="obsolete_extension_message">Denne utvidelsen er ikke lenger tilgjengelig.</string>
     <string name="pref_date_format">Datoformat</string>
-    <string name="pref_category_library_update">Oppdateringer</string>
+    <string name="pref_category_library_update">Global oppdatering</string>
     <string name="logout_title">Logg ut fra %1$s\?</string>
     <string name="logout">Logg ut</string>
     <string name="logout_success">Du er utlogget</string>
@@ -669,4 +669,8 @@
     <string name="update_8hour">Hver 8 time</string>
     <string name="update_4hour">Hver 4 time</string>
     <string name="action_sort_chapter_fetch_date">Dato hentet</string>
+    <string name="pref_download_new_categories_details">Manga i utelukkede kategorier vil ikke bli nedlastet selv om de også er i inkluderte kategorier.</string>
+    <string name="pref_category_auto_download">Last ned automatisk</string>
+    <string name="pref_library_update_categories_details">Manga i utelukkede kategorier vil ikke bli oppdatert selv om de også er i inkluderte kategorier.</string>
+    <string name="action_show_errors">Vis feil</string>
 </resources>

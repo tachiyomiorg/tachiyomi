@@ -87,7 +87,7 @@
     <string name="portrait">Orientamentu verticale</string>
     <string name="landscape">Orientamentu orizontale</string>
     <string name="default_columns">Predefinidu</string>
-    <string name="pref_library_update_interval">Frecuèntzia de agiornamentu de sa biblioteca</string>
+    <string name="pref_library_update_interval">Frecuèntzia de agiornamentu</string>
     <string name="update_never">Manuale</string>
     <string name="update_1hour">Cada ora</string>
     <string name="update_2hour">Cada 2 oras</string>
@@ -98,7 +98,7 @@
     <string name="update_48hour">Cada 2 dies</string>
     <string name="update_weekly">Cada chida</string>
     <string name="all">Totus</string>
-    <string name="pref_library_update_restriction">Restritziones a s\'agiornamentu de sa biblioteca</string>
+    <string name="pref_library_update_restriction">Restritziones a s\'agiornamentu</string>
     <string name="pref_library_update_restriction_summary">Agiorna petzi cando sas cunditziones benint rispetadas</string>
     <string name="charging">Carrighende</string>
     <string name="pref_update_only_non_completed">Agiorna sos manga in cursu ebbia</string>
@@ -376,7 +376,7 @@
     <string name="filter_mode_lighten">Istransi / Acrari</string>
     <string name="filter_mode_darken">Brùsia / Iscuri</string>
     <string name="label_help">Agiudu</string>
-    <string name="pref_library_update_prioritization">Òrdine de agiornamentu de sa biblioteca</string>
+    <string name="pref_library_update_prioritization">Òrdine de agiornamentu</string>
     <string name="no_results_found">Perunu resultadu agadadu</string>
     <string name="migration_selection_prompt">Ischerta una mitza dae sa cale tramudare</string>
     <string name="action_webview_back">In segus</string>
@@ -387,7 +387,7 @@
     <string name="ext_obsolete">Obsoleta</string>
     <string name="obsolete_extension_message">Cust\'estensione no est prus a disponimentu.</string>
     <string name="pref_date_format">Formadu de sa data</string>
-    <string name="pref_category_library_update">Agiornamentos</string>
+    <string name="pref_category_library_update">Agiornamentu globale</string>
     <string name="logout_title">Essire dae %1$s\?</string>
     <string name="logout">Essi</string>
     <string name="logout_success">Ses essidu</string>
@@ -669,4 +669,10 @@
     <string name="include">Include: %s</string>
     <string name="none">Perunu</string>
     <string name="action_sort_chapter_fetch_date">Data recuperada</string>
+    <string name="pref_download_new_categories_details">Sos manga in sas categorias esclùdidas non s\'ant a iscarrigare nemmancu si sunt fintzas in categorias inclùdidas.</string>
+    <string name="pref_category_auto_download">Iscarrigamentu automàticu</string>
+    <string name="pref_library_update_categories_details">Sos manga in sas categorias esclùdidas non s\'ant a agiornare nemmancu si sunt fintzas in categorias inclùdidas.</string>
+    <string name="action_show_errors">Ammustra sos errores</string>
+    <string name="clipboard_copy_error">Còpia in punta de billete fallida</string>
+    <string name="update_check_eol">Custa versione de Android no est prus suportada</string>
 </resources>

@@ -630,7 +630,7 @@
     <string name="action_disable_all">Zakázat vše</string>
     <string name="action_enable_all">Povolit vše</string>
     <string name="action_search_settings">Nastavení vyhledávání</string>
-    <string name="action_sort_date_added">Data přidání</string>
+    <string name="action_sort_date_added">Datum přidání</string>
     <string name="action_sort_last_checked">Naposledy zkontrolováno</string>
     <string name="action_filter_tracked">Sledováno</string>
     <string name="confirm_exit">Opětovným stisknutím tlačítka aplikaci opustíte</string>
@@ -668,4 +668,15 @@
     <string name="pref_category_display">Zobrazení</string>
     <string name="action_display_show_tabs">Zobrazovat karty kategorií</string>
     <string name="action_display_unread_badge">Odznáček u nepřečtených</string>
+    <string name="update_check_eol">Tato verze systému Android již není podporována</string>
+    <string name="clipboard_copy_error">Kopírování do schránky se nezdařilo</string>
+    <string name="tracker_not_logged_in">Nejsi přihlášen/a: %1$s</string>
+    <string name="vertical_plus_viewer">Průběžné vertikální</string>
+    <string name="edge_nav">Okraj</string>
+    <string name="pref_read_with_tapping_inverted">Převrátit klepnutí</string>
+    <string name="pref_dual_page_split">Rozdělení na dvě stránky</string>
+    <string name="pref_show_navigation_mode_summary">Ukázat oblast klepnutí když je čtečka otevřená</string>
+    <string name="theme_system">Systém sledování</string>
+    <string name="action_show_errors">Zobrazit chyby</string>
+    <string name="action_sort_chapter_fetch_date">Datum načtení</string>
 </resources>

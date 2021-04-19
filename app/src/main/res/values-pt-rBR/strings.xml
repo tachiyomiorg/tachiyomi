@@ -641,7 +641,7 @@
     <string name="track_started_reading_date">Data de início da leitura</string>
     <string name="crash_log_saved">Registros de travamento salvos</string>
     <string name="pref_dump_crash_logs_summary">Salva os registros de erro em um arquivo para o compartilhamento com os desenvolvedores</string>
-    <string name="pref_dump_crash_logs">Limpar os registros de travamentos</string>
+    <string name="pref_dump_crash_logs">Exportar os registros de travamentos</string>
     <string name="network_unmetered">Rede ilimitada</string>
     <string name="action_desc">Decrescente</string>
     <string name="action_asc">Crescente</string>
@@ -672,4 +672,7 @@
     <string name="pref_library_update_categories_details">Os mangás nas categorias excluídas não serão atualizados mesmo que eles também estejam nas categorias incluídas.</string>
     <string name="pref_download_new_categories_details">Os mangás nas categorias excluídas não serão disponibilizados offline mesmo que eles também estejam nas categorias incluídas.</string>
     <string name="pref_category_auto_download">Disponibilizar offline automaticamente</string>
+    <string name="action_show_errors">Mostrar erros</string>
+    <string name="update_check_eol">Esta versão do Android não é mais suportada</string>
+    <string name="clipboard_copy_error">Erro ao copiar para a área de transferência</string>
 </resources>

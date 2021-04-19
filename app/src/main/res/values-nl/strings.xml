@@ -672,4 +672,5 @@
     <string name="pref_library_update_categories_details">Manga in uitgesloten categorieën worden niet bijgewerkt, zelfs niet als ze onder opgenomen categorieën vallen.</string>
     <string name="action_sort_chapter_fetch_date">Datum opgehaald</string>
     <string name="none">Geen</string>
+    <string name="action_show_errors">Fouten weergeven</string>
 </resources>

@@ -706,4 +706,7 @@
     <string name="pref_library_update_categories_details">Les mangas dans les catégories exclus ne seront pas mises a jour meme s\'ils sont aussi dans les catégories inlcus.</string>
     <string name="pref_download_new_categories_details">Les mangas dans les catégories exclus ne seront pas mise a jour meme s\'ils sont aussi dans les catégories inclus.</string>
     <string name="pref_category_auto_download">Téléchargement Automatique</string>
+    <string name="action_show_errors">Afficher les erreurs</string>
+    <string name="update_check_eol">Cette version d\'Android n\'est plus supportée</string>
+    <string name="clipboard_copy_error">Échec de la copie dans le presse-papiers</string>
 </resources>

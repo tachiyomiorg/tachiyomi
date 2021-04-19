@@ -318,7 +318,7 @@
     <string name="confirm_set_image_as_cover">Bu görsel kapak resmi olarak kullanılsın mı\?</string>
     <string name="migration_info">Taşınılacak kaynağı seçmek için dokunun</string>
     <string name="migration_dialog_what_to_include">Eklenecek veriyi seç</string>
-    <string name="migrate">Taşın</string>
+    <string name="migrate">Geçiş yap</string>
     <string name="copy">Kopyala</string>
     <string name="download_queue_error">Bölümler indirilemedi. İndirmeler bölümünden yeniden deneyebilirsiniz</string>
     <string name="notification_update_progress">Güncelleme ilerlemesi: %1$d/%2$d</string>
@@ -672,4 +672,7 @@
     <string name="pref_download_new_categories_details">Hariç tutulan kategorilerdeki manga, dahil edilen kategorilerde olsa bile indirilmeyecektir.</string>
     <string name="pref_category_auto_download">Otomatik indir</string>
     <string name="pref_library_update_categories_details">Hariç tutulan kategorilerdeki manga, dahil edilen kategorilerde olsa bile güncellenmeyecektir.</string>
+    <string name="action_show_errors">Hataları göster</string>
+    <string name="update_check_eol">Bu Android sürümü artık desteklenmiyor</string>
+    <string name="clipboard_copy_error">Panoya kopyalanamadı</string>
 </resources>

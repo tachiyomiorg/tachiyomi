@@ -180,7 +180,7 @@
     <string name="pref_remove_after_marked_as_read">手动标记为已读后</string>
     <string name="pref_remove_after_read">阅毕</string>
     <string name="custom_dir">自定义路径</string>
-    <string name="disabled">关闭</string>
+    <string name="disabled">已禁用</string>
     <string name="last_read_chapter">最后阅读的章节</string>
     <string name="second_to_last">倒数第二章</string>
     <string name="third_to_last">倒数第三章</string>
@@ -393,7 +393,7 @@
     <string name="logout_success">你已登出</string>
     <string name="paused">已暂停</string>
     <string name="currently_reading">正在阅读</string>
-    <string name="want_to_read">想要阅读</string>
+    <string name="want_to_read">想读</string>
     <string name="label_more">更多</string>
     <string name="action_sort_latest_chapter">最新章节</string>
     <string name="action_view_chapters">查看章节</string>
@@ -660,4 +660,7 @@
     <string name="pref_library_update_categories_details">应用不会更新位于排除分类中的漫画，即使它们同样位于包括的分类中。</string>
     <string name="pref_download_new_categories_details">应用不会下载位于排除分类中的漫画，即使它们同样位于包括的分类中。</string>
     <string name="pref_category_auto_download">自动下载</string>
+    <string name="action_show_errors">显示错误</string>
+    <string name="update_check_eol">英勇不再支持此 Android 版本</string>
+    <string name="clipboard_copy_error">未能复制到剪贴板</string>
 </resources>

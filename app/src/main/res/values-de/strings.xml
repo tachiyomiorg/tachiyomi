@@ -672,4 +672,7 @@
     <string name="pref_download_new_categories_details">Manga in ausgeschlossenen Kategorien werden nicht heruntergeladen, auch wenn sie in eingeschlossenen Kategorien vorhanden sind.</string>
     <string name="pref_category_auto_download">Automatisches Herunterladen</string>
     <string name="pref_library_update_categories_details">Manga in ausgeschlossenen Kategorien werden nicht aktualisiert, auch wenn sie in eingeschlossenen Kategorien vorhanden sind.</string>
+    <string name="action_show_errors">Fehler anzeigen</string>
+    <string name="update_check_eol">Diese Android-Version wird nicht mehr unterstützt</string>
+    <string name="clipboard_copy_error">Kopieren in die Zwischenablage fehlgeschlagen</string>
 </resources>

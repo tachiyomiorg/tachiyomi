@@ -672,4 +672,7 @@
     <string name="pref_download_new_categories_details">Poissuljettuihin kategorioihin kuuluvia mangoja ei ladata, vaikka ne olisivat myös sisällytetyissä kategorioissa.</string>
     <string name="pref_category_auto_download">Automaattinen lataus</string>
     <string name="pref_library_update_categories_details">Poissuljettuihin kategorioihin sisältyvää mangaa ei päivitetä, vaikka ne olisivat myös sisällytetyissä kategorioissa.</string>
+    <string name="action_show_errors">Näytä virheet</string>
+    <string name="update_check_eol">Tätä Android-versiota ei enää tueta</string>
+    <string name="clipboard_copy_error">Kopiointi leikepöydälle epäonnistui</string>
 </resources>

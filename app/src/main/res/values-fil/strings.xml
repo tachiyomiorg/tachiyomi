@@ -254,7 +254,7 @@
     <string name="all_lang">Lahat</string>
     <string name="all">Lahat</string>
     <plurals name="num_categories">
-        <item quantity="one">1 kategorya</item>
+        <item quantity="one">%d kategorya</item>
         <item quantity="other">%d (na) kategorya</item>
     </plurals>
     <string name="default_category_summary">Palaging tanungin</string>
@@ -526,7 +526,7 @@
     <string name="username">Sagisag (username)</string>
     <string name="login_title">Mag-login sa %1$s</string>
     <plurals name="download_queue_summary">
-        <item quantity="one">Isa na lang</item>
+        <item quantity="one">1 na lang</item>
         <item quantity="other">%1$s na lang</item>
     </plurals>
     <string name="downloaded_only_summary">Isalâ ang Aklatan</string>
@@ -672,4 +672,5 @@
     <string name="none">Wala</string>
     <string name="pref_library_update_categories_details">Di ia-update ang mga manga na nasa di kasamang kategorya kahit na nasa kasamang kategorya ang mga ito.</string>
     <string name="action_sort_chapter_fetch_date">Petsa kinuha</string>
+    <string name="action_show_errors">Ipakita ang mga error</string>
 </resources>

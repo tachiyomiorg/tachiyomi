@@ -672,4 +672,7 @@
     <string name="pref_download_new_categories_details">Τα Manga σε εξαιρούμενες κατηγορίες δεν θα ληφθούν ακόμα κι αν ανήκουν και σε κατηγορίες που περιλαμβάνονται.</string>
     <string name="pref_category_auto_download">Αυτόματη λήψη</string>
     <string name="pref_library_update_categories_details">Τα manga στις αποκλεισμένες κατηγορίες δεν θα ενημερώνονται ακόμη και αν βρίσκονται επίσης στις συμπεριλαμβανόμενες κατηγορίες.</string>
+    <string name="action_show_errors">Εμφάνιση σφαλμάτων</string>
+    <string name="update_check_eol">Αυτή η έκδοση Android δεν υποστηρίζεται πλέον</string>
+    <string name="clipboard_copy_error">Απέτυχε η αντιγραφή στο πρόχειρο</string>
 </resources>

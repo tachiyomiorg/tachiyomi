@@ -594,7 +594,7 @@
     </plurals>
     <string name="unknown_status">Stato sconosciuto</string>
     <string name="unknown_author">Autore sconosciuto</string>
-    <string name="updated_version">Aggiornato verso v%1$s</string>
+    <string name="updated_version">Aggiornato a v%1$s</string>
     <string name="whats_new">Le novità</string>
     <string name="requires_app_restart">Richiesto riavvio dell\'app per applicare le modifiche</string>
     <string name="label_network">Rete</string>
@@ -702,4 +702,8 @@
     <string name="nav_zone_right">Destra</string>
     <string name="nav_zone_left">Sinistra</string>
     <string name="pref_library_update_categories_details">Manga che si trovano in categorie escluse non saranno aggiornati anche se si trovano in categorie incluse.</string>
+    <string name="pref_dns_over_https">DNS via HTTPS</string>
+    <string name="pref_show_navigation_mode">Mostra schema di navigazione</string>
+    <string name="pref_show_navigation_mode_summary">Mostra zone di tocco quando il lettore viene aperto</string>
+    <string name="action_show_errors">Mostra errori</string>
 </resources>

@@ -692,4 +692,5 @@
     <string name="none">Ніхто</string>
     <string name="pref_library_update_categories_details">Мангу в виключених категоріях не буде оновлено, навіть якщо вона також знаходиться у включених категоріях.</string>
     <string name="action_sort_chapter_fetch_date">Дата отримання</string>
+    <string name="action_show_errors">Показати помилки</string>
 </resources>
