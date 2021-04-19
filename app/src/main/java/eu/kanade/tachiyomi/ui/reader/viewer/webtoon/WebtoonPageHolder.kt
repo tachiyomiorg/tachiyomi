@@ -289,12 +289,10 @@ class WebtoonPageHolder(
             .observeOn(AndroidSchedulers.mainThread())
             .doOnNext { isAnimated ->
                 if (viewer.config.dualPageSplit) {
-                    val (isDoublePage, stream) = ImageUtil.isDoublePage(openStream!!)
-                    openStream = if (!isDoublePage) {
-                        stream
-                    } else {
+                    val isDoublePage = ImageUtil.isDoublePage(openStream!!)
+                    if (isDoublePage) {
                         val upperSide = if (viewer.config.dualPageInvert) ImageUtil.Side.LEFT else ImageUtil.Side.RIGHT
-                        ImageUtil.splitAndMerge(stream, upperSide)
+                        openStream = ImageUtil.splitAndMerge(openStream!!, upperSide)
                     }
                 }
                 if (!isAnimated) {

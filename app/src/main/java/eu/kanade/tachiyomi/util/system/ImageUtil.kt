@@ -79,13 +79,17 @@ object ImageUtil {
     /**
      * Check whether the image is a double image (width > height), return the result and original stream
      */
-    fun isDoublePage(imageStream: InputStream): Pair<Boolean, InputStream> {
+    fun isDoublePage(imageStream: InputStream): Boolean {
+        imageStream.mark(Int.MAX_VALUE)
+
         val imageBytes = imageStream.readBytes()
 
         val options = BitmapFactory.Options().apply { inJustDecodeBounds = true }
         BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size, options)
 
-        return Pair(options.outWidth > options.outHeight, ByteArrayInputStream(imageBytes))
+        imageStream.reset()
+
+        return options.outWidth > options.outHeight
     }
 
     /**

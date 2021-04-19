@@ -258,20 +258,26 @@ class PagerPageHolder(
     }
 
     private fun processDualPageSplit(openStream: InputStream): InputStream {
-        var inputStream = openStream
-        val (isDoublePage, stream) = when (page) {
-            is InsertPage -> Pair(true, inputStream)
-            else -> ImageUtil.isDoublePage(inputStream)
+        if (page is InsertPage) {
+            return splitInHalf(openStream)
         }
-        inputStream = stream
 
-        if (!isDoublePage) return inputStream
+        val isDoublePage = ImageUtil.isDoublePage(openStream)
+        if (!isDoublePage) {
+            return openStream
+        }
 
+        onPageSplit()
+
+        return splitInHalf(openStream)
+    }
+
+    private fun splitInHalf(inputStream: InputStream): InputStream {
         var side = when {
             viewer is L2RPagerViewer && page is InsertPage -> ImageUtil.Side.RIGHT
-            (viewer is R2LPagerViewer || viewer is VerticalPagerViewer) && page is InsertPage -> ImageUtil.Side.LEFT
+            viewer !is L2RPagerViewer && page is InsertPage -> ImageUtil.Side.LEFT
             viewer is L2RPagerViewer && page !is InsertPage -> ImageUtil.Side.LEFT
-            (viewer is R2LPagerViewer || viewer is VerticalPagerViewer) && page !is InsertPage -> ImageUtil.Side.RIGHT
+            viewer !is L2RPagerViewer && page !is InsertPage -> ImageUtil.Side.RIGHT
             else -> error("We should choose a side!")
         }
 
@@ -280,10 +286,6 @@ class PagerPageHolder(
                 ImageUtil.Side.RIGHT -> ImageUtil.Side.LEFT
                 ImageUtil.Side.LEFT -> ImageUtil.Side.RIGHT
             }
-        }
-
-        if (page !is InsertPage) {
-            onPageSplit()
         }
 
         return ImageUtil.splitInHalf(inputStream, side)
