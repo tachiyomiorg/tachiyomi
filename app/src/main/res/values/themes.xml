@@ -260,5 +260,4 @@
         <item name="android:navigationBarColor">?attr/colorBackgroundSplash</item>
     </style>
 
-
 </resources>
