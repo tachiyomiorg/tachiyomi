@@ -413,7 +413,7 @@
     <string name="lock_always">Всегда</string>
     <string name="lock_never">Никогда</string>
     <plurals name="lock_after_mins">
-        <item quantity="one">После 1 минуты</item>
+        <item quantity="one">После %1$s минуты</item>
         <item quantity="few">После %1$s минут</item>
         <item quantity="many">После %1$s минут</item>
     </plurals>
@@ -433,13 +433,13 @@
     <string name="notification_chapters_single">Глава %1$s</string>
     <string name="pref_category_display">Отобразить</string>
     <plurals name="notification_chapters_generic">
-        <item quantity="one">1 новая глава</item>
+        <item quantity="one">%1$d новая глава</item>
         <item quantity="few">%1$d новые главы</item>
         <item quantity="many">%1$d новых глав</item>
         <item quantity="other">%1$d новых глав</item>
     </plurals>
     <plurals name="notification_new_chapters_summary">
-        <item quantity="one">Для 1 тайтла</item>
+        <item quantity="one">Для %d тайтла</item>
         <item quantity="few">Для %d тайтлов</item>
         <item quantity="many">Для %d тайтлов</item>
         <item quantity="other">Для %d тайтлов</item>
@@ -453,7 +453,7 @@
     <string name="pref_disable_battery_optimization">Выключить оптимизацию батареи</string>
     <string name="theme_light_default">По умолчанию</string>
     <plurals name="update_check_notification_ext_updates">
-        <item quantity="one">Доступно обновление для расширения</item>
+        <item quantity="one">Доступно обновление для %d расширения</item>
         <item quantity="few">Доступны обновления для %d расширений</item>
         <item quantity="many">Доступны обновления для %d расширений</item>
         <item quantity="other">Доступны обновления для %d расширений</item>
@@ -513,7 +513,7 @@
     <string name="restore_duration">%02d мин, %02d сек</string>
     <string name="pref_search_pinned_sources_only">Включать только закрепленные источники</string>
     <plurals name="download_queue_summary">
-        <item quantity="one">Осталось 1</item>
+        <item quantity="one">Осталось %1$s</item>
         <item quantity="few">Осталось %1$s</item>
         <item quantity="many">Осталось %1$s</item>
         <item quantity="other">Осталось %1$s</item>
@@ -539,7 +539,7 @@
     <string name="tracking_info">Односторонняя синхронизация для обновления прогресса глав в сервисах отслеживания. Настройте отслеживание отдельных записей манги при помощи их кнопок отслеживания.</string>
     <string name="action_display_unread_badge">Значки непрочитанных</string>
     <plurals name="notification_update_error">
-        <item quantity="one">1 неудачное обновление</item>
+        <item quantity="one">%1$d неудачное обновление</item>
         <item quantity="few">%1$d неудачных обновления</item>
         <item quantity="many">%1$d неудачных обновлений</item>
         <item quantity="other">%1$d неудачных обновлений</item>
@@ -572,7 +572,7 @@
     <string name="action_disable">Отключить</string>
     <string name="action_open_in_settings">Открыть в Настройках</string>
     <plurals name="manga_num_chapters">
-        <item quantity="one">1 глава</item>
+        <item quantity="one">%1$s глава</item>
         <item quantity="few">%1$s главы</item>
         <item quantity="many">%1$s глав</item>
         <item quantity="other">%1$s глав</item>
@@ -598,7 +598,7 @@
     <string name="pref_category_theme">Тема</string>
     <string name="action_sort_date_added">Дата добавления</string>
     <plurals name="num_trackers">
-        <item quantity="one">1 трекер</item>
+        <item quantity="one">%d трекер</item>
         <item quantity="few">%d трекера</item>
         <item quantity="many">%d трекеров</item>
         <item quantity="other">%d трекеров</item>
@@ -617,7 +617,7 @@
     <string name="ext_nsfw_short">18+</string>
     <string name="parental_controls_info">Это не предотвращает появление внутри приложения контента NSFW (18+) из неофициальных или потенциально неправильно помеченных расширений.</string>
     <plurals name="missing_chapters_warning">
-        <item quantity="one">Отсутствует 1 глава</item>
+        <item quantity="one">Отсутствует %d глава</item>
         <item quantity="few">Отсутствуют %d главы</item>
         <item quantity="many">Отсутствуют %d глав</item>
         <item quantity="other">Отсутствуют %d глав</item>
