@@ -130,6 +130,15 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
         tabAnimator = ViewHeightAnimator(binding.tabs, 0L)
         bottomNavAnimator = ViewHeightAnimator(binding.bottomNav)
 
+        // If bottom nav is hidden, make it visible again when the app bar is expanded
+        binding.appbar.addOnOffsetChangedListener(
+            AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
+                if (verticalOffset == 0) {
+                    showBottomNav(true)
+                }
+            }
+        )
+
         // Set behavior of bottom nav
         preferences.hideBottomBar()
             .asImmediateFlow { setBottomNavBehaviorOnScroll() }
