@@ -24,7 +24,6 @@ import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.behavior.HideBottomViewOnScrollBehavior
-import com.google.android.material.tabs.TabLayout
 import dev.chrisbanes.insetter.applyInsetter
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.Migrations
@@ -54,7 +53,6 @@ import eu.kanade.tachiyomi.util.lang.launchUI
 import eu.kanade.tachiyomi.util.system.InternalResourceHelper
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.toast
-import eu.kanade.tachiyomi.widget.SimpleTabSelectedListener
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import timber.log.Timber
@@ -131,14 +129,6 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
 
         tabAnimator = ViewHeightAnimator(binding.tabs, 0L)
         bottomNavAnimator = ViewHeightAnimator(binding.bottomNav)
-
-        // If bottom nav is hidden, make it visible again when the tab page is changed
-        // in case the new page is un-scrollable.
-        binding.tabs.addOnTabSelectedListener(object : SimpleTabSelectedListener() {
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                showBottomNav(true)
-            }
-        })
 
         // Set behavior of bottom nav
         preferences.hideBottomBar()
