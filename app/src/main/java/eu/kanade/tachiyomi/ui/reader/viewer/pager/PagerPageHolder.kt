@@ -235,16 +235,14 @@ class PagerPageHolder(
         readImageHeaderSubscription = Observable
             .fromCallable {
                 val stream = streamFn().buffered(16)
-                openStream = stream
+
+                openStream = process(stream)
 
                 ImageUtil.findImageType(stream) == ImageUtil.ImageType.GIF
             }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnNext { isAnimated ->
-                if (viewer.config.dualPageSplit) {
-                    openStream = processDualPageSplit(openStream!!)
-                }
                 if (!isAnimated) {
                     initSubsamplingImageView().setImage(ImageSource.inputStream(openStream!!))
                 } else {
@@ -257,7 +255,11 @@ class PagerPageHolder(
             .subscribe({}, {})
     }
 
-    private fun processDualPageSplit(openStream: InputStream): InputStream {
+    private fun process(openStream: InputStream): InputStream {
+        if (!viewer.config.dualPageSplit) {
+            return openStream
+        }
+
         if (page is InsertPage) {
             return splitInHalf(openStream)
         }

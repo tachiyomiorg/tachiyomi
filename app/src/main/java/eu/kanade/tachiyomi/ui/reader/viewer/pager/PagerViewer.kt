@@ -385,7 +385,10 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
     }
 
     fun onPageSplit(currentPage: ReaderPage, newPage: InsertPage) {
-        adapter.onPageSplit(currentPage, newPage, this::class.java)
+        activity.runOnUiThread {
+            // Need to insert on UI thread else images will go blank
+            adapter.onPageSplit(currentPage, newPage, this::class.java)
+        }
     }
 
     private fun cleanupPageSplit() {
