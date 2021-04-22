@@ -235,7 +235,6 @@ class PagerPageHolder(
         readImageHeaderSubscription = Observable
             .fromCallable {
                 val stream = streamFn().buffered(16)
-
                 openStream = process(stream)
 
                 ImageUtil.findImageType(stream) == ImageUtil.ImageType.GIF
@@ -255,26 +254,26 @@ class PagerPageHolder(
             .subscribe({}, {})
     }
 
-    private fun process(openStream: InputStream): InputStream {
+    private fun process(imageStream: InputStream): InputStream {
         if (!viewer.config.dualPageSplit) {
-            return openStream
+            return imageStream
         }
 
         if (page is InsertPage) {
-            return splitInHalf(openStream)
+            return splitInHalf(imageStream)
         }
 
-        val isDoublePage = ImageUtil.isDoublePage(openStream)
+        val isDoublePage = ImageUtil.isDoublePage(imageStream)
         if (!isDoublePage) {
-            return openStream
+            return imageStream
         }
 
         onPageSplit()
 
-        return splitInHalf(openStream)
+        return splitInHalf(imageStream)
     }
 
-    private fun splitInHalf(inputStream: InputStream): InputStream {
+    private fun splitInHalf(imageStream: InputStream): InputStream {
         var side = when {
             viewer is L2RPagerViewer && page is InsertPage -> ImageUtil.Side.RIGHT
             viewer !is L2RPagerViewer && page is InsertPage -> ImageUtil.Side.LEFT
@@ -290,7 +289,7 @@ class PagerPageHolder(
             }
         }
 
-        return ImageUtil.splitInHalf(inputStream, side)
+        return ImageUtil.splitInHalf(imageStream, side)
     }
 
     private fun onPageSplit() {
