@@ -80,7 +80,7 @@ object ImageUtil {
      * Check whether the image is a double image (width > height), return the result and original stream
      */
     fun isDoublePage(imageStream: InputStream): Boolean {
-        imageStream.mark(Int.MAX_VALUE)
+        imageStream.mark(imageStream.available() + 1)
 
         val imageBytes = imageStream.readBytes()
 
