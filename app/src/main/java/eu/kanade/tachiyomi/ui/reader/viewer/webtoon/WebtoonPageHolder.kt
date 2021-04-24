@@ -27,6 +27,7 @@ import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.source.model.Page
+import eu.kanade.tachiyomi.ui.reader.model.InsertPage
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.viewer.ReaderProgressBar
 import eu.kanade.tachiyomi.ui.webview.WebViewActivity
@@ -288,6 +289,14 @@ class WebtoonPageHolder(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnNext { isAnimated ->
+                if (viewer.config.pageSplitWebtoon) {
+                    val (isWebtoonPage, stream) = ImageUtil.isWebtoonPage(openStream!!)
+                    openStream = if (!isWebtoonPage) {
+                        stream
+                    } else {
+                        processSplitWebtoonPage(stream)
+                    }
+                }
                 if (viewer.config.dualPageSplit) {
                     val (isDoublePage, stream) = ImageUtil.isDoublePage(openStream!!)
                     openStream = if (!isDoublePage) {
@@ -313,6 +322,38 @@ class WebtoonPageHolder(
             .subscribe({}, {})
 
         addSubscription(readImageHeaderSubscription)
+    }
+
+    private fun processSplitWebtoonPage(openStream: InputStream): InputStream {
+        var inputStream = openStream
+        val (isWebtoonPage, stream) = when (page) {
+            is InsertPage -> Pair(true, inputStream)
+            else -> ImageUtil.isWebtoonPage(inputStream)
+        }
+        inputStream = stream
+
+        if (!isWebtoonPage) {
+            return inputStream
+        }
+
+        val upperSide = when (page) {
+            is InsertPage -> ImageUtil.Side.RIGHT
+            !is InsertPage -> ImageUtil.Side.LEFT
+            else -> error("We should choose a side!")
+        }
+
+        if (page !is InsertPage) {
+            onPageSplitWebtoon()
+        }
+
+        inputStream = ImageUtil.splitWebtoon(inputStream, upperSide)
+        return inputStream
+    }
+
+    private fun onPageSplitWebtoon() {
+        if (page == null) return
+        val newPage = InsertPage(page!!)
+        viewer.onPageSplitWebtoon(page!!, newPage)
     }
 
     /**

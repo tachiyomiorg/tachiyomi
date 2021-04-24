@@ -31,6 +31,8 @@ object PreferenceKeys {
 
     const val dualPageInvertWebtoon = "pref_dual_page_invert_webtoon"
 
+    const val pageSplitWebtoon = "pref_page_split_webtoon"
+
     const val showReadingMode = "pref_show_reading_mode"
 
     const val trueColor = "pref_true_color_key"

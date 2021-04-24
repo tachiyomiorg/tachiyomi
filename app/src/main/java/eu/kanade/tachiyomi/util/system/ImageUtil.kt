@@ -89,6 +89,18 @@ object ImageUtil {
     }
 
     /**
+     * Check whether the image is a webtoon image (Height > 10.000px), return the result and original stream
+     */
+    fun isWebtoonPage(imageStream: InputStream): Pair<Boolean, InputStream> {
+        val imageBytes = imageStream.readBytes()
+
+        val options = BitmapFactory.Options().apply { inJustDecodeBounds = true }
+        BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size, options)
+
+        return Pair(options.outHeight > 10000, ByteArrayInputStream(imageBytes))
+    }
+
+    /**
      * Extract the 'side' part from imageStream and return it as InputStream.
      */
     fun splitInHalf(imageStream: InputStream, side: Side): InputStream {
@@ -142,6 +154,32 @@ object ImageUtil {
 
         val output = ByteArrayOutputStream()
         result.compress(Bitmap.CompressFormat.JPEG, 100, output)
+        return ByteArrayInputStream(output.toByteArray())
+    }
+
+    /**
+     * Split the image into top and bottom part from imageStream and return it as InputStream.
+     */
+    fun splitWebtoon(imageStream: InputStream, upperSide: Side): InputStream {
+        val imageBytes = imageStream.readBytes()
+
+        val imageBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+        val height = imageBitmap.height
+        val width = imageBitmap.width
+
+        val singlePage = Rect(0, 0, width, height / 2)
+
+        val half = createBitmap(width, height / 2)
+        val part = when (upperSide) {
+            Side.LEFT -> Rect(0, 0, width, height - height / 2)
+            Side.RIGHT -> Rect(0, height / 2, width, height)
+        }
+        val canvas = Canvas(half)
+        canvas.drawBitmap(imageBitmap, part, singlePage, null)
+
+        val output = ByteArrayOutputStream()
+        half.compress(Bitmap.CompressFormat.JPEG, 100, output)
+
         return ByteArrayInputStream(output.toByteArray())
     }
 

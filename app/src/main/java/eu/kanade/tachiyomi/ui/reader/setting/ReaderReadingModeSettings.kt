@@ -89,7 +89,7 @@ class ReaderReadingModeSettings @JvmOverloads constructor(context: Context, attr
         binding.webtoonPrefsGroup.tappingPrefsGroup.isVisible = preferences.readWithTapping().get()
 
         binding.webtoonPrefsGroup.tappingInverted.bindToPreference(preferences.webtoonNavInverted())
-
+        binding.webtoonPrefsGroup.pageSplitWebtoon.bindToPreference(preferences.pageSplitWebtoon())
         binding.webtoonPrefsGroup.webtoonNav.bindToPreference(preferences.navigationModeWebtoon())
         binding.webtoonPrefsGroup.cropBordersWebtoon.bindToPreference(preferences.cropBordersWebtoon())
         binding.webtoonPrefsGroup.webtoonSidePadding.bindToIntPreference(preferences.webtoonSidePadding(), R.array.webtoon_side_padding_values)

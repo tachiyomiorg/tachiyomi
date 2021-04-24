@@ -287,6 +287,11 @@ class SettingsReaderController : SettingsController() {
                 defaultValue = false
                 preferences.dualPageSplitWebtoon().asImmediateFlow { isVisible = it }.launchIn(viewScope)
             }
+            switchPreference {
+                key = Keys.pageSplitWebtoon
+                titleRes = R.string.pref_page_split_webtoon
+                defaultValue = false
+            }
         }
 
         preferenceCategory {
