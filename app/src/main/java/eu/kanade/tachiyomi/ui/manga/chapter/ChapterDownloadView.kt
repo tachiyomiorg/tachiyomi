@@ -5,11 +5,11 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.databinding.ChapterDownloadViewBinding
+import eu.kanade.tachiyomi.util.view.setVectorCompat
 
 class ChapterDownloadView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
     FrameLayout(context, attrs) {
@@ -64,12 +64,11 @@ class ChapterDownloadView @JvmOverloads constructor(context: Context, attrs: Att
         binding.downloadStatusIcon.apply {
             if (state == Download.State.DOWNLOADED || state == Download.State.ERROR) {
                 isVisible = true
-                val drawable = if (state == Download.State.DOWNLOADED) {
-                    ContextCompat.getDrawable(context, R.drawable.ic_check_circle_24dp)
+                if (state == Download.State.DOWNLOADED) {
+                    setVectorCompat(R.drawable.ic_check_circle_24dp, android.R.attr.textColorPrimary)
                 } else {
-                    ContextCompat.getDrawable(context, R.drawable.ic_error_outline_24dp)
+                    setVectorCompat(R.drawable.ic_error_outline_24dp, R.attr.colorError)
                 }
-                setImageDrawable(drawable)
             } else {
                 isVisible = false
             }
