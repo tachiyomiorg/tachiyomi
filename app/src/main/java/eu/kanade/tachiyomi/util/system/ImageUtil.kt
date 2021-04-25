@@ -77,7 +77,8 @@ object ImageUtil {
     }
 
     /**
-     * Check whether the image is a double image (width > height), return the result and original stream
+     * Check whether the image is a double-page spread
+     * @return true if the width is greater than the height
      */
     fun isDoublePage(imageStream: InputStream): Boolean {
         imageStream.mark(imageStream.available() + 1)
