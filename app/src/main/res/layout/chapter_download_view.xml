@@ -39,23 +39,12 @@
         app:trackThickness="2dp" />
 
     <ImageView
-        android:id="@+id/downloaded_icon"
+        android:id="@+id/download_status_icon"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
         android:visibility="gone"
-        app:srcCompat="@drawable/ic_check_circle_24dp"
         app:tint="?android:attr/textColorPrimary"
-        tools:ignore="ContentDescription" />
-
-    <ImageView
-        android:id="@+id/error_icon"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:visibility="gone"
-        app:srcCompat="@drawable/ic_error_outline_24dp"
-        app:tint="?attr/colorError"
         tools:ignore="ContentDescription" />
 
 </FrameLayout>
