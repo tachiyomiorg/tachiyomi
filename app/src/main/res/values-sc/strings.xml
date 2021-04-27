@@ -169,9 +169,8 @@
     <string name="double_tap_anim_speed_fast">Lestra</string>
     <string name="pref_rotation_type">Rotatzione</string>
     <string name="rotation_free">Lìbera</string>
-    <string name="rotation_lock">Blocada</string>
-    <string name="rotation_force_portrait">Bloca in verticale</string>
-    <string name="rotation_force_landscape">Bloca in orizontale</string>
+    <string name="rotation_force_portrait">Blocadu in verticale</string>
+    <string name="rotation_force_landscape">Blocadu in orizontale</string>
     <string name="color_filter_r_value">R</string>
     <string name="color_filter_g_value">G</string>
     <string name="color_filter_b_value">B</string>
@@ -447,7 +446,6 @@
         <item quantity="one">Pro 1 tìtulu</item>
         <item quantity="other">Pro %d tìtulos</item>
     </plurals>
-    <string name="notices">Avisos de versiones de anteprima</string>
     <string name="pref_theme_light">Tema craru</string>
     <string name="theme_light_default">Predefinidu</string>
     <string name="theme_light_blue">Biaitu craru</string>
@@ -573,7 +571,7 @@
     <string name="updated_version">Agiornadu a v%1$s</string>
     <string name="whats_new">Ite b\'at de nou</string>
     <string name="action_download_unread">Iscàrriga sos capìtulos non lèghidos</string>
-    <string name="download_insufficient_space">Iscarrigamentu de sos capìtulos fallidu pro more de su pagu ispàtziu lìberu in su discu</string>
+    <string name="download_insufficient_space">Iscarrigamentu de sos capìtulos fallidu pro neghe de su pagu ispàtziu lìberu in su discu</string>
     <string name="action_global_search_query">Chirca «%1$s» globalmente</string>
     <string name="pref_category_reading_mode">Modalidade de leghidura</string>
     <string name="pref_category_locale">Limba</string>
@@ -675,4 +673,6 @@
     <string name="action_show_errors">Ammustra sos errores</string>
     <string name="clipboard_copy_error">Còpia in punta de billete fallida</string>
     <string name="update_check_eol">Custa versione de Android no est prus suportada</string>
+    <string name="rotation_landscape">Orizontale</string>
+    <string name="rotation_portrait">Verticale</string>
 </resources>

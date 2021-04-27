@@ -169,7 +169,6 @@
     <string name="color_filter_a_value">A</string>
     <string name="rotation_force_landscape">Piliting nakahiga</string>
     <string name="rotation_force_portrait">Piliting nakatayo</string>
-    <string name="rotation_lock">Nakasara</string>
     <string name="rotation_free">Malaya</string>
     <string name="pref_rotation_type">Pag-ikot</string>
     <string name="double_tap_anim_speed_fast">Mabilis</string>
@@ -536,7 +535,6 @@
     <string name="updated_version">In-update patungong bersyon %1$s</string>
     <string name="check_for_updates">Tumingin ng update</string>
     <string name="licenses">Mga lisensiyang open-source</string>
-    <string name="notices">Mga abiso sa panilip na gawa (preview build)</string>
     <string name="whats_new">Anong bago</string>
     <string name="build_time">Oras ng paggawa (build time)</string>
     <string name="version">Bersyon</string>

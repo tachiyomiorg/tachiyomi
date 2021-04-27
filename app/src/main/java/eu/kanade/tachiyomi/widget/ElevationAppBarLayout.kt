@@ -20,12 +20,7 @@ class ElevationAppBarLayout @JvmOverloads constructor(
     }
 
     fun enableElevation(liftOnScroll: Boolean) {
-        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.LOLLIPOP) {
-            // Delay to avoid crash
-            post { setElevation(liftOnScroll) }
-        } else {
-            setElevation(liftOnScroll)
-        }
+        setElevation(liftOnScroll)
     }
 
     private fun setElevation(liftOnScroll: Boolean) {

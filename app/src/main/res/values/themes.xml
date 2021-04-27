@@ -91,7 +91,10 @@
     <!--===========-->
     <!-- Main Theme-->
     <!--===========-->
-    <style name="Base.Theme.Tachiyomi.Light" parent="Theme.Base" />
+    <style name="Base.Theme.Tachiyomi.Light" parent="Theme.Base">
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
     <style name="Theme.Tachiyomi.Light" parent="Base.Theme.Tachiyomi.Light" />
 
     <style name="Theme.Tachiyomi.Light.Blue">

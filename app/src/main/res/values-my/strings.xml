@@ -95,7 +95,7 @@
     <string name="unlock_app">Tachiyomi ကိုဖွင့်ပါ</string>
     <string name="history">မှတ်တမ်း</string>
     <string name="track">ခြေရာခံမှု</string>
-    <string name="chapters">အခန်းများ</string>
+    <string name="chapters">အပိုင်းများ</string>
     <string name="manga">Manga</string>
     <string name="categories">အမျိုးအစားများ</string>
     <string name="information_empty_category">အမျိုးအစားများမရှိသေးပါ။သင့်စာအုပ်စင်ကို အမျိုးအစားခွဲခြားမှုပြုလုပ်ရန် အပေါင်းခလုပ်ကိုနှိပ်ပါ။</string>
@@ -129,4 +129,13 @@
     <string name="action_webview_refresh">ပြန်ရယူမည်</string>
     <string name="action_webview_forward">ရှေ့သို့</string>
     <string name="action_webview_back">နောက်သို့</string>
+    <string name="updating_library">Library ကိုအပ်ဒိတ်လုပ်နေပါတယ်</string>
+    <string name="default_category">ပုံသေအမျိုးအစား</string>
+    <string name="no_chapters_error">မည်သည့်အပိုင်းမျှမရှိပါ</string>
+    <string name="lock_when_idle">အသုံးမပြုချိန်တွင်သော့ခတ်မည်</string>
+    <string name="completed">ထုတ်ဝေမှုပြီးစီး</string>
+    <string name="licensed">လိုင်စင်လုပ်ပြီး</string>
+    <string name="unknown">မသိရှိပါ</string>
+    <string name="ongoing">Ongoing</string>
+    <string name="title">နာမည်</string>
 </resources>

@@ -294,7 +294,6 @@
     <string name="action_rename_category">שנה שם קטגוריה</string>
     <string name="action_edit_categories">ערוך קטגוריות</string>
     <string name="action_add_category">הוסף קטגוריה</string>
-    <string name="notices">הודעות</string>
     <string name="build_time">זמן בנייה</string>
     <string name="version">גרסה</string>
     <string name="battery_optimization_disabled">אופטימיזציית סוללה כבר מושבתת</string>
@@ -348,7 +347,6 @@
     <string name="color_filter_r_value">אדום</string>
     <string name="rotation_force_landscape">כפה מצב מאוזן</string>
     <string name="rotation_force_portrait">כפה מצב מאונך</string>
-    <string name="rotation_lock">נעול</string>
     <string name="rotation_free">חופשי</string>
     <string name="pref_rotation_type">סיבוב</string>
     <string name="double_tap_anim_speed_fast">מהירה</string>

@@ -33,7 +33,7 @@ object BiometricUtil {
      * Returns whether the device is secured with a PIN, pattern or password.
      */
     private fun isLegacySecured(context: Context): Boolean {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
             if (context.keyguardManager.isDeviceSecure) {
                 return true
             }

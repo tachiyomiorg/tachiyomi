@@ -43,7 +43,7 @@ import uy.kohesive.injekt.api.addSingleton
  * Test class for the [LegacyBackupManager].
  * Note that this does not include the backup create/restore services.
  */
-@Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP])
+@Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.M])
 @RunWith(CustomRobolectricGradleTestRunner::class)
 class BackupTest {
     // Create root object

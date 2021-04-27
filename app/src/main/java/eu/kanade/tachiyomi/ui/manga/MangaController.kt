@@ -298,23 +298,17 @@ class MangaController :
         fab.setOnClickListener {
             val item = presenter.getNextUnreadChapter()
             if (item != null) {
-                // Create animation listener
-                val revealAnimationListener: Animator.AnimatorListener = object : AnimatorListenerAdapter() {
-                    override fun onAnimationStart(animation: Animator?) {
-                        openChapter(item.chapter, true)
-                    }
-                }
-
                 // Get coordinates and start animation
                 actionFab?.getCoordinates()?.let { coordinates ->
-                    if (!binding.revealView.showRevealEffect(
-                            coordinates.x,
-                            coordinates.y,
-                            revealAnimationListener
-                        )
-                    ) {
-                        openChapter(item.chapter)
-                    }
+                    binding.revealView.showRevealEffect(
+                        coordinates.x,
+                        coordinates.y,
+                        object : AnimatorListenerAdapter() {
+                            override fun onAnimationStart(animation: Animator?) {
+                                openChapter(item.chapter, true)
+                            }
+                        }
+                    )
                 }
             } else {
                 view?.context?.toast(R.string.no_next_chapter)

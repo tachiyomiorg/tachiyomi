@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi
 
+import android.os.Build
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
 import eu.kanade.tachiyomi.data.backup.BackupCreatorJob
@@ -147,6 +148,11 @@ object Migrations {
                     prefs.edit {
                         putInt("pref_rotation_type_key", 1)
                     }
+                }
+                
+                // Disable update check for Android 5.x users
+                if (BuildConfig.INCLUDE_UPDATER && Build.VERSION.SDK_INT <= Build.VERSION_CODES.M) {
+                    UpdaterJob.cancelTask(context)
                 }
             }
             if (oldVersion < 60) {

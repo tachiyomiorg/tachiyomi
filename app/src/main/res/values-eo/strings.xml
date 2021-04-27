@@ -189,7 +189,6 @@
     <string name="color_filter_b_value">Blu</string>
     <string name="color_filter_g_value">Verd</string>
     <string name="color_filter_r_value">Ruĝ</string>
-    <string name="rotation_lock">Ŝlosita</string>
     <string name="rotation_free">Libera</string>
     <string name="pref_rotation_type">Orientiĝo</string>
     <string name="double_tap_anim_speed_fast">Rapida</string>

@@ -21,11 +21,9 @@ fun Router.popControllerWithTag(tag: String): Boolean {
 
 fun Controller.requestPermissionsSafe(permissions: Array<String>, requestCode: Int) {
     val activity = activity ?: return
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-        permissions.forEach { permission ->
-            if (ContextCompat.checkSelfPermission(activity, permission) != PERMISSION_GRANTED) {
-                requestPermissions(arrayOf(permission), requestCode)
-            }
+    permissions.forEach { permission ->
+        if (ContextCompat.checkSelfPermission(activity, permission) != PERMISSION_GRANTED) {
+            requestPermissions(arrayOf(permission), requestCode)
         }
     }
 }

@@ -260,7 +260,6 @@
     <string name="color_filter_r_value">قرمز</string>
     <string name="rotation_force_landscape">تحمیل حالت افقی</string>
     <string name="rotation_force_portrait">تحمیل حالت عمودی</string>
-    <string name="rotation_lock">قفل</string>
     <string name="rotation_free">آزاد</string>
     <string name="pref_rotation_type">چرخش</string>
     <string name="double_tap_anim_speed_fast">سریع</string>
@@ -470,7 +469,6 @@
     <string name="pref_enable_acra">ارسال گزارش های خرابی</string>
     <string name="check_for_updates">بررسی برای به آپدیت‌ها</string>
     <string name="licenses">مجوزهای منبع باز</string>
-    <string name="notices">اطلاعیه های نسخه پیش نمایش</string>
     <string name="build_time">زمان ساخت</string>
     <string name="version">نسخهٔ</string>
     <string name="website">وب سایت</string>

@@ -304,18 +304,6 @@ class MangaInfoHeaderAdapter(
                     initialLoad = false
                 }
             }
-
-            // backgroundTint attribute doesn't work properly on Android 5
-            if (Build.VERSION.SDK_INT == Build.VERSION_CODES.LOLLIPOP) {
-                listOf(binding.backdropOverlay, binding.mangaInfoToggleMoreScrim)
-                    .forEach {
-                        @Suppress("DEPRECATION")
-                        it.background.setColorFilter(
-                            view.context.getResourceColor(android.R.attr.colorBackground),
-                            PorterDuff.Mode.SRC_ATOP
-                        )
-                    }
-            }
         }
 
         private fun showMangaInfo(visible: Boolean) {

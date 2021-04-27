@@ -114,10 +114,7 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
                         latch.countDown()
                     }
 
-                    // HTTP error codes are only received since M
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
-                        url == origRequestUrl && !challengeFound
-                    ) {
+                    if (url == origRequestUrl && !challengeFound) {
                         // The first request didn't return the challenge, abort.
                         latch.countDown()
                     }

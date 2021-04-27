@@ -55,7 +55,7 @@
     <string name="pref_library_update_interval">Učestalost ažuriranja</string>
     <string name="pref_category_library_update">Globalno ažuriranje</string>
     <string name="default_columns">Standardno</string>
-    <string name="landscape">Polegnuto</string>
+    <string name="landscape">Ležeće</string>
     <string name="portrait">Uspravno</string>
     <string name="pref_library_columns">Broj elemenata po retku</string>
     <string name="pref_category_display">Prikaz</string>
@@ -215,7 +215,7 @@
     <string name="third_to_last">Pretpredzadnje poglavlje</string>
     <string name="second_to_last">Predzadnje poglavlje</string>
     <string name="last_read_chapter">Zadnje pročitano poglavlje</string>
-    <string name="disabled">Isključeno</string>
+    <string name="disabled">Deaktivirano</string>
     <string name="custom_dir">Prilagođeno mjesto</string>
     <string name="pref_remove_after_read">Nakon čitanja</string>
     <string name="pref_remove_after_marked_as_read">Nakon ručnog označivanja kao pročitano</string>
@@ -233,9 +233,8 @@
     <string name="color_filter_b_value">B</string>
     <string name="color_filter_g_value">G</string>
     <string name="color_filter_r_value">R</string>
-    <string name="rotation_force_landscape">Prisili vodoravno</string>
-    <string name="rotation_force_portrait">Prisili okomito</string>
-    <string name="rotation_lock">Zaključaj</string>
+    <string name="rotation_force_landscape">Zaključaj ležeće</string>
+    <string name="rotation_force_portrait">Zaključaj uspravno</string>
     <string name="rotation_free">Slobodno</string>
     <string name="pref_rotation_type">Okretanje</string>
     <string name="double_tap_anim_speed_fast">Brzo</string>
@@ -256,7 +255,7 @@
     <string name="pref_image_decoder">Dekoder slika</string>
     <string name="pager_viewer">Pregled stranica</string>
     <string name="vertical_plus_viewer">Kontinuirano okomito</string>
-    <string name="webtoon_viewer">Webtoon</string>
+    <string name="webtoon_viewer">Digitalni strip</string>
     <string name="vertical_viewer">Okomito</string>
     <string name="right_to_left_viewer">S desna na lijevo</string>
     <string name="left_to_right_viewer">S lijeva na desno</string>
@@ -466,7 +465,6 @@
     <string name="pref_enable_acra">Pošalji izvještaj o padu programa</string>
     <string name="check_for_updates">Traži nove verzije</string>
     <string name="licenses">Licence otvorenog koda</string>
-    <string name="notices">Pregledaj napomene uz izdanje</string>
     <string name="build_time">Datum izdanja</string>
     <string name="version">Verzija</string>
     <string name="website">Web-stranica</string>
@@ -685,4 +683,8 @@
     <string name="pref_library_update_categories_details">Manga u isključenim kategorijama neće se ažurirati čak niti ako se također nalaze u uključenim kategorijama.</string>
     <string name="action_sort_chapter_fetch_date">Datum preuzimanja</string>
     <string name="action_show_errors">Prikaži greške</string>
+    <string name="update_check_eol">Ove verzija androida više nije podržana</string>
+    <string name="clipboard_copy_error">Kopiranje nije uspješno</string>
+    <string name="rotation_landscape">Ležeće</string>
+    <string name="rotation_portrait">Uspravno</string>
 </resources>

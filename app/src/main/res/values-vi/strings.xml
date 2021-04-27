@@ -126,7 +126,6 @@
     <string name="zoom_start_center">Giữa</string>
     <string name="pref_rotation_type">Xoay</string>
     <string name="rotation_free">Tự do</string>
-    <string name="rotation_lock">Khóa</string>
     <string name="rotation_force_portrait">Bắt buộc theo chiều dọc</string>
     <string name="rotation_force_landscape">Bắt buộc theo chiều ngang</string>
     <string name="color_filter_r_value">R</string>
@@ -434,7 +433,6 @@
     <string name="logout">Đăng xuất</string>
     <string name="logout_title">Đăng xuất khỏi %1$s\?</string>
     <string name="email">Địa chỉ email</string>
-    <string name="notices">Thông báo</string>
     <string name="battery_optimization_disabled">Tối ưu pin đã được tắt</string>
     <string name="pref_disable_battery_optimization_summary">Giúp cập nhật và sao lưu thư viện nền</string>
     <string name="pref_disable_battery_optimization">Tắt tối ưu pin</string>

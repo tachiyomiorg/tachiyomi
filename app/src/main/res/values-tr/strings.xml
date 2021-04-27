@@ -168,9 +168,8 @@
     <string name="double_tap_anim_speed_fast">Hızlı</string>
     <string name="pref_rotation_type">Döndürme</string>
     <string name="rotation_free">Serbest</string>
-    <string name="rotation_lock">Kilitle</string>
-    <string name="rotation_force_portrait">Dikeyi zorla</string>
-    <string name="rotation_force_landscape">Yatayı zorla</string>
+    <string name="rotation_force_portrait">Kilitli dikey</string>
+    <string name="rotation_force_landscape">Kilitli yatay</string>
     <string name="color_filter_r_value">K</string>
     <string name="color_filter_g_value">Y</string>
     <string name="color_filter_b_value">M</string>
@@ -447,7 +446,6 @@
         <item quantity="one">1 başlık için</item>
         <item quantity="other">%d başlık için</item>
     </plurals>
-    <string name="notices">Derleme notlarını göster</string>
     <string name="pref_theme_light">Aydınlık tema</string>
     <string name="theme_light_default">Öntanımlı</string>
     <string name="theme_light_blue">Açık mavi</string>
@@ -675,4 +673,6 @@
     <string name="action_show_errors">Hataları göster</string>
     <string name="update_check_eol">Bu Android sürümü artık desteklenmiyor</string>
     <string name="clipboard_copy_error">Panoya kopyalanamadı</string>
+    <string name="rotation_landscape">Yatay</string>
+    <string name="rotation_portrait">Dikey</string>
 </resources>

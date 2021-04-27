@@ -198,7 +198,6 @@
     <string name="color_filter_r_value">Кыһыл</string>
     <string name="rotation_force_landscape">Сытыары</string>
     <string name="rotation_force_portrait">Туруору</string>
-    <string name="rotation_lock">Хатаммыт</string>
     <string name="rotation_free">Босхо</string>
     <string name="pref_rotation_type">Эргичийии</string>
     <string name="ext_language_info">Тыл: %1$s</string>
@@ -355,7 +354,6 @@
     <string name="battery_optimization_disabled">Батарея тупсуруута араарыллынна</string>
     <string name="group_backup_restore">Хаппаас куопуйаны оҥоруу уонна төнүҥнэрии</string>
     <string name="file_select_backup">Хаппаас куопуйа билэтин талыы</string>
-    <string name="notices">Инники биэрсиялар бэлиэтэ</string>
     <string name="whats_new">Туох саҥа баарый</string>
     <string name="build_time">Тахсыбыт кэмэ</string>
     <string name="version">Биэрсия</string>

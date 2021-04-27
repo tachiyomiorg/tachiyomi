@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <style name="Base.V23.Theme.Tachiyomi.Light" parent="Base.Theme.Tachiyomi.Light">
-        <item name="android:statusBarColor">?attr/colorPrimary</item>
-        <item name="android:windowLightStatusBar">true</item>
-    </style>
-
-    <style name="Theme.Tachiyomi.Light" parent="Base.V23.Theme.Tachiyomi.Light" />
-</resources>

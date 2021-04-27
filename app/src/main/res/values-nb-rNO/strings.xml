@@ -163,7 +163,6 @@
     <string name="double_tap_anim_speed_fast">Rask</string>
     <string name="pref_rotation_type">Rotasjon</string>
     <string name="rotation_free">Fri</string>
-    <string name="rotation_lock">Låst</string>
     <string name="rotation_force_portrait">Tving stående</string>
     <string name="rotation_force_landscape">Tving liggende</string>
     <string name="color_filter_r_value">R</string>
@@ -445,7 +444,6 @@
     <string name="manga_info_collapse">Mindre</string>
     <string name="manga_info_expand">Mer</string>
     <string name="pinned_sources">Festet</string>
-    <string name="notices">Merknader</string>
     <string name="website">Nettside</string>
     <string name="creating_backup_error">Sikkerhetskopiering mislyktes</string>
     <string name="webtoon_side_padding_0">Ingen</string>
@@ -673,4 +671,8 @@
     <string name="pref_category_auto_download">Last ned automatisk</string>
     <string name="pref_library_update_categories_details">Manga i utelukkede kategorier vil ikke bli oppdatert selv om de også er i inkluderte kategorier.</string>
     <string name="action_show_errors">Vis feil</string>
+    <string name="clipboard_copy_error">Klarte ikke å kopiere til utklippstavle</string>
+    <string name="update_check_eol">Denne Android-versjonen støttes ikke lenger</string>
+    <string name="rotation_landscape">Liggende</string>
+    <string name="rotation_portrait">Stående</string>
 </resources>

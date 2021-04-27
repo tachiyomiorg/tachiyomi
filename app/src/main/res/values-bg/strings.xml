@@ -126,7 +126,6 @@
     <string name="zoom_start_center">Центрирано</string>
     <string name="pref_rotation_type">Въртене</string>
     <string name="rotation_free">Включено</string>
-    <string name="rotation_lock">Заключено</string>
     <string name="rotation_force_portrait">Портретно</string>
     <string name="rotation_force_landscape">Пейзажно</string>
     <string name="color_filter_r_value">R</string>
@@ -475,7 +474,6 @@
     <string name="label_downloaded_only">Само изтеглени</string>
     <string name="check_for_updates">Провери за ъпдейт</string>
     <string name="licenses">Лицензи за отворен код</string>
-    <string name="notices">Известия за предвартилени билдове</string>
     <string name="website">Уебсайт</string>
     <string name="battery_optimization_disabled">Оптимизацията на батерията е изключена</string>
     <string name="pref_disable_battery_optimization_summary">Помага при фонови обновявания на библиотеката и резервни копия</string>

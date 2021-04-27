@@ -67,27 +67,25 @@ class SettingsAdvancedController : SettingsController() {
             }
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            preference {
-                key = "pref_disable_battery_optimization"
-                titleRes = R.string.pref_disable_battery_optimization
-                summaryRes = R.string.pref_disable_battery_optimization_summary
+        preference {
+            key = "pref_disable_battery_optimization"
+            titleRes = R.string.pref_disable_battery_optimization
+            summaryRes = R.string.pref_disable_battery_optimization_summary
 
-                onClick {
-                    val packageName: String = context.packageName
-                    if (!context.powerManager.isIgnoringBatteryOptimizations(packageName)) {
-                        try {
-                            val intent = Intent().apply {
-                                action = Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
-                                data = "package:$packageName".toUri()
-                            }
-                            startActivity(intent)
-                        } catch (e: ActivityNotFoundException) {
-                            context.toast(R.string.battery_optimization_setting_activity_not_found)
+            onClick {
+                val packageName: String = context.packageName
+                if (!context.powerManager.isIgnoringBatteryOptimizations(packageName)) {
+                    try {
+                        val intent = Intent().apply {
+                            action = Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
+                            data = "package:$packageName".toUri()
                         }
-                    } else {
-                        context.toast(R.string.battery_optimization_disabled)
+                        startActivity(intent)
+                    } catch (e: ActivityNotFoundException) {
+                        context.toast(R.string.battery_optimization_setting_activity_not_found)
                     }
+                } else {
+                    context.toast(R.string.battery_optimization_disabled)
                 }
             }
         }

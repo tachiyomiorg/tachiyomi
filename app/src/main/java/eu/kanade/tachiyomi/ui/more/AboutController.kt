@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.ui.more
 
 import android.app.Dialog
+import android.os.Build
 import android.os.Bundle
 import androidx.core.os.bundleOf
 import androidx.preference.PreferenceScreen
@@ -141,6 +142,11 @@ class AboutController : SettingsController() {
      */
     private fun checkVersion() {
         if (activity == null) return
+
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.M) {
+            activity?.toast(R.string.update_check_eol)
+            return
+        }
 
         activity?.toast(R.string.update_check_look_for_updates)
 

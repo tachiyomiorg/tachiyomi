@@ -147,7 +147,7 @@
     <string name="pref_category_advanced">Kehittyneet</string>
     <string name="pref_category_about">Tietoja</string>
     <string name="pref_library_columns">Kohteita per rivi</string>
-    <string name="portrait">Pystysuunnassa</string>
+    <string name="portrait">Pystysuunta</string>
     <string name="landscape">Vaakatasossa</string>
     <string name="default_columns">Oletus</string>
     <string name="pref_library_update_interval">Päivitystiheys</string>
@@ -234,9 +234,8 @@
     <string name="double_tap_anim_speed_fast">Nopea</string>
     <string name="pref_rotation_type">Rotaatio</string>
     <string name="rotation_free">Vapaa</string>
-    <string name="rotation_lock">Lukitse</string>
-    <string name="rotation_force_portrait">Pakota pystysuunta</string>
-    <string name="rotation_force_landscape">Pakota vaakatso</string>
+    <string name="rotation_force_portrait">Lukittu pystysuunta</string>
+    <string name="rotation_force_landscape">Lukittu vaakataso</string>
     <string name="color_filter_r_value">Punainen</string>
     <string name="color_filter_g_value">Vihreä</string>
     <string name="color_filter_b_value">Sininen</string>
@@ -447,7 +446,6 @@
         <item quantity="one">Yhdelle sarjalle</item>
         <item quantity="other">%d sarjalle</item>
     </plurals>
-    <string name="notices">Esikatsele koontiversion ilmoituksia</string>
     <string name="pref_theme_light">Vaalea teema</string>
     <string name="theme_light_default">Oletus</string>
     <string name="theme_light_blue">Vaaleansininen</string>
@@ -675,4 +673,6 @@
     <string name="action_show_errors">Näytä virheet</string>
     <string name="update_check_eol">Tätä Android-versiota ei enää tueta</string>
     <string name="clipboard_copy_error">Kopiointi leikepöydälle epäonnistui</string>
+    <string name="rotation_landscape">Vaakatasossa</string>
+    <string name="rotation_portrait">Pystysuunnassa</string>
 </resources>
