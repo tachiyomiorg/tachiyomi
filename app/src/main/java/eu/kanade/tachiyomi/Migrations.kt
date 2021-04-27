@@ -149,7 +149,7 @@ object Migrations {
                         putInt("pref_rotation_type_key", 1)
                     }
                 }
-                
+
                 // Disable update check for Android 5.x users
                 if (BuildConfig.INCLUDE_UPDATER && Build.VERSION.SDK_INT <= Build.VERSION_CODES.M) {
                     UpdaterJob.cancelTask(context)
@@ -160,9 +160,10 @@ object Migrations {
                 val prefs = PreferenceManager.getDefaultSharedPreferences(context)
                 val newOrientation = when (prefs.getInt("pref_rotation_type_key", 1)) {
                     1 -> OrientationType.FREE.flagValue
-                    2 -> OrientationType.LOCKED_PORTRAIT.flagValue
-                    3 -> OrientationType.PORTRAIT.flagValue
-                    4 -> OrientationType.LANDSCAPE.flagValue
+                    2 -> OrientationType.PORTRAIT.flagValue
+                    3 -> OrientationType.LANDSCAPE.flagValue
+                    4 -> OrientationType.LOCKED_PORTRAIT.flagValue
+                    5 -> OrientationType.LOCKED_LANDSCAPE.flagValue
                     else -> OrientationType.FREE.flagValue
                 }
 
