@@ -170,7 +170,6 @@
     <string name="double_tap_anim_speed_fast">เร็ว</string>
     <string name="pref_rotation_type">การหมุน</string>
     <string name="rotation_free">ว่าง</string>
-    <string name="rotation_lock">ล็อค</string>
     <string name="rotation_force_portrait">บังคับแนวตั้ง</string>
     <string name="rotation_force_landscape">บังคับแนวนอน</string>
     <string name="color_filter_r_value">R</string>

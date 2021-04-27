@@ -168,9 +168,8 @@
     <string name="double_tap_anim_speed_fast">Γρήγορη</string>
     <string name="pref_rotation_type">Περιστροφή</string>
     <string name="rotation_free">Ελεύθερο</string>
-    <string name="rotation_lock">Κλείδωμα</string>
-    <string name="rotation_force_portrait">Υποχρεωτικά κατακόρυφα</string>
-    <string name="rotation_force_landscape">Υποχρεωτικά οριζόντια</string>
+    <string name="rotation_force_portrait">Κλειδωμένο κατακόρυφα</string>
+    <string name="rotation_force_landscape">Κλειδωμένο οριζόντια</string>
     <string name="color_filter_r_value">R</string>
     <string name="color_filter_g_value">G</string>
     <string name="color_filter_b_value">B</string>
@@ -391,7 +390,6 @@
     <string name="add_tracking">Προσθήκη παρακολούθησης</string>
     <string name="pinned_sources">Καρφιτσωμένα</string>
     <string name="confirm_exit">Πατήστε ξανά για έξοδο</string>
-    <string name="notices">Ανακοινώσεις έκδοσης Preview</string>
     <string name="restore_duration">%02d λεπτά, %02d δευτερόλεπτα</string>
     <string name="action_select_inverse">Επιλογή αντίστροφου</string>
     <string name="channel_ext_updates">Ενημερώσεις επεκτάσεων</string>
@@ -633,7 +631,7 @@
     <string name="myanimelist_creds_missing">Τα διαπιστευτήρια σύνδεσης MAL δεν βρέθηκαν</string>
     <string name="pref_viewer_nav">Διάταξη πλοήγησης</string>
     <string name="edge_nav">Άκρη</string>
-    <string name="kindlish_nav">Kindle-ish</string>
+    <string name="kindlish_nav">Σαν Kindle</string>
     <string name="l_nav">Σχήματος L</string>
     <string name="default_nav">Προεπιλογή</string>
     <string name="channel_crash_logs">Αρχεία καταγραφής σφαλμάτων</string>
@@ -675,4 +673,6 @@
     <string name="action_show_errors">Εμφάνιση σφαλμάτων</string>
     <string name="update_check_eol">Αυτή η έκδοση Android δεν υποστηρίζεται πλέον</string>
     <string name="clipboard_copy_error">Απέτυχε η αντιγραφή στο πρόχειρο</string>
+    <string name="rotation_landscape">Οριζόντια</string>
+    <string name="rotation_portrait">Κατακόρυφα</string>
 </resources>

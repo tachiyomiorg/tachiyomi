@@ -168,7 +168,6 @@
     <string name="double_tap_anim_speed_fast">Brzo</string>
     <string name="pref_rotation_type">Rotacija</string>
     <string name="rotation_free">Slovodno</string>
-    <string name="rotation_lock">Zaključano</string>
     <string name="rotation_force_portrait">Forsirano vertikalno</string>
     <string name="rotation_force_landscape">Forsirano horizontalno</string>
     <string name="color_filter_r_value">R</string>

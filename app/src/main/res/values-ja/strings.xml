@@ -141,7 +141,6 @@
     <string name="double_tap_anim_speed_fast">速い</string>
     <string name="pref_rotation_type">回転</string>
     <string name="rotation_free">自動回転</string>
-    <string name="rotation_lock">ロック</string>
     <string name="rotation_force_portrait">横向き画面を強制</string>
     <string name="color_filter_r_value">R</string>
     <string name="color_filter_g_value">G</string>
@@ -429,7 +428,6 @@
     <string name="label_downloaded_only">ダウンロード済みのみ</string>
     <string name="check_for_updates">更新を確認</string>
     <string name="licenses">オープンソースライセンス</string>
-    <string name="notices">プレビュービルドの更新情報</string>
     <string name="website">Webサイト</string>
     <string name="battery_optimization_setting_activity_not_found">デバイス設定を開きませんでした</string>
     <string name="battery_optimization_disabled">バッテリー最適化は既に無効です</string>

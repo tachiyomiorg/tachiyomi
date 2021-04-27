@@ -137,7 +137,6 @@
     <string name="zoom_start_center">Tengah</string>
     <string name="pref_rotation_type">Rotasi</string>
     <string name="rotation_free">Bebas</string>
-    <string name="rotation_lock">Kunci</string>
     <string name="rotation_force_portrait">Paksa tegak</string>
     <string name="rotation_force_landscape">Paksa menyamping</string>
     <string name="color_filter_r_value">R</string>
@@ -435,7 +434,6 @@
     <string name="pref_disable_battery_optimization">Nonaktifkan optimisasi baterai</string>
     <string name="battery_optimization_disabled">Optimalisasi baterai sudah dimatikan</string>
     <string name="email">Alamat surel</string>
-    <string name="notices">Pemberitahuan</string>
     <string name="theme_light_default">Terang standar</string>
     <string name="secure_screen">Amankan layar</string>
     <string name="logout_title">Keluar dari %1$s\?</string>

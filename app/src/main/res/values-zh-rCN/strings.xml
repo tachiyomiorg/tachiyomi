@@ -84,8 +84,8 @@
     <string name="pref_category_advanced">高级</string>
     <string name="pref_category_about">关于</string>
     <string name="pref_library_columns">书架界面网格</string>
-    <string name="portrait">纵向</string>
-    <string name="landscape">横向</string>
+    <string name="portrait">竖屏</string>
+    <string name="landscape">横屏</string>
     <string name="default_columns">预设</string>
     <string name="pref_library_update_interval">更新频率</string>
     <string name="update_never">手动</string>
@@ -168,9 +168,8 @@
     <string name="double_tap_anim_speed_fast">快速</string>
     <string name="pref_rotation_type">屏幕方向</string>
     <string name="rotation_free">自动</string>
-    <string name="rotation_lock">锁定</string>
-    <string name="rotation_force_portrait">强制竖向</string>
-    <string name="rotation_force_landscape">强制横向</string>
+    <string name="rotation_force_portrait">锁定的竖屏</string>
+    <string name="rotation_force_landscape">锁定的横屏</string>
     <string name="color_filter_r_value">R</string>
     <string name="color_filter_g_value">G</string>
     <string name="color_filter_b_value">B</string>
@@ -446,7 +445,6 @@
     <string name="pref_theme_light">浅色主题</string>
     <string name="theme_light_default">默认</string>
     <string name="theme_light_blue">浅蓝</string>
-    <string name="notices">预览版本公告</string>
     <string name="action_menu">菜单</string>
     <string name="action_reorganize_by">重新排序</string>
     <string name="action_newest">最新</string>
@@ -663,4 +661,6 @@
     <string name="action_show_errors">显示错误</string>
     <string name="update_check_eol">英勇不再支持此 Android 版本</string>
     <string name="clipboard_copy_error">未能复制到剪贴板</string>
+    <string name="rotation_landscape">横屏</string>
+    <string name="rotation_portrait">竖屏</string>
 </resources>

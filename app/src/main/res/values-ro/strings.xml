@@ -168,7 +168,6 @@
     <string name="double_tap_anim_speed_fast">Rapid</string>
     <string name="pref_rotation_type">Rotație</string>
     <string name="rotation_free">Liberă</string>
-    <string name="rotation_lock">Blocată</string>
     <string name="rotation_force_portrait">Forțată portret</string>
     <string name="rotation_force_landscape">Forțată peisaj</string>
     <string name="color_filter_r_value">R</string>
@@ -451,7 +450,6 @@
         <item quantity="few">Pentru %d titluri</item>
         <item quantity="other">Pentru %d titluri</item>
     </plurals>
-    <string name="notices">Previzualizați notificările de construire</string>
     <string name="pref_theme_light">Temă deschisă</string>
     <string name="theme_light_default">Implicit</string>
     <string name="theme_light_blue">Albastru deschis</string>

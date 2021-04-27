@@ -108,7 +108,6 @@
     <string name="zoom_start_center">Centro</string>
     <string name="pref_rotation_type">Rotação</string>
     <string name="rotation_free">Livre</string>
-    <string name="rotation_lock">Bloqueado</string>
     <string name="rotation_force_portrait">Forçar retrato</string>
     <string name="rotation_force_landscape">Forçar paisagem</string>
     <!-- Downloads section -->
@@ -472,7 +471,6 @@
         <item quantity="one">Para 1 título</item>
         <item quantity="other">Para %d títulos</item>
     </plurals>
-    <string name="notices">Avisos de build de preview</string>
     <string name="pref_theme_light">Tema claro</string>
     <string name="theme_light_default">Padrão</string>
     <string name="theme_light_blue">Azul claro</string>

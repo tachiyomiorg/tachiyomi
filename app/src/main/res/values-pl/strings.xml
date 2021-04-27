@@ -150,7 +150,7 @@
     <string name="portrait">Orientacja pionowa</string>
     <string name="landscape">Orientacja pozioma</string>
     <string name="default_columns">Domyślnie</string>
-    <string name="pref_library_update_interval">Częstotliwość aktualizacji biblioteki</string>
+    <string name="pref_library_update_interval">Częstotliwość aktualizacji</string>
     <string name="update_never">Ręcznie</string>
     <string name="update_1hour">Co godzinę</string>
     <string name="update_2hour">Co 2 godziny</string>
@@ -161,7 +161,7 @@
     <string name="update_48hour">Co 2 dni</string>
     <string name="update_weekly">Co tydzień</string>
     <string name="all">Wszystko</string>
-    <string name="pref_library_update_restriction">Warunki aktualizacji biblioteki</string>
+    <string name="pref_library_update_restriction">Warunki aktualizacji</string>
     <string name="pref_library_update_restriction_summary">Aktualizuje tylko, kiedy spełnione są te warunki</string>
     <string name="charging">Ładowanie</string>
     <string name="pref_update_only_non_completed">Aktualizuj tylko nieukończone mangi</string>
@@ -206,9 +206,8 @@
     <string name="zoom_start_center">Od środka</string>
     <string name="pref_rotation_type">Orientacja ekranu</string>
     <string name="rotation_free">Dowolna</string>
-    <string name="rotation_lock">Zablokowana</string>
-    <string name="rotation_force_portrait">Wymuś pionową</string>
-    <string name="rotation_force_landscape">Wymuś poziomą</string>
+    <string name="rotation_force_portrait">Wymuś pionowo</string>
+    <string name="rotation_force_landscape">Wymuś poziomo</string>
     <string name="color_filter_r_value">R</string>
     <string name="color_filter_g_value">G</string>
     <string name="color_filter_b_value">B</string>
@@ -375,7 +374,7 @@
     <string name="filter_mode_lighten">Rozjaśnienie</string>
     <string name="filter_mode_darken">Ściemnienie</string>
     <string name="label_help">Pomoc</string>
-    <string name="pref_library_update_prioritization">Kolejność aktualizacji biblioteki</string>
+    <string name="pref_library_update_prioritization">Kolejność aktualizacji</string>
     <string name="action_webview_back">Wstecz</string>
     <string name="filter_mode_screen">Ekran</string>
     <string name="no_results_found">Nie znaleziono wyników</string>
@@ -527,7 +526,6 @@
     <string name="action_display_unread_badge">Plakietki nieprzeczytanych rozdziałów</string>
     <string name="action_view_chapters">Przeglądaj rozdziały</string>
     <string name="add_tracking">Dodaj śledzenie</string>
-    <string name="notices">Uwagi dotyczące kompilacji podglądowej</string>
     <string name="battery_optimization_setting_activity_not_found">Niepowodzenie otwarcia ustawień urządzenia</string>
     <string name="pref_refresh_library_covers">Odśwież okładki</string>
     <string name="restoring_backup_error">Przywracanie kopii zapasowej zakończone niepowodzeniem</string>
@@ -691,4 +689,12 @@
     <string name="exclude">Wyklucz: %s</string>
     <string name="include">Uwzględnij: %s</string>
     <string name="none">Brak</string>
+    <string name="update_check_eol">Ta wersja Androida nie jest już wspierana</string>
+    <string name="clipboard_copy_error">Nie udało się skopiować do schowka</string>
+    <string name="pref_library_update_categories_details">Tytuły w wykluczonych kategoriach nie będą aktualizowane, nawet jeśli są również w uwzględnionych kategoriach.</string>
+    <string name="pref_download_new_categories_details">Tytuły w wykluczonych kategoriach nie będą pobierane, nawet jeśli są również w uwzględnionych kategoriach.</string>
+    <string name="pref_category_auto_download">Automatyczne pobieranie</string>
+    <string name="rotation_landscape">Poziomo</string>
+    <string name="rotation_portrait">Pionowo</string>
+    <string name="action_show_errors">Pokaż błędy</string>
 </resources>

@@ -122,7 +122,6 @@
     <string name="zoom_start_center">Centro</string>
     <string name="pref_rotation_type">Orientamento</string>
     <string name="rotation_free">Libero</string>
-    <string name="rotation_lock">Bloccato</string>
     <string name="rotation_force_portrait">Blocca verticale</string>
     <string name="rotation_force_landscape">Blocca orizzontale</string>
     <string name="color_filter_r_value">R</string>
@@ -264,7 +263,7 @@
     <string name="update_check_look_for_updates">Ricerca aggiornamenti…</string>
     <!--UpdateCheck Notifications-->
     <string name="update_check_notification_file_download">Scarica aggiornamento</string>
-    <string name="update_check_notification_download_in_progress">Download in corso…</string>
+    <string name="update_check_notification_download_in_progress">Scaricamento…</string>
     <string name="update_check_notification_download_complete">Download completato</string>
     <string name="update_check_notification_download_error">Errore di download</string>
     <string name="update_check_notification_update_available">Aggiornamento disponibile!</string>
@@ -482,7 +481,6 @@
     <string name="notification_check_updates">Controllando nuove pubblicazioni</string>
     <string name="http_error_hint">Controlla il sito in WebView</string>
     <string name="email">Indirizzo e-mail</string>
-    <string name="notices">Anteprima avvisi di versione</string>
     <string name="battery_optimization_disabled">Ottimizzazione batteria già disattivata</string>
     <string name="pref_disable_battery_optimization_summary">Facilita gli aggiornamenti in background e i backup</string>
     <string name="pref_disable_battery_optimization">Disattiva ottimizzazione batteria</string>
@@ -504,7 +502,7 @@
     <string name="pref_skip_filtered_chapters">Salta capitoli filtrati</string>
     <string name="action_pin">Fissa</string>
     <string name="add_tracking">Aggiungi monitoraggio</string>
-    <string name="in_library">In libreria</string>
+    <string name="in_library">Nella libreria</string>
     <string name="add_to_library">Aggiungi alla libreria</string>
     <string name="pinned_sources">Fissato</string>
     <string name="webtoon_side_padding_25">25%</string>
@@ -706,4 +704,6 @@
     <string name="pref_show_navigation_mode">Mostra schema di navigazione</string>
     <string name="pref_show_navigation_mode_summary">Mostra zone di tocco quando il lettore viene aperto</string>
     <string name="action_show_errors">Mostra errori</string>
+    <string name="update_check_eol">Questa versione di Android non è più supportata</string>
+    <string name="clipboard_copy_error">Copia negli appunti fallito</string>
 </resources>

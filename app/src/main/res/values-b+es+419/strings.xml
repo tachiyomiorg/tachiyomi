@@ -129,7 +129,6 @@
     <string name="color_filter_r_value">R</string>
     <string name="rotation_force_landscape">Forzar landscape</string>
     <string name="rotation_force_portrait">Forzar portrait</string>
-    <string name="rotation_lock">Bloqueado</string>
     <string name="rotation_free">Libre</string>
     <string name="pref_rotation_type">Rotación</string>
     <string name="double_tap_anim_speed_fast">Rápido</string>
@@ -421,7 +420,6 @@
     <string name="updated_version">Actualizado a v%1$s</string>
     <string name="check_for_updates">Buscar actualizaciones</string>
     <string name="licenses">Licencias de código abierto</string>
-    <string name="notices">Notas de versiones recientes</string>
     <string name="whats_new">Qué hay de nuevo</string>
     <string name="build_time">Hora de compilación</string>
     <string name="version">Versión</string>
@@ -652,4 +650,6 @@
     <string name="update_8hour">Cada 8 horas</string>
     <string name="update_4hour">Cada 4 horas</string>
     <string name="action_display_show_number_of_items">Mostrar cantidad de elementos</string>
+    <string name="none">Ninguno</string>
+    <string name="action_show_errors">Mostrar errores</string>
 </resources>

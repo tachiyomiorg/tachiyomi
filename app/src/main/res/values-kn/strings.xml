@@ -192,7 +192,6 @@
     <string name="color_filter_r_value">R</string>
     <string name="rotation_force_landscape">ಬಲವಂತದ ಅಗಲಚಿತ್ರ</string>
     <string name="rotation_force_portrait">ಬಲವಂತದ ಉದ್ದಚಿತ್ರ</string>
-    <string name="rotation_lock">ಲಾಕ್</string>
     <string name="rotation_free">ಉಚಿತ</string>
     <string name="pref_rotation_type">ತಿರುಗಿಸು</string>
     <string name="double_tap_anim_speed_fast">ವೇಗವಾಗಿ</string>
@@ -491,7 +490,6 @@
     <string name="pref_enable_acra">ಕ್ರ್ಯಾಶ್ ವರದಿಗಳನ್ನು ಕಳುಹಿಸಿ</string>
     <string name="check_for_updates">ನವೀಕರಣಗಳಿಗಾಗಿ ಪರಿಶೀಲಿಸಿ</string>
     <string name="licenses">ಓಪನ್ ಸೋರ್ಸ್ ಪರವಾನಗಿಗಳು</string>
-    <string name="notices">ಬಿಲ್ಡ್ ಪ್ರಕಟಣೆಗಳ ಪೂರ್ವವೀಕ್ಷಣೆ</string>
     <string name="build_time">ನಿರ್ಮಿಸಿದ ಸಮಯ</string>
     <string name="version">ಆವೃತ್ತಿ</string>
     <string name="website">ವೆಬ್ಸೈಟ್</string>

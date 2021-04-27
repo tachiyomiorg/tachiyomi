@@ -271,7 +271,6 @@
     <string name="color_filter_a_value">Тӑрӑлӑх мар</string>
     <string name="rotation_force_landscape">Тӑрӑхскер</string>
     <string name="rotation_force_portrait">Урлӑскер</string>
-    <string name="rotation_lock">Ҫаклатнӑскер</string>
     <string name="rotation_free">Ирӗклӗ</string>
     <string name="pref_rotation_type">Урлӑ-тӑрӑх</string>
     <string name="double_tap_anim_speed_0">Энимсӗр</string>
@@ -330,7 +329,6 @@
     <string name="custom_filter">Усӑҫ али</string>
     <string name="sorting_mode">Уйӑру меслечӗ</string>
     <string name="pref_acra_summary">Кирек мӗнле йӑнӑшсене тӳрлетме пулӑшать. Нимӗнле харкам пӗлӗм те ярӑнмасть</string>
-    <string name="notices">Малтанлӑх верссисем ҫинчен ҫырни</string>
     <string name="invalid_download_dir">Йӑнӑшлӑ тиев вырӑнӗ</string>
     <string name="chapter_downloaded">Тиенӗ</string>
     <string name="label_downloaded_only">Тиенӗсене ҫеҫ</string>

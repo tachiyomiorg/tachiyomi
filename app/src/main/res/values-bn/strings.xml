@@ -141,7 +141,6 @@
     <string name="zoom_start_center">মাঝে</string>
     <string name="pref_rotation_type">ঘূর্ণন</string>
     <string name="rotation_free">মুক্ত</string>
-    <string name="rotation_lock">বন্ধ</string>
     <string name="rotation_force_portrait">সোঁজাসুজি রাখুন</string>
     <string name="rotation_force_landscape">আড়াআড়ি রাখুন</string>
     <string name="color_filter_r_value">ল</string>
@@ -605,7 +604,6 @@
     <string name="updated_version">হালনাগাদ করা হয়েছে v%1$s তে</string>
     <string name="check_for_updates">হালনাগাদ এর জন্য অনুসন্ধান করুন</string>
     <string name="licenses">ওপেন সোর্স লাইসেন্স</string>
-    <string name="notices">প্রিভিউ বিল্ড বিজ্ঞপ্তি</string>
     <string name="whats_new">কি কি নতুন</string>
     <string name="website">ওয়েবসাইট</string>
     <string name="pref_clear_history">ইতিহাস সাফ করুন</string>

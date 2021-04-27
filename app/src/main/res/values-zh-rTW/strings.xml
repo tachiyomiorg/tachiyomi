@@ -125,7 +125,6 @@
     <string name="double_tap_anim_speed_fast">快速</string>
     <string name="pref_rotation_type">螢幕方向</string>
     <string name="rotation_free">自動</string>
-    <string name="rotation_lock">鎖定</string>
     <string name="rotation_force_portrait">強制縱向</string>
     <string name="rotation_force_landscape">強制橫向</string>
     <string name="color_filter_r_value">R</string>
@@ -402,7 +401,6 @@
     <string name="confirm_exit">再按一次以離開</string>
     <string name="downloaded_only_summary">將套用至你書櫃中的漫畫</string>
     <string name="label_downloaded_only">僅限下載內容</string>
-    <string name="notices">預覽版本公告</string>
     <string name="licenses">開放原始碼授權</string>
     <string name="website">網站</string>
     <string name="check_for_updates">檢查更新</string>

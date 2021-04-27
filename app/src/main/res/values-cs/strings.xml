@@ -94,7 +94,6 @@
     <string name="right_to_left_viewer">Zprava doleva</string>
     <string name="pref_rotation_type">Otáčení</string>
     <string name="rotation_free">Volné</string>
-    <string name="rotation_lock">Zamknuté</string>
     <string name="rotation_force_portrait">Na výšku</string>
     <string name="rotation_force_landscape">Na šířku</string>
     <string name="color_filter_r_value">R</string>

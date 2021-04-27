@@ -141,7 +141,6 @@
     <string name="zoom_start_center">मध्यविंदु</string>
     <string name="pref_rotation_type">नियमित आवर्तन</string>
     <string name="rotation_free">मुक्त</string>
-    <string name="rotation_lock">ताला</string>
     <string name="rotation_force_portrait">मजबूर चित्र</string>
     <string name="rotation_force_landscape">मजबूर लैंडस्केप</string>
     <string name="color_filter_r_value">R</string>
@@ -447,7 +446,6 @@
         <item quantity="one">1 शीर्षक के लिए</item>
         <item quantity="other">%d शीर्षक के लिए</item>
     </plurals>
-    <string name="notices">पूर्वावलोकन बनाएँ नोटिस</string>
     <string name="pref_theme_light">लाइट थीम</string>
     <string name="theme_light_default">डिफ़ॉल्ट</string>
     <string name="theme_light_blue">हल्का नीला</string>

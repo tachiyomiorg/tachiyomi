@@ -114,7 +114,6 @@
     <string name="zoom_start_center">Midden</string>
     <string name="pref_rotation_type">Rotatie</string>
     <string name="rotation_free">Vrij</string>
-    <string name="rotation_lock">Vergrendeld</string>
     <string name="color_filter_r_value">R</string>
     <string name="color_filter_g_value">G</string>
     <string name="color_filter_b_value">B</string>
@@ -480,7 +479,6 @@
     <string name="label_downloaded_only">Alleen gedownloade</string>
     <string name="check_for_updates">Controleer op updates</string>
     <string name="licenses">Open-sourcelicenties</string>
-    <string name="notices">Voorbeeldversie mededelingen</string>
     <string name="website">Website</string>
     <string name="battery_optimization_disabled">Batterijoptimalisatie is al uitgeschakeld</string>
     <string name="pref_disable_battery_optimization_summary">Helpt bij het bijwerken van bibliotheek en back-ups op de achtergrond</string>
@@ -673,4 +671,6 @@
     <string name="action_sort_chapter_fetch_date">Datum opgehaald</string>
     <string name="none">Geen</string>
     <string name="action_show_errors">Fouten weergeven</string>
+    <string name="update_check_eol">Deze Android versie wordt niet meer ondersteund</string>
+    <string name="clipboard_copy_error">Mislukt om naar het klemboord te kopiëren</string>
 </resources>

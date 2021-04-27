@@ -204,7 +204,6 @@
     <string name="double_tap_anim_speed_fast">სწარფი</string>
     <string name="pref_rotation_type">გადმოტრიალება</string>
     <string name="rotation_free">თავისუფალი</string>
-    <string name="rotation_lock">დაფიქსირებული</string>
     <string name="rotation_force_portrait">პორტრეტის რეჟიმი</string>
     <string name="rotation_force_landscape">პეიზაჟის რეჟიმი</string>
     <string name="color_filter_r_value">R</string>
@@ -481,7 +480,6 @@
     <string name="pref_disable_battery_optimization">გამორთე ბატარეის ოპტიმიზაცია</string>
     <string name="pref_disable_battery_optimization_summary">ეხმარება უკანა ფონში მიმდინარე ბიბლიოთეკის განახლებებსდა რეზერვს</string>
     <string name="build_time">აწყობის დრო</string>
-    <string name="notices">აწყობის განცხადებების გადახედვა</string>
     <string name="licenses">ღია კოდის ლიცენზია</string>
     <string name="pinned_sources">მიმაგრებული</string>
     <string name="local_source_help_guide">ლოკალური წყაროს გიდი</string>

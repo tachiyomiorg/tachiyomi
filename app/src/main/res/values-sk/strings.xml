@@ -181,7 +181,6 @@
     <string name="double_tap_anim_speed_fast">Rýchlo</string>
     <string name="pref_rotation_type">Rotácia</string>
     <string name="rotation_free">Voľná</string>
-    <string name="rotation_lock">Zamknúť</string>
     <string name="rotation_force_portrait">Iba na výšku</string>
     <string name="rotation_force_landscape">Iba na šírku</string>
     <string name="color_filter_r_value">R</string>

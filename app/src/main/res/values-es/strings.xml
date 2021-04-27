@@ -60,7 +60,7 @@
     <string name="portrait">Vertical</string>
     <string name="landscape">Horizontal</string>
     <string name="default_columns">Predeterminado</string>
-    <string name="pref_library_update_interval">Frecuencia de actualización de biblioteca</string>
+    <string name="pref_library_update_interval">Frecuencia de actualización</string>
     <string name="update_never">Manual</string>
     <string name="update_1hour">Cada hora</string>
     <string name="update_2hour">Cada 2 horas</string>
@@ -69,7 +69,7 @@
     <string name="update_12hour">Cada 12 horas</string>
     <string name="update_24hour">Cada día</string>
     <string name="update_48hour">Cada 2 días</string>
-    <string name="pref_library_update_restriction">Restricciones de actualización de biblioteca</string>
+    <string name="pref_library_update_restriction">Restricciones de actualización</string>
     <string name="pref_library_update_restriction_summary">Actualizar solo cuando se cumplan las condiciones</string>
     <string name="charging">Cargando</string>
     <string name="pref_update_only_non_completed">Solo actualizar manga no finalizada</string>
@@ -108,9 +108,8 @@
     <string name="zoom_start_center">Centro</string>
     <string name="pref_rotation_type">Rotación</string>
     <string name="rotation_free">Libre</string>
-    <string name="rotation_lock">Bloqueado</string>
     <string name="rotation_force_portrait">Forzar retrato</string>
-    <string name="rotation_force_landscape">Forzar apaisado</string>
+    <string name="rotation_force_landscape">Forzar en paisaje</string>
     <!-- Downloads section -->
     <string name="pref_download_directory">Ubicación de descargas</string>
     <string name="pref_download_only_over_wifi">Descargar sólo a través de Wi-Fi</string>
@@ -129,7 +128,7 @@
     <string name="cookies_cleared">Cookies borradas</string>
     <string name="pref_clear_database">Borrar redundancia de la base de datos</string>
     <string name="pref_clear_database_summary">Borrar el historial de mangas que no están guardados en la biblioteca</string>
-    <string name="clear_database_confirmation">¿Lo confirma\? Se perderán los capítulos leídos y el progreso de los mangas que no estén en la biblioteca</string>
+    <string name="clear_database_confirmation">¿Estás seguro\? Los capítulos leídos y el progreso del título que no esté en la biblioteca se perderá</string>
     <string name="clear_database_completed">Entradas eliminadas</string>
     <!-- About section -->
     <string name="version">Versión</string>
@@ -157,7 +156,7 @@
     <string name="description">Descripción</string>
     <string name="ongoing">En publicación</string>
     <string name="unknown">Desconocido</string>
-    <string name="licensed">Licenciado</string>
+    <string name="licensed">En hiatus</string>
     <string name="remove_from_library">Eliminar de biblioteca</string>
     <!-- Manga chapters fragment -->
     <string name="manga_chapters_tab">Capítulos</string>
@@ -251,8 +250,8 @@
     <string name="action_sort_alpha">Alfabéticamente</string>
     <string name="action_sort_total">Total de capítulos</string>
     <string name="action_sort_last_read">Último leído</string>
-    <string name="action_bookmark">Añadir marcador</string>
-    <string name="action_remove_bookmark">Quitar marcador</string>
+    <string name="action_bookmark">Marcar Capitulo</string>
+    <string name="action_remove_bookmark">Desmarcar capítulo</string>
     <string name="action_add">Añadir</string>
     <string name="download_notifier_no_network">No hay ninguna conexión de red disponible</string>
     <string name="download_notifier_download_paused">Descarga en pausa</string>
@@ -408,7 +407,7 @@
     <string name="filter_mode_lighten">Subexponer / Aclarar</string>
     <string name="filter_mode_darken">Quemar / Oscurecer</string>
     <string name="label_help">Ayuda</string>
-    <string name="pref_library_update_prioritization">Orden de actualización de la biblioteca</string>
+    <string name="pref_library_update_prioritization">Orden de actualización</string>
     <string name="no_results_found">No se han encontrado resultados</string>
     <string name="migration_selection_prompt">Selecciona una fuente para migrar</string>
     <string name="action_webview_back">Atrás</string>
@@ -419,11 +418,11 @@
     <string name="ext_obsolete">Obsoleto</string>
     <string name="obsolete_extension_message">Esta extensión ya no está disponible.</string>
     <string name="pref_date_format">Formato de fecha</string>
-    <string name="pref_category_library_update">Actualizaciones</string>
+    <string name="pref_category_library_update">Actualizacion Global</string>
     <string name="logout">Cerrar sesión</string>
     <string name="logout_success">Has cerrado sesión</string>
     <string name="currently_reading">Leyendo actualmente</string>
-    <string name="paused">En pausa</string>
+    <string name="paused">Pausado</string>
     <string name="logout_title">¿Cerrar sesión de %1$s\?</string>
     <string name="want_to_read">Quiero leer</string>
     <string name="label_more">Más</string>
@@ -479,7 +478,6 @@
         <item quantity="one">Para 1 título</item>
         <item quantity="other">Para %d títulos</item>
     </plurals>
-    <string name="notices">Nota de versiones recientes</string>
     <string name="pref_theme_light">Tema claro</string>
     <string name="theme_light_default">Predeterminado</string>
     <string name="theme_light_blue">Azul y blanco</string>
@@ -533,7 +531,7 @@
     <string name="error_invalid_date_supplied">Fecha indicada invalida</string>
     <string name="last_used_source">Ultímo usado</string>
     <string name="check_for_updates">Comprobar las actualizaciones</string>
-    <string name="local_source_help_guide">Instruccion local de fuente</string>
+    <string name="local_source_help_guide">Guía de fuente local</string>
     <plurals name="download_queue_summary">
         <item quantity="one">Queda 1</item>
         <item quantity="other">Quedan %1$s</item>
@@ -680,4 +678,32 @@
     <string name="action_order_by_upload_date">Por fecha de subida</string>
     <string name="action_filter_tracked">Rastreado</string>
     <string name="right_and_left_nav">Derecha e Izquierda</string>
+    <string name="backup_restore_content_full">Se restaurarán los datos del archivo de respaldo.
+\n
+\n Deberá instalar las extensiones que falten e iniciar sesión en los servicios de seguimiento después para usarlas.</string>
+    <string name="update_check_eol">Esta versión de Android ya no es compatible</string>
+    <string name="clipboard_copy_error">No se pudo copiar al portapapeles</string>
+    <string name="pref_dns_over_https">DNS sobre HTTPS</string>
+    <string name="pref_download_new_categories_details">Los manga de las categorías excluidas no se descargarán incluso si también están en las categorías incluidas.</string>
+    <string name="pref_category_auto_download">Auto-descarga</string>
+    <string name="rotation_landscape">Paisaje</string>
+    <string name="rotation_portrait">Retrato</string>
+    <string name="nav_zone_right">Derecha</string>
+    <string name="nav_zone_left">Izquierda</string>
+    <string name="nav_zone_next">Proximo</string>
+    <string name="nav_zone_prev">Anterior</string>
+    <string name="pref_dual_page_invert_summary">Si la ubicación de la división de página dual no coincide con la dirección de lectura</string>
+    <string name="pref_dual_page_invert">Invertir la ubicación de la división de página dual</string>
+    <string name="pref_dual_page_split">División de página dual</string>
+    <string name="pref_show_navigation_mode_summary">Mostrar zonas de tap cuando se abre el lector</string>
+    <string name="pref_show_navigation_mode">Mostrar superposición de diseño de navegación</string>
+    <string name="exclude">Excluir: %s</string>
+    <string name="include">Incluir: %s</string>
+    <string name="none">Ninguno</string>
+    <string name="pref_library_update_categories_details">Los manga de las categorías excluidas no se actualizarán incluso si también están en las categorías incluidas.</string>
+    <string name="update_8hour">Cada 8 horas</string>
+    <string name="update_4hour">Cada 4 horas</string>
+    <string name="action_show_errors">Mostrar Errores</string>
+    <string name="action_display_show_number_of_items">Mostrar número de artículos</string>
+    <string name="action_sort_chapter_fetch_date">Fecha obtenida</string>
 </resources>
