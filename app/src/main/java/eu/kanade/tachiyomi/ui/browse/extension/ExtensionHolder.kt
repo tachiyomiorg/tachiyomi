@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.ui.browse.extension
 
 import android.view.View
+import coil.clear
 import coil.load
 import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
@@ -41,6 +42,7 @@ class ExtensionHolder(view: View, val adapter: ExtensionAdapter) :
             else -> ""
         }.toUpperCase()
 
+        binding.image.clear()
         if (extension is Extension.Available) {
             binding.image.load(extension.iconUrl)
         } else {
