@@ -153,7 +153,6 @@ open class App : Application(), LifecycleObserver, ImageLoaderFactory {
     private inner class DisableIncognitoMode : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             preferences.incognitoMode().set(false)
-            // TODO: Send signal to close reader (and maybe source screen)
         }
     }
 

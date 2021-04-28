@@ -163,6 +163,12 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
         window.decorView.setOnSystemUiVisibilityChangeListener {
             setMenuVisibility(menuVisible, animate = false)
         }
+
+        // Finish when incognito mode is disabled
+        preferences.incognitoMode().asFlow()
+            .drop(1)
+            .onEach { if (!it) finish() }
+            .launchIn(lifecycleScope)
     }
 
     /**

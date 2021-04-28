@@ -143,6 +143,8 @@ class ReaderPresenter(
         hasTrackers = tracks.size > 0
     }
 
+    private val incognitoMode = preferences.incognitoMode().get()
+
     /**
      * Called when the presenter is created. It retrieves the saved active chapter if the process
      * was restored.
@@ -369,7 +371,7 @@ class ReaderPresenter(
 
         // Save last page read and mark as read if needed
         selectedChapter.chapter.last_page_read = page.index
-        val shouldTrack = !preferences.incognitoMode().get() || hasTrackers
+        val shouldTrack = !incognitoMode || hasTrackers
         if (selectedChapter.pages?.lastIndex == page.index && shouldTrack) {
             selectedChapter.chapter.read = true
             updateTrackChapterRead(selectedChapter)
@@ -424,7 +426,7 @@ class ReaderPresenter(
      * If incognito mode isn't on or has at least 1 tracker
      */
     private fun saveChapterProgress(chapter: ReaderChapter) {
-        if (!preferences.incognitoMode().get() || hasTrackers) {
+        if (!incognitoMode || hasTrackers) {
             db.updateChapterProgress(chapter.chapter).asRxCompletable()
                 .onErrorComplete()
                 .subscribeOn(Schedulers.io())
@@ -436,7 +438,7 @@ class ReaderPresenter(
      * Saves this [chapter] last read history if incognito mode isn't on.
      */
     private fun saveChapterHistory(chapter: ReaderChapter) {
-        if (!preferences.incognitoMode().get()) {
+        if (!incognitoMode) {
             val history = History.create(chapter.chapter).apply { last_read = Date().time }
             db.updateHistoryLastRead(history).asRxCompletable()
                 .onErrorComplete()

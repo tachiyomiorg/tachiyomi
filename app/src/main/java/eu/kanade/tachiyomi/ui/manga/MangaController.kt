@@ -127,7 +127,7 @@ class MangaController :
     var source: Source? = null
         private set
 
-    private val fromSource = args.getBoolean(FROM_SOURCE_EXTRA, false)
+    val fromSource = args.getBoolean(FROM_SOURCE_EXTRA, false)
 
     private val preferences: PreferencesHelper by injectLazy()
     private val coverCache: CoverCache by injectLazy()

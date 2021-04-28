@@ -41,6 +41,7 @@ import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.base.controller.ToolbarLiftOnScrollController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.browse.BrowseController
+import eu.kanade.tachiyomi.ui.browse.source.browse.BrowseSourceController
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchController
 import eu.kanade.tachiyomi.ui.download.DownloadController
 import eu.kanade.tachiyomi.ui.library.LibraryController
@@ -224,7 +225,17 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
             .launchIn(lifecycleScope)
 
         preferences.incognitoMode()
-            .asImmediateFlow { binding.incognitoMode.isVisible = it }
+            .asImmediateFlow {
+                binding.incognitoMode.isVisible = it
+
+                // Close BrowseSourceController and its MangaController child when incognito mode is disabled
+                if (!it) {
+                    val fg = router.backstack.last().controller()
+                    if (fg is BrowseSourceController || fg is MangaController && fg.fromSource) {
+                        router.popToRoot()
+                    }
+                }
+            }
             .launchIn(lifecycleScope)
     }
 
