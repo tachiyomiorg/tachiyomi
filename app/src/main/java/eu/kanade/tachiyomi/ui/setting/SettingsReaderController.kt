@@ -34,7 +34,8 @@ class SettingsReaderController : SettingsController() {
                 R.string.webtoon_viewer,
                 R.string.vertical_plus_viewer
             )
-            entryValues = ReadingModeType.values().drop(1).map { value -> "${value.flagValue}" }.toTypedArray()
+            entryValues = ReadingModeType.values().drop(1)
+                    .map { value -> "${value.flagValue}" }.toTypedArray()
             defaultValue = "${ReadingModeType.RIGHT_TO_LEFT.flagValue}"
             summary = "%s"
         }
@@ -86,7 +87,6 @@ class SettingsReaderController : SettingsController() {
                     R.string.rotation_force_landscape,
                 )
                 entryValues = OrientationType.values().drop(1)
-                    .filterNot { value -> value == OrientationType.LOCKED_LANDSCAPE } // Lock has two types in this enum while only being one option
                     .map { value -> "${value.flagValue}" }.toTypedArray()
                 defaultValue = "${OrientationType.FREE.flagValue}"
                 summary = "%s"
