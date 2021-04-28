@@ -2,14 +2,20 @@ package eu.kanade.tachiyomi
 
 import android.app.ActivityManager
 import android.app.Application
+import android.app.PendingIntent
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.content.res.Configuration
 import android.os.Build
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.getSystemService
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
+import androidx.lifecycle.lifecycleScope
 import androidx.multidex.MultiDex
 import coil.ImageLoader
 import coil.ImageLoaderFactory
@@ -22,6 +28,9 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.network.NetworkHelper
 import eu.kanade.tachiyomi.ui.security.SecureActivityDelegate
 import eu.kanade.tachiyomi.util.system.LocaleHelper
+import eu.kanade.tachiyomi.util.system.notification
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import org.acra.ACRA
 import org.acra.annotation.AcraCore
 import org.acra.annotation.AcraHttpSender
@@ -45,6 +54,8 @@ open class App : Application(), LifecycleObserver, ImageLoaderFactory {
 
     private val preferences: PreferencesHelper by injectLazy()
 
+    private val disableIncognitoReceiver = DisableIncognitoMode()
+
     override fun onCreate() {
         super.onCreate()
         if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
@@ -65,6 +76,33 @@ open class App : Application(), LifecycleObserver, ImageLoaderFactory {
 
         // Reset Incognito Mode on relaunch
         preferences.incognitoMode().set(false)
+
+        // Show notification to disable Incognito Mode when it's enabled
+        baseContext.registerReceiver(disableIncognitoReceiver, IntentFilter(ACTION_DISABLE_INCOGNITO_MODE))
+        preferences.incognitoMode().asFlow()
+            .onEach { enabled ->
+                val notificationManager = NotificationManagerCompat.from(this)
+                if (enabled) {
+                    val notification = notification(Notifications.CHANNEL_INCOGNITO_MODE) {
+                        setContentTitle(getString(R.string.pref_incognito_mode))
+                        setContentText(getString(R.string.notification_incognito_text))
+                        setSmallIcon(R.drawable.ic_glasses_black_24dp)
+                        setOngoing(true)
+
+                        val pendingIntent = PendingIntent.getBroadcast(
+                            this@App,
+                            0,
+                            Intent(ACTION_DISABLE_INCOGNITO_MODE),
+                            PendingIntent.FLAG_ONE_SHOT
+                        )
+                        setContentIntent(pendingIntent)
+                    }
+                    notificationManager.notify(Notifications.ID_INCOGNITO_MODE, notification)
+                } else {
+                    notificationManager.cancel(Notifications.ID_INCOGNITO_MODE)
+                }
+            }
+            .launchIn(ProcessLifecycleOwner.get().lifecycleScope)
     }
 
     override fun attachBaseContext(base: Context) {
@@ -110,5 +148,16 @@ open class App : Application(), LifecycleObserver, ImageLoaderFactory {
 
     protected open fun setupNotificationChannels() {
         Notifications.createChannels(this)
+    }
+
+    private inner class DisableIncognitoMode : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            preferences.incognitoMode().set(false)
+            // TODO: Send signal to close reader (and maybe source screen)
+        }
+    }
+
+    companion object {
+        private const val ACTION_DISABLE_INCOGNITO_MODE = "tachi.action.DISABLE_INCOGNITO_MODE"
     }
 }
