@@ -22,6 +22,11 @@ class PagerViewerAdapter(private val viewer: PagerViewer) : ViewPagerAdapter() {
     var items: MutableList<Any> = mutableListOf()
         private set
 
+    /**
+     * Holds preprocessed items so they don't get removed when changing chapter
+     */
+    private var preprocessed: MutableMap<Int, InsertPage> = mutableMapOf()
+
     var nextTransition: ChapterTransition.Next? = null
         private set
 
@@ -54,10 +59,25 @@ class PagerViewerAdapter(private val viewer: PagerViewer) : ViewPagerAdapter() {
             newItems.add(ChapterTransition.Prev(chapters.currChapter, chapters.prevChapter))
         }
 
+        var insertPageLastPage: InsertPage? = null
+
         // Add current chapter.
         val currPages = chapters.currChapter.pages
         if (currPages != null) {
-            newItems.addAll(currPages)
+            val pages = currPages.toMutableList()
+
+            val lastPage = pages.last()
+
+            // Insert preprocessed pages into current page list
+            preprocessed.keys.sortedDescending()
+                .forEach { key ->
+                    if (lastPage.index == key) {
+                        insertPageLastPage = preprocessed[key]
+                    }
+                    preprocessed[key]?.let { pages.add(key + 1, it) }
+                }
+
+            newItems.addAll(pages)
         }
 
         currentChapter = chapters.currChapter
@@ -88,8 +108,14 @@ class PagerViewerAdapter(private val viewer: PagerViewer) : ViewPagerAdapter() {
             newItems.reverse()
         }
 
+        preprocessed = mutableMapOf()
         items = newItems
         notifyDataSetChanged()
+
+        // Will skip insert page otherwise
+        if (insertPageLastPage != null) {
+            viewer.moveToPage(insertPageLastPage!!)
+        }
     }
 
     /**
@@ -125,20 +151,25 @@ class PagerViewerAdapter(private val viewer: PagerViewer) : ViewPagerAdapter() {
         return POSITION_NONE
     }
 
-    fun onPageSplit(current: Any?, newPage: InsertPage, clazz: Class<out PagerViewer>) {
-        if (current !is ReaderPage) return
+    fun onPageSplit(currentPage: Any?, newPage: InsertPage) {
+        if (currentPage !is ReaderPage) return
 
-        val currentIndex = items.indexOf(current)
+        val currentIndex = items.indexOf(currentPage)
 
-        val placeAtIndex = when {
-            clazz.isAssignableFrom(L2RPagerViewer::class.java) -> currentIndex + 1
-            clazz.isAssignableFrom(VerticalPagerViewer::class.java) -> currentIndex + 1
-            clazz.isAssignableFrom(R2LPagerViewer::class.java) -> currentIndex
+        // Put aside preprocessed pages for next chapter so they don't get removed when changing chapter
+        if (currentPage.chapter.chapter.id != currentChapter?.chapter?.id) {
+            preprocessed[newPage.index] = newPage
+            return
+        }
+
+        val placeAtIndex = when (viewer) {
+            is L2RPagerViewer,
+            is VerticalPagerViewer -> currentIndex + 1
             else -> currentIndex
         }
 
         // It will enter a endless cycle of insert pages
-        if (clazz.isAssignableFrom(R2LPagerViewer::class.java) && items[placeAtIndex - 1] is InsertPage) {
+        if (viewer is R2LPagerViewer && placeAtIndex - 1 >= 0 && items[placeAtIndex - 1] is InsertPage) {
             return
         }
 

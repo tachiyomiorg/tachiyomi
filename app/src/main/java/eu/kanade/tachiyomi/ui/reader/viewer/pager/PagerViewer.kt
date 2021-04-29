@@ -192,6 +192,11 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
         Timber.d("onReaderPageSelected: ${page.number}/${pages.size}")
         activity.onPageSelected(page)
 
+        // Skip preload on inserts it causes unwanted page jumping
+        if (page is InsertPage) {
+            return
+        }
+
         // Preload next chapter once we're within the last 5 pages of the current chapter
         val inPreloadRange = pages.size - page.number < 5
         if (inPreloadRange && allowPreload && page.chapter == adapter.currentChapter) {
@@ -387,7 +392,7 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
     fun onPageSplit(currentPage: ReaderPage, newPage: InsertPage) {
         activity.runOnUiThread {
             // Need to insert on UI thread else images will go blank
-            adapter.onPageSplit(currentPage, newPage, this::class.java)
+            adapter.onPageSplit(currentPage, newPage)
         }
     }
 
