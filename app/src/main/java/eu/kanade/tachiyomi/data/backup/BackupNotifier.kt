@@ -132,8 +132,6 @@ class BackupNotifier(private val context: Context) {
             )
         )
 
-        val size = trackManager.services.size
-
         with(completeNotificationBuilder) {
             setContentTitle(context.getString(R.string.restore_completed))
             setContentText(context.resources.getQuantityString(R.plurals.restore_completed_message, errorCount, timeString, errorCount))
@@ -153,7 +151,7 @@ class BackupNotifier(private val context: Context) {
             }
 
             // add action to refresh tracking if Trackers are set up
-            if (size > 1) {
+            if (trackManager.hasLoggedServices()) {
                 addAction(
                     R.drawable.ic_folder_24dp,
                     context.getString(R.string.pref_refresh_library_tracking),
