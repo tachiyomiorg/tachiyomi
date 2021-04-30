@@ -146,6 +146,12 @@ class BackupNotifier(private val context: Context) {
                 )
             }
 
+            addAction(
+                R.drawable.ic_folder_24dp,
+                context.getString(R.string.pref_refresh_library_tracking),
+                NotificationReceiver.refreshTrackingPendingBroadcast(context, Notifications.ID_RESTORE_COMPLETE)
+            )
+
             show(Notifications.ID_RESTORE_COMPLETE)
         }
     }

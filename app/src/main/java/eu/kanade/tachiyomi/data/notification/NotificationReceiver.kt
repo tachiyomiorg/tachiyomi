@@ -80,6 +80,10 @@ class NotificationReceiver : BroadcastReceiver() {
                 context,
                 intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1)
             )
+            ACTION_REFRESH_TRACKING -> refreshTracking(
+                context,
+                intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1)
+            )
             // Cancel library update and dismiss notification
             ACTION_CANCEL_LIBRARY_UPDATE -> cancelLibraryUpdate(context, Notifications.ID_LIBRARY_PROGRESS)
             // Open reader activity
@@ -212,6 +216,20 @@ class NotificationReceiver : BroadcastReceiver() {
     }
 
     /**
+     * Method called when user wants to refresh tracking
+     * uses the same job as used for refresh tracking in advanced settings
+     *
+     * @param context context of application
+     * @param notificationId id of notification
+     */
+    private fun refreshTracking(context: Context, notificationId: Int) {
+        // Dismiss notification
+        dismissNotification(context, notificationId)
+
+        LibraryUpdateService.start(context, target = LibraryUpdateService.Target.TRACKING)
+    }
+
+    /**
      * Method called when user wants to stop a library update
      *
      * @param context context of application
@@ -258,6 +276,7 @@ class NotificationReceiver : BroadcastReceiver() {
         private const val ACTION_DELETE_IMAGE = "$ID.$NAME.DELETE_IMAGE"
 
         private const val ACTION_SHARE_BACKUP = "$ID.$NAME.SEND_BACKUP"
+        private const val ACTION_REFRESH_TRACKING = "$ID.$NAME.REFRESH_TRACKING"
 
         private const val ACTION_SHARE_CRASH_LOG = "$ID.$NAME.SEND_CRASH_LOG"
 
@@ -547,6 +566,21 @@ class NotificationReceiver : BroadcastReceiver() {
         internal fun cancelRestorePendingBroadcast(context: Context, notificationId: Int): PendingIntent {
             val intent = Intent(context, NotificationReceiver::class.java).apply {
                 action = ACTION_CANCEL_RESTORE
+                putExtra(EXTRA_NOTIFICATION_ID, notificationId)
+            }
+            return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        }
+
+        /**
+         * Returns [PendingIntent] that sets up library update job for refreshing tracking
+         *
+         * @param context context of application
+         * @param notificationId id of notification
+         * @return [PendingIntent]
+         */
+        internal fun refreshTrackingPendingBroadcast(context: Context, notificationId: Int): PendingIntent {
+            val intent = Intent(context, NotificationReceiver::class.java).apply {
+                action = ACTION_REFRESH_TRACKING
                 putExtra(EXTRA_NOTIFICATION_ID, notificationId)
             }
             return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
