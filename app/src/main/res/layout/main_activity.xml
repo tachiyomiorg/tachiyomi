@@ -87,7 +87,6 @@
         android:layout_gravity="bottom"
         app:itemIconTint="@color/bottom_nav_selector"
         app:itemTextColor="@color/bottom_nav_selector"
-        app:labelVisibilityMode="labeled"
         app:layout_insetEdge="bottom"
         app:menu="@menu/bottom_nav" />
 
