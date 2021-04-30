@@ -8,9 +8,11 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.notification.NotificationReceiver
 import eu.kanade.tachiyomi.data.notification.Notifications
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.util.storage.getUriCompat
 import eu.kanade.tachiyomi.util.system.notificationBuilder
 import eu.kanade.tachiyomi.util.system.notificationManager
+import uy.kohesive.injekt.api.get
 import uy.kohesive.injekt.injectLazy
 import java.io.File
 import java.util.concurrent.TimeUnit
@@ -18,6 +20,8 @@ import java.util.concurrent.TimeUnit
 class BackupNotifier(private val context: Context) {
 
     private val preferences: PreferencesHelper by injectLazy()
+
+    private val trackManager: TrackManager by injectLazy()
 
     private val progressNotificationBuilder = context.notificationBuilder(Notifications.CHANNEL_BACKUP_RESTORE_PROGRESS) {
         setLargeIcon(BitmapFactory.decodeResource(context.resources, R.mipmap.ic_launcher))
@@ -128,6 +132,8 @@ class BackupNotifier(private val context: Context) {
             )
         )
 
+        val size = trackManager.services.size
+
         with(completeNotificationBuilder) {
             setContentTitle(context.getString(R.string.restore_completed))
             setContentText(context.resources.getQuantityString(R.plurals.restore_completed_message, errorCount, timeString, errorCount))
@@ -146,11 +152,14 @@ class BackupNotifier(private val context: Context) {
                 )
             }
 
-            addAction(
-                R.drawable.ic_folder_24dp,
-                context.getString(R.string.pref_refresh_library_tracking),
-                NotificationReceiver.refreshTrackingPendingBroadcast(context, Notifications.ID_RESTORE_COMPLETE)
-            )
+            // add action to refresh tracking if Trackers are set up
+            if (size > 1) {
+                addAction(
+                    R.drawable.ic_folder_24dp,
+                    context.getString(R.string.pref_refresh_library_tracking),
+                    NotificationReceiver.refreshTrackingPendingBroadcast(context, Notifications.ID_RESTORE_COMPLETE)
+                )
+            }
 
             show(Notifications.ID_RESTORE_COMPLETE)
         }
