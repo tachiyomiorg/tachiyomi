@@ -163,7 +163,7 @@ object Notifications {
             ),
             NotificationChannel(
                 CHANNEL_INCOGNITO_MODE,
-                context.getString(R.string.channel_incognito_mode),
+                context.getString(R.string.pref_incognito_mode),
                 NotificationManager.IMPORTANCE_LOW
             )
         ).forEach(context.notificationManager::createNotificationChannel)

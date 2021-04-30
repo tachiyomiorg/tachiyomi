@@ -466,6 +466,7 @@
     <string name="label_downloaded_only">Downloaded only</string>
     <string name="pref_incognito_mode">Incognito mode</string>
     <string name="pref_incognito_mode_summary">Pauses reading history</string>
+    <string name="notification_incognito_text">Disable incognito mode</string>
     <string name="downloaded_only_summary">Filters all manga in your library</string>
     <plurals name="download_queue_summary">
         <item quantity="one">1 remaining</item>
@@ -771,12 +772,8 @@
     <string name="channel_new_chapters">Chapter updates</string>
     <string name="channel_ext_updates">Extension updates</string>
     <string name="channel_crash_logs">Crash logs</string>
-    <string name="channel_incognito_mode">Incognito</string>
 
     <!-- S Pen actions -->
     <string name="spen_previous_page">Previous page</string>
     <string name="spen_next_page">Next page</string>
-
-    <string name="notification_incognito_text">Disable incognito mode</string>
-
 </resources>
