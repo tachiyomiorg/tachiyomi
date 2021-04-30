@@ -54,7 +54,7 @@ open class App : Application(), LifecycleObserver, ImageLoaderFactory {
 
     private val preferences: PreferencesHelper by injectLazy()
 
-    private val disableIncognitoReceiver = DisableIncognitoMode()
+    private val disableIncognitoReceiver = DisableIncognitoReceiver()
 
     override fun onCreate() {
         super.onCreate()
@@ -78,11 +78,11 @@ open class App : Application(), LifecycleObserver, ImageLoaderFactory {
         preferences.incognitoMode().set(false)
 
         // Show notification to disable Incognito Mode when it's enabled
-        baseContext.registerReceiver(disableIncognitoReceiver, IntentFilter(ACTION_DISABLE_INCOGNITO_MODE))
         preferences.incognitoMode().asFlow()
             .onEach { enabled ->
                 val notificationManager = NotificationManagerCompat.from(this)
                 if (enabled) {
+                    disableIncognitoReceiver.register()
                     val notification = notification(Notifications.CHANNEL_INCOGNITO_MODE) {
                         setContentTitle(getString(R.string.pref_incognito_mode))
                         setContentText(getString(R.string.notification_incognito_text))
@@ -99,6 +99,7 @@ open class App : Application(), LifecycleObserver, ImageLoaderFactory {
                     }
                     notificationManager.notify(Notifications.ID_INCOGNITO_MODE, notification)
                 } else {
+                    disableIncognitoReceiver.unregister()
                     notificationManager.cancel(Notifications.ID_INCOGNITO_MODE)
                 }
             }
@@ -150,9 +151,25 @@ open class App : Application(), LifecycleObserver, ImageLoaderFactory {
         Notifications.createChannels(this)
     }
 
-    private inner class DisableIncognitoMode : BroadcastReceiver() {
+    private inner class DisableIncognitoReceiver : BroadcastReceiver() {
+        private var registered = false
+
         override fun onReceive(context: Context, intent: Intent) {
             preferences.incognitoMode().set(false)
+        }
+
+        fun register() {
+            if (!registered) {
+                registerReceiver(this, IntentFilter(ACTION_DISABLE_INCOGNITO_MODE))
+                registered = true
+            }
+        }
+
+        fun unregister() {
+            if (registered) {
+                unregisterReceiver(this)
+                registered = false
+            }
         }
     }
 

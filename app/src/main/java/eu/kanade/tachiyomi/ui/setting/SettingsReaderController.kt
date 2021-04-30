@@ -35,7 +35,7 @@ class SettingsReaderController : SettingsController() {
                 R.string.vertical_plus_viewer
             )
             entryValues = ReadingModeType.values().drop(1)
-                    .map { value -> "${value.flagValue}" }.toTypedArray()
+                .map { value -> "${value.flagValue}" }.toTypedArray()
             defaultValue = "${ReadingModeType.RIGHT_TO_LEFT.flagValue}"
             summary = "%s"
         }
