@@ -24,11 +24,14 @@ import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.behavior.HideBottomViewOnScrollBehavior
+import com.google.android.material.bottomnavigation.LabelVisibilityMode.LABEL_VISIBILITY_LABELED
+import com.google.android.material.bottomnavigation.LabelVisibilityMode.LABEL_VISIBILITY_SELECTED
 import dev.chrisbanes.insetter.applyInsetter
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.Migrations
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.notification.NotificationReceiver
+import eu.kanade.tachiyomi.data.preference.PreferenceKeys.bottomBarLabels
 import eu.kanade.tachiyomi.data.preference.asImmediateFlow
 import eu.kanade.tachiyomi.databinding.MainActivityBinding
 import eu.kanade.tachiyomi.extension.api.ExtensionGithubApi
@@ -240,6 +243,12 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
                 }
             }
             .launchIn(lifecycleScope)
+
+        // SY -->
+        preferences.bottomBarLabels()
+            .asImmediateFlow { setBottomNavLabelVisibility() }
+            .launchIn(lifecycleScope)
+        // SY <--
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -491,6 +500,14 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
                 preferences.hideBottomBar().get() -> HideBottomViewOnScrollBehavior<View>()
                 else -> null
             }
+        }
+    }
+
+    private fun setBottomNavLabelVisibility() {
+        if (preferences.bottomBarLabels().get()) {
+            binding.bottomNav.labelVisibilityMode = LABEL_VISIBILITY_LABELED
+        } else {
+            binding.bottomNav.labelVisibilityMode = LABEL_VISIBILITY_SELECTED
         }
     }
 

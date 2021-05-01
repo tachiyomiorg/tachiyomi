@@ -16,6 +16,8 @@ object PreferenceKeys {
     const val hideBottomBar = "pref_hide_bottom_bar_on_scroll"
 
     const val enableTransitions = "pref_enable_transitions_key"
+    
+    const val bottomBarLabels = "pref_show_bottom_bar_labels"
 
     const val doubleTapAnimationSpeed = "pref_double_tap_anim_speed"
 
