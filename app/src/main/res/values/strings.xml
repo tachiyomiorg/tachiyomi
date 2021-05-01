@@ -300,6 +300,7 @@
     <string name="white_background">White</string>
     <string name="gray_background">Gray</string>
     <string name="black_background">Black</string>
+    <string name="automatic_background">Automatic</string>
     <string name="pref_viewer_type">Default reading mode</string>
     <string name="default_viewer">Default</string>
     <string name="default_nav">Default</string>

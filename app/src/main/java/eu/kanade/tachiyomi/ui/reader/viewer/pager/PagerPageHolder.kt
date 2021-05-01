@@ -239,7 +239,9 @@ class PagerPageHolder(
             .doOnNext { isAnimated ->
                 if (!isAnimated) {
                     initSubsamplingImageView().apply {
-                        background = ImageUtil.chooseBackground(context, openStream!!)
+                        if (viewer.config.automaticBackground) {
+                            background = ImageUtil.chooseBackground(context, openStream!!)
+                        }
                         setImage(ImageSource.inputStream(openStream!!))
                     }
                 } else {
