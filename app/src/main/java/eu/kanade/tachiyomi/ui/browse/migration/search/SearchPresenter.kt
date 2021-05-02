@@ -26,12 +26,16 @@ class SearchPresenter(
     private val manga: Manga
 ) : GlobalSearchPresenter(initialQuery) {
 
-    private val replacingMangaRelay = BehaviorRelay.create<Boolean>()
+    private val replacingMangaRelay = BehaviorRelay.create<Pair<Boolean, Manga?>>()
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
 
-        replacingMangaRelay.subscribeLatestCache({ controller, isReplacingManga -> (controller as? SearchController)?.renderIsReplacingManga(isReplacingManga) })
+        replacingMangaRelay.subscribeLatestCache(
+            { controller, (isReplacingManga, newManga) ->
+                (controller as? SearchController)?.renderIsReplacingManga(isReplacingManga, newManga)
+            }
+        )
     }
 
     override fun getEnabledSources(): List<CatalogueSource> {
@@ -55,7 +59,7 @@ class SearchPresenter(
     fun migrateManga(prevManga: Manga, manga: Manga, replace: Boolean) {
         val source = sourceManager.get(manga.source) ?: return
 
-        replacingMangaRelay.call(true)
+        replacingMangaRelay.call(Pair(true, null))
 
         presenterScope.launchIO {
             try {
@@ -67,7 +71,7 @@ class SearchPresenter(
                 withUIContext { view?.applicationContext?.toast(e.message) }
             }
 
-            presenterScope.launchUI { replacingMangaRelay.call(false) }
+            presenterScope.launchUI { replacingMangaRelay.call(Pair(false, manga)) }
         }
     }
 
