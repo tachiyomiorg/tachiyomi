@@ -88,7 +88,6 @@
         app:itemIconTint="@color/bottom_nav_selector"
         app:itemTextColor="@color/bottom_nav_selector"
         app:layout_insetEdge="bottom"
-        app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav" />
 
 
