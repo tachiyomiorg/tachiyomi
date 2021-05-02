@@ -165,6 +165,9 @@ object ImageUtil {
         RIGHT, LEFT
     }
 
+    /**
+     * Algorithm for determining what background to accompany a comic/manga page
+     */
     fun chooseBackground(context: Context, imageStream: InputStream): Drawable {
         imageStream.mark(imageStream.available() + 1)
 
@@ -185,6 +188,8 @@ object ImageUtil {
         val midX = image.width / 2
         val midY = image.height / 2
         val offsetX = (image.width * 0.01).toInt()
+        val leftOffsetX = left - offsetX
+        val rightOffsetX = right + offsetX
 
         val topLeftPixel = image.getPixel(left, top)
         val topRightPixel = image.getPixel(right, top)
@@ -206,24 +211,20 @@ object ImageUtil {
         var darkBG = (topLeftIsDark && (botLeftIsDark || botRightIsDark || topRightIsDark || midLeftIsDark || topMidIsDark)) ||
             (topRightIsDark && (botRightIsDark || botLeftIsDark || midRightIsDark || topMidIsDark))
 
-        if (!topLeftPixel.isWhite() && topLeftPixel.isCloseTo(topCenterPixel) &&
-            !topCenterPixel.isWhite() && topCenterPixel.isCloseTo(topRightPixel) &&
-            !topRightPixel.isWhite() && topRightPixel.isCloseTo(botRightPixel) &&
-            !botRightPixel.isWhite() && botRightPixel.isCloseTo(bottomCenterPixel) &&
-            !bottomCenterPixel.isWhite() && bottomCenterPixel.isCloseTo(botLeftPixel) &&
-            !botLeftPixel.isWhite() && botLeftPixel.isCloseTo(topLeftPixel)
-        ) {
+        val topAndBotPixels = listOf(topLeftPixel, topCenterPixel, topRightPixel, botRightPixel, bottomCenterPixel, botLeftPixel)
+        val isNotWhiteAndCloseTo = topAndBotPixels.mapIndexed { index, color ->
+            val other = topAndBotPixels[(index + 1) % topAndBotPixels.size]
+            !color.isWhite() && color.isCloseTo(other)
+        }
+        if (isNotWhiteAndCloseTo.all { it }) {
             return ColorDrawable(topLeftPixel)
         }
 
-        val whiteCorners = listOf(
-            topLeftPixel.isWhite(),
-            topRightPixel.isWhite(),
-            botLeftPixel.isWhite(),
-            botRightPixel.isWhite()
-        ).filter { it }
-
-        if (whiteCorners.size > 2) {
+        val cornerPixels = listOf(topLeftPixel, topRightPixel, botLeftPixel, botRightPixel)
+        val numberOfWhiteCorners = cornerPixels.map { cornerPixel -> cornerPixel.isWhite() }
+            .filter { it }
+            .size
+        if (numberOfWhiteCorners > 2) {
             darkBG = false
         }
 
@@ -241,7 +242,7 @@ object ImageUtil {
         var topWhiteStreak = 0
         var botBlackStreak = 0
         var botWhiteStreak = 0
-        outer@ for (x in intArrayOf(left, right, left - offsetX, right + offsetX)) {
+        outer@ for (x in intArrayOf(left, right, leftOffsetX, rightOffsetX)) {
             var whitePixelsStreak = 0
             var whitePixels = 0
             var blackPixelsStreak = 0
@@ -249,7 +250,7 @@ object ImageUtil {
             var blackStreak = false
             var whiteStreak = false
             val notOffset = x == left || x == right
-            for ((index, y) in (0 until image.height step image.height / 25).withIndex()) {
+            inner@ for ((index, y) in (0 until image.height step image.height / 25).withIndex()) {
                 val pixel = image.getPixel(x, y)
                 val pixelOff = image.getPixel(x + (if (x < image.width / 2) -offsetX else offsetX), y)
                 if (pixel.isWhite()) {
@@ -275,7 +276,7 @@ object ImageUtil {
                         if (blackPixelsStreak >= 14) {
                             blackStreak = true
                         }
-                        continue
+                        continue@inner
                     }
                 }
                 if (blackPixelsStreak > 6 && blackPixelsStreak >= index - 1) {
@@ -290,7 +291,7 @@ object ImageUtil {
             }
             when {
                 blackPixels > 22 -> {
-                    if (x == right || x == right + offsetX) {
+                    if (x == right || x == rightOffsetX) {
                         blackColor = when {
                             topRightIsDark -> topRightPixel
                             botRightIsDark -> botRightPixel
@@ -303,7 +304,7 @@ object ImageUtil {
                 }
                 blackStreak -> {
                     darkBG = true
-                    if (x == right || x == right + offsetX) {
+                    if (x == right || x == rightOffsetX) {
                         blackColor = when {
                             topRightIsDark -> topRightPixel
                             botRightIsDark -> botRightPixel
@@ -336,28 +337,29 @@ object ImageUtil {
             }
         }
 
+        val botCornersIsWhite = botLeftPixel.isWhite() && botRightPixel.isWhite()
+        val topCornersIsWhite = topLeftPixel.isWhite() && topRightPixel.isWhite()
+
+        val topCornersIsDark = topLeftIsDark && topRightIsDark
+        val botCornersIsDark = botLeftIsDark && botRightIsDark
+
+        val topOffsetCornersIsDark = image.getPixel(leftOffsetX, top).isDark() && image.getPixel(rightOffsetX, top).isDark()
+        val botOffsetCornersIsDark = image.getPixel(leftOffsetX, bot).isDark() && image.getPixel(rightOffsetX, bot).isDark()
+
         val gradient = when {
-            darkBG && botLeftPixel.isWhite() && botRightPixel.isWhite() -> {
+            darkBG && botCornersIsWhite -> {
                 intArrayOf(blackColor, blackColor, whiteColor, whiteColor)
             }
-            darkBG && topLeftPixel.isWhite() && topRightPixel.isWhite() -> {
+            darkBG && topCornersIsWhite -> {
                 intArrayOf(whiteColor, whiteColor, blackColor, blackColor)
             }
             darkBG -> {
                 return ColorDrawable(blackColor)
             }
-            topIsBlackStreak || (
-                topLeftIsDark && topRightIsDark &&
-                    image.getPixel(left - offsetX, top).isDark() && image.getPixel(right + offsetX, top).isDark() &&
-                    (topMidIsDark || overallBlackPixels > 9)
-                ) -> {
+            topIsBlackStreak || (topCornersIsDark && topOffsetCornersIsDark && (topMidIsDark || overallBlackPixels > 9)) -> {
                 intArrayOf(blackColor, blackColor, whiteColor, whiteColor)
             }
-            bottomIsBlackStreak || (
-                botLeftIsDark && botRightIsDark &&
-                    image.getPixel(left - offsetX, bot).isDark() && image.getPixel(right + offsetX, bot).isDark() &&
-                    (bottomCenterPixel.isDark() || overallBlackPixels > 9)
-                ) -> {
+            bottomIsBlackStreak || (botCornersIsDark && botOffsetCornersIsDark && (bottomCenterPixel.isDark() || overallBlackPixels > 9)) -> {
                 intArrayOf(whiteColor, whiteColor, blackColor, blackColor)
             }
             else -> {
