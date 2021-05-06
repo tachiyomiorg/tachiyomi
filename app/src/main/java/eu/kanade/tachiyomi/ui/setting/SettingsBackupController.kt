@@ -110,7 +110,7 @@ class SettingsBackupController : SettingsController() {
                     R.string.update_weekly
                 )
                 entryValues = arrayOf("0", "6", "12", "24", "48", "168")
-                defaultValue = "0"
+                defaultValue = "24"
                 summary = "%s"
 
                 onChange { newValue ->
