@@ -94,7 +94,7 @@ class TrackSheet(
 
     override fun onScoreClick(position: Int) {
         val item = adapter.getItem(position) ?: return
-        if (item.track == null) return
+        if (item.track == null || item.service.getScoreList().isEmpty()) return
 
         SetTrackScoreDialog(controller, this, item).showDialog(controller.router)
     }
