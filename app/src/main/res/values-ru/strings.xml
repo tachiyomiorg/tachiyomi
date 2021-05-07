@@ -529,7 +529,6 @@
     </plurals>
     <string name="battery_optimization_setting_activity_not_found">Не удалось открыть настройки устройства</string>
     <string name="pref_refresh_library_covers">Обновить обложки библиотечной манги</string>
-    <string name="pref_refresh_library_titles">Обновить заголовки библиотечной манги</string>
     <plurals name="restore_completed_message">
         <item quantity="one">Выполнено за %1$s с %2$s ошибкой</item>
         <item quantity="few">Выполнено за %1$s с %2$s ошибками</item>
