@@ -440,6 +440,7 @@
     <string name="clear_database_confirmation">Are you sure? Read chapters and progress of non-library manga will be lost</string>
     <string name="clear_database_completed">Entries deleted</string>
     <string name="pref_refresh_library_covers">Refresh library manga covers</string>
+    <string name="pref_refresh_library_titles">Refresh library manga titles</string>
     <string name="pref_refresh_library_tracking">Refresh tracking</string>
     <string name="pref_refresh_library_tracking_summary">Updates status, score and last chapter read from the tracking services</string>
     <string name="pref_dump_crash_logs">Dump crash logs</string>

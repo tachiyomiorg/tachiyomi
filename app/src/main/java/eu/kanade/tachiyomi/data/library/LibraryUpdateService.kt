@@ -82,7 +82,9 @@ class LibraryUpdateService(
 
         COVERS, // Manga covers
 
-        TRACKING // Tracking metadata
+        TRACKING, // Tracking metadata
+
+        TITLES // Manga titles
     }
 
     companion object {
@@ -212,6 +214,7 @@ class LibraryUpdateService(
                 Target.CHAPTERS -> updateChapterList()
                 Target.COVERS -> updateCovers()
                 Target.TRACKING -> updateTrackings()
+                Target.TITLES -> updateTitles()
             }
         }
         updateJob?.invokeOnCompletion { stopSelf(startId) }
@@ -379,6 +382,34 @@ class LibraryUpdateService(
                         manga.thumbnail_url = it
                         db.insertManga(manga).executeAsBlocking()
                     }
+                } catch (e: Throwable) {
+                    // Ignore errors and continue
+                    Timber.e(e)
+                }
+            }
+        }
+
+        coverCache.clearMemoryCache()
+        notifier.cancelProgressNotification()
+    }
+
+    private suspend fun updateTitles() {
+        var progressCount = 0
+
+        mangaToUpdate.forEach { manga ->
+            if (updateJob?.isActive != true) {
+                return
+            }
+
+            notifier.showProgressNotification(manga, progressCount++, mangaToUpdate.size)
+
+            sourceManager.get(manga.source)?.let { source ->
+                try {
+                    val networkManga = source.getMangaDetails(manga.toMangaInfo())
+                    val sManga = networkManga.toSManga()
+
+                    manga.title = sManga.title
+                    db.insertManga(manga).executeAsBlocking()
                 } catch (e: Throwable) {
                     // Ignore errors and continue
                     Timber.e(e)

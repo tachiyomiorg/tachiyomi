@@ -44,6 +44,8 @@ interface SManga : Serializable {
             thumbnail_url = other.thumbnail_url
         }
 
+        title = other.title
+
         status = other.status
 
         if (!initialized) {

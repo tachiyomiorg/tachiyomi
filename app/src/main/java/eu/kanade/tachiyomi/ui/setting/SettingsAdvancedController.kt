@@ -156,6 +156,14 @@ class SettingsAdvancedController : SettingsController() {
 
                 onClick { LibraryUpdateService.start(context, target = Target.COVERS) }
             }
+
+            preference {
+                key = "pref_refresh_library_titles"
+                titleRes = R.string.pref_refresh_library_titles
+
+                onClick { LibraryUpdateService.start(context, target = Target.TITLES) }
+            }
+
             preference {
                 key = "pref_refresh_library_tracking"
                 titleRes = R.string.pref_refresh_library_tracking
