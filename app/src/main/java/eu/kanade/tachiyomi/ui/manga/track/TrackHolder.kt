@@ -49,6 +49,12 @@ class TrackHolder(private val binding: TrackItemBinding, adapter: TrackAdapter) 
                 if (track.total_chapters > 0) track.total_chapters else "-"
             binding.trackStatus.text = item.service.getStatus(track.status)
             binding.trackScore.text = if (track.score == 0f) "-" else item.service.displayScore(track)
+            if (item.service.getScoreList().isEmpty()) {
+                with(binding.trackScore) {
+                    text = "Not supported"
+                    isEnabled = false
+                }
+            }
 
             if (item.service.supportsReadingDates) {
                 binding.trackStartDate.text =
