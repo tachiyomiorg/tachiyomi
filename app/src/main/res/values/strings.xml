@@ -593,6 +593,7 @@
         <item quantity="other">%d trackers</item>
     </plurals>
     <string name="add_tracking">Add tracking</string>
+    <string name="unread">Unread</string>
     <string name="reading">Reading</string>
     <string name="currently_reading">Currently reading</string>
     <string name="completed">Completed</string>
@@ -777,5 +778,4 @@
     <!-- S Pen actions -->
     <string name="spen_previous_page">Previous page</string>
     <string name="spen_next_page">Next page</string>
-    <string name="unread">Unread</string>
 </resources>
