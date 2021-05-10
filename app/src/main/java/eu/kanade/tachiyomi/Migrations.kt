@@ -47,6 +47,7 @@ object Migrations {
                 }
                 ExtensionUpdateJob.setupTask(context)
                 LibraryUpdateJob.setupTask(context)
+                BackupCreatorJob.setupTask(context)
                 return false
             }
 
