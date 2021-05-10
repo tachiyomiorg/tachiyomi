@@ -1,6 +1,5 @@
 package eu.kanade.tachiyomi.ui.browse.source
 
-import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -26,7 +25,6 @@ import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.base.controller.SearchableNucleusController
-import eu.kanade.tachiyomi.ui.base.controller.requestPermissionsSafe
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.browse.BrowseController
 import eu.kanade.tachiyomi.ui.browse.source.browse.BrowseSourceController
@@ -83,8 +81,6 @@ class SourceController :
         binding.recycler.layoutManager = LinearLayoutManager(view.context)
         binding.recycler.adapter = adapter
         adapter?.fastScroller = binding.fastScroller
-
-        requestPermissionsSafe(arrayOf(WRITE_EXTERNAL_STORAGE), 301)
 
         // Update list on extension changes (e.g. new installation)
         (parentController as BrowseController).extensionListUpdateRelay
