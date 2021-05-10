@@ -37,6 +37,8 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.DownloadService
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.track.TrackService
+import eu.kanade.tachiyomi.data.track.UnattendedTrackService
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.databinding.MangaControllerBinding
 import eu.kanade.tachiyomi.source.LocalSource
@@ -72,6 +74,7 @@ import eu.kanade.tachiyomi.ui.recent.updates.UpdatesController
 import eu.kanade.tachiyomi.ui.webview.WebViewActivity
 import eu.kanade.tachiyomi.util.chapter.NoChaptersException
 import eu.kanade.tachiyomi.util.hasCustomCover
+import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.lang.launchUI
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.toast
@@ -506,6 +509,25 @@ class MangaController :
                 ChangeMangaCategoriesDialog(this, listOf(manga), categories, preselected)
                     .showDialog(router)
             }
+        }
+
+        if (source != null && preferences.autoAddTrack()) {
+            presenter.trackList
+                .map { it.service }
+                .filterIsInstance<UnattendedTrackService>()
+                .filter { it.accept(source!!) }
+                .forEach { service ->
+                    launchIO {
+                        try {
+                            val track = service.match(manga)
+                            if (track != null) {
+                                presenter.registerTracking(track, service as TrackService)
+                            }
+                        } catch (e: Exception) {
+                            Timber.w(e, "Could not match manga: ${manga.title} with service $service")
+                        }
+                    }
+                }
         }
     }
 

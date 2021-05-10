@@ -39,6 +39,11 @@ class SettingsTrackingController :
             titleRes = R.string.pref_auto_update_manga_sync
             defaultValue = true
         }
+        switchPreference {
+            key = Keys.autoAddTrack
+            titleRes = R.string.pref_auto_add_track
+            defaultValue = true
+        }
         preferenceCategory {
             titleRes = R.string.services
 

@@ -378,6 +378,7 @@
 
       <!-- Tracking section -->
     <string name="pref_auto_update_manga_sync">Update chapter progress after reading</string>
+    <string name="pref_auto_add_track">Track silently when adding manga to library</string>
     <string name="services">Services</string>
     <string name="tracking_info">One-way sync to update the chapter progress in tracking services. Set up tracking for individual manga entries from their tracking button.</string>
 
