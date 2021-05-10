@@ -17,6 +17,7 @@ import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.TrackService
+import eu.kanade.tachiyomi.data.track.UnattendedTrackService
 import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.model.toSChapter
@@ -709,6 +710,14 @@ class MangaPresenter(
                             async {
                                 val track = it.service.refresh(it.track!!)
                                 db.insertTrack(track).executeAsBlocking()
+
+                                if (it.service is UnattendedTrackService) {
+                                    val sortedChapters = chapters.sortedBy { it.chapter_number }
+                                    sortedChapters.forEachIndexed { index, chapter ->
+                                        chapter.read = index < track.last_chapter_read
+                                    }
+                                    db.updateChaptersProgress(sortedChapters).executeAsBlocking()
+                                }
                             }
                         }
                         .awaitAll()
