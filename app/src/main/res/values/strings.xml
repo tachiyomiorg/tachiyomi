@@ -583,6 +583,7 @@
     <string name="tracker_anilist" translatable="false">AniList</string>
     <string name="tracker_myanimelist" translatable="false">MyAnimeList</string>
     <string name="tracker_kitsu" translatable="false">Kitsu</string>
+    <string name="tracker_komga" translatable="false">Komga</string>
     <string name="tracker_bangumi" translatable="false">Bangumi</string>
     <string name="tracker_shikimori" translatable="false">Shikimori</string>
     <string name="manga_tracking_tab">Tracking</string>
@@ -775,4 +776,5 @@
     <!-- S Pen actions -->
     <string name="spen_previous_page">Previous page</string>
     <string name="spen_next_page">Next page</string>
+    <string name="unread">Unread</string>
 </resources>

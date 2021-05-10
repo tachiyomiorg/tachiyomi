@@ -6,15 +6,23 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.data.track.UnattendedTrackService
 import eu.kanade.tachiyomi.databinding.TrackControllerBinding
+import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.ui.base.controller.openInBrowser
 import eu.kanade.tachiyomi.ui.manga.MangaController
+import eu.kanade.tachiyomi.util.lang.launchIO
+import eu.kanade.tachiyomi.util.lang.withUIContext
 import eu.kanade.tachiyomi.util.system.copyToClipboard
+import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.widget.sheet.BaseBottomSheetDialog
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 
 class TrackSheet(
     val controller: MangaController,
-    val manga: Manga
+    val manga: Manga,
+    private val sourceManager: SourceManager = Injekt.get()
 ) : BaseBottomSheetDialog(controller.activity!!),
     TrackAdapter.OnClickListener,
     SetTrackStatusDialog.Listener,
@@ -69,7 +77,31 @@ class TrackSheet(
 
     override fun onSetClick(position: Int) {
         val item = adapter.getItem(position) ?: return
-        TrackSearchDialog(controller, item.service).showDialog(controller.router, TAG_SEARCH_CONTROLLER)
+
+        if (item.service is UnattendedTrackService) {
+            if (item.track != null) {
+                controller.presenter.unregisterTracking(item.service)
+            } else {
+                if (item.service.accept(sourceManager.getOrStub(manga.source))) {
+                    launchIO {
+                        try {
+                            val track = item.service.match(manga)
+                            if (track != null) {
+                                controller.presenter.registerTracking(track, item.service)
+                            } else {
+                                withUIContext { controller.presenter.view?.applicationContext?.toast("No match found") }
+                            }
+                        } catch (e: Exception) {
+                            withUIContext { controller.presenter.view?.applicationContext?.toast("No match found") }
+                        }
+                    }
+                } else {
+                    controller.presenter.view?.applicationContext?.toast("Source is not supported")
+                }
+            }
+        } else {
+            TrackSearchDialog(controller, item.service).showDialog(controller.router, TAG_SEARCH_CONTROLLER)
+        }
     }
 
     override fun onTitleLongClick(position: Int) {
