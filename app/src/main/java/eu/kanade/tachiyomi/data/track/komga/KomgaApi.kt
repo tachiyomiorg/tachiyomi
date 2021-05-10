@@ -14,31 +14,56 @@ import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import timber.log.Timber
 
+const val READLIST_API = "/api/v1/readlists"
+
 class KomgaApi(private val client: OkHttpClient) {
 
-    suspend fun getSeries(url: String): TrackSearch? {
+    suspend fun getTrackSearch(url: String): TrackSearch? {
         return withIOContext {
-            try {
-                client.newCall(
-                    GET(url)
-                )
-                    .await()
-                    .parseAs<SeriesDto>()
-                    .toTrack()
-                    .apply {
-                        cover_url = "$url/thumbnail"
-                        tracking_url = url
-                    }
-            } catch (e: Exception) {
-                Timber.w(e, "Could not get Series: $url")
-                null
+            if (url.contains(READLIST_API)) {
+                try {
+                    val readList = client.newCall(
+                        GET(url)
+                    )
+                        .await()
+                        .parseAs<ReadListDto>()
+                    val readListProgress = client.newCall(
+                        GET("$url/read-progress")
+                    )
+                        .await()
+                        .parseAs<ReadListProgressDto>()
+                    readList.toTrack(readListProgress)
+                        .apply {
+                            cover_url = "$url/thumbnail"
+                            tracking_url = url
+                        }
+                } catch (e: Exception) {
+                    Timber.w(e, "Could not get ReadList: $url")
+                    null
+                }
+            } else {
+                try {
+                    client.newCall(
+                        GET(url)
+                    )
+                        .await()
+                        .parseAs<SeriesDto>()
+                        .toTrack()
+                        .apply {
+                            cover_url = "$url/thumbnail"
+                            tracking_url = url
+                        }
+                } catch (e: Exception) {
+                    Timber.w(e, "Could not get Series: $url")
+                    null
+                }
             }
         }
     }
 
     suspend fun updateProgress(track: Track): Track {
-        val progress = ReadProgressSeriesUpdateDto(track.last_chapter_read)
-        val payload = Json.encodeToString(ReadProgressSeriesUpdateDto.serializer(), progress)
+        val progress = ReadProgressUpdateDto(track.last_chapter_read)
+        val payload = Json.encodeToString(ReadProgressUpdateDto.serializer(), progress)
         client.newCall(
             Request.Builder()
                 .url("${track.tracking_url}/read-progress/tachiyomi")
@@ -46,7 +71,7 @@ class KomgaApi(private val client: OkHttpClient) {
                 .build()
         )
             .await()
-        return getSeries(track.tracking_url)!!
+        return getTrackSearch(track.tracking_url)!!
     }
 
     private fun SeriesDto.toTrack(): TrackSearch = TrackSearch.create(TrackManager.KOMGA).also {
@@ -61,4 +86,16 @@ class KomgaApi(private val client: OkHttpClient) {
         }
         it.last_chapter_read = booksReadCount
     }
+
+    private fun ReadListDto.toTrack(progress: ReadListProgressDto): TrackSearch =
+        TrackSearch.create(TrackManager.KOMGA).also {
+            it.title = name
+            it.total_chapters = progress.booksCount
+            it.status = when (progress.booksCount) {
+                progress.booksUnreadCount -> Komga.UNREAD
+                progress.booksReadCount -> Komga.COMPLETED
+                else -> Komga.READING
+            }
+            it.last_chapter_read = progress.booksReadCount
+        }
 }

@@ -59,6 +59,24 @@ data class AuthorDto(
 )
 
 @Serializable
-data class ReadProgressSeriesUpdateDto(
+data class ReadProgressUpdateDto(
     val lastBookRead: Int,
+)
+
+@Serializable
+data class ReadListDto(
+    val id: String,
+    val name: String,
+    val bookIds: List<String>,
+    val createdDate: String,
+    val lastModifiedDate: String,
+    val filtered: Boolean
+)
+
+@Serializable
+data class ReadListProgressDto(
+    val booksCount: Int,
+    val booksReadCount: Int,
+    val booksUnreadCount: Int,
+    val booksInProgressCount: Int,
 )
