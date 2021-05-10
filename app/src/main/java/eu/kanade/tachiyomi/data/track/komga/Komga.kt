@@ -72,6 +72,9 @@ class Komga(private val context: Context, id: Int) : TrackService(id), Unattende
     }
 
     override suspend fun refresh(track: Track): Track {
+        val remoteTrack = api.getSeries(track.tracking_url)!!
+        track.copyPersonalFrom(remoteTrack)
+        track.total_chapters = remoteTrack.total_chapters
         return track
     }
 
