@@ -81,22 +81,24 @@ class TrackSheet(
         if (item.service is UnattendedTrackService) {
             if (item.track != null) {
                 controller.presenter.unregisterTracking(item.service)
-            } else {
-                if (item.service.accept(sourceManager.getOrStub(manga.source))) {
-                    launchIO {
-                        try {
-                            val track = item.service.match(manga)
-                            if (track != null) {
-                                controller.presenter.registerTracking(track, item.service)
-                            } else {
-                                withUIContext { controller.presenter.view?.applicationContext?.toast("No match found") }
-                            }
-                        } catch (e: Exception) {
-                            withUIContext { controller.presenter.view?.applicationContext?.toast("No match found") }
-                        }
+                return
+            }
+
+            if (!item.service.accept(sourceManager.getOrStub(manga.source))) {
+                controller.presenter.view?.applicationContext?.toast("Source is not supported")
+                return
+            }
+
+            launchIO {
+                try {
+                    val track = item.service.match(manga)
+                    if (track != null) {
+                        controller.presenter.registerTracking(track, item.service)
+                        return@launchIO
                     }
-                } else {
-                    controller.presenter.view?.applicationContext?.toast("Source is not supported")
+                    withUIContext { controller.presenter.view?.applicationContext?.toast("No match found") }
+                } catch (e: Exception) {
+                    withUIContext { controller.presenter.view?.applicationContext?.toast("No match found") }
                 }
             }
         } else {
