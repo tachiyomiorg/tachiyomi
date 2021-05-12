@@ -747,7 +747,7 @@ class MangaPresenter(
                     db.insertTrack(item).executeAsBlocking()
 
                     if (service is UnattendedTrackService) {
-                        val localLastRead = syncChaptersRead(item, service)
+                        syncChaptersRead(item, service)
                     }
                 } catch (e: Throwable) {
                     withUIContext { view?.applicationContext?.toast(e.message) }
