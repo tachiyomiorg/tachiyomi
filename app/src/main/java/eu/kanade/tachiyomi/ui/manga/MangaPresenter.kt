@@ -761,7 +761,7 @@ class MangaPresenter(
     private fun syncChaptersRead(lastChapterRead: Int) {
         val sortedChapters = chapters.sortedBy { it.chapter_number }
         sortedChapters.forEachIndexed { index, chapter ->
-            chapter.read = index < lastChapterRead
+            if (!chapter.read) chapter.read = index < lastChapterRead
         }
         db.updateChaptersProgress(sortedChapters).executeAsBlocking()
     }
