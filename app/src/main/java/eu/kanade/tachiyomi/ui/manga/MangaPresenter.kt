@@ -712,7 +712,7 @@ class MangaPresenter(
                                 db.insertTrack(track).executeAsBlocking()
 
                                 if (it.service is UnattendedTrackService) {
-                                    syncChaptersRead(track.last_chapter_read)
+                                    syncChaptersRead(track, it.service)
                                 }
                             }
                         }
@@ -747,7 +747,7 @@ class MangaPresenter(
                     db.insertTrack(item).executeAsBlocking()
 
                     if (service is UnattendedTrackService) {
-                        syncChaptersRead(item.last_chapter_read)
+                        val localLastRead = syncChaptersRead(item, service)
                     }
                 } catch (e: Throwable) {
                     withUIContext { view?.applicationContext?.toast(e.message) }
@@ -758,12 +758,15 @@ class MangaPresenter(
         }
     }
 
-    private fun syncChaptersRead(lastChapterRead: Int) {
+    private fun syncChaptersRead(remoteTrack: Track, service: TrackService) {
         val sortedChapters = chapters.sortedBy { it.chapter_number }
         sortedChapters.forEachIndexed { index, chapter ->
-            if (!chapter.read) chapter.read = index < lastChapterRead
+            if (!chapter.read) chapter.read = index < remoteTrack.last_chapter_read
         }
         db.updateChaptersProgress(sortedChapters).executeAsBlocking()
+
+        val localLastRead = sortedChapters.indexOfFirst { !it.read }
+        updateRemote(remoteTrack.apply { last_chapter_read = localLastRead }, service)
     }
 
     fun unregisterTracking(service: TrackService) {
