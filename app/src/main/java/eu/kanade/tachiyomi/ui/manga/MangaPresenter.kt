@@ -27,6 +27,7 @@ import eu.kanade.tachiyomi.ui.manga.chapter.ChapterItem
 import eu.kanade.tachiyomi.ui.manga.track.TrackItem
 import eu.kanade.tachiyomi.util.chapter.ChapterSettingsHelper
 import eu.kanade.tachiyomi.util.chapter.syncChaptersWithSource
+import eu.kanade.tachiyomi.util.chapter.syncChaptersWithTrackServiceTwoWay
 import eu.kanade.tachiyomi.util.isLocal
 import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.lang.withUIContext
@@ -712,7 +713,7 @@ class MangaPresenter(
                                 db.insertTrack(track).executeAsBlocking()
 
                                 if (it.service is UnattendedTrackService) {
-                                    syncChaptersRead(track, it.service)
+                                    syncChaptersWithTrackServiceTwoWay(db, chapters, track, it.service)
                                 }
                             }
                         }
@@ -747,7 +748,7 @@ class MangaPresenter(
                     db.insertTrack(item).executeAsBlocking()
 
                     if (service is UnattendedTrackService) {
-                        syncChaptersRead(item, service)
+                        syncChaptersWithTrackServiceTwoWay(db, chapters, item, service)
                     }
                 } catch (e: Throwable) {
                     withUIContext { view?.applicationContext?.toast(e.message) }
@@ -756,17 +757,6 @@ class MangaPresenter(
         } else {
             unregisterTracking(service)
         }
-    }
-
-    private fun syncChaptersRead(remoteTrack: Track, service: TrackService) {
-        val sortedChapters = chapters.sortedBy { it.chapter_number }
-        sortedChapters.forEachIndexed { index, chapter ->
-            if (!chapter.read) chapter.read = index < remoteTrack.last_chapter_read
-        }
-        db.updateChaptersProgress(sortedChapters).executeAsBlocking()
-
-        val localLastRead = sortedChapters.indexOfFirst { !it.read }
-        updateRemote(remoteTrack.apply { last_chapter_read = localLastRead }, service)
     }
 
     fun unregisterTracking(service: TrackService) {
