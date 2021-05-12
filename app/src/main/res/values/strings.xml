@@ -102,6 +102,7 @@
     <string name="action_unpin">Unpin</string>
     <string name="action_cancel">Cancel</string>
     <string name="action_cancel_all">Cancel all</string>
+    <string name="cancel_all_for_series">Cancel all for this series</string>
     <string name="action_sort">Sort</string>
     <string name="action_sort_descending">Descending</string>
     <string name="action_reorganize_by">Reorder</string>

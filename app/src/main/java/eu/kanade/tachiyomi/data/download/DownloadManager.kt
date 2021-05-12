@@ -203,6 +203,15 @@ class DownloadManager(private val context: Context) {
         deleteChapters(listOf(download.chapter), download.manga, download.source)
     }
 
+    fun deletePendingDownloads(vararg downloads: Download) {
+        val downloadsByManga = downloads.groupBy { it.manga.id }
+        downloadsByManga.map { entry ->
+            val manga = entry.value.first().manga
+            val source = entry.value.first().source
+            deleteChapters(entry.value.map { it.chapter }, manga, source)
+        }
+    }
+
     /**
      * Deletes the directories of a list of downloaded chapters.
      *
