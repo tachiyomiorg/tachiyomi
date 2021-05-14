@@ -74,9 +74,10 @@ data class ReadListDto(
 )
 
 @Serializable
-data class ReadListProgressDto(
+data class ReadProgressDto(
     val booksCount: Int,
     val booksReadCount: Int,
     val booksUnreadCount: Int,
     val booksInProgressCount: Int,
+    val lastReadContinuousIndex: Int,
 )
