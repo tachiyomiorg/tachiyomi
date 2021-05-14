@@ -16,9 +16,9 @@ import eu.kanade.tachiyomi.util.lang.launchIO
  */
 fun syncChaptersWithTrackServiceTwoWay(db: DatabaseHelper, chapters: List<Chapter>, remoteTrack: Track, service: TrackService) {
     val sortedChapters = chapters.sortedBy { it.chapter_number }
-    sortedChapters.forEachIndexed { index, chapter ->
-        if (!chapter.read) chapter.read = index < remoteTrack.last_chapter_read
-    }
+    sortedChapters
+            .filterIndexed { index, chapter -> index < remoteTrack.last_chapter_read && !chapter.read }
+            .forEach { it.read = true }
     db.updateChaptersProgress(sortedChapters).executeAsBlocking()
 
     val localLastRead = sortedChapters.indexOfFirst { !it.read }
