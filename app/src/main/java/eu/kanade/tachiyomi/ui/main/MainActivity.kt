@@ -465,6 +465,10 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
             if (visible) {
                 if (collapse) {
                     bottomNavAnimator?.expand()
+                    val navUpdates = it.menu.findItem(R.id.nav_updates)
+                    navUpdates.isVisible = !preferences.hideUpdatesButton().get()
+                    val navHistory = it.menu.findItem(R.id.nav_history)
+                    navHistory.isVisible = !preferences.hideHistoryButton().get()
                 }
 
                 bottomViewNavigationBehavior?.slideUp(it)
