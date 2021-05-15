@@ -9,12 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.isVisible
-import androidx.core.view.marginTop
-import androidx.core.view.updateLayoutParams
+import androidx.core.view.*
 import androidx.lifecycle.lifecycleScope
 import androidx.preference.PreferenceDialogController
 import com.bluelinelabs.conductor.Conductor
@@ -470,7 +465,6 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
                     val navHistory = it.menu.findItem(R.id.nav_history)
                     navHistory.isVisible = !preferences.hideHistoryButton().get()
                 }
-
                 bottomViewNavigationBehavior?.slideUp(it)
             } else {
                 if (collapse) {
