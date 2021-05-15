@@ -45,21 +45,6 @@ class SettingsGeneralController : SettingsController() {
             titleRes = R.string.pref_confirm_exit
             defaultValue = false
         }
-        switchPreference {
-            key = Keys.hideBottomBar
-            titleRes = R.string.pref_hide_bottom_bar_on_scroll
-            defaultValue = true
-        }
-        switchPreference {
-            key = Keys.hideUpdatesButton
-            titleRes = R.string.pref_hide_updates_button
-            defaultValue = false
-        }
-        switchPreference {
-            key = Keys.hideHistoryButton
-            titleRes = R.string.pref_hide_history_button
-            defaultValue = false
-        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             preference {
@@ -274,6 +259,26 @@ class SettingsGeneralController : SettingsController() {
 
                 defaultValue = ""
                 summary = "%s"
+            }
+        }
+
+        preferenceCategory {
+            titleRes = R.string.pref_category_navigation
+
+            switchPreference {
+                key = Keys.hideBottomBar
+                titleRes = R.string.pref_hide_bottom_bar_on_scroll
+                defaultValue = true
+            }
+            switchPreference {
+                key = Keys.hideUpdatesButton
+                titleRes = R.string.pref_hide_updates_button
+                defaultValue = false
+            }
+            switchPreference {
+                key = Keys.hideHistoryButton
+                titleRes = R.string.pref_hide_history_button
+                defaultValue = false
             }
         }
     }

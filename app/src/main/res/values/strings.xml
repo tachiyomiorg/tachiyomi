@@ -149,6 +149,7 @@
       <!-- General section -->
     <string name="pref_category_theme">Theme</string>
     <string name="pref_category_locale">Locale</string>
+    <string name="pref_category_navigation">Navigation</string>
     <string name="pref_theme_mode">Dark mode</string>
     <string name="theme_system">Follow system</string>
     <string name="theme_light">Off</string>
