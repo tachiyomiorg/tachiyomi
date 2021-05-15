@@ -70,7 +70,7 @@ class BrowseController :
     override fun onChangeStarted(handler: ControllerChangeHandler, type: ControllerChangeType) {
         super.onChangeStarted(handler, type)
         if (type.isEnter) {
-            (activity as? MainActivity)?.binding?.tabs?.apply {
+            (activity as? MainActivity)?.binding?.toolbarLayout?.tabs?.apply {
                 setupWithViewPager(binding.pager)
 
                 // Show badge on tab for extension updates
@@ -92,7 +92,7 @@ class BrowseController :
     }
 
     fun setExtensionUpdateBadge() {
-        (activity as? MainActivity)?.binding?.tabs?.apply {
+        (activity as? MainActivity)?.binding?.toolbarLayout?.tabs?.apply {
             val updates = preferences.extensionUpdatesCount().get()
             if (updates > 0) {
                 val badge: BadgeDrawable? = getTabAt(1)?.orCreateBadge

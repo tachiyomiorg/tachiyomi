@@ -28,24 +28,25 @@ class SecureActivityDelegate(private val activity: FragmentActivity) {
     }
 
     fun onResume() {
-        val lockApp = preferences.useBiometricLock().get()
-        if (lockApp && BiometricUtil.isSupported(activity)) {
-            if (isAppLocked()) {
-                val intent = Intent(activity, BiometricUnlockActivity::class.java)
-                activity.startActivity(intent)
-                activity.overridePendingTransition(0, 0)
+        if (preferences.useBiometricLock().get()) {
+            if (BiometricUtil.isSupported(activity)) {
+                if (isAppLocked()) {
+                    activity.startActivity(Intent(activity, BiometricUnlockActivity::class.java))
+                    activity.overridePendingTransition(0, 0)
+                }
+            } else {
+                preferences.useBiometricLock().set(false)
             }
-        } else if (lockApp) {
-            preferences.useBiometricLock().set(false)
         }
     }
 
     private fun isAppLocked(): Boolean {
-        return locked &&
-            (
-                preferences.lockAppAfter().get() <= 0 ||
-                    Date().time >= preferences.lastAppUnlock().get() + 60 * 1000 * preferences.lockAppAfter().get()
-                )
+        if (!locked) {
+            return false
+        }
+
+        return preferences.lockAppAfter().get() <= 0 ||
+            Date().time >= preferences.lastAppUnlock().get() + 60 * 1000 * preferences.lockAppAfter().get()
     }
 
     companion object {

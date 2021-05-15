@@ -277,7 +277,7 @@ class MangaController :
             else -> min(binding.recycler.computeVerticalScrollOffset(), 255)
         }
 
-        (activity as? MainActivity)?.binding?.toolbar?.setTitleTextColor(
+        (activity as? MainActivity)?.binding?.toolbarLayout?.toolbar?.setTitleTextColor(
             Color.argb(
                 calculatedAlpha,
                 toolbarTextColor.red,
@@ -944,7 +944,9 @@ class MangaController :
         if (view != null && !manga.favorite) {
             addSnackbar = (activity as? MainActivity)?.binding?.rootCoordinator?.snack(view.context.getString(R.string.snack_add_to_library), Snackbar.LENGTH_INDEFINITE) {
                 setAction(R.string.action_add) {
-                    addToLibrary(manga)
+                    if (!manga.favorite) {
+                        addToLibrary(manga)
+                    }
                 }
             }
         }

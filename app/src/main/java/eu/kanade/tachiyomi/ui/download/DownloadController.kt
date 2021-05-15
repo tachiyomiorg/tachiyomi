@@ -356,6 +356,15 @@ class DownloadController :
                 val downloads = adapter.currentItems.mapNotNull { it?.download }
                 presenter.reorder(downloads)
             }
+            R.id.cancel_series -> {
+                val download = adapter?.getItem(position)?.download ?: return
+                val allDownloadsForSeries = adapter?.currentItems
+                    ?.filter { download.manga.id == it.download.manga.id }
+                    ?.map(DownloadItem::download)
+                if (!allDownloadsForSeries.isNullOrEmpty()) {
+                    presenter.cancelDownloads(allDownloadsForSeries)
+                }
+            }
         }
     }
 }

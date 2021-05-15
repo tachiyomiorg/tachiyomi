@@ -218,7 +218,7 @@ class LibraryController(
     override fun onChangeStarted(handler: ControllerChangeHandler, type: ControllerChangeType) {
         super.onChangeStarted(handler, type)
         if (type.isEnter) {
-            (activity as? MainActivity)?.binding?.tabs?.setupWithViewPager(binding.libraryPager)
+            (activity as? MainActivity)?.binding?.toolbarLayout?.tabs?.setupWithViewPager(binding.libraryPager)
             presenter.subscribeLibrary()
         }
     }
@@ -297,7 +297,7 @@ class LibraryController(
         // Delay the scroll position to allow the view to be properly measured.
         view.post {
             if (isAttached) {
-                (activity as? MainActivity)?.binding?.tabs?.setScrollPosition(binding.libraryPager.currentItem, 0f, true)
+                (activity as? MainActivity)?.binding?.toolbarLayout?.tabs?.setScrollPosition(binding.libraryPager.currentItem, 0f, true)
             }
         }
 

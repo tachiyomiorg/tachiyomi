@@ -383,7 +383,7 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
 
         // Rotation
         with(binding.actionRotation) {
-            setTooltip(R.string.pref_rotation_type)
+            setTooltip(R.string.rotation_type)
 
             setOnClickListener {
                 popupMenu(

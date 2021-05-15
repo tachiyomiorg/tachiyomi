@@ -125,7 +125,7 @@ dependencies {
     implementation("androidx.biometric:biometric-ktx:1.2.0-alpha03")
     implementation("androidx.browser:browser:1.3.0")
     implementation("androidx.cardview:cardview:1.0.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.0-beta01")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.0-beta02")
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.1.0")
     implementation("androidx.core:core-ktx:1.3.2")
     implementation("androidx.multidex:multidex:2.0.1")
@@ -142,9 +142,9 @@ dependencies {
     implementation("androidx.work:work-runtime-ktx:2.5.0")
 
     // UI library
-    implementation("com.google.android.material:material:1.3.0")
+    implementation("com.google.android.material:material:1.4.0-beta01")
 
-    "standardImplementation"("com.google.firebase:firebase-core:18.0.3")
+    "standardImplementation"("com.google.firebase:firebase-core:19.0.0")
 
     // ReactiveX
     implementation("io.reactivex:rxandroid:1.2.1")
