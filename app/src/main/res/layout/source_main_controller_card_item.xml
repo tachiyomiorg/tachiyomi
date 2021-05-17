@@ -70,7 +70,7 @@
     <ImageButton
         android:id="@+id/pin"
         android:layout_width="40dp"
-        android:layout_height="0dp"
+        android:layout_height="40dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/ripple_circular"
         android:contentDescription="@string/action_pin"
