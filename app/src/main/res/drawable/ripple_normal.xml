@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+    android:color="?attr/rippleColor"
+    tools:ignore="NewApi">
+    <item android:state_pressed="true">
+        <shape>
+            <solid android:color="@color/green_20"/>
+        </shape>
+    </item>
+</ripple>
