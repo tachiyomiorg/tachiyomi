@@ -368,4 +368,12 @@
         <item name="android:textSize">15sp</item>
     </style>
 
+    <style name="PreferenceThemeLight" parent="@style/PreferenceThemeOverlay">
+        <item name="android:selectableItemBackground">@drawable/ripple_light</item>
+    </style>
+
+    <style name="PreferenceThemeDark" parent="@style/PreferenceThemeOverlay">
+        <item name="android:selectableItemBackground">@drawable/ripple_dark</item>
+    </style>
+
 </resources>
