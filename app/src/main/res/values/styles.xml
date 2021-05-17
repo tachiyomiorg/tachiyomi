@@ -233,8 +233,12 @@
     <style name="Theme.Widget.Chip" parent="Widget.MaterialComponents.Chip.Action">
         <item name="chipStrokeWidth">1dp</item>
         <item name="chipStrokeColor">?attr/colorAccent</item>
-        <item name="chipBackgroundColor">@android:color/transparent</item>
+        <item name="chipBackgroundColor">@color/background_color_chip_state</item>
         <item name="android:textColor">?attr/colorAccent</item>
+
+        <!-- Custom chip states -->
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
 
         <!-- Smaller text/height -->
         <item name="chipCornerRadius">12dp</item>
