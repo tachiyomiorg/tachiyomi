@@ -87,7 +87,7 @@
         android:layout_width="44dp"
         android:layout_height="@dimen/material_component_lists_single_line_with_avatar_height"
         android:layout_toEndOf="@id/download_progress_text"
-        android:background="?selectableItemBackgroundBorderless"
+        android:background="@drawable/ripple_circular"
         android:contentDescription="@string/action_menu"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"

@@ -5,7 +5,7 @@
     android:layout_width="42dp"
     android:layout_height="42dp"
     android:padding="8dp"
-    android:background="?selectableItemBackgroundBorderless">
+    android:background="@drawable/ripple_circular">
 
     <ImageView
         android:id="@+id/download_icon"

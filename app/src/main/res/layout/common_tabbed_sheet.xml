@@ -30,7 +30,7 @@
             android:id="@+id/menu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="?selectableItemBackgroundBorderless"
+            android:background="@drawable/ripple_circular"
             android:contentDescription="@string/action_menu"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
