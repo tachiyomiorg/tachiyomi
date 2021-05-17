@@ -78,7 +78,8 @@ class LibraryUpdateNotifier(private val context: Context) {
         context.notificationManager.notify(
             Notifications.ID_LIBRARY_PROGRESS,
             progressNotificationBuilder
-                .setContentTitle(title)
+                .setContentTitle(title.chop(40))
+                .setContentText("($current/$total)")
                 .setProgress(total, current, false)
                 .build()
         )
