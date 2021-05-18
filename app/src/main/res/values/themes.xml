@@ -58,7 +58,7 @@
         <item name="actionModeCloseDrawable">@drawable/ic_close_24dp</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.MaterialComponents</item>
         <item name="toolbarNavigationButtonStyle">@style/Theme.Toolbar.Navigation</item>
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+        <item name="preferenceTheme">@style/PreferenceThemeLight</item>
         <item name="dialogTheme">@style/Theme.AlertDialog.Light</item>
         <item name="materialAlertDialogTheme">@style/Theme.AlertDialog.Light</item>
         <item name="bottomSheetDialogTheme">@style/Theme.BottomSheet</item>
@@ -155,7 +155,7 @@
         <item name="actionBarTheme">@style/ThemeOverlay.MaterialComponents.Dark.ActionBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.MaterialComponents</item>
         <item name="toolbarNavigationButtonStyle">@style/Theme.Toolbar.Navigation</item>
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+        <item name="preferenceTheme">@style/PreferenceThemeDark</item>
         <item name="dialogTheme">@style/Theme.AlertDialog.Dark</item>
         <item name="materialAlertDialogTheme">@style/Theme.AlertDialog.Dark</item>
         <item name="bottomSheetDialogTheme">@style/Theme.BottomSheet</item>
