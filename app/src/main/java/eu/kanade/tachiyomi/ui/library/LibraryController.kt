@@ -52,6 +52,7 @@ class LibraryController(
     TabbedController,
     ActionMode.Callback,
     ChangeMangaCategoriesDialog.Listener,
+    ReadLibraryMangasDialog.Listener,
     DeleteLibraryMangasDialog.Listener {
 
     /**
@@ -460,8 +461,8 @@ class LibraryController(
         when (item.itemId) {
             R.id.action_move_to_category -> showChangeMangaCategoriesDialog()
             R.id.action_download_unread -> downloadUnreadChapters()
-            R.id.action_mark_as_read -> markReadStatus(true)
-            R.id.action_mark_as_unread -> markReadStatus(false)
+            R.id.action_mark_as_read -> showReadMangaDialog(true)
+            R.id.action_mark_as_unread -> showReadMangaDialog(false)
             R.id.action_delete -> showDeleteMangaDialog()
             R.id.action_select_all -> selectAllCategoryManga()
             R.id.action_select_inverse -> selectInverseCategoryManga()
@@ -544,8 +545,11 @@ class LibraryController(
         destroyActionModeIfNeeded()
     }
 
-    private fun markReadStatus(read: Boolean) {
-        val mangas = selectedMangas.toList()
+    private fun showReadMangaDialog(read: Boolean) {
+        ReadLibraryMangasDialog(this, selectedMangas.toList(), read).showDialog(router)
+    }
+
+    override fun markReadStatus(mangas: List<Manga>, read: Boolean) {
         presenter.markReadStatus(mangas, read)
         destroyActionModeIfNeeded()
     }
