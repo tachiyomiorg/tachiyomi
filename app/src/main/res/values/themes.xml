@@ -152,7 +152,7 @@
         <item name="actionModeStyle">@style/Theme.ActionMode</item>
         <item name="actionModeCloseButtonStyle">@style/Theme.ActionMode.CloseButton</item>
         <item name="actionModeCloseDrawable">@drawable/ic_close_24dp</item>
-        <item name="actionBarTheme">@style/ThemeOverlay.MaterialComponents.Dark.ActionBar</item>
+        <item name="actionBarTheme">@style/Theme.Toolbar.Custom</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.MaterialComponents</item>
         <item name="toolbarNavigationButtonStyle">@style/Theme.Toolbar.Navigation</item>
         <item name="preferenceTheme">@style/PreferenceThemeDark</item>
@@ -221,7 +221,7 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <item name="android:navigationBarColor">?attr/colorPrimaryVariant</item>
 
-        <item name="actionBarTheme">@style/ThemeOverlay.MaterialComponents.Dark.ActionBar</item>
+        <item name="actionBarTheme">@style/Theme.Toolbar.Custom</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.MaterialComponents</item>
         <item name="switchStyle">@style/Theme.Widget.BasicSwitch</item>
         <item name="bottomSheetDialogTheme">@style/Theme.BottomSheet</item>
@@ -237,7 +237,7 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <item name="android:navigationBarColor">?attr/colorPrimaryVariant</item>
 
-        <item name="actionBarTheme">@style/ThemeOverlay.MaterialComponents.Dark.ActionBar</item>
+        <item name="actionBarTheme">@style/Theme.Toolbar.Custom</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.MaterialComponents</item>
         <item name="switchStyle">@style/Theme.Widget.BasicSwitch</item>
         <item name="bottomSheetDialogTheme">@style/Theme.BottomSheet</item>

@@ -6,8 +6,12 @@
     <!--========-->
     <style name="Theme.Toolbar" parent="@style/ThemeOverlay.MaterialComponents.ActionBar" />
 
-    <style name="Theme.Toolbar.Light" parent="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
+    <style name="Theme.Toolbar.Light" parent="Theme.Toolbar.Custom">
         <item name="popupTheme">@style/ThemeOverlay.MaterialComponents.Light</item>
+    </style>
+
+    <style name="Theme.Toolbar.Custom" parent="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
+        <item name="android:colorControlHighlight">?attr/rippleColor</item>
     </style>
 
     <style name="Theme.Toolbar.Navigation" parent="Widget.AppCompat.Toolbar.Button.Navigation">
