@@ -21,6 +21,7 @@
             app:layout_constraintEnd_toStartOf="@+id/menu"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:tabRippleColor="?attr/rippleColor"
             app:tabTextColor="@color/tabs_selector_background"
             app:tabIndicatorColor="?attr/colorAccent"
             app:tabGravity="fill"
