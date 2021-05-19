@@ -38,7 +38,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_more_vert_24dp"
+            app:srcCompat="@drawable/ic_overflow_24dp"
             app:tint="?attr/colorOnBackground"
             tools:visibility="visible" />
 
