@@ -18,6 +18,6 @@
         android:title="@string/browse" />
     <item
         android:id="@+id/nav_more"
-        android:icon="@drawable/ic_more_horiz_24dp"
+        android:icon="@drawable/ic_more_selector_24dp"
         android:title="@string/label_more" />
 </menu>
