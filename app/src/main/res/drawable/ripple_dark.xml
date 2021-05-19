@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ripple android:color="@color/material_blue_600"
+<ripple android:color="?attr/rippleColor"
     xmlns:android="http://schemas.android.com/apk/res/android" >
     <item android:drawable="@color/backgroundDark" />
 </ripple>

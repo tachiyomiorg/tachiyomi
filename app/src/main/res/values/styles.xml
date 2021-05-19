@@ -372,6 +372,10 @@
         <item name="android:textSize">15sp</item>
     </style>
 
+
+    <!--===============-->
+    <!--Custom Selector-->
+    <!--===============-->
     <style name="PreferenceThemeLight" parent="@style/PreferenceThemeOverlay">
         <item name="android:selectableItemBackground">@drawable/ripple_light</item>
     </style>

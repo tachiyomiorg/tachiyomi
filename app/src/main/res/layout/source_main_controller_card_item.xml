@@ -72,7 +72,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/ripple_circular"
+        android:background="@drawable/ripple_regular"
         android:contentDescription="@string/action_pin"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"

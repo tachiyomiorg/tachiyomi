@@ -87,7 +87,7 @@
         android:layout_width="44dp"
         android:layout_height="44dp"
         android:layout_toEndOf="@id/download_progress_text"
-        android:background="@drawable/ripple_circular"
+        android:background="@drawable/ripple_regular"
         android:contentDescription="@string/action_menu"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
