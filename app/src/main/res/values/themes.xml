@@ -37,6 +37,7 @@
         <item name="android:textColorSecondaryInverse">@color/textColorSecondaryDark</item>
         <item name="android:textColorHintInverse">@color/textColorHintDark</item>
         <item name="rippleColor">@color/rippleColorLight</item>
+        <item name="rippleNavColor">@color/rippleNavColorLight</item>
         <item name="android:colorEdgeEffect">?attr/colorAccent</item>
 
         <item name="android:divider">@color/dividerLight</item>
@@ -136,6 +137,7 @@
         <item name="android:textColorPrimaryInverse">@color/textColorPrimaryLight</item>
         <item name="android:textColorSecondaryInverse">@color/textColorSecondaryLight</item>
         <item name="android:textColorHintInverse">@color/textColorHintLight</item>
+        <item name="rippleNavColor">@color/rippleNavColorDark</item>
         <item name="rippleColor">@color/rippleColorDark</item>
         <item name="android:colorEdgeEffect">?attr/colorAccent</item>
 
