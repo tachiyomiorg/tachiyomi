@@ -20,6 +20,8 @@ sealed class Filter<T>(val name: String, var state: T) {
 
     abstract class Group<V>(name: String, state: List<V>) : Filter<List<V>>(name, state)
 
+    abstract class RadioGroup(name: String, val values: Array<String>) : Filter<Int>(name, 0)
+
     abstract class Sort(name: String, val values: Array<String>, state: Selection? = null) :
         Filter<Sort.Selection?>(name, state) {
         data class Selection(val index: Int, val ascending: Boolean)

@@ -29,6 +29,8 @@ import eu.kanade.tachiyomi.ui.browse.source.filter.TextItem
 import eu.kanade.tachiyomi.ui.browse.source.filter.TextSectionItem
 import eu.kanade.tachiyomi.ui.browse.source.filter.TriStateItem
 import eu.kanade.tachiyomi.ui.browse.source.filter.TriStateSectionItem
+import eu.kanade.tachiyomi.ui.browse.source.filter.RadioGroupItem
+import eu.kanade.tachiyomi.ui.browse.source.filter.RadioItem
 import eu.kanade.tachiyomi.util.chapter.ChapterSettingsHelper
 import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.lang.withUIContext
@@ -309,6 +311,14 @@ open class BrowseSourcePresenter(
                     }
                     group.subItems = subItems
                     group
+                }
+                is Filter.RadioGroup -> {
+                    val radioGroup = RadioGroupItem(filter)
+                    val subItems = filter.values.map { value ->
+                        RadioItem(value, radioGroup)
+                    }
+                    radioGroup.subItems = subItems
+                    radioGroup
                 }
             }
         }
