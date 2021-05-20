@@ -138,9 +138,6 @@ class AboutController : SettingsController() {
             preference {
                 key = "pref_about_licenses"
                 titleRes = R.string.licenses
-                iconRes = R.drawable.ic_code_tags_24dp
-                iconTint = tintColor
-
                 onClick {
                     LibsBuilder()
                         .withActivityTitle(activity!!.getString(R.string.licenses))
