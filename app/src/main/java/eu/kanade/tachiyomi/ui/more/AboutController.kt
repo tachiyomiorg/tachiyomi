@@ -96,11 +96,11 @@ class AboutController : SettingsController() {
                 }
             }
             preference {
-                key = "pref_about_facebook"
-                title = "Facebook"
-                iconRes = R.drawable.ic_facebook_24dp
+                key = "pref_about_discord"
+                title = "Discord"
+                iconRes = R.drawable.ic_discord_24dp
                 iconTint = tintColor
-                "https://facebook.com/tachiyomiorg".also {
+                "https://discord.gg/tachiyomi".also {
                     summary = it
                     onClick { openInBrowser(it) }
                 }
@@ -116,11 +116,11 @@ class AboutController : SettingsController() {
                 }
             }
             preference {
-                key = "pref_about_discord"
-                title = "Discord"
-                iconRes = R.drawable.ic_discord_24dp
+                key = "pref_about_facebook"
+                title = "Facebook"
+                iconRes = R.drawable.ic_facebook_24dp
                 iconTint = tintColor
-                "https://discord.gg/tachiyomi".also {
+                "https://facebook.com/tachiyomiorg".also {
                     summary = it
                     onClick { openInBrowser(it) }
                 }
