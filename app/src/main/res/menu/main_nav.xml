@@ -10,7 +10,7 @@
         android:title="@string/label_recent_updates" />
     <item
         android:id="@+id/nav_history"
-        android:icon="@drawable/ic_history_24dp"
+        android:icon="@drawable/ic_history_selector_24dp"
         android:title="@string/label_recent_manga" />
     <item
         android:id="@+id/nav_browse"
