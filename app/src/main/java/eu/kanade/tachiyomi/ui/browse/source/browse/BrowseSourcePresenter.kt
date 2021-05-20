@@ -268,28 +268,32 @@ open class BrowseSourcePresenter(
             ChapterSettingsHelper.applySettingDefaults(manga)
 
             if (prefs.autoAddTrack()) {
-                loggedServices
-                    .filterIsInstance<UnattendedTrackService>()
-                    .filter { it.accept(source) }
-                    .forEach { service ->
-                        launchIO {
-                            try {
-                                service.match(manga)?.let { track ->
-                                    track.manga_id = manga.id!!
-                                    (service as TrackService).bind(track)
-                                    db.insertTrack(track).executeAsBlocking()
-
-                                    syncChaptersWithTrackServiceTwoWay(db, db.getChapters(manga).executeAsBlocking(), track, service as TrackService)
-                                }
-                            } catch (e: Exception) {
-                                Timber.w(e, "Could not match manga: ${manga.title} with service $service")
-                            }
-                        }
-                    }
+                autoAddTrack(manga)
             }
         }
 
         db.insertManga(manga).executeAsBlocking()
+    }
+
+    private fun autoAddTrack(manga: Manga) {
+        loggedServices
+            .filterIsInstance<UnattendedTrackService>()
+            .filter { it.accept(source) }
+            .forEach { service ->
+                launchIO {
+                    try {
+                        service.match(manga)?.let { track ->
+                            track.manga_id = manga.id!!
+                            (service as TrackService).bind(track)
+                            db.insertTrack(track).executeAsBlocking()
+
+                            syncChaptersWithTrackServiceTwoWay(db, db.getChapters(manga).executeAsBlocking(), track, service as TrackService)
+                        }
+                    } catch (e: Exception) {
+                        Timber.w(e, "Could not match manga: ${manga.title} with service $service")
+                    }
+                }
+            }
     }
 
     /**
