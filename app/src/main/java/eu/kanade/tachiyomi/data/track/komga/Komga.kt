@@ -90,7 +90,10 @@ class Komga(private val context: Context, id: Int) : TrackService(id), Unattende
 
     override fun accept(source: Source): Boolean = source::class.qualifiedName == ACCEPTED_SOURCE
 
-    override suspend fun match(manga: Manga): TrackSearch? {
-        return api.getTrackSearch(manga.url)
-    }
+    override suspend fun match(manga: Manga): TrackSearch? =
+        try {
+            api.getTrackSearch(manga.url)
+        } catch (e: Exception) {
+            null
+        }
 }

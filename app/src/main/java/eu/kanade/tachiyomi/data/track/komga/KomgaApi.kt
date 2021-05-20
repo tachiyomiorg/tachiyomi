@@ -7,18 +7,22 @@ import eu.kanade.tachiyomi.network.GET
 import eu.kanade.tachiyomi.network.await
 import eu.kanade.tachiyomi.network.parseAs
 import eu.kanade.tachiyomi.util.lang.withIOContext
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import timber.log.Timber
+import uy.kohesive.injekt.injectLazy
 
 const val READLIST_API = "/api/v1/readlists"
 
 class KomgaApi(private val client: OkHttpClient) {
 
-    suspend fun getTrackSearch(url: String): TrackSearch? =
+    private val json: Json by injectLazy()
+
+    suspend fun getTrackSearch(url: String): TrackSearch =
         withIOContext {
             try {
                 val track = if (url.contains(READLIST_API)) {
@@ -51,13 +55,13 @@ class KomgaApi(private val client: OkHttpClient) {
                 }
             } catch (e: Exception) {
                 Timber.w(e, "Could not get item: $url")
-                null
+                throw e
             }
         }
 
     suspend fun updateProgress(track: Track): Track {
         val progress = ReadProgressUpdateDto(track.last_chapter_read)
-        val payload = Json.encodeToString(ReadProgressUpdateDto.serializer(), progress)
+        val payload = json.encodeToString(progress)
         client.newCall(
             Request.Builder()
                 .url("${track.tracking_url}/read-progress/tachiyomi")
@@ -65,7 +69,7 @@ class KomgaApi(private val client: OkHttpClient) {
                 .build()
         )
             .await()
-        return getTrackSearch(track.tracking_url)!!
+        return getTrackSearch(track.tracking_url)
     }
 
     private fun SeriesDto.toTrack(): TrackSearch = TrackSearch.create(TrackManager.KOMGA).also {
