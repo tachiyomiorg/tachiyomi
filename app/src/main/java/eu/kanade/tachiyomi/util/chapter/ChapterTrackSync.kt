@@ -5,6 +5,7 @@ import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.util.lang.launchIO
+import timber.log.Timber
 
 /**
  * Helper method for syncing a remote track with the local chapters, and back
@@ -21,7 +22,11 @@ fun syncChaptersWithTrackServiceTwoWay(db: DatabaseHelper, chapters: List<Chapte
         .forEach { it.read = true }
     db.updateChaptersProgress(sortedChapters).executeAsBlocking()
 
-    val localLastRead = sortedChapters.indexOfFirst { !it.read }
+    val localLastRead = when {
+        sortedChapters.all { it.read } -> sortedChapters.size
+        sortedChapters.any { !it.read } -> sortedChapters.indexOfFirst { !it.read }
+        else -> 0
+    }
 
     // update remote
     remoteTrack.last_chapter_read = localLastRead
@@ -31,6 +36,7 @@ fun syncChaptersWithTrackServiceTwoWay(db: DatabaseHelper, chapters: List<Chapte
             service.update(remoteTrack)
             db.insertTrack(remoteTrack).executeAsBlocking()
         } catch (e: Throwable) {
+            Timber.w(e)
         }
     }
 }
