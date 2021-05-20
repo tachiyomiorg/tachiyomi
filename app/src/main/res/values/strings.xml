@@ -615,6 +615,9 @@
     <string name="error_invalid_date_supplied">Invalid date supplied</string>
     <string name="myanimelist_creds_missing">MAL login credentials not found</string>
     <string name="myanimelist_relogin">Please login to MAL again</string>
+    <string name="score_unsupported">Not supported</string>
+    <string name="source_unsupported">Source is not supported</string>
+    <string name="error_no_match">No match found</string>
 
     <!-- Category activity -->
     <string name="error_category_exists">A category with this name already exists!</string>

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import eu.kanade.tachiyomi.R.string
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.track.UnattendedTrackService
 import eu.kanade.tachiyomi.databinding.TrackControllerBinding
@@ -85,20 +86,18 @@ class TrackSheet(
             }
 
             if (!item.service.accept(sourceManager.getOrStub(manga.source))) {
-                controller.presenter.view?.applicationContext?.toast("Source is not supported")
+                controller.presenter.view?.applicationContext?.toast(string.source_unsupported)
                 return
             }
 
             launchIO {
                 try {
-                    val track = item.service.match(manga)
-                    if (track != null) {
+                    item.service.match(manga)?.let { track ->
                         controller.presenter.registerTracking(track, item.service)
-                        return@launchIO
                     }
-                    withUIContext { controller.presenter.view?.applicationContext?.toast("No match found") }
+                        ?: withUIContext { controller.presenter.view?.applicationContext?.toast(string.error_no_match) }
                 } catch (e: Exception) {
-                    withUIContext { controller.presenter.view?.applicationContext?.toast("No match found") }
+                    withUIContext { controller.presenter.view?.applicationContext?.toast(string.error_no_match) }
                 }
             }
         } else {

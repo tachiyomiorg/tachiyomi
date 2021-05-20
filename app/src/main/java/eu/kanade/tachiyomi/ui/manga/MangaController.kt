@@ -519,8 +519,7 @@ class MangaController :
                 .forEach { service ->
                     launchIO {
                         try {
-                            val track = service.match(manga)
-                            if (track != null) {
+                            service.match(manga)?.let { track ->
                                 presenter.registerTracking(track, service as TrackService)
                             }
                         } catch (e: Exception) {
