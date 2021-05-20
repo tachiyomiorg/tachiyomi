@@ -29,8 +29,8 @@
 
         <ImageButton
             android:id="@+id/menu"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/ripple_regular"
             android:contentDescription="@string/action_menu"
             android:paddingStart="10dp"
