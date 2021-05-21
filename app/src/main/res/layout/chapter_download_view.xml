@@ -8,16 +8,6 @@
     android:background="?selectableItemBackgroundBorderless">
 
     <ImageView
-        android:id="@+id/download_icon_border"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="2dp"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/border_circle"
-        app:tint="?android:attr/textColorHint"
-        tools:ignore="ContentDescription" />
-
-    <ImageView
         android:id="@+id/download_icon"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -32,42 +22,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="1dp"
-        android:visibility="gone"
-        app:indicatorColor="?android:attr/textColorHint"
-        app:indicatorInset="0dp"
-        app:indicatorSize="24dp"
-        app:trackThickness="2dp" />
-
-    <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:id="@+id/download_queued"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:indeterminate="true"
-        android:padding="1dp"
-        android:visibility="gone"
+        android:progress="100"
         app:indicatorColor="?android:attr/textColorHint"
         app:indicatorInset="0dp"
         app:indicatorSize="24dp"
         app:trackThickness="2dp" />
 
     <ImageView
-        android:id="@+id/downloaded_icon"
+        android:id="@+id/download_status_icon"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        android:visibility="gone"
-        app:srcCompat="@drawable/ic_check_circle_24dp"
-        app:tint="?android:attr/textColorPrimary"
-        tools:ignore="ContentDescription" />
-
-    <ImageView
-        android:id="@+id/error_icon"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:visibility="gone"
-        app:srcCompat="@drawable/ic_error_outline_24dp"
-        app:tint="?attr/colorError"
         tools:ignore="ContentDescription" />
 
 </FrameLayout>

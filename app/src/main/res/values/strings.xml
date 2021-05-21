@@ -102,6 +102,7 @@
     <string name="action_unpin">Unpin</string>
     <string name="action_cancel">Cancel</string>
     <string name="action_cancel_all">Cancel all</string>
+    <string name="cancel_all_for_series">Cancel all for this series</string>
     <string name="action_sort">Sort</string>
     <string name="action_sort_descending">Descending</string>
     <string name="action_reorganize_by">Reorder</string>
@@ -271,6 +272,7 @@
     <string name="pref_true_color_summary">Reduces banding, but impacts performance</string>
     <string name="pref_crop_borders">Crop borders</string>
     <string name="pref_custom_brightness">Custom brightness</string>
+    <string name="pref_grayscale">Grayscale</string>
     <string name="pref_custom_color_filter">Custom color filter</string>
     <string name="pref_color_filter_mode">Color filter blend mode</string>
     <string name="filter_mode_default">Default</string>
@@ -291,11 +293,15 @@
     <string name="tapping_inverted_horizontal">Horizontal</string>
     <string name="tapping_inverted_vertical">Vertical</string>
     <string name="tapping_inverted_both">Both</string>
-    <string name="pref_read_with_long_tap">Long tap dialog</string>
+    <string name="pref_reader_actions">Actions</string>
+    <string name="pref_read_with_long_tap">Show on long tap</string>
+    <string name="pref_create_folder_per_manga">Save pages into separate folders</string>
+    <string name="pref_create_folder_per_manga_summary">Creates folders according to manga title</string>
     <string name="pref_reader_theme">Background color</string>
     <string name="white_background">White</string>
     <string name="gray_background">Gray</string>
     <string name="black_background">Black</string>
+    <string name="automatic_background">Automatic</string>
     <string name="pref_viewer_type">Default reading mode</string>
     <string name="default_viewer">Default</string>
     <string name="default_nav">Default</string>
@@ -330,11 +336,14 @@
     <string name="double_tap_anim_speed_0">No animation</string>
     <string name="double_tap_anim_speed_normal">Normal</string>
     <string name="double_tap_anim_speed_fast">Fast</string>
-    <string name="pref_rotation_type">Rotation</string>
+    <string name="pref_rotation_type">Default rotation type</string>
+    <string name="default_rotation_type">Default</string>
+    <string name="rotation_type">Rotation type</string>
     <string name="rotation_free">Free</string>
-    <string name="rotation_lock">Lock</string>
-    <string name="rotation_force_portrait">Force portrait</string>
-    <string name="rotation_force_landscape">Force landscape</string>
+    <string name="rotation_portrait">Portrait</string>
+    <string name="rotation_landscape">Landscape</string>
+    <string name="rotation_force_portrait">Locked portrait</string>
+    <string name="rotation_force_landscape">Locked landscape</string>
     <string name="color_filter_r_value">R</string>
     <string name="color_filter_g_value">G</string>
     <string name="color_filter_b_value">B</string>
@@ -382,9 +391,6 @@
     <string name="pref_create_backup_summ">Can be used to restore current library</string>
     <string name="pref_restore_backup">Restore backup</string>
     <string name="pref_restore_backup_summ">Restore library from backup file</string>
-    <string name="pref_create_legacy_backup">Create legacy backup</string>
-    <string name="pref_create_legacy_backup_summary">Can be used in older versions of Tachiyomi</string>
-    <string name="pref_backup_auto_create_legacy">Also create legacy backup</string>
     <string name="pref_backup_directory">Backup location</string>
     <string name="pref_backup_service_category">Automatic backups</string>
     <string name="pref_backup_interval">Backup frequency</string>
@@ -445,9 +451,7 @@
       <!-- About section -->
     <string name="website">Website</string>
     <string name="version">Version</string>
-    <string name="build_time">Build time</string>
     <string name="whats_new">What\'s new</string>
-    <string name="notices">Preview build notices</string>
     <string name="licenses">Open source licenses</string>
     <string name="check_for_updates">Check for updates</string>
     <string name="updated_version">Updated to v%1$s</string>
@@ -461,6 +465,7 @@
     <string name="label_downloaded_only">Downloaded only</string>
     <string name="pref_incognito_mode">Incognito mode</string>
     <string name="pref_incognito_mode_summary">Pauses reading history</string>
+    <string name="notification_incognito_text">Disable incognito mode</string>
     <string name="downloaded_only_summary">Filters all manga in your library</string>
     <plurals name="download_queue_summary">
         <item quantity="one">1 remaining</item>
@@ -537,6 +542,7 @@
     </plurals>
     <string name="delete_downloads_for_manga">Delete downloaded chapters?</string>
     <string name="copied_to_clipboard">Copied to clipboard:\n%1$s</string>
+    <string name="clipboard_copy_error">Failed to copy to clipboard</string>
     <string name="source_not_installed">Source not installed: %1$s</string>
     <string name="snack_add_to_library">Add manga to library?</string>
 
@@ -710,6 +716,7 @@
     <!--UpdateCheck-->
     <string name="update_check_confirm">Download</string>
     <string name="update_check_ignore">Ignore</string>
+    <string name="update_check_eol">This Android version is no longer supported</string>
     <string name="update_check_no_new_updates">No new updates available</string>
     <string name="update_check_look_for_updates">Searching for updates…</string>
 
@@ -768,5 +775,4 @@
     <!-- S Pen actions -->
     <string name="spen_previous_page">Previous page</string>
     <string name="spen_next_page">Next page</string>
-
 </resources>

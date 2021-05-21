@@ -50,6 +50,7 @@ class SettingsGeneralController : SettingsController() {
             titleRes = R.string.pref_hide_bottom_bar_on_scroll
             defaultValue = true
         }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             preference {
                 key = "pref_manage_notifications"

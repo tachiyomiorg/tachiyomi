@@ -163,7 +163,7 @@ internal object ExtensionLoader {
                         else -> throw Exception("Unknown source class type! ${obj.javaClass}")
                     }
                 } catch (e: Throwable) {
-                    Timber.w(e, "Extension load error: $extName ($it)")
+                    Timber.e(e, "Extension load error: $extName ($it)")
                     return LoadResult.Error(e)
                 }
             }

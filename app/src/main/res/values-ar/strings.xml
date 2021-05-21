@@ -137,7 +137,6 @@
     <string name="zoom_start_center">المركز</string>
     <string name="pref_rotation_type">الدوران</string>
     <string name="rotation_free">حر</string>
-    <string name="rotation_lock">مغلق</string>
     <string name="rotation_force_portrait">الوضع الرأسي اﻹجباري</string>
     <string name="rotation_force_landscape">الوضع الأفقي اﻹجباري</string>
     <string name="pref_download_directory">موقع التنزيل</string>
@@ -522,7 +521,6 @@
         <item quantity="other">متبقي %1$s عناصر</item>
     </plurals>
     <string name="downloaded_only_summary">يقوم بترشيح المانجا ضمن مكتبتك</string>
-    <string name="notices">عرض ملاحظات النسخة</string>
     <string name="pref_search_pinned_sources_only">تضمين المصادر المثبتة فقط</string>
     <string name="pref_webtoon_side_padding">المساحة الجانبية</string>
     <string name="vertical_plus_viewer">عمودي مستمر</string>

@@ -2,10 +2,9 @@ package eu.kanade.tachiyomi.ui.library
 
 import android.view.View
 import androidx.core.view.isVisible
-import com.bumptech.glide.load.engine.DiskCacheStrategy
+import coil.clear
+import coil.loadAny
 import eu.davidea.flexibleadapter.FlexibleAdapter
-import eu.kanade.tachiyomi.data.glide.GlideApp
-import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.databinding.SourceCompactGridItemBinding
 import eu.kanade.tachiyomi.util.isLocal
 
@@ -55,12 +54,7 @@ open class LibraryCompactGridHolder(
         binding.card.clipToOutline = true
 
         // Update the cover.
-        GlideApp.with(view.context).clear(binding.thumbnail)
-        GlideApp.with(view.context)
-            .load(item.manga.toMangaThumbnail())
-            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-            .centerCrop()
-            .dontAnimate()
-            .into(binding.thumbnail)
+        binding.thumbnail.clear()
+        binding.thumbnail.loadAny(item.manga)
     }
 }

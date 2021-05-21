@@ -29,7 +29,6 @@ open class BaseChapterHolder(
                     },
                     onMenuItemClick = {
                         adapter.clickListener.deleteChapter(position)
-                        true
                     }
                 )
             }

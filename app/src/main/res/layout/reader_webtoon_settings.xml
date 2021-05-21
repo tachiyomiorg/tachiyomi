@@ -15,21 +15,21 @@
         android:paddingEnd="16dp"
         android:textAppearance="@style/TextAppearance.Medium.SubHeading" />
 
-    <eu.kanade.tachiyomi.ui.reader.setting.SpinnerPreference
+    <eu.kanade.tachiyomi.widget.MaterialSpinnerView
         android:id="@+id/webtoon_nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/webtoon_nav"
         app:title="@string/pref_viewer_nav" />
 
-    <eu.kanade.tachiyomi.ui.reader.setting.SpinnerPreference
+    <eu.kanade.tachiyomi.widget.MaterialSpinnerView
         android:id="@+id/tapping_inverted"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/invert_tapping_mode"
         app:title="@string/pref_read_with_tapping_inverted" />
 
-    <eu.kanade.tachiyomi.ui.reader.setting.SpinnerPreference
+    <eu.kanade.tachiyomi.widget.MaterialSpinnerView
         android:id="@+id/webtoon_side_padding"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

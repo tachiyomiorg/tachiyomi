@@ -19,7 +19,8 @@ import timber.log.Timber
 abstract class BaseController<VB : ViewBinding>(bundle: Bundle? = null) :
     RestoreViewOnCreateController(bundle) {
 
-    lateinit var binding: VB
+    protected lateinit var binding: VB
+        private set
 
     lateinit var viewScope: CoroutineScope
 
@@ -51,11 +52,12 @@ abstract class BaseController<VB : ViewBinding>(bundle: Bundle? = null) :
         )
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup, savedViewState: Bundle?): View {
-        return inflateView(inflater, container)
-    }
+    abstract fun createBinding(inflater: LayoutInflater): VB
 
-    abstract fun inflateView(inflater: LayoutInflater, container: ViewGroup): View
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup, savedViewState: Bundle?): View {
+        binding = createBinding(inflater)
+        return binding.root
+    }
 
     open fun onViewCreated(view: View) {}
 

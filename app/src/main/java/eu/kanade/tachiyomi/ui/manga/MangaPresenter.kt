@@ -284,6 +284,7 @@ class MangaPresenter(
                     } else if (manga.favorite) {
                         coverCache.setCustomCoverToCache(manga, it)
                         manga.updateCoverLastModified(db)
+                        coverCache.clearMemoryCache()
                     }
                 }
             }
@@ -300,6 +301,7 @@ class MangaPresenter(
             .fromCallable {
                 coverCache.deleteCustomCover(manga)
                 manga.updateCoverLastModified(db)
+                coverCache.clearMemoryCache()
             }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -429,23 +431,25 @@ class MangaPresenter(
             observable = observable.filter { !it.bookmark }
         }
 
-        val sortFunction: (Chapter, Chapter) -> Int = when (manga.sorting) {
-            Manga.SORTING_SOURCE -> when (sortDescending()) {
+        return observable.toSortedList(getChapterSort())
+    }
+
+    fun getChapterSort(): (Chapter, Chapter) -> Int {
+        return when (manga.sorting) {
+            Manga.CHAPTER_SORTING_SOURCE -> when (sortDescending()) {
                 true -> { c1, c2 -> c1.source_order.compareTo(c2.source_order) }
                 false -> { c1, c2 -> c2.source_order.compareTo(c1.source_order) }
             }
-            Manga.SORTING_NUMBER -> when (sortDescending()) {
+            Manga.CHAPTER_SORTING_NUMBER -> when (sortDescending()) {
                 true -> { c1, c2 -> c2.chapter_number.compareTo(c1.chapter_number) }
                 false -> { c1, c2 -> c1.chapter_number.compareTo(c2.chapter_number) }
             }
-            Manga.SORTING_UPLOAD_DATE -> when (sortDescending()) {
+            Manga.CHAPTER_SORTING_UPLOAD_DATE -> when (sortDescending()) {
                 true -> { c1, c2 -> c2.date_upload.compareTo(c1.date_upload) }
                 false -> { c1, c2 -> c1.date_upload.compareTo(c2.date_upload) }
             }
             else -> throw NotImplementedError("Unimplemented sorting method")
         }
-
-        return observable.toSortedList(sortFunction)
     }
 
     /**
@@ -472,7 +476,12 @@ class MangaPresenter(
      * Returns the next unread chapter or null if everything is read.
      */
     fun getNextUnreadChapter(): ChapterItem? {
-        return chapters.sortedByDescending { it.source_order }.find { !it.read }
+        val chapters = chapters.sortedWith(getChapterSort())
+        return if (sortDescending()) {
+            return chapters.findLast { !it.read }
+        } else {
+            chapters.find { !it.read }
+        }
     }
 
     /**
@@ -555,8 +564,8 @@ class MangaPresenter(
      * Reverses the sorting and requests an UI update.
      */
     fun reverseSortOrder() {
-        manga.setChapterOrder(if (sortDescending()) Manga.SORT_ASC else Manga.SORT_DESC)
-        db.updateFlags(manga).executeAsBlocking()
+        manga.setChapterOrder(if (sortDescending()) Manga.CHAPTER_SORT_ASC else Manga.CHAPTER_SORT_DESC)
+        db.updateChapterFlags(manga).executeAsBlocking()
         refreshChapters()
     }
 
@@ -567,10 +576,10 @@ class MangaPresenter(
     fun setUnreadFilter(state: State) {
         manga.readFilter = when (state) {
             State.IGNORE -> Manga.SHOW_ALL
-            State.INCLUDE -> Manga.SHOW_UNREAD
-            State.EXCLUDE -> Manga.SHOW_READ
+            State.INCLUDE -> Manga.CHAPTER_SHOW_UNREAD
+            State.EXCLUDE -> Manga.CHAPTER_SHOW_READ
         }
-        db.updateFlags(manga).executeAsBlocking()
+        db.updateChapterFlags(manga).executeAsBlocking()
         refreshChapters()
     }
 
@@ -581,10 +590,10 @@ class MangaPresenter(
     fun setDownloadedFilter(state: State) {
         manga.downloadedFilter = when (state) {
             State.IGNORE -> Manga.SHOW_ALL
-            State.INCLUDE -> Manga.SHOW_DOWNLOADED
-            State.EXCLUDE -> Manga.SHOW_NOT_DOWNLOADED
+            State.INCLUDE -> Manga.CHAPTER_SHOW_DOWNLOADED
+            State.EXCLUDE -> Manga.CHAPTER_SHOW_NOT_DOWNLOADED
         }
-        db.updateFlags(manga).executeAsBlocking()
+        db.updateChapterFlags(manga).executeAsBlocking()
         refreshChapters()
     }
 
@@ -595,10 +604,10 @@ class MangaPresenter(
     fun setBookmarkedFilter(state: State) {
         manga.bookmarkedFilter = when (state) {
             State.IGNORE -> Manga.SHOW_ALL
-            State.INCLUDE -> Manga.SHOW_BOOKMARKED
-            State.EXCLUDE -> Manga.SHOW_NOT_BOOKMARKED
+            State.INCLUDE -> Manga.CHAPTER_SHOW_BOOKMARKED
+            State.EXCLUDE -> Manga.CHAPTER_SHOW_NOT_BOOKMARKED
         }
-        db.updateFlags(manga).executeAsBlocking()
+        db.updateChapterFlags(manga).executeAsBlocking()
         refreshChapters()
     }
 
@@ -608,7 +617,7 @@ class MangaPresenter(
      */
     fun setDisplayMode(mode: Int) {
         manga.displayMode = mode
-        db.updateFlags(manga).executeAsBlocking()
+        db.updateChapterFlags(manga).executeAsBlocking()
     }
 
     /**
@@ -617,7 +626,7 @@ class MangaPresenter(
      */
     fun setSorting(sort: Int) {
         manga.sorting = sort
-        db.updateFlags(manga).executeAsBlocking()
+        db.updateChapterFlags(manga).executeAsBlocking()
         refreshChapters()
     }
 
@@ -636,8 +645,8 @@ class MangaPresenter(
             return State.INCLUDE
         }
         return when (manga.downloadedFilter) {
-            Manga.SHOW_DOWNLOADED -> State.INCLUDE
-            Manga.SHOW_NOT_DOWNLOADED -> State.EXCLUDE
+            Manga.CHAPTER_SHOW_DOWNLOADED -> State.INCLUDE
+            Manga.CHAPTER_SHOW_NOT_DOWNLOADED -> State.EXCLUDE
             else -> State.IGNORE
         }
     }
@@ -647,8 +656,8 @@ class MangaPresenter(
      */
     fun onlyBookmarked(): State {
         return when (manga.bookmarkedFilter) {
-            Manga.SHOW_BOOKMARKED -> State.INCLUDE
-            Manga.SHOW_NOT_BOOKMARKED -> State.EXCLUDE
+            Manga.CHAPTER_SHOW_BOOKMARKED -> State.INCLUDE
+            Manga.CHAPTER_SHOW_NOT_BOOKMARKED -> State.EXCLUDE
             else -> State.IGNORE
         }
     }
@@ -658,8 +667,8 @@ class MangaPresenter(
      */
     fun onlyUnread(): State {
         return when (manga.readFilter) {
-            Manga.SHOW_UNREAD -> State.INCLUDE
-            Manga.SHOW_READ -> State.EXCLUDE
+            Manga.CHAPTER_SHOW_UNREAD -> State.INCLUDE
+            Manga.CHAPTER_SHOW_READ -> State.EXCLUDE
             else -> State.IGNORE
         }
     }

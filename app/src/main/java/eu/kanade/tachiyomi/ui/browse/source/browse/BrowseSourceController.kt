@@ -124,16 +124,10 @@ open class BrowseSourceController(bundle: Bundle) :
         return BrowseSourcePresenter(args.getLong(SOURCE_ID_KEY), args.getString(SEARCH_QUERY_KEY))
     }
 
-    override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        binding = SourceControllerBinding.inflate(inflater)
-        return binding.root
-    }
+    override fun createBinding(inflater: LayoutInflater) = SourceControllerBinding.inflate(inflater)
 
     override fun onViewCreated(view: View) {
         super.onViewCreated(view)
-
-        // Prepare filter sheet
-        initFilterSheet()
 
         // Initialize adapter, scroll listener and recycler views
         adapter = FlexibleAdapter(null, this)
@@ -176,11 +170,12 @@ open class BrowseSourceController(bundle: Bundle) :
     override fun configureFab(fab: ExtendedFloatingActionButton) {
         actionFab = fab
 
-        // Controlled by initFilterSheet()
-        fab.isVisible = false
-
         fab.setText(R.string.action_filter)
         fab.setIconResource(R.drawable.ic_filter_list_24dp)
+
+        // Controlled by initFilterSheet()
+        fab.isVisible = false
+        initFilterSheet()
     }
 
     override fun cleanupFab(fab: ExtendedFloatingActionButton) {
@@ -269,6 +264,7 @@ open class BrowseSourceController(bundle: Bundle) :
                 if (router.backstackSize >= 2 && router.backstack[router.backstackSize - 2].controller() is GlobalSearchController) {
                     router.popController(this)
                 } else {
+                    nonSubmittedQuery = ""
                     searchWithQuery("")
                 }
 

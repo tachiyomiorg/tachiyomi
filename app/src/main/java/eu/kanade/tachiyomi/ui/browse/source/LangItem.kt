@@ -18,7 +18,7 @@ data class LangItem(val code: String) : AbstractHeaderItem<LangHolder>() {
      * Returns the layout resource of this item.
      */
     override fun getLayoutRes(): Int {
-        return R.layout.source_main_controller_card_header
+        return R.layout.section_header_item
     }
 
     /**

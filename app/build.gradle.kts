@@ -29,8 +29,8 @@ android {
         minSdkVersion(AndroidConfig.minSdk)
         targetSdkVersion(AndroidConfig.targetSdk)
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        versionCode = 57
-        versionName = "0.10.10"
+        versionCode = 60
+        versionName = "0.10.12"
 
         buildConfigField("String", "COMMIT_COUNT", "\"${getCommitCount()}\"")
         buildConfigField("String", "COMMIT_SHA", "\"${getGitSha()}\"")
@@ -125,7 +125,7 @@ dependencies {
     implementation("androidx.biometric:biometric-ktx:1.2.0-alpha03")
     implementation("androidx.browser:browser:1.3.0")
     implementation("androidx.cardview:cardview:1.0.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.0-beta01")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.0-beta02")
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.1.0")
     implementation("androidx.core:core-ktx:1.3.2")
     implementation("androidx.multidex:multidex:2.0.1")
@@ -142,9 +142,9 @@ dependencies {
     implementation("androidx.work:work-runtime-ktx:2.5.0")
 
     // UI library
-    implementation("com.google.android.material:material:1.3.0")
+    implementation("com.google.android.material:material:1.4.0-beta01")
 
-    "standardImplementation"("com.google.firebase:firebase-core:18.0.3")
+    "standardImplementation"("com.google.firebase:firebase-core:19.0.0")
 
     // ReactiveX
     implementation("io.reactivex:rxandroid:1.2.1")
@@ -153,7 +153,7 @@ dependencies {
     implementation("com.github.pwittchen:reactivenetwork:0.13.0")
 
     // Network client
-    val okhttpVersion = "5.0.0-alpha.2"
+    val okhttpVersion = "4.9.1"
     implementation("com.squareup.okhttp3:okhttp:$okhttpVersion")
     implementation("com.squareup.okhttp3:logging-interceptor:$okhttpVersion")
     implementation("com.squareup.okhttp3:okhttp-dnsoverhttps:$okhttpVersion")
@@ -163,7 +163,7 @@ dependencies {
     implementation("org.conscrypt:conscrypt-android:2.5.1")
 
     // JSON
-    val kotlinSerializationVersion = "1.0.1"
+    val kotlinSerializationVersion = "1.2.0"
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinSerializationVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-protobuf:$kotlinSerializationVersion")
     implementation("com.google.code.gson:gson:2.8.6")
@@ -174,7 +174,7 @@ dependencies {
 
     // Disk
     implementation("com.jakewharton:disklrucache:2.0.2")
-    implementation("com.github.tachiyomiorg:unifile:e9e3a40")
+    implementation("com.github.tachiyomiorg:unifile:17bec43")
     implementation("com.github.junrar:junrar:7.4.0")
 
     // HTML parser
@@ -184,7 +184,7 @@ dependencies {
     implementation("androidx.sqlite:sqlite-ktx:2.1.0")
     implementation("com.github.inorichi.storio:storio-common:8be19de@aar")
     implementation("com.github.inorichi.storio:storio-sqlite:8be19de@aar")
-    implementation("io.requery:sqlite-android:3.33.0")
+    implementation("com.github.requery:sqlite-android:3.35.5")
 
     // Preferences
     implementation("com.github.tfcporciuncula.flow-preferences:flow-preferences:1.3.4")
@@ -198,12 +198,11 @@ dependencies {
     implementation("com.github.inorichi.injekt:injekt-core:65b0440")
 
     // Image library
-    val glideVersion = "4.12.0"
-    implementation("com.github.bumptech.glide:glide:$glideVersion")
-    implementation("com.github.bumptech.glide:okhttp3-integration:$glideVersion")
-    kapt("com.github.bumptech.glide:compiler:$glideVersion")
+    val coilVersion = "1.2.1"
+    implementation("io.coil-kt:coil:$coilVersion")
+    implementation("io.coil-kt:coil-gif:$coilVersion")
 
-    implementation("com.github.tachiyomiorg:subsampling-scale-image-view:547d9c0")
+    implementation("com.github.tachiyomiorg:subsampling-scale-image-view:846abe0")
 
     // Logging
     implementation("com.jakewharton.timber:timber:4.7.1")
@@ -260,12 +259,12 @@ dependencies {
 
     implementation(kotlin("reflect", version = BuildPluginsVersion.KOTLIN))
 
-    val coroutinesVersion = "1.4.2"
+    val coroutinesVersion = "1.4.3"
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
 
     // For detecting memory leaks; see https://square.github.io/leakcanary/
-    // debugImplementation("com.squareup.leakcanary:leakcanary-android:2.6")
+    // debugImplementation("com.squareup.leakcanary:leakcanary-android:2.7")
 }
 
 tasks {
@@ -278,7 +277,8 @@ tasks {
             "-Xuse-experimental=kotlinx.coroutines.FlowPreview",
             "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
             "-Xuse-experimental=kotlinx.coroutines.InternalCoroutinesApi",
-            "-Xuse-experimental=kotlinx.serialization.ExperimentalSerializationApi"
+            "-Xuse-experimental=kotlinx.serialization.ExperimentalSerializationApi",
+            "-Xuse-experimental=coil.annotation.ExperimentalCoilApi",
         )
     }
 

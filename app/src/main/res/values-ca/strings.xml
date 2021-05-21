@@ -167,7 +167,6 @@
     <string name="double_tap_anim_speed_fast">Ràpida</string>
     <string name="pref_rotation_type">Rotació</string>
     <string name="rotation_free">Lliure</string>
-    <string name="rotation_lock">Bloca</string>
     <string name="rotation_force_portrait">Força vertical</string>
     <string name="rotation_force_landscape">Força horitzontal</string>
     <string name="color_filter_r_value">R</string>
@@ -447,7 +446,6 @@
         <item quantity="one">Per a 1 títol</item>
         <item quantity="other">Per a %d títols</item>
     </plurals>
-    <string name="notices">Avisos de compilacions de previsualització</string>
     <string name="pref_theme_light">Tema clar</string>
     <string name="theme_light_default">Per defecte</string>
     <string name="theme_light_blue">Blau clar</string>

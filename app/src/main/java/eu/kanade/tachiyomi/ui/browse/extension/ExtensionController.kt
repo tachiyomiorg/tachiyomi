@@ -5,7 +5,6 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bluelinelabs.conductor.ControllerChangeHandler
@@ -57,18 +56,16 @@ open class ExtensionController :
         return ExtensionPresenter()
     }
 
-    override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        binding = ExtensionControllerBinding.inflate(inflater)
+    override fun createBinding(inflater: LayoutInflater) = ExtensionControllerBinding.inflate(inflater)
+
+    override fun onViewCreated(view: View) {
+        super.onViewCreated(view)
+
         binding.recycler.applyInsetter {
             type(navigationBars = true) {
                 padding()
             }
         }
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View) {
-        super.onViewCreated(view)
 
         binding.swipeRefresh.isRefreshing = true
         binding.swipeRefresh.refreshes()

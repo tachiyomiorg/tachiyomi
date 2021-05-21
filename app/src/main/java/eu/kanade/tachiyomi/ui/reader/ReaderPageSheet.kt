@@ -1,5 +1,7 @@
 package eu.kanade.tachiyomi.ui.reader
 
+import android.view.LayoutInflater
+import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.databinding.ReaderPageSheetBinding
@@ -15,14 +17,16 @@ class ReaderPageSheet(
     private val page: ReaderPage
 ) : BaseBottomSheetDialog(activity) {
 
-    private val binding = ReaderPageSheetBinding.inflate(activity.layoutInflater, null, false)
+    private lateinit var binding: ReaderPageSheetBinding
 
-    init {
-        setContentView(binding.root)
+    override fun createView(inflater: LayoutInflater): View {
+        binding = ReaderPageSheetBinding.inflate(activity.layoutInflater, null, false)
 
         binding.setAsCoverLayout.setOnClickListener { setAsCover() }
         binding.shareLayout.setOnClickListener { share() }
         binding.saveLayout.setOnClickListener { save() }
+
+        return binding.root
     }
 
     /**

@@ -18,7 +18,6 @@ class UpdatesAdapter(
 
     init {
         setDisplayHeadersAtStartUp(true)
-        setStickyHeaders(true)
     }
 
     interface OnCoverClickListener {

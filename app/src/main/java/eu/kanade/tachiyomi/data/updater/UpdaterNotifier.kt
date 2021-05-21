@@ -1,6 +1,8 @@
 package eu.kanade.tachiyomi.data.updater
 
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import androidx.core.app.NotificationCompat
 import eu.kanade.tachiyomi.R
@@ -26,6 +28,27 @@ internal class UpdaterNotifier(private val context: Context) {
      */
     private fun NotificationCompat.Builder.show(id: Int = Notifications.ID_UPDATER) {
         context.notificationManager.notify(id, build())
+    }
+
+    fun promptUpdate(url: String) {
+        val intent = Intent(context, UpdaterService::class.java).apply {
+            putExtra(UpdaterService.EXTRA_DOWNLOAD_URL, url)
+        }
+        val pendingIntent = PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        with(notificationBuilder) {
+            setContentTitle(context.getString(R.string.app_name))
+            setContentText(context.getString(R.string.update_check_notification_update_available))
+            setSmallIcon(android.R.drawable.stat_sys_download_done)
+            setContentIntent(pendingIntent)
+
+            clearActions()
+            addAction(
+                android.R.drawable.stat_sys_download_done,
+                context.getString(R.string.action_download),
+                pendingIntent
+            )
+        }
+        notificationBuilder.show()
     }
 
     /**
@@ -63,19 +86,20 @@ internal class UpdaterNotifier(private val context: Context) {
      * @param uri path location of apk.
      */
     fun onDownloadFinished(uri: Uri) {
+        val installIntent = NotificationHandler.installApkPendingActivity(context, uri)
         with(notificationBuilder) {
             setContentText(context.getString(R.string.update_check_notification_download_complete))
             setSmallIcon(android.R.drawable.stat_sys_download_done)
             setOnlyAlertOnce(false)
             setProgress(0, 0, false)
-            // Install action
-            setContentIntent(NotificationHandler.installApkPendingActivity(context, uri))
+            setContentIntent(installIntent)
+
+            clearActions()
             addAction(
                 R.drawable.ic_system_update_alt_white_24dp,
                 context.getString(R.string.action_install),
-                NotificationHandler.installApkPendingActivity(context, uri)
+                installIntent
             )
-            // Cancel action
             addAction(
                 R.drawable.ic_close_24dp,
                 context.getString(R.string.action_cancel),
@@ -96,13 +120,13 @@ internal class UpdaterNotifier(private val context: Context) {
             setSmallIcon(android.R.drawable.stat_sys_warning)
             setOnlyAlertOnce(false)
             setProgress(0, 0, false)
-            // Retry action
+
+            clearActions()
             addAction(
                 R.drawable.ic_refresh_24dp,
                 context.getString(R.string.action_retry),
                 UpdaterService.downloadApkPendingService(context, url)
             )
-            // Cancel action
             addAction(
                 R.drawable.ic_close_24dp,
                 context.getString(R.string.action_cancel),

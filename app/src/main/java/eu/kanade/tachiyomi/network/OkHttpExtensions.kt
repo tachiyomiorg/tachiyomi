@@ -9,6 +9,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
+import okhttp3.internal.closeQuietly
 import rx.Observable
 import rx.Producer
 import rx.Subscription
@@ -70,7 +71,9 @@ suspend fun Call.await(): Response {
                         return
                     }
 
-                    continuation.resume(response)
+                    continuation.resume(response) {
+                        response.body?.closeQuietly()
+                    }
                 }
 
                 override fun onFailure(call: Call, e: IOException) {

@@ -5,6 +5,8 @@ import androidx.preference.PreferenceScreen
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferenceValues.TappingInvertMode
 import eu.kanade.tachiyomi.data.preference.asImmediateFlow
+import eu.kanade.tachiyomi.ui.reader.setting.OrientationType
+import eu.kanade.tachiyomi.ui.reader.setting.ReadingModeType
 import eu.kanade.tachiyomi.util.preference.defaultValue
 import eu.kanade.tachiyomi.util.preference.entriesRes
 import eu.kanade.tachiyomi.util.preference.intListPreference
@@ -23,7 +25,7 @@ class SettingsReaderController : SettingsController() {
         titleRes = R.string.pref_category_reader
 
         intListPreference {
-            key = Keys.defaultViewer
+            key = Keys.defaultReadingMode
             titleRes = R.string.pref_viewer_type
             entriesRes = arrayOf(
                 R.string.left_to_right_viewer,
@@ -32,8 +34,9 @@ class SettingsReaderController : SettingsController() {
                 R.string.webtoon_viewer,
                 R.string.vertical_plus_viewer
             )
-            entryValues = arrayOf("1", "2", "3", "4", "5")
-            defaultValue = "2"
+            entryValues = ReadingModeType.values().drop(1)
+                .map { value -> "${value.flagValue}" }.toTypedArray()
+            defaultValue = "${ReadingModeType.RIGHT_TO_LEFT.flagValue}"
             summary = "%s"
         }
         intListPreference {
@@ -74,23 +77,25 @@ class SettingsReaderController : SettingsController() {
             titleRes = R.string.pref_category_display
 
             intListPreference {
-                key = Keys.rotation
+                key = Keys.defaultOrientationType
                 titleRes = R.string.pref_rotation_type
                 entriesRes = arrayOf(
                     R.string.rotation_free,
-                    R.string.rotation_lock,
+                    R.string.rotation_portrait,
+                    R.string.rotation_landscape,
                     R.string.rotation_force_portrait,
-                    R.string.rotation_force_landscape
+                    R.string.rotation_force_landscape,
                 )
-                entryValues = arrayOf("1", "2", "3", "4")
-                defaultValue = "1"
+                entryValues = OrientationType.values().drop(1)
+                    .map { value -> "${value.flagValue}" }.toTypedArray()
+                defaultValue = "${OrientationType.FREE.flagValue}"
                 summary = "%s"
             }
             intListPreference {
                 key = Keys.readerTheme
                 titleRes = R.string.pref_reader_theme
-                entriesRes = arrayOf(R.string.black_background, R.string.gray_background, R.string.white_background)
-                entryValues = arrayOf("1", "2", "0")
+                entriesRes = arrayOf(R.string.black_background, R.string.gray_background, R.string.white_background, R.string.automatic_background)
+                entryValues = arrayOf("1", "2", "0", "3")
                 defaultValue = "1"
                 summary = "%s"
             }
@@ -297,11 +302,6 @@ class SettingsReaderController : SettingsController() {
                 defaultValue = true
             }
             switchPreference {
-                key = Keys.readWithLongTap
-                titleRes = R.string.pref_read_with_long_tap
-                defaultValue = true
-            }
-            switchPreference {
                 key = Keys.readWithVolumeKeys
                 titleRes = R.string.pref_read_with_volume_keys
                 defaultValue = false
@@ -312,6 +312,22 @@ class SettingsReaderController : SettingsController() {
                 defaultValue = false
 
                 preferences.readWithVolumeKeys().asImmediateFlow { isVisible = it }.launchIn(viewScope)
+            }
+        }
+
+        preferenceCategory {
+            titleRes = R.string.pref_reader_actions
+
+            switchPreference {
+                key = Keys.readWithLongTap
+                titleRes = R.string.pref_read_with_long_tap
+                defaultValue = true
+            }
+            switchPreference {
+                key = Keys.folderPerManga
+                titleRes = R.string.pref_create_folder_per_manga
+                summaryRes = R.string.pref_create_folder_per_manga_summary
+                defaultValue = false
             }
         }
     }

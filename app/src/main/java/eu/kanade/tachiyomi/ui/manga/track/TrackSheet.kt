@@ -1,7 +1,8 @@
 package eu.kanade.tachiyomi.ui.manga.track
 
 import android.os.Bundle
-import android.view.ViewGroup
+import android.view.LayoutInflater
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import eu.kanade.tachiyomi.data.database.models.Manga
@@ -23,21 +24,19 @@ class TrackSheet(
 
     private lateinit var binding: TrackControllerBinding
 
-    private lateinit var sheetBehavior: BottomSheetBehavior<*>
-
     private lateinit var adapter: TrackAdapter
+
+    override fun createView(inflater: LayoutInflater): View {
+        binding = TrackControllerBinding.inflate(layoutInflater)
+        return binding.root
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = TrackControllerBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
         adapter = TrackAdapter(this)
         binding.trackRecycler.layoutManager = LinearLayoutManager(context)
         binding.trackRecycler.adapter = adapter
-
-        sheetBehavior = BottomSheetBehavior.from(binding.root.parent as ViewGroup)
 
         adapter.items = controller.presenter.trackList
     }

@@ -11,7 +11,7 @@
         <attr name="max_seek" format="integer"/>
     </declare-styleable>
 
-    <declare-styleable name="SpinnerPreference">
+    <declare-styleable name="MaterialSpinnerView">
         <attr name="title" format="reference|string"/>
         <attr name="android:entries"/>
         <attr name="summary" format="reference|string" />

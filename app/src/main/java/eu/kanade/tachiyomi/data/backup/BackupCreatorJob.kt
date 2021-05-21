@@ -8,7 +8,6 @@ import androidx.work.WorkManager
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import eu.kanade.tachiyomi.data.backup.full.FullBackupManager
-import eu.kanade.tachiyomi.data.backup.legacy.LegacyBackupManager
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
@@ -23,9 +22,6 @@ class BackupCreatorJob(private val context: Context, workerParams: WorkerParamet
         val flags = BackupCreateService.BACKUP_ALL
         return try {
             FullBackupManager(context).createBackup(uri, flags, true)
-            if (preferences.createLegacyBackup().get()) {
-                LegacyBackupManager(context).createBackup(uri, flags, true)
-            }
             Result.success()
         } catch (e: Exception) {
             Result.failure()

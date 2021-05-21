@@ -140,9 +140,8 @@
     <string name="zoom_start_center">Tengah</string>
     <string name="pref_rotation_type">Putaran skrin</string>
     <string name="rotation_free">Bebas</string>
-    <string name="rotation_lock">Kunci</string>
-    <string name="rotation_force_portrait">Hanya potret</string>
-    <string name="rotation_force_landscape">Hanya landskap</string>
+    <string name="rotation_force_portrait">Kekal potret</string>
+    <string name="rotation_force_landscape">Kekal landskap</string>
     <string name="color_filter_r_value">R</string>
     <string name="color_filter_g_value">G</string>
     <string name="color_filter_b_value">B</string>
@@ -152,7 +151,7 @@
     <string name="pref_remove_after_marked_as_read">Selepas ditandakan sebagai dibaca secara manual</string>
     <string name="pref_remove_after_read">Setelah membaca</string>
     <string name="custom_dir">Lokasi tersuai</string>
-    <string name="disabled">Dinyahaktifkan</string>
+    <string name="disabled">Dinyahkan</string>
     <string name="last_read_chapter">Bab terakhir dibaca</string>
     <string name="second_to_last">Bab kedua terakhir</string>
     <string name="third_to_last">Bab ketiga terakhir</string>
@@ -212,7 +211,7 @@
     <string name="local_source">Sumber lokal</string>
     <string name="other_source">Lain</string>
     <string name="invalid_combination">Lalai tidak boleh dipilih bersama kategori lain</string>
-    <string name="added_to_library">Manga ini telah ditambahkan ke pustaka anda</string>
+    <string name="added_to_library">Manga ini telah ditambahkan ke Pustaka anda</string>
     <string name="action_global_search_hint">Carian keseluruhan…</string>
     <string name="latest">Terkini</string>
     <string name="browse">Semak imbas</string>
@@ -229,10 +228,10 @@
     <string name="display_mode_chapter">Bab %1$s</string>
     <string name="chapter_downloaded">Dimuat turun</string>
     <string name="chapter_queued">Diaturkan</string>
-    <string name="chapter_downloading">Muat turun dalam progres</string>
+    <string name="chapter_downloading">Memuat turun</string>
     <string name="chapter_downloading_progress">Memuat turun (%1$d/%2$d)</string>
     <string name="chapter_error">Ralat</string>
-    <string name="chapter_paused">Dihenti sebentar</string>
+    <string name="chapter_paused">Ditangguh</string>
     <string name="fetch_chapters_error">Tidak berhasil mendapatkan bab</string>
     <string name="show_title">Tajuk sumber</string>
     <string name="show_chapter_number">Nombor bab</string>
@@ -319,7 +318,7 @@
     <string name="ext_update">Kemaskini</string>
     <string name="ext_install">Pasang</string>
     <string name="ext_pending">Masih menunggu</string>
-    <string name="ext_downloading">Muat turun dalam progres</string>
+    <string name="ext_downloading">Memuat turun</string>
     <string name="ext_installing">Memasang</string>
     <string name="ext_installed">Dipasang</string>
     <string name="ext_trust">Dipercayai</string>
@@ -443,7 +442,6 @@
     <plurals name="notification_new_chapters_summary">
         <item quantity="other">Untuk %d tajuk</item>
     </plurals>
-    <string name="notices">Notis binaan Preview</string>
     <string name="pref_theme_light">Tema terang</string>
     <string name="theme_light_default">Lalai</string>
     <string name="theme_light_blue">Biru terang</string>
@@ -474,8 +472,8 @@
     <string name="add_tracking">Tambah penjejakan</string>
     <string name="manga_info_collapse">Tutup</string>
     <string name="manga_info_expand">Buka</string>
-    <string name="in_library">Dalam pustaka</string>
-    <string name="add_to_library">Tambah ke pustaka</string>
+    <string name="in_library">Dalam Pustaka</string>
+    <string name="add_to_library">Tambah ke Pustaka</string>
     <string name="pinned_sources">Disematkan</string>
     <string name="licenses">Lesen perisian sumber terbuka</string>
     <string name="website">Laman web</string>
@@ -660,4 +658,9 @@
     <string name="pref_library_update_categories_details">Manga di dalam kategori berkecuali tidak akan dikemaskini walaupun ianya ada di dalam kategori hanya.</string>
     <string name="pref_download_new_categories_details">Manga di dalam kategori berkecuali tidak akan dimuat turun walaupun ianya ada di dalam kategori hanya.</string>
     <string name="pref_category_auto_download">Muat turun automatik</string>
+    <string name="action_show_errors">Tunjuk ralat</string>
+    <string name="update_check_eol">Versi Android ini tidak lagi disokong</string>
+    <string name="clipboard_copy_error">Gagal menyalin ke papan keratan</string>
+    <string name="rotation_landscape">Landskap</string>
+    <string name="rotation_portrait">Potret</string>
 </resources>

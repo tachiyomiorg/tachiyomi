@@ -6,7 +6,6 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -50,22 +49,7 @@ open class GlobalSearchController(
         setHasOptionsMenu(true)
     }
 
-    /**
-     * Initiate the view with [R.layout.global_search_controller].
-     *
-     * @param inflater used to load the layout xml.
-     * @param container containing parent views.
-     * @return inflated view
-     */
-    override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        binding = GlobalSearchControllerBinding.inflate(inflater)
-        binding.recycler.applyInsetter {
-            type(navigationBars = true) {
-                padding()
-            }
-        }
-        return binding.root
-    }
+    override fun createBinding(inflater: LayoutInflater) = GlobalSearchControllerBinding.inflate(inflater)
 
     override fun getTitle(): String? {
         return presenter.query
@@ -141,6 +125,12 @@ open class GlobalSearchController(
      */
     override fun onViewCreated(view: View) {
         super.onViewCreated(view)
+
+        binding.recycler.applyInsetter {
+            type(navigationBars = true) {
+                padding()
+            }
+        }
 
         adapter = GlobalSearchAdapter(this)
 

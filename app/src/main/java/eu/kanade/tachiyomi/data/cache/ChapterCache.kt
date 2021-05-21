@@ -2,17 +2,17 @@ package eu.kanade.tachiyomi.data.cache
 
 import android.content.Context
 import android.text.format.Formatter
-import com.github.salomonbrys.kotson.fromJson
-import com.google.gson.Gson
 import com.jakewharton.disklrucache.DiskLruCache
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.util.storage.DiskUtil
 import eu.kanade.tachiyomi.util.storage.saveTo
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import okhttp3.Response
 import okio.buffer
 import okio.sink
-import rx.Observable
 import uy.kohesive.injekt.injectLazy
 import java.io.File
 import java.io.IOException
@@ -42,8 +42,7 @@ class ChapterCache(private val context: Context) {
         const val PARAMETER_CACHE_SIZE = 100L * 1024 * 1024
     }
 
-    /** Google Json class used for parsing JSON files.  */
-    private val gson: Gson by injectLazy()
+    private val json: Json by injectLazy()
 
     /** Cache class used for cache management.  */
     private val diskCache = DiskLruCache.open(
@@ -56,7 +55,7 @@ class ChapterCache(private val context: Context) {
     /**
      * Returns directory of cache.
      */
-    val cacheDir: File
+    private val cacheDir: File
         get() = diskCache.directory
 
     /**
@@ -72,42 +71,18 @@ class ChapterCache(private val context: Context) {
         get() = Formatter.formatFileSize(context, realSize)
 
     /**
-     * Remove file from cache.
-     *
-     * @param file name of file "md5.0".
-     * @return status of deletion for the file.
-     */
-    fun removeFileFromCache(file: String): Boolean {
-        // Make sure we don't delete the journal file (keeps track of cache).
-        if (file == "journal" || file.startsWith("journal.")) {
-            return false
-        }
-
-        return try {
-            // Remove the extension from the file to get the key of the cache
-            val key = file.substringBeforeLast(".")
-            // Remove file from cache.
-            diskCache.remove(key)
-        } catch (e: Exception) {
-            false
-        }
-    }
-
-    /**
      * Get page list from cache.
      *
      * @param chapter the chapter.
-     * @return an observable of the list of pages.
+     * @return the list of pages.
      */
-    fun getPageListFromCache(chapter: Chapter): Observable<List<Page>> {
-        return Observable.fromCallable {
-            // Get the key for the chapter.
-            val key = DiskUtil.hashKeyForDisk(getKey(chapter))
+    fun getPageListFromCache(chapter: Chapter): List<Page> {
+        // Get the key for the chapter.
+        val key = DiskUtil.hashKeyForDisk(getKey(chapter))
 
-            // Convert JSON string to list of objects. Throws an exception if snapshot is null
-            diskCache.get(key).use {
-                gson.fromJson<List<Page>>(it.getString(0))
-            }
+        // Convert JSON string to list of objects. Throws an exception if snapshot is null
+        return diskCache.get(key).use {
+            json.decodeFromString(it.getString(0))
         }
     }
 
@@ -119,7 +94,7 @@ class ChapterCache(private val context: Context) {
      */
     fun putPageListToCache(chapter: Chapter, pages: List<Page>) {
         // Convert list of pages to json string.
-        val cachedValue = gson.toJson(pages)
+        val cachedValue = json.encodeToString(pages)
 
         // Initialize the editor (edits the values for an entry).
         var editor: DiskLruCache.Editor? = null
@@ -196,6 +171,38 @@ class ChapterCache(private val context: Context) {
         } finally {
             response.body?.close()
             editor?.abortUnlessCommitted()
+        }
+    }
+
+    fun clear(): Int {
+        var deletedFiles = 0
+        cacheDir.listFiles()?.forEach {
+            if (removeFileFromCache(it.name)) {
+                deletedFiles++
+            }
+        }
+        return deletedFiles
+    }
+
+    /**
+     * Remove file from cache.
+     *
+     * @param file name of file "md5.0".
+     * @return status of deletion for the file.
+     */
+    private fun removeFileFromCache(file: String): Boolean {
+        // Make sure we don't delete the journal file (keeps track of cache).
+        if (file == "journal" || file.startsWith("journal.")) {
+            return false
+        }
+
+        return try {
+            // Remove the extension from the file to get the key of the cache
+            val key = file.substringBeforeLast(".")
+            // Remove file from cache.
+            diskCache.remove(key)
+        } catch (e: Exception) {
+            false
         }
     }
 

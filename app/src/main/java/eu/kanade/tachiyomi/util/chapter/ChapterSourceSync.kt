@@ -157,3 +157,5 @@ private fun shouldUpdateDbChapter(dbChapter: Chapter, sourceChapter: SChapter): 
         dbChapter.date_upload != sourceChapter.date_upload ||
         dbChapter.chapter_number != sourceChapter.chapter_number
 }
+
+class NoChaptersException : Exception()

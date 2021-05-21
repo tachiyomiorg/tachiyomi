@@ -32,7 +32,6 @@
     <string name="color_filter_r_value">R</string>
     <string name="rotation_force_landscape">Forzar horizontal</string>
     <string name="rotation_force_portrait">Forzar vertical</string>
-    <string name="rotation_lock">Bloqueada</string>
     <string name="rotation_free">Libre</string>
     <string name="pref_rotation_type">Rotación</string>
     <string name="double_tap_anim_speed_fast">Rápido</string>

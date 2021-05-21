@@ -1,7 +1,6 @@
 package eu.kanade.tachiyomi.ui.more
 
 import android.app.Dialog
-import android.os.Build
 import android.os.Bundle
 import androidx.core.os.bundleOf
 import androidx.preference.PreferenceScreen
@@ -13,15 +12,19 @@ import eu.kanade.tachiyomi.data.updater.UpdateResult
 import eu.kanade.tachiyomi.data.updater.UpdaterService
 import eu.kanade.tachiyomi.data.updater.github.GithubUpdateChecker
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
+import eu.kanade.tachiyomi.ui.base.controller.NoToolbarElevationController
 import eu.kanade.tachiyomi.ui.base.controller.openInBrowser
 import eu.kanade.tachiyomi.ui.setting.SettingsController
+import eu.kanade.tachiyomi.util.CrashLogUtil
 import eu.kanade.tachiyomi.util.lang.launchNow
 import eu.kanade.tachiyomi.util.lang.toDateTimestampString
+import eu.kanade.tachiyomi.util.preference.add
 import eu.kanade.tachiyomi.util.preference.onClick
 import eu.kanade.tachiyomi.util.preference.preference
 import eu.kanade.tachiyomi.util.preference.preferenceCategory
 import eu.kanade.tachiyomi.util.preference.titleRes
 import eu.kanade.tachiyomi.util.system.copyToClipboard
+import eu.kanade.tachiyomi.util.system.openInBrowser
 import eu.kanade.tachiyomi.util.system.toast
 import timber.log.Timber
 import java.text.DateFormat
@@ -30,7 +33,7 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
 
-class AboutController : SettingsController() {
+class AboutController : SettingsController(), NoToolbarElevationController {
 
     private val updateChecker by lazy { GithubUpdateChecker() }
 
@@ -41,92 +44,46 @@ class AboutController : SettingsController() {
     override fun setupPreferenceScreen(screen: PreferenceScreen) = screen.apply {
         titleRes = R.string.pref_category_about
 
-        preference {
-            key = "pref_about_version"
-            titleRes = R.string.version
-            summary = if (BuildConfig.DEBUG) {
-                "Preview r${BuildConfig.COMMIT_COUNT} (${BuildConfig.COMMIT_SHA})"
-            } else {
-                "Stable ${BuildConfig.VERSION_NAME}"
-            }
+        add(MoreHeaderPreference(context))
 
-            onClick { copyDebugInfo() }
-        }
-        preference {
-            key = "pref_about_build_time"
-            titleRes = R.string.build_time
-            summary = getFormattedBuildTime()
-        }
-        if (isUpdaterEnabled) {
-            preference {
-                key = "pref_about_check_for_updates"
-                titleRes = R.string.check_for_updates
-
-                onClick { checkVersion() }
-            }
-        }
-        preference {
-            key = "pref_about_whats_new"
-            titleRes = R.string.whats_new
-
-            onClick {
-                val url = if (BuildConfig.DEBUG) {
-                    "https://github.com/tachiyomiorg/tachiyomi-preview/releases/tag/r${BuildConfig.COMMIT_COUNT}"
-                } else {
-                    "https://github.com/tachiyomiorg/tachiyomi/releases/tag/v${BuildConfig.VERSION_NAME}"
-                }
-                openInBrowser(url)
-            }
-        }
-        if (BuildConfig.DEBUG) {
-            preference {
-                key = "pref_about_notices"
-                titleRes = R.string.notices
-                onClick {
-                    openInBrowser("https://github.com/tachiyomiorg/tachiyomi/blob/master/PREVIEW_RELEASE_NOTES.md")
-                }
-            }
-        }
+        add(AboutLinksPreference(context))
 
         preferenceCategory {
             preference {
-                key = "pref_about_website"
-                titleRes = R.string.website
-                "https://tachiyomi.org".also {
-                    summary = it
-                    onClick { openInBrowser(it) }
+                key = "pref_about_version"
+                titleRes = R.string.version
+                summary = if (BuildConfig.DEBUG) {
+                    "Preview r${BuildConfig.COMMIT_COUNT} (${BuildConfig.COMMIT_SHA}, ${getFormattedBuildTime()})"
+                } else {
+                    "Stable ${BuildConfig.VERSION_NAME} (${getFormattedBuildTime()})"
+                }
+
+                onClick {
+                    activity?.let {
+                        val deviceInfo = CrashLogUtil(it).getDebugInfo()
+                        it.copyToClipboard("Debug information", deviceInfo)
+                    }
+                }
+            }
+            if (isUpdaterEnabled) {
+                preference {
+                    key = "pref_about_check_for_updates"
+                    titleRes = R.string.check_for_updates
+
+                    onClick { checkVersion() }
                 }
             }
             preference {
-                key = "pref_about_twitter"
-                title = "Twitter"
-                "https://twitter.com/tachiyomiorg".also {
-                    summary = it
-                    onClick { openInBrowser(it) }
-                }
-            }
-            preference {
-                key = "pref_about_discord"
-                title = "Discord"
-                "https://discord.gg/tachiyomi".also {
-                    summary = it
-                    onClick { openInBrowser(it) }
-                }
-            }
-            preference {
-                key = "pref_about_github"
-                title = "GitHub"
-                "https://github.com/tachiyomiorg/tachiyomi".also {
-                    summary = it
-                    onClick { openInBrowser(it) }
-                }
-            }
-            preference {
-                key = "pref_about_label_extensions"
-                titleRes = R.string.label_extensions
-                "https://github.com/tachiyomiorg/tachiyomi-extensions".also {
-                    summary = it
-                    onClick { openInBrowser(it) }
+                key = "pref_about_whats_new"
+                titleRes = R.string.whats_new
+
+                onClick {
+                    val url = if (BuildConfig.DEBUG) {
+                        "https://github.com/tachiyomiorg/tachiyomi-preview/releases/tag/r${BuildConfig.COMMIT_COUNT}"
+                    } else {
+                        "https://github.com/tachiyomiorg/tachiyomi/releases/tag/v${BuildConfig.VERSION_NAME}"
+                    }
+                    openInBrowser(url)
                 }
             }
             preference {
@@ -138,6 +95,7 @@ class AboutController : SettingsController() {
                         .withAboutIconShown(false)
                         .withAboutVersionShown(false)
                         .withLicenseShown(true)
+                        .withEdgeToEdge(true)
                         .start(activity!!)
                 }
             }
@@ -198,22 +156,6 @@ class AboutController : SettingsController() {
             const val BODY_KEY = "NewUpdateDialogController.body"
             const val URL_KEY = "NewUpdateDialogController.key"
         }
-    }
-
-    private fun copyDebugInfo() {
-        val deviceInfo =
-            """
-            App version: ${BuildConfig.VERSION_NAME} (${BuildConfig.FLAVOR}, ${BuildConfig.COMMIT_SHA}, ${BuildConfig.VERSION_CODE})
-            Android version: ${Build.VERSION.RELEASE} (SDK ${Build.VERSION.SDK_INT})
-            Android build ID: ${Build.DISPLAY}
-            Device brand: ${Build.BRAND}
-            Device manufacturer: ${Build.MANUFACTURER}
-            Device name: ${Build.DEVICE}
-            Device model: ${Build.MODEL}
-            Device product name: ${Build.PRODUCT}
-            """.trimIndent()
-
-        activity?.copyToClipboard("Debug information", deviceInfo)
     }
 
     private fun getFormattedBuildTime(): String {

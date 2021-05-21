@@ -83,7 +83,7 @@
     <string name="pref_library_columns">Elemente pe rând</string>
     <string name="portrait">Portret</string>
     <string name="default_columns">Prestabilit</string>
-    <string name="pref_library_update_interval">Frecvența actualizării bibliotecii</string>
+    <string name="pref_library_update_interval">Frecvență de actualizare</string>
     <string name="update_never">Manual</string>
     <string name="update_1hour">La fiecare oră</string>
     <string name="update_2hour">La fiecare 2 ore</string>
@@ -94,7 +94,7 @@
     <string name="update_48hour">La fiecare 2 zile</string>
     <string name="update_weekly">Săptămânal</string>
     <string name="all">Toate</string>
-    <string name="pref_library_update_restriction">Restricții actualizare bibliotecă</string>
+    <string name="pref_library_update_restriction">Restricții de actualizare</string>
     <string name="pref_library_update_restriction_summary">Actualizează doar când condițiile sunt împlinite</string>
     <string name="charging">Se încarcă</string>
     <string name="pref_update_only_non_completed">Actualizați doar manga în desfășurare</string>
@@ -108,7 +108,7 @@
     <string name="ext_update">Actualizează</string>
     <string name="ext_install">Instalează</string>
     <string name="ext_pending">În așteptare</string>
-    <string name="ext_downloading">În curs de descărcare</string>
+    <string name="ext_downloading">Se descarcă</string>
     <string name="ext_installing">În curs de instalare</string>
     <string name="ext_installed">Instalată</string>
     <string name="ext_trust">Ai încredere</string>
@@ -168,7 +168,6 @@
     <string name="double_tap_anim_speed_fast">Rapid</string>
     <string name="pref_rotation_type">Rotație</string>
     <string name="rotation_free">Liberă</string>
-    <string name="rotation_lock">Blocată</string>
     <string name="rotation_force_portrait">Forțată portret</string>
     <string name="rotation_force_landscape">Forțată peisaj</string>
     <string name="color_filter_r_value">R</string>
@@ -275,7 +274,7 @@
     <string name="sort_by_number">După numărul capitolului</string>
     <string name="manga_download">Descarcă</string>
     <string name="custom_download">Descarcă cantitate personalizată</string>
-    <string name="download_1">Următorul capitol</string>
+    <string name="download_1">Capitolul următor</string>
     <string name="download_5">Următoarele 5 capitole</string>
     <string name="download_10">Următoarele 10 capitole</string>
     <string name="download_custom">Personalizat</string>
@@ -286,7 +285,7 @@
     <string name="reading">Citind</string>
     <string name="completed">Terminată</string>
     <string name="dropped">Abandonată</string>
-    <string name="on_hold">In așteptare</string>
+    <string name="on_hold">În așteptare</string>
     <string name="plan_to_read">Planificat pentru citit</string>
     <string name="repeating">Recitind</string>
     <string name="score">Scor</string>
@@ -305,10 +304,10 @@
     <string name="saving_picture">Imaginea se salvează</string>
     <string name="options">Opțiuni</string>
     <string name="custom_filter">Filtru personalizat</string>
-    <string name="set_as_cover">Stabilește că și copertă</string>
+    <string name="set_as_cover">Stabilește ca și copertă</string>
     <string name="cover_updated">Copertă actualizată</string>
     <string name="page_downloaded">Pagină copiată în %1$s</string>
-    <string name="downloading">Se descărcă…</string>
+    <string name="downloading">Se descarcă…</string>
     <string name="download_progress">Descărcat %1$d%%</string>
     <string name="chapter_progress">Pagina: %1$d</string>
     <string name="chapter_subtitle">Capitolul %1$s</string>
@@ -376,7 +375,7 @@
     <string name="pref_skip_read_chapters">Treci peste capitolele marcate ca Citit</string>
     <string name="pref_read_with_long_tap">Dialog prin apăsare lunga</string>
     <string name="label_help">Ajutor</string>
-    <string name="pref_library_update_prioritization">Ordinea actualizării bibliotecii</string>
+    <string name="pref_library_update_prioritization">Ordinea actualizărilor</string>
     <string name="no_results_found">Nici un rezultat găsit</string>
     <string name="migration_selection_prompt">Selectați o sursă din care să migrați</string>
     <string name="action_webview_back">Înapoi</string>
@@ -387,7 +386,7 @@
     <string name="ext_obsolete">Învechit</string>
     <string name="obsolete_extension_message">Această extensie nu mai este disponibilă.</string>
     <string name="pref_date_format">Formatul datei</string>
-    <string name="pref_category_library_update">Actualizări</string>
+    <string name="pref_category_library_update">Actualizare globală</string>
     <string name="logout_title">Deconectează-te de la %1$s\?</string>
     <string name="logout">Deconectează-te</string>
     <string name="logout_success">Acum ești deconectat</string>
@@ -407,7 +406,7 @@
     <string name="theme_dark_amoled">Negru AMOLED</string>
     <string name="pref_manage_notifications">Setări notificări</string>
     <string name="pref_category_security">Securitate</string>
-    <string name="lock_with_biometrics">Blocare cu amprentă</string>
+    <string name="lock_with_biometrics">Necesită deblocare</string>
     <string name="unlock_app">Deblochează Tachiyomi</string>
     <string name="action_sort_latest_chapter">Ultimul capitol</string>
     <string name="lock_when_idle">Blocați când este inactiv</string>
@@ -451,7 +450,6 @@
         <item quantity="few">Pentru %d titluri</item>
         <item quantity="other">Pentru %d titluri</item>
     </plurals>
-    <string name="notices">Previzualizați notificările de construire</string>
     <string name="pref_theme_light">Temă deschisă</string>
     <string name="theme_light_default">Implicit</string>
     <string name="theme_light_blue">Albastru deschis</string>
@@ -525,7 +523,7 @@
     </plurals>
     <string name="battery_optimization_setting_activity_not_found">Imposibil de deschis setările dispozitivului</string>
     <plurals name="restore_completed_message">
-        <item quantity="one">Gata în %1$s cu %2$s eroare</item>
+        <item quantity="one">Gata în %1$s cu eroarea %2$s</item>
         <item quantity="few">Gata în %1$s cu %2$s erori</item>
         <item quantity="other">Gata în %1$s cu %2$s erori</item>
     </plurals>
@@ -631,7 +629,8 @@
     <string name="spen_next_page">Pagina următoare</string>
     <string name="spen_previous_page">Pagina anterioară</string>
     <string name="migration_help_guide">Ghid de migrare a sursei</string>
-    <string name="invalid_backup_file_type">Fișierul copiei de rezervă este nevalid: %1$s</string>
+    <string name="invalid_backup_file_type">Tip de fișier de restaurare nevalid: %1$s
+\nAr trebui să se termine cu .proto.gz sau .json.</string>
     <string name="pref_backup_auto_create_legacy">De asemenea, creați copii de rezervă de moștenire</string>
     <string name="pref_create_legacy_backup_summary">Poate fi utilizat în versiuni mai vechi de Tachiyomi</string>
     <string name="pref_create_legacy_backup">Crează copie de rezervă de moștenire</string>
@@ -644,7 +643,7 @@
     <string name="myanimelist_creds_missing">Datele de conectare la site-ul MAL nu au fost găsite</string>
     <string name="pref_dual_page_invert">Inversează plasamentul paginilor duble despărțite</string>
     <string name="pref_dual_page_split">împărțirea paginilor duble</string>
-    <string name="pref_show_navigation_mode_summary">Afișați scurt zonele de atingere când cititorul este deschis</string>
+    <string name="pref_show_navigation_mode_summary">Afișați zonele de atingere atunci când cititorul este deschis</string>
     <string name="pref_show_navigation_mode">Afișați suprapunerea aspectului de navigare</string>
     <string name="network_unmetered">Rețea nemăsurată</string>
     <string name="update_8hour">O dată la 8 ore</string>
@@ -653,4 +652,37 @@
     <string name="action_asc">Ascendent</string>
     <string name="action_order_by_chapter_number">După numărul capitolului</string>
     <string name="action_order_by_upload_date">După data postării</string>
+    <string name="exclude">Excludeți: %s</string>
+    <string name="include">Includeți: %s</string>
+    <string name="pref_library_update_categories_details">Manga din categoriile excluse nu vor fi actualizate, chiar dacă se află și în categoriile incluse.</string>
+    <string name="action_show_errors">Afișați erorile</string>
+    <string name="action_display_show_number_of_items">Afișare număr de elemente</string>
+    <string name="none">Nici unul</string>
+    <string name="pref_dns_over_https">DNS peste HTTPS</string>
+    <string name="channel_crash_logs">Jurnale de erori fatale</string>
+    <string name="track_finished_reading_date">Data încheierii citirii</string>
+    <string name="track_started_reading_date">Data începerii citirii</string>
+    <string name="crash_log_saved">Jurnalele de erori fatale salvate</string>
+    <string name="pref_dump_crash_logs">Aruncați jurnalele de erori fatale</string>
+    <string name="pref_dump_crash_logs_summary">Salvează jurnalele de erori într-un fișier pentru partajarea cu dezvoltatorii</string>
+    <string name="pref_viewer_nav">Aspect de navigare</string>
+    <string name="edge_nav">Margine</string>
+    <string name="kindlish_nav">Similar unui Kindle</string>
+    <string name="l_nav">În formă de L</string>
+    <string name="default_nav">Implicită</string>
+    <string name="action_sort_chapter_fetch_date">Data preluată</string>
+    <string name="action_filter_tracked">Urmărit</string>
+    <string name="backup_restore_content_full">Datele din fișierul de rezervă vor fi restaurate.
+\n
+\nVa trebui să instalați toate extensiile lipsă și să vă conectați ulterior la serviciile de urmărire pentru a le utiliza.</string>
+    <string name="pref_download_new_categories_details">Manga din categoriile excluse nu vor fi descărcate, chiar dacă se află și în categoriile incluse.</string>
+    <string name="pref_category_auto_download">Descărcare automată</string>
+    <string name="nav_zone_right">Dreapta</string>
+    <string name="nav_zone_left">Stânga</string>
+    <string name="nav_zone_next">Următorul</string>
+    <string name="nav_zone_prev">Anterior</string>
+    <string name="right_and_left_nav">Dreapta și stânga</string>
+    <string name="pref_dual_page_invert_summary">Dacă amplasarea divizării duble a paginii nu corespunde cu direcția de citire</string>
+    <string name="update_check_eol">Această versiune Android nu mai este suportată</string>
+    <string name="clipboard_copy_error">Nu s-a reușit copierea în clipboard</string>
 </resources>

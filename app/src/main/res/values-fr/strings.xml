@@ -123,9 +123,8 @@
     <string name="zoom_start_center">Centre</string>
     <string name="pref_rotation_type">Rotation</string>
     <string name="rotation_free">Libre</string>
-    <string name="rotation_lock">Verrouillée</string>
-    <string name="rotation_force_portrait">Forcer portrait</string>
-    <string name="rotation_force_landscape">Forcer paysage</string>
+    <string name="rotation_force_portrait">Bloqué sur portrait</string>
+    <string name="rotation_force_landscape">Bloqué sur paysage</string>
     <string name="color_filter_r_value">R</string>
     <string name="color_filter_g_value">V</string>
     <string name="color_filter_b_value">B</string>
@@ -381,7 +380,7 @@
     <string name="track_author">Auteur</string>
     <string name="migration_dialog_what_to_include">Sélectionner les données à inclure</string>
     <string name="label_migration">Migrer</string>
-    <string name="label_extension_info">Information complémentaire</string>
+    <string name="label_extension_info">Informations de l\'extension</string>
     <string name="all_lang">Toutes</string>
     <string name="ext_trust">Fiable</string>
     <string name="ext_untrusted">Non fiable</string>
@@ -487,7 +486,6 @@
     <string name="action_reorganize_by">Réorganiser</string>
     <string name="action_newest">Plus récent</string>
     <string name="action_oldest">Plus ancien</string>
-    <string name="notices">Notes de version</string>
     <string name="pref_theme_light">Thème clair</string>
     <string name="action_move_to_top">Déplacer au début</string>
     <string name="action_move_to_bottom">Déplacer à la fin</string>
@@ -706,4 +704,9 @@
     <string name="pref_library_update_categories_details">Les mangas dans les catégories exclus ne seront pas mises a jour meme s\'ils sont aussi dans les catégories inlcus.</string>
     <string name="pref_download_new_categories_details">Les mangas dans les catégories exclus ne seront pas mise a jour meme s\'ils sont aussi dans les catégories inclus.</string>
     <string name="pref_category_auto_download">Téléchargement Automatique</string>
+    <string name="action_show_errors">Afficher les erreurs</string>
+    <string name="update_check_eol">Cette version d\'Android n\'est plus supportée</string>
+    <string name="clipboard_copy_error">Échec de la copie dans le presse-papiers</string>
+    <string name="rotation_landscape">Paysage</string>
+    <string name="rotation_portrait">Portrait</string>
 </resources>

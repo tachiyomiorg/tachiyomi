@@ -35,7 +35,6 @@ class HistoryAdapter(controller: HistoryController) :
 
     init {
         setDisplayHeadersAtStartUp(true)
-        setStickyHeaders(true)
     }
 
     interface OnResumeClickListener {

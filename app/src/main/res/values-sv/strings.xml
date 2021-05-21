@@ -168,9 +168,8 @@
     <string name="double_tap_anim_speed_fast">Snabb</string>
     <string name="pref_rotation_type">Rotering</string>
     <string name="rotation_free">Upplåst</string>
-    <string name="rotation_lock">Lås</string>
-    <string name="rotation_force_portrait">Tvinga stående</string>
-    <string name="rotation_force_landscape">Tvinga liggande</string>
+    <string name="rotation_force_portrait">Låst porträtt</string>
+    <string name="rotation_force_landscape">Låst liggande</string>
     <string name="color_filter_r_value">R</string>
     <string name="color_filter_g_value">G</string>
     <string name="color_filter_b_value">B</string>
@@ -447,7 +446,6 @@
         <item quantity="one">För 1 titel</item>
         <item quantity="other">För %d titlar</item>
     </plurals>
-    <string name="notices">Byggmeddelanden</string>
     <string name="pref_theme_light">Ljust tema</string>
     <string name="theme_light_default">Standard</string>
     <string name="theme_light_blue">Ljusblå</string>
@@ -672,4 +670,9 @@
     <string name="pref_download_new_categories_details">Manga i uteslutna kategorier laddas inte ner även om de också ingår i inkluderade kategorier.</string>
     <string name="pref_category_auto_download">Ladda ned automatiskt</string>
     <string name="pref_library_update_categories_details">Manga i uteslutna kategorier uppdateras inte även om de också ingår i inkluderade kategorier.</string>
+    <string name="action_show_errors">Visa fel</string>
+    <string name="update_check_eol">Denna Android-version stöds inte längre</string>
+    <string name="clipboard_copy_error">Kunde inte kopiera till urklipp</string>
+    <string name="rotation_landscape">Liggande</string>
+    <string name="rotation_portrait">Porträtt</string>
 </resources>

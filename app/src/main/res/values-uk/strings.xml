@@ -168,9 +168,8 @@
     <string name="double_tap_anim_speed_fast">Швидка</string>
     <string name="pref_rotation_type">Орієнтація</string>
     <string name="rotation_free">Вільна</string>
-    <string name="rotation_lock">Заблокована</string>
-    <string name="rotation_force_portrait">Вертикальна</string>
-    <string name="rotation_force_landscape">Горизонтальна</string>
+    <string name="rotation_force_portrait">Заблокована портретна</string>
+    <string name="rotation_force_landscape">Заблокована альбомна</string>
     <string name="color_filter_r_value">R</string>
     <string name="color_filter_g_value">G</string>
     <string name="color_filter_b_value">B</string>
@@ -452,7 +451,6 @@
         <item quantity="few">Для %d тайтлів</item>
         <item quantity="many">Для %d тайтлів</item>
     </plurals>
-    <string name="notices">Примітки білдів</string>
     <string name="pref_theme_light">Світла тема</string>
     <string name="theme_light_default">За замовчуванням</string>
     <string name="theme_light_blue">Блакитна</string>
@@ -692,4 +690,9 @@
     <string name="none">Ніхто</string>
     <string name="pref_library_update_categories_details">Мангу в виключених категоріях не буде оновлено, навіть якщо вона також знаходиться у включених категоріях.</string>
     <string name="action_sort_chapter_fetch_date">Дата отримання</string>
+    <string name="action_show_errors">Показати помилки</string>
+    <string name="update_check_eol">Ця версія Android більше не підтримується</string>
+    <string name="clipboard_copy_error">Не вдалось скопіювати до буферу обміну</string>
+    <string name="rotation_landscape">Альбомна</string>
+    <string name="rotation_portrait">Портретна</string>
 </resources>

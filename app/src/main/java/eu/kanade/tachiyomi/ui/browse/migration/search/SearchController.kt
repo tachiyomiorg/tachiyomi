@@ -6,6 +6,7 @@ import androidx.core.view.isVisible
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItemsMultiChoice
 import com.bluelinelabs.conductor.Controller
+import com.bluelinelabs.conductor.RouterTransaction
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
@@ -15,6 +16,7 @@ import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.browse.migration.MigrationFlags
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchController
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchPresenter
+import eu.kanade.tachiyomi.ui.manga.MangaController
 import uy.kohesive.injekt.injectLazy
 
 class SearchController(
@@ -69,12 +71,14 @@ class SearchController(
         super.onMangaClick(manga)
     }
 
-    fun renderIsReplacingManga(isReplacingManga: Boolean) {
-        if (isReplacingManga) {
-            binding.progress.isVisible = true
-        } else {
-            binding.progress.isVisible = false
+    fun renderIsReplacingManga(isReplacingManga: Boolean, newManga: Manga?) {
+        binding.progress.isVisible = isReplacingManga
+        if (!isReplacingManga) {
             router.popController(this)
+            if (newManga != null) {
+                // Replaces old MangaController
+                router.replaceTopController(RouterTransaction.with(MangaController(newManga)))
+            }
         }
     }
 

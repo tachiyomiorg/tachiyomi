@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_fab"
+    style="@style/Theme.Widget.FAB"
+    android:visibility="gone"
+    tools:icon="@drawable/ic_add_24dp"
+    tools:text="Action"
+    tools:visibility="visible" />

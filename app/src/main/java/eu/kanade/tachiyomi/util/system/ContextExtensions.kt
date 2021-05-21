@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.util.system
 
 import android.app.ActivityManager
+import android.app.KeyguardManager
 import android.app.Notification
 import android.app.NotificationManager
 import android.content.BroadcastReceiver
@@ -33,6 +34,7 @@ import androidx.core.net.toUri
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.util.lang.truncateCenter
+import timber.log.Timber
 import java.io.File
 import kotlin.math.roundToInt
 
@@ -68,10 +70,15 @@ fun Context.toast(text: String?, duration: Int = Toast.LENGTH_SHORT, block: (Toa
 fun Context.copyToClipboard(label: String, content: String) {
     if (content.isBlank()) return
 
-    val clipboard = getSystemService<ClipboardManager>()!!
-    clipboard.setPrimaryClip(ClipData.newPlainText(label, content))
+    try {
+        val clipboard = getSystemService<ClipboardManager>()!!
+        clipboard.setPrimaryClip(ClipData.newPlainText(label, content))
 
-    toast(getString(R.string.copied_to_clipboard, content.truncateCenter(50)))
+        toast(getString(R.string.copied_to_clipboard, content.truncateCenter(50)))
+    } catch (e: Throwable) {
+        Timber.e(e)
+        toast(R.string.clipboard_copy_error)
+    }
 }
 
 /**
@@ -153,22 +160,16 @@ val Float.dpToPxEnd: Float
 val Resources.isLTR
     get() = configuration.layoutDirection == View.LAYOUT_DIRECTION_LTR
 
-/**
- * Property to get the notification manager from the context.
- */
 val Context.notificationManager: NotificationManager
     get() = getSystemService()!!
 
-/**
- * Property to get the connectivity manager from the context.
- */
 val Context.connectivityManager: ConnectivityManager
     get() = getSystemService()!!
 
-/**
- * Property to get the power manager from the context.
- */
 val Context.powerManager: PowerManager
+    get() = getSystemService()!!
+
+val Context.keyguardManager: KeyguardManager
     get() = getSystemService()!!
 
 /**

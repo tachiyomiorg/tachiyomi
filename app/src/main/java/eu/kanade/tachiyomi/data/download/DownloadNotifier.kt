@@ -28,7 +28,6 @@ internal class DownloadNotifier(private val context: Context) {
         context.notificationBuilder(Notifications.CHANNEL_DOWNLOADER_PROGRESS) {
             setLargeIcon(BitmapFactory.decodeResource(context.resources, R.mipmap.ic_launcher))
             setAutoCancel(false)
-            setOngoing(true)
             setOnlyAlertOnce(true)
         }
     }
@@ -84,7 +83,6 @@ internal class DownloadNotifier(private val context: Context) {
      */
     fun onProgressChange(download: Download) {
         with(progressNotificationBuilder) {
-            // Check if first call.
             if (!isDownloading) {
                 setSmallIcon(android.R.drawable.stat_sys_download)
                 clearActions()
@@ -116,6 +114,7 @@ internal class DownloadNotifier(private val context: Context) {
             }
 
             setProgress(download.pages!!.size, download.downloadedImages, false)
+            setOngoing(true)
 
             show(Notifications.ID_DOWNLOAD_CHAPTER_PROGRESS)
         }
@@ -130,6 +129,7 @@ internal class DownloadNotifier(private val context: Context) {
             setContentText(context.getString(R.string.download_notifier_download_paused))
             setSmallIcon(R.drawable.ic_pause_24dp)
             setProgress(0, 0, false)
+            setOngoing(false)
             clearActions()
             // Open download manager when clicked
             setContentIntent(NotificationHandler.openDownloadManagerPendingActivity(context))

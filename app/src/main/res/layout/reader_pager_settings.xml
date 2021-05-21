@@ -15,28 +15,28 @@
         android:paddingEnd="16dp"
         android:textAppearance="@style/TextAppearance.Medium.SubHeading" />
 
-    <eu.kanade.tachiyomi.ui.reader.setting.SpinnerPreference
+    <eu.kanade.tachiyomi.widget.MaterialSpinnerView
         android:id="@+id/pager_nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/pager_nav"
         app:title="@string/pref_viewer_nav" />
 
-    <eu.kanade.tachiyomi.ui.reader.setting.SpinnerPreference
+    <eu.kanade.tachiyomi.widget.MaterialSpinnerView
         android:id="@+id/tapping_inverted"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/invert_tapping_mode"
         app:title="@string/pref_read_with_tapping_inverted" />
 
-    <eu.kanade.tachiyomi.ui.reader.setting.SpinnerPreference
+    <eu.kanade.tachiyomi.widget.MaterialSpinnerView
         android:id="@+id/scale_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/image_scale_type"
         app:title="@string/pref_image_scale_type" />
 
-    <eu.kanade.tachiyomi.ui.reader.setting.SpinnerPreference
+    <eu.kanade.tachiyomi.widget.MaterialSpinnerView
         android:id="@+id/zoom_start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

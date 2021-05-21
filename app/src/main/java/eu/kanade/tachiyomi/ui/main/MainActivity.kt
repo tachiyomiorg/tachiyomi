@@ -13,6 +13,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
+import androidx.core.view.marginTop
 import androidx.core.view.updateLayoutParams
 import androidx.lifecycle.lifecycleScope
 import androidx.preference.PreferenceDialogController
@@ -23,6 +24,7 @@ import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.behavior.HideBottomViewOnScrollBehavior
+import com.google.android.material.navigation.NavigationBarView
 import dev.chrisbanes.insetter.applyInsetter
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.Migrations
@@ -40,6 +42,7 @@ import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.base.controller.ToolbarLiftOnScrollController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.browse.BrowseController
+import eu.kanade.tachiyomi.ui.browse.source.browse.BrowseSourceController
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchController
 import eu.kanade.tachiyomi.ui.download.DownloadController
 import eu.kanade.tachiyomi.ui.library.LibraryController
@@ -49,9 +52,13 @@ import eu.kanade.tachiyomi.ui.recent.history.HistoryController
 import eu.kanade.tachiyomi.ui.recent.updates.UpdatesController
 import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.lang.launchUI
+import eu.kanade.tachiyomi.util.system.InternalResourceHelper
+import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.toast
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import timber.log.Timber
 import java.util.Date
 import java.util.concurrent.TimeUnit
@@ -70,7 +77,7 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
     }
 
     lateinit var tabAnimator: ViewHeightAnimator
-    private lateinit var bottomNavAnimator: ViewHeightAnimator
+    private var bottomNavAnimator: ViewHeightAnimator? = null
 
     private var isConfirmingExit: Boolean = false
     private var isHandlingShortcut: Boolean = false
@@ -98,37 +105,53 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
                 padding(left = true, top = true, right = true)
             }
         }
-        binding.bottomNav.applyInsetter {
-            type(navigationBars = true) {
-                padding()
-            }
-        }
-        binding.rootFab.applyInsetter {
+        binding.fabLayout.rootFab.applyInsetter {
             type(navigationBars = true) {
                 margin()
             }
         }
+        binding.bottomNav?.applyInsetter {
+            type(navigationBars = true) {
+                padding()
+            }
+        }
 
-        // Make sure navigation bar is on bottom when making it transparent
+        // Make sure navigation bar is on bottom before we modify it
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
             if (insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom > 0) {
-                // Keep scrim on light theme if windowLightNavigationBar is not available
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1 || isDarkMode) {
-                    window.navigationBarColor = Color.TRANSPARENT
+                window.navigationBarColor = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q &&
+                    !InternalResourceHelper.getBoolean(this, "config_navBarNeedsScrim", true)
+                ) {
+                    Color.TRANSPARENT
+                } else {
+                    // Set navbar scrim 70% of navigationBarColor
+                    getResourceColor(android.R.attr.navigationBarColor, 0.7F)
                 }
             }
             insets
         }
 
         tabAnimator = ViewHeightAnimator(binding.tabs, 0L)
-        bottomNavAnimator = ViewHeightAnimator(binding.bottomNav)
 
-        // Set behavior of bottom nav
-        preferences.hideBottomBar()
-            .asImmediateFlow { setBottomNavBehaviorOnScroll() }
-            .launchIn(lifecycleScope)
+        if (binding.bottomNav != null) {
+            bottomNavAnimator = ViewHeightAnimator(binding.bottomNav!!)
 
-        binding.bottomNav.setOnNavigationItemSelectedListener { item ->
+            // If bottom nav is hidden, make it visible again when the app bar is expanded
+            binding.appbar.addOnOffsetChangedListener(
+                AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
+                    if (verticalOffset == 0) {
+                        showNav(visible = true)
+                    }
+                }
+            )
+
+            // Set behavior of bottom nav
+            preferences.hideBottomBar()
+                .asImmediateFlow { setBottomNavBehaviorOnScroll() }
+                .launchIn(lifecycleScope)
+        }
+
+        nav.setOnItemSelectedListener { item ->
             val id = item.itemId
 
             val currentRoot = router.backstack.firstOrNull()
@@ -145,6 +168,9 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
                     R.id.nav_library -> {
                         val controller = router.getControllerWithTag(id.toString()) as? LibraryController
                         controller?.showSettingsSheet()
+                    }
+                    R.id.nav_updates -> {
+                        router.pushController(DownloadController().withFadeTransaction())
                     }
                 }
             }
@@ -204,8 +230,19 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
             .asImmediateFlow { binding.downloadedOnly.isVisible = it }
             .launchIn(lifecycleScope)
 
-        preferences.incognitoMode()
-            .asImmediateFlow { binding.incognitoMode.isVisible = it }
+        preferences.incognitoMode().asFlow()
+            .drop(1)
+            .onEach {
+                binding.incognitoMode.isVisible = it
+
+                // Close BrowseSourceController and its MangaController child when incognito mode is disabled
+                if (!it) {
+                    val fg = router.backstack.last().controller()
+                    if (fg is BrowseSourceController || fg is MangaController && fg.fromSource) {
+                        router.popToRoot()
+                    }
+                }
+            }
             .launchIn(lifecycleScope)
     }
 
@@ -223,9 +260,9 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
     private fun setExtensionsBadge() {
         val updates = preferences.extensionUpdatesCount().get()
         if (updates > 0) {
-            binding.bottomNav.getOrCreateBadge(R.id.nav_browse).number = updates
+            nav.getOrCreateBadge(R.id.nav_browse).number = updates
         } else {
-            binding.bottomNav.removeBadge(R.id.nav_browse)
+            nav.removeBadge(R.id.nav_browse)
         }
     }
 
@@ -317,7 +354,7 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
         super.onDestroy()
 
         // Binding sometimes isn't actually instantiated yet somehow
-        binding?.bottomNav.setOnNavigationItemSelectedListener(null)
+        nav.setOnItemSelectedListener(null)
         binding?.toolbar.setNavigationOnClickListener(null)
     }
 
@@ -352,7 +389,7 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
 
     fun setSelectedNavItem(itemId: Int) {
         if (!isFinishing) {
-            binding.bottomNav.selectedItemId = itemId
+            nav.selectedItemId = itemId
         }
     }
 
@@ -374,11 +411,11 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
         binding.appbar.setExpanded(true)
 
         if ((from == null || from is RootController) && to !is RootController) {
-            showBottomNav(visible = false, collapse = true)
+            showNav(visible = false, collapse = true)
         }
         if (to is RootController) {
             // Always show bottom nav again when returning to a RootController
-            showBottomNav(visible = true, collapse = from !is RootController)
+            showNav(visible = true, collapse = from !is RootController)
         }
 
         if (from is TabbedController) {
@@ -393,12 +430,12 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
         }
 
         if (from is FabController) {
-            binding.rootFab.isVisible = false
-            from.cleanupFab(binding.rootFab)
+            binding.fabLayout.rootFab.isVisible = false
+            from.cleanupFab(binding.fabLayout.rootFab)
         }
         if (to is FabController) {
-            binding.rootFab.isVisible = true
-            to.configureFab(binding.rootFab)
+            binding.fabLayout.rootFab.isVisible = true
+            to.configureFab(binding.fabLayout.rootFab)
         }
 
         when (to) {
@@ -414,21 +451,35 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
         }
     }
 
+    private fun showNav(visible: Boolean, collapse: Boolean = false) {
+        showBottomNav(visible, collapse)
+        showSideNav(visible)
+    }
+
+    // Also used from some controllers to swap bottom nav with action toolbar
     fun showBottomNav(visible: Boolean, collapse: Boolean = false) {
-        val layoutParams = binding.bottomNav.layoutParams as CoordinatorLayout.LayoutParams
-        val bottomViewNavigationBehavior = layoutParams.behavior as? HideBottomViewOnScrollBehavior
-        if (visible) {
-            if (collapse) {
-                bottomNavAnimator.expand()
-            }
+        binding.bottomNav?.let {
+            val layoutParams = it.layoutParams as CoordinatorLayout.LayoutParams
+            val bottomViewNavigationBehavior =
+                layoutParams.behavior as? HideBottomViewOnScrollBehavior
+            if (visible) {
+                if (collapse) {
+                    bottomNavAnimator?.expand()
+                }
+                bottomViewNavigationBehavior?.slideUp(it)
+            } else {
+                if (collapse) {
+                    bottomNavAnimator?.collapse()
+                }
 
-            bottomViewNavigationBehavior?.slideUp(binding.bottomNav)
-        } else {
-            if (collapse) {
-                bottomNavAnimator.collapse()
+                bottomViewNavigationBehavior?.slideDown(it)
             }
+        }
+    }
 
-            bottomViewNavigationBehavior?.slideDown(binding.bottomNav)
+    private fun showSideNav(visible: Boolean) {
+        binding.sideNav?.let {
+            it.isVisible = visible
         }
     }
 
@@ -439,7 +490,7 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
     fun fixViewToBottom(view: View) {
         val listener = AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
             val maxAbsOffset = appBarLayout.measuredHeight - binding.tabs.measuredHeight
-            view.translationY = -maxAbsOffset - verticalOffset.toFloat()
+            view.translationY = -maxAbsOffset - verticalOffset.toFloat() + appBarLayout.marginTop
         }
         binding.appbar.addOnOffsetChangedListener(listener)
         fixedViewsToBottom[view] = listener
@@ -451,15 +502,18 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
     }
 
     private fun setBottomNavBehaviorOnScroll() {
-        showBottomNav(visible = true)
+        showNav(visible = true)
 
-        binding.bottomNav.updateLayoutParams<CoordinatorLayout.LayoutParams> {
+        binding.bottomNav?.updateLayoutParams<CoordinatorLayout.LayoutParams> {
             behavior = when {
                 preferences.hideBottomBar().get() -> HideBottomViewOnScrollBehavior<View>()
                 else -> null
             }
         }
     }
+
+    private val nav: NavigationBarView
+        get() = binding.bottomNav ?: binding.sideNav!!
 
     companion object {
         // Shortcut actions

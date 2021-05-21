@@ -14,7 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.databinding.ReaderColorFilterSettingsBinding
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
-import eu.kanade.tachiyomi.widget.IgnoreFirstSpinnerListener
+import eu.kanade.tachiyomi.util.preference.bindToPreference
 import eu.kanade.tachiyomi.widget.SimpleSeekBarListener
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -63,20 +63,10 @@ class ReaderColorFilterSettings @JvmOverloads constructor(context: Context, attr
         binding.seekbarColorFilterBlue.progress = argb[3]
 
         // Set listeners
-        binding.switchColorFilter.isChecked = preferences.colorFilter().get()
-        binding.switchColorFilter.setOnCheckedChangeListener { _, isChecked ->
-            preferences.colorFilter().set(isChecked)
-        }
-
-        binding.customBrightness.isChecked = preferences.customBrightness().get()
-        binding.customBrightness.setOnCheckedChangeListener { _, isChecked ->
-            preferences.customBrightness().set(isChecked)
-        }
-
-        binding.colorFilterMode.onItemSelectedListener = IgnoreFirstSpinnerListener { position ->
-            preferences.colorFilterMode().set(position)
-        }
-        binding.colorFilterMode.setSelection(preferences.colorFilterMode().get(), false)
+        binding.switchColorFilter.bindToPreference(preferences.colorFilter())
+        binding.customBrightness.bindToPreference(preferences.customBrightness())
+        binding.colorFilterMode.bindToPreference(preferences.colorFilterMode())
+        binding.grayscale.bindToPreference(preferences.grayscale())
 
         binding.seekbarColorFilterAlpha.setOnSeekBarChangeListener(
             object : SimpleSeekBarListener() {

@@ -25,6 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="?attr/colorSurface"
+                android:scaleType="centerCrop"
                 tools:ignore="ContentDescription"
                 tools:src="@mipmap/ic_launcher" />
 

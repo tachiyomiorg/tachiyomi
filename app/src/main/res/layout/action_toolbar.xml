@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/common_action_toolbar"
+    android:id="@+id/action_toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clipToPadding="false"
@@ -25,7 +25,7 @@
             app:contentInsetStart="8dp">
 
             <androidx.appcompat.widget.ActionMenuView
-                android:id="@+id/common_action_menu"
+                android:id="@+id/menu"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 

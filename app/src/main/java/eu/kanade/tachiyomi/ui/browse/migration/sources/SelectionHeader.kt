@@ -7,7 +7,7 @@ import eu.davidea.flexibleadapter.items.AbstractHeaderItem
 import eu.davidea.flexibleadapter.items.IFlexible
 import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.databinding.SourceMainControllerCardHeaderBinding
+import eu.kanade.tachiyomi.databinding.SectionHeaderItemBinding
 
 /**
  * Item that contains the selection header.
@@ -18,7 +18,7 @@ class SelectionHeader : AbstractHeaderItem<SelectionHeader.Holder>() {
      * Returns the layout resource of this item.
      */
     override fun getLayoutRes(): Int {
-        return R.layout.source_main_controller_card_header
+        return R.layout.section_header_item
     }
 
     /**
@@ -45,7 +45,7 @@ class SelectionHeader : AbstractHeaderItem<SelectionHeader.Holder>() {
 
     class Holder(view: View, adapter: FlexibleAdapter<*>) : FlexibleViewHolder(view, adapter) {
 
-        private val binding = SourceMainControllerCardHeaderBinding.bind(view)
+        private val binding = SectionHeaderItemBinding.bind(view)
 
         init {
             binding.title.text = view.context.getString(R.string.migration_selection_prompt)

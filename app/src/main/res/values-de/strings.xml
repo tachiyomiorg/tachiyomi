@@ -135,9 +135,8 @@
     <string name="zoom_start_center">Mitte</string>
     <string name="pref_rotation_type">Ausrichtung</string>
     <string name="rotation_free">Frei</string>
-    <string name="rotation_lock">Gesperrt</string>
-    <string name="rotation_force_portrait">Hochformat erzwingen</string>
-    <string name="rotation_force_landscape">Querformat erzwingen</string>
+    <string name="rotation_force_portrait">Hochformat sperren</string>
+    <string name="rotation_force_landscape">Querformat sperren</string>
     <string name="color_filter_r_value">R</string>
     <string name="color_filter_g_value">G</string>
     <string name="color_filter_b_value">B</string>
@@ -197,7 +196,7 @@
     <string name="login_success">Angemeldet</string>
     <string name="invalid_login">Anmeldung fehlgeschlagen</string>
     <string name="unknown_error">Unbekannter Fehler</string>
-    <string name="library_search_hint">Titel oder Autor …</string>
+    <string name="library_search_hint">Titel oder Autor…</string>
     <string name="updating_category">Kategorie wird aktualisiert</string>
     <string name="source_requires_login">Für diese Quelle musst du dich anmelden</string>
     <string name="select_source">Wähle eine Quelle</string>
@@ -205,7 +204,7 @@
     <string name="no_more_results">Keine weiteren Ergebnisse</string>
     <string name="local_source">Lokale Quelle</string>
     <string name="invalid_combination">Standard kann nicht zusammen mit anderen Kategorien gewählt werden</string>
-    <string name="added_to_library">Der Manga wurde Ihrer Bibliothek hinzugefügt</string>
+    <string name="added_to_library">Der Manga wurde der Bibliothek hinzugefügt</string>
     <string name="manga_not_in_db">Dieser Manga wurde aus der Datenbank entfernt.</string>
     <string name="manga_detail_tab">Infos</string>
     <string name="description">Beschreibung</string>
@@ -447,7 +446,6 @@
         <item quantity="one">Für 1 Titel</item>
         <item quantity="other">Für %d Titel</item>
     </plurals>
-    <string name="notices">Preview-Build-Notizen</string>
     <string name="pref_theme_light">Helldesign</string>
     <string name="theme_light_default">Standard</string>
     <string name="theme_light_blue">Hellblau</string>
@@ -501,7 +499,7 @@
     <string name="check_for_updates">Nach Aktualisierungen suchen</string>
     <string name="last_used_source">Zuletzt genutzt</string>
     <string name="local_source_help_guide">Anleitung für lokale Quellen</string>
-    <string name="restore_duration">%02d Min. %02d Sk.</string>
+    <string name="restore_duration">%02d Min. %02d Sek.</string>
     <string name="downloaded_only_summary">Filtert alle Manga in deiner Bibliothek</string>
     <plurals name="download_queue_summary">
         <item quantity="one">1 verbleibend</item>
@@ -672,4 +670,9 @@
     <string name="pref_download_new_categories_details">Manga in ausgeschlossenen Kategorien werden nicht heruntergeladen, auch wenn sie in eingeschlossenen Kategorien vorhanden sind.</string>
     <string name="pref_category_auto_download">Automatisches Herunterladen</string>
     <string name="pref_library_update_categories_details">Manga in ausgeschlossenen Kategorien werden nicht aktualisiert, auch wenn sie in eingeschlossenen Kategorien vorhanden sind.</string>
+    <string name="action_show_errors">Fehler anzeigen</string>
+    <string name="update_check_eol">Diese Android-Version wird nicht mehr unterstützt</string>
+    <string name="clipboard_copy_error">Kopieren in die Zwischenablage fehlgeschlagen</string>
+    <string name="rotation_landscape">Querformat</string>
+    <string name="rotation_portrait">Porträt</string>
 </resources>

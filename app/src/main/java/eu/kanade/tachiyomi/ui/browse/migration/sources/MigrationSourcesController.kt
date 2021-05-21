@@ -5,7 +5,6 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.chrisbanes.insetter.applyInsetter
 import eu.davidea.flexibleadapter.FlexibleAdapter
@@ -30,18 +29,16 @@ class MigrationSourcesController :
         return MigrationSourcesPresenter()
     }
 
-    override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        binding = MigrationSourcesControllerBinding.inflate(inflater)
+    override fun createBinding(inflater: LayoutInflater) = MigrationSourcesControllerBinding.inflate(inflater)
+
+    override fun onViewCreated(view: View) {
+        super.onViewCreated(view)
+
         binding.recycler.applyInsetter {
             type(navigationBars = true) {
                 padding()
             }
         }
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View) {
-        super.onViewCreated(view)
 
         adapter = SourceAdapter(this)
         binding.recycler.layoutManager = LinearLayoutManager(view.context)
