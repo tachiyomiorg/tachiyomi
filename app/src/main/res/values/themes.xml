@@ -104,6 +104,7 @@
         <item name="colorAccentOnPrimary">@color/textColorPrimaryDark</item>
         <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
         <item name="colorFilterActive">@color/filterColorDark</item>
+        <item name="rippleNavColor">@color/md_white_1000_6</item>
         <item name="actionBarTheme">@style/Theme.Toolbar.Light</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
@@ -193,6 +194,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorAccentOnPrimary">@color/textColorPrimaryDark</item>
         <item name="colorPrimaryVariant">@color/colorPrimary</item>
+
+        <item name="rippleNavColor">@color/md_white_1000_6</item>
     </style>
 
     <style name="Theme.Tachiyomi.Dark.Amoled">
