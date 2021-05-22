@@ -20,7 +20,7 @@
         style="@style/Theme.Widget.Tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabRippleColor="?attr/rippleColor" />
+        app:tabRippleColor="?attr/rippleNavColor" />
 
     <FrameLayout
         android:id="@+id/downloaded_only"
