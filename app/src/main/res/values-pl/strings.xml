@@ -152,8 +152,6 @@
     <string name="default_columns">Domyślnie</string>
     <string name="pref_library_update_interval">Częstotliwość aktualizacji</string>
     <string name="update_never">Ręcznie</string>
-    <string name="update_1hour">Co godzinę</string>
-    <string name="update_2hour">Co 2 godziny</string>
     <string name="update_3hour">Co 3 godziny</string>
     <string name="update_6hour">Co 6 godzin</string>
     <string name="update_12hour">Co 12 godzin</string>
@@ -217,7 +215,7 @@
     <string name="pref_remove_after_marked_as_read">Usuwaj po ręcznym oznaczeniu jako przeczytane</string>
     <string name="pref_remove_after_read">Usuwaj rozdziały po przeczytaniu</string>
     <string name="custom_dir">Niestandardowa lokalizacja</string>
-    <string name="disabled">Nie usuwaj</string>
+    <string name="disabled">Wyłączone</string>
     <string name="last_read_chapter">Ostatnio czytany rozdział</string>
     <string name="second_to_last">Przedostatnio czytany rozdział</string>
     <string name="third_to_last">3 rozdziały do tyłu</string>
@@ -259,7 +257,6 @@
     <string name="clear_database_completed">Pozycje usunięte</string>
     <string name="pref_refresh_library_tracking">Odśwież dane śledzenia</string>
     <string name="pref_refresh_library_tracking_summary">Aktualizuje status, ocenę i ostatnio czytany rozdział na podstawie usług śledzenia</string>
-    <string name="build_time">Data utworzenia kompilacji</string>
     <string name="login_success">Zalogowano</string>
     <string name="local_source">Źródło lokalne</string>
     <string name="ongoing">Nieukończone</string>
@@ -634,13 +631,10 @@
     <string name="clear_history_confirmation">Jesteś pewien\? CAŁA historia zostanie usunięta.</string>
     <string name="clear_history_completed">Historia usunięta</string>
     <string name="backup_restore_missing_trackers">Serwisy, do których nie zalogowono:</string>
-    <string name="pref_backup_auto_create_legacy">Dodatkowo stwórz kopię zapasową w starym formacie</string>
-    <string name="pref_create_legacy_backup_summary">Może być użyta w starszych wersjach Tachiyomi</string>
-    <string name="pref_create_legacy_backup">Utwórz kopię zapasową w starym formacie</string>
     <string name="pref_remove_bookmarked_chapters">Usuwaj rozdziały dodane do zakładek</string>
     <string name="pref_hide_bottom_bar_on_scroll">Ukryj dolny pasek podczas przewijania</string>
     <string name="pref_category_delete_chapters">Usuń rozdziały</string>
-    <string name="ext_nsfw_warning">Może zawierać zawartość NSFW (18+)</string>
+    <string name="ext_nsfw_warning">Może zawierać treści NSFW (18+)</string>
     <string name="ext_nsfw_short">18+</string>
     <string name="parental_controls_info">Nie zapobiega to nieoficjalnym lub potencjalnie niepoprawnie oflagowanym rozszerzeniom przed pokazywaniem zwartości NSFW(18+) w aplikacji.</string>
     <string name="invalid_backup_file_type">Nieprawidłowe rozszczerzenie pliku kopii zapasowej: %1$s
@@ -678,8 +672,8 @@
     <string name="backup_restore_content_full">Dane z pliku kopii zapasowej zostaną przywrócone.
 \n
 \nBędziesz musiał zainstalować brakujące rozszerzenia i zalogować się do usług śledzących, aby móc z nich korzystać.</string>
-    <string name="nav_zone_right">Prawe</string>
-    <string name="nav_zone_left">Lewe</string>
+    <string name="nav_zone_right">Prawo</string>
+    <string name="nav_zone_left">Lewo</string>
     <string name="nav_zone_next">Następne</string>
     <string name="nav_zone_prev">Poprzednie</string>
     <string name="pref_show_navigation_mode_summary">Pokazuj strefy klikania kiedy czytnik zostaje otwarty</string>
@@ -697,4 +691,5 @@
     <string name="rotation_landscape">Poziomo</string>
     <string name="rotation_portrait">Pionowo</string>
     <string name="action_show_errors">Pokaż błędy</string>
+    <string name="notification_incognito_text">Wyłącz tryb incognito</string>
 </resources>

@@ -89,8 +89,6 @@
     <string name="default_columns">За замовчанням</string>
     <string name="pref_library_update_interval">Частота оновлень</string>
     <string name="update_never">Ручне</string>
-    <string name="update_1hour">Кожну годину</string>
-    <string name="update_2hour">Кожні 2 години</string>
     <string name="update_3hour">Кожні 3 години</string>
     <string name="update_6hour">Кожні 6 годин</string>
     <string name="update_12hour">Кожні 12 годин</string>
@@ -166,7 +164,7 @@
     <string name="double_tap_anim_speed_0">Без анімації</string>
     <string name="double_tap_anim_speed_normal">Нормальна</string>
     <string name="double_tap_anim_speed_fast">Швидка</string>
-    <string name="pref_rotation_type">Орієнтація</string>
+    <string name="pref_rotation_type">Тип орієнтації за замовчуванням</string>
     <string name="rotation_free">Вільна</string>
     <string name="rotation_force_portrait">Заблокована портретна</string>
     <string name="rotation_force_landscape">Заблокована альбомна</string>
@@ -218,7 +216,6 @@
     <string name="pref_refresh_library_tracking">Оновити відстеження</string>
     <string name="pref_refresh_library_tracking_summary">Оновити стан, рахунок і останню главу з каталогів що відстежуються</string>
     <string name="version">Версія</string>
-    <string name="build_time">Дата збирання</string>
     <string name="pref_enable_acra">Надсилати звіти про падіння</string>
     <string name="pref_acra_summary">Допомагає виправляти будь-які баги. Особисті дані не передаються</string>
     <string name="login_title">Авторизація до %1$s</string>
@@ -363,7 +360,7 @@
     <string name="download_notifier_download_paused">Завантаження призупинено</string>
     <string name="channel_common">Звичайний</string>
     <string name="channel_library">Бібліотека</string>
-    <string name="pref_read_with_long_tap">Діалог тривалого тицяння</string>
+    <string name="pref_read_with_long_tap">Показувати при довгому натисканні</string>
     <string name="action_open_in_web_view">Відкрити у WebView</string>
     <string name="pref_true_color">32-бітний колір</string>
     <string name="pref_skip_read_chapters">Пропускати глави, відмічені як прочитані</string>
@@ -637,9 +634,6 @@
     <string name="spen_next_page">Наступна сторінка</string>
     <string name="spen_previous_page">Попередня сторінка</string>
     <string name="migration_help_guide">Гайд по міграції джерел</string>
-    <string name="pref_backup_auto_create_legacy">Також створювати сумісну копію</string>
-    <string name="pref_create_legacy_backup_summary">Може бути використано в старіших версіях Tachiyomi</string>
-    <string name="pref_create_legacy_backup">Створити сумісну резервну копію</string>
     <string name="file_picker_error">Додаток вибору файлів не знайдено</string>
     <string name="myanimelist_relogin">Будь ласка, увійдіть в MAL знову</string>
     <string name="myanimelist_creds_missing">Облікові дані входу в MAL не знайдено</string>
@@ -695,4 +689,13 @@
     <string name="clipboard_copy_error">Не вдалось скопіювати до буферу обміну</string>
     <string name="rotation_landscape">Альбомна</string>
     <string name="rotation_portrait">Портретна</string>
+    <string name="rotation_type">Тип орієнтації</string>
+    <string name="default_rotation_type">За замовчуванням</string>
+    <string name="pref_create_folder_per_manga_summary">Створювати теки в відповідності до назви манги</string>
+    <string name="pref_create_folder_per_manga">Зберігати сторінки до окремих тек</string>
+    <string name="pref_reader_actions">Дії</string>
+    <string name="pref_grayscale">Відтінки сірого</string>
+    <string name="notification_incognito_text">Вимкнути режим інкогніто</string>
+    <string name="automatic_background">Автоматично</string>
+    <string name="cancel_all_for_series">Відмінити для усієї серії</string>
 </resources>

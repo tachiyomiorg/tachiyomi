@@ -82,8 +82,6 @@
     <string name="default_columns">Padrão</string>
     <string name="pref_library_update_interval">Frequência de atualização</string>
     <string name="update_never">Manualmente</string>
-    <string name="update_1hour">A cada hora</string>
-    <string name="update_2hour">A cada 2 horas</string>
     <string name="update_3hour">A cada 3 horas</string>
     <string name="update_6hour">A cada 6 horas</string>
     <string name="update_12hour">A cada 12 horas</string>
@@ -135,7 +133,7 @@
     <string name="zoom_start_left">Esquerda</string>
     <string name="zoom_start_right">Direita</string>
     <string name="zoom_start_center">Centro</string>
-    <string name="pref_rotation_type">Orientação</string>
+    <string name="pref_rotation_type">Tipo de orientação padrão</string>
     <string name="rotation_free">Automática</string>
     <string name="rotation_force_portrait">Retrato bloqueado</string>
     <string name="rotation_force_landscape">Paisagem bloqueado</string>
@@ -187,7 +185,6 @@
     <string name="pref_refresh_library_tracking">Atualizar o monitoramento</string>
     <string name="pref_refresh_library_tracking_summary">Atualiza os estados, as avaliações e os últimos capítulos lidos dos serviços de monitoramento</string>
     <string name="version">Versão</string>
-    <string name="build_time">Data de compilação</string>
     <string name="pref_enable_acra">Enviar relatórios de erro</string>
     <string name="pref_acra_summary">Ajuda a corrigir eventuais erros. Nenhum dado sensível será enviado</string>
     <string name="login_title">Fazer login em %1$s</string>
@@ -363,7 +360,7 @@
     <string name="transition_no_previous">Não há capítulo anterior</string>
     <string name="transition_pages_loading">Carregando páginas…</string>
     <string name="transition_pages_error">Falha ao carregar páginas: %1$s</string>
-    <string name="pref_read_with_long_tap">Diálogo de toque longo</string>
+    <string name="pref_read_with_long_tap">Mostrar ao toque longo</string>
     <string name="action_open_in_web_view">Abrir na WebView</string>
     <string name="pref_true_color">Cor de 32 bits</string>
     <string name="pref_skip_read_chapters">Pular os capítulos marcados como lidos</string>
@@ -616,9 +613,6 @@
     <string name="clear_history_completed">Histórico excluído</string>
     <string name="spen_next_page">Próxima página</string>
     <string name="spen_previous_page">Página anterior</string>
-    <string name="pref_backup_auto_create_legacy">Também criar um backup legado</string>
-    <string name="pref_create_legacy_backup_summary">Pode ser usado em versões antigas do Tachiyomi</string>
-    <string name="pref_create_legacy_backup">Criar backup legado</string>
     <string name="migration_help_guide">Guia de migração de fonte</string>
     <string name="invalid_backup_file_type">Tipo de arquivo de backup inválido: %1$s
 \nO arquivo deve terminar com .proto.gz ou .json.</string>
@@ -675,4 +669,18 @@
     <string name="clipboard_copy_error">Erro ao copiar para a área de transferência</string>
     <string name="rotation_landscape">Paisagem</string>
     <string name="rotation_portrait">Retrato</string>
+    <string name="pref_create_folder_per_manga_summary">Cria as pastas de acordo com o título do mangá</string>
+    <string name="pref_create_folder_per_manga">Salva as páginas em pastas separadas</string>
+    <string name="pref_reader_actions">Ações</string>
+    <string name="rotation_type">Tipo de orientação</string>
+    <string name="default_rotation_type">Padrão</string>
+    <string name="pref_grayscale">Nível de cinza</string>
+    <string name="notification_incognito_text">Desabilitar o modo anônimo</string>
+    <string name="automatic_background">Automático</string>
+    <string name="cancel_all_for_series">Cancelar todos para esta série</string>
+    <string name="error_no_match">Nenhum resultado encontrado</string>
+    <string name="source_unsupported">Fonte não suportada</string>
+    <string name="score_unsupported">Não suportado</string>
+    <string name="unread">Não lido</string>
+    <string name="pref_auto_add_track">Monitora de modo silencioso ao adicionar um mangá na biblioteca</string>
 </resources>

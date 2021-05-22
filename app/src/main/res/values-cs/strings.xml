@@ -50,8 +50,6 @@
     <string name="loading">Načítání…</string>
     <string name="app_not_available">Aplikace není k dispozici</string>
     <string name="pref_category_downloads">Stahování</string>
-    <string name="update_1hour">Každou hodinu</string>
-    <string name="update_2hour">Každé 2 hodiny</string>
     <string name="update_3hour">Každé 3 hodiny</string>
     <string name="update_6hour">Každých 6 hodiny</string>
     <string name="update_12hour">Každých 12 hodiny</string>
@@ -288,7 +286,6 @@
     <string name="pref_refresh_library_tracking">Obnovit sledování</string>
     <string name="pref_refresh_library_tracking_summary">Aktualizuje status, skóre a poslední přečtenou kapitolu ze sledovacích služeb</string>
     <string name="version">Verze</string>
-    <string name="build_time">Čas sestavení</string>
     <string name="pref_enable_acra">Odesílat hlášení o pádu</string>
     <string name="pref_acra_summary">Pomáhá opravit chyby. Nebudou odeslány žádné citlivé údaje</string>
     <string name="updating_category">Aktualizace kategorie</string>
@@ -365,7 +362,7 @@
     <string name="channel_common">Běžný</string>
     <string name="label_help">Nápověda</string>
     <string name="action_open_in_web_view">Otevřít ve WebView</string>
-    <string name="pref_read_with_long_tap">Nabídka při dlouhém podržení</string>
+    <string name="pref_read_with_long_tap">Zobrazit na dlouhém podržení</string>
     <string name="pref_true_color">32-bitová barva</string>
     <string name="pref_skip_read_chapters">Přeskakovat přečtené kapitoly</string>
     <string name="pref_color_filter_mode">Režim mísení filtru barev</string>
@@ -493,7 +490,6 @@
 \nSoubor by měl končit na .proto.gz nebo .json.</string>
     <string name="invalid_backup_file">Neplatný soubor se zálohou</string>
     <string name="source_not_found_name">Zdroj nenalezen: %1$s</string>
-    <string name="pref_create_legacy_backup_summary">Může být použita ve starších verzí Tachiyomi</string>
     <string name="pref_enable_automatic_extension_updates">Kontrolovat dostupnost aktualizací rozšíření</string>
     <string name="tracking_info">Jednosměrná synchronizace pro aktualizaci počtu přečtených kapitol ve sledovacích službách. Nastavení sledování pro každou mangu je možné z jejich tlačítka sledování.</string>
     <string name="pref_remove_bookmarked_chapters">Smazat založené kapitoly</string>
@@ -675,7 +671,21 @@
     <string name="pref_read_with_tapping_inverted">Převrátit klepnutí</string>
     <string name="pref_dual_page_split">Rozdělení na dvě stránky</string>
     <string name="pref_show_navigation_mode_summary">Ukázat oblast klepnutí když je čtečka otevřená</string>
-    <string name="theme_system">Systém sledování</string>
+    <string name="theme_system">Sledování systému</string>
     <string name="action_show_errors">Zobrazit chyby</string>
     <string name="action_sort_chapter_fetch_date">Datum načtení</string>
+    <string name="rotation_landscape">Na šířku</string>
+    <string name="rotation_portrait">Na výšku</string>
+    <string name="rotation_type">Typ otočení</string>
+    <string name="default_rotation_type">Výchozí</string>
+    <string name="pref_create_folder_per_manga_summary">Vytvoří složky podle názvu mangy</string>
+    <string name="pref_create_folder_per_manga">Ukládá stránky do samostatných složek</string>
+    <string name="pref_reader_actions">Akce</string>
+    <string name="nav_zone_right">Vpravo</string>
+    <string name="nav_zone_left">Vlevo</string>
+    <string name="nav_zone_prev">Předchozí</string>
+    <string name="notification_incognito_text">Zakázat anonymní režim</string>
+    <string name="automatic_background">Automaticky</string>
+    <string name="pref_grayscale">Odstíny šedé</string>
+    <string name="cancel_all_for_series">Zrušit vše pro tuto sérii</string>
 </resources>

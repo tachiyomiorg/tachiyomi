@@ -86,8 +86,6 @@
     <string name="default_columns">기본값</string>
     <string name="pref_library_update_interval">서재 업데이트 주기</string>
     <string name="update_never">수동</string>
-    <string name="update_1hour">1시간</string>
-    <string name="update_2hour">2시간</string>
     <string name="update_3hour">3시간</string>
     <string name="update_6hour">6시간</string>
     <string name="update_12hour">12시간</string>
@@ -185,7 +183,6 @@
     <string name="pref_refresh_library_tracking">동기화 메타데이터 새로 고침</string>
     <string name="pref_refresh_library_tracking_summary">상태 및 평점, 마지막으로 읽은 챕터를 동기화 서비스에서 업데이트합니다</string>
     <string name="version">버전</string>
-    <string name="build_time">빌드 시간</string>
     <string name="pref_enable_acra">충돌 보고서 전송</string>
     <string name="pref_acra_summary">버그들을 수정하는데 도움이 됩니다. 민감한 정보는 전송되지 않습니다</string>
     <string name="login_title">%1$s 으로 로그인</string>

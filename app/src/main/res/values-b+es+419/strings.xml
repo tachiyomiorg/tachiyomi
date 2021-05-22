@@ -60,8 +60,8 @@
     <string name="label_settings">Configuración</string>
     <string name="name">Nombre</string>
     <string name="label_sources">Fuentes</string>
-    <string name="action_remove_bookmark">Quitar marcador</string>
-    <string name="action_bookmark">Añadir marcador</string>
+    <string name="action_remove_bookmark">Quitar capítulo de favoritos</string>
+    <string name="action_bookmark">Agregar capítulo a favoritos</string>
     <string name="action_sort_last_checked">Último verificado</string>
     <string name="action_filter_unread">No leído</string>
     <string name="action_filter_bookmarked">Marcado</string>
@@ -127,10 +127,10 @@
     <string name="color_filter_b_value">B</string>
     <string name="color_filter_g_value">G</string>
     <string name="color_filter_r_value">R</string>
-    <string name="rotation_force_landscape">Forzar landscape</string>
-    <string name="rotation_force_portrait">Forzar portrait</string>
+    <string name="rotation_force_landscape">Forzar horizontal</string>
+    <string name="rotation_force_portrait">Forzar vertical</string>
     <string name="rotation_free">Libre</string>
-    <string name="pref_rotation_type">Rotación</string>
+    <string name="pref_rotation_type">Tipo de rotación predeterminado</string>
     <string name="double_tap_anim_speed_fast">Rápido</string>
     <string name="double_tap_anim_speed_normal">Normal</string>
     <string name="double_tap_anim_speed_0">Sin animación</string>
@@ -159,7 +159,7 @@
     <string name="gray_background">Gris</string>
     <string name="white_background">Blanco</string>
     <string name="pref_reader_theme">Color de fondo</string>
-    <string name="pref_read_with_long_tap">Diálogo de toque largo</string>
+    <string name="pref_read_with_long_tap">Mostrar toque largo</string>
     <string name="pref_read_with_tapping">Tocar pantalla</string>
     <string name="pref_read_with_volume_keys_inverted">Invertir teclas de volumen</string>
     <string name="pref_read_with_volume_keys">Teclas de volumen</string>
@@ -224,18 +224,16 @@
     <string name="pref_update_only_non_completed">Solo actualizar manga no finalizado</string>
     <string name="charging">Cargando</string>
     <string name="pref_library_update_restriction_summary">Actualizar solo cuando se cumplan las condiciones</string>
-    <string name="pref_library_update_restriction">Restricciones de actualización de biblioteca</string>
-    <string name="pref_library_update_prioritization">Orden de actualización de la biblioteca</string>
+    <string name="pref_library_update_restriction">Restricciones de actualización</string>
+    <string name="pref_library_update_prioritization">Orden de actualización</string>
     <string name="update_weekly">Semanal</string>
     <string name="update_48hour">Cada 2 días</string>
     <string name="update_24hour">Diario</string>
     <string name="update_12hour">Cada 12 horas</string>
     <string name="update_6hour">Cada 6 horas</string>
     <string name="update_3hour">Cada 3 horas</string>
-    <string name="update_2hour">Cada 2 horas</string>
-    <string name="update_1hour">Cada hora</string>
     <string name="update_never">Manual</string>
-    <string name="pref_library_update_interval">Frecuencia de actualización de biblioteca</string>
+    <string name="pref_library_update_interval">Frecuencia de actualización</string>
     <string name="pref_category_library_update">Actualizaciones</string>
     <string name="pref_jump_to_chapters">Saltar a los capítulos abiertos</string>
     <string name="default_columns">Por defecto</string>
@@ -282,7 +280,7 @@
     <string name="lock_never">Nunca</string>
     <string name="lock_always">Siempre</string>
     <string name="lock_when_idle">Bloquear cuando está inactivo</string>
-    <string name="lock_with_biometrics">Bloquear con huella</string>
+    <string name="lock_with_biometrics">Desbloqueo requerido</string>
     <string name="pref_category_security">Seguridad</string>
     <string name="pref_manage_notifications">Gestionar notificaciones</string>
     <string name="pref_confirm_exit">Confirmar salir</string>
@@ -421,7 +419,6 @@
     <string name="check_for_updates">Buscar actualizaciones</string>
     <string name="licenses">Licencias de código abierto</string>
     <string name="whats_new">Qué hay de nuevo</string>
-    <string name="build_time">Hora de compilación</string>
     <string name="version">Versión</string>
     <string name="website">Sitio web</string>
     <string name="manga_detail_tab">Info</string>
@@ -619,9 +616,6 @@
     <string name="migration_help_guide">Guía de migración de fuentes</string>
     <string name="invalid_backup_file_type">Archivo de copia de seguridad inválido: %1$s
 \nDebería terminar con .proto.gz o .json.</string>
-    <string name="pref_backup_auto_create_legacy">También crear copia de seguridad heredada</string>
-    <string name="pref_create_legacy_backup_summary">Puede usarse en versiones anteriores de Tachiyomi</string>
-    <string name="pref_create_legacy_backup">Crear copia de seguridad heredada</string>
     <string name="pref_category_nsfw_content">NSFW (Contenido +18)</string>
     <string name="file_picker_error">No se encontró ninguna aplicación de selección de archivos</string>
     <string name="myanimelist_relogin">Por favor iniciar sesión con MAL de nuevo</string>
@@ -652,4 +646,31 @@
     <string name="action_display_show_number_of_items">Mostrar cantidad de elementos</string>
     <string name="none">Ninguno</string>
     <string name="action_show_errors">Mostrar errores</string>
+    <string name="pref_category_auto_download">Descarga automática</string>
+    <string name="rotation_landscape">Horizontal</string>
+    <string name="rotation_portrait">Vertical</string>
+    <string name="rotation_type">Tipo de rotación</string>
+    <string name="default_rotation_type">Por defecto</string>
+    <string name="nav_zone_right">Derecha</string>
+    <string name="nav_zone_left">Izquierda</string>
+    <string name="pref_create_folder_per_manga_summary">Crea carpetas según el título del manga</string>
+    <string name="pref_grayscale">Escala de grises</string>
+    <string name="update_check_eol">Está versión de Android ya no está soportada</string>
+    <string name="clipboard_copy_error">Falló al copiar en el portapapeles</string>
+    <string name="notification_incognito_text">Deshabilitar modo incógnito</string>
+    <string name="pref_dns_over_https">DNS mediante HTTPS</string>
+    <string name="backup_restore_content_full">Los datos de la copia de seguridad se restaurarán.
+\n
+\nNecesitarás instalar cualquier extensión que falte e iniciar sesión en los servicios de seguimiento para utilizarlos.</string>
+    <string name="nav_zone_prev">Anterior</string>
+    <string name="nav_zone_next">Siguiente</string>
+    <string name="pref_create_folder_per_manga">Guarda páginas en carpetas separadas</string>
+    <string name="pref_reader_actions">Acciones</string>
+    <string name="pref_dual_page_split">Dividir páginas dobles</string>
+    <string name="pref_show_navigation_mode_summary">Mostrar las zonas de toque cuando se abre el lector</string>
+    <string name="exclude">Excluir: %s</string>
+    <string name="include">Incluir: %s</string>
+    <string name="pref_dual_page_invert">Invertir la posición de las páginas duales</string>
+    <string name="pref_show_navigation_mode">Mostrar el diseño de navegación</string>
+    <string name="pref_library_update_categories_details">Los manga en las categorías excluidas no se actualizarán aún cuando estén en las categorías incluidas.</string>
 </resources>

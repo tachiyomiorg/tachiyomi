@@ -56,8 +56,6 @@
     <string name="update_12hour">Кашни 12 сехет</string>
     <string name="update_6hour">Кашни 6 сехет</string>
     <string name="update_3hour">Кашни 3 сехет</string>
-    <string name="update_2hour">Кашни 2 сехет</string>
-    <string name="update_1hour">Кашни сехет</string>
     <string name="pref_library_update_interval">Ҫӗнетни тӑтӑшлӑхӗ</string>
     <string name="pref_category_library_update">Пӗтӗм ҫӗнетӳ</string>
     <string name="pref_jump_to_chapters">Уҫӑ сыпӑксем патне куҫ</string>
@@ -269,10 +267,10 @@
     <string name="pref_webtoon_side_padding">Аяккинчи чаку</string>
     <string name="pref_always_show_chapter_transition">Сыпӑксем урлӑ каҫнине яланах кӑтарт</string>
     <string name="color_filter_a_value">Тӑрӑлӑх мар</string>
-    <string name="rotation_force_landscape">Тӑрӑхскер</string>
-    <string name="rotation_force_portrait">Урлӑскер</string>
+    <string name="rotation_force_landscape">Ҫаклатнӑ тӑрӑхскер</string>
+    <string name="rotation_force_portrait">Ҫаклатнӑ урлӑскер</string>
     <string name="rotation_free">Ирӗклӗ</string>
-    <string name="pref_rotation_type">Урлӑ-тӑрӑх</string>
+    <string name="pref_rotation_type">Яланхилле урлӑ-тӑрӑх</string>
     <string name="double_tap_anim_speed_0">Энимсӗр</string>
     <string name="pref_zoom_start">Пысӑклатни пуҫламӑш тӑрӑмӗ</string>
     <string name="scale_type_smart_fit">Тӑнлӑ</string>
@@ -287,7 +285,7 @@
     <string name="left_to_right_viewer">Сулахайран сылтӑмалла</string>
     <string name="default_viewer">Яланхилле</string>
     <string name="gray_background">Сӑрӑ</string>
-    <string name="pref_read_with_long_tap">Пусса тӑрсан суйлав чӳрече кӑтарт</string>
+    <string name="pref_read_with_long_tap">Пусса тӑннӑ чух кӑтарт</string>
     <string name="pref_read_with_volume_keys_inverted">Янравлӑх пускӑчӗсене вырӑнсемпе улӑштар</string>
     <string name="pref_read_with_volume_keys">Янравлӑх пускӑчӗсем</string>
     <string name="pref_reader_navigation">Куҫӑм</string>
@@ -529,7 +527,6 @@
     <string name="pref_enable_acra">Ӳкнисем ҫинчен тишереревсем ямалла</string>
     <string name="check_for_updates">Ҫӗнетӳсем пуррине тӗрӗсле</string>
     <string name="licenses">Уҫӑ юмлӑ лиссенсисем</string>
-    <string name="build_time">Пуҫтарнӑ вӑхӑт</string>
     <string name="version">Версси</string>
     <string name="website">Сайт</string>
     <string name="battery_optimization_setting_activity_not_found">Хатӗрӗн ӗнерлӗве уҫаймарӗ</string>
@@ -617,9 +614,6 @@
     <string name="spen_next_page">Маллали сыпӑк</string>
     <string name="spen_previous_page">Умӗнхи эл</string>
     <string name="migration_help_guide">Ҫӑл куҫ куҫарассипе пулӑшу</string>
-    <string name="pref_backup_auto_create_legacy">Тата кивӗ форматлӑ янтӑв ту</string>
-    <string name="pref_create_legacy_backup_summary">Кивӗ верссисенче усӑ курма пулать</string>
-    <string name="pref_create_legacy_backup">Кивӗ форматлӑ янтӑв ту</string>
     <string name="invalid_backup_file_type">Тӗрӗс мар янтӑв файлӗ: %1$s
 \nФайлӗ .proto.gz е .json сӑмахсемпе вӗҫленмелле.</string>
     <string name="pref_category_nsfw_content">NSFW (18+) шалаш</string>
@@ -628,7 +622,7 @@
     <string name="myanimelist_creds_missing">MAL-а кӗме шутлав пӗлӗмсем тупӑнман</string>
     <string name="pref_label_nsfw_extension">Хушмасен ят-йышра карт</string>
     <string name="pref_show_nsfw_extension">Хушмасен ят-йышра кӑтарт</string>
-    <string name="pref_show_nsfw_source">Ҫӑл куҫсен ят-йышра кӑтарт</string>
+    <string name="pref_show_nsfw_source">Ҫӑл куҫсен ят-йышӗнче кӑтарт</string>
     <string name="track_finished_reading_date">Вулама вӗҫленӗ вӑхӑчӗ</string>
     <string name="track_started_reading_date">Вулама пуҫланӑ вӑхӑчӗ</string>
     <string name="edge_nav">Хӗрри</string>
@@ -649,7 +643,7 @@
     <string name="right_and_left_nav">Сылтӑмран сулахаялла</string>
     <string name="pref_dual_page_invert_summary">Ик эллӗ уйарни вулав майлӑ мар пулсан</string>
     <string name="pref_dual_page_invert">Ик эллӗ уйарнине ҫавӑр</string>
-    <string name="pref_dual_page_split">Ик эллӗ уйӑрни (АЛЬФФА)</string>
+    <string name="pref_dual_page_split">Ик эллӗ уйӑрни</string>
     <string name="action_display_show_number_of_items">Япаласен шутне кӑтарт</string>
     <string name="nav_zone_right">Сылтӑм</string>
     <string name="nav_zone_left">Сулахай</string>
@@ -663,4 +657,16 @@
     <string name="include">Ҫут: %s</string>
     <string name="none">Ҫук</string>
     <string name="action_sort_chapter_fetch_date">Илни вӑхӑт</string>
+    <string name="update_check_eol">Ҫак Android версси урӑх</string>
+    <string name="clipboard_copy_error">Пайлашу аса ӑтавланаймарӗ</string>
+    <string name="rotation_landscape">Тӑрӑх</string>
+    <string name="rotation_portrait">Урлӑ</string>
+    <string name="rotation_type">Урлӑ-тӑрӑх тӗсӗ</string>
+    <string name="default_rotation_type">Яланхилле</string>
+    <string name="pref_create_folder_per_manga_summary">Папкӑсене манкӑ ячӗпе тумалла</string>
+    <string name="pref_create_folder_per_manga">Уйрӑм папкӑсенче элсене упрамалла</string>
+    <string name="pref_reader_actions">Тӑвӑмсем</string>
+    <string name="pref_show_navigation_mode_summary">Пусма вырӑнсене вулӑш уҫӑ чухне кӑтартмалла</string>
+    <string name="action_show_errors">Йӑнӑшсене кӑтарт</string>
+    <string name="cancel_all_for_series">Ҫак серилӗх валли веҫ пӑрахӑҫла</string>
 </resources>

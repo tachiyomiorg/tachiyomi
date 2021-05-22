@@ -89,8 +89,6 @@
     <string name="default_columns">Podrazumevano</string>
     <string name="pref_library_update_interval">Učestalost ažuriranja biblioteke</string>
     <string name="update_never">Ručno</string>
-    <string name="update_1hour">Jednočasovno</string>
-    <string name="update_2hour">Dvočasovno</string>
     <string name="update_3hour">Tročasovno</string>
     <string name="update_6hour">Šestočasovno</string>
     <string name="update_12hour">Dvanestočasovno</string>
@@ -218,7 +216,6 @@
     <string name="pref_refresh_library_tracking">Osvježi metadatu praćenja</string>
     <string name="pref_refresh_library_tracking_summary">Ažuriraj status, ocenu i poslednje poglavlje pročitano na izvorima praćenja</string>
     <string name="version">Verzija</string>
-    <string name="build_time">Vrijema pravljenja</string>
     <string name="pref_enable_acra">Pošalji izveštaje grešaka</string>
     <string name="pref_acra_summary">Pomozi u popravljanju bugova. Nijedan sensitivan podatak neće biti poslat</string>
     <string name="login_title">Prijavi se do %1$s</string>

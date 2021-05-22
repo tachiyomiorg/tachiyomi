@@ -67,7 +67,7 @@
     <string name="action_remove_bookmark">Wag na\'ng tandaan</string>
     <string name="action_bookmark">Tandaan ang kabanata</string>
     <string name="action_download">I-download</string>
-    <string name="action_mark_previous_as_read">Markaháng nabása bago (ang mga) ito</string>
+    <string name="action_mark_previous_as_read">Markaháng nabása ang nauna</string>
     <string name="action_mark_as_read">Markaháng nabása</string>
     <string name="action_mark_as_unread">Markaháng babasáhin</string>
     <string name="action_select_inverse">Baligtarin</string>
@@ -89,14 +89,14 @@
     <string name="confirm_exit">Pindutin muli para makaalis</string>
     <string name="unlock_app">Buksan ang Tachiyomi</string>
     <string name="history">Kasaysayan</string>
-    <string name="track">Sinusubaybayan</string>
+    <string name="track">Sinusundan</string>
     <string name="chapters">Mga Kabanata</string>
     <string name="manga">Mga Manga</string>
     <string name="categories">Mga Kategorya</string>
-    <string name="information_empty_category">Wala ka pang kategorya. Pindutin ang plus button para makagawa ka ng isa nang maayos mo na ang iyong Aklatan.</string>
-    <string name="information_empty_library">Walang laman ang iyong Aklatan. Magdagdag ng serye rito mula sa Maghanap.</string>
-    <string name="information_no_recent_manga">Walang kamakailang binása</string>
-    <string name="information_no_recent">Walang kamakailang update</string>
+    <string name="information_empty_category">Wala ka pang kategorya. Pindutin ang plus button para makagawa ka ng isa at nang maayos mo na ang Aklatan mo.</string>
+    <string name="information_empty_library">Walang laman ang Aklatan mo. Magdagdag ng serye rito mula sa Maghanap.</string>
+    <string name="information_no_recent_manga">Walang binása kamakailan</string>
+    <string name="information_no_recent">Walang bago</string>
     <string name="information_no_downloads">Walang dina-download</string>
     <string name="label_help">Tulong</string>
     <string name="label_extension_info">Tungkol sa Dugtong</string>
@@ -107,7 +107,7 @@
     <string name="label_recent_manga">Kamakailan</string>
     <string name="label_recent_updates">Bago</string>
     <string name="label_library">Aklatan</string>
-    <string name="label_download_queue">Mga Dina-download</string>
+    <string name="label_download_queue">Dina-download</string>
     <string name="label_settings">Pagsasaayos</string>
     <string name="label_more">Karagdagan</string>
     <string name="name">Pangalan</string>
@@ -199,7 +199,7 @@
     <string name="gray_background">Abo</string>
     <string name="white_background">Puti</string>
     <string name="pref_reader_theme">Likuráng kulay</string>
-    <string name="pref_read_with_long_tap">Dialog sa mahabang pindot</string>
+    <string name="pref_read_with_long_tap">Ipakita kapag mahabang pindot</string>
     <string name="pref_read_with_tapping">Pagpindot</string>
     <string name="pref_read_with_volume_keys_inverted">Pindutan ng volume (baligtad)</string>
     <string name="pref_read_with_volume_keys">Pindutan ng volume</string>
@@ -272,8 +272,6 @@
     <string name="update_12hour">Kada 12 oras</string>
     <string name="update_6hour">Kada 6 na oras</string>
     <string name="update_3hour">Kada 3 oras</string>
-    <string name="update_2hour">Kada 2 oras</string>
-    <string name="update_1hour">Kada oras</string>
     <string name="update_never">Mano-mano</string>
     <string name="pref_library_update_interval">Dalas ng pagsapanahon</string>
     <string name="pref_category_library_update">Pagsasapanahon</string>
@@ -316,7 +314,7 @@
     <string name="pref_category_locale">Lokal</string>
     <string name="pref_category_theme">Tema</string>
     <string name="action_download_unread">I-download ang (mga) babasáhin</string>
-    <string name="action_sort_date_added">Petsa nung dinagdag</string>
+    <string name="action_sort_date_added">Petsa dinagdag</string>
     <string name="tapping_inverted_both">Pareho</string>
     <string name="tapping_inverted_vertical">Patayo</string>
     <string name="tapping_inverted_horizontal">Pahiga</string>
@@ -410,7 +408,7 @@
     <string name="download_progress">Na-download %1$d%%</string>
     <string name="downloading">Dina-download…</string>
     <string name="page_downloaded">Kinopya sa %1$s ang pahina</string>
-    <string name="cover_updated">Na-update na pabalat</string>
+    <string name="cover_updated">Binago na ang pabalat</string>
     <string name="set_as_cover">Gawing pabalat</string>
     <string name="custom_filter">Aking pagsalâ</string>
     <string name="options">Mga Opsyon</string>
@@ -433,7 +431,7 @@
     <string name="plan_to_read">Binabalak</string>
     <string name="paused">Hininto</string>
     <string name="on_hold">Tinigil</string>
-    <string name="completed">Nakumpleto</string>
+    <string name="completed">Kumpleto</string>
     <string name="dropped">Binitawan</string>
     <string name="currently_reading">Kasalukuyang binabása</string>
     <string name="reading">Binabása</string>
@@ -490,7 +488,7 @@
     <string name="description">Paglalarawan</string>
     <string name="manga_detail_tab">Patungkol</string>
     <string name="manga_not_in_db">Tinanggal na ang manga na ito mula sa database.</string>
-    <string name="local_source_help_guide">Gabay sa lokál na bukál</string>
+    <string name="local_source_help_guide">Gabay</string>
     <string name="browse">Maghanap</string>
     <string name="latest">Pinakabago</string>
     <string name="action_global_search_query">Hinanap ang \"%1$s\" sa lahat</string>
@@ -536,7 +534,6 @@
     <string name="check_for_updates">Tumingin ng update</string>
     <string name="licenses">Mga lisensiyang open-source</string>
     <string name="whats_new">Anong bago</string>
-    <string name="build_time">Oras ng paggawa (build time)</string>
     <string name="version">Bersyon</string>
     <string name="website">Site</string>
     <string name="battery_optimization_setting_activity_not_found">Di mabuksan ang pagsasaayos ng iyong device</string>
@@ -608,7 +605,7 @@
     <string name="downloaded_chapters">Mga naka-download na kabanata</string>
     <string name="manga_from_library">Manga mula sa Aklatan</string>
     <string name="pref_hide_bottom_bar_on_scroll">Itago ang bottom bar pagka-scroll</string>
-    <string name="action_search_settings">Paghahanap</string>
+    <string name="action_search_settings">Maghanap</string>
     <string name="pref_incognito_mode_summary">Ihinto ang pagtala sa mga binabasa</string>
     <string name="pref_incognito_mode">Nakatago</string>
     <string name="pref_clear_history">Burahin ang kasaysayan</string>
@@ -621,9 +618,6 @@
     <string name="file_picker_error">Walang nakitang app para makapili</string>
     <string name="invalid_backup_file_type">Di mabasa ang backup: %1$s
 \nDapat nagtatapos ito sa .proto.gz o .json.</string>
-    <string name="pref_backup_auto_create_legacy">Gawin din ang lumang pag-backup</string>
-    <string name="pref_create_legacy_backup_summary">Magagamit sa mga lumang bersyon ng Tachiyomi</string>
-    <string name="pref_create_legacy_backup">Gumawa ng lumang pag-backup</string>
     <string name="pref_show_nsfw_extension">Ipakita sa listahan</string>
     <string name="pref_show_nsfw_source">Ipakita sa Mga Pinagkukunan</string>
     <string name="pref_category_nsfw_content">Mga Pinagkukunang NSFW (pang-18+)</string>
@@ -671,4 +665,16 @@
     <string name="pref_library_update_categories_details">Di ia-update ang mga manga na nasa di kasamang kategorya kahit na nasa kasamang kategorya ang mga ito.</string>
     <string name="action_sort_chapter_fetch_date">Petsa kinuha</string>
     <string name="action_show_errors">Ipakita ang mga error</string>
+    <string name="update_check_eol">Di na suportado ang bersyong ito ng Android</string>
+    <string name="clipboard_copy_error">Di nakopya sa clipboard</string>
+    <string name="rotation_landscape">Pahiga</string>
+    <string name="rotation_portrait">Patayo</string>
+    <string name="pref_create_folder_per_manga_summary">Gumagawa ng mga folder ayon sa pamagat ng manga</string>
+    <string name="pref_create_folder_per_manga">Sine-save ang mga pahina sa hiwa-hiwalay na folder</string>
+    <string name="pref_reader_actions">Gawain</string>
+    <string name="rotation_type">Pag-ikot</string>
+    <string name="default_rotation_type">Ipagpaubaya</string>
+    <string name="pref_grayscale">Maabo</string>
+    <string name="notification_incognito_text">Isara ang incognito</string>
+    <string name="automatic_background">Agaran</string>
 </resources>

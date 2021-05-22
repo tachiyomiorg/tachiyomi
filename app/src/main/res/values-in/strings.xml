@@ -82,8 +82,6 @@
     <string name="default_columns">Asali</string>
     <string name="pref_library_update_interval">Frekuensi pembaruan</string>
     <string name="update_never">Manual</string>
-    <string name="update_1hour">Tiap jam</string>
-    <string name="update_2hour">Tiap 2 jam</string>
     <string name="update_3hour">Tiap 3 jam</string>
     <string name="update_6hour">Tiap 6 jam</string>
     <string name="update_12hour">Tiap 12 jam</string>
@@ -187,7 +185,6 @@
     <string name="pref_refresh_library_tracking">Segarkan pelacakan metadata</string>
     <string name="pref_refresh_library_tracking_summary">Perbarui status, nilai dan bab terakhir yang dibaca dari layanan pelacakan</string>
     <string name="version">Versi</string>
-    <string name="build_time">Waktu pembuatan</string>
     <string name="pref_enable_acra">Kirim laporan kerusakan</string>
     <string name="pref_acra_summary">Bantu memperbaiki bug. Tidak ada data sensitif yang akan dikirim</string>
     <string name="login_title">Masuk ke %1$s</string>
@@ -366,7 +363,7 @@
     <string name="action_open_in_web_view">Buka dalam WebView</string>
     <string name="pref_true_color">Warna 32-bit</string>
     <string name="pref_skip_read_chapters">Lewati bab yang sudah dibaca</string>
-    <string name="pref_read_with_long_tap">Dialog ketuk dan tahan</string>
+    <string name="pref_read_with_long_tap">Tampil pada tap lama</string>
     <string name="pref_color_filter_mode">Mode saringan warna campur</string>
     <string name="filter_mode_default">Standar</string>
     <string name="filter_mode_overlay">Lapisan</string>
@@ -407,7 +404,7 @@
     <string name="action_move_to_bottom">Pindahkan ke bawah</string>
     <string name="label_more">Lainnya</string>
     <string name="pref_category_library_update">Pembaruan</string>
-    <string name="lock_with_biometrics">Kunci dengan biometrik</string>
+    <string name="lock_with_biometrics">Perlu buka kunci</string>
     <string name="lock_when_idle">Kunci saat diam</string>
     <string name="lock_always">Selalu</string>
     <string name="lock_never">Tidak pernah</string>
@@ -605,12 +602,9 @@
     <string name="pref_category_nsfw_content">Sumber NSFW (18+)</string>
     <string name="invalid_backup_file_type">Tipe file berkas cadangan tidak valid: %1$s
 \nHarusnya nama file berakhir dengan .proto.gz atau .json.</string>
-    <string name="pref_backup_auto_create_legacy">Buat cadangan versi lama juga</string>
-    <string name="pref_create_legacy_backup">Buat cadangan versi</string>
     <string name="spen_next_page">Halaman selanjutnya</string>
     <string name="spen_previous_page">Halaman sebelumnya</string>
     <string name="migration_help_guide">Petunjuk migrasi</string>
-    <string name="pref_create_legacy_backup_summary">Bisa digunakan di Tachiyomi versi lama</string>
     <string name="file_picker_error">Tidak ada aplikasi pemilih file yang ditemukan</string>
     <string name="myanimelist_relogin">Harap login kembali ke MAL</string>
     <string name="myanimelist_creds_missing">Login kredensial MAL tidak ditemukan</string>
@@ -640,4 +634,20 @@
     <string name="none">Kosong</string>
     <string name="action_show_errors">Tampilkan error</string>
     <string name="action_sort_chapter_fetch_date">Tanggal diambil</string>
+    <string name="pref_reader_actions">Aksi</string>
+    <string name="nav_zone_right">Kanan</string>
+    <string name="nav_zone_left">Kiri</string>
+    <string name="nav_zone_next">Lanjut</string>
+    <string name="nav_zone_prev">Sblm</string>
+    <string name="automatic_background">Otomatis</string>
+    <string name="pref_create_folder_per_manga">Simpan halaman di folder terpisah</string>
+    <string name="pref_create_folder_per_manga_summary">Buat folder sesuai judul manga</string>
+    <string name="exclude">Kecuali: %s</string>
+    <string name="include">Termasuk: %s</string>
+    <string name="pref_dual_page_split">Bagi dua halaman</string>
+    <string name="cancel_all_for_series">Batal semua untuk seri ini</string>
+    <string name="update_check_eol">Versi Android ini tidak lagi didukung</string>
+    <string name="clipboard_copy_error">Gagal menyalin ke papan klip</string>
+    <string name="pref_dns_over_https">1.DNS 2.HTTPS</string>
+    <string name="default_rotation_type">Standar</string>
 </resources>

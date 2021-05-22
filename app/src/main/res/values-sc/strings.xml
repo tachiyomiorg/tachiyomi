@@ -84,13 +84,11 @@
     <string name="pref_category_advanced">Avantzadas</string>
     <string name="pref_category_about">Informatziones</string>
     <string name="pref_library_columns">Elementos pro riga</string>
-    <string name="portrait">Orientamentu verticale</string>
-    <string name="landscape">Orientamentu orizontale</string>
+    <string name="portrait">Verticale</string>
+    <string name="landscape">Orizontale</string>
     <string name="default_columns">Predefinidu</string>
     <string name="pref_library_update_interval">Frecuèntzia de agiornamentu</string>
     <string name="update_never">Manuale</string>
-    <string name="update_1hour">Cada ora</string>
-    <string name="update_2hour">Cada 2 oras</string>
     <string name="update_3hour">Cada 3 oras</string>
     <string name="update_6hour">Cada 6 oras</string>
     <string name="update_12hour">Cada 12 oras</string>
@@ -140,7 +138,7 @@
     <string name="pref_read_with_volume_keys">Teclas de su volume</string>
     <string name="pref_read_with_volume_keys_inverted">Fùrria sas teclas de su volume</string>
     <string name="pref_read_with_tapping">Tocu sìngulu</string>
-    <string name="pref_read_with_long_tap">Ventana cun su tocu longu</string>
+    <string name="pref_read_with_long_tap">Ammustra cun su tocu longu</string>
     <string name="pref_reader_theme">Colore de isfundu</string>
     <string name="white_background">Arbu/biancu</string>
     <string name="black_background">Nieddu</string>
@@ -167,7 +165,7 @@
     <string name="double_tap_anim_speed_0">Peruna animatzione</string>
     <string name="double_tap_anim_speed_normal">Normale</string>
     <string name="double_tap_anim_speed_fast">Lestra</string>
-    <string name="pref_rotation_type">Rotatzione</string>
+    <string name="pref_rotation_type">Casta predefinida de rotatzione</string>
     <string name="rotation_free">Lìbera</string>
     <string name="rotation_force_portrait">Blocadu in verticale</string>
     <string name="rotation_force_landscape">Blocadu in orizontale</string>
@@ -219,7 +217,6 @@
     <string name="pref_refresh_library_tracking">Annoa s\'arrastamentu</string>
     <string name="pref_refresh_library_tracking_summary">Agiornat s\'istadu, su votu e s\'ùrtimu capìtulu lèghidu dae sos servìtzios de arrastamentu</string>
     <string name="version">Versione</string>
-    <string name="build_time">Data de compilatzione</string>
     <string name="pref_enable_acra">Imbia raportos a pitzu de sos arrestos anòmalos</string>
     <string name="pref_acra_summary">Agiudat a acontzare cale si siat faddina. Perunu datu sensìbile at a èssere imbiadu</string>
     <string name="login_title">Intra in %1$s</string>
@@ -616,9 +613,6 @@
     <string name="clear_history_completed">Cronologia iscantzellada</string>
     <string name="spen_next_page">Pàgina imbeniente</string>
     <string name="spen_previous_page">Pàgina anteposta</string>
-    <string name="pref_backup_auto_create_legacy">Crea fintzas una còpia de seguresa de casta betza</string>
-    <string name="pref_create_legacy_backup_summary">Podet èssere impreada in versiones prus betzas de Tachiyomi</string>
-    <string name="pref_create_legacy_backup">Crea una còpia de seguresa de casta betza</string>
     <string name="migration_help_guide">Ghia a su tramudòngiu de sas mitzas</string>
     <string name="invalid_backup_file_type">Casta de documentu de còpia de seguresa non vàlidu: %1$s
 \nDiat dèpere acabbare cun .proto.gz o .json.</string>
@@ -675,4 +669,18 @@
     <string name="update_check_eol">Custa versione de Android no est prus suportada</string>
     <string name="rotation_landscape">Orizontale</string>
     <string name="rotation_portrait">Verticale</string>
+    <string name="rotation_type">Casta de rotatzione</string>
+    <string name="default_rotation_type">Predefinida</string>
+    <string name="pref_create_folder_per_manga_summary">Creat cartellas in base a su tìtulu de su manga</string>
+    <string name="pref_create_folder_per_manga">Sarva sas pàginas in cartellas separadas</string>
+    <string name="pref_reader_actions">Atziones</string>
+    <string name="pref_grayscale">Iscala de murros</string>
+    <string name="notification_incognito_text">Disabìlita sa modalidade anònima</string>
+    <string name="automatic_background">Automàticu</string>
+    <string name="cancel_all_for_series">Annulla totu pro custa sèrie</string>
+    <string name="error_no_match">Peruna currispondèntzia agatada</string>
+    <string name="source_unsupported">Sa mitza no est suportada</string>
+    <string name="score_unsupported">Non suportadu</string>
+    <string name="unread">Non lèghidos</string>
+    <string name="pref_auto_add_track">Arrasta a sa muda cando annanghes manga a sa biblioteca</string>
 </resources>

@@ -148,12 +148,10 @@
     <string name="pref_category_about">Tietoja</string>
     <string name="pref_library_columns">Kohteita per rivi</string>
     <string name="portrait">Pystysuunta</string>
-    <string name="landscape">Vaakatasossa</string>
+    <string name="landscape">Vaakataso</string>
     <string name="default_columns">Oletus</string>
     <string name="pref_library_update_interval">Päivitystiheys</string>
     <string name="update_never">Manuaalinen</string>
-    <string name="update_1hour">Tunnin välein</string>
-    <string name="update_2hour">Kahden tunnin välein</string>
     <string name="update_3hour">Kolmen tunnin välein</string>
     <string name="update_6hour">Kuuden tunnin välein</string>
     <string name="update_12hour">12 tunnin välein</string>
@@ -205,7 +203,7 @@
     <string name="pref_read_with_volume_keys">Äänenvoimakkuus näppäimet</string>
     <string name="pref_read_with_volume_keys_inverted">Käännä äänenvoimakkuus näppäimet</string>
     <string name="pref_read_with_tapping">Näpäyttäminen</string>
-    <string name="pref_read_with_long_tap">Pitkän näpäytyksen dialogi</string>
+    <string name="pref_read_with_long_tap">Näytä pitkällä napautuksella</string>
     <string name="pref_reader_theme">Taustan väri</string>
     <string name="white_background">Valkoinen</string>
     <string name="black_background">Musta</string>
@@ -232,7 +230,7 @@
     <string name="double_tap_anim_speed_0">Ei animaatiota</string>
     <string name="double_tap_anim_speed_normal">Normaali</string>
     <string name="double_tap_anim_speed_fast">Nopea</string>
-    <string name="pref_rotation_type">Rotaatio</string>
+    <string name="pref_rotation_type">Oletuskiertotyyppi</string>
     <string name="rotation_free">Vapaa</string>
     <string name="rotation_force_portrait">Lukittu pystysuunta</string>
     <string name="rotation_force_landscape">Lukittu vaakataso</string>
@@ -280,7 +278,6 @@
     <string name="pref_refresh_library_tracking">Päivitä seuranta</string>
     <string name="pref_refresh_library_tracking_summary">Päivittää tilan, arvosanan ja viimeksi luetun luvun seurantapalveluista</string>
     <string name="version">Versio</string>
-    <string name="build_time">Kasausaika</string>
     <string name="pref_enable_acra">Lähetä kaatumisilmoituksia</string>
     <string name="pref_acra_summary">Auttaa korjaamaan bugeja. Arkaluonteista tietoa ei lähetetä</string>
     <string name="login_title">%1$s kirjautuminen</string>
@@ -616,9 +613,6 @@
     <string name="clear_history_completed">Historia poistettu</string>
     <string name="spen_next_page">Seuraava sivu</string>
     <string name="spen_previous_page">Edellinen sivu</string>
-    <string name="pref_backup_auto_create_legacy">Luo myös vanha varmuuskopio</string>
-    <string name="pref_create_legacy_backup_summary">Voidaan käyttää Tachiyomin vanhemmissa versioissa</string>
-    <string name="pref_create_legacy_backup">Luo vanha varmuuskopio</string>
     <string name="migration_help_guide">Lähteen siirto-opas</string>
     <string name="invalid_backup_file_type">Virheellinen varmuuskopiotiedosto: %1$s
 \nSen pitäisi päättyä .proto.gz or .json.</string>
@@ -675,4 +669,13 @@
     <string name="clipboard_copy_error">Kopiointi leikepöydälle epäonnistui</string>
     <string name="rotation_landscape">Vaakatasossa</string>
     <string name="rotation_portrait">Pystysuunnassa</string>
+    <string name="pref_create_folder_per_manga_summary">Luo kansioita manga-otsikon mukaan</string>
+    <string name="pref_create_folder_per_manga">Tallenna sivut erillisiin kansioihin</string>
+    <string name="pref_reader_actions">Toiminnot</string>
+    <string name="rotation_type">Kierron tyyppi</string>
+    <string name="default_rotation_type">Oletus</string>
+    <string name="pref_grayscale">Harmaasävy</string>
+    <string name="notification_incognito_text">Poista incognito-tila käytöstä</string>
+    <string name="automatic_background">Automaattinen</string>
+    <string name="cancel_all_for_series">Peruuta kaikki tälle sarjalle</string>
 </resources>

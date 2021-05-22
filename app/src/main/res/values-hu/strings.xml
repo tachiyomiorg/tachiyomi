@@ -16,7 +16,7 @@
     <string name="action_remove">Eltávolítás</string>
     <string name="action_move">Áthelyezés</string>
     <string name="action_open_in_browser">Megnyitás böngészőben</string>
-    <string name="action_display_grid">Rács</string>
+    <string name="action_display_grid">Szűk rács</string>
     <string name="action_display_list">Lista</string>
     <string name="action_install">Telepítés</string>
     <string name="action_share">Megosztás</string>
@@ -37,8 +37,6 @@
     <string name="default_columns">Alapértelmezett</string>
     <string name="pref_library_update_interval">Könyvtárfrissítések gyakorisága</string>
     <string name="update_never">Kézi</string>
-    <string name="update_1hour">Óránként</string>
-    <string name="update_2hour">2 óránként</string>
     <string name="update_3hour">3 óránként</string>
     <string name="update_6hour">6 óránként</string>
     <string name="update_12hour">12 óránként</string>
@@ -158,7 +156,7 @@
     <string name="ext_installing">Telepítés</string>
     <string name="ext_installed">Telepítve</string>
     <string name="ext_available">Elérhető</string>
-    <string name="action_open_in_web_view">WebView</string>
+    <string name="action_open_in_web_view">Megnyitás WebView-ben</string>
     <string name="label_help">Segítség</string>
     <string name="pref_library_update_prioritization">Könyvtárfrissítési sorrend</string>
     <string name="label_downloaded_only">Csak letöltött</string>
@@ -285,7 +283,7 @@
     <string name="information_empty_category">Nincsenek kategóriái. Érintse meg a plusz gombot, hogy létrehozzon egyet a könyvtára rendezéséhez.</string>
     <string name="pinned_sources">Kitűzött</string>
     <string name="other_source">Egyéb</string>
-    <string name="manga_tracking_tab">Követés</string>
+    <string name="manga_tracking_tab">Nyilvántartás</string>
     <string name="manga_chapters_tab">Fejezetek</string>
     <string name="copied_to_clipboard">Vágólapra másolva:
 \n%1$s</string>
@@ -380,4 +378,40 @@
     <string name="updating_library">Könyvtár frissítése</string>
     <string name="no_chapters_error">Nem található fejezet</string>
     <string name="licensed">Licenszelt</string>
+    <string name="untrusted_extension_message">Ezt a kiterjesztést nem megbízható tanúsítvánnyal írták alá, és nem lett aktiválva.
+\n
+\nEgy rosszindulatú kiterjesztés elolvashatja a Tachiyomiban tárolt bejelentkezési adatokat, vagy tetszőleges kódot futtathat.
+\n
+\nAz ebben a tanúsítványban való megbízással, elfogadja ezeket a kockázatokat.</string>
+    <string name="ext_trust">Bizalom</string>
+    <string name="exclude">Tiltott: %s</string>
+    <string name="include">Kedvelt: %s</string>
+    <string name="none">Semmi</string>
+    <string name="pref_download_new_categories_details">Manga tiltott kategóriákban nem lesz letöltve, még akkor is ha kedvelt kategóriában van.</string>
+    <string name="pref_library_update_categories_details">Manga a tiltott kategóriákban nem lesznek frissítve, még akkor is ha kedvelt kategóriákban vannak.</string>
+    <string name="update_8hour">8 óránként</string>
+    <string name="update_4hour">4 óránként</string>
+    <string name="secure_screen">Biztonságos képernyő</string>
+    <string name="lock_when_idle">Zárás tétlen állapotban</string>
+    <string name="lock_with_biometrics">Feloldás igénylése</string>
+    <string name="action_show_errors">Hibák mutatása</string>
+    <string name="logout_title">Kijelentkezel a következőből: %1$s\?</string>
+    <string name="no_valid_sources">Kérlek válassz egy érvényes forrást</string>
+    <string name="select_source">Válassz forrást</string>
+    <string name="browse">Böngészés</string>
+    <string name="action_desc">Csökkenő</string>
+    <string name="action_asc">Növekvő</string>
+    <string name="action_order_by_chapter_number">Fejezet száma szerint</string>
+    <string name="action_order_by_upload_date">Feltöltési idő szerint</string>
+    <string name="action_reorganize_by">Újrarendezés</string>
+    <string name="cancel_all_for_series">Mégse az összesre a sorozatból</string>
+    <string name="action_cancel_all">Mégse az összesre</string>
+    <string name="action_unpin">Tűzés visszavonása</string>
+    <string name="action_pin">Kitűzés</string>
+    <string name="action_disable">Kikapcsolás</string>
+    <string name="action_display_show_number_of_items">Tárgyak számának mutatása</string>
+    <string name="action_display_show_tabs">Kategória fülek mutatása</string>
+    <string name="action_display_unread_badge">Olvasatlan jelvények</string>
+    <string name="action_display_comfortable_grid">Kényelmes rács</string>
+    <string name="action_sort_chapter_fetch_date">Lekérés dátuma</string>
 </resources>

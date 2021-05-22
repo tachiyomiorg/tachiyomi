@@ -288,8 +288,6 @@
     <string name="update_12hour">ಪ್ರತಿ 12 ಗಂಟೆಗಳಿಗೊಮ್ಮೆ</string>
     <string name="update_6hour">ಪ್ರತಿ 6 ಗಂಟೆಗಳಿಗೊಮ್ಮೆ</string>
     <string name="update_3hour">ಪ್ರತಿ 3 ಗಂಟೆಗಳಿಗೊಮ್ಮೆ</string>
-    <string name="update_2hour">ಪ್ರತಿ 2 ಗಂಟೆಗಳಿಗೊಮ್ಮೆ</string>
-    <string name="update_1hour">ಗಂಟೆ</string>
     <string name="update_never">ಸ್ವಂತ ಮಾಡು</string>
     <string name="pref_library_update_interval">ನವೀಕರಣ ಆವರ್ತನ</string>
     <string name="pref_category_library_update">ನವೀಕರಣಗಳು</string>
@@ -490,7 +488,6 @@
     <string name="pref_enable_acra">ಕ್ರ್ಯಾಶ್ ವರದಿಗಳನ್ನು ಕಳುಹಿಸಿ</string>
     <string name="check_for_updates">ನವೀಕರಣಗಳಿಗಾಗಿ ಪರಿಶೀಲಿಸಿ</string>
     <string name="licenses">ಓಪನ್ ಸೋರ್ಸ್ ಪರವಾನಗಿಗಳು</string>
-    <string name="build_time">ನಿರ್ಮಿಸಿದ ಸಮಯ</string>
     <string name="version">ಆವೃತ್ತಿ</string>
     <string name="website">ವೆಬ್ಸೈಟ್</string>
     <string name="battery_optimization_setting_activity_not_found">ಡಿವೈಸ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ತೆರೆಯಲಾಗಲಿಲ್ಲ</string>
@@ -622,9 +619,6 @@
     <string name="clear_history_completed">ಇತಿಹಾಸವನ್ನು ಅಳಿಸಲಾಗಿದೆ</string>
     <string name="invalid_backup_file_type">ಅಮಾನ್ಯ ಬ್ಯಾಕಪ್ ಫೈಲ್ ಪ್ರಕಾರ:%1$s
 \nಫೈಲ್ ಪ್ರಕಾರ .proto.gz ಅಥವಾ .json ನೊಂದಿಗೆ ಕೊನೆಗೊಳ್ಳಬೇಕು.</string>
-    <string name="pref_backup_auto_create_legacy">ಹಳೆಯ ಪ್ರಕಾರದ ಬ್ಯಾಕಪ್ ಅನ್ನು ಸಹ ರಚಿಸಿ</string>
-    <string name="pref_create_legacy_backup_summary">ತಚಿಯೋಮಿಯ ಹಳೆಯ ಆವೃತ್ತಿಗಳಲ್ಲಿ ಬಳಸಬಹುದು</string>
-    <string name="pref_create_legacy_backup">ಹಳೆಯ ಪ್ರಕಾರದ ಬ್ಯಾಕಪ್ ರಚಿಸಿ</string>
     <string name="pref_label_nsfw_extension">ವಿಸ್ತರಣೆಗಳ ಪಟ್ಟಿಯಲ್ಲಿ ಲೇಬಲ್</string>
     <string name="pref_show_nsfw_extension">ವಿಸ್ತರಣೆಗಳ ಪಟ್ಟಿಯಲ್ಲಿ ತೋರಿಸಿ</string>
     <string name="pref_show_nsfw_source">ಮೂಲಗಳ ಪಟ್ಟಿಯಲ್ಲಿ ತೋರಿಸಿ</string>

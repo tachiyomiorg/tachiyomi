@@ -7,8 +7,8 @@
     <string name="action_update_library">Бэбэлэтиэкэ саҥардыы</string>
     <string name="action_update">Саҥардыы</string>
     <string name="action_delete">Сотон кэбис</string>
-    <string name="action_remove_bookmark">Кыбытыыны хомуй</string>
-    <string name="action_bookmark">Кыбытыы</string>
+    <string name="action_remove_bookmark">Түһүмэх кыбытыытын ылан кэбис</string>
+    <string name="action_bookmark">Түһүмэх кыбытыыта</string>
     <string name="action_download_unread">Ааҕыллыбатах түһүмэҕи хачайдаа</string>
     <string name="action_download">Хачайдаа</string>
     <string name="action_mark_previous_as_read">Ааспыты аахтым диэн бэлиэтээ</string>
@@ -67,19 +67,17 @@
     <string name="pref_update_only_non_completed">Бүтэ илик маанганы эрэ, саҥарт</string>
     <string name="charging">Иитиллэр</string>
     <string name="pref_library_update_restriction_summary">Усулуобуйалар толоруллубутугар эрэ, саҥарт</string>
-    <string name="pref_library_update_restriction">Бэбэлэтиэкэ саҥардыытын хааччахтааһын</string>
-    <string name="pref_library_update_prioritization">Бэбэлэтиэкэ саҥардыытын бэрээдэгэ</string>
+    <string name="pref_library_update_restriction">Саҥардыы хааччахтааһына</string>
+    <string name="pref_library_update_prioritization">Саҥардыы бэрээдэгэ</string>
     <string name="update_weekly">Нэдиэлэ аайы</string>
     <string name="update_48hour">Икки күн аайы</string>
     <string name="update_24hour">Күн аайы</string>
     <string name="update_12hour">Уон икки чаас аайы</string>
     <string name="update_6hour">Алта чаас аайы</string>
     <string name="update_3hour">Үс чаас аайы</string>
-    <string name="update_2hour">Икки чаас аайы</string>
-    <string name="update_1hour">Чаас аайы</string>
     <string name="update_never">Илиинэн</string>
-    <string name="pref_library_update_interval">Бэбэлэтиэкэ саҥардыытын түргэнэ</string>
-    <string name="pref_category_library_update">Саҥардыылар</string>
+    <string name="pref_library_update_interval">Саҥардыы түргэнэ</string>
+    <string name="pref_category_library_update">Улахан саҥардыы</string>
     <string name="pref_jump_to_chapters">Аһаҕас түһүмэххэ көһүү</string>
     <string name="default_columns">Куолутунан</string>
     <string name="landscape">Сытыары</string>
@@ -95,7 +93,7 @@
     <string name="lock_never">Хаһан да</string>
     <string name="lock_always">Наар</string>
     <string name="lock_when_idle">Күүтү эрэһиимигэр сап</string>
-    <string name="lock_with_biometrics">Тарбах суолунан сап</string>
+    <string name="lock_with_biometrics">Арыйыыны ирдээ</string>
     <string name="pref_category_security">Көмүскэл</string>
     <string name="pref_manage_notifications">Биллэриилэри салай</string>
     <string name="pref_confirm_exit">Тахсыыны бигэргэт</string>
@@ -355,7 +353,6 @@
     <string name="group_backup_restore">Хаппаас куопуйаны оҥоруу уонна төнүҥнэрии</string>
     <string name="file_select_backup">Хаппаас куопуйа билэтин талыы</string>
     <string name="whats_new">Туох саҥа баарый</string>
-    <string name="build_time">Тахсыбыт кэмэ</string>
     <string name="version">Биэрсия</string>
     <string name="website">Үөп сир</string>
     <string name="licenses">Аһаҕас төрүттээх лицензиялар</string>
@@ -542,9 +539,6 @@
     <string name="myanimelist_creds_missing">MAL учуотнай дааннайдара булуллубата</string>
     <string name="invalid_backup_file_type">Хаппаас куопуйа сыыһа ааттах: %1$s
 \n.proto.gz or .json. диэн бүтүөхтээх</string>
-    <string name="pref_backup_auto_create_legacy">Урукку формаатынан хаппас куопуйаны эбии оҥоруу</string>
-    <string name="pref_create_legacy_backup_summary">Tachiyomi урукку биэрсийэлэригэр туттуллуон сөп</string>
-    <string name="pref_create_legacy_backup">Урукку формаатынан хаппаас куопуйаны оҥоруу</string>
     <string name="pref_viewer_nav">Нэбигээссийэ бэлиэтэ</string>
     <string name="edge_nav">Кытыы</string>
     <string name="kindlish_nav">Kindle курдук</string>
@@ -554,4 +548,19 @@
     <string name="pref_show_nsfw_extension">Кэҥэтиилэр испииһэктэригэр көрдөрүү</string>
     <string name="pref_show_nsfw_source">Төрүттэр испииһэктэригэр көрдөрүү</string>
     <string name="pref_category_nsfw_content">NSFW (18+) төрүттэр</string>
+    <string name="exclude">Киллэримэ: %s</string>
+    <string name="include">Киллэр: %s</string>
+    <string name="none">Суох</string>
+    <string name="pref_library_update_categories_details">Сотуллубут категориялар маангалара саҥардыллыа суоҕа, холбоммут категорияларга баарын үрдүнэн.</string>
+    <string name="network_unmetered">Лимиитэ суох ситим</string>
+    <string name="update_8hour">Аҕыс чаас аайы</string>
+    <string name="update_4hour">Түөрт чаас аайы</string>
+    <string name="action_show_errors">Сыһааһыннары көрдөр</string>
+    <string name="action_desc">Кыччыытынан</string>
+    <string name="action_asc">Улаатыытынан</string>
+    <string name="action_order_by_chapter_number">Түһүмэх нүөмэринэн</string>
+    <string name="action_order_by_upload_date">Хаһан хачайдаммытынан</string>
+    <string name="action_display_show_number_of_items">Мал төһө элбэҕин көрдөр</string>
+    <string name="action_sort_chapter_fetch_date">Кэлэр күнэ</string>
+    <string name="action_filter_tracked">Суолун көрө сылдьабыт</string>
 </resources>
