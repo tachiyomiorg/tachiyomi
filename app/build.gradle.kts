@@ -55,6 +55,15 @@ android {
         named("debug") {
             versionNameSuffix = "-${getCommitCount()}"
             applicationIdSuffix = ".debug"
+
+            isShrinkResources = true
+            isMinifyEnabled = true
+            proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
+        }
+        create("debugFull") { // Debug without R8
+            initWith(getByName("debug"))
+            isShrinkResources = false
+            isMinifyEnabled = false
         }
         named("release") {
             isShrinkResources = true
@@ -63,14 +72,15 @@ android {
         }
     }
 
+    sourceSets {
+        getByName("debugFull").res.srcDirs("src/debug/res")
+    }
+
     flavorDimensions("default")
 
     productFlavors {
         create("standard") {
             buildConfigField("boolean", "INCLUDE_UPDATER", "true")
-            dimension = "default"
-        }
-        create("fdroid") {
             dimension = "default"
         }
         create("dev") {
