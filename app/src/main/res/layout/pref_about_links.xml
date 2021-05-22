@@ -16,8 +16,7 @@
         android:maxLines="1"
         android:text="@string/website"
         app:icon="@drawable/ic_public_24dp"
-        app:iconTint="?attr/colorAccent"
-        app:rippleColor="?attr/rippleColor" />
+        app:iconTint="?attr/colorAccent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_discord"
@@ -30,7 +29,6 @@
         android:text="Discord"
         app:icon="@drawable/ic_discord_24dp"
         app:iconTint="?attr/colorAccent"
-        app:rippleColor="?attr/rippleColor"
         tools:ignore="HardcodedText" />
 
     <com.google.android.material.button.MaterialButton
@@ -44,7 +42,6 @@
         android:text="Twitter"
         app:icon="@drawable/ic_twitter_24dp"
         app:iconTint="?attr/colorAccent"
-        app:rippleColor="?attr/rippleColor"
         tools:ignore="HardcodedText" />
 
     <com.google.android.material.button.MaterialButton
@@ -58,7 +55,6 @@
         android:text="Facebook"
         app:icon="@drawable/ic_facebook_24dp"
         app:iconTint="?attr/colorAccent"
-        app:rippleColor="?attr/rippleColor"
         tools:ignore="HardcodedText" />
 
     <com.google.android.material.button.MaterialButton
@@ -72,7 +68,6 @@
         android:text="GitHub"
         app:icon="@drawable/ic_github_24dp"
         app:iconTint="?attr/colorAccent"
-        app:rippleColor="?attr/rippleColor"
         tools:ignore="HardcodedText" />
 
 </LinearLayout>

@@ -308,6 +308,7 @@
         <item name="android:textAllCaps">false</item>
 
         <item name="backgroundTint">@android:color/transparent</item>
+        <item name="rippleColor">?attr/rippleColor</item>
 
         <item name="iconGravity">top</item>
         <item name="iconTint">@color/button_action_selector</item>
@@ -347,6 +348,7 @@
         <item name="tabMinWidth">75dp</item>
         <item name="tabMode">scrollable</item>
         <item name="tabTextAppearance">@style/TextAppearance.Widget.Tab</item>
+        <item name="tabRippleColor">?attr/rippleNavColor</item>
     </style>
 
 

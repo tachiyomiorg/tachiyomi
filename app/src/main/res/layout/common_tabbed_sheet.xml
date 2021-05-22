@@ -24,7 +24,6 @@
             app:tabGravity="fill"
             app:tabIndicatorColor="?attr/colorAccent"
             app:tabMode="fixed"
-            app:tabRippleColor="?attr/rippleNavColor"
             app:tabTextColor="@color/tabs_selector_background" />
 
         <ImageButton
