@@ -36,13 +36,16 @@
         <item name="android:textColorPrimaryInverse">@color/textColorPrimaryDark</item>
         <item name="android:textColorSecondaryInverse">@color/textColorSecondaryDark</item>
         <item name="android:textColorHintInverse">@color/textColorHintDark</item>
-        <item name="rippleColor">@color/rippleColorLight</item>
         <item name="android:colorEdgeEffect">?attr/colorAccent</item>
 
         <item name="android:divider">@color/dividerLight</item>
         <item name="android:listDivider">@drawable/line_divider</item>
 
+        <!-- Ripples -->
+        <item name="rippleColor">@color/rippleColorLight</item>
         <item name="rippleSecondaryColor">@color/rippleSecondaryColorLight</item>
+        <item name="rippleToolbarColor">@color/rippleToolbarColorLight</item>
+
         <!-- Handles RTL text -->
         <item name="android:textAlignment">gravity</item>
         <item name="android:textDirection">locale</item>
@@ -57,6 +60,7 @@
         <item name="actionModeStyle">@style/Theme.ActionMode</item>
         <item name="actionModeCloseButtonStyle">@style/Theme.ActionMode.CloseButton</item>
         <item name="actionModeCloseDrawable">@drawable/ic_close_24dp</item>
+        <item name="actionBarTheme">@style/Theme.Toolbar.Custom</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.MaterialComponents</item>
         <item name="toolbarNavigationButtonStyle">@style/Theme.Toolbar.Navigation</item>
         <item name="preferenceTheme">@style/PreferenceThemeCustom</item>
@@ -105,6 +109,7 @@
         <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
         <item name="colorFilterActive">@color/filterColorDark</item>
         <item name="rippleSecondaryColor">@color/md_white_1000_6</item>
+        <item name="rippleToolbarColor">@color/md_white_1000_12</item>
         <item name="actionBarTheme">@style/Theme.Toolbar.Light</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
@@ -138,13 +143,16 @@
         <item name="android:textColorPrimaryInverse">@color/textColorPrimaryLight</item>
         <item name="android:textColorSecondaryInverse">@color/textColorSecondaryLight</item>
         <item name="android:textColorHintInverse">@color/textColorHintLight</item>
-        <item name="rippleColor">@color/rippleColorDark</item>
         <item name="android:colorEdgeEffect">?attr/colorAccent</item>
 
         <item name="android:divider">@color/dividerDark</item>
         <item name="android:listDivider">@drawable/line_divider</item>
 
+        <!-- Ripples -->
+        <item name="rippleColor">@color/rippleColorDark</item>
         <item name="rippleSecondaryColor">@color/rippleSecondaryColorDark</item>
+        <item name="rippleToolbarColor">@color/rippleToolbarColorDark</item>
+
         <!-- Themes -->
         <item name="android:statusBarColor">?attr/colorPrimary</item>
         <item name="android:navigationBarColor">?attr/colorPrimary</item>
@@ -155,7 +163,7 @@
         <item name="actionModeStyle">@style/Theme.ActionMode</item>
         <item name="actionModeCloseButtonStyle">@style/Theme.ActionMode.CloseButton</item>
         <item name="actionModeCloseDrawable">@drawable/ic_close_24dp</item>
-        <item name="actionBarTheme">@style/Theme.Toolbar.Custom</item>
+        <item name="actionBarTheme">@style/Theme.Toolbar.Custom.Dark</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.MaterialComponents</item>
         <item name="toolbarNavigationButtonStyle">@style/Theme.Toolbar.Navigation</item>
         <item name="preferenceTheme">@style/PreferenceThemeCustom</item>
@@ -195,6 +203,7 @@
         <item name="colorAccentOnPrimary">@color/textColorPrimaryDark</item>
         <item name="colorPrimaryVariant">@color/colorPrimary</item>
         <item name="rippleSecondaryColor">@color/md_black_1000_6</item>
+        <item name="rippleToolbarColor">@color/md_black_1000_12</item>
     </style>
 
     <style name="Theme.Tachiyomi.Dark.Amoled">
@@ -225,7 +234,7 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <item name="android:navigationBarColor">?attr/colorPrimaryVariant</item>
 
-        <item name="actionBarTheme">@style/Theme.Toolbar.Custom</item>
+        <item name="actionBarTheme">@style/Theme.Toolbar.Custom.Dark</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.MaterialComponents</item>
         <item name="switchStyle">@style/Theme.Widget.BasicSwitch</item>
         <item name="bottomSheetDialogTheme">@style/Theme.BottomSheet</item>
@@ -241,7 +250,7 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <item name="android:navigationBarColor">?attr/colorPrimaryVariant</item>
 
-        <item name="actionBarTheme">@style/Theme.Toolbar.Custom</item>
+        <item name="actionBarTheme">@style/Theme.Toolbar.Custom.Dark</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.MaterialComponents</item>
         <item name="switchStyle">@style/Theme.Widget.BasicSwitch</item>
         <item name="bottomSheetDialogTheme">@style/Theme.BottomSheet</item>
