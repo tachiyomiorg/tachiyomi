@@ -229,7 +229,7 @@
     <!-- AMOLED Themes -->
     <!--===============-->
 
-    <!--== AMOLED theme ==-->
+    <!--== AMOLED base ==-->
     <style name="Theme.Tachiyomi.Dark.Amoled">
         <!-- Theme colors -->
         <item name="colorPrimary">@color/colorAmoledPrimary</item>
@@ -246,6 +246,9 @@
         <item name="colorLibrarySelection">@color/selectorColorDark</item>
         <item name="colorLibrarySelectionActive">@color/selectorColorDark</item>
     </style>
+
+    <!--== AMOLED theme ==-->
+    <style name="Theme.Tachiyomi.Amoled" parent="Theme.Tachiyomi.Dark.Amoled" />
 
     <!--==============-->
     <!-- Reader Theme -->
