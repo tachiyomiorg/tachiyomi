@@ -4,16 +4,16 @@
     <!--============-->
     <!-- Base Theme -->
     <!--============-->
-    <style name="Theme"/>
 
-    <!--==============-->
-    <!-- Light Themes -->
-    <!--=======-======-->
+    <!--== Theme ==-->
+    <style name="Theme" />
+
+    <!--== Theme base ==-->
     <style name="Theme.Base" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- AppBar -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-
+        <!-- Disallow 'Force dark theme' -->
         <item name="android:forceDarkAllowed" tools:targetApi="Q">false</item>
 
         <!-- Theme colors -->
@@ -93,24 +93,36 @@
         <item name="colorFilterActive">@color/filterColorLight</item>
     </style>
 
-    <!--===========-->
-    <!-- Main Theme-->
-    <!--===========-->
+    <!--==============-->
+    <!-- Light Themes -->
+    <!--==============-->
+
+    <!--== Light base ==-->
     <style name="Base.Theme.Tachiyomi.Light" parent="Theme.Base">
         <item name="android:statusBarColor">?attr/colorPrimary</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
+
+    <!--== Light theme ==-->
     <style name="Theme.Tachiyomi.Light" parent="Base.Theme.Tachiyomi.Light" />
 
+    <!--== Light Blue theme ==-->
     <style name="Theme.Tachiyomi.Light.Blue">
+        <!-- Theme colors -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorOnPrimary">@color/textColorPrimaryDark</item>
         <item name="colorAccentOnPrimary">@color/textColorPrimaryDark</item>
         <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
         <item name="colorFilterActive">@color/filterColorDark</item>
+
+        <!-- Ripples -->
         <item name="rippleSecondaryColor">@color/md_white_1000_6</item>
         <item name="rippleToolbarColor">@color/md_white_1000_12</item>
+
+        <!-- Themes -->
         <item name="actionBarTheme">@style/Theme.Toolbar.Light</item>
+
+        <!-- Status/Navigation bar -->
         <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
     </style>
@@ -118,6 +130,8 @@
     <!--=============-->
     <!-- Dark Themes -->
     <!--=============-->
+
+    <!--== Dark base ==-->
     <style name="Theme.Base.Dark" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Theme colors -->
         <item name="colorPrimary">@color/colorDarkPrimary</item>
@@ -196,21 +210,33 @@
         <item name="colorFilterActive">@color/filterColorDark</item>
     </style>
 
+    <!--== Dark theme ==-->
     <style name="Theme.Tachiyomi.Dark" parent="Theme.Base.Dark" />
 
+    <!--== Dark Blue theme ==-->
     <style name="Theme.Tachiyomi.Dark.Blue">
+        <!-- Theme colors -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorAccentOnPrimary">@color/textColorPrimaryDark</item>
         <item name="colorPrimaryVariant">@color/colorPrimary</item>
+
+        <!-- Ripples -->
         <item name="rippleSecondaryColor">@color/md_black_1000_6</item>
         <item name="rippleToolbarColor">@color/md_black_1000_12</item>
     </style>
 
+    <!--===============-->
+    <!-- AMOLED Themes -->
+    <!--===============-->
+
+    <!--== AMOLED theme ==-->
     <style name="Theme.Tachiyomi.Dark.Amoled">
+        <!-- Theme colors -->
         <item name="colorPrimary">@color/colorAmoledPrimary</item>
         <item name="colorPrimaryVariant">@color/colorAmoledPrimary</item>
         <item name="colorSurface">@color/colorAmoledPrimary</item>
 
+        <!-- Base background/text colors -->
         <item name="android:colorBackground">@color/colorAmoledPrimary</item>
 
         <!-- Some ROMs make black navbars white (e.g. OxygenOS) -->
@@ -224,53 +250,68 @@
     <!--==============-->
     <!-- Reader Theme -->
     <!--==============-->
-    <style name="Theme.Base.Reader.Dark" parent="Theme.Base.Dark">
-        <item name="colorPrimary">@color/readerColorDarkPrimary</item>
-        <item name="colorOnPrimary">@color/textColorPrimaryDark</item>
-        <item name="colorPrimaryVariant">@color/readerColorDarkPrimary</item>
-        <item name="colorSurface">@color/md_black_1000</item>
 
-        <item name="android:colorBackground">@color/md_black_1000</item>
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <item name="android:navigationBarColor">?attr/colorPrimaryVariant</item>
-
-        <item name="actionBarTheme">@style/Theme.Toolbar.Custom.Dark</item>
-        <item name="actionBarPopupTheme">@style/ThemeOverlay.MaterialComponents</item>
-        <item name="switchStyle">@style/Theme.Widget.BasicSwitch</item>
-        <item name="bottomSheetDialogTheme">@style/Theme.BottomSheet</item>
-    </style>
-
+    <!--== Light Reader base ==-->
     <style name="Theme.Base.Reader.Light" parent="Theme.Base">
+        <!-- Theme colors -->
         <item name="colorPrimary">@color/readerColorDarkPrimary</item>
         <item name="colorOnPrimary">@color/textColorPrimaryDark</item>
         <item name="colorPrimaryVariant">@color/readerColorDarkPrimary</item>
         <item name="colorSurface">@color/md_white_1000</item>
 
+        <!-- Base background/text colors -->
         <item name="android:colorBackground">@color/md_white_1000</item>
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <item name="android:navigationBarColor">?attr/colorPrimaryVariant</item>
 
+        <!-- Themes -->
         <item name="actionBarTheme">@style/Theme.Toolbar.Custom.Dark</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.MaterialComponents</item>
         <item name="switchStyle">@style/Theme.Widget.BasicSwitch</item>
         <item name="bottomSheetDialogTheme">@style/Theme.BottomSheet</item>
     </style>
 
+    <!--== Light Reader ==-->
+    <style name="Theme.Reader.Light" parent="Theme.Base.Reader.Light" />
+
+    <!--== Dark Reader base ==-->
+    <style name="Theme.Base.Reader.Dark" parent="Theme.Base.Dark">
+        <!-- Theme colors -->
+        <item name="colorPrimary">@color/readerColorDarkPrimary</item>
+        <item name="colorOnPrimary">@color/textColorPrimaryDark</item>
+        <item name="colorPrimaryVariant">@color/readerColorDarkPrimary</item>
+        <item name="colorSurface">@color/md_black_1000</item>
+
+        <!-- Base background/text colors -->
+        <item name="android:colorBackground">@color/md_black_1000</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:navigationBarColor">?attr/colorPrimaryVariant</item>
+
+        <!-- Themes -->
+        <item name="actionBarTheme">@style/Theme.Toolbar.Custom.Dark</item>
+        <item name="actionBarPopupTheme">@style/ThemeOverlay.MaterialComponents</item>
+        <item name="switchStyle">@style/Theme.Widget.BasicSwitch</item>
+        <item name="bottomSheetDialogTheme">@style/Theme.BottomSheet</item>
+    </style>
+
+    <!--== Dark Reader ==-->
     <style name="Theme.Reader.Dark" parent="Theme.Base.Reader.Dark" />
 
+    <!--== Dark Grey Reader ==-->
     <style name="Theme.Reader.Dark.Grey" parent="Theme.Base.Reader.Dark">
         <item name="android:colorBackground">@color/backgroundDark</item>
     </style>
 
-    <style name="Theme.Reader.Light" parent="Theme.Base.Reader.Light" />
-
-
     <!--===============-->
     <!-- Launch Screen -->
     <!--===============-->
+
+    <!--== Splash theme ==-->
     <style name="Theme.Splash" parent="Theme.Tachiyomi.Light.Blue">
+        <!-- Theme colors -->
         <item name="colorBackgroundSplash">@color/colorPrimary</item>
 
+        <!-- Base background/text colors -->
         <item name="android:windowBackground">@drawable/splash_background</item>
         <item name="android:statusBarColor">?attr/colorBackgroundSplash</item>
         <item name="android:navigationBarColor">?attr/colorBackgroundSplash</item>
