@@ -348,7 +348,7 @@
         <item name="tabMinWidth">75dp</item>
         <item name="tabMode">scrollable</item>
         <item name="tabTextAppearance">@style/TextAppearance.Widget.Tab</item>
-        <item name="tabRippleColor">?attr/rippleNavColor</item>
+        <item name="tabRippleColor">?attr/rippleSecondaryColor</item>
     </style>
 
 

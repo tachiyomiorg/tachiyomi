@@ -37,12 +37,12 @@
         <item name="android:textColorSecondaryInverse">@color/textColorSecondaryDark</item>
         <item name="android:textColorHintInverse">@color/textColorHintDark</item>
         <item name="rippleColor">@color/rippleColorLight</item>
-        <item name="rippleNavColor">@color/rippleNavColorLight</item>
         <item name="android:colorEdgeEffect">?attr/colorAccent</item>
 
         <item name="android:divider">@color/dividerLight</item>
         <item name="android:listDivider">@drawable/line_divider</item>
 
+        <item name="rippleSecondaryColor">@color/rippleSecondaryColorLight</item>
         <!-- Handles RTL text -->
         <item name="android:textAlignment">gravity</item>
         <item name="android:textDirection">locale</item>
@@ -104,7 +104,7 @@
         <item name="colorAccentOnPrimary">@color/textColorPrimaryDark</item>
         <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
         <item name="colorFilterActive">@color/filterColorDark</item>
-        <item name="rippleNavColor">@color/md_white_1000_6</item>
+        <item name="rippleSecondaryColor">@color/md_white_1000_6</item>
         <item name="actionBarTheme">@style/Theme.Toolbar.Light</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
@@ -138,13 +138,13 @@
         <item name="android:textColorPrimaryInverse">@color/textColorPrimaryLight</item>
         <item name="android:textColorSecondaryInverse">@color/textColorSecondaryLight</item>
         <item name="android:textColorHintInverse">@color/textColorHintLight</item>
-        <item name="rippleNavColor">@color/rippleNavColorDark</item>
         <item name="rippleColor">@color/rippleColorDark</item>
         <item name="android:colorEdgeEffect">?attr/colorAccent</item>
 
         <item name="android:divider">@color/dividerDark</item>
         <item name="android:listDivider">@drawable/line_divider</item>
 
+        <item name="rippleSecondaryColor">@color/rippleSecondaryColorDark</item>
         <!-- Themes -->
         <item name="android:statusBarColor">?attr/colorPrimary</item>
         <item name="android:navigationBarColor">?attr/colorPrimary</item>
@@ -194,8 +194,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorAccentOnPrimary">@color/textColorPrimaryDark</item>
         <item name="colorPrimaryVariant">@color/colorPrimary</item>
-
-        <item name="rippleNavColor">@color/md_white_1000_6</item>
+        <item name="rippleSecondaryColor">@color/md_black_1000_6</item>
     </style>
 
     <style name="Theme.Tachiyomi.Dark.Amoled">
