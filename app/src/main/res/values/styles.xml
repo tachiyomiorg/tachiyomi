@@ -296,7 +296,7 @@
     <!--==============-->
     <style name="Theme.Widget.Button" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:textColor">?attr/colorAccent</item>
-        <item name="rippleColor">?attr/rippleColor</item>
+        <item name="rippleColor">?attr/rippleSecondaryColor</item>
         <item name="android:textAllCaps">false</item>
     </style>
 
