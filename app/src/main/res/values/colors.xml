@@ -8,6 +8,8 @@
     <!-- Dark Application Colors -->
     <color name="colorDarkPrimary">#242529</color>
     <color name="colorDarkPrimaryDark">#202125</color>
+
+    <!-- AMOLED Application Colors -->
     <color name="colorAmoledPrimary">@color/md_black_1000</color>
 
     <color name="splashBackgroundColor">@color/colorPrimary</color>
@@ -38,6 +40,11 @@
     <color name="dialogDark">@color/colorDarkPrimary</color>
     <color name="selectorColorDark">@color/md_blue_A200_50</color>
 
+    <!-- AMOLED Theme -->
+    <color name="rippleColorAmoled">@color/md_white_1000_8</color>
+    <color name="rippleSecondaryColorAmoled">@color/rippleSecondaryColorDark</color>
+    <color name="rippleToolbarColorAmoled">@color/rippleColorAmoled</color>
+
     <!-- Reader Theme -->
     <color name="readerColorDarkPrimary">@color/colorDarkPrimary</color>
     <color name="pageNumberBackgroundLight">@color/md_grey_50_75</color>
@@ -51,6 +58,7 @@
     <color name="md_black_1000_54">#8A000000</color>
     <color name="md_black_1000_38">#61000000</color>
     <color name="md_black_1000_12">#1F000000</color>
+    <color name="md_black_1000_8">#14000000</color>
     <color name="md_black_1000_6">#0F000000</color>
 
     <color name="md_white_1000">#FFFFFFFF</color>
@@ -59,6 +67,7 @@
     <color name="md_white_1000_50">#80FFFFFF</color>
     <color name="md_white_1000_20">#33FFFFFF</color>
     <color name="md_white_1000_12">#1FFFFFFF</color>
+    <color name="md_white_1000_8">#14FFFFFF</color>
     <color name="md_white_1000_6">#0FFFFFFF</color>
 
     <!-- Material Design Colors -->

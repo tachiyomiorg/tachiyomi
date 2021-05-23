@@ -239,6 +239,11 @@
         <!-- Base background/text colors -->
         <item name="android:colorBackground">@color/colorAmoledPrimary</item>
 
+        <!-- Ripples -->
+        <item name="rippleColor">@color/rippleColorAmoled</item>
+        <item name="rippleSecondaryColor">@color/rippleSecondaryColorAmoled</item>
+        <item name="rippleToolbarColor">@color/rippleToolbarColorAmoled</item>
+
         <!-- Some ROMs make black navbars white (e.g. OxygenOS) -->
         <item name="android:navigationBarColor">#000001</item>
 
