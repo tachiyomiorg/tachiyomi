@@ -239,6 +239,12 @@ class SettingsLibraryController : SettingsController() {
                 defaultValue = false
             }
             switchPreference {
+                key = Keys.autoUpdateTrackers
+                titleRes = R.string.pref_library_update_refresh_trackers
+                summaryRes = R.string.pref_library_update_refresh_trackers_summary
+                defaultValue = false
+            }
+            switchPreference {
                 key = Keys.showLibraryUpdateErrors
                 titleRes = R.string.pref_library_update_error_notification
                 defaultValue = false

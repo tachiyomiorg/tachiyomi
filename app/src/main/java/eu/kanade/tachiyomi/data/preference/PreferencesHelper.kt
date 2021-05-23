@@ -77,6 +77,8 @@ class PreferencesHelper(val context: Context) {
 
     fun autoUpdateMetadata() = prefs.getBoolean(Keys.autoUpdateMetadata, false)
 
+    fun autoUpdateTrackers() = prefs.getBoolean(Keys.autoUpdateTrackers, false)
+
     fun showLibraryUpdateErrors() = prefs.getBoolean(Keys.showLibraryUpdateErrors, false)
 
     fun clear() = prefs.edit { clear() }
