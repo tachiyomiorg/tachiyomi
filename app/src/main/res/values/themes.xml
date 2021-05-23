@@ -101,6 +101,7 @@
     <style name="Base.Theme.Tachiyomi.Light" parent="Theme.Base">
         <item name="android:statusBarColor">?attr/colorPrimary</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="background">@color/dialogLight</item>
     </style>
 
     <!--== Light theme ==-->
@@ -114,6 +115,9 @@
         <item name="colorAccentOnPrimary">@color/textColorPrimaryDark</item>
         <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
         <item name="colorFilterActive">@color/filterColorDark</item>
+
+        <!-- Base background/text colors -->
+        <item name="background">@color/colorPrimary</item>
 
         <!-- Ripples -->
         <item name="rippleSecondaryColor">@color/md_white_1000_6</item>
@@ -158,6 +162,7 @@
         <item name="android:textColorSecondaryInverse">@color/textColorSecondaryLight</item>
         <item name="android:textColorHintInverse">@color/textColorHintLight</item>
         <item name="android:colorEdgeEffect">?attr/colorAccent</item>
+        <item name="background">@color/colorDarkPrimaryDark</item>
 
         <item name="android:divider">@color/dividerDark</item>
         <item name="android:listDivider">@drawable/line_divider</item>
@@ -220,9 +225,38 @@
         <item name="colorAccentOnPrimary">@color/textColorPrimaryDark</item>
         <item name="colorPrimaryVariant">@color/colorPrimary</item>
 
+        <!-- Base background/text colors -->
+        <item name="background">@color/colorPrimary</item>
+
         <!-- Ripples -->
         <item name="rippleSecondaryColor">@color/md_black_1000_6</item>
         <item name="rippleToolbarColor">@color/md_black_1000_12</item>
+    </style>
+
+    <!--== Midnight Dusk theme ==-->
+    <style name="Theme.Tachiyomi.Dark.MidnightDusk" parent="Theme.Base.Dark">
+        <!-- Theme colors -->
+        <item name="colorPrimary">@color/dialogDusk</item>
+        <item name="colorOnPrimary">@color/textColorPrimaryDusk</item>
+        <item name="colorAccentOnPrimary">@color/colorAccentDusk</item>
+        <item name="colorPrimaryVariant">@color/dialogDusk</item>
+        <item name="colorSecondary">@color/colorAccentDusk</item>
+        <item name="colorOnSecondary">@color/textColorPrimaryDusk</item>
+        <item name="colorSurface">@color/dialogDusk</item>
+        <item name="colorOnSurface">@color/textColorPrimaryDusk</item>
+        <item name="colorOnBackground">@color/textColorPrimaryDusk</item>
+        <item name="colorAccent">@color/colorAccentDusk</item>
+
+        <!-- Base background/text colors -->
+        <item name="background">@color/backgroundDusk</item>
+        <item name="android:colorBackground">@color/backgroundDusk</item>
+
+        <!-- Ripples -->
+        <item name="rippleSecondaryColor">@color/rippleColorDusk</item>
+
+        <!-- Custom Attributes -->
+        <item name="colorLibrarySelection">@color/selectorColorDark</item>
+        <item name="colorLibrarySelectionActive">@color/selectorColorDark</item>
     </style>
 
     <!--===============-->
@@ -238,6 +272,7 @@
 
         <!-- Base background/text colors -->
         <item name="android:colorBackground">@color/colorAmoledPrimary</item>
+        <item name="background">@color/colorAmoledPrimary</item>
 
         <!-- Ripples -->
         <item name="rippleColor">@color/rippleColorAmoled</item>
