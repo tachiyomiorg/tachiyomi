@@ -28,6 +28,11 @@
     <color name="dialogLight">@color/md_white_1000</color>
     <color name="selectorColorLight">@color/md_blue_A400_38</color>
 
+    <!-- Strawberry Daiquiri Theme -->
+    <color name="colorAccentStrawberry">#ED4A65</color>
+    <color name="rippleSecondaryColorStrawberry">#0AED4A65</color>
+    <color name="selectorColorStrawberry">#6FED4A65</color>
+
     <!-- Dark Theme -->
     <color name="colorAccentDark">#3399FF</color>
     <color name="textColorPrimaryDark">@color/md_white_1000</color>

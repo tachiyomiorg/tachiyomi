@@ -18,6 +18,7 @@ object PreferenceValues {
     enum class LightThemeVariant {
         default,
         blue,
+        strawberrydaiquiri,
     }
 
     // Keys are lowercase to match legacy string values

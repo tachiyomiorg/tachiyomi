@@ -132,6 +132,20 @@
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
     </style>
 
+    <!--== Strawberry Daiquiri theme ==-->
+    <style name="Theme.Tachiyomi.Light.StrawberryDaiquiri">
+        <!-- Theme colors -->
+        <item name="colorAccentOnPrimary">@color/colorAccentStrawberry</item>
+        <item name="colorSecondary">@color/colorAccentStrawberry</item>
+        <item name="colorAccent">@color/colorAccentStrawberry</item>
+
+        <!-- Ripples -->
+        <item name="rippleSecondaryColor">@color/rippleSecondaryColorStrawberry</item>
+
+        <!-- Custom Attributes-->
+        <item name="colorLibrarySelectionActive">@color/selectorColorStrawberry</item>
+    </style>
+
     <!--=============-->
     <!-- Dark Themes -->
     <!--=============-->
