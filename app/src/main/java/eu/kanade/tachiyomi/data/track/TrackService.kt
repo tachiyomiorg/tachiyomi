@@ -46,8 +46,6 @@ abstract class TrackService(val id: Int) {
 
     abstract fun displayScore(track: Track): String
 
-    abstract suspend fun add(track: Track): Track
-
     abstract suspend fun update(track: Track): Track
 
     abstract suspend fun bind(track: Track): Track

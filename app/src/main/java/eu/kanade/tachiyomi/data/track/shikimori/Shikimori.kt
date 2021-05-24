@@ -40,7 +40,7 @@ class Shikimori(private val context: Context, id: Int) : TrackService(id) {
         return track.score.toInt().toString()
     }
 
-    override suspend fun add(track: Track): Track {
+    suspend fun add(track: Track): Track {
         return api.addLibManga(track, getUsername())
     }
 

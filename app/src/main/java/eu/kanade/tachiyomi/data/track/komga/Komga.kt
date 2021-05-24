@@ -55,10 +55,6 @@ class Komga(private val context: Context, id: Int) : TrackService(id), Unattende
 
     override fun displayScore(track: Track): String = ""
 
-    override suspend fun add(track: Track): Track {
-        TODO("Not yet implemented: add")
-    }
-
     override suspend fun update(track: Track): Track {
         return api.updateProgress(track)
     }

@@ -130,7 +130,7 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
         }
     }
 
-    override suspend fun add(track: Track): Track {
+    suspend fun add(track: Track): Track {
         return api.addLibManga(track)
     }
 
