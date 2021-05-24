@@ -8,6 +8,7 @@ import com.afollestad.date.year
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.network.POST
+import eu.kanade.tachiyomi.network.RateLimitInterceptor
 import eu.kanade.tachiyomi.network.await
 import eu.kanade.tachiyomi.network.jsonMime
 import eu.kanade.tachiyomi.network.parseAs
@@ -27,10 +28,14 @@ import kotlinx.serialization.json.putJsonObject
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.util.Calendar
+import java.util.concurrent.TimeUnit.MINUTES
 
 class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
 
-    private val authClient = client.newBuilder().addInterceptor(interceptor).build()
+    private val authClient = client.newBuilder()
+        .addInterceptor(interceptor)
+        .addInterceptor(RateLimitInterceptor(85, 1, MINUTES))
+        .build()
 
     suspend fun addLibManga(track: Track): Track {
         return withIOContext {
