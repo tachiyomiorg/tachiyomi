@@ -67,24 +67,22 @@
 
         </LinearLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/track_details"
+        <View
+            android:id="@+id/top_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:alpha="0.25"
+            android:background="?android:attr/textColorHint" />
+
+        <LinearLayout
+            android:id="@+id/middle_row"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <View
-                android:id="@+id/top_divider"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:alpha="0.25"
-                android:background="?android:attr/textColorHint"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/track_status"
                 style="@style/TextAppearance.Regular.Body1.Secondary"
+                android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/list_item_selector"
@@ -92,27 +90,22 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:padding="16dp"
-                app:layout_constraintEnd_toStartOf="@+id/vert_divider_1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/top_divider"
                 tools:text="Reading" />
 
             <View
                 android:id="@+id/vert_divider_1"
                 android:layout_width="1dp"
-                android:layout_height="0dp"
+                android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:alpha="0.25"
                 android:background="?android:attr/textColorHint"
-                app:layout_constraintBottom_toTopOf="@+id/bottom_divider"
-                app:layout_constraintEnd_toStartOf="@+id/track_chapters"
-                app:layout_constraintStart_toEndOf="@+id/track_status"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/track_chapters"
                 style="@style/TextAppearance.Regular.Body1.Secondary"
+                android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/list_item_selector"
@@ -120,27 +113,21 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:padding="16dp"
-                app:layout_constraintEnd_toStartOf="@+id/vert_divider_2"
-                app:layout_constraintStart_toEndOf="@+id/vert_divider_1"
-                app:layout_constraintTop_toBottomOf="@+id/top_divider"
                 tools:text="12/24" />
 
             <View
                 android:id="@+id/vert_divider_2"
                 android:layout_width="1dp"
-                android:layout_height="0dp"
+                android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:alpha="0.25"
-                android:background="?android:attr/textColorHint"
-                app:layout_constraintBottom_toTopOf="@+id/bottom_divider"
-                app:layout_constraintEnd_toStartOf="@+id/track_score"
-                app:layout_constraintStart_toEndOf="@+id/track_chapters"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:background="?android:attr/textColorHint"/>
 
             <TextView
                 android:id="@+id/track_score"
                 style="@style/TextAppearance.Regular.Body1.Secondary"
+                android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/list_item_selector"
@@ -148,24 +135,26 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:padding="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/vert_divider_2"
-                app:layout_constraintTop_toBottomOf="@+id/top_divider"
                 tools:text="10" />
 
-            <View
-                android:id="@+id/bottom_divider"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:alpha="0.25"
-                android:background="?android:attr/textColorHint"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/track_score" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/bottom_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:alpha="0.25"
+            android:background="?android:attr/textColorHint" />
+
+        <LinearLayout
+            android:id="@+id/bottom_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/track_start_date"
                 style="@style/TextAppearance.Regular.Body1.Secondary"
+                android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/list_item_selector"
@@ -173,27 +162,22 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:padding="16dp"
-                app:layout_constraintEnd_toStartOf="@+id/vert_divider_3"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bottom_divider"
                 tools:text="4/16/2020" />
 
             <View
                 android:id="@+id/vert_divider_3"
                 android:layout_width="1dp"
-                android:layout_height="0dp"
+                android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:alpha="0.25"
                 android:background="?android:attr/textColorHint"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/track_finish_date"
-                app:layout_constraintStart_toEndOf="@+id/track_start_date"
-                app:layout_constraintTop_toTopOf="@+id/bottom_divider" />
+                app:layout_constraintBottom_toBottomOf="parent" />
 
             <TextView
                 android:id="@+id/track_finish_date"
                 style="@style/TextAppearance.Regular.Body1.Secondary"
+                android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/list_item_selector"
@@ -206,7 +190,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/bottom_divider"
                 tools:text="4/16/2020" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
     </LinearLayout>
 
