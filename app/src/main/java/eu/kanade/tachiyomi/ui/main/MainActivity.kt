@@ -224,6 +224,9 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
         syncActivityViewWithController(router.backstack.lastOrNull()?.controller())
 
         if (savedInstanceState == null) {
+            // Reset Incognito Mode on relaunch
+            preferences.incognitoMode().set(false)
+
             // Show changelog prompt on update
             if (Migrations.upgrade(preferences) && !BuildConfig.DEBUG) {
                 WhatsNewDialogController().showDialog(router)
