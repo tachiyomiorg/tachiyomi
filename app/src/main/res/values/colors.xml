@@ -53,9 +53,17 @@
     <color name="selectorColorDusk">#80F02475</color>
 
     <!-- AMOLED Theme -->
+    <color name="colorAccentAmoled">#3399FF</color>
+    <color name="textColorPrimaryAmoled">@color/md_white_1000</color>
+    <color name="textColorSecondaryAmoled">@color/md_white_1000_70</color>
+    <color name="textColorHintAmoled">@color/md_white_1000_50</color>
+    <color name="dividerAmoled">@android:color/transparent</color>
     <color name="rippleColorAmoled">@color/md_white_1000_8</color>
-    <color name="rippleSecondaryColorAmoled">@color/rippleSecondaryColorDark</color>
+    <color name="rippleSecondaryColorAmoled">#0A3399FF</color>
     <color name="rippleToolbarColorAmoled">@color/rippleColorAmoled</color>
+    <color name="backgroundAmoled">@color/colorAmoledPrimary</color>
+    <color name="dialogAmoled">@color/colorAmoledPrimary</color>
+    <color name="selectorColorAmoled">@color/md_blue_A200_50</color>
 
     <!-- Hot Pink Theme -->
     <color name="colorAccentPink">#FF3399</color>
@@ -72,6 +80,7 @@
 
     <color name="filterColorLight">#FFC107</color>
     <color name="filterColorDark">#FFEB3B</color>
+    <color name="filterColorAmoled">#FFEB3B</color>
 
     <!-- Text Colors -->
     <color name="md_black_1000_87">#DE000000</color>

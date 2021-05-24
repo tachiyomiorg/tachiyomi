@@ -72,6 +72,10 @@
         <item name="colorAccent">@color/colorAccentDark</item>
     </style>
 
+    <style name="Theme.AlertDialog.Amoled" parent="Theme.AlertDialog">
+        <item name="colorAccent">@color/colorAccentAmoled</item>
+    </style>
+
 
     <!--===========-->
     <!--BottomSheet-->

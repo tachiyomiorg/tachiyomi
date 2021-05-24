@@ -265,27 +265,85 @@
     <!--===============-->
 
     <!--== AMOLED base ==-->
-    <style name="Theme.Base.Amoled" parent="Theme.Tachiyomi.Dark">
+    <style name="Theme.Base.Amoled" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Theme colors -->
         <item name="colorPrimary">@color/colorAmoledPrimary</item>
+        <item name="colorOnPrimary">@color/textColorPrimaryAmoled</item>
+        <item name="colorAccentOnPrimary">@color/colorAccentAmoled</item>
         <item name="colorPrimaryVariant">@color/colorAmoledPrimary</item>
-        <item name="colorSurface">@color/colorAmoledPrimary</item>
+        <item name="colorSecondary">@color/colorAccentAmoled</item>
+        <item name="colorOnSecondary">@color/textColorPrimaryAmoled</item>
+        <item name="colorSurface">@color/dialogAmoled</item>
+        <item name="colorOnSurface">@color/textColorPrimaryAmoled</item>
+        <item name="colorOnBackground">@color/textColorPrimaryAmoled</item>
+        <item name="colorAccent">@color/colorAccentAmoled</item>
+
+        <!-- Handles RTL text -->
+        <item name="android:textAlignment">gravity</item>
+        <item name="android:textDirection">locale</item>
 
         <!-- Base background/text colors -->
         <item name="android:colorBackground">@color/colorAmoledPrimary</item>
+        <item name="android:textColorPrimary">@color/textColorPrimaryAmoled</item>
+        <item name="android:textColorSecondary">@color/textColorSecondaryAmoled</item>
+        <item name="android:textColorHint">@color/textColorHintAmoled</item>
+        <item name="android:textColorPrimaryInverse">@color/textColorPrimaryLight</item>
+        <item name="android:textColorSecondaryInverse">@color/textColorSecondaryLight</item>
+        <item name="android:textColorHintInverse">@color/textColorHintLight</item>
+        <item name="android:colorEdgeEffect">?attr/colorAccent</item>
         <item name="background">@color/colorAmoledPrimary</item>
+
+        <item name="android:divider">@color/dividerAmoled</item>
+        <item name="android:listDivider">@drawable/line_divider</item>
 
         <!-- Ripples -->
         <item name="rippleColor">@color/rippleColorAmoled</item>
         <item name="rippleSecondaryColor">@color/rippleSecondaryColorAmoled</item>
         <item name="rippleToolbarColor">@color/rippleToolbarColorAmoled</item>
 
-        <!-- Some ROMs make black navbars white (e.g. OxygenOS) -->
-        <item name="android:navigationBarColor">#000001</item>
+        <!-- Themes -->
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item name="android:navigationBarDividerColor" tools:targetApi="o_mr1">@null</item>
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="Q">false</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="elevationOverlayEnabled">false</item>
+        <item name="actionModeStyle">@style/Theme.ActionMode</item>
+        <item name="actionModeCloseButtonStyle">@style/Theme.ActionMode.CloseButton</item>
+        <item name="actionModeCloseDrawable">@drawable/ic_close_24dp</item>
+        <item name="actionBarTheme">@style/Theme.Toolbar.Custom.Amoled</item>
+        <item name="actionBarPopupTheme">@style/ThemeOverlay.MaterialComponents</item>
+        <item name="toolbarNavigationButtonStyle">@style/Theme.Toolbar.Navigation</item>
+        <item name="preferenceTheme">@style/PreferenceThemeCustom</item>
+        <item name="dialogTheme">@style/Theme.AlertDialog.Amoled</item>
+        <item name="materialAlertDialogTheme">@style/Theme.AlertDialog.Amoled</item>
+        <item name="bottomSheetDialogTheme">@style/Theme.BottomSheet</item>
+        <item name="chipStyle">@style/Theme.Widget.Chip</item>
+        <item name="buttonStyle">@style/Theme.Widget.Button</item>
+        <item name="snackbarStyle">@style/Theme.Widget.Snackbar</item>
+        <item name="snackbarButtonStyle">@style/Theme.Widget.Button</item>
+        <item name="snackbarTextViewStyle">@style/Theme.Widget.Snackbar.TextView</item>
+        <item name="textAppearanceButton">@style/TextAppearance.Widget.Button</item>
+        <item name="textInputStyle">@style/Theme.Widget.TextInputLayout.OutlinedBox</item>
+        <item name="android:itemTextAppearance">@style/TextAppearance.Widget.Menu</item>
+        <item name="swipeRefreshLayoutProgressSpinnerBackgroundColor">?attr/colorAccent</item>
+        <item name="circularProgressIndicatorStyle">@style/Theme.Widget.CircularProgressIndicator</item>
+        <item name="linearProgressIndicatorStyle">@style/Theme.Widget.LinearProgressIndicator</item>
+
+        <!-- Material Dialogs -->
+        <item name="md_background_color">?attr/colorSurface</item>
+        <item name="md_color_title">?attr/colorOnSurface</item>
+        <item name="md_color_content">?attr/colorOnSurface</item>
+        <item name="md_color_button_text">?attr/colorAccent</item>
+        <item name="md_button_casing">literal</item>
+        <item name="md_corner_radius">@dimen/dialog_radius</item>
 
         <!-- Custom Attributes-->
-        <item name="colorLibrarySelection">@color/selectorColorDark</item>
-        <item name="colorLibrarySelectionActive">@color/selectorColorDark</item>
+        <item name="colorLibrarySelection">@color/selectorColorAmoled</item>
+        <item name="colorLibrarySelectionActive">@color/selectorColorAmoled</item>
+        <item name="colorFilterActive">@color/filterColorAmoled</item>
+
+        <!-- Some ROMs make black navbars white (e.g. OxygenOS) -->
+        <item name="android:navigationBarColor">#000001</item>
     </style>
 
     <!--== AMOLED theme ==-->
