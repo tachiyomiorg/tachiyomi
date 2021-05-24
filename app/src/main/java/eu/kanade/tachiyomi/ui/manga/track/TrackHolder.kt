@@ -3,7 +3,6 @@ package eu.kanade.tachiyomi.ui.manga.track
 import android.annotation.SuppressLint
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import eu.kanade.tachiyomi.R.string
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.databinding.TrackItemBinding
 import uy.kohesive.injekt.injectLazy
@@ -49,12 +48,12 @@ class TrackHolder(private val binding: TrackItemBinding, adapter: TrackAdapter) 
             binding.trackChapters.text = "${track.last_chapter_read}/" +
                 if (track.total_chapters > 0) track.total_chapters else "-"
             binding.trackStatus.text = item.service.getStatus(track.status)
-            binding.trackScore.text = if (track.score == 0f) "-" else item.service.displayScore(track)
+
             if (item.service.getScoreList().isEmpty()) {
-                with(binding.trackScore) {
-                    text = context.getString(string.score_unsupported)
-                    isEnabled = false
-                }
+                binding.trackScore.isVisible = false
+                binding.vertDivider2.isVisible = false
+            } else {
+                binding.trackScore.text = if (track.score == 0f) "-" else item.service.displayScore(track)
             }
 
             if (item.service.supportsReadingDates) {
