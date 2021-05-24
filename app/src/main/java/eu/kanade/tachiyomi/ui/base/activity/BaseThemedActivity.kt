@@ -27,6 +27,7 @@ abstract class BaseThemedActivity : AppCompatActivity() {
                 DarkThemeVariant.blue -> R.style.Theme_Tachiyomi_Dark_Blue
                 DarkThemeVariant.midnightdusk -> R.style.Theme_Tachiyomi_Dark_MidnightDusk
                 DarkThemeVariant.amoled -> R.style.Theme_Tachiyomi_Amoled
+                DarkThemeVariant.hotpink -> R.style.Theme_Tachiyomi_Amoled_HotPink
             }
         } else {
             when (preferences.themeLight().get()) {

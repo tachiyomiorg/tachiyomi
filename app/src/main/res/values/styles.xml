@@ -23,6 +23,11 @@
         <item name="android:colorControlHighlight">?attr/rippleToolbarColor</item>
     </style>
 
+    <style name="Theme.Toolbar.Custom.HotPink" parent="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
+        <item name="android:textColorPrimary">@color/md_white_1000</item>
+        <item name="android:colorControlHighlight">?attr/rippleToolbarColor</item>
+    </style>
+
     <style name="Theme.Toolbar.Navigation" parent="Widget.AppCompat.Toolbar.Button.Navigation">
         <item name="tint">?attr/colorOnPrimary</item>
     </style>

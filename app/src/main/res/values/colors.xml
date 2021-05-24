@@ -56,6 +56,14 @@
     <color name="rippleSecondaryColorAmoled">@color/rippleSecondaryColorDark</color>
     <color name="rippleToolbarColorAmoled">@color/rippleColorAmoled</color>
 
+    <!-- Hot Pink Theme -->
+    <color name="colorAccentPink">#FF3399</color>
+    <color name="textColorPrimaryPink">@color/md_white_1000</color>
+    <color name="textColorSecondaryPink">@color/md_white_1000_70</color>
+    <color name="textColorHintPink">@color/md_white_1000_50</color>
+    <color name="rippleSecondaryColorPink">#0AFF3399</color>
+    <color name="selectorColorPink">#80FF69B4</color>
+
     <!-- Reader Theme -->
     <color name="readerColorDarkPrimary">@color/colorDarkPrimary</color>
     <color name="pageNumberBackgroundLight">@color/md_grey_50_75</color>

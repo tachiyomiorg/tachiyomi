@@ -293,6 +293,21 @@
     <!--==============-->
     <!-- Reader Theme -->
     <!--==============-->
+    <!--== Hot Pink theme ==-->
+    <style name="Theme.Tachiyomi.Amoled.HotPink" parent="Theme.Tachiyomi.Dark.Amoled">
+        <!-- Theme colors -->
+        <item name="colorOnPrimary">@color/textColorPrimaryPink</item>
+        <item name="colorAccentOnPrimary">@color/colorAccentPink</item>
+        <item name="colorSecondary">@color/colorAccentPink</item>
+        <item name="colorOnSecondary">@color/textColorPrimaryPink</item>
+        <item name="colorOnSurface">@color/textColorPrimaryPink</item>
+        <item name="colorOnBackground">@color/textColorPrimaryPink</item>
+        <item name="colorAccent">@color/colorAccentPink</item>
+
+        <!-- Ripples -->
+        <item name="rippleSecondaryColor">@color/rippleSecondaryColorPink</item>
+    </style>
+
 
     <!--== Light Reader base ==-->
     <style name="Theme.Base.Reader.Light" parent="Theme.Base">

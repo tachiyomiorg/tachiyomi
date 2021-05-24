@@ -26,6 +26,7 @@ object PreferenceValues {
         blue,
         midnightdusk,
         amoled,
+        hotpink,
     }
 
     /* ktlint-enable experimental:enum-entry-name-case */
