@@ -210,10 +210,14 @@ class LibraryUpdateService(
             stopSelf(startId)
         }
         updateJob = ioScope.launch(handler) {
-            when (target) {
-                Target.CHAPTERS -> updateChapterList()
-                Target.COVERS -> updateCovers()
-                Target.TRACKING -> updateTrackings()
+            when {
+                target == Target.CHAPTERS && preferences.autoUpdateTrackers() -> launch {
+                    updateChapterList()
+                    updateTrackings()
+                }.join()
+                target == Target.CHAPTERS -> updateChapterList()
+                target == Target.COVERS -> updateCovers()
+                target == Target.TRACKING -> updateTrackings()
             }
         }
         updateJob?.invokeOnCompletion { stopSelf(startId) }
