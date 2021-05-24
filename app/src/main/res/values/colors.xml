@@ -12,6 +12,7 @@
     <!-- AMOLED Application Colors -->
     <color name="colorAmoledPrimary">@color/md_black_1000</color>
 
+    <!-- Splash Color -->
     <color name="splashBackgroundColor">@color/colorPrimary</color>
 
     <!-- Light Theme -->

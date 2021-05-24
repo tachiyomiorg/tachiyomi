@@ -60,7 +60,7 @@
         <item name="actionModeStyle">@style/Theme.ActionMode</item>
         <item name="actionModeCloseButtonStyle">@style/Theme.ActionMode.CloseButton</item>
         <item name="actionModeCloseDrawable">@drawable/ic_close_24dp</item>
-        <item name="actionBarTheme">@style/Theme.Toolbar.Custom</item>
+        <item name="actionBarTheme">@style/Theme.Toolbar.Custom.Light</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.MaterialComponents</item>
         <item name="toolbarNavigationButtonStyle">@style/Theme.Toolbar.Navigation</item>
         <item name="preferenceTheme">@style/PreferenceThemeCustom</item>
@@ -99,6 +99,7 @@
 
     <!--== Light base ==-->
     <style name="Base.Theme.Tachiyomi.Light" parent="Theme.Base">
+        <!-- Base background/text colors -->
         <item name="android:statusBarColor">?attr/colorPrimary</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="background">@color/dialogLight</item>
@@ -124,7 +125,7 @@
         <item name="rippleToolbarColor">@color/md_white_1000_12</item>
 
         <!-- Themes -->
-        <item name="actionBarTheme">@style/Theme.Toolbar.Light</item>
+        <item name="actionBarTheme">@style/Theme.Toolbar.Custom.PopupTheme</item>
 
         <!-- Status/Navigation bar -->
         <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
@@ -248,8 +249,8 @@
         <item name="colorAccent">@color/colorAccentDusk</item>
 
         <!-- Base background/text colors -->
-        <item name="background">@color/backgroundDusk</item>
         <item name="android:colorBackground">@color/backgroundDusk</item>
+        <item name="background">@color/backgroundDusk</item>
 
         <!-- Ripples -->
         <item name="rippleSecondaryColor">@color/rippleColorDusk</item>
@@ -290,9 +291,6 @@
     <!--== AMOLED theme ==-->
     <style name="Theme.Tachiyomi.Amoled" parent="Theme.Base.Amoled" />
 
-    <!--==============-->
-    <!-- Reader Theme -->
-    <!--==============-->
     <!--== Hot Pink theme ==-->
     <style name="Theme.Tachiyomi.Amoled.HotPink">
         <!-- Theme colors -->
@@ -308,6 +306,9 @@
         <item name="rippleSecondaryColor">@color/rippleSecondaryColorPink</item>
     </style>
 
+    <!--===============-->
+    <!-- Reader Themes -->
+    <!--===============-->
 
     <!--== Light Reader base ==-->
     <style name="Theme.Base.Reader.Light" parent="Theme.Base">
