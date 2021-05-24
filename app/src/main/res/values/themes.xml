@@ -253,7 +253,7 @@
         <item name="background">@color/backgroundDusk</item>
 
         <!-- Ripples -->
-        <item name="rippleSecondaryColor">@color/rippleColorDusk</item>
+        <item name="rippleSecondaryColor">@color/rippleSecondaryColorDusk</item>
 
         <!-- Custom Attributes -->
         <item name="colorLibrarySelection">@color/selectorColorDark</item>

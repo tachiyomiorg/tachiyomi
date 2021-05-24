@@ -47,7 +47,7 @@
     <color name="textColorSecondaryDusk">@color/md_white_1000_70</color>
     <color name="textColorHintDusk">@color/md_white_1000_50</color>
     <color name="dividerDusk">#12ffffff</color>
-    <color name="rippleColorDusk">#0FF02475</color>
+    <color name="rippleSecondaryColorDusk">#0FF02475</color>
     <color name="backgroundDusk">#16151D</color>
     <color name="dialogDusk">#201F27</color>
     <color name="selectorColorDusk">#80F02475</color>
