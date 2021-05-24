@@ -12,4 +12,6 @@
     <dimen name="fab_list_padding">88dp</dimen>
 
     <dimen name="action_toolbar_list_padding">72dp</dimen>
+
+    <dimen name="screen_edge_margin">16dp</dimen>
 </resources>

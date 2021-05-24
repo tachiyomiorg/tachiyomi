@@ -86,8 +86,6 @@
     <string name="default_columns">डिफ़ॉल्ट</string>
     <string name="pref_library_update_interval">पुस्तकालय अद्यतन आवृत्ति</string>
     <string name="update_never">खुद से</string>
-    <string name="update_1hour">प्रति घंटा</string>
-    <string name="update_2hour">हर २ घंटे</string>
     <string name="update_3hour">हर ३ घंटे</string>
     <string name="update_6hour">हर ६ घंटे</string>
     <string name="update_12hour">हर १२ घंटे</string>
@@ -191,7 +189,6 @@
     <string name="pref_refresh_library_tracking">रिफ्रेश ट्रैकिंग</string>
     <string name="pref_refresh_library_tracking_summary">अपडेट की स्थिति, स्कोर और अंतिम अध्याय ट्रैकिंग सेवाओं से पढ़ें</string>
     <string name="version">संस्करण</string>
-    <string name="build_time">निर्माण समय</string>
     <string name="pref_enable_acra">क्रैश रिपोर्ट भेजें</string>
     <string name="pref_acra_summary">किसी भी बग को ठीक करने में मदद करता है कोई संवेदनशील डेटा नहीं भेजा जाएगा</string>
     <string name="login_title">%1$s के लिए लॉगिन</string>
@@ -619,9 +616,6 @@
     <string name="spen_next_page">अगला पृष्ठ</string>
     <string name="spen_previous_page">पिछला पृष्ठ</string>
     <string name="migration_help_guide">स्रोत माइग्रेशन गाइड</string>
-    <string name="pref_backup_auto_create_legacy">विरासत बैकअप भी बनाएं</string>
-    <string name="pref_create_legacy_backup_summary">Tachiyomi के पुराने संस्करणों में उपयोग किया जा सकता है</string>
-    <string name="pref_create_legacy_backup">विरासत बैकअप बनाएँ</string>
     <string name="pref_label_nsfw_extension">एक्सटेंशन सूची में लेबल</string>
     <string name="pref_show_nsfw_extension">एक्सटेंशन सूची में दिखाएं</string>
     <string name="pref_show_nsfw_source">स्रोत सूची में दिखाएं</string>

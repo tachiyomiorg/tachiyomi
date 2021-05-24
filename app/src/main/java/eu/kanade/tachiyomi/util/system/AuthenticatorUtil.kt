@@ -5,7 +5,7 @@ import android.os.Build
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricManager.Authenticators
 
-object BiometricUtil {
+object AuthenticatorUtil {
 
     fun getSupportedAuthenticators(context: Context): Int {
         if (isLegacySecured(context)) {

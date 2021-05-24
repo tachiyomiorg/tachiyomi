@@ -56,13 +56,11 @@
     <string name="pref_category_about">Sobre</string>
     <!-- General section -->
     <string name="pref_library_columns">Itens por fila</string>
-    <string name="portrait">Retrato</string>
-    <string name="landscape">Paisagem</string>
+    <string name="portrait">Vertical</string>
+    <string name="landscape">Horizontal</string>
     <string name="default_columns">Padrão</string>
     <string name="pref_library_update_interval">Frequência de atualização</string>
     <string name="update_never">Manual</string>
-    <string name="update_1hour">Hora à hora</string>
-    <string name="update_2hour">A cada 2 horas</string>
     <string name="update_3hour">A cada 3 horas</string>
     <string name="update_6hour">A cada 6 horas</string>
     <string name="update_12hour">A cada 12 horas</string>
@@ -106,10 +104,10 @@
     <string name="zoom_start_left">Esquerda</string>
     <string name="zoom_start_right">Direita</string>
     <string name="zoom_start_center">Centro</string>
-    <string name="pref_rotation_type">Rotação</string>
+    <string name="pref_rotation_type">Tipo de rotação padrão</string>
     <string name="rotation_free">Livre</string>
-    <string name="rotation_force_portrait">Forçar retrato</string>
-    <string name="rotation_force_landscape">Forçar paisagem</string>
+    <string name="rotation_force_portrait">Vertical bloqueado</string>
+    <string name="rotation_force_landscape">Horizontal bloqueado</string>
     <!-- Downloads section -->
     <string name="pref_download_directory">Localização das Transferências</string>
     <string name="pref_download_only_over_wifi">Apenas transferir por Wi-Fi</string>
@@ -137,7 +135,6 @@
     <string name="clear_database_completed">Eliminar entradas</string>
     <!-- About section -->
     <string name="version">Versão</string>
-    <string name="build_time">Hora da compilação</string>
     <!-- ACRA -->
     <string name="pref_enable_acra">Enviar relatórios de erro</string>
     <string name="pref_acra_summary">Ajuda a corrigir qualquer erro. Não serão enviados dados sensíveis</string>
@@ -333,7 +330,7 @@
     <string name="ext_trust">Confiar</string>
     <string name="ext_untrusted">Não confiável</string>
     <string name="download_custom">Personalizado</string>
-    <string name="pref_read_with_long_tap">Diálogo de toque longo</string>
+    <string name="pref_read_with_long_tap">Mostrar com toque longo</string>
     <string name="action_open_in_web_view">Abrir em WebView</string>
     <string name="pref_true_color">Cores 32-bit</string>
     <string name="pref_skip_read_chapters">Saltar capítulos marcados como lido</string>
@@ -545,7 +542,7 @@
         <item quantity="other">%d categorias</item>
     </plurals>
     <string name="action_display_unread_badge">Distintivos de não lido</string>
-    <string name="battery_optimization_setting_activity_not_found">Não foi possível abrir as definições do dispositivo</string>
+    <string name="battery_optimization_setting_activity_not_found">Não foi possível abrir as definições do aparelho</string>
     <plurals name="restore_completed_message">
         <item quantity="one">Concluído em %1$s com %2$s erro</item>
         <item quantity="other">Concluído em %1$s com %2$s erros</item>
@@ -650,9 +647,6 @@
     <string name="migration_help_guide">Guia de migração de fonte</string>
     <string name="invalid_backup_file_type">Tipo de ficheiro da cópia de segurança inválido: %1$s
 \nDeve terminar com .proto.gz ou .json.</string>
-    <string name="pref_backup_auto_create_legacy">Criar também cópia de segurança antiga</string>
-    <string name="pref_create_legacy_backup_summary">Pode ser usado em versões mais antigas do Tachiyomi</string>
-    <string name="pref_create_legacy_backup">Criar cópia de segurança antiga</string>
     <string name="file_picker_error">Não foi encontrada app de selecção de ficheiros</string>
     <string name="myanimelist_relogin">Por favor inicie sessão no MAL novamente</string>
     <string name="myanimelist_creds_missing">Credenciais de sessão MAL não encontradas</string>
@@ -703,4 +697,12 @@
     <string name="pref_library_update_categories_details">Mangá em categorias excluídas não será atualizada mesmo que também estejam nas categorias incluídas.</string>
     <string name="action_show_errors">Mostrar erros</string>
     <string name="action_sort_chapter_fetch_date">Data de procura</string>
+    <string name="rotation_landscape">Horizontal</string>
+    <string name="rotation_portrait">Vertical</string>
+    <string name="rotation_type">Tipo de rotação</string>
+    <string name="default_rotation_type">Padrão</string>
+    <string name="pref_create_folder_per_manga_summary">Cria pastas de acordo com o título do mangá</string>
+    <string name="pref_create_folder_per_manga">Guarda páginas em pastas separadas</string>
+    <string name="pref_reader_actions">Ações</string>
+    <string name="pref_grayscale">Tons de cinzento</string>
 </resources>

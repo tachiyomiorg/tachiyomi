@@ -80,10 +80,8 @@
     <string name="portrait">الرأسي</string>
     <string name="landscape">الأفقي</string>
     <string name="default_columns">الافتراضي</string>
-    <string name="pref_library_update_interval">معدل التحديث المكتبة</string>
+    <string name="pref_library_update_interval">معدل تحديث المكتبة</string>
     <string name="update_never">يدوياً</string>
-    <string name="update_1hour">كل ساعة</string>
-    <string name="update_2hour">كل ساعتين</string>
     <string name="update_3hour">كل ٣ ساعات</string>
     <string name="update_6hour">كل ٦ ساعات</string>
     <string name="update_12hour">كل ١٢ ساعة</string>
@@ -91,7 +89,7 @@
     <string name="update_48hour">كل يومان</string>
     <string name="update_weekly">أسبوعياً</string>
     <string name="all">الكل</string>
-    <string name="pref_library_update_restriction">قيود تحديثات المكتبة</string>
+    <string name="pref_library_update_restriction">قيود تحديث المكتبة</string>
     <string name="pref_library_update_restriction_summary">تحديث فقط عندما يتم استيفاء الشروط</string>
     <string name="charging">جاري الشحن</string>
     <string name="pref_update_only_non_completed">تحديث المانجا المستمرة فقط</string>
@@ -135,10 +133,10 @@
     <string name="zoom_start_left">اليسار</string>
     <string name="zoom_start_right">اليمين</string>
     <string name="zoom_start_center">المركز</string>
-    <string name="pref_rotation_type">الدوران</string>
+    <string name="pref_rotation_type">نوع التدوير الافتراضي</string>
     <string name="rotation_free">حر</string>
     <string name="rotation_force_portrait">الوضع الرأسي اﻹجباري</string>
-    <string name="rotation_force_landscape">الوضع الأفقي اﻹجباري</string>
+    <string name="rotation_force_landscape">الوضع الأفقي الإجباري</string>
     <string name="pref_download_directory">موقع التنزيل</string>
     <string name="pref_download_only_over_wifi">التنزيل عبر الواي فاي فقط</string>
     <string name="pref_remove_after_marked_as_read">وضع علامة \"مقروءة\" يدويًا</string>
@@ -190,7 +188,6 @@
     <string name="pref_refresh_library_tracking">تحديث بيانات التتبع</string>
     <string name="pref_refresh_library_tracking_summary">تحديث الحالة، والتقييم، وآخر فصل: عن طريق خدمات التتبع</string>
     <string name="version">اﻹصدار</string>
-    <string name="build_time">تاريخ ووقت البناء</string>
     <string name="pref_enable_acra">إرسال تقارير الأعطال</string>
     <string name="pref_acra_summary">هذا يساعد فى حل أي مشاكل. لن يتم إرسال أيّة بيانات حساسة</string>
     <string name="login_title">تسجيل الدخول إلى %1$s</string>
@@ -363,7 +360,7 @@
     <string name="transition_no_previous">لا يوجدُ فصل سابق</string>
     <string name="transition_pages_loading">جار تحميل الصّفحات…</string>
     <string name="transition_pages_error">فشل تحميل الصّفحات: %1$s</string>
-    <string name="pref_read_with_long_tap">معلومات بضغطة مستمرة</string>
+    <string name="pref_read_with_long_tap">إظهار عند النقر لفترة طويلة</string>
     <string name="action_open_in_web_view">فتح في عرض الويب</string>
     <string name="pref_true_color">ألوان 32bit</string>
     <string name="pref_skip_read_chapters">تخطي الفصول المقروءة</string>
@@ -399,7 +396,7 @@
     <string name="lock_never">أبدًا</string>
     <string name="lock_always">دائماً</string>
     <string name="lock_when_idle">قفل عند الخمول</string>
-    <string name="lock_with_biometrics">قفل باستخدام البصمة/قارئ الوجه/رمز الهاتف</string>
+    <string name="lock_with_biometrics">غلق بإستخدام المقاييس الحيوية يتطلب الفتح</string>
     <string name="pref_category_security">إعدادات الأمان</string>
     <string name="pref_manage_notifications">إدارة الإشعارات</string>
     <string name="pref_date_format">صيغة التاريخ</string>
@@ -425,7 +422,7 @@
     <string name="obsolete_extension_message">هذه الإضافة لم تعد متوفرة.</string>
     <string name="ext_obsolete">قديم جدًا</string>
     <string name="ext_updates_pending">التحديثات معلقة</string>
-    <string name="pref_category_library_update">التحديثات</string>
+    <string name="pref_category_library_update">التحديث العام</string>
     <string name="pref_category_display">العرض</string>
     <string name="hide_notification_content">اخفاء محتوى الإشعارات</string>
     <string name="secure_screen_summary">إخفاء محتوى الشاشة عند تغير التطبيقات و منع لقط الشاشة</string>
@@ -665,9 +662,6 @@
     <string name="spen_next_page">صفحة التالية</string>
     <string name="spen_previous_page">الصفحة سابقة</string>
     <string name="migration_help_guide">دليل ترحيل المصدر</string>
-    <string name="pref_backup_auto_create_legacy">قم أيضًا بإنشاء نسخة إحتياطية قديمة</string>
-    <string name="pref_create_legacy_backup_summary">يمكن إستخدامه في الإصدارات القديمة من Tachiyomi</string>
-    <string name="pref_create_legacy_backup">إنشاء نسخة احتياطية قديمة</string>
     <string name="invalid_backup_file_type">ملف النسخ الاحتياطي غير صالح: %1$s
 \nيجب أن ينتهي ب.proto.gz أو .json.</string>
     <string name="pref_category_nsfw_content">محتوى +18</string>
@@ -699,7 +693,7 @@
     <string name="action_asc">تصاعدياً</string>
     <string name="action_order_by_upload_date">حسب تاريخ الرفع</string>
     <string name="action_order_by_chapter_number">حسب رقم الفصل</string>
-    <string name="pref_dns_over_https">DNS باستعمال التشفير</string>
+    <string name="pref_dns_over_https">إستخدام DNS بدلا من HTTPS</string>
     <string name="backup_restore_content_full">تم استيراد البيانات من ملف نسخ الاحتياطي.
 \n
 \nيتوجب تثبيت الإضافات المفقودة و تسجيل الدخول إلى منصات التعقب تالياً لاستعمالهم.</string>
@@ -707,8 +701,28 @@
     <string name="nav_zone_left">يسار</string>
     <string name="nav_zone_next">التالي</string>
     <string name="nav_zone_prev">السابق</string>
-    <string name="pref_show_navigation_mode_summary">عرض أماكن الضغط للتنقل عند فتح القارئ</string>
+    <string name="pref_show_navigation_mode_summary">عرض مناطق اللمس للتنقل عند فتح القارئ</string>
     <string name="pref_show_navigation_mode">إظهار حدود التنقل</string>
     <string name="update_8hour">كل ثمان ساعات</string>
     <string name="update_4hour">كل أربع ساعات</string>
+    <string name="action_sort_chapter_fetch_date">تاريخ الجلب</string>
+    <string name="rotation_landscape">افقي</string>
+    <string name="rotation_portrait">رأسي</string>
+    <string name="rotation_type">نوع التدوير</string>
+    <string name="default_rotation_type">الإفتراضي</string>
+    <string name="automatic_background">تلقائيا</string>
+    <string name="pref_create_folder_per_manga_summary">إنشاء مجلدات وفقا لعنوان المانجا</string>
+    <string name="pref_create_folder_per_manga">حفظ الصفحات في مجلدات منفصلة</string>
+    <string name="pref_reader_actions">الإجراءات</string>
+    <string name="pref_grayscale">تدرج رمادي</string>
+    <string name="exclude">إستثناء: %s</string>
+    <string name="include">تضمين: %s</string>
+    <string name="none">لا شيء</string>
+    <string name="pref_library_update_categories_details">المانجا في الفئات المستبعدة لن يتم تحديثها حتى و ان كانت أيضا في الفئات المضمنة.</string>
+    <string name="action_show_errors">إظهار الأخطاء</string>
+    <string name="pref_category_auto_download">التنزيل التلقائي</string>
+    <string name="pref_download_new_categories_details">المانجا في الفئات المستبعدة لن يتم تنزيلها حتى و ان كانت أيضا في الفئات المضمنة.</string>
+    <string name="notification_incognito_text">إلغاء تفعيل الوضع الخفي</string>
+    <string name="clipboard_copy_error">فشل النسخ إلى الحافظة</string>
+    <string name="update_check_eol">نسخة الاندرويد هذه اصبحت غير مدعومة</string>
 </resources>

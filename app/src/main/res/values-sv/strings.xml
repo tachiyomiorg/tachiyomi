@@ -84,13 +84,11 @@
     <string name="pref_category_advanced">Avancerat</string>
     <string name="pref_category_about">Om appen</string>
     <string name="pref_library_columns">Artiklar per rad</string>
-    <string name="portrait">Stående</string>
-    <string name="landscape">Liggande</string>
+    <string name="portrait">Porträtt</string>
+    <string name="landscape">Landskap</string>
     <string name="default_columns">Standard</string>
     <string name="pref_library_update_interval">Uppdateringsfrekvens</string>
     <string name="update_never">Manuell</string>
-    <string name="update_1hour">Varje timme</string>
-    <string name="update_2hour">Varannan timme</string>
     <string name="update_3hour">Var tredje timme</string>
     <string name="update_6hour">Var 6:e timme</string>
     <string name="update_12hour">Var 12:e timme</string>
@@ -166,7 +164,7 @@
     <string name="double_tap_anim_speed_0">Ingen animering</string>
     <string name="double_tap_anim_speed_normal">Normal</string>
     <string name="double_tap_anim_speed_fast">Snabb</string>
-    <string name="pref_rotation_type">Rotering</string>
+    <string name="pref_rotation_type">Standardrotationstyp</string>
     <string name="rotation_free">Upplåst</string>
     <string name="rotation_force_portrait">Låst porträtt</string>
     <string name="rotation_force_landscape">Låst liggande</string>
@@ -218,7 +216,6 @@
     <string name="pref_refresh_library_tracking">Uppdatera spårning</string>
     <string name="pref_refresh_library_tracking_summary">Uppdaterar status, betyg och senaste kapitel läst från spårningstjänsterna</string>
     <string name="version">Version</string>
-    <string name="build_time">Byggtid</string>
     <string name="pref_enable_acra">Skicka kraschrapporter</string>
     <string name="pref_acra_summary">Hjälper till att fixa eventuella buggar. Inga känsliga uppgifter skickas</string>
     <string name="login_title">Logga in för %1$s</string>
@@ -366,7 +363,7 @@
     <string name="action_open_in_web_view">Öppna i WebView</string>
     <string name="pref_true_color">32-bitars färg</string>
     <string name="pref_skip_read_chapters">Skippa lästa kapitel</string>
-    <string name="pref_read_with_long_tap">Långtrycksdialog</string>
+    <string name="pref_read_with_long_tap">Visa vid lång tryckning</string>
     <string name="pref_color_filter_mode">Färgfilterblandningsläge</string>
     <string name="filter_mode_default">Standard</string>
     <string name="filter_mode_overlay">Överlägg</string>
@@ -616,12 +613,9 @@
     <string name="action_search_settings">Sök inställningar</string>
     <string name="spen_next_page">Nästa sida</string>
     <string name="spen_previous_page">Föregående sida</string>
-    <string name="pref_create_legacy_backup_summary">Kan används i äldre versioner av Tachiyomi</string>
     <string name="migration_help_guide">Migreringsguide för källor</string>
     <string name="invalid_backup_file_type">Ogiltig säkerhetskopia: %1$s
 \nDet bör sluta med .proto.gz eller .json.</string>
-    <string name="pref_backup_auto_create_legacy">Skapa också legacy säkerhetskopia</string>
-    <string name="pref_create_legacy_backup">Skapa legacy säkerhetskopia</string>
     <string name="pref_category_nsfw_content">NSFW (18+) källor</string>
     <string name="pref_label_nsfw_extension">Etikett i tilläggslistan</string>
     <string name="pref_show_nsfw_extension">Visa i tilläggslistan</string>
@@ -675,4 +669,13 @@
     <string name="clipboard_copy_error">Kunde inte kopiera till urklipp</string>
     <string name="rotation_landscape">Liggande</string>
     <string name="rotation_portrait">Porträtt</string>
+    <string name="rotation_type">Rotationstyp</string>
+    <string name="default_rotation_type">Standard</string>
+    <string name="pref_create_folder_per_manga_summary">Skapar mappar enligt mangatitel</string>
+    <string name="pref_create_folder_per_manga">Spara sidor i separata mappar</string>
+    <string name="pref_reader_actions">Åtgärder</string>
+    <string name="pref_grayscale">Gråskala</string>
+    <string name="automatic_background">Automatisk</string>
+    <string name="notification_incognito_text">Inaktivera inkognitoläge</string>
+    <string name="cancel_all_for_series">Avbryt alla för denna serie</string>
 </resources>

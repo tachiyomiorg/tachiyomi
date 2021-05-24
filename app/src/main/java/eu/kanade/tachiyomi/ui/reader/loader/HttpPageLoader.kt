@@ -87,6 +87,7 @@ class HttpPageLoader(
     override fun getPages(): Observable<List<ReaderPage>> {
         return Observable.fromCallable { chapterCache.getPageListFromCache(chapter.chapter) }
             .onErrorResumeNext { source.fetchPageList(chapter.chapter) }
+            .onErrorReturn { emptyList() }
             .map { pages ->
                 pages.mapIndexed { index, page ->
                     // Don't trust sources and use our own indexing

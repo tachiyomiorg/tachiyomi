@@ -200,12 +200,10 @@
     <string name="pref_library_update_prioritization">סדר עדכון הספריה</string>
     <string name="update_weekly">פעם בשבוע</string>
     <string name="update_48hour">פעם ביומיים</string>
-    <string name="update_1hour">פעם בשעה</string>
     <string name="update_24hour">פעם ביום</string>
     <string name="update_12hour">כל 12 שעות</string>
     <string name="update_6hour">כל 6 שעות</string>
     <string name="update_3hour">כל 3 שעות</string>
-    <string name="update_2hour">כל שעתיים</string>
     <string name="update_never">ידני</string>
     <string name="pref_library_update_interval">תדירות עדכון ספרייה</string>
     <string name="pref_category_library_update">עדכונים</string>
@@ -294,7 +292,6 @@
     <string name="action_rename_category">שנה שם קטגוריה</string>
     <string name="action_edit_categories">ערוך קטגוריות</string>
     <string name="action_add_category">הוסף קטגוריה</string>
-    <string name="build_time">זמן בנייה</string>
     <string name="version">גרסה</string>
     <string name="battery_optimization_disabled">אופטימיזציית סוללה כבר מושבתת</string>
     <string name="pref_disable_battery_optimization_summary">עוזר בעדכוני ספריות רקע וגיבויים</string>

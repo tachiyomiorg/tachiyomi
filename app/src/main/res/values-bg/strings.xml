@@ -75,8 +75,6 @@
     <string name="default_columns">По подразбиране</string>
     <string name="pref_library_update_interval">Честота на обновяване на библиотеката</string>
     <string name="update_never">Самостоятелно</string>
-    <string name="update_1hour">На всеки час</string>
-    <string name="update_2hour">На всеки 2 часа</string>
     <string name="update_3hour">На всеки 3 часа</string>
     <string name="update_6hour">На всеки 6 часа</string>
     <string name="update_12hour">На всеки 12 часа</string>
@@ -161,7 +159,6 @@
     <string name="clear_database_completed">Базата данни изчистена</string>
     <!-- About section -->
     <string name="version">Версия</string>
-    <string name="build_time">Време на създаване</string>
     <!-- ACRA -->
     <string name="pref_enable_acra">Изпращай данни за грешки</string>
     <string name="pref_acra_summary">Помага за оправянето на бъгове. Няма да се изпращат лични данни</string>

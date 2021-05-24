@@ -76,7 +76,7 @@
     <string name="action_view_chapters">अध्यायहरू हेर्नुहोस्</string>
     <string name="action_next_unread">अर्को अपठित</string>
     <string name="action_show_downloaded">डाउनलोड गरियो</string>
-    <string name="action_sort_up"></string>
+    <string name="action_sort_up"/>
     <string name="action_edit_cover">आवरण सम्पादन गर्नुहोस्</string>
     <string name="action_move_category">कोटिहरू सेट गर्नुहोस्</string>
     <string name="action_rename_category">श्रेणी पुन: नामाकरण गर्नुहोस्</string>
@@ -108,7 +108,7 @@
     <string name="action_filter_unread">अपठित</string>
     <string name="action_filter_tracked">ट्र्याक गरियो</string>
     <string name="action_filter_bookmarked">बुकमार्क गरिएको</string>
-    <string name="action_filter_downloaded">डाउनलोड गरियो</string>
+    <string name="action_filter_downloaded">डाउनलोड गरिएको</string>
     <string name="action_filter">फिल्टर</string>
     <string name="action_menu">मेनू</string>
     <string name="action_settings">सेटिंग्स</string>
@@ -120,7 +120,7 @@
     <string name="information_empty_category">तपाईंसँग कुनै कोटीहरू छैन। तपाईंको पुस्तकालय व्यवस्थित गर्न प्लस बटन थिच्नुहोस्।</string>
     <string name="information_empty_library">तपाईंको पुस्तकालय खाली छ। ब्राउजबाट तपाईंको लाइब्रेरीमा श्रृंखला थप गर्नुहोस्।</string>
     <string name="information_no_recent_manga">भर्खर पढिएको केहि छैन</string>
-    <string name="information_no_recent">कुनै भर्खरका अपडेटहरू छैनन्</string>
+    <string name="information_no_recent">कुनै नयाँ अपडेटहरू छैनन्</string>
     <string name="label_download_queue">डाउनलोड लाम</string>
     <string name="confirm_exit">बाहिर निस्किन फेरि फिर्ता थिच्नुहोस्</string>
     <string name="unlock_app">ताचियोमी अनलक गर्नुहोस्</string>
@@ -137,4 +137,5 @@
     <string name="label_settings">सेटिंग्स</string>
     <string name="label_more">अरु</string>
     <string name="name">नाम</string>
+    <string name="information_cloudflare_bypass_failure">क्लाउडफ्लेयरलाई बाइपास गर्न असफल भयो</string>
 </resources>

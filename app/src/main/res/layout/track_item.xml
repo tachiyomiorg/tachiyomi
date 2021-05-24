@@ -148,8 +148,8 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:padding="16dp"
-                app:layout_constraintStart_toEndOf="@+id/vert_divider_2"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/vert_divider_2"
                 app:layout_constraintTop_toBottomOf="@+id/top_divider"
                 tools:text="10" />
 
@@ -159,8 +159,8 @@
                 android:layout_height="1dp"
                 android:alpha="0.25"
                 android:background="?android:attr/textColorHint"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/track_score" />
 
             <TextView
@@ -173,8 +173,8 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:padding="16dp"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/vert_divider_3"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bottom_divider"
                 tools:text="4/16/2020" />
 
@@ -187,8 +187,8 @@
                 android:alpha="0.25"
                 android:background="?android:attr/textColorHint"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/track_start_date"
                 app:layout_constraintEnd_toStartOf="@+id/track_finish_date"
+                app:layout_constraintStart_toEndOf="@+id/track_start_date"
                 app:layout_constraintTop_toTopOf="@+id/bottom_divider" />
 
             <TextView
@@ -201,8 +201,8 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:padding="16dp"
-                app:layout_constraintStart_toEndOf="@+id/vert_divider_3"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/vert_divider_3"
                 app:layout_constraintTop_toBottomOf="@+id/bottom_divider"
                 tools:text="4/16/2020" />
 

@@ -18,7 +18,9 @@
     <color name="textColorSecondaryLight">@color/md_black_1000_54</color>
     <color name="textColorHintLight">@color/md_black_1000_38</color>
     <color name="dividerLight">@color/md_black_1000_12</color>
-    <color name="rippleColorLight">@color/md_black_1000_12</color>
+    <color name="rippleColorLight">@color/md_black_1000_6</color>
+    <color name="rippleSecondaryColorLight">@color/md_blue_A400_4</color>
+    <color name="rippleToolbarColorLight">@color/rippleColorLight</color>
     <color name="backgroundLight">@color/md_grey_50</color>
     <color name="dialogLight">@color/md_white_1000</color>
     <color name="selectorColorLight">@color/md_blue_A400_38</color>
@@ -29,7 +31,9 @@
     <color name="textColorSecondaryDark">@color/md_white_1000_70</color>
     <color name="textColorHintDark">@color/md_white_1000_50</color>
     <color name="dividerDark">@android:color/transparent</color>
-    <color name="rippleColorDark">@color/md_white_1000_20</color>
+    <color name="rippleColorDark">@color/md_white_1000_6</color>
+    <color name="rippleSecondaryColorDark">#0A3399FF</color>
+    <color name="rippleToolbarColorDark">@color/rippleColorDark</color>
     <color name="backgroundDark">@color/colorDarkPrimaryDark</color>
     <color name="dialogDark">@color/colorDarkPrimary</color>
     <color name="selectorColorDark">@color/md_blue_A200_50</color>
@@ -47,6 +51,7 @@
     <color name="md_black_1000_54">#8A000000</color>
     <color name="md_black_1000_38">#61000000</color>
     <color name="md_black_1000_12">#1F000000</color>
+    <color name="md_black_1000_6">#0F000000</color>
 
     <color name="md_white_1000">#FFFFFFFF</color>
     <color name="md_white_1000_70">#B3FFFFFF</color>
@@ -54,6 +59,7 @@
     <color name="md_white_1000_50">#80FFFFFF</color>
     <color name="md_white_1000_20">#33FFFFFF</color>
     <color name="md_white_1000_12">#1FFFFFFF</color>
+    <color name="md_white_1000_6">#0FFFFFFF</color>
 
     <!-- Material Design Colors -->
     <color name="md_black_1000">#000000</color>
@@ -71,6 +77,7 @@
 
     <color name="md_blue_A400">#2979FF</color>
     <color name="md_blue_A400_38">#612979FF</color>
+    <color name="md_blue_A400_4">#0A2979FF</color>
 
     <color name="md_blue_grey_900">#263238</color>
     <color name="md_blue_grey_800">#37474F</color>

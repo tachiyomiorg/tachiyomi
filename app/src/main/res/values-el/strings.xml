@@ -89,8 +89,6 @@
     <string name="default_columns">Προεπιλογή</string>
     <string name="pref_library_update_interval">Συχνότητα ενημέρωσης</string>
     <string name="update_never">Χειροκίνητα</string>
-    <string name="update_1hour">Ωριαία</string>
-    <string name="update_2hour">Κάθε 2 ώρες</string>
     <string name="update_3hour">Κάθε 3 ώρες</string>
     <string name="update_6hour">Κάθε 6 ώρες</string>
     <string name="update_12hour">Κάθε 12 ώρες</string>
@@ -166,7 +164,7 @@
     <string name="double_tap_anim_speed_0">Χωρίς κίνηση</string>
     <string name="double_tap_anim_speed_normal">Κανονική</string>
     <string name="double_tap_anim_speed_fast">Γρήγορη</string>
-    <string name="pref_rotation_type">Περιστροφή</string>
+    <string name="pref_rotation_type">Προεπιλεγμένος τύπος περιστροφής</string>
     <string name="rotation_free">Ελεύθερο</string>
     <string name="rotation_force_portrait">Κλειδωμένο κατακόρυφα</string>
     <string name="rotation_force_landscape">Κλειδωμένο οριζόντια</string>
@@ -218,7 +216,6 @@
     <string name="pref_refresh_library_tracking">Ανανέωση παρακολούθησης</string>
     <string name="pref_refresh_library_tracking_summary">Ενημερώνει κατάσταση, βαθμολογία και τελευταίο αναγνωσμένο κεφάλαιο από τις υπηρεσίες παρακολούθησης</string>
     <string name="version">Έκδοση</string>
-    <string name="build_time">Χρόνος κατασκευής</string>
     <string name="pref_enable_acra">Αποστολή αναφορών σφαλμάτων</string>
     <string name="pref_acra_summary">Βοηθά στην επιδιόρθωση τυχόν σφαλμάτων. Δεν θα αποστέλλονται ευαίσθητα δεδομένα</string>
     <string name="login_title">Σύνδεση στο %1$s</string>
@@ -248,7 +245,7 @@
     <string name="description">Περιγραφή</string>
     <string name="ongoing">Σε εξέλιξη</string>
     <string name="unknown">Άγνωστο</string>
-    <string name="licensed">Αδειούχος</string>
+    <string name="licensed">Αδειοδοτημένο</string>
     <string name="remove_from_library">Κατάργηση από τη βιβλιοθήκη</string>
     <string name="manga_info_full_title_label">Τίτλος</string>
     <string name="manga_added_library">Προστέθηκε στη βιβλιοθήκη</string>
@@ -363,7 +360,7 @@
     <string name="download_notifier_download_paused">Λήψη σε παύση</string>
     <string name="channel_common">Κοινό</string>
     <string name="channel_library">Βιβλιοθήκη</string>
-    <string name="pref_read_with_long_tap">Παράθυρο παρατεταμένου αγγίγματος</string>
+    <string name="pref_read_with_long_tap">Εμφάνιση με παρατεταμένο πάτημα</string>
     <string name="action_open_in_web_view">Άνοιγμα στο WebView</string>
     <string name="pref_true_color">Χρώμα 32-bit</string>
     <string name="pref_skip_read_chapters">Προσπέραση διαβασμένων κεφαλαίων</string>
@@ -616,9 +613,6 @@
     <string name="clear_history_completed">Το ιστορικό διαγράφηκε</string>
     <string name="spen_next_page">Επόμενη σελίδα</string>
     <string name="spen_previous_page">Προηγούμενη σελίδα</string>
-    <string name="pref_backup_auto_create_legacy">Επίσης, δημιουργία αντιγράφου ασφαλείας παλαιού τύπου</string>
-    <string name="pref_create_legacy_backup_summary">Μπορεί να χρησιμοποιηθεί σε παλαιότερες εκδόσεις του Tachiyomi</string>
-    <string name="pref_create_legacy_backup">Δημιουργία αντιγράφου ασφαλείας παλαιού τύπου</string>
     <string name="migration_help_guide">Οδηγός μετανάστευσης πηγής</string>
     <string name="invalid_backup_file_type">Μη έγκυρος τύπος αρχείου αντιγράφου ασφαλείας: %1$s
 \nΘα πρέπει να τελειώνει με .proto.gz ή .json.</string>
@@ -675,4 +669,18 @@
     <string name="clipboard_copy_error">Απέτυχε η αντιγραφή στο πρόχειρο</string>
     <string name="rotation_landscape">Οριζόντια</string>
     <string name="rotation_portrait">Κατακόρυφα</string>
+    <string name="pref_create_folder_per_manga_summary">Δημιουργεί φακέλους σύμφωνα με τον τίτλο manga</string>
+    <string name="pref_create_folder_per_manga">Αποθήκευση σελίδων σε ξεχωριστούς φακέλους</string>
+    <string name="pref_reader_actions">Ενέργειες</string>
+    <string name="rotation_type">Τύπος περιστροφής</string>
+    <string name="default_rotation_type">Προεπιλογή</string>
+    <string name="pref_grayscale">Κλίμακα του γκρι</string>
+    <string name="notification_incognito_text">Απενεργοποίηση λειτουργίας ανώνυμης περιήγησης</string>
+    <string name="automatic_background">Αυτόματα</string>
+    <string name="cancel_all_for_series">Ακύρωση όλων για αυτήν τη σειρά</string>
+    <string name="error_no_match">Δεν βρέθηκε αντιστοιχία</string>
+    <string name="source_unsupported">Η πηγή δεν υποστηρίζεται</string>
+    <string name="score_unsupported">Δεν υποστηρίζεται</string>
+    <string name="unread">Αδιάβαστα</string>
+    <string name="pref_auto_add_track">Παρακολούθηση σιωπηλά κατά την προσθήκη manga στη βιβλιοθήκη</string>
 </resources>

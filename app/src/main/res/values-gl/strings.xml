@@ -137,8 +137,6 @@
     <string name="update_12hour">Cada 12 horas</string>
     <string name="update_6hour">Cada 6 horas</string>
     <string name="update_3hour">Cada 3 horas</string>
-    <string name="update_2hour">Cada 2 horas</string>
-    <string name="update_1hour">Cada hora</string>
     <string name="update_never">Manual</string>
     <string name="pref_library_update_interval">Frecuancia de actualización da biblioteca</string>
     <string name="pref_category_library_update">Actualizacións</string>

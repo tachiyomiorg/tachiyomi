@@ -121,8 +121,6 @@
     <string name="pref_category_library_update">განახლებები</string>
     <string name="pref_library_update_interval">ბიბლიოთეკის განახლების სიხშირე</string>
     <string name="update_never">ხელით</string>
-    <string name="update_1hour">ყოველ საათში</string>
-    <string name="update_2hour">ყოველ 2 საათში</string>
     <string name="update_3hour">ყოველ 3 საათში</string>
     <string name="update_6hour">ყოველ 6 საათში</string>
     <string name="update_12hour">ყოველ 12 საათში</string>
@@ -479,7 +477,6 @@
     <string name="pref_search_pinned_sources_only">შეიყვანე მხოლოდ მიმაგრებული წყაროები</string>
     <string name="pref_disable_battery_optimization">გამორთე ბატარეის ოპტიმიზაცია</string>
     <string name="pref_disable_battery_optimization_summary">ეხმარება უკანა ფონში მიმდინარე ბიბლიოთეკის განახლებებსდა რეზერვს</string>
-    <string name="build_time">აწყობის დრო</string>
     <string name="licenses">ღია კოდის ლიცენზია</string>
     <string name="pinned_sources">მიმაგრებული</string>
     <string name="local_source_help_guide">ლოკალური წყაროს გიდი</string>

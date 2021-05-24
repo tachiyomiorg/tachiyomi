@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.ui.setting
 import android.app.Activity
 import androidx.preference.PreferenceScreen
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.track.NoLoginTrackService
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.track.anilist.AnilistApi
@@ -38,6 +39,11 @@ class SettingsTrackingController :
             titleRes = R.string.pref_auto_update_manga_sync
             defaultValue = true
         }
+        switchPreference {
+            key = Keys.autoAddTrack
+            titleRes = R.string.pref_auto_add_track
+            defaultValue = true
+        }
         preferenceCategory {
             titleRes = R.string.services
 
@@ -58,6 +64,10 @@ class SettingsTrackingController :
             trackPreference(trackManager.bangumi) {
                 activity?.openInBrowser(BangumiApi.authUrl(), trackManager.bangumi.getLogoColor())
             }
+            trackPreference(trackManager.komga) {
+                trackManager.komga.loginNoop()
+                updatePreference(trackManager.komga.id)
+            }
         }
         preferenceCategory {
             infoPreference(R.string.tracking_info)
@@ -76,9 +86,14 @@ class SettingsTrackingController :
             {
                 onClick {
                     if (service.isLogged) {
-                        val dialog = TrackLogoutDialog(service)
-                        dialog.targetController = this@SettingsTrackingController
-                        dialog.showDialog(router)
+                        if (service is NoLoginTrackService) {
+                            service.logout()
+                            updatePreference(service.id)
+                        } else {
+                            val dialog = TrackLogoutDialog(service)
+                            dialog.targetController = this@SettingsTrackingController
+                            dialog.showDialog(router)
+                        }
                     } else {
                         login()
                     }

@@ -89,8 +89,6 @@
     <string name="default_columns">Per defecte</string>
     <string name="pref_library_update_interval">Freqüència d\'actualització de la biblioteca</string>
     <string name="update_never">Manual</string>
-    <string name="update_1hour">Cada hora</string>
-    <string name="update_2hour">Cada 2 hores</string>
     <string name="update_3hour">Cada 3 hores</string>
     <string name="update_6hour">Cada 6 hores</string>
     <string name="update_12hour">Cada 12 hores</string>
@@ -218,7 +216,6 @@
     <string name="pref_refresh_library_tracking">Refresca el seguiment</string>
     <string name="pref_refresh_library_tracking_summary">Actualitza l\'estat, la puntuació i el darrer capítol llegit dels serveis de seguiment</string>
     <string name="version">Versió</string>
-    <string name="build_time">Hora de compilació</string>
     <string name="pref_enable_acra">Envia informes d\'errors</string>
     <string name="pref_acra_summary">Ajuda a solucionar errades. No s\'enviaran dades sensibles</string>
     <string name="login_title">Inicia la sessió a %1$s</string>
@@ -616,9 +613,6 @@
     <string name="clear_history_completed">S\'ha buidat l\'historial</string>
     <string name="spen_next_page">Pàgina següent</string>
     <string name="spen_previous_page">Pàgina anterior</string>
-    <string name="pref_backup_auto_create_legacy">Crea també una còpia de seguretat en format antic</string>
-    <string name="pref_create_legacy_backup_summary">Es pot utilitzar en versions més antigues del Tachiyomi</string>
-    <string name="pref_create_legacy_backup">Crea una còpia de seguretat en format antic</string>
     <string name="migration_help_guide">Guia de migració de fonts</string>
     <string name="invalid_backup_file_type">Tipus de fitxer de còpia de seguretat invàlid: %1$s
 \nHauria d\'acabar en .proto.gz o .json.</string>

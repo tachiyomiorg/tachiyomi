@@ -86,8 +86,6 @@
     <string name="default_columns">প্রকৃত</string>
     <string name="pref_library_update_interval">সংগ্রহশালা হালনাগাদের হার</string>
     <string name="update_never">স্বনির্ধারিত</string>
-    <string name="update_1hour">প্রতি ঘণ্টায়</string>
-    <string name="update_2hour">প্রতি ২ ঘন্টায়</string>
     <string name="update_3hour">প্রতি ৩ ঘন্টায়</string>
     <string name="update_6hour">প্রতি ৬ ঘন্টায়</string>
     <string name="update_12hour">প্রতি ১২ ঘন্টায়</string>
@@ -191,7 +189,6 @@
     <string name="pref_refresh_library_tracking">ট্র্যাকিং হালনাগাদ করুন</string>
     <string name="pref_refresh_library_tracking_summary">ট্র্যাকিং পরিষেবাগুলি অবস্থা, স্কোর এবং শেষ পড়া অধ্যায় হালনাগাদ করে</string>
     <string name="version">সংস্করণ</string>
-    <string name="build_time">তৈরির সময়</string>
     <string name="pref_enable_acra">ক্র‍্যাশের প্রতিবেদন পাঠান</string>
     <string name="pref_acra_summary">বাগ ঠিক করার জন্য সাহায্য করুন। কোন সংবেদনশীল তথ্য পাঠানো হবে না</string>
     <string name="login_title">প্রবেশ করুন %1$sতে</string>
@@ -614,9 +611,6 @@
     <string name="pref_disable_battery_optimization_summary">পিছেনে লাইব্রেরী হালনাগাদ ও ব্যাকআপে সাহায্য করে</string>
     <string name="pref_disable_battery_optimization">ব্যাটারি অপ্টিমাইজেশন অক্ষম করুন</string>
     <string name="tracking_info">ট্র্যাকিং সার্ভিসে অধ্যায়ের অগ্রগতি হালনাগাদের একমুখী পথ। স্বতন্ত্র মাঙ্গার ট্র্যকিং সেটাপের জন্য তাদের নিজস্ব ট্র্যাকিং বাটন ব্যবহার করুন।</string>
-    <string name="pref_backup_auto_create_legacy">লিগ্যাসি ব্যাকআপও তৈরি করুন</string>
-    <string name="pref_create_legacy_backup_summary">পুরাতন তাচ্চিওমির ভার্সন গুলোতে ব্যবহার করা যাবে</string>
-    <string name="pref_create_legacy_backup">উত্তরাধিকার এর ব্যাকআপ তৈরি করা</string>
     <string name="pref_label_nsfw_extension">এক্সটেনশন গুলোর তালিকায় লেবেল করুন</string>
     <string name="pref_show_nsfw_extension">এক্সটেনশন গুলোর তালিকায় প্রদর্শন করুন</string>
     <string name="pref_show_nsfw_source">উৎস তালিকায় প্রদর্শন করুন</string>

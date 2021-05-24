@@ -74,8 +74,6 @@
     <string name="default_columns">Par défaut</string>
     <string name="pref_library_update_interval">Fréquence de mise à jour de la bibliothèque</string>
     <string name="update_never">Manuel</string>
-    <string name="update_1hour">Toutes les heures</string>
-    <string name="update_2hour">Toutes les 2 heures</string>
     <string name="update_3hour">Toutes les 3 heures</string>
     <string name="update_6hour">Toutes les 6 heures</string>
     <string name="update_12hour">Toutes les 12 heures</string>
@@ -121,7 +119,7 @@
     <string name="zoom_start_left">Gauche</string>
     <string name="zoom_start_right">Droite</string>
     <string name="zoom_start_center">Centre</string>
-    <string name="pref_rotation_type">Rotation</string>
+    <string name="pref_rotation_type">Type de rotation par défaut</string>
     <string name="rotation_free">Libre</string>
     <string name="rotation_force_portrait">Bloqué sur portrait</string>
     <string name="rotation_force_landscape">Bloqué sur paysage</string>
@@ -153,7 +151,6 @@
     <string name="clear_database_completed">Entrées supprimées</string>
     <!-- About section -->
     <string name="version">Version</string>
-    <string name="build_time">Date de compilation</string>
     <!-- ACRA -->
     <string name="pref_enable_acra">Envoyer des rapports de plantage</string>
     <string name="pref_acra_summary">Aide à corriger les erreurs. Aucune donnée sensible ne sera envoyée</string>
@@ -179,7 +176,7 @@
     <string name="ongoing">En cours</string>
     <string name="unknown">Inconnu</string>
     <string name="licensed">Licencié</string>
-    <string name="remove_from_library">Retirer de la bilbiothèque</string>
+    <string name="remove_from_library">Retirer de la bibliothèque</string>
     <!-- Manga chapters fragment -->
     <string name="manga_chapters_tab">Chapitres</string>
     <string name="display_mode_chapter">Chapitre %1$s</string>
@@ -651,9 +648,6 @@
     <string name="spen_next_page">Page suivante</string>
     <string name="spen_previous_page">Page précédente</string>
     <string name="migration_help_guide">Guide de migration des sources</string>
-    <string name="pref_backup_auto_create_legacy">Créez également une sauvegarde héritée</string>
-    <string name="pref_create_legacy_backup_summary">Peut être utilisé dans les anciennes versions de Tachiyomi</string>
-    <string name="pref_create_legacy_backup">Créer des sauvegardes héritées</string>
     <string name="pref_category_nsfw_content">Contenu +18</string>
     <string name="invalid_backup_file_type">Fichier de sauvegarde invalide : %1$s
 \nIl devrait se terminer par .proto.gz ou .json.</string>
@@ -709,4 +703,9 @@
     <string name="clipboard_copy_error">Échec de la copie dans le presse-papiers</string>
     <string name="rotation_landscape">Paysage</string>
     <string name="rotation_portrait">Portrait</string>
+    <string name="notification_incognito_text">Désactiver le mode incognito</string>
+    <string name="pref_create_folder_per_manga_summary">Créer des dossiers selon le titre du manga</string>
+    <string name="pref_create_folder_per_manga">Enregistrer les pages dans des dossiers séparés</string>
+    <string name="pref_reader_actions">Actions</string>
+    <string name="pref_grayscale">Niveaux de gris</string>
 </resources>

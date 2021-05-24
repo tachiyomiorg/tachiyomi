@@ -99,7 +99,7 @@ class BackupCreateService : Service() {
         if (intent == null) return START_NOT_STICKY
 
         try {
-            val uri = intent.getParcelableExtra<Uri>(BackupConst.EXTRA_URI)
+            val uri = intent.getParcelableExtra<Uri>(BackupConst.EXTRA_URI)!!
             val backupFlags = intent.getIntExtra(BackupConst.EXTRA_FLAGS, 0)
             val backupFileUri = FullBackupManager(this).createBackup(uri, backupFlags, false)?.toUri()
             val unifile = UniFile.fromUri(this, backupFileUri)

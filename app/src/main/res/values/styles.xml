@@ -6,8 +6,16 @@
     <!--========-->
     <style name="Theme.Toolbar" parent="@style/ThemeOverlay.MaterialComponents.ActionBar" />
 
-    <style name="Theme.Toolbar.Light" parent="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
+    <style name="Theme.Toolbar.Light" parent="Theme.Toolbar.Custom.Dark">
         <item name="popupTheme">@style/ThemeOverlay.MaterialComponents.Light</item>
+    </style>
+
+    <style name="Theme.Toolbar.Custom" parent="@style/ThemeOverlay.MaterialComponents.ActionBar">
+        <item name="android:colorControlHighlight">?attr/rippleToolbarColor</item>
+    </style>
+
+    <style name="Theme.Toolbar.Custom.Dark" parent="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
+        <item name="android:colorControlHighlight">?attr/rippleToolbarColor</item>
     </style>
 
     <style name="Theme.Toolbar.Navigation" parent="Widget.AppCompat.Toolbar.Button.Navigation">
@@ -177,17 +185,11 @@
     <style name="Theme.Widget.CardView" parent="CardView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">@dimen/material_component_cards_top_and_bottom_padding</item>
-        <item name="android:layout_marginTop">@dimen/material_component_cards_space_between_cards
-        </item>
-        <item name="android:layout_marginBottom">
-            @dimen/material_component_cards_space_between_cards
-        </item>
-        <item name="android:layout_marginStart">
-            @dimen/material_component_cards_space_between_cards
-        </item>
-        <item name="android:layout_marginEnd">@dimen/material_component_cards_space_between_cards
-        </item>
+        <item name="android:padding">16dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
         <item name="cardBackgroundColor">?attr/colorSurface</item>
         <item name="cardCornerRadius">@dimen/card_radius</item>
         <item name="cardElevation">2dp</item>
@@ -233,8 +235,12 @@
     <style name="Theme.Widget.Chip" parent="Widget.MaterialComponents.Chip.Action">
         <item name="chipStrokeWidth">1dp</item>
         <item name="chipStrokeColor">?attr/colorAccent</item>
-        <item name="chipBackgroundColor">@android:color/transparent</item>
+        <item name="chipBackgroundColor">@color/background_color_chip_state</item>
         <item name="android:textColor">?attr/colorAccent</item>
+
+        <!-- Custom chip states -->
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
 
         <!-- Smaller text/height -->
         <item name="chipCornerRadius">12dp</item>
@@ -290,14 +296,14 @@
     <!--==============-->
     <style name="Theme.Widget.Button" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:textColor">?attr/colorAccent</item>
-        <item name="rippleColor">?attr/colorAccent</item>
+        <item name="rippleColor">?attr/rippleSecondaryColor</item>
         <item name="android:textAllCaps">false</item>
     </style>
 
     <style name="Theme.Widget.Button.FilledAccent" parent="Widget.MaterialComponents.Button">
         <item name="android:textColor">?attr/colorOnSecondary</item>
         <item name="backgroundTint">?attr/colorAccent</item>
-        <item name="rippleColor">?attr/colorAccent</item>
+        <item name="rippleColor">?attr/rippleColor</item>
         <item name="android:textAllCaps">false</item>
     </style>
 
@@ -306,6 +312,7 @@
         <item name="android:textAllCaps">false</item>
 
         <item name="backgroundTint">@android:color/transparent</item>
+        <item name="rippleColor">?attr/rippleColor</item>
 
         <item name="iconGravity">top</item>
         <item name="iconTint">@color/button_action_selector</item>
@@ -345,6 +352,7 @@
         <item name="tabMinWidth">75dp</item>
         <item name="tabMode">scrollable</item>
         <item name="tabTextAppearance">@style/TextAppearance.Widget.Tab</item>
+        <item name="tabRippleColor">?attr/rippleSecondaryColor</item>
     </style>
 
 
@@ -362,6 +370,14 @@
         <item name="android:paddingBottom">8dp</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>
         <item name="android:textSize">15sp</item>
+    </style>
+
+
+    <!--===============-->
+    <!--Custom Selector-->
+    <!--===============-->
+    <style name="PreferenceThemeCustom" parent="@style/PreferenceThemeOverlay">
+        <item name="android:selectableItemBackground">@drawable/ripple_background</item>
     </style>
 
 </resources>

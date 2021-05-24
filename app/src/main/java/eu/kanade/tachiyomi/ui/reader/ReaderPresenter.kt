@@ -23,6 +23,7 @@ import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.model.ViewerChapters
 import eu.kanade.tachiyomi.ui.reader.setting.OrientationType
 import eu.kanade.tachiyomi.ui.reader.setting.ReadingModeType
+import eu.kanade.tachiyomi.util.chapter.getChapterSort
 import eu.kanade.tachiyomi.util.isLocal
 import eu.kanade.tachiyomi.util.lang.byteSize
 import eu.kanade.tachiyomi.util.lang.launchIO
@@ -96,28 +97,22 @@ class ReaderPresenter(
         val selectedChapter = dbChapters.find { it.id == chapterId }
             ?: error("Requested chapter of id $chapterId not found in chapter list")
 
-        val chaptersForReader =
-            if (preferences.skipRead() || preferences.skipFiltered()) {
-                val list = dbChapters
-                    .filter {
-                        if (preferences.skipRead() && it.read) {
-                            return@filter false
-                        } else if (preferences.skipFiltered()) {
-                            if (
-                                (manga.readFilter == Manga.CHAPTER_SHOW_READ && !it.read) ||
+        val chaptersForReader = when {
+            (preferences.skipRead() || preferences.skipFiltered()) -> {
+                val list = dbChapters.filterNot {
+                    when {
+                        preferences.skipRead() && it.read -> true
+                        preferences.skipFiltered() -> {
+                            (manga.readFilter == Manga.CHAPTER_SHOW_READ && !it.read) ||
                                 (manga.readFilter == Manga.CHAPTER_SHOW_UNREAD && it.read) ||
-                                (
-                                    manga.downloadedFilter == Manga.CHAPTER_SHOW_DOWNLOADED &&
-                                        !downloadManager.isChapterDownloaded(it, manga)
-                                    ) ||
-                                (manga.bookmarkedFilter == Manga.CHAPTER_SHOW_BOOKMARKED && !it.bookmark)
-                            ) {
-                                return@filter false
-                            }
+                                (manga.downloadedFilter == Manga.CHAPTER_SHOW_DOWNLOADED && !downloadManager.isChapterDownloaded(it, manga)) ||
+                                (manga.downloadedFilter == Manga.CHAPTER_SHOW_NOT_DOWNLOADED && downloadManager.isChapterDownloaded(it, manga)) ||
+                                (manga.bookmarkedFilter == Manga.CHAPTER_SHOW_BOOKMARKED && !it.bookmark) ||
+                                (manga.bookmarkedFilter == Manga.CHAPTER_SHOW_NOT_BOOKMARKED && it.bookmark)
                         }
-
-                        true
+                        else -> false
                     }
+                }
                     .toMutableList()
 
                 val find = list.find { it.id == chapterId }
@@ -125,16 +120,13 @@ class ReaderPresenter(
                     list.add(selectedChapter)
                 }
                 list
-            } else {
-                dbChapters
             }
+            else -> dbChapters
+        }
 
-        when (manga.sorting) {
-            Manga.CHAPTER_SORTING_SOURCE -> ChapterLoadBySource().get(chaptersForReader)
-            Manga.CHAPTER_SORTING_NUMBER -> ChapterLoadByNumber().get(chaptersForReader, selectedChapter)
-            Manga.CHAPTER_SORTING_UPLOAD_DATE -> ChapterLoadByUploadDate().get(chaptersForReader)
-            else -> error("Unknown sorting method")
-        }.map(::ReaderChapter)
+        chaptersForReader
+            .sortedWith(getChapterSort(manga, sortDescending = false))
+            .map(::ReaderChapter)
     }
 
     private var hasTrackers: Boolean = false
@@ -501,8 +493,9 @@ class ReaderPresenter(
      */
     fun getMangaReadingMode(resolveDefault: Boolean = true): Int {
         val default = preferences.defaultReadingMode()
+        val readingMode = ReadingModeType.fromPreference(manga?.readingModeType)
         return when {
-            resolveDefault && manga?.readingModeType == ReadingModeType.DEFAULT.flagValue -> default
+            resolveDefault && readingMode == ReadingModeType.DEFAULT -> default
             else -> manga?.readingModeType ?: default
         }
     }

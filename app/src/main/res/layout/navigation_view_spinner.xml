@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="?attr/listPreferredItemHeightSmall"
-    android:background="?attr/selectableItemBackground"
+    android:background="@drawable/selectable_item_background"
     android:focusable="true"
     android:paddingStart="?attr/listPreferredItemPaddingStart"
     android:paddingEnd="?attr/listPreferredItemPaddingEnd">
@@ -12,10 +12,10 @@
         android:id="@+id/nav_view_item_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_weight="1"
         android:ellipsize="end"
         android:maxLines="1"
-        android:layout_gravity="center"
         android:paddingEnd="8dp"
         tools:text="Filter:" />
 

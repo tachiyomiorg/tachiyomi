@@ -233,8 +233,6 @@
     <string name="update_12hour">दर १२ तासाला</string>
     <string name="update_6hour">दर ६ तासाला</string>
     <string name="update_3hour">दर ३ तासाला</string>
-    <string name="update_2hour">दर २ तासाला</string>
-    <string name="update_1hour">दर तासाला</string>
     <string name="update_never">स्वतः करा</string>
     <string name="pref_library_update_interval">लायब्ररी अद्यतन वारंवारता</string>
     <string name="pref_category_library_update">अद्यतने</string>

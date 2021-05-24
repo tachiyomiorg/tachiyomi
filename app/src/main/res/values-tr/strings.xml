@@ -19,7 +19,7 @@
     <string name="action_filter">Filtrele</string>
     <string name="action_filter_downloaded">İndirilen</string>
     <string name="action_filter_bookmarked">İşaretli</string>
-    <string name="action_filter_unread">Okunmamış</string>
+    <string name="action_filter_unread">Okunmayan</string>
     <string name="action_filter_empty">Filtreyi kaldır</string>
     <string name="action_sort_alpha">Alfabetik</string>
     <string name="action_sort_total">Toplam bölüm</string>
@@ -27,9 +27,9 @@
     <string name="action_search">Ara</string>
     <string name="action_global_search">Genel arama</string>
     <string name="action_select_all">Tümünü seç</string>
-    <string name="action_mark_as_read">Okunmuş olarak işaretle</string>
-    <string name="action_mark_as_unread">Okunmamış olarak işaretle</string>
-    <string name="action_mark_previous_as_read">Öncekileri okunmuş olarak işaretle</string>
+    <string name="action_mark_as_read">Okundu olarak işaretle</string>
+    <string name="action_mark_as_unread">Okunmadı olarak işaretle</string>
+    <string name="action_mark_previous_as_read">Öncekileri okundu olarak işaretle</string>
     <string name="action_download">İndir</string>
     <string name="action_bookmark">Bölümü işaretle</string>
     <string name="action_remove_bookmark">Bölümün işaretini kaldır</string>
@@ -46,7 +46,7 @@
     <string name="action_sort_up">Yukarı sırala</string>
     <string name="action_sort_down">Aşağı sırala</string>
     <string name="action_show_downloaded">İndirilen</string>
-    <string name="action_next_unread">Sonraki okunmamış</string>
+    <string name="action_next_unread">Sonraki okunmayan</string>
     <string name="action_stop">Durdur</string>
     <string name="action_pause">Duraklat</string>
     <string name="action_close">Kapat</string>
@@ -89,8 +89,6 @@
     <string name="default_columns">Öntanımlı</string>
     <string name="pref_library_update_interval">Güncelleme sıklığı</string>
     <string name="update_never">Elle</string>
-    <string name="update_1hour">Her saat</string>
-    <string name="update_2hour">2 saatte bir</string>
     <string name="update_3hour">3 saatte bir</string>
     <string name="update_6hour">6 saatte bir</string>
     <string name="update_12hour">12 saatte bir</string>
@@ -136,7 +134,7 @@
     <string name="pref_custom_brightness">Özel parlaklık</string>
     <string name="pref_custom_color_filter">Özel renk filtresi</string>
     <string name="pref_keep_screen_on">Ekranı açık tut</string>
-    <string name="pref_reader_navigation">Gezinti</string>
+    <string name="pref_reader_navigation">Gezinme</string>
     <string name="pref_read_with_volume_keys">Ses tuşları</string>
     <string name="pref_read_with_volume_keys_inverted">Ters ses tuşları</string>
     <string name="pref_read_with_tapping">Dokunarak</string>
@@ -166,7 +164,7 @@
     <string name="double_tap_anim_speed_0">Animasyon yok</string>
     <string name="double_tap_anim_speed_normal">Normal</string>
     <string name="double_tap_anim_speed_fast">Hızlı</string>
-    <string name="pref_rotation_type">Döndürme</string>
+    <string name="pref_rotation_type">Ön tanımlı döndürme türü</string>
     <string name="rotation_free">Serbest</string>
     <string name="rotation_force_portrait">Kilitli dikey</string>
     <string name="rotation_force_landscape">Kilitli yatay</string>
@@ -176,7 +174,7 @@
     <string name="color_filter_a_value">A</string>
     <string name="pref_download_directory">İndirme konumu</string>
     <string name="pref_download_only_over_wifi">Yalnızca Wi-Fi ile indir</string>
-    <string name="pref_remove_after_marked_as_read">Okunmuş olarak işaretlenince</string>
+    <string name="pref_remove_after_marked_as_read">Okundu olarak işaretlenince</string>
     <string name="pref_remove_after_read">Okunduktan sonra</string>
     <string name="custom_dir">Özel konum</string>
     <string name="disabled">Devre dışı</string>
@@ -213,12 +211,11 @@
     <string name="choices_reset">İletişim kutusu seçimlerini temizle</string>
     <string name="pref_clear_database">Veritabanını temizle</string>
     <string name="pref_clear_database_summary">Kitaplığınıza kaydedilmeyen mangaların geçmiş bilgisini sil</string>
-    <string name="clear_database_confirmation">Emin misiniz? Kitaplıkta olmayan mangaların okunmuş bölümleri ve ilerlemesi kaybolacak</string>
+    <string name="clear_database_confirmation">Emin misiniz\? Kitaplıkta olmayan mangaların okunan bölümleri ve ilerlemesi kaybolacak</string>
     <string name="clear_database_completed">Girdileri silindi</string>
     <string name="pref_refresh_library_tracking">İzlemeyi yenile</string>
     <string name="pref_refresh_library_tracking_summary">İzleme hizmetlerinden durumu, puanı ve son okunan bölümü günceller</string>
     <string name="version">Sürüm</string>
-    <string name="build_time">İnşa tarihi</string>
     <string name="pref_enable_acra">Çökme bildirimi gönder</string>
     <string name="pref_acra_summary">Hataların düzeltilmesine yardımcı olur. Hiçbir hassas veri gönderilmez</string>
     <string name="login_title">%1$s \'e giriş yap</string>
@@ -279,7 +276,7 @@
     <string name="download_10">Sonraki 10 bölüm</string>
     <string name="download_custom">Özel</string>
     <string name="download_all">Hepsi</string>
-    <string name="download_unread">Okunmamış</string>
+    <string name="download_unread">Okunmayan</string>
     <string name="confirm_delete_chapters">Seçilen bölümleri silmek istediğinize emin misiniz?</string>
     <string name="manga_tracking_tab">İzleme</string>
     <string name="reading">Okunuyor</string>
@@ -363,10 +360,10 @@
     <string name="transition_no_previous">Önceki bölüm yok</string>
     <string name="transition_pages_loading">Sayfalar yükleniyor…</string>
     <string name="transition_pages_error">Sayfalar yüklenemedi: %1$s</string>
-    <string name="pref_read_with_long_tap">Uzun dokunma iletişim kutusu</string>
+    <string name="pref_read_with_long_tap">Uzun dokununca göster</string>
     <string name="action_open_in_web_view">WebView\'de aç</string>
     <string name="pref_true_color">32-bit renk</string>
-    <string name="pref_skip_read_chapters">Okunmuş olarak işaretli bölümleri atla</string>
+    <string name="pref_skip_read_chapters">Okundu olarak işaretli bölümleri atla</string>
     <string name="pref_color_filter_mode">Renk filtresi karışım kipi</string>
     <string name="filter_mode_default">Öntanımlı</string>
     <string name="filter_mode_overlay">Kaplama</string>
@@ -519,7 +516,7 @@
         <item quantity="one">%1$s içinde %2$s hatayla tamamlandı</item>
         <item quantity="other">%1$s içinde %2$s hatayla tamamlandı</item>
     </plurals>
-    <string name="action_display_unread_badge">Okunmamış rozetler</string>
+    <string name="action_display_unread_badge">Okunmayan rozetler</string>
     <string name="tracking_info">Bölüm ilerlemesini, izleme hizmetlerinde güncellemek için tek yönlü eşitleme. Her manga girdisinin izleme düğmesinden, izlemeyi ayarlayın.</string>
     <string name="pref_refresh_library_covers">Kitaplık manga kapaklarını yenile</string>
     <plurals name="notification_update_error">
@@ -568,7 +565,7 @@
     <string name="tapping_inverted_horizontal">Yatay</string>
     <string name="unknown_status">Bilinmeyen durum</string>
     <string name="unknown_author">Bilinmeyen yazar</string>
-    <string name="action_download_unread">Okunmamış bölümleri indir</string>
+    <string name="action_download_unread">Okunmayan bölümleri indir</string>
     <string name="updated_version">v%1$s sürümüne güncellendi</string>
     <string name="whats_new">Yenilikler</string>
     <string name="download_insufficient_space">Disk alanı az olduğundan bölümler indirilemedi</string>
@@ -616,9 +613,6 @@
     <string name="clear_history_completed">Geçmiş silindi</string>
     <string name="spen_next_page">Sonraki sayfa</string>
     <string name="spen_previous_page">Önceki sayfa</string>
-    <string name="pref_backup_auto_create_legacy">Ayrıca eski yedekleme oluştur</string>
-    <string name="pref_create_legacy_backup_summary">Tachiyomi\'nin eski sürümlerinde kullanılabilir</string>
-    <string name="pref_create_legacy_backup">Eski yedekleme oluştur</string>
     <string name="migration_help_guide">Kaynak taşınma kılavuzu</string>
     <string name="invalid_backup_file_type">Geçersiz yedekleme dosyası türü: %1$s
 \n.proto.gz veya .json ile bitmelidir.</string>
@@ -675,4 +669,18 @@
     <string name="clipboard_copy_error">Panoya kopyalanamadı</string>
     <string name="rotation_landscape">Yatay</string>
     <string name="rotation_portrait">Dikey</string>
+    <string name="rotation_type">Döndürme türü</string>
+    <string name="default_rotation_type">Ön tanımlı</string>
+    <string name="pref_create_folder_per_manga_summary">Klasörleri manga başlığına göre oluşturur</string>
+    <string name="pref_create_folder_per_manga">Sayfaları ayrı klasörlere kaydet</string>
+    <string name="pref_reader_actions">Eylemler</string>
+    <string name="pref_grayscale">Gri tonlama</string>
+    <string name="notification_incognito_text">Gizli kipi devre dışı bırak</string>
+    <string name="automatic_background">Kendiliğinden</string>
+    <string name="cancel_all_for_series">Bu seri için tümünü iptal et</string>
+    <string name="error_no_match">Eşleşme bulunamadı</string>
+    <string name="source_unsupported">Kaynak desteklenmiyor</string>
+    <string name="score_unsupported">Desteklenmiyor</string>
+    <string name="unread">Okunmayan</string>
+    <string name="pref_auto_add_track">Kitaplığa manga eklerken sessizce izle</string>
 </resources>

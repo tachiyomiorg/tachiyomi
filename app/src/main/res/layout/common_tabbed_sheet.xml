@@ -21,16 +21,16 @@
             app:layout_constraintEnd_toStartOf="@+id/menu"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tabTextColor="@color/tabs_selector_background"
-            app:tabIndicatorColor="?attr/colorAccent"
             app:tabGravity="fill"
-            app:tabMode="fixed" />
+            app:tabIndicatorColor="?attr/colorAccent"
+            app:tabMode="fixed"
+            app:tabTextColor="@color/tabs_selector_background" />
 
         <ImageButton
             android:id="@+id/menu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="?selectableItemBackgroundBorderless"
+            android:background="@drawable/ripple_regular"
             android:contentDescription="@string/action_menu"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"

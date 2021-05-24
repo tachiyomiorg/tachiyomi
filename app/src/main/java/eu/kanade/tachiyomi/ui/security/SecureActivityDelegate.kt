@@ -5,7 +5,7 @@ import android.view.WindowManager
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.lifecycleScope
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.util.system.BiometricUtil
+import eu.kanade.tachiyomi.util.system.AuthenticatorUtil
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uy.kohesive.injekt.injectLazy
@@ -28,14 +28,14 @@ class SecureActivityDelegate(private val activity: FragmentActivity) {
     }
 
     fun onResume() {
-        if (preferences.useBiometricLock().get()) {
-            if (BiometricUtil.isSupported(activity)) {
+        if (preferences.useAuthenticator().get()) {
+            if (AuthenticatorUtil.isSupported(activity)) {
                 if (isAppLocked()) {
-                    activity.startActivity(Intent(activity, BiometricUnlockActivity::class.java))
+                    activity.startActivity(Intent(activity, UnlockActivity::class.java))
                     activity.overridePendingTransition(0, 0)
                 }
             } else {
-                preferences.useBiometricLock().set(false)
+                preferences.useAuthenticator().set(false)
             }
         }
     }

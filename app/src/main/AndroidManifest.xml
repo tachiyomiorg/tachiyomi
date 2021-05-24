@@ -83,7 +83,7 @@
                 android:resource="@xml/s_pen_actions"/>
         </activity>
         <activity
-            android:name=".ui.security.BiometricUnlockActivity"
+            android:name=".ui.security.UnlockActivity"
             android:theme="@style/Theme.Base" />
         <activity
             android:name=".ui.webview.WebViewActivity"

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="name">名前</string>
-    <string name="categories">カテゴリ</string>
-    <string name="manga">マンガ</string>
+    <string name="categories">カテゴリー</string>
+    <string name="manga">漫画</string>
     <string name="chapters">章</string>
     <string name="history">履歴</string>
     <string name="label_settings">設定</string>
@@ -72,15 +72,13 @@
     <string name="default_columns">デフォルト</string>
     <string name="pref_library_update_interval">更新頻度</string>
     <string name="update_never">マニュアル</string>
-    <string name="update_1hour">毎時間</string>
-    <string name="update_2hour">2時間ごと</string>
     <string name="update_3hour">3時間ごと</string>
     <string name="update_6hour">6時間ごと</string>
     <string name="update_12hour">12時間ごと</string>
     <string name="update_24hour">毎日</string>
     <string name="update_48hour">2日ごと</string>
     <string name="update_weekly">毎週</string>
-    <string name="all">すべて</string>
+    <string name="all">全て</string>
     <string name="pref_library_update_restriction">更新制限</string>
     <string name="pref_library_update_restriction_summary">条件が満たされた場合にのみ更新する</string>
     <string name="charging">充電中</string>
@@ -89,7 +87,7 @@
     <string name="pref_start_screen">スタート画面</string>
     <string name="pref_language">言語</string>
     <string name="system_default">システム既定</string>
-    <string name="default_category">デフォルトカテゴリ</string>
+    <string name="default_category">デフォルトカテゴリー</string>
     <string name="default_category_summary">毎回尋ねる</string>
     <string name="all_lang">すべて</string>
     <string name="ext_update">更新</string>
@@ -169,7 +167,6 @@
     <string name="pref_clear_database">データベースをクリア</string>
     <string name="pref_clear_database_summary">ライブラリにないマンガの履歴を削除</string>
     <string name="version">バージョン</string>
-    <string name="build_time">ビルド日時</string>
     <string name="pref_enable_acra">クラッシュレポートを送信する</string>
     <string name="login_title">%1$sにログイン</string>
     <string name="username">ユーザー名</string>
@@ -223,7 +220,7 @@
     <string name="pref_clear_cookies">Cookiesを削除</string>
     <string name="cookies_cleared">Cookiesを削除しました</string>
     <string name="choices_reset">ダイヤログの選択をリセット</string>
-    <string name="clear_database_confirmation">データベースをクリアしてもよろしいですか？ライブラリにないマンガの読んだ章と読書進捗はすべて失われます</string>
+    <string name="clear_database_confirmation">データベースをクリアしてもよろしいですか？ライブラリにない漫画の読んだ章と読書進捗はすべて失われます</string>
     <string name="clear_database_completed">エントリーを削除しました</string>
     <string name="pref_refresh_library_tracking">追跡情報を更新</string>
     <string name="pref_refresh_library_tracking_summary">同期サービスでステータス、評価と最後に読んだ章を更新</string>
@@ -236,7 +233,7 @@
     <string name="source_requires_login">このソースを使用するにはログインが必要です</string>
     <string name="select_source">ソースを選択</string>
     <string name="no_valid_sources">有効なソースを少なくとも一つONにしてください</string>
-    <string name="no_more_results">結果はこれ以上ありません</string>
+    <string name="no_more_results">これ以上の結果はありません</string>
     <string name="added_to_library">マンガをライブラリに追加しました</string>
     <string name="action_global_search_hint">グローバル検索…</string>
     <string name="latest">最近の更新</string>
@@ -283,7 +280,7 @@
     <string name="completed">完結済み</string>
     <string name="dropped">放棄済み</string>
     <string name="on_hold">保留中</string>
-    <string name="plan_to_read">計画済み</string>
+    <string name="plan_to_read">読むつもり</string>
     <string name="score">評価</string>
     <string name="title">タイトル</string>
     <string name="status">ステータス</string>
@@ -458,7 +455,7 @@
     <string name="webtoon_side_padding_15">15%</string>
     <string name="webtoon_side_padding_10">10%</string>
     <string name="webtoon_side_padding_0">なし</string>
-    <string name="pref_webtoon_side_padding">パディング</string>
+    <string name="pref_webtoon_side_padding">余白</string>
     <string name="pref_category_reading">読書中</string>
     <string name="pref_always_show_chapter_transition">章の間の遷移エフェクトを常に表示</string>
     <string name="vertical_plus_viewer">上から下へ（連続）</string>
@@ -604,9 +601,6 @@
     <string name="clear_history_completed">履歴を削除しました</string>
     <string name="spen_next_page">次のページ</string>
     <string name="spen_previous_page">前のページ</string>
-    <string name="pref_backup_auto_create_legacy">同じくレガシー バックアップを作成</string>
-    <string name="pref_create_legacy_backup_summary">古いバージョンのTachiyomiで利用可能</string>
-    <string name="pref_create_legacy_backup">レガシー バックアップを作成</string>
     <string name="migration_help_guide">ソース移行ガイド</string>
     <string name="invalid_backup_file_type">無効なバックアップ ファイル：%1$s
 \nファイル拡張子は.proto.gzもしくは.jsonであるよう確認してください。</string>

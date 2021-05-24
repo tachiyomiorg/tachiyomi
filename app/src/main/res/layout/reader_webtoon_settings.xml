@@ -10,9 +10,9 @@
         android:id="@+id/webtoon_prefs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/webtoon_viewer"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
+        android:text="@string/webtoon_viewer"
         android:textAppearance="@style/TextAppearance.Medium.SubHeading" />
 
     <eu.kanade.tachiyomi.widget.MaterialSpinnerView
@@ -42,8 +42,8 @@
         android:layout_height="wrap_content"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:textColor="?android:attr/textColorSecondary"
-        android:text="@string/pref_crop_borders" />
+        android:text="@string/pref_crop_borders"
+        android:textColor="?android:attr/textColorSecondary" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/dual_page_split"
@@ -51,17 +51,17 @@
         android:layout_height="wrap_content"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:textColor="?android:attr/textColorSecondary"
-        android:text="@string/pref_dual_page_split" />
+        android:text="@string/pref_dual_page_split"
+        android:textColor="?android:attr/textColorSecondary" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/dual_page_invert"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:layout_height="wrap_content"
-        android:textColor="?android:attr/textColorSecondary"
         android:text="@string/pref_dual_page_invert"
+        android:textColor="?android:attr/textColorSecondary"
         android:visibility="gone"
         tools:visibility="visible" />
 

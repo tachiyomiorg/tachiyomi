@@ -66,13 +66,11 @@
     <string name="pref_category_about">Informazioni</string>
     <!-- General section -->
     <string name="pref_library_columns">Elementi per riga</string>
-    <string name="portrait">Orientamento verticale</string>
-    <string name="landscape">Orientamento orizzontale</string>
+    <string name="portrait">Verticale</string>
+    <string name="landscape">Orizzontale</string>
     <string name="default_columns">Predefinito</string>
     <string name="pref_library_update_interval">Frequenza di aggiornamento</string>
     <string name="update_never">Manuale</string>
-    <string name="update_1hour">Ogni ora</string>
-    <string name="update_2hour">Ogni 2 ore</string>
     <string name="update_3hour">Ogni 3 ore</string>
     <string name="update_6hour">Ogni 6 ore</string>
     <string name="update_12hour">Ogni 12 ore</string>
@@ -120,7 +118,7 @@
     <string name="zoom_start_left">Sinistra</string>
     <string name="zoom_start_right">Destra</string>
     <string name="zoom_start_center">Centro</string>
-    <string name="pref_rotation_type">Orientamento</string>
+    <string name="pref_rotation_type">Orientamento predefinito</string>
     <string name="rotation_free">Libero</string>
     <string name="rotation_force_portrait">Blocca verticale</string>
     <string name="rotation_force_landscape">Blocca orizzontale</string>
@@ -156,7 +154,6 @@
     <string name="clear_database_completed">Elementi eliminati</string>
     <!-- About section -->
     <string name="version">Versione</string>
-    <string name="build_time">Data della versione</string>
     <!-- ACRA -->
     <string name="pref_enable_acra">Invia segnalazioni</string>
     <string name="pref_acra_summary">Aiuta a correggere eventuali bug. Non verranno inviati dati sensibili</string>
@@ -401,7 +398,7 @@
     <string name="pref_skip_read_chapters">Salta i capitoli segnati come letti</string>
     <string name="filter_mode_default">Default</string>
     <string name="filter_mode_screen">Schermo</string>
-    <string name="pref_read_with_long_tap">Dialogo dopo pressione lunga</string>
+    <string name="pref_read_with_long_tap">Mostra alla pressione lunga</string>
     <string name="pref_color_filter_mode">Modalità di filtraggio del colore</string>
     <string name="filter_mode_overlay">Sovrimpressione</string>
     <string name="filter_mode_multiply">Moltiplica</string>
@@ -652,9 +649,6 @@
     <string name="migration_help_guide">Guida alla migrazione di origine</string>
     <string name="invalid_backup_file_type">File di backup non valido: %1$s
 \nDovrebbe terminare con .proto.gz oppure .json.</string>
-    <string name="pref_backup_auto_create_legacy">Crea anche backup legacy</string>
-    <string name="pref_create_legacy_backup_summary">Può essere utilizzato nelle versioni precedenti di Tachiyomi</string>
-    <string name="pref_create_legacy_backup">Crea backup legacy</string>
     <string name="pref_category_nsfw_content">Fonti NSFW (18+)</string>
     <string name="pref_label_nsfw_extension">Etichetta nella lista delle estensioni</string>
     <string name="pref_show_nsfw_extension">Mostra nella lista delle estensioni</string>
@@ -706,4 +700,15 @@
     <string name="action_show_errors">Mostra errori</string>
     <string name="update_check_eol">Questa versione di Android non è più supportata</string>
     <string name="clipboard_copy_error">Copia negli appunti fallito</string>
+    <string name="rotation_type">Orientamento</string>
+    <string name="default_rotation_type">Predefinito</string>
+    <string name="notification_incognito_text">Disabilita modalità incognito</string>
+    <string name="rotation_landscape">Orizzontale</string>
+    <string name="rotation_portrait">Verticale</string>
+    <string name="automatic_background">Automatico</string>
+    <string name="pref_create_folder_per_manga_summary">Crea cartelle relative al titolo del manga</string>
+    <string name="cancel_all_for_series">Annulla tutto per questa serie</string>
+    <string name="pref_create_folder_per_manga">Salva pagine in cartelle separate</string>
+    <string name="pref_reader_actions">Azioni</string>
+    <string name="pref_grayscale">Scala di grigio</string>
 </resources>

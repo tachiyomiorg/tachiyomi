@@ -51,7 +51,6 @@
     <string name="all">Всё</string>
     <string name="backup">Резервная копия</string>
     <string name="black_background">Черный</string>
-    <string name="build_time">Дата сборки</string>
     <string name="cache_delete_error">Возникла ошибка при удалении кэша</string>
     <string name="cache_deleted">Кэш очищен. %1$d файлов было удалено</string>
     <string name="chapter_downloaded">Загружено</string>
@@ -89,7 +88,7 @@
     <string name="download_1">Следующая глава</string>
     <string name="download_10">Следующие 10 глав</string>
     <string name="download_5">Следующие 5 глав</string>
-    <string name="download_all">Всё</string>
+    <string name="download_all">Все главы</string>
     <string name="download_notifier_downloader_title">Загрузчик</string>
     <string name="download_notifier_no_network">Нет сетевого соединения</string>
     <string name="download_notifier_page_error">Страница отсутствует в директории</string>
@@ -99,7 +98,7 @@
     <string name="download_notifier_unknown_error">Невозможно скачать главу из-за непревиденной ошибки</string>
     <string name="download_progress">Загружено %1$d%%</string>
     <string name="download_queue_error">Невозможно скачать главы. Можете попробовать еще раз в разделе загрузок</string>
-    <string name="download_unread">Не прочитано</string>
+    <string name="download_unread">Непрочитанные</string>
     <string name="downloading">Загружается…</string>
     <string name="dropped">Заброшено</string>
     <string name="error_category_exists">Категория с таким именем уже существует!</string>
@@ -189,7 +188,7 @@
     <string name="pref_reader_theme">Цвет фона</string>
     <string name="pref_remove_after_marked_as_read">После того, как было помечено вручную как прочитано</string>
     <string name="pref_remove_after_read">После прочтения</string>
-    <string name="pref_rotation_type">Ориентация</string>
+    <string name="pref_rotation_type">Тип ориентации по умолчанию</string>
     <string name="pref_show_page_number">Показывать номер страницы</string>
     <string name="pref_start_screen">Стартовый экран</string>
     <string name="pref_update_only_non_completed">Обновлять только незавершенную мангу</string>
@@ -229,8 +228,6 @@
     <string name="unknown_error">Неизвестная ошибка</string>
     <string name="update_12hour">Каждые 12 часов</string>
     <string name="update_24hour">Ежедневно</string>
-    <string name="update_1hour">Каждый час</string>
-    <string name="update_2hour">Каждые 2 часа</string>
     <string name="update_3hour">Каждые 3 часа</string>
     <string name="update_48hour">Каждые 2 дня</string>
     <string name="update_6hour">Каждые 6 часов</string>
@@ -363,7 +360,7 @@
     <string name="transition_no_previous">Предыдущей главы нет</string>
     <string name="transition_pages_loading">Идёт загрузка страниц…</string>
     <string name="transition_pages_error">Не удалось загрузить страницы: %1$s</string>
-    <string name="pref_read_with_long_tap">Диалог при долгом нажатии</string>
+    <string name="pref_read_with_long_tap">Показывать при долгом нажатии</string>
     <string name="action_open_in_web_view">Открыть в WebView</string>
     <string name="pref_skip_read_chapters">Пропускать прочитанные главы</string>
     <string name="pref_true_color">32-битный цвет</string>
@@ -639,9 +636,6 @@
     <string name="clear_history_completed">История удалена</string>
     <string name="spen_next_page">Следующая страница</string>
     <string name="spen_previous_page">Предыдущая страница</string>
-    <string name="pref_backup_auto_create_legacy">Также создавать резервную копию старого формата</string>
-    <string name="pref_create_legacy_backup_summary">Может быть использован в предыдущих версиях Tachiyomi</string>
-    <string name="pref_create_legacy_backup">Создать резервную копию старого формата</string>
     <string name="migration_help_guide">Руководство по миграции источников</string>
     <string name="invalid_backup_file_type">Неверный тип файла резервной копии: %1$s
 \nФайл должен заканчиваться на .proto.gz или .json.</string>
@@ -684,7 +678,7 @@
     <string name="nav_zone_next">Следующая</string>
     <string name="nav_zone_prev">Предыдущая</string>
     <string name="pref_show_navigation_mode_summary">Показывать зоны касания когда читалка открыта</string>
-    <string name="pref_show_navigation_mode">Показывать наложение макета навигации</string>
+    <string name="pref_show_navigation_mode">Показывать наложение схемы навигации</string>
     <string name="pref_dns_over_https">DNS по HTTPS</string>
     <string name="none">Нет</string>
     <string name="exclude">Исключать: %s</string>
@@ -698,4 +692,18 @@
     <string name="clipboard_copy_error">Не удалось скопировать в буфер обмена</string>
     <string name="rotation_landscape">Альбомная</string>
     <string name="rotation_portrait">Портретная</string>
+    <string name="pref_create_folder_per_manga_summary">Создавать папки в соответствии с названием манги</string>
+    <string name="pref_create_folder_per_manga">Сохранять страницы в отдельные папки</string>
+    <string name="pref_reader_actions">Действия</string>
+    <string name="rotation_type">Тип ориентации</string>
+    <string name="default_rotation_type">По умолчанию</string>
+    <string name="pref_grayscale">Оттенки серого</string>
+    <string name="notification_incognito_text">Выключить режим инкогнито</string>
+    <string name="automatic_background">Автоматически</string>
+    <string name="cancel_all_for_series">Отменить всё для этой серии</string>
+    <string name="error_no_match">Совпадений не найдено</string>
+    <string name="source_unsupported">Источник не поддерживается</string>
+    <string name="score_unsupported">Не поддерживается</string>
+    <string name="unread">Не прочитано</string>
+    <string name="pref_auto_add_track">Отслеживать бесшумно, при добавлении манги в библиотеку</string>
 </resources>

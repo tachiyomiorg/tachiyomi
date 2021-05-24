@@ -91,8 +91,6 @@
     <string name="default_columns">Predvolené</string>
     <string name="pref_library_update_interval">Frekvencia aktualizácie knižnice</string>
     <string name="update_never">Manuálne</string>
-    <string name="update_1hour">Raz za hodinu</string>
-    <string name="update_2hour">Každé 2 hodiny</string>
     <string name="update_3hour">Každé 3 hodiny</string>
     <string name="update_6hour">Každých 6 hodín</string>
     <string name="update_12hour">Každých 12 hodín</string>
@@ -237,7 +235,6 @@
     <string name="pref_refresh_library_tracking">Obnoviť metadáta sledovania</string>
     <string name="pref_refresh_library_tracking_summary">Aktualizuje stav, skóre a poslednú čítanú kapitolu zo sledovacích služieb</string>
     <string name="version">Verzia</string>
-    <string name="build_time">Čas sestavenia</string>
     <string name="pref_enable_acra">Odosielať správy o zlyhaní</string>
     <string name="pref_acra_summary">Pomáha opraviť akékoľvek chyby. Nebudú odoslané žiadne citlivé údaje</string>
     <string name="login_title">Prihlásení pre %1$s</string>

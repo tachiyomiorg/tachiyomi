@@ -57,13 +57,11 @@
     <string name="pref_category_about">Acerca de</string>
     <!-- General section -->
     <string name="pref_library_columns">Elementos por fila</string>
-    <string name="portrait">Vertical</string>
-    <string name="landscape">Horizontal</string>
+    <string name="portrait">Retrato</string>
+    <string name="landscape">La indicación</string>
     <string name="default_columns">Predeterminado</string>
     <string name="pref_library_update_interval">Frecuencia de actualización</string>
     <string name="update_never">Manual</string>
-    <string name="update_1hour">Cada hora</string>
-    <string name="update_2hour">Cada 2 horas</string>
     <string name="update_3hour">Cada 3 horas</string>
     <string name="update_6hour">Cada 6 horas</string>
     <string name="update_12hour">Cada 12 horas</string>
@@ -106,7 +104,7 @@
     <string name="zoom_start_left">Izquierda</string>
     <string name="zoom_start_right">Derecha</string>
     <string name="zoom_start_center">Centro</string>
-    <string name="pref_rotation_type">Rotación</string>
+    <string name="pref_rotation_type">Tipo de rotación predeterminado</string>
     <string name="rotation_free">Libre</string>
     <string name="rotation_force_portrait">Forzar retrato</string>
     <string name="rotation_force_landscape">Forzar en paisaje</string>
@@ -132,7 +130,6 @@
     <string name="clear_database_completed">Entradas eliminadas</string>
     <!-- About section -->
     <string name="version">Versión</string>
-    <string name="build_time">Hora de compilación</string>
     <!-- ACRA -->
     <string name="pref_enable_acra">Enviar informes de fallos</string>
     <string name="pref_acra_summary">Ayuda a corregir cualquier error. No se enviarán datos sensibles</string>
@@ -647,9 +644,6 @@
     <string name="clear_history_completed">Historial eliminado</string>
     <string name="spen_next_page">Siguiente página</string>
     <string name="spen_previous_page">Página anterior</string>
-    <string name="pref_backup_auto_create_legacy">También crear copia de seguridad heredada</string>
-    <string name="pref_create_legacy_backup_summary">Se puede utilizar en versiones anteriores de Tachiyomi</string>
-    <string name="pref_create_legacy_backup">Crear una copia de seguridad heredada</string>
     <string name="migration_help_guide">Guía de migración de fuentes</string>
     <string name="invalid_backup_file_type">Tipo de archivo de copia de seguridad no válido: %1$s
 \nDebería terminar con .proto.gz o .json.</string>
@@ -706,4 +700,10 @@
     <string name="action_show_errors">Mostrar Errores</string>
     <string name="action_display_show_number_of_items">Mostrar número de artículos</string>
     <string name="action_sort_chapter_fetch_date">Fecha obtenida</string>
+    <string name="rotation_type">Tipo de rotación</string>
+    <string name="default_rotation_type">Por defecto</string>
+    <string name="pref_create_folder_per_manga_summary">Crea carpetas según el título del manga</string>
+    <string name="pref_create_folder_per_manga">Guarda las páginas en carpetas separadas</string>
+    <string name="pref_reader_actions">Acciones</string>
+    <string name="pref_grayscale">Escala de grises</string>
 </resources>

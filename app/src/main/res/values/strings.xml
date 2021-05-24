@@ -166,6 +166,7 @@
     <string name="pref_date_format">Date format</string>
     <string name="pref_confirm_exit">Confirm exit</string>
     <string name="pref_hide_bottom_bar_on_scroll">Hide bottom bar on scroll</string>
+    <string name="pref_move_side_nav_to_bottom">Move side navigation buttons to bottom</string>
     <string name="pref_manage_notifications">Manage notifications</string>
 
     <string name="pref_category_security">Security</string>
@@ -198,8 +199,6 @@
     <string name="pref_category_library_update">Global update</string>
     <string name="pref_library_update_interval">Update frequency</string>
     <string name="update_never">Manual</string>
-    <string name="update_1hour">Hourly</string>
-    <string name="update_2hour">Every 2 hours</string>
     <string name="update_3hour">Every 3 hours</string>
     <string name="update_4hour">Every 4 hours</string>
     <string name="update_6hour">Every 6 hours</string>
@@ -378,6 +377,7 @@
 
       <!-- Tracking section -->
     <string name="pref_auto_update_manga_sync">Update chapter progress after reading</string>
+    <string name="pref_auto_add_track">Track silently when adding manga to library</string>
     <string name="services">Services</string>
     <string name="tracking_info">One-way sync to update the chapter progress in tracking services. Set up tracking for individual manga entries from their tracking button.</string>
 
@@ -583,6 +583,7 @@
     <string name="tracker_anilist" translatable="false">AniList</string>
     <string name="tracker_myanimelist" translatable="false">MyAnimeList</string>
     <string name="tracker_kitsu" translatable="false">Kitsu</string>
+    <string name="tracker_komga" translatable="false">Komga</string>
     <string name="tracker_bangumi" translatable="false">Bangumi</string>
     <string name="tracker_shikimori" translatable="false">Shikimori</string>
     <string name="manga_tracking_tab">Tracking</string>
@@ -591,6 +592,7 @@
         <item quantity="other">%d trackers</item>
     </plurals>
     <string name="add_tracking">Add tracking</string>
+    <string name="unread">Unread</string>
     <string name="reading">Reading</string>
     <string name="currently_reading">Currently reading</string>
     <string name="completed">Completed</string>
@@ -612,6 +614,9 @@
     <string name="error_invalid_date_supplied">Invalid date supplied</string>
     <string name="myanimelist_creds_missing">MAL login credentials not found</string>
     <string name="myanimelist_relogin">Please login to MAL again</string>
+    <string name="score_unsupported">Not supported</string>
+    <string name="source_unsupported">Source is not supported</string>
+    <string name="error_no_match">No match found</string>
 
     <!-- Category activity -->
     <string name="error_category_exists">A category with this name already exists!</string>

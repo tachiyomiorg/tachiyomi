@@ -85,8 +85,6 @@
     <string name="default_columns">Lalai</string>
     <string name="pref_library_update_interval">Kekerapan kemas kini</string>
     <string name="update_never">Manual</string>
-    <string name="update_1hour">Setiap jam</string>
-    <string name="update_2hour">Setiap 2 jam</string>
     <string name="update_3hour">Setiap 3 jam</string>
     <string name="update_6hour">Setiap 6 jam</string>
     <string name="update_12hour">Setiap 12 jam</string>
@@ -138,7 +136,7 @@
     <string name="zoom_start_left">Kiri</string>
     <string name="zoom_start_right">Kanan</string>
     <string name="zoom_start_center">Tengah</string>
-    <string name="pref_rotation_type">Putaran skrin</string>
+    <string name="pref_rotation_type">Jenis putaran skrin lalai</string>
     <string name="rotation_free">Bebas</string>
     <string name="rotation_force_portrait">Kekal potret</string>
     <string name="rotation_force_landscape">Kekal landskap</string>
@@ -190,7 +188,6 @@
     <string name="pref_refresh_library_tracking">Segar semula penjejakan</string>
     <string name="pref_refresh_library_tracking_summary">Kemas kini status, skor dan bab terakhir dibaca dari perkhidmatan penjejakan</string>
     <string name="version">Versi</string>
-    <string name="build_time">Masa binaan aplikasi</string>
     <string name="pref_enable_acra">Hantar laporan ranap</string>
     <string name="pref_acra_summary">Bantu membaiki aplikasi. Tiada data sensitif dihantar</string>
     <string name="login_title">Log masuk ke %1$s</string>
@@ -266,10 +263,10 @@
     <string name="custom_filter">Tapisan tersuai</string>
     <string name="set_as_cover">Set sebagai muka hadapan</string>
     <string name="cover_updated">Muka hadapan dikemas kini</string>
-    <string name="page_downloaded">Halaman disalin ke %1$s</string>
+    <string name="page_downloaded">Muka surat disalin ke %1$s</string>
     <string name="downloading">Memuat turun…</string>
     <string name="download_progress">%1$d%% dimuat turun</string>
-    <string name="chapter_progress">Halaman: %1$d</string>
+    <string name="chapter_progress">Muka surat: %1$d</string>
     <string name="chapter_subtitle">Bab %1$s</string>
     <string name="no_next_chapter">Bab seterusnya tidak dijumpai</string>
     <string name="no_previous_chapter">Bab sebelumnya tidak dijumpai</string>
@@ -303,8 +300,8 @@
     <string name="download_notifier_downloader_title">Pemuat turun</string>
     <string name="download_notifier_title_error">Ralat</string>
     <string name="download_notifier_unknown_error">Ralat tidak diketahui ketika memuat turun bab</string>
-    <string name="download_notifier_page_error">Halaman hilang dalam direktori</string>
-    <string name="download_notifier_page_ready_error">Halaman tidak dimuat</string>
+    <string name="download_notifier_page_error">Muka surat hilang dalam direktori</string>
+    <string name="download_notifier_page_ready_error">Muka surat tidak dapat dimuat</string>
     <string name="download_notifier_text_only_wifi">Tiada sambungan Wi-Fi yang tersedia</string>
     <string name="download_notifier_no_network">Tiada sambungan rangkaian tersedia</string>
     <string name="download_notifier_download_paused">Muat turun dihentikan sebentar</string>
@@ -336,7 +333,7 @@
     <string name="pref_double_tap_anim_speed">Kelajuan animasi ketik dua kali</string>
     <string name="pref_true_color">32-bit warna</string>
     <string name="pref_skip_read_chapters">Langkau bab yang sudah dibaca</string>
-    <string name="pref_read_with_long_tap">Menahan ketik buka dialog</string>
+    <string name="pref_read_with_long_tap">Tunjuk dialog bila menahan ketik</string>
     <string name="pager_viewer">Muka surat</string>
     <string name="double_tap_anim_speed_0">Tiada animasi</string>
     <string name="double_tap_anim_speed_normal">Biasa</string>
@@ -360,8 +357,8 @@
     <string name="transition_previous">Sebelumnya:</string>
     <string name="transition_no_next">Tiada bab seterusnya dijumpai</string>
     <string name="transition_no_previous">Tiada bab sebelumnya dijumpai</string>
-    <string name="transition_pages_loading">Memuatkan halaman…</string>
-    <string name="transition_pages_error">Gagal untuk memuatkan halaman: %1$s</string>
+    <string name="transition_pages_loading">Memuatkan muka surat…</string>
+    <string name="transition_pages_error">Gagal untuk memuatkan muka surat: %1$s</string>
     <string name="migration_info">Pilih sumber untuk ditukar</string>
     <string name="migration_dialog_what_to_include">Pilih data untuk disertakan</string>
     <string name="migrate">Beralih</string>
@@ -592,7 +589,7 @@
     <string name="also_set_chapter_settings_for_library">Gunakan juga untuk semua manga dalam pustaka</string>
     <string name="confirm_set_chapter_settings">Adakah anda pasti ingin simpan tetapan ini sebagai lalai\?</string>
     <string name="chapter_settings">Tetapan bab</string>
-    <string name="share_page_info">%1$s: %2$s, halaman %3$d</string>
+    <string name="share_page_info">%1$s: %2$s, muka surat %3$d</string>
     <string name="action_search_settings">Carian tetapan</string>
     <string name="downloaded_chapters">Bab dimuat turun</string>
     <string name="manga_from_library">Manga dari pustaka</string>
@@ -602,11 +599,8 @@
     <string name="pref_clear_history">Padamkan sejarah</string>
     <string name="clear_history_confirmation">Anda pasti\? Semua sejarah akan hilang.</string>
     <string name="clear_history_completed">Sejarah dipadamkan</string>
-    <string name="spen_next_page">Halaman seterusnya</string>
-    <string name="spen_previous_page">Halaman terdahulu</string>
-    <string name="pref_backup_auto_create_legacy">Buat juga sandaran legasi</string>
-    <string name="pref_create_legacy_backup_summary">Boleh digunakan pada versi Tachiyomi yang</string>
-    <string name="pref_create_legacy_backup">Buat sandaran legasi</string>
+    <string name="spen_next_page">Muka surat seterusnya</string>
+    <string name="spen_previous_page">Muka surat terdahulu</string>
     <string name="migration_help_guide">Panduan memindahkan sumber</string>
     <string name="invalid_backup_file_type">Jenis fail sandaran tidak sah: %1$s\t
 \nIa sepatutnya berakhir dengan .proto.gz atau .json.</string>
@@ -663,4 +657,13 @@
     <string name="clipboard_copy_error">Gagal menyalin ke papan keratan</string>
     <string name="rotation_landscape">Landskap</string>
     <string name="rotation_portrait">Potret</string>
+    <string name="pref_reader_actions">Tindakan</string>
+    <string name="pref_create_folder_per_manga_summary">Mencipta folder mengikut tajuk manga</string>
+    <string name="pref_create_folder_per_manga">Simpan halaman ke folder berasingan</string>
+    <string name="rotation_type">Jenis putaran skrin</string>
+    <string name="default_rotation_type">Lalai</string>
+    <string name="pref_grayscale">Skala kelabu</string>
+    <string name="notification_incognito_text">Nyahdaya mod inkognito</string>
+    <string name="automatic_background">Automatik</string>
+    <string name="cancel_all_for_series">Batalkan semua untuk siri ini</string>
 </resources>

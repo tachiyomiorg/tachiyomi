@@ -49,14 +49,12 @@
     <string name="update_12hour">Svakih 12 sati</string>
     <string name="update_6hour">Svakih 6 sati</string>
     <string name="update_3hour">Svaka 3 sata</string>
-    <string name="update_2hour">Svaka 2 sata</string>
-    <string name="update_1hour">Svaki sat</string>
     <string name="update_never">Ručno</string>
     <string name="pref_library_update_interval">Učestalost ažuriranja</string>
     <string name="pref_category_library_update">Globalno ažuriranje</string>
     <string name="default_columns">Standardno</string>
-    <string name="landscape">Ležeće</string>
-    <string name="portrait">Uspravno</string>
+    <string name="landscape">Ležeći format</string>
+    <string name="portrait">Uspravni format</string>
     <string name="pref_library_columns">Broj elemenata po retku</string>
     <string name="pref_category_display">Prikaz</string>
     <string name="hide_notification_content">Sakrij sadržaj obavijesti</string>
@@ -236,7 +234,7 @@
     <string name="rotation_force_landscape">Zaključaj ležeće</string>
     <string name="rotation_force_portrait">Zaključaj uspravno</string>
     <string name="rotation_free">Slobodno</string>
-    <string name="pref_rotation_type">Okretanje</string>
+    <string name="pref_rotation_type">Standardno okretanje</string>
     <string name="double_tap_anim_speed_fast">Brzo</string>
     <string name="double_tap_anim_speed_normal">Normalno</string>
     <string name="double_tap_anim_speed_0">Bez animacije</string>
@@ -271,7 +269,7 @@
     <string name="filter_mode_multiply">Pomnoži</string>
     <string name="filter_mode_overlay">Prekrij</string>
     <string name="filter_mode_default">Standardno</string>
-    <string name="pref_color_filter_mode">Način stapanja filtra boja</string>
+    <string name="pref_color_filter_mode">Modus stapanja filtra boja</string>
     <string name="pref_custom_color_filter">Prilagođeni filtar boja</string>
     <string name="pref_custom_brightness">Prilagođena svjetlina</string>
     <string name="pref_crop_borders">Odreži rubove</string>
@@ -283,7 +281,7 @@
     <string name="pref_lock_orientation">Zaključaj položaj</string>
     <string name="pref_cutout_short">Prikaži sadržaj u izrezanom području</string>
     <string name="pref_reader_theme">Boja pozadine</string>
-    <string name="pref_read_with_long_tap">Dijaloški okvir pri dugom dodiru</string>
+    <string name="pref_read_with_long_tap">Prikaži pri dugom dodiru</string>
     <string name="pref_read_with_tapping">Dodir</string>
     <string name="pref_read_with_volume_keys_inverted">Preokreni tipke za glasnoću</string>
     <string name="pref_read_with_volume_keys">Tipke za glasnoću</string>
@@ -391,7 +389,7 @@
     <string name="manga_download">Preuzmi</string>
     <string name="sort_by_number">Po broju poglavlja</string>
     <string name="sort_by_source">Po izvoru</string>
-    <string name="sorting_mode">Način razvrstavanja</string>
+    <string name="sorting_mode">Modus razvrstavanja</string>
     <string name="show_chapter_number">Broj poglavlja</string>
     <string name="show_title">Naslov izvora</string>
     <string name="fetch_chapters_error">Nije moguće dohvatiti poglavlja</string>
@@ -465,7 +463,6 @@
     <string name="pref_enable_acra">Pošalji izvještaj o padu programa</string>
     <string name="check_for_updates">Traži nove verzije</string>
     <string name="licenses">Licence otvorenog koda</string>
-    <string name="build_time">Datum izdanja</string>
     <string name="version">Verzija</string>
     <string name="website">Web-stranica</string>
     <string name="battery_optimization_setting_activity_not_found">Nije moguće otvoriti postavke uređaja</string>
@@ -621,16 +618,13 @@
     <string name="manga_from_library">Manga iz biblioteke</string>
     <string name="downloaded_chapters">Preuzeta poglavlja</string>
     <string name="pref_hide_bottom_bar_on_scroll">Sakrij donju traku pri klizanju</string>
-    <string name="pref_incognito_mode">Anonimni način rada</string>
+    <string name="pref_incognito_mode">Anonimni modus</string>
     <string name="pref_incognito_mode_summary">Zaustavlja čitanje povijesti</string>
     <string name="pref_clear_history">Izbriši povijest</string>
     <string name="clear_history_confirmation">Sigurno\? Izgubit ćeš svu povijest.</string>
     <string name="clear_history_completed">Povijest je izbrisana</string>
     <string name="spen_next_page">Sljedeća stranica</string>
     <string name="spen_previous_page">Prethodna stranica</string>
-    <string name="pref_backup_auto_create_legacy">Također spremi zastarjelu sigurnosnu kopiju</string>
-    <string name="pref_create_legacy_backup_summary">Može se koristiti u starijim Tachiyomi verzijama</string>
-    <string name="pref_create_legacy_backup">Stvori zastarjelu sigurnosnu kopiju</string>
     <string name="migration_help_guide">Vodič za migraciju izvora</string>
     <string name="invalid_backup_file_type">Neispravna datoteka sigurnosne kopije: %1$s
 \nTrebala bi završiti s .proto.gz ili .json.</string>
@@ -687,4 +681,13 @@
     <string name="clipboard_copy_error">Kopiranje nije uspješno</string>
     <string name="rotation_landscape">Ležeće</string>
     <string name="rotation_portrait">Uspravno</string>
+    <string name="pref_grayscale">Sive nijanse</string>
+    <string name="notification_incognito_text">Deaktiviraj anonimni modus</string>
+    <string name="rotation_type">Okretanje</string>
+    <string name="default_rotation_type">Standardno</string>
+    <string name="automatic_background">Automatski</string>
+    <string name="pref_create_folder_per_manga_summary">Stvara mape na osnovi naslova mange</string>
+    <string name="pref_create_folder_per_manga">Spremi stranice u zasebne mape</string>
+    <string name="pref_reader_actions">Radnje</string>
+    <string name="cancel_all_for_series">Prekini sve za ovu seriju</string>
 </resources>

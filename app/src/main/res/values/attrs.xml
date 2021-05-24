@@ -22,5 +22,7 @@
     <attr name="colorFilterActive" format="reference|integer"/>
     <attr name="colorBackgroundSplash" format="reference|integer"/>
     <attr name="colorAccentOnPrimary" format="reference|integer"/>
+    <attr name="rippleSecondaryColor" format="reference|integer"/>
+    <attr name="rippleToolbarColor" format="reference|integer"/>
 
 </resources>

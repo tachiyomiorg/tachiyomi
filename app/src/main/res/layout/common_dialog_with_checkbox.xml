@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="-5dp"
-        android:layout_marginTop="@dimen/material_component_dialogs_padding_between_text_and_touch_target"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="0dp" />
 
 </LinearLayout>

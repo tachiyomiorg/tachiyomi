@@ -5,16 +5,25 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import eu.kanade.tachiyomi.R.string
 import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.data.track.UnattendedTrackService
 import eu.kanade.tachiyomi.databinding.TrackControllerBinding
+import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.ui.base.controller.openInBrowser
 import eu.kanade.tachiyomi.ui.manga.MangaController
+import eu.kanade.tachiyomi.util.lang.launchIO
+import eu.kanade.tachiyomi.util.lang.withUIContext
 import eu.kanade.tachiyomi.util.system.copyToClipboard
+import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.widget.sheet.BaseBottomSheetDialog
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 
 class TrackSheet(
     val controller: MangaController,
-    val manga: Manga
+    val manga: Manga,
+    private val sourceManager: SourceManager = Injekt.get()
 ) : BaseBottomSheetDialog(controller.activity!!),
     TrackAdapter.OnClickListener,
     SetTrackStatusDialog.Listener,
@@ -41,15 +50,10 @@ class TrackSheet(
         adapter.items = controller.presenter.trackList
     }
 
-    override fun onStart() {
-        super.onStart()
-        sheetBehavior.skipCollapsed = true
-    }
-
     override fun show() {
         super.show()
         controller.presenter.refreshTrackers()
-        sheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+        sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
     }
 
     fun onNextTrackers(trackers: List<TrackItem>) {
@@ -69,7 +73,31 @@ class TrackSheet(
 
     override fun onSetClick(position: Int) {
         val item = adapter.getItem(position) ?: return
-        TrackSearchDialog(controller, item.service).showDialog(controller.router, TAG_SEARCH_CONTROLLER)
+
+        if (item.service is UnattendedTrackService) {
+            if (item.track != null) {
+                controller.presenter.unregisterTracking(item.service)
+                return
+            }
+
+            if (!item.service.accept(sourceManager.getOrStub(manga.source))) {
+                controller.presenter.view?.applicationContext?.toast(string.source_unsupported)
+                return
+            }
+
+            launchIO {
+                try {
+                    item.service.match(manga)?.let { track ->
+                        controller.presenter.registerTracking(track, item.service)
+                    }
+                        ?: withUIContext { controller.presenter.view?.applicationContext?.toast(string.error_no_match) }
+                } catch (e: Exception) {
+                    withUIContext { controller.presenter.view?.applicationContext?.toast(string.error_no_match) }
+                }
+            }
+        } else {
+            TrackSearchDialog(controller, item.service).showDialog(controller.router, TAG_SEARCH_CONTROLLER)
+        }
     }
 
     override fun onTitleLongClick(position: Int) {
@@ -94,7 +122,7 @@ class TrackSheet(
 
     override fun onScoreClick(position: Int) {
         val item = adapter.getItem(position) ?: return
-        if (item.track == null) return
+        if (item.track == null || item.service.getScoreList().isEmpty()) return
 
         SetTrackScoreDialog(controller, this, item).showDialog(controller.router)
     }

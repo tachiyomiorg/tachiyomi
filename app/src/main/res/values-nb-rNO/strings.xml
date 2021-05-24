@@ -81,8 +81,6 @@
     <string name="pref_category_about">Om</string>
     <string name="default_columns">Forvalg</string>
     <string name="update_never">Manuell</string>
-    <string name="update_1hour">Timevis</string>
-    <string name="update_2hour">Hver andre time</string>
     <string name="update_3hour">Hver tredje time</string>
     <string name="update_6hour">Hver sjette time</string>
     <string name="update_12hour">Hver tolvte time</string>
@@ -135,7 +133,7 @@
     <string name="pref_read_with_volume_keys">Lydstyrkejusteringstaster</string>
     <string name="pref_read_with_volume_keys_inverted">Inverter lydstyrketaster</string>
     <string name="pref_read_with_tapping">Trykking</string>
-    <string name="pref_read_with_long_tap">Dialogvindu for langt trykk</string>
+    <string name="pref_read_with_long_tap">Vis ved langt trykk</string>
     <string name="pref_reader_theme">Bakgrunnsfarge</string>
     <string name="white_background">Hvit</string>
     <string name="black_background">Svart</string>
@@ -161,10 +159,10 @@
     <string name="double_tap_anim_speed_0">Ingen animasjon</string>
     <string name="double_tap_anim_speed_normal">Normal</string>
     <string name="double_tap_anim_speed_fast">Rask</string>
-    <string name="pref_rotation_type">Rotasjon</string>
+    <string name="pref_rotation_type">Forvalgt rotasjon</string>
     <string name="rotation_free">Fri</string>
-    <string name="rotation_force_portrait">Tving stående</string>
-    <string name="rotation_force_landscape">Tving liggende</string>
+    <string name="rotation_force_portrait">Låst stående</string>
+    <string name="rotation_force_landscape">Låst liggende</string>
     <string name="color_filter_r_value">R</string>
     <string name="color_filter_g_value">G</string>
     <string name="color_filter_b_value">B</string>
@@ -210,7 +208,6 @@
     <string name="pref_refresh_library_tracking">Oppdater sporing</string>
     <string name="pref_refresh_library_tracking_summary">Oppdaterer status, poengsum og sist leste kapittel fra sporingstjenestene</string>
     <string name="version">Versjon</string>
-    <string name="build_time">Byggtid</string>
     <string name="pref_enable_acra">Send krasjrapporter</string>
     <string name="pref_acra_summary">Hjelper til med fiksing av feil. Ingen sensitiv data vil bli sendt</string>
     <string name="login_title">Logg på %1$s</string>
@@ -627,9 +624,6 @@
     <string name="pref_dump_crash_logs_summary">Lagrer feillogger i en fil som kan sendes til utviklerne</string>
     <string name="invalid_backup_file_type">Ugyldig backup filtype: %1$s
 \nDen burde ende med .proto.gz eller .json.</string>
-    <string name="pref_backup_auto_create_legacy">Opdrett også legacy sikkerhetskopi</string>
-    <string name="pref_create_legacy_backup_summary">Kan brukes i eldre versjoner av Tachiyomi</string>
-    <string name="pref_create_legacy_backup">Oppdrett legacy sikkerhetskopi</string>
     <string name="pref_viewer_nav">Navigasjonsoppsett</string>
     <string name="edge_nav">Edge</string>
     <string name="kindlish_nav">Kindle-basert</string>
@@ -675,4 +669,9 @@
     <string name="update_check_eol">Denne Android-versjonen støttes ikke lenger</string>
     <string name="rotation_landscape">Liggende</string>
     <string name="rotation_portrait">Stående</string>
+    <string name="rotation_type">Rotasjon</string>
+    <string name="default_rotation_type">Forvalg</string>
+    <string name="pref_create_folder_per_manga_summary">Oppretter mapper i henhold til manga-tittel</string>
+    <string name="pref_create_folder_per_manga">Lagrer sider i egne mapper</string>
+    <string name="pref_reader_actions">Handlinger</string>
 </resources>

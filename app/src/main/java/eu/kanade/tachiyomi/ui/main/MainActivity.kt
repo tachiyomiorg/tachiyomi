@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -13,7 +14,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
-import androidx.core.view.marginTop
 import androidx.core.view.updateLayoutParams
 import androidx.lifecycle.lifecycleScope
 import androidx.preference.PreferenceDialogController
@@ -146,8 +146,16 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
             )
 
             // Set behavior of bottom nav
-            preferences.hideBottomBar()
+            preferences.hideBottomBarOnScroll()
                 .asImmediateFlow { setBottomNavBehaviorOnScroll() }
+                .launchIn(lifecycleScope)
+        }
+
+        if (binding.sideNav != null) {
+            preferences.showSideNavOnBottom()
+                .asImmediateFlow {
+                    binding.sideNav?.menuGravity = if (!it) Gravity.TOP else Gravity.BOTTOM
+                }
                 .launchIn(lifecycleScope)
         }
 
@@ -216,6 +224,9 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
         syncActivityViewWithController(router.backstack.lastOrNull()?.controller())
 
         if (savedInstanceState == null) {
+            // Reset Incognito Mode on relaunch
+            preferences.incognitoMode().set(false)
+
             // Show changelog prompt on update
             if (Migrations.upgrade(preferences) && !BuildConfig.DEBUG) {
                 WhatsNewDialogController().showDialog(router)
@@ -490,7 +501,7 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
     fun fixViewToBottom(view: View) {
         val listener = AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
             val maxAbsOffset = appBarLayout.measuredHeight - binding.tabs.measuredHeight
-            view.translationY = -maxAbsOffset - verticalOffset.toFloat() + appBarLayout.marginTop
+            view.translationY = -maxAbsOffset - verticalOffset.toFloat() + appBarLayout.paddingTop
         }
         binding.appbar.addOnOffsetChangedListener(listener)
         fixedViewsToBottom[view] = listener
@@ -506,7 +517,7 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
 
         binding.bottomNav?.updateLayoutParams<CoordinatorLayout.LayoutParams> {
             behavior = when {
-                preferences.hideBottomBar().get() -> HideBottomViewOnScrollBehavior<View>()
+                preferences.hideBottomBarOnScroll().get() -> HideBottomViewOnScrollBehavior<View>()
                 else -> null
             }
         }

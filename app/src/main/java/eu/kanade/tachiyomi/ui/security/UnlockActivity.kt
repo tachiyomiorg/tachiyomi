@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.biometric.BiometricPrompt
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.ui.base.activity.BaseThemedActivity
-import eu.kanade.tachiyomi.util.system.BiometricUtil
+import eu.kanade.tachiyomi.util.system.AuthenticatorUtil
 import timber.log.Timber
 import java.util.Date
 import java.util.concurrent.Executors
@@ -12,7 +12,7 @@ import java.util.concurrent.Executors
 /**
  * Blank activity with a BiometricPrompt.
  */
-class BiometricUnlockActivity : BaseThemedActivity() {
+class UnlockActivity : BaseThemedActivity() {
 
     private val executor = Executors.newSingleThreadExecutor()
 
@@ -40,10 +40,10 @@ class BiometricUnlockActivity : BaseThemedActivity() {
 
         var promptInfo = BiometricPrompt.PromptInfo.Builder()
             .setTitle(getString(R.string.unlock_app))
-            .setAllowedAuthenticators(BiometricUtil.getSupportedAuthenticators(this))
+            .setAllowedAuthenticators(AuthenticatorUtil.getSupportedAuthenticators(this))
             .setConfirmationRequired(false)
 
-        if (!BiometricUtil.isDeviceCredentialAllowed(this)) {
+        if (!AuthenticatorUtil.isDeviceCredentialAllowed(this)) {
             promptInfo = promptInfo.setNegativeButtonText(getString(R.string.action_cancel))
         }
 

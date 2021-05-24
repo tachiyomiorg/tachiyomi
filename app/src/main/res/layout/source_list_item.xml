@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/material_component_lists_single_line_with_avatar_height"
+    android:layout_height="56dp"
     android:layout_gravity="center_vertical"
     android:background="@drawable/list_item_selector_background"
     android:paddingStart="8dp"
@@ -11,8 +11,8 @@
 
     <ImageView
         android:id="@+id/thumbnail"
-        android:layout_width="@dimen/material_component_lists_single_line_with_avatar_height"
-        android:layout_height="@dimen/material_component_lists_single_line_with_avatar_height"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
         android:layout_gravity="center_vertical"
         android:padding="8dp"
         android:scaleType="centerCrop"

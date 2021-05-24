@@ -80,8 +80,6 @@
     <string name="default_columns">Standard</string>
     <string name="pref_library_update_interval">Häufigkeit der Aktualisierung</string>
     <string name="update_never">Manuell</string>
-    <string name="update_1hour">Stündlich</string>
-    <string name="update_2hour">Alle 2 Stunden</string>
     <string name="update_3hour">Alle 3 Stunden</string>
     <string name="update_6hour">Alle 6 Stunden</string>
     <string name="update_12hour">Alle 12 Stunden</string>
@@ -133,10 +131,10 @@
     <string name="zoom_start_left">Links</string>
     <string name="zoom_start_right">Rechts</string>
     <string name="zoom_start_center">Mitte</string>
-    <string name="pref_rotation_type">Ausrichtung</string>
+    <string name="pref_rotation_type">Standard-Ausrichtungstyp</string>
     <string name="rotation_free">Frei</string>
-    <string name="rotation_force_portrait">Hochformat sperren</string>
-    <string name="rotation_force_landscape">Querformat sperren</string>
+    <string name="rotation_force_portrait">Hochformat erzwingen</string>
+    <string name="rotation_force_landscape">Querformat erzwingen</string>
     <string name="color_filter_r_value">R</string>
     <string name="color_filter_g_value">G</string>
     <string name="color_filter_b_value">B</string>
@@ -185,7 +183,6 @@
     <string name="pref_refresh_library_tracking">Tracking aktualisieren</string>
     <string name="pref_refresh_library_tracking_summary">Synchronisiert den Lesestatus, die Bewertung und das zuletzt gelesene Kapitel mit den angemeldeten Trackinganbietern</string>
     <string name="version">Version</string>
-    <string name="build_time">Erstellt am</string>
     <string name="pref_enable_acra">Fehlerberichte senden</string>
     <string name="pref_acra_summary">Hilft bei der Behebung von Fehlern. Keine sensiblen Daten werden gesendet</string>
     <string name="login_title">Bei %1$s anmelden</string>
@@ -366,7 +363,7 @@
     <string name="action_open_in_web_view">In WebView öffnen</string>
     <string name="pref_true_color">32-Bit Farben</string>
     <string name="pref_skip_read_chapters">Überspringe gelesene Kapitel</string>
-    <string name="pref_read_with_long_tap">Langes Tippen für Kontextmenü</string>
+    <string name="pref_read_with_long_tap">Bei langem Antippen anzeigen</string>
     <string name="filter_mode_default">Standard</string>
     <string name="filter_mode_overlay">Überlagerung</string>
     <string name="filter_mode_multiply">Multiplizieren</string>
@@ -499,7 +496,7 @@
     <string name="check_for_updates">Nach Aktualisierungen suchen</string>
     <string name="last_used_source">Zuletzt genutzt</string>
     <string name="local_source_help_guide">Anleitung für lokale Quellen</string>
-    <string name="restore_duration">%02d Min. %02d Sek.</string>
+    <string name="restore_duration">%02d Min., %02d Sek.</string>
     <string name="downloaded_only_summary">Filtert alle Manga in deiner Bibliothek</string>
     <plurals name="download_queue_summary">
         <item quantity="one">1 verbleibend</item>
@@ -616,9 +613,6 @@
     <string name="clear_history_completed">Verlauf gelöscht</string>
     <string name="spen_next_page">Nächste Seite</string>
     <string name="spen_previous_page">Vorherige Seite</string>
-    <string name="pref_backup_auto_create_legacy">Auch eine Legacy-Sicherung erstellen</string>
-    <string name="pref_create_legacy_backup_summary">Können in älteren Versionen von Tachiyomi verwendet werden</string>
-    <string name="pref_create_legacy_backup">Legacy-Sicherung erstellen</string>
     <string name="migration_help_guide">Quellenmigration</string>
     <string name="invalid_backup_file_type">Ungültiger Sicherungsdateientyp: %1$s
 \nDie Datei sollte mit .proto.gz oder .json enden.</string>
@@ -674,5 +668,14 @@
     <string name="update_check_eol">Diese Android-Version wird nicht mehr unterstützt</string>
     <string name="clipboard_copy_error">Kopieren in die Zwischenablage fehlgeschlagen</string>
     <string name="rotation_landscape">Querformat</string>
-    <string name="rotation_portrait">Porträt</string>
+    <string name="rotation_portrait">Hochformat</string>
+    <string name="pref_create_folder_per_manga_summary">Erstellt Ordner nach Manga-Titel</string>
+    <string name="pref_create_folder_per_manga">Speichere Seiten in separate Ordner</string>
+    <string name="rotation_type">Ausrichtungstyp</string>
+    <string name="default_rotation_type">Standard</string>
+    <string name="pref_reader_actions">Aktionen</string>
+    <string name="pref_grayscale">Graustufen</string>
+    <string name="notification_incognito_text">Inkognito-Modus deaktivieren</string>
+    <string name="automatic_background">Automatisch</string>
+    <string name="cancel_all_for_series">Alles für diese Serie abbrechen</string>
 </resources>

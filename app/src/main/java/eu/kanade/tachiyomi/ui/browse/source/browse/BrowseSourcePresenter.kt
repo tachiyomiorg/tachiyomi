@@ -9,6 +9,9 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.database.models.MangaCategory
 import eu.kanade.tachiyomi.data.database.models.toMangaInfo
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.track.TrackManager
+import eu.kanade.tachiyomi.data.track.TrackService
+import eu.kanade.tachiyomi.data.track.UnattendedTrackService
 import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.Filter
@@ -30,6 +33,7 @@ import eu.kanade.tachiyomi.ui.browse.source.filter.TextSectionItem
 import eu.kanade.tachiyomi.ui.browse.source.filter.TriStateItem
 import eu.kanade.tachiyomi.ui.browse.source.filter.TriStateSectionItem
 import eu.kanade.tachiyomi.util.chapter.ChapterSettingsHelper
+import eu.kanade.tachiyomi.util.chapter.syncChaptersWithTrackServiceTwoWay
 import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.lang.withUIContext
 import eu.kanade.tachiyomi.util.removeCovers
@@ -101,6 +105,8 @@ open class BrowseSourcePresenter(
      * Subscription for one request from the pager.
      */
     private var pageSubscription: Subscription? = null
+
+    private val loggedServices by lazy { Injekt.get<TrackManager>().services.filter { it.isLogged } }
 
     init {
         query = searchQuery ?: ""
@@ -260,9 +266,34 @@ open class BrowseSourcePresenter(
             manga.removeCovers(coverCache)
         } else {
             ChapterSettingsHelper.applySettingDefaults(manga)
+
+            if (prefs.autoAddTrack()) {
+                autoAddTrack(manga)
+            }
         }
 
         db.insertManga(manga).executeAsBlocking()
+    }
+
+    private fun autoAddTrack(manga: Manga) {
+        loggedServices
+            .filterIsInstance<UnattendedTrackService>()
+            .filter { it.accept(source) }
+            .forEach { service ->
+                launchIO {
+                    try {
+                        service.match(manga)?.let { track ->
+                            track.manga_id = manga.id!!
+                            (service as TrackService).bind(track)
+                            db.insertTrack(track).executeAsBlocking()
+
+                            syncChaptersWithTrackServiceTwoWay(db, db.getChapters(manga).executeAsBlocking(), track, service as TrackService)
+                        }
+                    } catch (e: Exception) {
+                        Timber.w(e, "Could not match manga: ${manga.title} with service $service")
+                    }
+                }
+            }
     }
 
     /**

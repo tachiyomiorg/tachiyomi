@@ -346,10 +346,8 @@
     <string name="update_weekly">هفتگی</string>
     <string name="update_48hour">هر ۴۸ ساعت یکبار</string>
     <string name="update_3hour">هر ۳ ساعت یکبار</string>
-    <string name="update_2hour">هر ۲ ساعت یکبار</string>
     <string name="update_24hour">هر ۲۴ ساعت یکبار</string>
     <string name="update_6hour">هر ۶ ساعت یکبار</string>
-    <string name="update_1hour">یک ساعت یکبار</string>
     <string name="update_never">فقط دستی</string>
     <string name="pref_library_update_interval">زمان بروزرسانی کتابخانه</string>
     <string name="pref_category_library_update">آپدیت‌ها</string>
@@ -469,7 +467,6 @@
     <string name="pref_enable_acra">ارسال گزارش های خرابی</string>
     <string name="check_for_updates">بررسی برای به آپدیت‌ها</string>
     <string name="licenses">مجوزهای منبع باز</string>
-    <string name="build_time">زمان ساخت</string>
     <string name="version">نسخهٔ</string>
     <string name="website">وب سایت</string>
     <string name="battery_optimization_setting_activity_not_found">تنظیمات دستگاه باز نشد</string>
@@ -586,8 +583,6 @@
     <string name="updated_version">به نسخه v%1$s آپدیت شد</string>
     <string name="pref_hide_bottom_bar_on_scroll">نوار پایین هنگام اسکرول کردن پنهان شود</string>
     <string name="action_search_settings">جست و جوی تنضیمات</string>
-    <string name="pref_backup_auto_create_legacy">همچنین یک نسخه پشتیبان با تکنولوژی قدیمی بساز</string>
-    <string name="pref_create_legacy_backup">ساخت نسخه پشتیبان با تکنولوژی قدیمی</string>
     <string name="downloaded_chapters">قسمت های دانلود شده</string>
     <string name="manga_from_library">مانگاهای کتابخانه</string>
     <string name="pref_incognito_mode_summary">متوقف کردن تاریخچه خواندن</string>
@@ -595,7 +590,6 @@
     <string name="clear_history_confirmation">آیا مطمئن هستید؟ تمام سابقه از دست خواهد رفت.</string>
     <string name="clear_history_completed">سابقه پاک شد</string>
     <string name="invalid_backup_file_type">فایل پشتیبان نامعتبر: %1$s</string>
-    <string name="pref_create_legacy_backup_summary">در نسخه های قدیمی تر Tachiyomi قابل استفاده است</string>
     <string name="ext_nsfw_short">18+</string>
     <string name="pref_category_nsfw_content">منابع محتوای جنسی (+18)</string>
     <string name="parental_controls_info">این مانع از این نمی شود که افزونه های غیررسمی یا به طور بالقوه به اشتباه پرچم گذاری شده و روی محتوای بالای 18+ در برنامه ظاهر شوند.</string>

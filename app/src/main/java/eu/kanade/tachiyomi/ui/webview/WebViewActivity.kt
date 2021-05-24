@@ -91,7 +91,7 @@ class WebViewActivity : BaseViewBindingActivity<WebviewActivityBinding>() {
                 }
             }
         } else {
-            binding.webview.restoreState(bundle)
+            binding.webview.restoreState(bundle!!)
         }
 
         if (bundle == null) {
@@ -199,7 +199,7 @@ class WebViewActivity : BaseViewBindingActivity<WebviewActivityBinding>() {
     }
 
     private fun openInBrowser() {
-        openInBrowser(binding.webview.url)
+        openInBrowser(binding.webview.url!!)
     }
 
     companion object {

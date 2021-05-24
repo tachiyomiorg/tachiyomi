@@ -72,8 +72,6 @@
     <string name="default_columns">Standaard</string>
     <string name="pref_library_update_interval">Updatefrequentie</string>
     <string name="update_never">Handmatig</string>
-    <string name="update_1hour">Ieder uur</string>
-    <string name="update_2hour">Iedere 2 uur</string>
     <string name="update_3hour">Iedere 3 uur</string>
     <string name="update_6hour">Iedere 6 uur</string>
     <string name="update_12hour">Iedere 12 uur</string>
@@ -112,7 +110,7 @@
     <string name="zoom_start_left">Links</string>
     <string name="zoom_start_right">Rechts</string>
     <string name="zoom_start_center">Midden</string>
-    <string name="pref_rotation_type">Rotatie</string>
+    <string name="pref_rotation_type">Standaard draaitype</string>
     <string name="rotation_free">Vrij</string>
     <string name="color_filter_r_value">R</string>
     <string name="color_filter_g_value">G</string>
@@ -244,8 +242,8 @@
     <string name="pref_image_scale_type">Schaalmodus</string>
     <string name="scale_type_fit_screen">Aanpassen aan scherm</string>
     <string name="pref_zoom_start">Zoom startpositie</string>
-    <string name="rotation_force_portrait">Forceer staand</string>
-    <string name="rotation_force_landscape">Forceer liggend</string>
+    <string name="rotation_force_portrait">Vergrendeld staand</string>
+    <string name="rotation_force_landscape">Vergrendeld liggend</string>
     <string name="pref_remove_after_marked_as_read">Nadat ze handmatig gemarkeerd zijn als gelezen</string>
     <string name="pref_remove_after_read">Na het lezen</string>
     <string name="disabled">Uitgeschakeld</string>
@@ -257,7 +255,6 @@
     <string name="pref_clear_database">Database leegmaken</string>
     <string name="pref_clear_database_summary">Verwijder geschiedenis voor manga die niet in je bibliotheek zijn opgeslagen</string>
     <string name="pref_refresh_library_tracking">Tracking bijwerken</string>
-    <string name="build_time">Gecompileerd op</string>
     <string name="pref_enable_acra">Rapporteer bugs</string>
     <string name="pref_acra_summary">Helpt bij het oplossen van bugs. Er wordt geen gevoelige data verzonden</string>
     <string name="information_no_recent_manga">Niks recent gelezen</string>
@@ -334,7 +331,7 @@
     <string name="ext_version_info">Versie: %1$s</string>
     <string name="ext_language_info">Taal: %1$s</string>
     <string name="pref_double_tap_anim_speed">Dubbeltik animatiesnelheid</string>
-    <string name="pref_read_with_long_tap">Lange tik dialoog</string>
+    <string name="pref_read_with_long_tap">Weergeven bij lang tikken</string>
     <string name="pager_viewer">Gepagineerd</string>
     <string name="double_tap_anim_speed_0">Geen animatie</string>
     <string name="double_tap_anim_speed_normal">Normaal</string>
@@ -616,9 +613,6 @@
     <string name="pref_hide_bottom_bar_on_scroll">Navigatiebalk verbergen bij het scrollen</string>
     <string name="spen_next_page">Volgende pagina</string>
     <string name="spen_previous_page">Vorige pagina</string>
-    <string name="pref_backup_auto_create_legacy">Maak ook een verouderde backup</string>
-    <string name="pref_create_legacy_backup_summary">Kan gebruikt worden in oudere versies van Tachiyomi</string>
-    <string name="pref_create_legacy_backup">Verourderde back-up maken</string>
     <string name="migration_help_guide">Bronmigratiegids</string>
     <string name="invalid_backup_file_type">Ongeldig type back-upbestand: %1$s
 \nDe bestandsnaam moet eindigen op .proto.gz of .json.</string>
@@ -673,4 +667,15 @@
     <string name="action_show_errors">Fouten weergeven</string>
     <string name="update_check_eol">Deze Android versie wordt niet meer ondersteund</string>
     <string name="clipboard_copy_error">Mislukt om naar het klemboord te kopiëren</string>
+    <string name="notification_incognito_text">Incognitomodus uitschakelen</string>
+    <string name="rotation_landscape">Liggend</string>
+    <string name="rotation_portrait">Staand</string>
+    <string name="rotation_type">Draaitype</string>
+    <string name="default_rotation_type">Standaard</string>
+    <string name="automatic_background">Automatisch</string>
+    <string name="pref_create_folder_per_manga_summary">Mappen aanmaken op basis van mangatitel</string>
+    <string name="pref_create_folder_per_manga">Pagina\'s opslaan in aparte mappen</string>
+    <string name="pref_reader_actions">Acties</string>
+    <string name="pref_grayscale">Grijstinten</string>
+    <string name="cancel_all_for_series">Alles annuleren voor deze serie</string>
 </resources>

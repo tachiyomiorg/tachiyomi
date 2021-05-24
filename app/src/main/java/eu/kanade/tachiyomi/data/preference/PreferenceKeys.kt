@@ -13,7 +13,9 @@ object PreferenceKeys {
 
     const val confirmExit = "pref_confirm_exit"
 
-    const val hideBottomBar = "pref_hide_bottom_bar_on_scroll"
+    const val hideBottomBarOnScroll = "pref_hide_bottom_bar_on_scroll"
+
+    const val showSideNavOnBottom = "pref_show_side_nav_on_bottom"
 
     const val enableTransitions = "pref_enable_transitions_key"
 
@@ -97,6 +99,8 @@ object PreferenceKeys {
 
     const val autoUpdateTrack = "pref_auto_update_manga_sync_key"
 
+    const val autoAddTrack = "pref_auto_add_track_key"
+
     const val lastUsedSource = "last_catalogue_source"
 
     const val lastUsedCategory = "last_used_category"
@@ -152,7 +156,7 @@ object PreferenceKeys {
 
     const val startScreen = "start_screen"
 
-    const val useBiometricLock = "use_biometric_lock"
+    const val useAuthenticator = "use_biometric_lock"
 
     const val lockAppAfter = "lock_app_after"
 

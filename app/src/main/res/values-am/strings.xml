@@ -43,8 +43,6 @@
     <string name="update_12hour">በየ 12 ሰዓቱ</string>
     <string name="update_6hour">በየ 6 ሰዓቱ</string>
     <string name="update_3hour">በየ 3 ሰዓቱ</string>
-    <string name="update_2hour">በየ 2 ሰዓቱ</string>
-    <string name="update_1hour">በየሰዓቱ</string>
     <string name="update_never">መመሪያ</string>
     <string name="pref_library_update_interval">የቤተ-መጽሐፍት ማዘመኛ ድግግሞሽ</string>
     <string name="pref_category_library_update">ዝመናዎች</string>
