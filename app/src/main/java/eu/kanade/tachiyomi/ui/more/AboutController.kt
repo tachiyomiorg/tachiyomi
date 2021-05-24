@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.ui.more
 
 import android.app.Dialog
+import android.os.Build
 import android.os.Bundle
 import androidx.core.os.bundleOf
 import androidx.preference.PreferenceScreen
@@ -15,91 +16,59 @@ import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.base.controller.NoToolbarElevationController
 import eu.kanade.tachiyomi.ui.base.controller.openInBrowser
 import eu.kanade.tachiyomi.ui.setting.SettingsController
-import eu.kanade.tachiyomi.util.CrashLogUtil
 import eu.kanade.tachiyomi.util.lang.launchNow
-import eu.kanade.tachiyomi.util.lang.toDateTimestampString
 import eu.kanade.tachiyomi.util.preference.add
 import eu.kanade.tachiyomi.util.preference.onClick
 import eu.kanade.tachiyomi.util.preference.preference
-import eu.kanade.tachiyomi.util.preference.preferenceCategory
 import eu.kanade.tachiyomi.util.preference.titleRes
-import eu.kanade.tachiyomi.util.system.copyToClipboard
-import eu.kanade.tachiyomi.util.system.openInBrowser
 import eu.kanade.tachiyomi.util.system.toast
 import timber.log.Timber
-import java.text.DateFormat
-import java.text.ParseException
-import java.text.SimpleDateFormat
-import java.util.Locale
-import java.util.TimeZone
 
 class AboutController : SettingsController(), NoToolbarElevationController {
 
     private val updateChecker by lazy { GithubUpdateChecker() }
 
-    private val dateFormat: DateFormat = preferences.dateFormat()
-
     private val isUpdaterEnabled = BuildConfig.INCLUDE_UPDATER
 
     override fun setupPreferenceScreen(screen: PreferenceScreen) = screen.apply {
-        titleRes = R.string.pref_category_about
+        add(AboutHeaderPreference(context))
 
-        add(MoreHeaderPreference(context))
-
-        add(AboutLinksPreference(context))
-
-        preferenceCategory {
+        if (isUpdaterEnabled) {
             preference {
-                key = "pref_about_version"
-                titleRes = R.string.version
-                summary = if (BuildConfig.DEBUG) {
-                    "Preview r${BuildConfig.COMMIT_COUNT} (${BuildConfig.COMMIT_SHA}, ${getFormattedBuildTime()})"
-                } else {
-                    "Stable ${BuildConfig.VERSION_NAME} (${getFormattedBuildTime()})"
-                }
+                key = "pref_about_check_for_updates"
+                titleRes = R.string.check_for_updates
 
-                onClick {
-                    activity?.let {
-                        val deviceInfo = CrashLogUtil(it).getDebugInfo()
-                        it.copyToClipboard("Debug information", deviceInfo)
-                    }
-                }
-            }
-            if (isUpdaterEnabled) {
-                preference {
-                    key = "pref_about_check_for_updates"
-                    titleRes = R.string.check_for_updates
-
-                    onClick { checkVersion() }
-                }
-            }
-            preference {
-                key = "pref_about_whats_new"
-                titleRes = R.string.whats_new
-
-                onClick {
-                    val url = if (BuildConfig.DEBUG) {
-                        "https://github.com/tachiyomiorg/tachiyomi-preview/releases/tag/r${BuildConfig.COMMIT_COUNT}"
-                    } else {
-                        "https://github.com/tachiyomiorg/tachiyomi/releases/tag/v${BuildConfig.VERSION_NAME}"
-                    }
-                    openInBrowser(url)
-                }
-            }
-            preference {
-                key = "pref_about_licenses"
-                titleRes = R.string.licenses
-                onClick {
-                    LibsBuilder()
-                        .withActivityTitle(activity!!.getString(R.string.licenses))
-                        .withAboutIconShown(false)
-                        .withAboutVersionShown(false)
-                        .withLicenseShown(true)
-                        .withEdgeToEdge(true)
-                        .start(activity!!)
-                }
+                onClick { checkVersion() }
             }
         }
+        preference {
+            key = "pref_about_whats_new"
+            titleRes = R.string.whats_new
+
+            onClick {
+                val url = if (BuildConfig.DEBUG) {
+                    "https://github.com/tachiyomiorg/tachiyomi-preview/releases/tag/r${BuildConfig.COMMIT_COUNT}"
+                } else {
+                    "https://github.com/tachiyomiorg/tachiyomi/releases/tag/v${BuildConfig.VERSION_NAME}"
+                }
+                openInBrowser(url)
+            }
+        }
+        preference {
+            key = "pref_about_licenses"
+            titleRes = R.string.licenses
+            onClick {
+                LibsBuilder()
+                    .withActivityTitle(activity!!.getString(R.string.licenses))
+                    .withAboutIconShown(false)
+                    .withAboutVersionShown(false)
+                    .withLicenseShown(true)
+                    .withEdgeToEdge(true)
+                    .start(activity!!)
+            }
+        }
+
+        add(AboutLinksPreference(context))
     }
 
     /**
@@ -158,22 +127,18 @@ class AboutController : SettingsController(), NoToolbarElevationController {
         }
     }
 
-    private fun getFormattedBuildTime(): String {
-        return try {
-            val inputDf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'", Locale.US)
-            inputDf.timeZone = TimeZone.getTimeZone("UTC")
-            val buildTime = inputDf.parse(BuildConfig.BUILD_TIME)
-
-            val outputDf = DateFormat.getDateTimeInstance(
-                DateFormat.MEDIUM,
-                DateFormat.SHORT,
-                Locale.getDefault()
-            )
-            outputDf.timeZone = TimeZone.getDefault()
-
-            buildTime.toDateTimestampString(dateFormat)
-        } catch (e: ParseException) {
-            BuildConfig.BUILD_TIME
+    private fun getAndroidVersionInfo(): String {
+        var info = "Android "
+        info += if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            Build.VERSION.RELEASE_OR_CODENAME
+        } else {
+            Build.VERSION.RELEASE
         }
+        info += " (SDK ${Build.VERSION.SDK_INT}"
+        if (Build.VERSION.PREVIEW_SDK_INT >= 0) {
+            info += ".${Build.VERSION.PREVIEW_SDK_INT}"
+        }
+        info += ") ${Build.DISPLAY} ${Build.SUPPORTED_ABIS[0]}"
+        return info
     }
 }

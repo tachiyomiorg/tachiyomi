@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/colorPrimary"
+    android:elevation="2dp"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="32dp">
+
+    <ImageView
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:importantForAccessibility="no"
+        app:srcCompat="@drawable/ic_tachi"
+        app:tint="?attr/colorOnPrimary" />
+
+    <TextView
+        android:id="@+id/appName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:textAppearance="?attr/textAppearanceHeadline6"
+        tools:text="Tachiyomi Preview" />
+
+    <TextView
+        android:id="@+id/version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceBody2"
+        android:textColor="?android:textColorSecondary"
+        tools:text="Version r8888 (xxxxxx)" />
+
+</LinearLayout>

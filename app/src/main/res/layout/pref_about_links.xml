@@ -4,70 +4,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp">
+    android:gravity="center">
 
-    <com.google.android.material.button.MaterialButton
+    <ImageButton
         android:id="@+id/btn_website"
-        style="@style/Theme.Widget.Button.Action"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:text="@string/website"
-        app:icon="@drawable/ic_public_24dp"
-        app:iconTint="?attr/colorAccent" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/website"
+        android:padding="16dp"
+        android:src="@drawable/ic_public_24dp"
+        app:tint="?attr/colorAccent" />
 
-    <com.google.android.material.button.MaterialButton
+    <ImageButton
         android:id="@+id/btn_discord"
-        style="@style/Theme.Widget.Button.Action"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:text="Discord"
-        app:icon="@drawable/ic_discord_24dp"
-        app:iconTint="?attr/colorAccent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Discord"
+        android:padding="16dp"
+        android:src="@drawable/ic_discord_24dp"
+        app:tint="?attr/colorAccent"
         tools:ignore="HardcodedText" />
 
-    <com.google.android.material.button.MaterialButton
+    <ImageButton
         android:id="@+id/btn_twitter"
-        style="@style/Theme.Widget.Button.Action"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:text="Twitter"
-        app:icon="@drawable/ic_twitter_24dp"
-        app:iconTint="?attr/colorAccent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Twitter"
+        android:padding="16dp"
+        android:src="@drawable/ic_twitter_24dp"
+        app:tint="?attr/colorAccent"
         tools:ignore="HardcodedText" />
 
-    <com.google.android.material.button.MaterialButton
+    <ImageButton
         android:id="@+id/btn_facebook"
-        style="@style/Theme.Widget.Button.Action"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:text="Facebook"
-        app:icon="@drawable/ic_facebook_24dp"
-        app:iconTint="?attr/colorAccent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Facebook"
+        android:padding="16dp"
+        android:src="@drawable/ic_facebook_24dp"
+        app:tint="?attr/colorAccent"
         tools:ignore="HardcodedText" />
 
-    <com.google.android.material.button.MaterialButton
+    <ImageButton
         android:id="@+id/btn_github"
-        style="@style/Theme.Widget.Button.Action"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:text="GitHub"
-        app:icon="@drawable/ic_github_24dp"
-        app:iconTint="?attr/colorAccent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="GitHub"
+        android:padding="16dp"
+        android:src="@drawable/ic_github_24dp"
+        app:tint="?attr/colorAccent"
         tools:ignore="HardcodedText" />
 
 </LinearLayout>
