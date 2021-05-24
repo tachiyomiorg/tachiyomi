@@ -264,7 +264,7 @@
     <!--===============-->
 
     <!--== AMOLED base ==-->
-    <style name="Theme.Tachiyomi.Dark.Amoled">
+    <style name="Theme.Base.Amoled" parent="Theme.Tachiyomi.Dark">
         <!-- Theme colors -->
         <item name="colorPrimary">@color/colorAmoledPrimary</item>
         <item name="colorPrimaryVariant">@color/colorAmoledPrimary</item>
@@ -288,13 +288,13 @@
     </style>
 
     <!--== AMOLED theme ==-->
-    <style name="Theme.Tachiyomi.Amoled" parent="Theme.Tachiyomi.Dark.Amoled" />
+    <style name="Theme.Tachiyomi.Amoled" parent="Theme.Base.Amoled" />
 
     <!--==============-->
     <!-- Reader Theme -->
     <!--==============-->
     <!--== Hot Pink theme ==-->
-    <style name="Theme.Tachiyomi.Amoled.HotPink" parent="Theme.Tachiyomi.Dark.Amoled">
+    <style name="Theme.Tachiyomi.Amoled.HotPink">
         <!-- Theme colors -->
         <item name="colorOnPrimary">@color/textColorPrimaryPink</item>
         <item name="colorAccentOnPrimary">@color/colorAccentPink</item>
