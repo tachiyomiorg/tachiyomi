@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.ui.reader.setting
 
+import android.animation.ValueAnimator
 import android.os.Bundle
 import com.google.android.material.tabs.TabLayout
 import eu.kanade.tachiyomi.R
@@ -16,13 +17,21 @@ class ReaderSettingsSheet(
     private val generalSettings = ReaderGeneralSettings(activity)
     private val colorFilterSettings = ReaderColorFilterSettings(activity)
 
+    private val backgroundDimAnimator by lazy {
+        val sheetBackgroundDim = window?.attributes?.dimAmount ?: 0.25f
+        ValueAnimator.ofFloat(sheetBackgroundDim, 0f).also { valueAnimator ->
+            valueAnimator.duration = 250
+            valueAnimator.addUpdateListener {
+                window?.setDimAmount(it.animatedValue as Float)
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         sheetBehavior.isFitToContents = false
         sheetBehavior.halfExpandedRatio = 0.25f
-
-        val sheetBackgroundDim = window?.attributes?.dimAmount ?: 0.25f
 
         val filterTabIndex = getTabViews().indexOf(colorFilterSettings)
         binding.tabs.addOnTabSelectedListener(object : SimpleTabSelectedListener() {
@@ -30,7 +39,15 @@ class ReaderSettingsSheet(
                 val isFilterTab = tab?.position == filterTabIndex
 
                 // Remove dimmed backdrop so color filter changes can be previewed
-                window?.setDimAmount(if (isFilterTab) 0f else sheetBackgroundDim)
+                backgroundDimAnimator.run {
+                    if (isFilterTab) {
+                        if (animatedFraction < 1f) {
+                            start()
+                        }
+                    } else if (animatedFraction > 0f) {
+                        reverse()
+                    }
+                }
 
                 // Hide toolbars
                 if (activity.menuVisible != !isFilterTab) {
