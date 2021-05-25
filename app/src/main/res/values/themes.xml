@@ -445,6 +445,10 @@
 
     <!--== Dark Grey Reader ==-->
     <style name="Theme.Reader.Dark.Grey" parent="Theme.Base.Reader.Dark">
+        <!-- Theme colors -->
+        <item name="colorSurface">@color/backgroundDark</item>
+
+        <!-- Base background/text colors -->
         <item name="android:colorBackground">@color/backgroundDark</item>
     </style>
 
