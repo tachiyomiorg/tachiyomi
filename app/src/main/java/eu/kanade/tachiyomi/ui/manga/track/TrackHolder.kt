@@ -42,7 +42,11 @@ class TrackHolder(private val binding: TrackItemBinding, adapter: TrackAdapter) 
         binding.trackSet.isVisible = track == null
         binding.trackTitle.isVisible = track != null
 
-        binding.trackDetails.isVisible = track != null
+        binding.topDivider.isVisible = track != null
+        binding.middleRow.isVisible = track != null
+        binding.bottomDivider.isVisible = track != null
+        binding.bottomRow.isVisible = track != null
+
         if (track != null) {
             binding.trackTitle.text = track.title
             binding.trackChapters.text = "${track.last_chapter_read}/" +
@@ -63,9 +67,7 @@ class TrackHolder(private val binding: TrackItemBinding, adapter: TrackAdapter) 
                     if (track.finished_reading_date != 0L) dateFormat.format(track.finished_reading_date) else "-"
             } else {
                 binding.bottomDivider.isVisible = false
-                binding.vertDivider3.isVisible = false
-                binding.trackStartDate.isVisible = false
-                binding.trackFinishDate.isVisible = false
+                binding.bottomRow.isVisible = false
             }
         }
     }
