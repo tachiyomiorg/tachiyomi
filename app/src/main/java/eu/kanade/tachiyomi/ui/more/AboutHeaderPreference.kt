@@ -7,6 +7,8 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceViewHolder
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.util.CrashLogUtil
+import eu.kanade.tachiyomi.util.system.copyToClipboard
 
 class AboutHeaderPreference @JvmOverloads constructor(
     context: Context,
@@ -28,6 +30,10 @@ class AboutHeaderPreference @JvmOverloads constructor(
             "r${BuildConfig.COMMIT_COUNT} (${BuildConfig.COMMIT_SHA})"
         } else {
             "v${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})"
+        }
+        version.setOnClickListener {
+            val deviceInfo = CrashLogUtil(context).getDebugInfo()
+            context.copyToClipboard("Debug information", deviceInfo)
         }
     }
 
