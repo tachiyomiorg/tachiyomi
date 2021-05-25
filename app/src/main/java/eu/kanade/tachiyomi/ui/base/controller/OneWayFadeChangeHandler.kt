@@ -29,13 +29,16 @@ class OneWayFadeChangeHandler : FadeChangeHandler {
     ): Animator {
         val animator = AnimatorSet()
         if (to != null) {
-            val start: Float = if (toAddedToContainer) 0F else to.alpha
+            val start: Float = if (toAddedToContainer) 0f else to.alpha
             animator.play(ObjectAnimator.ofFloat(to, View.ALPHA, start, 1f))
         }
 
         if (from != null && (!isPush || removesFromViewOnPush())) {
-            container.removeView(from)
+            // Removing it from the container had as a side-effect to break the visibility of the
+            // app toolbar if it was not visible (ie the search text view was expanded).
+            animator.play(ObjectAnimator.ofFloat(from, View.ALPHA, 0f, 0f))
         }
+
         return animator
     }
 
