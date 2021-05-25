@@ -20,7 +20,11 @@ sealed class Filter<T>(val name: String, var state: T) {
 
     abstract class Group<V>(name: String, state: List<V>) : Filter<List<V>>(name, state)
 
-    abstract class RadioGroup(name: String, val values: Array<String>, state: Int = 0) : Filter<Int>(name, state)
+    /*
+    This has been made a subclass of Select in order to keep backwards compatibility with old
+    Tachiyomi versions. Old versions using an extension with this filter will fall back to a Select dropdown
+     */
+    abstract class RadioGroup(name: String, values: Array<String>, state: Int = 0) : Select<String>(name, values, state)
 
     abstract class Sort(name: String, val values: Array<String>, state: Selection? = null) :
         Filter<Sort.Selection?>(name, state) {

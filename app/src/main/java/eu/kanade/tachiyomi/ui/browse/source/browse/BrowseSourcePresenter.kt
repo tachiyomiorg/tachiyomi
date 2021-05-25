@@ -20,6 +20,8 @@ import eu.kanade.tachiyomi.ui.browse.source.filter.CheckboxItem
 import eu.kanade.tachiyomi.ui.browse.source.filter.CheckboxSectionItem
 import eu.kanade.tachiyomi.ui.browse.source.filter.GroupItem
 import eu.kanade.tachiyomi.ui.browse.source.filter.HeaderItem
+import eu.kanade.tachiyomi.ui.browse.source.filter.RadioGroupItem
+import eu.kanade.tachiyomi.ui.browse.source.filter.RadioItem
 import eu.kanade.tachiyomi.ui.browse.source.filter.SelectItem
 import eu.kanade.tachiyomi.ui.browse.source.filter.SelectSectionItem
 import eu.kanade.tachiyomi.ui.browse.source.filter.SeparatorItem
@@ -29,8 +31,6 @@ import eu.kanade.tachiyomi.ui.browse.source.filter.TextItem
 import eu.kanade.tachiyomi.ui.browse.source.filter.TextSectionItem
 import eu.kanade.tachiyomi.ui.browse.source.filter.TriStateItem
 import eu.kanade.tachiyomi.ui.browse.source.filter.TriStateSectionItem
-import eu.kanade.tachiyomi.ui.browse.source.filter.RadioGroupItem
-import eu.kanade.tachiyomi.ui.browse.source.filter.RadioItem
 import eu.kanade.tachiyomi.util.chapter.ChapterSettingsHelper
 import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.lang.withUIContext
@@ -288,6 +288,14 @@ open class BrowseSourcePresenter(
                 is Filter.CheckBox -> CheckboxItem(filter)
                 is Filter.TriState -> TriStateItem(filter)
                 is Filter.Text -> TextItem(filter)
+                is Filter.RadioGroup -> {
+                    val radioGroup = RadioGroupItem(filter)
+                    val subItems = filter.values.map { value ->
+                        RadioItem(value, radioGroup)
+                    }
+                    radioGroup.subItems = subItems
+                    radioGroup
+                }
                 is Filter.Select<*> -> SelectItem(filter)
                 is Filter.Group<*> -> {
                     val group = GroupItem(filter)
@@ -311,14 +319,6 @@ open class BrowseSourcePresenter(
                     }
                     group.subItems = subItems
                     group
-                }
-                is Filter.RadioGroup -> {
-                    val radioGroup = RadioGroupItem(filter)
-                    val subItems = filter.values.map { value ->
-                        RadioItem(value, radioGroup)
-                    }
-                    radioGroup.subItems = subItems
-                    radioGroup
                 }
             }
         }
