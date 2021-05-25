@@ -46,6 +46,11 @@
     <color name="dialogDark">@color/colorDarkPrimary</color>
     <color name="selectorColorDark">@color/md_blue_A200_50</color>
 
+    <!-- Green Apple Theme -->
+    <color name="colorAccentApple">#48E484</color>
+    <color name="rippleSecondaryColorApple">#0A48E484</color>
+    <color name="selectorColorApple">#8048E484</color>
+
     <!-- Midnight Dusk Theme -->
     <color name="colorAccentDusk">#F02475</color>
     <color name="textColorPrimaryDusk">@color/md_white_1000</color>

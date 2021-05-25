@@ -248,6 +248,20 @@
         <item name="rippleToolbarColor">@color/md_black_1000_12</item>
     </style>
 
+    <!--== Green Apple theme ==-->
+    <style name="Theme.Tachiyomi.Dark.GreenApple">
+        <!-- Theme colors -->
+        <item name="colorAccentOnPrimary">@color/colorAccentApple</item>
+        <item name="colorSecondary">@color/colorAccentApple</item>
+        <item name="colorAccent">@color/colorAccentApple</item>
+
+        <!-- Ripples -->
+        <item name="rippleSecondaryColor">@color/rippleSecondaryColorApple</item>
+
+        <!-- Custom Attributes-->
+        <item name="colorLibrarySelectionActive">@color/selectorColorApple</item>
+    </style>
+
     <!--== Midnight Dusk theme ==-->
     <style name="Theme.Tachiyomi.Dark.MidnightDusk" parent="Theme.Base.Dark">
         <!-- Theme colors -->

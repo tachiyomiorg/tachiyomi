@@ -25,6 +25,7 @@ object PreferenceValues {
     enum class DarkThemeVariant {
         default,
         blue,
+        greenapple,
         midnightdusk,
         amoled,
         hotpink,
