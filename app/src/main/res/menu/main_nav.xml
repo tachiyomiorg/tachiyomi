@@ -6,7 +6,7 @@
         android:title="@string/label_library" />
     <item
         android:id="@+id/nav_updates"
-        android:icon="@drawable/ic_new_releases_state"
+        android:icon="@drawable/ic_updates_selector_24dp"
         android:title="@string/label_recent_updates" />
     <item
         android:id="@+id/nav_history"
