@@ -12,7 +12,9 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.library.LibraryUpdateJob
+import eu.kanade.tachiyomi.data.preference.CHARGING
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.preference.UNMETERED_NETWORK
 import eu.kanade.tachiyomi.data.preference.asImmediateFlow
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
@@ -152,9 +154,8 @@ class SettingsLibraryController : SettingsController() {
                 key = Keys.libraryUpdateRestriction
                 titleRes = R.string.pref_library_update_restriction
                 entriesRes = arrayOf(R.string.network_unmetered, R.string.charging)
-                entryValues = arrayOf("wifi", "ac")
-                summaryRes = R.string.pref_library_update_restriction_summary
-                defaultValue = setOf("wifi")
+                entryValues = arrayOf(UNMETERED_NETWORK, CHARGING)
+                defaultValue = setOf(UNMETERED_NETWORK)
 
                 preferences.libraryUpdateInterval().asImmediateFlow { isVisible = it > 0 }
                     .launchIn(viewScope)
@@ -164,6 +165,33 @@ class SettingsLibraryController : SettingsController() {
                     Handler().post { LibraryUpdateJob.setupTask(context) }
                     true
                 }
+
+                fun updateSummary() {
+                    val restrictions = preferences.libraryUpdateRestriction().get()
+                        .sorted()
+                        .map {
+                            when (it) {
+                                UNMETERED_NETWORK -> context.getString(R.string.network_unmetered)
+                                CHARGING -> context.getString(R.string.charging)
+                                else -> it
+                            }
+                        }
+                    val restrictionsText = if (restrictions.isEmpty()) {
+                        context.getString(R.string.none)
+                    } else {
+                        restrictions.joinToString()
+                    }
+
+                    summary = buildSpannedString {
+                        append(context.getString(R.string.pref_library_update_restriction_summary))
+                        appendLine()
+                        append(context.getString(R.string.restrictions, restrictionsText))
+                    }
+                }
+
+                preferences.libraryUpdateRestriction().asFlow()
+                    .onEach { updateSummary() }
+                    .launchIn(viewScope)
             }
             switchPreference {
                 key = Keys.updateOnlyNonCompleted

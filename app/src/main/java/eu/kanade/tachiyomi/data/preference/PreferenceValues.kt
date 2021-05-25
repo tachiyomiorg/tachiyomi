@@ -1,5 +1,8 @@
 package eu.kanade.tachiyomi.data.preference
 
+const val UNMETERED_NETWORK = "wifi"
+const val CHARGING = "ac"
+
 /**
  * This class stores the values for the preferences in the application.
  */
