@@ -23,6 +23,8 @@
         <item name="colorPrimaryVariant">@color/md_white_1000</item>
         <item name="colorSecondary">@color/colorAccentLight</item>
         <item name="colorOnSecondary">@color/md_white_1000</item>
+        <item name="colorTertiary">@color/green</item>
+        <item name="colorOnTertiary">@color/md_white_1000</item>
         <item name="colorSurface">@color/dialogLight</item>
         <item name="colorOnSurface">@color/textColorPrimaryLight</item>
         <item name="colorOnBackground">@color/textColorPrimaryLight</item>
@@ -137,6 +139,8 @@
         <!-- Theme colors -->
         <item name="colorAccentOnPrimary">@color/colorAccentStrawberry</item>
         <item name="colorSecondary">@color/colorAccentStrawberry</item>
+        <item name="colorTertiary">@color/md_blue_A400</item>
+        <item name="colorOnTertiary">@color/md_white_1000</item>
         <item name="colorAccent">@color/colorAccentStrawberry</item>
 
         <!-- Ripples -->
@@ -159,6 +163,8 @@
         <item name="colorPrimaryVariant">@color/colorDarkPrimary</item>
         <item name="colorSecondary">@color/colorAccentDark</item>
         <item name="colorOnSecondary">@color/textColorPrimaryDark</item>
+        <item name="colorTertiary">@color/green</item>
+        <item name="colorOnTertiary">@color/md_white_1000</item>
         <item name="colorSurface">@color/dialogDark</item>
         <item name="colorOnSurface">@color/textColorPrimaryDark</item>
         <item name="colorOnBackground">@color/textColorPrimaryDark</item>
@@ -272,6 +278,8 @@
         <item name="colorPrimaryVariant">@color/dialogDusk</item>
         <item name="colorSecondary">@color/colorAccentDusk</item>
         <item name="colorOnSecondary">@color/textColorPrimaryDusk</item>
+        <item name="colorTertiary">@color/md_blue_A400</item>
+        <item name="colorOnTertiary">@color/md_white_1000</item>
         <item name="colorSurface">@color/dialogDusk</item>
         <item name="colorOnSurface">@color/textColorPrimaryDusk</item>
         <item name="colorOnBackground">@color/textColorPrimaryDusk</item>
@@ -385,6 +393,8 @@
         <item name="colorAccentOnPrimary">@color/colorAccentPink</item>
         <item name="colorSecondary">@color/colorAccentPink</item>
         <item name="colorOnSecondary">@color/textColorPrimaryPink</item>
+        <item name="colorTertiary">@color/md_blue_A400</item>
+        <item name="colorOnTertiary">@color/md_white_1000</item>
         <item name="colorOnSurface">@color/textColorPrimaryPink</item>
         <item name="colorOnBackground">@color/textColorPrimaryPink</item>
         <item name="colorAccent">@color/colorAccentPink</item>
