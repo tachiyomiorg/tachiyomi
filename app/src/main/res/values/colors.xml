@@ -48,6 +48,7 @@
 
     <!-- Green Apple Theme -->
     <color name="colorAccentApple">#48E484</color>
+    <color name="colorOnSecondaryApple">@color/md_black_1000</color>
     <color name="rippleSecondaryColorApple">#0A48E484</color>
     <color name="selectorColorApple">#8048E484</color>
 

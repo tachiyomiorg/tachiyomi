@@ -253,6 +253,7 @@
         <!-- Theme colors -->
         <item name="colorAccentOnPrimary">@color/colorAccentApple</item>
         <item name="colorSecondary">@color/colorAccentApple</item>
+        <item name="colorOnSecondary">@color/colorOnSecondaryApple</item>
         <item name="colorAccent">@color/colorAccentApple</item>
 
         <!-- Ripples -->
