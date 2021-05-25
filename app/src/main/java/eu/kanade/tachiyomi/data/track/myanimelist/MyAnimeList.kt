@@ -66,7 +66,7 @@ class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
         return track.score.toInt().toString()
     }
 
-    suspend fun add(track: Track): Track {
+    private suspend fun add(track: Track): Track {
         track.status = READING
         track.score = 0F
         return api.updateItem(track)
