@@ -8,6 +8,22 @@
     android:padding="8dp">
 
     <ImageView
+        android:id="@+id/download_status_icon"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        tools:ignore="ContentDescription" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/download_progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="2dp"
+        android:progress="100"
+        app:indicatorInset="0dp"
+        app:indicatorSize="22dp" />
+
+    <ImageView
         android:id="@+id/download_icon"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,24 +31,6 @@
         android:scaleType="fitXY"
         app:srcCompat="@drawable/ic_arrow_downward_24dp"
         app:tint="?android:attr/textColorHint"
-        tools:ignore="ContentDescription" />
-
-    <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:id="@+id/download_progress"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="1dp"
-        android:progress="100"
-        app:indicatorColor="?android:attr/textColorHint"
-        app:indicatorInset="0dp"
-        app:indicatorSize="24dp"
-        app:trackThickness="2dp" />
-
-    <ImageView
-        android:id="@+id/download_status_icon"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY"
         tools:ignore="ContentDescription" />
 
 </FrameLayout>

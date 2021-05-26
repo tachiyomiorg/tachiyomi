@@ -6,7 +6,7 @@
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:background="@drawable/list_item_selector_background"
     android:paddingStart="16dp"
-    android:paddingEnd="4dp">
+    android:paddingEnd="5dp">
 
     <ImageView
         android:id="@+id/bookmark_icon"

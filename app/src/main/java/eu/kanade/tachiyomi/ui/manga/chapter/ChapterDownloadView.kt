@@ -1,14 +1,17 @@
 package eu.kanade.tachiyomi.ui.manga.chapter
 
-import android.animation.ObjectAnimator
 import android.content.Context
+import android.content.res.ColorStateList
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import androidx.core.view.isVisible
+import com.google.android.material.progressindicator.BaseProgressIndicator
+import com.mikepenz.aboutlibraries.util.getThemeColor
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.databinding.ChapterDownloadViewBinding
+import eu.kanade.tachiyomi.util.system.dpToPx
 import eu.kanade.tachiyomi.util.view.setVectorCompat
 
 class ChapterDownloadView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
@@ -17,17 +20,15 @@ class ChapterDownloadView @JvmOverloads constructor(context: Context, attrs: Att
     private val binding: ChapterDownloadViewBinding =
         ChapterDownloadViewBinding.inflate(LayoutInflater.from(context), this, false)
 
-    private var state = Download.State.NOT_DOWNLOADED
-    private var progress = 0
-
-    private var downloadIconAnimator: ObjectAnimator? = null
+    private var state: Download.State? = null
+    private var progress = -1
 
     init {
         addView(binding.root)
     }
 
-    fun setState(state: Download.State, progress: Int = 0) {
-        val isDirty = this.state.value != state.value || this.progress != progress
+    fun setState(state: Download.State, progress: Int = -1) {
+        val isDirty = this.state?.value != state.value || this.progress != progress
         if (isDirty) {
             updateLayout(state, progress)
         }
@@ -36,29 +37,45 @@ class ChapterDownloadView @JvmOverloads constructor(context: Context, attrs: Att
     private fun updateLayout(state: Download.State, progress: Int) {
         binding.downloadIcon.isVisible = state == Download.State.NOT_DOWNLOADED ||
             state == Download.State.DOWNLOADING || state == Download.State.QUEUE
-        if (state == Download.State.DOWNLOADING || state == Download.State.QUEUE) {
-            if (downloadIconAnimator == null) {
-                downloadIconAnimator =
-                    ObjectAnimator.ofFloat(binding.downloadIcon, "alpha", 1f, 0f).apply {
-                        duration = 1000
-                        repeatCount = ObjectAnimator.INFINITE
-                        repeatMode = ObjectAnimator.REVERSE
-                    }
-                downloadIconAnimator?.start()
-            }
-            downloadIconAnimator?.currentPlayTime = System.currentTimeMillis() % 2000
-        } else if (downloadIconAnimator != null) {
-            downloadIconAnimator?.cancel()
-            downloadIconAnimator = null
-            binding.downloadIcon.alpha = 1f
+        binding.downloadIcon.imageTintList = if (state == Download.State.DOWNLOADING && progress > 0) {
+            ColorStateList.valueOf(context.getThemeColor(android.R.attr.colorBackground))
+        } else {
+            ColorStateList.valueOf(context.getThemeColor(android.R.attr.textColorHint))
         }
 
-        binding.downloadProgress.isVisible = state == Download.State.DOWNLOADING ||
-            state == Download.State.NOT_DOWNLOADED || state == Download.State.QUEUE
-        if (state == Download.State.DOWNLOADING) {
-            binding.downloadProgress.setProgressCompat(progress, true)
-        } else {
-            binding.downloadProgress.setProgressCompat(100, true)
+        binding.downloadProgress.apply {
+            val shouldBeVisible = state == Download.State.DOWNLOADING ||
+                state == Download.State.NOT_DOWNLOADED || state == Download.State.QUEUE
+            if (shouldBeVisible) {
+                hideAnimationBehavior = BaseProgressIndicator.HIDE_NONE
+                show()
+
+                if (state == Download.State.NOT_DOWNLOADED || state == Download.State.QUEUE) {
+                    trackThickness = 2.dpToPx
+                    setIndicatorColor(context.getThemeColor(android.R.attr.textColorHint))
+                    if (state == Download.State.NOT_DOWNLOADED) {
+                        if (isIndeterminate) {
+                            hide()
+                            isIndeterminate = false
+                        }
+                        setProgressCompat(100, false)
+                    } else if (!isIndeterminate) {
+                        hide()
+                        isIndeterminate = true
+                        show()
+                    }
+                } else if (state == Download.State.DOWNLOADING) {
+                    if (isIndeterminate) {
+                        hide()
+                    }
+                    trackThickness = 12.dpToPx
+                    setIndicatorColor(context.getThemeColor(android.R.attr.textColorPrimary))
+                    setProgressCompat(progress, true)
+                }
+            } else {
+                hideAnimationBehavior = BaseProgressIndicator.HIDE_OUTWARD
+                hide()
+            }
         }
 
         binding.downloadStatusIcon.apply {
