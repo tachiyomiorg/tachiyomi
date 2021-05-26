@@ -182,9 +182,7 @@ class SettingsLibraryController : SettingsController() {
                         restrictions.joinToString()
                     }
 
-                    summary = buildSpannedString {
-                        append(context.getString(R.string.restrictions, restrictionsText))
-                    }
+                    summary = context.getString(R.string.restrictions, restrictionsText)
                 }
 
                 preferences.libraryUpdateRestriction().asFlow()
