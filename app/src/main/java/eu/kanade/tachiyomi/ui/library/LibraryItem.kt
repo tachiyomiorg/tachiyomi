@@ -105,16 +105,33 @@ class LibraryItem(
      * @return true if the manga should be included, false otherwise.
      */
     override fun filter(constraint: String): Boolean {
+        val sourceName by lazy { sourceManager.getOrStub(manga.source).name }
+        val genres by lazy { manga.getGenres() }
         return manga.title.contains(constraint, true) ||
             (manga.author?.contains(constraint, true) ?: false) ||
             (manga.artist?.contains(constraint, true) ?: false) ||
             (manga.description?.contains(constraint, true) ?: false) ||
-            sourceManager.getOrStub(manga.source).name.contains(constraint, true) ||
             if (constraint.contains(",")) {
-                constraint.split(",").all { containsGenre(it.trim(), manga.getGenres()) }
+                constraint.split(",").all { containsSourceOrGenre(it.trim(), sourceName, genres) }
             } else {
-                containsGenre(constraint, manga.getGenres())
+                containsSourceOrGenre(constraint, sourceName, genres)
             }
+    }
+
+    private fun containsSourceOrGenre(tag: String, sourceName: String, genres: List<String>?): Boolean {
+        return if (tag.startsWith("-")) {
+            if (sourceName.contains(tag.substringAfter("-"), true)) {
+                false
+            } else {
+                containsGenre(tag, genres)
+            }
+        } else {
+            if (sourceName.contains(tag, true)) {
+                true
+            } else {
+                containsGenre(tag, genres)
+            }
+        }
     }
 
     private fun containsGenre(tag: String, genres: List<String>?): Boolean {
