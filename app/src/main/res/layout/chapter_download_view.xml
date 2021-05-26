@@ -28,6 +28,15 @@
         app:indicatorSize="24dp"
         app:trackThickness="2dp" />
 
+    <ProgressBar
+        android:id="@+id/download_progress_indeterminate"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        android:indeterminateTint="?android:attr/textColorHint"/>
+
     <ImageView
         android:id="@+id/download_status_icon"
         android:layout_width="match_parent"

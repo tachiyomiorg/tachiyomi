@@ -54,12 +54,14 @@ class ChapterDownloadView @JvmOverloads constructor(context: Context, attrs: Att
         }
 
         binding.downloadProgress.isVisible = state == Download.State.DOWNLOADING ||
-            state == Download.State.NOT_DOWNLOADED || state == Download.State.QUEUE
+            state == Download.State.NOT_DOWNLOADED
         if (state == Download.State.DOWNLOADING) {
             binding.downloadProgress.setProgressCompat(progress, true)
         } else {
             binding.downloadProgress.setProgressCompat(100, true)
         }
+
+        binding.downloadProgressIndeterminate.isVisible = state == Download.State.QUEUE
 
         binding.downloadStatusIcon.apply {
             if (state == Download.State.DOWNLOADED || state == Download.State.ERROR) {
