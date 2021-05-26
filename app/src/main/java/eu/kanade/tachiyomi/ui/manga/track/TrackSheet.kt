@@ -53,7 +53,7 @@ class TrackSheet(
     override fun show() {
         super.show()
         controller.presenter.refreshTrackers()
-        sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+        behavior.state = BottomSheetBehavior.STATE_COLLAPSED
     }
 
     fun onNextTrackers(trackers: List<TrackItem>) {

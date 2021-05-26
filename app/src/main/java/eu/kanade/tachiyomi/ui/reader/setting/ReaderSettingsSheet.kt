@@ -30,8 +30,8 @@ class ReaderSettingsSheet(
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        sheetBehavior.isFitToContents = false
-        sheetBehavior.halfExpandedRatio = 0.25f
+        behavior.isFitToContents = false
+        behavior.halfExpandedRatio = 0.25f
 
         val filterTabIndex = getTabViews().indexOf(colorFilterSettings)
         binding.tabs.addOnTabSelectedListener(object : SimpleTabSelectedListener() {

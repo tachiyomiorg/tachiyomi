@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferenceValues
@@ -18,8 +17,6 @@ import uy.kohesive.injekt.api.get
 
 abstract class BaseBottomSheetDialog(context: Context) : BottomSheetDialog(context) {
 
-    internal lateinit var sheetBehavior: BottomSheetBehavior<*>
-
     abstract fun createView(inflater: LayoutInflater): View
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,13 +25,10 @@ abstract class BaseBottomSheetDialog(context: Context) : BottomSheetDialog(conte
         val rootView = createView(layoutInflater)
         setContentView(rootView)
 
-        val bottomSheet = rootView.parent as ViewGroup
-        sheetBehavior = BottomSheetBehavior.from(bottomSheet)
-
         // Enforce max width for tablets
         val width = context.resources.getDimensionPixelSize(R.dimen.bottom_sheet_width)
         if (width > 0) {
-            sheetBehavior.maxWidth = width
+            behavior.maxWidth = width
         }
 
         // Set navbar color to transparent for edge-to-edge bottom sheet if we can use light navigation bar
@@ -49,6 +43,7 @@ abstract class BaseBottomSheetDialog(context: Context) : BottomSheetDialog(conte
                     context.resources.configuration.uiMode and
                         Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
             }
+            val bottomSheet = rootView.parent as ViewGroup
             var flags = bottomSheet.systemUiVisibility
             flags = if (isDarkMode) {
                 flags and View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR.inv()
