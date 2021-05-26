@@ -2,8 +2,6 @@ package eu.kanade.tachiyomi.ui.main
 
 import android.app.SearchManager
 import android.content.Intent
-import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
@@ -52,9 +50,8 @@ import eu.kanade.tachiyomi.ui.recent.history.HistoryController
 import eu.kanade.tachiyomi.ui.recent.updates.UpdatesController
 import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.lang.launchUI
-import eu.kanade.tachiyomi.util.system.InternalResourceHelper
-import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.toast
+import eu.kanade.tachiyomi.util.view.setNavigationBarTransparentCompat
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.launchIn
@@ -119,14 +116,7 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
         // Make sure navigation bar is on bottom before we modify it
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
             if (insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom > 0) {
-                window.navigationBarColor = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q &&
-                    !InternalResourceHelper.getBoolean(this, "config_navBarNeedsScrim", true)
-                ) {
-                    Color.TRANSPARENT
-                } else {
-                    // Set navbar scrim 70% of navigationBarColor
-                    getResourceColor(android.R.attr.navigationBarColor, 0.7F)
-                }
+                window.setNavigationBarTransparentCompat(this)
             }
             insets
         }

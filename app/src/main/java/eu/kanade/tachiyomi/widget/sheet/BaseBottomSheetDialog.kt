@@ -2,7 +2,6 @@ package eu.kanade.tachiyomi.widget.sheet
 
 import android.content.Context
 import android.content.res.Configuration
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.util.DisplayMetrics
@@ -14,6 +13,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferenceValues
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.util.system.displayCompat
+import eu.kanade.tachiyomi.util.view.setNavigationBarTransparentCompat
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
@@ -44,7 +44,7 @@ abstract class BaseBottomSheetDialog(context: Context) : BottomSheetDialog(conte
         // TODO Replace deprecated systemUiVisibility when material-components uses new API to modify status bar icons
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            window?.navigationBarColor = Color.TRANSPARENT
+            window?.setNavigationBarTransparentCompat(context)
             val isDarkMode = when (Injekt.get<PreferencesHelper>().themeMode().get()) {
                 PreferenceValues.ThemeMode.light -> false
                 PreferenceValues.ThemeMode.dark -> true

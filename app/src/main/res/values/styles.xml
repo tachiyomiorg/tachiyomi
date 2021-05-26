@@ -84,7 +84,7 @@
     <style name="Theme.BottomSheet" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
         <item name="android:windowIsFloating">false</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">?attr/colorPrimary</item>
+        <item name="android:navigationBarColor">?attr/colorSurface</item>
         <item name="bottomSheetStyle">@style/Theme.BottomSheet.Style</item>
         <item name="android:windowAnimationStyle">@style/Animation.BottomSheetDialog</item>
     </style>
