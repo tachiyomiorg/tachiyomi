@@ -276,14 +276,16 @@ class LibrarySettingsSheet(
         inner class BadgeGroup : Group {
             private val downloadBadge = Item.CheckboxGroup(R.string.action_display_download_badge, this)
             private val unreadBadge = Item.CheckboxGroup(R.string.action_display_unread_badge, this)
+            private val localBadge = Item.CheckboxGroup(R.string.action_display_local_badge, this)
 
             override val header = Item.Header(R.string.badges_header)
-            override val items = listOf(downloadBadge, unreadBadge)
+            override val items = listOf(downloadBadge, unreadBadge, localBadge)
             override val footer = null
 
             override fun initModels() {
                 downloadBadge.checked = preferences.downloadBadge().get()
                 unreadBadge.checked = preferences.unreadBadge().get()
+                localBadge.checked = preferences.localBadge().get()
             }
 
             override fun onItemClicked(item: Item) {
@@ -292,6 +294,7 @@ class LibrarySettingsSheet(
                 when (item) {
                     downloadBadge -> preferences.downloadBadge().set((item.checked))
                     unreadBadge -> preferences.unreadBadge().set((item.checked))
+                    localBadge -> preferences.localBadge().set((item.checked))
                 }
                 adapter.notifyItemChanged(item)
             }

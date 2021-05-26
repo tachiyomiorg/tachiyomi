@@ -28,6 +28,7 @@ class LibraryItem(val manga: LibraryManga, private val libraryDisplayMode: Prefe
 
     var downloadCount = -1
     var unreadCount = -1
+    var isLocal = false
 
     override fun getLayoutRes(): Int {
         return when (libraryDisplayMode.get()) {

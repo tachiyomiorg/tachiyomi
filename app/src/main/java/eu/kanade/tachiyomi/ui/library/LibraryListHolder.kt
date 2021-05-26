@@ -53,7 +53,7 @@ class LibraryListHolder(
             text = "${item.downloadCount}"
         }
         // show local text badge if local manga
-        binding.localText.isVisible = item.manga.isLocal()
+        binding.localText.isVisible = item.isLocal
 
         // Create thumbnail onclick to simulate long click
         binding.thumbnail.setOnClickListener {
