@@ -15,8 +15,11 @@ import android.content.res.Resources
 import android.graphics.Color
 import android.net.ConnectivityManager
 import android.net.Uri
+import android.os.Build
 import android.os.PowerManager
+import android.view.Display
 import android.view.View
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
@@ -171,6 +174,14 @@ val Context.powerManager: PowerManager
 
 val Context.keyguardManager: KeyguardManager
     get() = getSystemService()!!
+
+val Context.displayCompat: Display?
+    get() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        display
+    } else {
+        @Suppress("DEPRECATION")
+        getSystemService<WindowManager>()?.defaultDisplay
+    }
 
 /**
  * Convenience method to acquire a partial wake lock.
