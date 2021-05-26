@@ -212,7 +212,6 @@
     <string name="update_weekly">Weekly</string>
     <string name="pref_library_update_prioritization">Update order</string>
     <string name="pref_library_update_restriction">Update restrictions</string>
-    <string name="pref_library_update_restriction_summary">Update only when the conditions are met</string>
     <string name="network_unmetered">Unmetered network</string>
     <string name="charging">Charging</string>
     <string name="restrictions">Restrictions: %s</string>

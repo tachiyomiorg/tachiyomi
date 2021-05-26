@@ -183,8 +183,6 @@ class SettingsLibraryController : SettingsController() {
                     }
 
                     summary = buildSpannedString {
-                        append(context.getString(R.string.pref_library_update_restriction_summary))
-                        appendLine()
                         append(context.getString(R.string.restrictions, restrictionsText))
                     }
                 }
