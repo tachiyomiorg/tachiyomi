@@ -68,12 +68,28 @@
         <item name="colorAccent">@color/colorAccentLight</item>
     </style>
 
+    <style name="Theme.AlertDialog.Light.StrawberryDaiquiri" parent="Theme.AlertDialog">
+        <item name="colorAccent">@color/colorAccentStrawberry</item>
+    </style>
+
     <style name="Theme.AlertDialog.Dark" parent="Theme.AlertDialog">
         <item name="colorAccent">@color/colorAccentDark</item>
     </style>
 
+    <style name="Theme.AlertDialog.Dark.GreenApple" parent="Theme.AlertDialog">
+        <item name="colorAccent">@color/colorAccentApple</item>
+    </style>
+
+    <style name="Theme.AlertDialog.Dark.MidnightDusk" parent="Theme.AlertDialog">
+        <item name="colorAccent">@color/colorAccentDusk</item>
+    </style>
+
     <style name="Theme.AlertDialog.Amoled" parent="Theme.AlertDialog">
         <item name="colorAccent">@color/colorAccentAmoled</item>
+    </style>
+
+    <style name="Theme.AlertDialog.Amoled.HotPink" parent="Theme.AlertDialog">
+        <item name="colorAccent">@color/colorAccentPink</item>
     </style>
 
 

@@ -147,6 +147,9 @@
         <!-- Ripples -->
         <item name="rippleSecondaryColor">@color/rippleSecondaryColorStrawberry</item>
 
+        <!-- Themes -->
+        <item name="materialAlertDialogTheme">@style/Theme.AlertDialog.Light.StrawberryDaiquiri</item>
+
         <!-- Custom Attributes-->
         <item name="colorLibrarySelectionActive">@color/selectorColorStrawberry</item>
     </style>
@@ -269,6 +272,9 @@
         <!-- Ripples -->
         <item name="rippleSecondaryColor">@color/rippleSecondaryColorApple</item>
 
+        <!-- Themes -->
+        <item name="materialAlertDialogTheme">@style/Theme.AlertDialog.Dark.GreenApple</item>
+
         <!-- Custom Attributes-->
         <item name="colorLibrarySelectionActive">@color/selectorColorApple</item>
     </style>
@@ -295,6 +301,9 @@
 
         <!-- Ripples -->
         <item name="rippleSecondaryColor">@color/rippleSecondaryColorDusk</item>
+
+        <!-- Themes -->
+        <item name="materialAlertDialogTheme">@style/Theme.AlertDialog.Dark.MidnightDusk</item>
 
         <!-- Custom Attributes -->
         <item name="colorLibrarySelection">@color/selectorColorDark</item>
@@ -406,6 +415,9 @@
 
         <!-- Ripples -->
         <item name="rippleSecondaryColor">@color/rippleSecondaryColorPink</item>
+
+        <!-- Themes -->
+        <item name="materialAlertDialogTheme">@style/Theme.AlertDialog.Amoled.HotPink</item>
     </style>
 
     <!--===============-->
