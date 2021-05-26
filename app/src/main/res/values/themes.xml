@@ -47,6 +47,7 @@
         <item name="rippleColor">@color/rippleColorLight</item>
         <item name="rippleSecondaryColor">@color/rippleSecondaryColorLight</item>
         <item name="rippleToolbarColor">@color/rippleToolbarColorLight</item>
+        <item name="android:colorControlHighlight">@color/rippleColorLight</item>
 
         <!-- Handles RTL text -->
         <item name="android:textAlignment">gravity</item>
@@ -196,6 +197,7 @@
         <item name="rippleColor">@color/rippleColorDark</item>
         <item name="rippleSecondaryColor">@color/rippleSecondaryColorDark</item>
         <item name="rippleToolbarColor">@color/rippleToolbarColorDark</item>
+        <item name="android:colorControlHighlight">@color/rippleColorDark</item>
 
         <!-- Themes -->
         <item name="android:statusBarColor">?attr/colorPrimary</item>
@@ -350,6 +352,7 @@
         <item name="rippleColor">@color/rippleColorAmoled</item>
         <item name="rippleSecondaryColor">@color/rippleSecondaryColorAmoled</item>
         <item name="rippleToolbarColor">@color/rippleToolbarColorAmoled</item>
+        <item name="android:colorControlHighlight">@color/rippleColorAmoled</item>
 
         <!-- Themes -->
         <item name="android:statusBarColor">?attr/colorPrimary</item>
