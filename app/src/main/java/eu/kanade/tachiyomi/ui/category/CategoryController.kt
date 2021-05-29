@@ -16,12 +16,14 @@ import eu.davidea.flexibleadapter.SelectableAdapter
 import eu.davidea.flexibleadapter.helpers.UndoHelper
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.databinding.CategoriesControllerBinding
 import eu.kanade.tachiyomi.ui.base.controller.FabController
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.shrinkOnScroll
+import uy.kohesive.injekt.injectLazy
 
 /**
  * Controller to manage the categories for the users' library.
@@ -36,6 +38,11 @@ class CategoryController :
     CategoryCreateDialog.Listener,
     CategoryRenameDialog.Listener,
     UndoHelper.OnActionListener {
+
+    /**
+     * Preferences helper necessary to apply changes.
+     */
+    private val preferences: PreferencesHelper by injectLazy()
 
     /**
      * Object used to show ActionMode toolbar.
@@ -189,6 +196,14 @@ class CategoryController :
 
         when (item.itemId) {
             R.id.action_delete -> {
+                // Delete entry from category display preferences too.
+                adapter.selectedPositions.forEach { categoryPosition ->
+                    adapter.getItem(categoryPosition)?.category?.id?.let {
+                        categoryId ->
+                        preferences.getCategoryDisplayPreference(categoryId).delete()
+                    }
+                }
+
                 undoHelper = UndoHelper(adapter, this)
                 undoHelper?.start(
                     adapter.selectedPositions,

@@ -285,6 +285,11 @@ class PreferencesHelper(val context: Context) {
 
     fun defaultCategory() = prefs.getInt(Keys.defaultCategory, -1)
 
+    fun categorisedDisplaySettings() = flowPrefs.getBoolean(Keys.categorizedDisplay, false)
+
+    fun getCategoryDisplayPreference(categoryId: Int) =
+        getEnumPreferenceFromMap(Keys.categorizedDisplay, categoryId.toString(), libraryDisplayMode().get())
+
     fun skipRead() = prefs.getBoolean(Keys.skipRead, false)
 
     fun skipFiltered() = prefs.getBoolean(Keys.skipFiltered, true)
@@ -321,4 +326,8 @@ class PreferencesHelper(val context: Context) {
             putInt(Keys.defaultChapterSortByAscendingOrDescending, if (manga.sortDescending()) Manga.CHAPTER_SORT_DESC else Manga.CHAPTER_SORT_ASC)
         }
     }
+
+    // Helper function to store Enum maps as preferences.
+    private inline fun <reified E : Enum<E>> getEnumPreferenceFromMap(preferenceKey: String, mapKey: String, default: E): Preference<E> =
+        flowPrefs.getEnum(preferenceKey + "_" + mapKey, defaultValue = default)
 }
