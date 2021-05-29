@@ -37,7 +37,7 @@
         <activity
             android:name=".ui.main.MainActivity"
             android:launchMode="singleTop"
-            android:theme="@style/Theme.Splash">
+            android:theme="@style/Theme.Tachiyomi.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

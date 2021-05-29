@@ -178,8 +178,10 @@
     <!--===============-->
 
     <!--== Splash Theme ==-->
-    <style name="Theme.Splash" parent="Theme.Tachiyomi">
-        <item name="android:windowBackground">@drawable/splash_background</item>
+    <style name="Theme.Tachiyomi.SplashScreen" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_tachi_splash</item>
+        <item name="windowSplashScreenBackground">@color/splash</item>
+        <item name="postSplashScreenTheme">@style/Theme.Tachiyomi</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">false</item>

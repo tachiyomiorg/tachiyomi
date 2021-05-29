@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
@@ -81,6 +82,11 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
     private var fixedViewsToBottom = mutableMapOf<View, AppBarLayout.OnOffsetChangedListener>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Prevent splash screen showing up on configuration changes
+        if (savedInstanceState == null) {
+            installSplashScreen()
+        }
+
         super.onCreate(savedInstanceState)
 
         val didMigration = if (savedInstanceState == null) Migrations.upgrade(preferences) else false
