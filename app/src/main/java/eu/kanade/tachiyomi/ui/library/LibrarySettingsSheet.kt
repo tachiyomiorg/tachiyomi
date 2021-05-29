@@ -308,8 +308,6 @@ class LibrarySettingsSheet(
 
             private fun setDisplayModePreference(item: Item) {
                 if (preferences.categorisedDisplaySettings().get() && currentCategory != null && currentCategory?.id != 0) {
-                    DisplayMode.values()[currentCategory?.displayMode ?: 0]
-
                     val flag = when (item) {
                         compactGrid -> Category.COMPACT_GRID
                         comfortableGrid -> Category.COMFORTABLE_GRID
