@@ -12,7 +12,6 @@ import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
 import eu.davidea.flexibleadapter.items.IFilterable
 import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.LibraryManga
 import eu.kanade.tachiyomi.data.preference.PreferenceValues.DisplayMode
 import eu.kanade.tachiyomi.databinding.SourceComfortableGridItemBinding
@@ -21,31 +20,31 @@ import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
-import uy.kohesive.injekt.injectLazy
 
 class LibraryItem(
     val manga: LibraryManga,
     private val shouldSetFromCategory: Preference<Boolean>,
-    val defaultLibraryDisplayMode: Preference<DisplayMode>
+    private val defaultLibraryDisplayMode: Preference<DisplayMode>
 ) :
     AbstractFlexibleItem<LibraryHolder<*>>(), IFilterable<String> {
 
     private val sourceManager: SourceManager = Injekt.get()
-    private val db: DatabaseHelper by injectLazy()
 
+    var displayMode: Int = -1
     var downloadCount = -1
     var unreadCount = -1
     var isLocal = false
 
     private fun getDisplayMode(): DisplayMode {
         return if (shouldSetFromCategory.get() && manga.category != 0) {
-            val category = db.getCategories().executeAsBlocking().find { category -> category.id == manga.category }
-            if (category != null) {
-                DisplayMode.values()[category.displayMode]
+            if (displayMode != -1) {
+                DisplayMode.values()[displayMode]
             } else {
                 DisplayMode.COMPACT_GRID
             }
-        } else defaultLibraryDisplayMode.get()
+        } else {
+            defaultLibraryDisplayMode.get()
+        }
     }
 
     override fun getLayoutRes(): Int {

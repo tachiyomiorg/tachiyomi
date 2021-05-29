@@ -312,6 +312,13 @@ class LibraryPresenter(
                 dbCategories
             }
 
+            libraryManga.forEach { (categoryId, libraryManga) ->
+                val category = categories.first { category -> category.id == categoryId }
+                libraryManga.forEach { libraryItem ->
+                    libraryItem.displayMode = category.displayMode
+                }
+            }
+
             this.categories = categories
             Library(categories, libraryManga)
         }
