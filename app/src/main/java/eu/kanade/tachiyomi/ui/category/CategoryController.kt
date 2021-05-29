@@ -196,14 +196,6 @@ class CategoryController :
 
         when (item.itemId) {
             R.id.action_delete -> {
-                // Delete entry from category display preferences too.
-                adapter.selectedPositions.forEach { categoryPosition ->
-                    adapter.getItem(categoryPosition)?.category?.id?.let {
-                        categoryId ->
-                        preferences.getCategoryDisplayPreference(categoryId).delete()
-                    }
-                }
-
                 undoHelper = UndoHelper(adapter, this)
                 undoHelper?.start(
                     adapter.selectedPositions,

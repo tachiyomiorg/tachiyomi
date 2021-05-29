@@ -125,7 +125,7 @@ class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: Att
 
         // If displayMode should be set from category adjust manga count per row
         if (preferences.categorisedDisplaySettings().get()) {
-            recycler.spanCount = if (category.id?.let { preferences.getCategoryDisplayPreference(it).get() } == DisplayMode.LIST) {
+            recycler.spanCount = if (category.displayMode == Category.LIST || (preferences.libraryDisplayMode().get() == DisplayMode.LIST && category.id == 0)) {
                 1
             } else {
                 controller.mangaPerRow

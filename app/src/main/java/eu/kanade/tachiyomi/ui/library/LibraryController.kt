@@ -262,7 +262,7 @@ class LibraryController(
 
     fun showSettingsSheet() {
         adapter?.categories?.get(binding.libraryPager.currentItem)?.let { category ->
-            settingsSheet?.show(category.id)
+            settingsSheet?.show(category)
         }
     }
 

@@ -4,8 +4,9 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import com.bluelinelabs.conductor.Router
-import com.tfcporciuncula.flow.Preference
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.database.DatabaseHelper
+import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.preference.PreferenceValues.DisplayMode
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.track.TrackManager
@@ -26,6 +27,7 @@ class LibrarySettingsSheet(
     val filters: Filter
     private val sort: Sort
     private val display: Display
+    private val db: DatabaseHelper by injectLazy()
 
     init {
         filters = Filter(router.activity!!)
@@ -42,8 +44,8 @@ class LibrarySettingsSheet(
      * adjusts selected button to match real state.
      * @param currentCategory ID of currently shown category
      */
-    fun show(currentCategory: Int?) {
-        display.currentCategory = currentCategory ?: -1
+    fun show(currentCategory: Category) {
+        display.currentCategory = currentCategory
         display.adjustDisplaySelection()
         super.show()
     }
@@ -257,15 +259,17 @@ class LibrarySettingsSheet(
         // Refreshes Display Setting selections
         fun adjustDisplaySelection() {
             val mode = getDisplayModePreference()
-            displayGroup.setGroupSelections(mode.get())
+            displayGroup.setGroupSelections(mode)
             displayGroup.items.forEach { adapter.notifyItemChanged(it) }
         }
 
         // Gets user preference of currently selected display mode at current category
-        private fun getDisplayModePreference(): Preference<DisplayMode> {
-            return if (preferences.categorisedDisplaySettings().get() && currentCategory != -1) {
-                preferences.getCategoryDisplayPreference(currentCategory)
-            } else preferences.libraryDisplayMode()
+        private fun getDisplayModePreference(): DisplayMode {
+            return if (preferences.categorisedDisplaySettings().get() && currentCategory != null && currentCategory?.id != 0) {
+                DisplayMode.values()[currentCategory?.displayMode ?: 0]
+            } else {
+                preferences.libraryDisplayMode().get()
+            }
         }
 
         inner class DisplayGroup : Group {
@@ -280,7 +284,7 @@ class LibrarySettingsSheet(
 
             override fun initModels() {
                 val mode = getDisplayModePreference()
-                setGroupSelections(mode.get())
+                setGroupSelections(mode)
             }
 
             override fun onItemClicked(item: Item) {
@@ -290,14 +294,7 @@ class LibrarySettingsSheet(
                 item.group.items.forEach { (it as Item.Radio).checked = false }
                 item.checked = true
 
-                getDisplayModePreference().set(
-                    when (item) {
-                        compactGrid -> DisplayMode.COMPACT_GRID
-                        comfortableGrid -> DisplayMode.COMFORTABLE_GRID
-                        list -> DisplayMode.LIST
-                        else -> throw NotImplementedError("Unknown display mode")
-                    }
-                )
+                setDisplayModePreference(item)
 
                 item.group.items.forEach { adapter.notifyItemChanged(it) }
             }
@@ -307,6 +304,32 @@ class LibrarySettingsSheet(
                 compactGrid.checked = mode == DisplayMode.COMPACT_GRID
                 comfortableGrid.checked = mode == DisplayMode.COMFORTABLE_GRID
                 list.checked = mode == DisplayMode.LIST
+            }
+
+            private fun setDisplayModePreference(item: Item) {
+                if (preferences.categorisedDisplaySettings().get() && currentCategory != null && currentCategory?.id != 0) {
+                    DisplayMode.values()[currentCategory?.displayMode ?: 0]
+
+                    val flag = when (item) {
+                        compactGrid -> Category.COMPACT_GRID
+                        comfortableGrid -> Category.COMFORTABLE_GRID
+                        list -> Category.LIST
+                        else -> throw NotImplementedError("Unknown display mode")
+                    }
+
+                    currentCategory?.displayMode = flag
+
+                    db.insertCategory(currentCategory!!).executeAsBlocking()
+                } else {
+                    preferences.libraryDisplayMode().set(
+                        when (item) {
+                            compactGrid -> DisplayMode.COMPACT_GRID
+                            comfortableGrid -> DisplayMode.COMFORTABLE_GRID
+                            list -> DisplayMode.LIST
+                            else -> throw NotImplementedError("Unknown display mode")
+                        }
+                    )
+                }
             }
         }
 
@@ -373,7 +396,7 @@ class LibrarySettingsSheet(
          */
         var onGroupClicked: (Group) -> Unit = {}
 
-        var currentCategory: Int = -1
+        var currentCategory: Category? = null
 
         fun setGroups(groups: List<Group>) {
             adapter = Adapter(groups.map { it.createItems() }.flatten())
