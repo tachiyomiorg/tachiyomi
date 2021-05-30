@@ -33,6 +33,11 @@ class SourceSearchController(
         dialog.showDialog(router)
         return true
     }
+
+    override fun onItemLongClick(position: Int) {
+        view?.let { super.onItemClick(it, position) }
+    }
+
     private companion object {
         const val MANGA_KEY = "oldManga"
     }
