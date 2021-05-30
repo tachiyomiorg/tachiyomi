@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="action_open">ဖွင့်သည်</string>
     <string name="action_restore">ပြန်ရယူသည်</string>
     <string name="action_create">ပြုလုပ်သည်</string>
     <string name="action_open_log">Log ဖွင့်သည်</string>
@@ -18,7 +17,6 @@
     <string name="action_order_by_chapter_number">အခန်းနံပါတ်အလိုက်</string>
     <string name="action_order_by_upload_date">တင်သည့်နေ့စွဲအလိုက်</string>
     <string name="action_reorganize_by">ပြန်စဉ်သည်</string>
-    <string name="action_sort_descending">ကြီးစဉ်ငယ်လိုက်</string>
     <string name="action_sort">စဉ်သည်</string>
     <string name="action_cancel_all">အားလုံးပယ်ဖျက်သည်</string>
     <string name="action_cancel">ပယ်ဖျက်သည်</string>
@@ -38,21 +36,15 @@
     <string name="action_open_in_settings">ဆက်တင်တွင်ဖွင့်သည်</string>
     <string name="action_open_in_web_view">WebView တွင်ဖွင့်သည်</string>
     <string name="action_open_in_browser">Browser တွင်ဖွင့်သည်</string>
-    <string name="action_move">ရွှေ့သည်</string>
     <string name="action_resume">ဆက်လုပ်သည်</string>
     <string name="action_start">စတင်သည်</string>
     <string name="action_remove">ဖယ်ရှားသည်</string>
     <string name="action_retry">ပြန်လုပ်မည်</string>
     <string name="action_next_chapter">နောက်အခန်း</string>
     <string name="action_previous_chapter">ရှေ့အခန်း</string>
-    <string name="action_close">ပိတ်</string>
     <string name="action_pause">ခေတ္တရပ်</string>
     <string name="action_stop">အပြီးရပ်</string>
     <string name="action_view_chapters">အခန်းများကိုကြည့်သည်</string>
-    <string name="action_next_unread">နောက်မဖတ်ရသေးသည်များ</string>
-    <string name="action_show_downloaded">ဒေါင်းလုဒ်ထားသည်များ</string>
-    <string name="action_sort_down">အောက်အစဉ်</string>
-    <string name="action_sort_up">အထက်အစဉ်</string>
     <string name="action_edit_cover">အဖုံးကိုပြင်ရန်</string>
     <string name="action_move_category">အမျိုးအစားသတ်မှတ်သည်</string>
     <string name="action_rename_category">အမျိုးအစားအမည်ပြင်သည်</string>
@@ -123,7 +115,6 @@
     <string name="pref_category_downloads">Download များ</string>
     <string name="pref_category_library">စာကြည့်တိုက်</string>
     <string name="pref_category_general">အထွေထွေ</string>
-    <string name="short_recent_updates">အသစ်များ</string>
     <string name="app_not_available">App မရနိုင်ပါ</string>
     <string name="loading">လုပ်ဆောင်နေသည်…</string>
     <string name="action_webview_refresh">ပြန်ရယူမည်</string>

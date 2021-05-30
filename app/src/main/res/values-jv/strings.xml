@@ -3,8 +3,6 @@
     <string name="group_downloader">Donlot</string>
     <string name="update_check_notification_download_in_progress">Ndonlot…</string>
     <string name="update_check_confirm">Donlot</string>
-    <string name="chapter_subtitle">Bab %1$s</string>
-    <string name="downloading">Ndonlot…</string>
     <string name="track_author">Panganggit</string>
     <string name="track_type">Jinis</string>
     <string name="title">Judhul</string>
@@ -12,7 +10,6 @@
     <string name="download_all">Kabeh</string>
     <string name="manga_download">Donlot</string>
     <string name="display_mode_chapter">bab %1$s</string>
-    <string name="manga_chapters_tab">Bab</string>
     <string name="manga_info_full_title_label">Judhul</string>
     <string name="description">Katrangan</string>
     <string name="other_source">Liyane</string>
@@ -21,7 +18,6 @@
     <string name="username">Jeneng pangguna</string>
     <string name="version">Versi</string>
     <string name="pref_dns_over_https">DNS liwat HTTPS</string>
-    <string name="backup">Serep</string>
     <string name="disabled">Dipateni</string>
     <string name="pref_download_directory">Lokasi donlot</string>
     <string name="color_filter_a_value">T</string>
@@ -64,10 +60,7 @@
     <string name="pref_category_locale">Lokal</string>
     <string name="pref_category_theme">Tema</string>
     <string name="pref_category_downloads">Donlot</string>
-    <string name="short_recent_updates">Nganyari</string>
     <string name="action_webview_back">Bali</string>
-    <string name="action_login">Mlebu</string>
-    <string name="action_open">Mbukak</string>
     <string name="action_create">Gawe</string>
     <string name="action_open_log">Mbukak log</string>
     <string name="action_save">Simpen</string>
@@ -84,7 +77,6 @@
     <string name="action_next_chapter">Bab sabanjure</string>
     <string name="action_previous_chapter">Bab sadurunge</string>
     <string name="action_view_chapters">Ndeleng bab</string>
-    <string name="action_show_downloaded">Kedonlot</string>
     <string name="action_rename_category">Ganti jeneng kategori</string>
     <string name="action_edit_categories">Sunting kategori</string>
     <string name="action_add_category">Tambah kategori</string>
@@ -126,4 +118,11 @@
     <string name="label_settings">Setelan</string>
     <string name="label_more">Liyane</string>
     <string name="name">Jeneng</string>
+    <string name="action_stop">Mandheg</string>
+    <string name="manga">Manga</string>
+    <string name="download_notifier_download_finish">Donlotan rampung</string>
+    <string name="download_notifier_download_paused">Donlotan mandheg</string>
+    <string name="download_notifier_downloader_title">Donloder</string>
+    <string name="channel_complete">Komplit</string>
+    <string name="information_no_recent_manga">durung maca apa apa</string>
 </resources>

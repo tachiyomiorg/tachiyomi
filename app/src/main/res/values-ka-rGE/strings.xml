@@ -40,14 +40,9 @@
     <string name="action_add_category">კატეგორიის დამატება</string>
     <string name="action_edit_categories">კატეგორიის რედაქტირება</string>
     <string name="action_rename_category">კატეგორიის სახელის ვცლილება</string>
-    <string name="action_sort_up">ზრდადობის მიხედვით</string>
-    <string name="action_sort_down">კლებადობის მიხედვით</string>
-    <string name="action_show_downloaded">გადმოწერილები</string>
-    <string name="action_next_unread">შემდეგი წაუკითხავი</string>
     <string name="action_view_chapters">თავების ხილვა</string>
     <string name="action_stop">გაჩერება</string>
     <string name="action_pause">პაუზა</string>
-    <string name="action_close">დახურვა</string>
     <string name="action_previous_chapter">წინა თავი</string>
     <string name="action_next_chapter">შემდეგი თავი</string>
     <string name="action_retry">თავიდან ცდა</string>
@@ -79,14 +74,11 @@
     <string name="action_open_log">ლოგის გახსნა</string>
     <string name="action_create">შექმნა</string>
     <string name="action_restore">აღდგენა</string>
-    <string name="action_open">გახსნა</string>
-    <string name="action_login">შესვლა</string>
     <string name="action_webview_back">უკან</string>
     <string name="action_webview_forward">წინ</string>
     <string name="action_webview_refresh">განახლება</string>
     <string name="loading">იტვირთება…</string>
     <string name="app_not_available">აპლიკაცია არ არის ხელმისაწვდომი</string>
-    <string name="short_recent_updates">განახლებები</string>
     <string name="pref_category_general">ზოგადი</string>
     <string name="pref_category_library">ბიბლიოთეკა</string>
     <string name="pref_category_reader">მკითხველი</string>
@@ -129,7 +121,6 @@
     <string name="update_weekly">ყოველ კვირა</string>
     <string name="pref_library_update_prioritization">ბიბლიოთეკის განახლების რიგითობა</string>
     <string name="pref_library_update_restriction">ბიბლიოთეკის განახლების შეზღუდვები</string>
-    <string name="pref_library_update_restriction_summary">განაახლე მხოლოდ როცა პირობები დაკმაყოფილდება</string>
     <string name="charging">იტენება</string>
     <string name="pref_update_only_non_completed">მხოლოდ განაახლე მიმდინარე მანგა</string>
     <string name="pref_library_update_refresh_metadata">ავტომატურად განაახლე მეტადატა</string>
@@ -184,7 +175,6 @@
     <string name="right_to_left_viewer">მარჯვნიდან მარცხნივ</string>
     <string name="vertical_viewer">ვერტიკალური</string>
     <string name="vertical_plus_viewer">ვერტიკალური განგრძობითი</string>
-    <string name="pref_image_decoder">სურათის დეკოდერი</string>
     <string name="pref_image_scale_type">სკალირების ტიპი</string>
     <string name="scale_type_fit_screen">ეკრანზე მორგება</string>
     <string name="scale_type_stretch">გაწელვა</string>
@@ -231,7 +221,6 @@
     <string name="services">სერვისები</string>
     <string name="pref_auto_update_manga_sync">განაახლე თავის პროგრესი წაკითხვის შემდეგ</string>
     <string name="pref_enable_automatic_extension_updates">მოძებნე გავრცობის განახლებები</string>
-    <string name="backup">რეზერვი</string>
     <string name="pref_create_backup">რეზერვის შექმნა</string>
     <string name="pref_create_backup_summ">შესაძლებელია გამოყენებულ იქნას ახლანდელი ბიბლიოთეკის ასადგენად</string>
     <string name="pref_restore_backup">რეზერვის აღდგენა</string>
@@ -264,7 +253,6 @@
     <string name="cache_delete_error">შსევდომა დაფიქსირდა ქეშის გასუფთავებისას</string>
     <string name="pref_clear_cookies">Cookie -ების გასუფთავება</string>
     <string name="cookies_cleared">Cookie -ები გასუფთავებულია</string>
-    <string name="choices_reset">დიალოგის არჩევანის უგულვებელყოფა</string>
     <string name="pref_clear_database">მონაცემთა ბაზის გასუფთავება</string>
     <string name="pref_clear_database_summary">ბიბლიოთეკაში შეუნახავი მანგების ისტორიის წაშლა</string>
     <string name="clear_database_confirmation">დარწმუნებული ხარ? წაკითხული თავები და ბიბლიოთეკაში არ არსებული მანგების პროგრესი დაიკარგება</string>
@@ -292,26 +280,19 @@
     <string name="logout_success">გამოსვლა წარმატებით მოხერხდა</string>
     <string name="invalid_login">შესვლა ვერ მოხერხდა</string>
     <string name="unknown_error">დაფიქსირდა უცნობი შეცდომა</string>
-    <string name="library_search_hint">სათაური ან ავტორი…</string>
     <string name="updating_category">კატეგორია ახლდება</string>
     <string name="local_source_badge">ლოკალური</string>
     <string name="badges_header">ნიშნაკები</string>
     <string name="tabs_header">ჩანართები</string>
-    <string name="source_requires_login">ამ წყაროსთვის აუცილებელია შესვლა</string>
-    <string name="select_source">ამოირჩიე წყარო</string>
-    <string name="no_valid_sources">გთხოვთ ჩართოთ ერთი ვალიდური წყარო მაინც</string>
     <string name="no_more_results">შედეგების სიის დასასრული</string>
     <string name="no_results_found">შედეგი ვერ მოიძებნა</string>
     <string name="http_error_hint">ვებსაიტის ნახვა აპლიკაციაში</string>
     <string name="local_source">ლოცალური წყარო</string>
     <string name="other_source">სხვა</string>
     <string name="last_used_source">ბოლოს გამოყენებული</string>
-    <string name="invalid_combination">ნაგულისხმევის მონიშვნა შეუძლებელია სხვა კატეგორიასთან ერთად</string>
-    <string name="added_to_library">მანგა დაემატა თქვენს ბიბლიოთეკას</string>
     <string name="action_global_search_hint">გლობალური ძებნა…</string>
     <string name="latest">უკანასკნელი</string>
     <string name="browse">დათვალიერება</string>
-    <string name="manga_detail_tab">ინფორმაცია</string>
     <string name="manga_not_in_db">მანგა წაიშალა მონაცემთა ბაზიდან</string>
     <string name="description">აღწერა</string>
     <string name="ongoing">მიმდინარე</string>
@@ -330,16 +311,10 @@
 \n%1$s</string>
     <string name="source_not_installed">წყარო არ არის დაინსტალირებული: %1$s</string>
     <string name="snack_add_to_library">დავამატო მანგა ბიბლიოთეკაში?</string>
-    <string name="manga_chapters_tab">თავები</string>
-    <string name="manga_chapter_no_title">სათაურის გარეშე</string>
     <string name="display_mode_chapter">თავი %1$s</string>
-    <string name="chapter_downloaded">გადმოწერილი</string>
-    <string name="chapter_queued">რიგში</string>
-    <string name="chapter_downloading">მიმდინარეობს გადმოწერა</string>
     <string name="chapter_downloading_progress">მიმდინარეობს გადმოწერა (%1$d/%2$d)</string>
     <string name="chapter_error">შეცდომა</string>
     <string name="chapter_paused">დაპაუზებულია</string>
-    <string name="fetch_chapters_error">ვერ მოხერხდა თავების გადმოწერა</string>
     <string name="show_title">წყაროს სათაური</string>
     <string name="show_chapter_number">თავის ნომერი</string>
     <string name="sorting_mode">დალაგების რეჟიმი</string>
@@ -379,12 +354,7 @@
     <string name="snack_categories_deleted">კატეგორიები წაიშალა</string>
     <string name="dialog_with_checkbox_remove_description">ეს წაშლის ამ თავის წაკითხვის თარიღს. დარწმუნებული ხართ?</string>
     <string name="picture_saved">სურათი შენახულია</string>
-    <string name="saving_picture">სურათი ინახება</string>
-    <string name="options">პარამეტრები</string>
-    <string name="downloading">გადმოწერა…</string>
-    <string name="download_progress">გადმოწერილია %1$d%%</string>
     <string name="chapter_progress">გვერდი: %1$d</string>
-    <string name="chapter_subtitle">თავი: %1$s</string>
     <string name="no_next_chapter">შემდეგი თავი ვერ მოიძებნა</string>
     <string name="no_previous_chapter">წინა თავი ვერ მოიძებნა</string>
     <string name="decode_image_error">სურათის გადმოტვირთვა ვერ მოხერხდა</string>
@@ -401,31 +371,24 @@
     <string name="page_list_empty_error">ვერცერთი გვერდი ვერ მოიძევნა</string>
     <string name="updating_library">ბიბლიოთეკის განახლება</string>
     <string name="recent_manga_time">თავ. %1$s - %2$s</string>
-    <string name="migration_info">დააჭირე რომ მონიშნო წყარო საიდანაც გინდა მიგრაცია</string>
     <string name="migration_dialog_what_to_include">ამოირჩიე მონაცემები შესაყვანად</string>
     <string name="migration_selection_prompt">ამოირჩიე წყარო საიდანაც გინდა მიგრაცია</string>
     <string name="migrate">მიგრაცია</string>
     <string name="copy">კოპირება</string>
     <string name="download_queue_error">ვერ მოხერხდა თავების გადმოწერა. შეგიძლია სცადო თავიდან გადმოწერების სექციაში</string>
     <string name="notification_check_updates">ახალი თავების ძებნა</string>
-    <string name="notification_update_progress">განახლების პროგრესი: %1$d/%2$d</string>
     <string name="notification_new_chapters">ახალი თავები მოიძებნა</string>
     <string name="notification_chapters_single">თავი %1$s</string>
     <string name="notification_chapters_single_and_more">თავი %1$s და %2$d მეტი</string>
     <string name="notification_chapters_multiple">თავები %1$s</string>
     <string name="notification_cover_update_failed">ვერ მოხერხდა ყდის განახლება</string>
     <string name="notification_first_add_to_library">გთხოვთ ჯერ დაამატოთ მანგა თქვენს ბიბლიოთეკაში</string>
-    <string name="notification_not_connected_to_ac_title">სინქრონიზაცია გაუქმებულია</string>
-    <string name="notification_no_connection_title">სინქრონიზაცია გაუქმებულია</string>
-    <string name="notification_not_connected_to_ac_body">არ არის შეერთებული დენის წყაროსთან</string>
-    <string name="notification_no_connection_body">კავშირი არ არის ხელმისაწვდომი</string>
     <string name="file_select_cover">ამოირჩიე ყდის სურათი</string>
     <string name="file_select_backup">ამოირჩიე რეზერვის ფაილი</string>
     <string name="update_check_confirm">გადმოწერა</string>
     <string name="update_check_ignore">დაიგნორება</string>
     <string name="update_check_no_new_updates">განახლება ვერ მოიძებნა</string>
     <string name="update_check_look_for_updates">განახლების ძებნა…</string>
-    <string name="update_check_notification_file_download">განახლების გადმოწერა</string>
     <string name="update_check_notification_download_in_progress">გადმოწერა…</string>
     <string name="update_check_notification_download_complete">გადმოწერა დასრულებულია</string>
     <string name="update_check_notification_download_error">გადმოწერის შეცდომა</string>
@@ -452,7 +415,6 @@
     <string name="action_global_search">გლობალური ძებნა</string>
     <string name="action_move_category">კატეგორიების მინიჭება</string>
     <string name="action_edit_cover">ყდის რედაქტირება</string>
-    <string name="action_move">გადაადგილება</string>
     <string name="action_migrate">მიგრაცია</string>
     <string name="action_pin">მიმაგრება</string>
     <string name="action_unpin">მიმაგრების მოხსნა</string>
@@ -484,7 +446,6 @@
     <string name="custom_filter">პრესონიფიცირებული ფილტრი</string>
     <string name="set_as_cover">ყდად დაყენება</string>
     <string name="cover_updated">ყდა განახლდა</string>
-    <string name="page_downloaded">გვერდი დაკოპირდა %1$s -ში</string>
     <string name="confirm_set_image_as_cover">გამოვიყენოთ ეს სურათი ყდის ნახატად?</string>
     <string name="information_no_recent_manga">ბოლო ხანებში არაფერი არ არის წაკითხული</string>
     <string name="information_empty_category">შენ არ გაქვს კატეგორიები, აირჩიე \"+\" ღილაკი რათა შექმნა ერთი, შენი ბიბლიოთეკის დასაორგანიზებლად.</string>
@@ -493,7 +454,6 @@
     <string name="download_notifier_downloader_title">გადმომწერი</string>
     <string name="download_notifier_title_error">შეცდომა</string>
     <string name="download_notifier_unknown_error">გაუთვალისწინებელი შეცდომის გამო თავის გადმოწერა ვერ მოხერხდა</string>
-    <string name="download_notifier_page_error">გვერდი გამოტოვებულია დირექტორიაში</string>
     <string name="action_enable_all">ჩართე ყველა</string>
     <string name="action_disable_all">გამორთე ყველა</string>
     <string name="secure_screen_summary">აპლიკაციებს შორის გადართვისას შემადგენლობის დამალვა და სკრინშოტების დაბლოკვა</string>
@@ -507,7 +467,6 @@
 \n
 \nდარწმუნდი რომ გაქვს დაინსტალირებული ყველა საჭირო დამატება და ხარ დალოგინებული წყაროებში და თვალყურის სადევნებელ სერვისებში ააღდგენამდე.</string>
     <string name="pref_refresh_library_tracking_summary">ანახლებს სტატუსს, შეფასებას და ბოლო თავს წაკითხულს თვალყურის სადევნებელ სერვისებიდან</string>
-    <string name="download_notifier_page_ready_error">გვერდი ვერ ჩაიტვირთა</string>
     <string name="filter_mode_overlay">გადაფარება</string>
     <string name="information_cloudflare_bypass_failure">ვერ მოხერხდა CloudFlare-ს შემოვლა</string>
     <string name="tapping_inverted_both">ორივე</string>
@@ -568,7 +527,6 @@
     </plurals>
     <string name="pref_category_locale">ადგილმდებარეობა</string>
     <string name="pref_category_theme">თემა</string>
-    <string name="action_sort_descending">კლებადობით</string>
     <string name="action_disable">გამორთვა</string>
     <string name="action_open_in_settings">პარამეტრებში გახსნა</string>
     <string name="action_start">დაწყება</string>

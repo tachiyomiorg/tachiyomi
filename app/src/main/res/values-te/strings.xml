@@ -64,12 +64,9 @@
     <string name="action_retry">మళ్లీ ప్రయత్నించండి</string>
     <string name="action_next_chapter">తదుపరి అధ్యాయం</string>
     <string name="action_previous_chapter">మునుపటి అధ్యాయం</string>
-    <string name="action_close">మూసివేయండి</string>
     <string name="action_pause">విరామం ఇయ్యుము</string>
     <string name="action_stop">ఆపుము</string>
     <string name="action_view_chapters">అధ్యాయాన్ని చూపీయు</string>
-    <string name="action_next_unread">తదుపరి చదవనవి</string>
-    <string name="action_show_downloaded">డౌన్లోడ్ చేయబడినవి</string>
     <string name="action_edit_cover">కవర్ ని ఎడిట్ చేయు</string>
     <string name="action_move_category">కేటగోరీలను సెట్ చేయు</string>
     <string name="action_sort_chapter_fetch_date">పొందిన తేదీ</string>

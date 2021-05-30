@@ -29,10 +29,6 @@
     <string name="action_rename_category">Renomear categoria</string>
     <string name="action_move_category">Definir categorias</string>
     <string name="action_edit_cover">Alterar capa</string>
-    <string name="action_sort_up">Ordem ascendente</string>
-    <string name="action_sort_down">Ordem descendente</string>
-    <string name="action_show_downloaded">Transferido</string>
-    <string name="action_next_unread">Próximo não lido</string>
     <string name="action_stop">Parar</string>
     <string name="action_pause">Pausar</string>
     <string name="action_previous_chapter">Capítulo anterior</string>
@@ -68,7 +64,6 @@
     <string name="update_48hour">A cada 2 dias</string>
     <string name="all">Tudo</string>
     <string name="pref_library_update_restriction">Restrições sobre a atualização</string>
-    <string name="pref_library_update_restriction_summary">Atualizar apenas quando se cumprem as condições</string>
     <string name="charging">A carregar</string>
     <string name="pref_update_only_non_completed">Atualizar apenas mangás a decorrer</string>
     <string name="pref_auto_update_manga_sync">Atualizar progresso do capítulo após leitura</string>
@@ -91,7 +86,6 @@
     <string name="right_to_left_viewer">Direita para a esquerda</string>
     <string name="vertical_viewer">Vertical</string>
     <string name="webtoon_viewer">Webtoon</string>
-    <string name="pref_image_decoder">Descodificador de imagem</string>
     <string name="pref_image_scale_type">Tipo de escala</string>
     <string name="scale_type_fit_screen">Ajustar ao ecrã</string>
     <string name="scale_type_stretch">Esticar</string>
@@ -148,29 +142,18 @@
     <string name="invalid_login">Não foi possível iniciar sessão</string>
     <string name="unknown_error">Erro desconhecido</string>
     <!-- Library fragment -->
-    <string name="library_search_hint">Título ou autor…</string>
     <string name="updating_category">A atualizar categoria</string>
     <!-- Catalogue fragment -->
-    <string name="source_requires_login">Esta fonte necessita que inicie a sessão</string>
-    <string name="select_source">Selecionar uma fonte</string>
-    <string name="no_valid_sources">Por favor ative pelo menos uma fonte valida</string>
     <!-- Manga info fragment -->
-    <string name="manga_detail_tab">Informações</string>
     <string name="description">Descrição</string>
     <string name="ongoing">Em curso</string>
     <string name="unknown">Desconhecido</string>
     <string name="licensed">Licenciado</string>
     <string name="remove_from_library">Remover da biblioteca</string>
     <!-- Manga chapter fragment -->
-    <string name="manga_chapters_tab">Capítulos</string>
-    <string name="manga_chapter_no_title">Sem título</string>
     <string name="display_mode_chapter">Capítulo %1$s</string>
-    <string name="chapter_downloaded">Transferido</string>
-    <string name="chapter_queued">Em fila</string>
-    <string name="chapter_downloading">A Transferir</string>
     <string name="chapter_downloading_progress">A Transferir (%1$d/%2$d)</string>
     <string name="chapter_error">Erro</string>
-    <string name="fetch_chapters_error">Não foi possível obter capítulos</string>
     <string name="show_title">Título da fonte</string>
     <string name="show_chapter_number">Número do capítulo</string>
     <string name="sorting_mode">Modo de ordenação</string>
@@ -197,26 +180,17 @@
     <string name="dialog_with_checkbox_remove_description">Esta ação irá remover a data de leitura deste capítulo. Continuar?</string>
     <string name="dialog_with_checkbox_reset">Reiniciar todos os capítulos desta mangá</string>
     <!-- Reader activity -->
-    <string name="downloading">A transferir…</string>
-    <string name="download_progress">Transferido %1$d%%</string>
     <string name="chapter_progress">Página: %1$d</string>
-    <string name="chapter_subtitle">Capítulo %1$s</string>
     <string name="no_next_chapter">Capítulo seguinte não encontrado</string>
     <string name="no_previous_chapter">Capítulo anterior não encontrado</string>
     <string name="decode_image_error">Não foi possível carregar a imagem</string>
     <!-- Backup fragment -->
-    <string name="backup">Cópia de segurança</string>
     <!-- Recent manga fragment -->
     <!-- Downloads activity and service -->
     <string name="download_queue_error">Não foi possível transferir capítulos. Poderá tentar novamente na secção das transferências</string>
     <!-- Library update service notifications -->
-    <string name="notification_update_progress">Progresso da atualização: %1$d/%2$d</string>
     <string name="notification_new_chapters">Novos capítulos encontrados</string>
     <string name="notification_first_add_to_library">Por favor adicione a mangá à sua biblioteca antes de fazer isto</string>
-    <string name="notification_not_connected_to_ac_title">Sincronização cancelada</string>
-    <string name="notification_not_connected_to_ac_body">O dispositivo não está ligado ao carregador</string>
-    <string name="notification_no_connection_title">Sincronização cancelada</string>
-    <string name="notification_no_connection_body">Ligação indisponível</string>
     <!-- File Picker Titles -->
     <string name="file_select_cover">Selecionar imagem de capa</string>
     <string name="file_select_backup">Selecionar ficheiro de cópia de segurança</string>
@@ -226,7 +200,6 @@
     <string name="update_check_no_new_updates">Sem atualizações disponíveis</string>
     <string name="update_check_look_for_updates">À procura de atualizações…</string>
     <!--UpdateCheck Notifications-->
-    <string name="update_check_notification_file_download">Transferir atualização</string>
     <string name="update_check_notification_download_in_progress">A transferir…</string>
     <string name="update_check_notification_download_complete">Transferência completa</string>
     <string name="update_check_notification_download_error">Erro na transferência</string>
@@ -241,8 +214,6 @@
     <!-- Download Notification -->
     <string name="download_notifier_title_error">Erro</string>
     <string name="download_notifier_unknown_error">Não foi possível transferir o capítulo devido a um erro inesperado</string>
-    <string name="download_notifier_page_error">Uma página está em falta no diretório</string>
-    <string name="download_notifier_page_ready_error">Uma página não foi carregada</string>
     <string name="download_notifier_text_only_wifi">Sem ligação de Wi-Fi disponível</string>
     <string name="categories">Categorias</string>
     <string name="manga">Mangá</string>
@@ -258,8 +229,6 @@
     <string name="action_bookmark">Marcar capítulo</string>
     <string name="action_remove_bookmark">Desmarcar capítulo</string>
     <string name="action_add">Adicionar</string>
-    <string name="action_close">Fechar</string>
-    <string name="action_move">Mover</string>
     <string name="action_display">Mostrar</string>
     <string name="action_display_grid">Grelha compacta</string>
     <string name="action_display_list">Lista</string>
@@ -267,9 +236,6 @@
     <string name="action_save">Guardar</string>
     <string name="action_undo">Anular</string>
     <string name="action_create">Criar</string>
-    <string name="action_open">Abrir</string>
-    <string name="action_login">Entrar</string>
-    <string name="short_recent_updates">Atualizações</string>
     <string name="update_weekly">Semanalmente</string>
     <string name="pref_start_screen">Ecrã inicial</string>
     <string name="pref_language">Idioma</string>
@@ -325,7 +291,6 @@
     <string name="restore_completed">Restauro completo</string>
     <string name="backup_choice">O que pretende fazer cópia de segurança\?</string>
     <string name="pref_backup_slots">Máximo de cópias de segurança</string>
-    <string name="choices_reset">Restaurar opções de diálogo</string>
     <string name="action_display_download_badge">Distintivos de transferência</string>
     <string name="ext_trust">Confiar</string>
     <string name="ext_untrusted">Não confiável</string>
@@ -343,8 +308,6 @@
     <string name="no_more_results">Sem mais resultados</string>
     <string name="local_source">Fonte local</string>
     <string name="other_source">Outras</string>
-    <string name="invalid_combination">Padrão não pode ser selecionado com outras categorias</string>
-    <string name="added_to_library">O mangá foi adicionado à sua biblioteca</string>
     <string name="action_global_search_hint">Pesquisa global…</string>
     <string name="latest">Mais recente</string>
     <string name="browse">Navegar</string>
@@ -368,12 +331,9 @@
     <string name="snack_categories_deleted">Categorias eliminadas</string>
     <string name="snack_add_to_library">Adicionar mangá a biblioteca\?</string>
     <string name="picture_saved">Imagem guardada</string>
-    <string name="saving_picture">Guardando imagem</string>
-    <string name="options">Opções</string>
     <string name="custom_filter">Filtro personalizado</string>
     <string name="set_as_cover">Usar como capa</string>
     <string name="cover_updated">Capa atualizada</string>
-    <string name="page_downloaded">Página copiada para %1$s</string>
     <string name="confirm_set_image_as_cover">Usar esta imagem como capa\?</string>
     <string name="transition_finished">Concluído:</string>
     <string name="transition_current">Atual:</string>
@@ -383,7 +343,6 @@
     <string name="transition_no_previous">Não há capítulo anterior</string>
     <string name="transition_pages_loading">A carregar páginas…</string>
     <string name="transition_pages_error">Falha ao carregar páginas: %1$s</string>
-    <string name="migration_info">Toque para selecionar a fonte da qual migrar</string>
     <string name="migration_dialog_what_to_include">Selecione dados para incluir</string>
     <string name="migrate">Migrar</string>
     <string name="copy">Copiar</string>
@@ -578,7 +537,6 @@
     <string name="action_enable_all">Ativar todas</string>
     <string name="action_start">Iniciar</string>
     <string name="pref_jump_to_chapters">Saltar para capítulos ao entrar</string>
-    <string name="action_sort_descending">Descendente</string>
     <string name="action_open_in_settings">Abrir em Definições</string>
     <string name="action_disable">Desativar</string>
     <string name="tapping_inverted_both">Ambos</string>
@@ -649,7 +607,6 @@
 \nDeve terminar com .proto.gz ou .json.</string>
     <string name="file_picker_error">Não foi encontrada app de selecção de ficheiros</string>
     <string name="myanimelist_relogin">Por favor inicie sessão no MAL novamente</string>
-    <string name="myanimelist_creds_missing">Credenciais de sessão MAL não encontradas</string>
     <string name="pref_label_nsfw_extension">Nome na lista de extensões</string>
     <string name="pref_show_nsfw_extension">Mostrar na lista de extensões</string>
     <string name="pref_show_nsfw_source">Mostrar na lista de fontes</string>
@@ -705,4 +662,11 @@
     <string name="pref_create_folder_per_manga">Guarda páginas em pastas separadas</string>
     <string name="pref_reader_actions">Ações</string>
     <string name="pref_grayscale">Tons de cinzento</string>
+    <string name="date">Data</string>
+    <string name="local_filter_order_by">Ordenar por</string>
+    <string name="local_invalid_format">Formato de capítulo inválido</string>
+    <string name="chapter_not_found">Capítulo não encontrado</string>
+    <string name="automatic_background">Automático</string>
+    <string name="off">Desligado</string>
+    <string name="on">Ligado</string>
 </resources>

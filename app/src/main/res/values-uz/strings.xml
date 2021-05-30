@@ -2,10 +2,6 @@
 <resources>
     <string name="action_stop">Tõxatish</string>
     <string name="action_view_chapters">Bõlimlarni kõrish</string>
-    <string name="action_next_unread">Keyingi õqilmagan</string>
-    <string name="action_show_downloaded">Yuklangan</string>
-    <string name="action_sort_down">Saralash</string>
-    <string name="action_sort_up">Saralash</string>
     <string name="action_edit_cover">Muqovani õzgartirish</string>
     <string name="action_move_category">Kategoriyalar õrnatish</string>
     <string name="action_rename_category">Kategoriyani qayta nomlash</string>

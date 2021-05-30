@@ -41,19 +41,13 @@
     <string name="action_rename_category">Gi kategori nytt navn</string>
     <string name="action_move_category">Sett kategorier</string>
     <string name="action_edit_cover">Rediger omslag</string>
-    <string name="action_sort_up">Sorter oppover</string>
-    <string name="action_sort_down">Sorter nedover</string>
-    <string name="action_show_downloaded">Nedlastet</string>
-    <string name="action_next_unread">Neste uleste</string>
     <string name="action_stop">Stopp</string>
     <string name="action_pause">Pause</string>
-    <string name="action_close">Lukk</string>
     <string name="action_previous_chapter">Forrige kapittel</string>
     <string name="action_next_chapter">Neste kapittel</string>
     <string name="action_retry">Prøv igjen</string>
     <string name="action_remove">Fjern</string>
     <string name="action_resume">Fortsett</string>
-    <string name="action_move">Flytt</string>
     <string name="action_open_in_browser">Åpne i nettleser</string>
     <string name="action_display_mode">Visningsmodus</string>
     <string name="action_display">Vis</string>
@@ -69,11 +63,8 @@
     <string name="action_open_log">Åpne logg</string>
     <string name="action_create">Opprett</string>
     <string name="action_restore">Gjenopprett</string>
-    <string name="action_open">Åpne</string>
-    <string name="action_login">Logg inn</string>
     <string name="loading">Laster…</string>
     <string name="app_not_available">Program ikke tilgjengelig</string>
-    <string name="short_recent_updates">Oppdateringer</string>
     <string name="pref_category_general">Generelt</string>
     <string name="pref_category_reader">Leser</string>
     <string name="pref_category_downloads">Nedlastinger</string>
@@ -122,7 +113,6 @@
     <string name="landscape">Liggende</string>
     <string name="pref_library_update_interval">Oppdateringsfrekvens</string>
     <string name="pref_library_update_restriction">Oppdateringsrestriksjoner</string>
-    <string name="pref_library_update_restriction_summary">Kun oppdater når disse vilkårene oppfylles</string>
     <string name="pref_update_only_non_completed">Kun oppdater pågående manga</string>
     <string name="pref_auto_update_manga_sync">Oppdater kapittelfremdrift etter lesing</string>
     <string name="pref_true_color">32-biters fargerom</string>
@@ -143,7 +133,6 @@
     <string name="right_to_left_viewer">Høyre til venstre</string>
     <string name="vertical_viewer">Loddrett</string>
     <string name="webtoon_viewer">Webtoon</string>
-    <string name="pref_image_decoder">Bildedekoder</string>
     <string name="pref_image_scale_type">Skalatype</string>
     <string name="scale_type_fit_screen">Tilpass skjerm</string>
     <string name="scale_type_stretch">Strekk</string>
@@ -180,7 +169,6 @@
     <string name="fifth_to_last">Femte siste kapittel</string>
     <string name="pref_download_new">Last ned nye kapitler</string>
     <string name="services">Tjenester</string>
-    <string name="backup">Sikkerhetskopier</string>
     <string name="pref_create_backup">Opprett sikkerhetskopi</string>
     <string name="pref_create_backup_summ">Kan brukes til å gjenopprette nåværende bibliotek</string>
     <string name="pref_restore_backup">Gjenopprett sikkerhetskopi</string>
@@ -200,7 +188,6 @@
     <string name="cache_delete_error">Feil oppstod under tømming av hurtiglager</string>
     <string name="pref_clear_cookies">Tøm kaker</string>
     <string name="cookies_cleared">Kaker tømt</string>
-    <string name="choices_reset">Dialogvinduvalg tilbakestilt</string>
     <string name="pref_clear_database">Tøm database</string>
     <string name="pref_clear_database_summary">Slett historikk for manga som ikke er lagret i biblioteket ditt</string>
     <string name="clear_database_confirmation">Er du sikker\? Leste kapitler og framdrift for manga som ikke er i biblioteket vil gå tapt</string>
@@ -218,22 +205,15 @@
     <string name="login_success">Innlogget</string>
     <string name="invalid_login">Kunne ikke logge inn</string>
     <string name="unknown_error">Ukjent feil</string>
-    <string name="library_search_hint">Tittel eller forfatter…</string>
     <string name="updating_category">Oppdaterer kategori</string>
     <string name="local_source_badge">Lokal</string>
-    <string name="source_requires_login">Denne kilden krever at du logger inn</string>
-    <string name="select_source">Velg en kilde</string>
-    <string name="no_valid_sources">Skru på minst én gyldig kilde</string>
     <string name="no_more_results">Ingen flere resultater</string>
     <string name="local_source">Lokal kilde</string>
     <string name="other_source">Andre</string>
-    <string name="invalid_combination">Forvalg kan ikke velges med andre kategorier</string>
-    <string name="added_to_library">Mangaen har blitt lagt til i biblioteket ditt</string>
     <string name="action_global_search_hint">Globalt søk…</string>
     <string name="latest">Seneste</string>
     <string name="browse">Utforsk</string>
     <string name="manga_not_in_db">Denne mangaen har blitt fjernet fra databasen.</string>
-    <string name="manga_detail_tab">Info</string>
     <string name="description">Beskrivelse</string>
     <string name="ongoing">Pågående</string>
     <string name="unknown">Ukjent</string>
@@ -246,16 +226,10 @@
     <string name="copied_to_clipboard">Kopiert til utklippstavle:
 \n%1$s</string>
     <string name="source_not_installed">Kilde ikke installert: %1$s</string>
-    <string name="manga_chapters_tab">Kapittel</string>
-    <string name="manga_chapter_no_title">Ingen tittel</string>
     <string name="display_mode_chapter">Kapittel %1$s</string>
-    <string name="chapter_downloaded">Nedlastet</string>
-    <string name="chapter_queued">I kø</string>
-    <string name="chapter_downloading">Laster ned</string>
     <string name="chapter_downloading_progress">Laster ned (%1$d/%2$d)</string>
     <string name="chapter_error">Feil</string>
     <string name="chapter_paused">Pauset</string>
-    <string name="fetch_chapters_error">Kunne ikke hente kapittel</string>
     <string name="show_title">Kildetittel</string>
     <string name="show_chapter_number">Kapittelnummer</string>
     <string name="sorting_mode">Sorteringsmodus</string>
@@ -290,16 +264,10 @@
     <string name="dialog_with_checkbox_reset">Tilbakestill alle kapittel for denne mangaen</string>
     <string name="snack_add_to_library">Legg manga til i bibliotek\?</string>
     <string name="picture_saved">Bilde lagret</string>
-    <string name="saving_picture">Lagrer bilde</string>
-    <string name="options">Valg</string>
     <string name="custom_filter">Egendefinert filter</string>
     <string name="set_as_cover">Sett som omslag</string>
     <string name="cover_updated">Omslag oppdatert</string>
-    <string name="page_downloaded">Side kopiert til %1$s</string>
-    <string name="downloading">Laster ned…</string>
-    <string name="download_progress">Nedlastet %1$d%%</string>
     <string name="chapter_progress">Side: %1$d</string>
-    <string name="chapter_subtitle">Kapittel %1$s</string>
     <string name="no_next_chapter">Fant ikke neste kapittel</string>
     <string name="no_previous_chapter">Fant ikke forrige kapittel</string>
     <string name="decode_image_error">Kunne ikke laste inn bildet</string>
@@ -336,19 +304,12 @@
 \n
 \nForsikre deg om at du har installert alle nødvendige utvidelser og er logget inn i kilder og sporingstjenester før du gjenoppretter.</string>
     <string name="confirm_set_image_as_cover">Bruk dette bildet som omslag\?</string>
-    <string name="migration_info">Trykk for å velge kilde å migrere fra</string>
     <string name="download_queue_error">Kunne ikke laste ned kapitler. Du kan prøve igjen i nedlastingsdelen</string>
-    <string name="notification_update_progress">Oppdateringsfremdrift: %1$d/%2$d</string>
     <string name="notification_first_add_to_library">Legg til mangaen i biblioteket ditt før du gjør dette</string>
-    <string name="notification_not_connected_to_ac_title">Synkronisering avbrutt</string>
-    <string name="notification_not_connected_to_ac_body">Ikke tilkoblet strøm</string>
-    <string name="notification_no_connection_title">Synkronisering avbrutt</string>
-    <string name="notification_no_connection_body">Tilkobling ikke tilgjengelig</string>
     <string name="file_select_cover">Velg omslagsbilde</string>
     <string name="file_select_backup">Velg sikkerhetskopifil</string>
     <string name="update_check_no_new_updates">Ingen nye oppdateringer tilgjengelige</string>
     <string name="update_check_look_for_updates">Ser etter oppdateringer…</string>
-    <string name="update_check_notification_file_download">Last ned oppdatering</string>
     <string name="update_check_notification_download_in_progress">Laster ned…</string>
     <string name="update_check_notification_download_complete">Nedlasting ferdig</string>
     <string name="update_check_notification_download_error">Feil ved nedlasting</string>
@@ -362,8 +323,6 @@
     <string name="download_notifier_downloader_title">Nedlaster</string>
     <string name="download_notifier_title_error">Feil</string>
     <string name="download_notifier_unknown_error">Kunne ikke laste ned kapittel grunnet uventet feil</string>
-    <string name="download_notifier_page_error">En side ble ikke funnet</string>
-    <string name="download_notifier_page_ready_error">En side er ikke innlastet</string>
     <string name="download_notifier_text_only_wifi">Ingen trådløstilkobling tilgjengelig</string>
     <string name="download_notifier_no_network">Ingen nettverkstilkobling tilgjengelig</string>
     <string name="download_notifier_download_paused">Nedlasting pauset</string>
@@ -544,7 +503,6 @@
     <string name="pref_library_update_refresh_metadata">Gjenoppfrisk metadata automatisk</string>
     <string name="pref_category_display">Skjerm</string>
     <string name="pref_category_theme">Drakt</string>
-    <string name="action_sort_descending">Fallende</string>
     <string name="action_download_unread">Last ned uleste kapittel</string>
     <string name="action_sort_date_added">Dato lagt til</string>
     <string name="pref_category_locale">Språk</string>
@@ -612,7 +570,6 @@
     <string name="clear_history_completed">Historikken er slettet</string>
     <string name="pref_clear_history">Slett historikk</string>
     <string name="myanimelist_relogin">Vennligst logg på MAL igjen</string>
-    <string name="myanimelist_creds_missing">MAL-påloggingsinformasjonen ikke funnet</string>
     <string name="track_finished_reading_date">Sluttdato for lesing</string>
     <string name="track_started_reading_date">Startdato for lesing</string>
     <string name="downloaded_chapters">Nedlastede kapitler</string>
