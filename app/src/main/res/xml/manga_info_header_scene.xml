@@ -9,70 +9,8 @@
         motion:duration="@android:integer/config_mediumAnimTime">
        <KeyFrameSet>
            <KeyPosition
-               motion:motionTarget="@+id/manga_cover"
-               motion:framePosition="20"
-               motion:keyPositionType="deltaRelative"
-               motion:percentX="0.80"
-               motion:percentY="0.01"
-               motion:percentWidth="0"
-               motion:percentHeight="0" />
-           <KeyPosition
-               motion:motionTarget="@+id/manga_detail"
-               motion:framePosition="30"
-               motion:keyPositionType="deltaRelative"
-               motion:percentX="0.0"
-               motion:percentY="0.20" />
-           <KeyPosition
                motion:motionTarget="@+id/manga_detail"
                motion:keyPositionType="pathRelative" />
-           <KeyPosition
-               motion:motionTarget="@+id/manga_detail"
-               motion:framePosition="69"
-               motion:keyPositionType="deltaRelative"
-               motion:percentX="0.0"
-               motion:percentY="0.6" />
-           <KeyPosition
-               motion:motionTarget="@+id/btn_favorite"
-               motion:framePosition="30"
-               motion:keyPositionType="deltaRelative"
-               motion:percentX="0.0"
-               motion:percentY="0.2" />
-           <KeyPosition
-               motion:motionTarget="@+id/btn_tracking"
-               motion:framePosition="30"
-               motion:keyPositionType="deltaRelative"
-               motion:percentX="0.0"
-               motion:percentY="0.2" />
-           <KeyPosition
-               motion:motionTarget="@+id/btn_webview"
-               motion:framePosition="30"
-               motion:keyPositionType="deltaRelative"
-               motion:percentX="0.0"
-               motion:percentY="0.2" />
-           <KeyPosition
-               motion:motionTarget="@+id/manga_summary_text"
-               motion:framePosition="30"
-               motion:keyPositionType="deltaRelative"
-               motion:percentX="0.0"
-               motion:percentY="0.2" />
-           <KeyPosition
-               motion:motionTarget="@+id/manga_info_toggle_more"
-               motion:framePosition="30"
-               motion:keyPositionType="deltaRelative"
-               motion:percentX="0.0"
-               motion:percentY="0.2" />
-           <KeyPosition
-               motion:motionTarget="@+id/manga_info_toggle_more_scrim"
-               motion:framePosition="30"
-               motion:keyPositionType="deltaRelative"
-               motion:percentX="0.0"
-               motion:percentY="0.2" />
-           <KeyPosition
-               motion:motionTarget="@+id/manga_genres_tags_compact"
-               motion:framePosition="30"
-               motion:keyPositionType="deltaRelative"
-               motion:percentX="0.0"
-               motion:percentY="0.2" />
        </KeyFrameSet>
         <OnClick motion:targetId="@+id/manga_cover" />
     </Transition>
