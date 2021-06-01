@@ -154,7 +154,7 @@
     <string name="theme_dark_greenapple">Green Apple</string>
     <string name="theme_dark_midnightdusk">Midnight Dusk</string>
     <string name="theme_dark_amoled">AMOLED Black</string>
-    <string name="theme_dark_amoled_hotpink">Hot Pink</string>
+    <string name="theme_dark_amoled_hotpink">AMOLED Hot Pink</string>
     <string name="pref_start_screen">Start screen</string>
     <string name="pref_language">Language</string>
     <string name="system_default">Default</string>
