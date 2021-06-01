@@ -292,7 +292,7 @@ class MangaInfoHeaderAdapter(
         }
 
         private fun showMangaInfo(visible: Boolean) {
-            // binding.mangaSummarySection.isVisible = visible
+            binding.mangaSummarySection.isVisible = visible
         }
 
         private fun toggleMangaInfo() {
