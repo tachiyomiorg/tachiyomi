@@ -275,7 +275,6 @@ class MangaInfoHeaderAdapter(
 
                 // Handle showing more or less info
                 merge(
-                    binding.mangaSummarySection.clicks(),
                     binding.mangaSummaryText.clicks(),
                     binding.mangaInfoToggleMore.clicks(),
                     binding.mangaInfoToggleLess.clicks()
@@ -293,7 +292,7 @@ class MangaInfoHeaderAdapter(
         }
 
         private fun showMangaInfo(visible: Boolean) {
-            binding.mangaSummarySection.isVisible = visible
+            // binding.mangaSummarySection.isVisible = visible
         }
 
         private fun toggleMangaInfo() {

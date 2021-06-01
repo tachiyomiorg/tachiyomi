@@ -218,7 +218,8 @@
         android:textAlignment="viewEnd"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/manga_summary_text" />
+        app:layout_constraintTop_toBottomOf="@+id/manga_summary_text"
+        tools:visibility="visible" />
 
     <HorizontalScrollView
         android:id="@+id/manga_genres_tags_compact"
@@ -255,16 +256,7 @@
         app:chipSpacingHorizontal="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/manga_summary_text" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/manga_summary_section"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toBottomOf="@+id/manga_info_toggle_less"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.motion.widget.MotionLayout>
