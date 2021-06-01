@@ -26,12 +26,12 @@
     <color name="rippleToolbarColorLight">@color/rippleColorLight</color>
     <color name="backgroundLight">@color/md_grey_50</color>
     <color name="dialogLight">@color/md_white_1000</color>
-    <color name="selectorColorLight">@color/md_blue_A400_38</color>
+    <color name="selectorColorLight">@color/md_blue_A400_75</color>
 
     <!-- Strawberry Daiquiri Theme -->
     <color name="colorAccentStrawberry">#ED4A65</color>
     <color name="rippleSecondaryColorStrawberry">#0AED4A65</color>
-    <color name="selectorColorStrawberry">#6FED4A65</color>
+    <color name="selectorColorStrawberry">#BFED4A65</color>
 
     <!-- Dark Theme -->
     <color name="colorAccentDark">#3399FF</color>
@@ -50,7 +50,7 @@
     <color name="colorAccentApple">#48E484</color>
     <color name="colorOnSecondaryApple">@color/md_black_1000</color>
     <color name="rippleSecondaryColorApple">#0A48E484</color>
-    <color name="selectorColorApple">#8048E484</color>
+    <color name="selectorColorApple">#BF48E484</color>
 
     <!-- Midnight Dusk Theme -->
     <color name="colorAccentDusk">#F02475</color>
@@ -61,7 +61,7 @@
     <color name="rippleSecondaryColorDusk">#0FF02475</color>
     <color name="backgroundDusk">#16151D</color>
     <color name="dialogDusk">#201F27</color>
-    <color name="selectorColorDusk">#80F02475</color>
+    <color name="selectorColorDusk">#BFF02475</color>
 
     <!-- AMOLED Theme -->
     <color name="colorAccentAmoled">#3399FF</color>
@@ -74,7 +74,7 @@
     <color name="rippleToolbarColorAmoled">@color/rippleColorAmoled</color>
     <color name="backgroundAmoled">@color/colorAmoledPrimary</color>
     <color name="dialogAmoled">@color/colorAmoledPrimary</color>
-    <color name="selectorColorAmoled">@color/md_blue_A200_50</color>
+    <color name="selectorColorAmoled">@color/md_blue_A200_75</color>
 
     <!-- Hot Pink Theme -->
     <color name="colorAccentPink">#FF3399</color>
@@ -82,7 +82,7 @@
     <color name="textColorSecondaryPink">@color/md_white_1000_70</color>
     <color name="textColorHintPink">@color/md_white_1000_50</color>
     <color name="rippleSecondaryColorPink">#0AFF3399</color>
-    <color name="selectorColorPink">#80FF69B4</color>
+    <color name="selectorColorPink">#BFFF69B4</color>
 
     <!-- Reader Theme -->
     <color name="readerColorDarkPrimary">@color/colorDarkPrimary</color>
@@ -122,9 +122,11 @@
     <color name="md_grey_900_75">#BF212121</color>
 
     <color name="md_blue_A200">#448AFF</color>
+    <color name="md_blue_A200_75">#BF448AFF</color>
     <color name="md_blue_A200_50">#80448AFF</color>
 
     <color name="md_blue_A400">#2979FF</color>
+    <color name="md_blue_A400_75">#BF2979FF</color>
     <color name="md_blue_A400_38">#612979FF</color>
     <color name="md_blue_A400_4">#0A2979FF</color>
 

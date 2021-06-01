@@ -307,9 +307,8 @@
         <!-- Themes -->
         <item name="materialAlertDialogTheme">@style/Theme.AlertDialog.Dark.MidnightDusk</item>
 
-        <!-- Custom Attributes -->
-        <item name="colorLibrarySelection">@color/selectorColorDark</item>
-        <item name="colorLibrarySelectionActive">@color/selectorColorDark</item>
+        <!-- Custom Attributes-->
+        <item name="colorLibrarySelectionActive">@color/selectorColorDusk</item>
     </style>
 
     <!--===============-->
@@ -392,7 +391,7 @@
         <item name="md_corner_radius">@dimen/dialog_radius</item>
 
         <!-- Custom Attributes-->
-        <item name="colorLibrarySelection">@color/selectorColorAmoled</item>
+        <item name="colorLibrarySelection">?attr/colorAccent</item>
         <item name="colorLibrarySelectionActive">@color/selectorColorAmoled</item>
         <item name="colorFilterActive">@color/filterColorAmoled</item>
 
@@ -421,6 +420,9 @@
 
         <!-- Themes -->
         <item name="materialAlertDialogTheme">@style/Theme.AlertDialog.Amoled.HotPink</item>
+
+        <!-- Custom Attributes-->
+        <item name="colorLibrarySelectionActive">@color/selectorColorPink</item>
     </style>
 
     <!--===============-->
