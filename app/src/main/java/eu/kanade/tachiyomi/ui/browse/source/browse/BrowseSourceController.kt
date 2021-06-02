@@ -371,7 +371,7 @@ open class BrowseSourceController(bundle: Bundle) :
                             is Filter.TriState -> filter.state = 1
                             is Filter.CheckBox -> filter.state = true
                         }
-                        filterList = FilterList(sourceFilter)
+                        filterList = presenter.sourceFilters
                         break@filter
                     }
                 }
@@ -381,7 +381,8 @@ open class BrowseSourceController(bundle: Bundle) :
 
                 if (index != -1) {
                     sourceFilter.state = index
-                    filterList = FilterList(sourceFilter)
+                    filterList = presenter.sourceFilters
+                    break
                 }
             }
         }
