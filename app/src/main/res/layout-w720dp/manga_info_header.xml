@@ -15,7 +15,7 @@
         android:background="@drawable/rounded_rectangle"
         android:contentDescription="@string/description_cover"
         android:scaleType="centerCrop"
-        app:layout_constraintDimensionRatio="w,3:2"
+        app:layout_constraintDimensionRatio="w,8:6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
