@@ -148,6 +148,7 @@
     <string name="theme_light_default">Default</string>
     <string name="theme_light_blue">Light Blue</string>
     <string name="theme_light_strawberrydaiquiri">Strawberry Daiquiri</string>
+    <string name="theme_light_yotsuba">Yotsuba</string>
     <string name="pref_theme_dark">Dark theme</string>
     <string name="theme_dark_default">Default</string>
     <string name="theme_dark_blue">Dark Blue</string>

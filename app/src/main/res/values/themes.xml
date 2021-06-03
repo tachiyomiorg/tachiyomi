@@ -155,6 +155,25 @@
         <item name="colorLibrarySelectionActive">@color/selectorColorStrawberry</item>
     </style>
 
+    <!--== Yotsuba theme ==-->
+    <style name="Theme.Tachiyomi.Light.Yotsuba">
+        <!-- Theme colors -->
+        <item name="colorAccentOnPrimary">@color/colorAccentYotsuba</item>
+        <item name="colorSecondary">@color/colorAccentYotsuba</item>
+        <item name="colorTertiary">@color/md_blue_A400</item>
+        <item name="colorOnTertiary">@color/md_white_1000</item>
+        <item name="colorAccent">@color/colorAccentYotsuba</item>
+
+        <!-- Ripples -->
+        <item name="rippleSecondaryColor">@color/rippleSecondaryColorYotsuba</item>
+
+        <!-- Themes -->
+        <item name="materialAlertDialogTheme">@style/Theme.AlertDialog.Light.Yotsuba</item>
+
+        <!-- Custom Attributes-->
+        <item name="colorLibrarySelectionActive">@color/selectorColorYotsuba</item>
+    </style>
+
     <!--=============-->
     <!-- Dark Themes -->
     <!--=============-->
