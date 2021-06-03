@@ -6,7 +6,7 @@ import android.os.Build
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.CustomRobolectricGradleTestRunner
 import eu.kanade.tachiyomi.data.backup.legacy.LegacyBackupManager
-import eu.kanade.tachiyomi.data.backup.legacy.models.BackupClass
+import eu.kanade.tachiyomi.data.backup.legacy.models.Backup
 import eu.kanade.tachiyomi.data.backup.legacy.models.DHistory
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Category
@@ -20,7 +20,6 @@ import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.reader.setting.OrientationType
 import eu.kanade.tachiyomi.ui.reader.setting.ReadingModeType
-import exh.eh.EHentaiThrottleManager
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
@@ -49,7 +48,7 @@ import uy.kohesive.injekt.api.addSingleton
 @RunWith(CustomRobolectricGradleTestRunner::class)
 class BackupTest {
     // Create root object
-    var root = BackupClass()
+    var root = Backup()
 
     // Create information object
     var information = buildJsonObject {}
@@ -232,7 +231,7 @@ class BackupTest {
         `when`(source.fetchChapterList(manga)).thenReturn(Observable.just(chaptersRemote))
 
         runBlocking {
-            legacyBackupManager.restoreChapters(source, manga, restoredChapters, EHentaiThrottleManager())
+            legacyBackupManager.restoreChapters(source, manga, restoredChapters)
 
             val dbCats = legacyBackupManager.databaseHelper.getChapters(manga).executeAsBlocking()
             assertThat(dbCats).hasSize(10)
@@ -333,7 +332,7 @@ class BackupTest {
     }
 
     private fun clearJson() {
-        root = BackupClass()
+        root = Backup()
         information = buildJsonObject {}
     }
 
