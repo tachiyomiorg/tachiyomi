@@ -5,46 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    app:layoutDescription="@xml/manga_info_header_scene"
+    app:layoutDescription="@xml/manga_info_header_scene_sw600dp"
     tools:context=".ui.browse.source.browse.BrowseSourceController">
 
     <ImageView
-        android:id="@+id/backdrop"
+        android:id="@+id/manga_cover"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="-8dp"
-        android:alpha="0.2"
+        android:background="@drawable/rounded_rectangle"
+        android:contentDescription="@string/description_cover"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="@+id/manga_cover"
+        app:layout_constraintDimensionRatio="w,3:2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:background="@mipmap/ic_launcher" />
+        tools:src="@mipmap/ic_launcher" />
 
     <View
         android:id="@+id/backdrop_overlay"
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:layout_marginBottom="-16dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="1"
         android:background="@drawable/manga_info_gradient"
         android:backgroundTint="?android:attr/colorBackground"
-        app:layout_constraintBottom_toBottomOf="@+id/backdrop" />
-
-    <ImageView
-        android:id="@+id/manga_cover"
-        android:layout_width="100dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="48dp"
-        android:background="@drawable/rounded_rectangle"
-        android:contentDescription="@string/description_cover"
-        android:maxWidth="100dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintDimensionRatio="w,3:2"
+        app:layout_constraintBottom_toBottomOf="@+id/manga_cover"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_height="133dp"
-        tools:src="@mipmap/ic_launcher" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/manga_detail"
@@ -52,10 +39,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/manga_cover"
+        app:layout_constraintBottom_toTopOf="@+id/btn_favorite"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/manga_cover">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/manga_full_title"
@@ -133,12 +121,13 @@
         style="@style/Theme.Widget.Button.Action"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
         android:text="@string/add_to_library"
         app:icon="@drawable/ic_favorite_border_24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/manga_cover"
         app:layout_constraintEnd_toStartOf="@+id/btn_tracking"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backdrop" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_tracking"
@@ -172,11 +161,11 @@
         android:id="@+id/manga_summary_section"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         app:layoutDescription="@xml/manga_summary_section_scene"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_favorite">
-
+        app:layout_constraintTop_toBottomOf="@+id/manga_cover">
 
         <TextView
             android:id="@+id/manga_summary_text"
