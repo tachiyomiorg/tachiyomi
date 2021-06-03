@@ -42,7 +42,7 @@ class ExtensionDetailsHeaderAdapter(private val presenter: ExtensionDetailsPrese
             binding.extensionPkg.text = extension.pkgName
 
             binding.extensionUninstallButton.clicks()
-                .onEach { presenter.uninstallExtension() }
+                .onEach { checkExtensionDependencies(extension.pkgName) }
                 .launchIn(presenter.presenterScope)
 
             if (extension.isObsolete) {
@@ -53,6 +53,16 @@ class ExtensionDetailsHeaderAdapter(private val presenter: ExtensionDetailsPrese
             if (extension.isUnofficial) {
                 binding.extensionWarningBanner.isVisible = true
                 binding.extensionWarningBanner.setText(R.string.unofficial_extension_message)
+            }
+        }
+
+        private fun checkExtensionDependencies(pkgName: String) {
+            val sourceDependencies = presenter.findSourcesDependentOnExtension(pkgName)
+
+            if (sourceDependencies.isEmpty()) {
+                presenter.uninstallExtension()
+            } else {
+                presenter.showExtensionWarnDialog(sourceDependencies)
             }
         }
     }

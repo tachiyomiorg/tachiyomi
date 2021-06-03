@@ -301,7 +301,7 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
                     router.popToRoot()
                 }
                 setSelectedNavItem(R.id.nav_browse)
-                router.pushController(BrowseController(true).withFadeTransaction())
+                router.pushController(BrowseController(BrowseController.EXTENSIONS_CONTROLLER).withFadeTransaction())
             }
             SHORTCUT_MANGA -> {
                 val extras = intent.extras ?: return false

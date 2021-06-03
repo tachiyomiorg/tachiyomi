@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.extension
 import android.content.Context
 import android.graphics.drawable.Drawable
 import com.jakewharton.rxrelay.BehaviorRelay
+import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.plusAssign
 import eu.kanade.tachiyomi.extension.api.ExtensionGithubApi
@@ -40,6 +41,8 @@ class ExtensionManager(
      * API where all the available extensions can be found.
      */
     private val api = ExtensionGithubApi()
+
+    private val db by lazy { Injekt.get<DatabaseHelper>() }
 
     /**
      * The installer which installs, updates and uninstalls the extensions.
@@ -165,6 +168,16 @@ class ExtensionManager(
             }
 
             availableExtensions = extensions
+        }
+    }
+
+    fun findSourcesDependentOnExtension(pkgName: String): List<Source> {
+        val allLibraryManga = db.getLibraryMangas().executeAsBlocking()
+
+        val extension = installedExtensions.first { it.pkgName == pkgName }
+
+        return extension.sources.filter { source ->
+            allLibraryManga.any { libraryManga -> libraryManga.source == source.id }
         }
     }
 
