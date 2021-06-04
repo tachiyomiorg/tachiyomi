@@ -289,6 +289,13 @@ class MangaInfoHeaderAdapter(
                     toggleMangaInfo()
                     initialLoad = false
                 }
+
+                // Refreshes will change the state and it needs to be set to correct state to display correctly
+                if (binding.mangaSummaryText.maxLines == 2) {
+                    binding.mangaSummarySection.transitionToState(R.id.start)
+                } else {
+                    binding.mangaSummarySection.transitionToState(R.id.end)
+                }
             }
         }
 
