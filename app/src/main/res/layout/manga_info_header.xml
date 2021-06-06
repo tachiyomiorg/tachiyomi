@@ -25,7 +25,6 @@
         android:id="@+id/backdrop_overlay"
         android:layout_width="match_parent"
         android:layout_height="160dp"
-        android:layout_marginBottom="-16dp"
         android:background="@drawable/manga_info_gradient"
         android:backgroundTint="?android:attr/colorBackground"
         app:layout_constraintBottom_toBottomOf="@+id/backdrop" />
