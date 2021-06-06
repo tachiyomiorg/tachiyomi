@@ -120,16 +120,16 @@ class LibraryItem(
 
     private fun containsSourceOrGenre(tag: String, sourceName: String, genres: List<String>?): Boolean {
         return if (tag.startsWith("-")) {
-            if (sourceName.contains(tag.substringAfter("-"), true)) {
-                false
-            } else {
+            if (!sourceName.contains(tag.substringAfter("-"), true)) {
                 containsGenre(tag, genres)
+            } else {
+                false
             }
         } else {
-            if (sourceName.contains(tag, true)) {
-                true
-            } else {
+            if (!sourceName.contains(tag, true)) {
                 containsGenre(tag, genres)
+            } else {
+                true
             }
         }
     }
