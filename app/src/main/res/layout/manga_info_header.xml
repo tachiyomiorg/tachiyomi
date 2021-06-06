@@ -61,10 +61,9 @@
             android:id="@+id/manga_full_title"
             style="@style/TextAppearance.Medium.Title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60sp"
             android:layout_marginBottom="4dp"
             android:gravity="bottom"
-            android:maxLines="3"
             android:text="@string/manga_info_full_title_label"
             android:textIsSelectable="false"
             app:autoSizeMaxTextSize="20sp"
@@ -85,14 +84,14 @@
             style="@style/TextAppearance.Regular.Body1.Secondary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
             android:textIsSelectable="false"
             tools:text="Artist" />
 
         <LinearLayout
             android:id="@+id/manga_status_row"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp">
 
             <TextView
                 android:id="@+id/manga_status"
@@ -172,11 +171,11 @@
         android:id="@+id/manga_summary_section"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         app:layoutDescription="@xml/manga_summary_section_scene"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_favorite">
-
 
         <TextView
             android:id="@+id/manga_summary_text"
