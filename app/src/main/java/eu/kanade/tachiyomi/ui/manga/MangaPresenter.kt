@@ -1,8 +1,12 @@
 package eu.kanade.tachiyomi.ui.manga
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import coil.imageLoader
+import coil.memory.MemoryCache
 import com.jakewharton.rxrelay.PublishRelay
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
@@ -280,29 +284,85 @@ class MangaPresenter(
         moveMangaToCategories(manga, listOfNotNull(category))
     }
 
-    fun shareCover(context: Context): File {
-        return saveCover(getTempShareDir(context))
+    /**
+     * Get the manga cover as a Bitmap, either from the CoverCache (only works for library manga)
+     * or from the Coil ImageLoader cache.
+     *
+     * @param context the context used to get the Coil ImageLoader
+     * @param memoryCacheKey Coil MemoryCache.Key that points to the cover Bitmap cache location
+     * @return manga cover as Bitmap
+     */
+    fun getCoverBitmap(context: Context, memoryCacheKey: MemoryCache.Key?): Bitmap {
+        var resultBitmap = coverBitmapFromCoverCache()
+        if (resultBitmap == null && memoryCacheKey != null) {
+            resultBitmap = coverBitmapFromImageLoader(context, memoryCacheKey)
+        }
+
+        return resultBitmap ?: throw Exception("Cover not in cache")
     }
 
-    fun saveCover(context: Context) {
-        saveCover(getPicturesDir(context))
+    /**
+     * Attempt manga cover retrieval from the CoverCache.
+     *
+     * @return cover as Bitmap or null if CoverCache does not contain cover for manga
+     */
+    private fun coverBitmapFromCoverCache(): Bitmap? {
+        val cover = coverCache.getCoverFile(manga)
+        return if (cover != null) {
+            BitmapFactory.decodeFile(cover.path)
+        } else {
+            null
+        }
     }
 
-    private fun saveCover(directory: File): File {
-        val cover = coverCache.getCoverFile(manga) ?: throw Exception("Cover url was null")
-        if (!cover.exists()) throw Exception("Cover not in cache")
-        val type = ImageUtil.findImageType(cover.inputStream())
-            ?: throw Exception("Not an image")
+    /**
+     * Attempt manga cover retrieval from the Coil ImageLoader memoryCache.
+     *
+     * @param context the context used to get the Coil ImageLoader
+     * @param memoryCacheKey Coil MemoryCache.Key that points to the cover Bitmap cache location
+     * @return cover as Bitmap or null if there is no thumbnail cached with the memoryCacheKey
+     */
+    private fun coverBitmapFromImageLoader(context: Context, memoryCacheKey: MemoryCache.Key): Bitmap? {
+        return context.imageLoader.memoryCache[memoryCacheKey]
+    }
 
+    /**
+     * Save manga cover Bitmap to temporary share directory.
+     *
+     * @param context for the temporary share directory
+     * @param coverBitmap the cover to save (as Bitmap)
+     * @return cover File in temporary share directory
+     */
+    fun shareCover(context: Context, coverBitmap: Bitmap): File {
+        return saveCover(getTempShareDir(context), coverBitmap)
+    }
+
+    /**
+     * Save manga cover to pictures directory of the device.
+     *
+     * @param context for the pictures directory of the user
+     * @param coverBitmap the cover to save (as Bitmap)
+     * @return cover File in pictures directory
+     */
+    fun saveCover(context: Context, coverBitmap: Bitmap) {
+        saveCover(getPicturesDir(context), coverBitmap)
+    }
+
+    /**
+     * Save a manga cover Bitmap to a new File in a given directory.
+     * Overwrites file if it already exists.
+     *
+     * @param directory The directory in which the new file will be created
+     * @param coverBitmap The manga cover to save
+     * @return the newly created File
+     */
+    private fun saveCover(directory: File, coverBitmap: Bitmap): File {
         directory.mkdirs()
-
-        val filename = DiskUtil.buildValidFilename("${manga.title}.${type.extension}")
+        val filename = DiskUtil.buildValidFilename("${manga.title}.${ImageUtil.ImageType.PNG}")
 
         val destFile = File(directory, filename)
-        cover.inputStream().use { input ->
-            destFile.outputStream().use { output ->
-                input.copyTo(output)
-            }
+        destFile.outputStream().use { desFileOutputStream ->
+            coverBitmap.compress(Bitmap.CompressFormat.PNG, 100, desFileOutputStream)
         }
         return destFile
     }

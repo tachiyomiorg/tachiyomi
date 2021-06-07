@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -648,9 +649,17 @@ class MangaController :
     private fun shareCover() {
         try {
             val activity = activity!!
-            val cover = presenter.shareCover(activity)
+            val thumbnailMemoryKey = mangaInfoAdapter?.thumbnailMemoryCacheKey
+            val coverBitmap: Bitmap = presenter.getCoverBitmap(activity, thumbnailMemoryKey)
+
+            val cover = presenter.shareCover(activity, coverBitmap)
             val uri = cover.getUriCompat(activity)
-            startActivity(Intent.createChooser(uri.toShareIntent(), activity.getString(R.string.action_share)))
+            startActivity(
+                Intent.createChooser(
+                    uri.toShareIntent(),
+                    activity.getString(R.string.action_share)
+                )
+            )
         } catch (e: Exception) {
             Timber.e(e)
             activity?.toast(R.string.error_sharing_cover)
@@ -659,7 +668,10 @@ class MangaController :
 
     private fun saveCover() {
         try {
-            presenter.saveCover(activity!!)
+            val thumbnailMemoryKey = mangaInfoAdapter?.thumbnailMemoryCacheKey
+            val coverBitmap: Bitmap = presenter.getCoverBitmap(activity!!, thumbnailMemoryKey)
+
+            presenter.saveCover(activity!!, coverBitmap)
             activity?.toast(R.string.cover_saved)
         } catch (e: Exception) {
             Timber.e(e)
