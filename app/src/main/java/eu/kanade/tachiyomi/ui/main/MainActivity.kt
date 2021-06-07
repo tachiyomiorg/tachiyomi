@@ -237,6 +237,7 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
             .asImmediateFlow { binding.downloadedOnly.isVisible = it }
             .launchIn(lifecycleScope)
 
+        binding.incognitoMode.isVisible = preferences.incognitoMode().get()
         preferences.incognitoMode().asFlow()
             .drop(1)
             .onEach {
