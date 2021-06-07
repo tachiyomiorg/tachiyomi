@@ -4,11 +4,17 @@ import android.content.res.Configuration.UI_MODE_NIGHT_MASK
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferenceValues.DarkThemeVariant
 import eu.kanade.tachiyomi.data.preference.PreferenceValues.LightThemeVariant
 import eu.kanade.tachiyomi.data.preference.PreferenceValues.ThemeMode
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.preference.asImmediateFlow
+import eu.kanade.tachiyomi.util.view.setSecureScreen
+import kotlinx.coroutines.flow.launchIn
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 import uy.kohesive.injekt.injectLazy
 
 abstract class BaseThemedActivity : AppCompatActivity() {
@@ -38,6 +44,13 @@ abstract class BaseThemedActivity : AppCompatActivity() {
             }
         }
         setTheme(themeId)
+
+        Injekt.get<PreferencesHelper>().incognitoMode()
+            .asImmediateFlow {
+                window.setSecureScreen(it)
+            }
+            .launchIn(lifecycleScope)
+
         super.onCreate(savedInstanceState)
     }
 }
