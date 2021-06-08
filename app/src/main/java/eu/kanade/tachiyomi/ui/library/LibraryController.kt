@@ -482,12 +482,6 @@ class LibraryController(
         actionMode = null
     }
 
-    fun clearSelection() {
-        selectedMangas.clear()
-        selectionRelay.call(LibrarySelectionEvent.Cleared())
-        actionMode!!.invalidate()
-    }
-
     fun openManga(manga: Manga) {
         // Notify the presenter a manga is being opened.
         presenter.onOpenManga()
@@ -524,6 +518,16 @@ class LibraryController(
         } else if (selectedMangas.remove(manga)) {
             selectionRelay.call(LibrarySelectionEvent.Unselected(manga))
         }
+    }
+
+    /**
+     * Clear all of the manga currently selected, and
+     * invalidate the action mode to revert the top toolbar
+     */
+    fun clearSelection() {
+        selectedMangas.clear()
+        selectionRelay.call(LibrarySelectionEvent.Cleared())
+        invalidateActionMode()
     }
 
     /**

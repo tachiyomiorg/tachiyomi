@@ -35,7 +35,6 @@ class ChangeMangaCategoriesDialog<T>(bundle: Bundle? = null) :
         return MaterialDialog(activity!!)
             .title(R.string.action_move_category)
             .negativeButton(android.R.string.cancel)
-
             .apply {
                 if (categories.isNotEmpty()) {
                     listItemsMultiChoice(
@@ -50,11 +49,6 @@ class ChangeMangaCategoriesDialog<T>(bundle: Bundle? = null) :
                 } else {
                     message(R.string.information_empty_category_dialog)
                         .positiveButton(R.string.action_edit_categories) {
-                            /*
-                            If the selection isn't cleared and actionmode not invalidated,
-                            the top toolbar stays in action mode, (with the # of selected items,
-                            and select all / inverse buttons)
-                             */
                             if (targetController is LibraryController) {
                                 val libController = targetController as LibraryController
                                 libController.clearSelection()
