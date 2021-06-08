@@ -81,7 +81,7 @@ open class App : Application(), LifecycleObserver, ImageLoaderFactory {
                     val notification = notification(Notifications.CHANNEL_INCOGNITO_MODE) {
                         setContentTitle(getString(R.string.pref_incognito_mode))
                         setContentText(getString(R.string.notification_incognito_text))
-                        setSmallIcon(R.drawable.ic_glasses_black_24dp)
+                        setSmallIcon(R.drawable.ic_glasses_24dp)
                         setOngoing(true)
 
                         val pendingIntent = PendingIntent.getBroadcast(
