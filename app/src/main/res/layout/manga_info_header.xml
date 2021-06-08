@@ -131,10 +131,10 @@
         style="@style/Theme.Widget.Button.Action"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:text="@string/add_to_library"
         app:icon="@drawable/ic_favorite_border_24dp"
         app:layout_constraintEnd_toStartOf="@+id/btn_tracking"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/backdrop" />
 
@@ -147,7 +147,6 @@
         android:visibility="gone"
         app:icon="@drawable/ic_sync_24dp"
         app:layout_constraintEnd_toStartOf="@+id/btn_webview"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btn_favorite"
         app:layout_constraintTop_toTopOf="@+id/btn_favorite"
         tools:visibility="visible" />
@@ -157,11 +156,11 @@
         style="@style/Theme.Widget.Button.Action"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:text="@string/action_web_view"
         android:visibility="gone"
         app:icon="@drawable/ic_public_24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btn_tracking"
         app:layout_constraintTop_toTopOf="@+id/btn_favorite"
         tools:visibility="visible" />
