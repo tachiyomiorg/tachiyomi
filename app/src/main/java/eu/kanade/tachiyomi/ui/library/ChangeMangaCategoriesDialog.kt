@@ -9,6 +9,8 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
+import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
+import eu.kanade.tachiyomi.ui.category.CategoryController
 
 class ChangeMangaCategoriesDialog<T>(bundle: Bundle? = null) :
     DialogController(bundle) where T : Controller, T : ChangeMangaCategoriesDialog.Listener {
@@ -32,7 +34,8 @@ class ChangeMangaCategoriesDialog<T>(bundle: Bundle? = null) :
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         return MaterialDialog(activity!!)
             .title(R.string.action_move_category)
-            .positiveButton(android.R.string.ok)
+            .negativeButton(android.R.string.cancel)
+
             .apply {
                 if (categories.isNotEmpty()) {
                     listItemsMultiChoice(
@@ -43,9 +46,22 @@ class ChangeMangaCategoriesDialog<T>(bundle: Bundle? = null) :
                         val newCategories = selections.map { categories[it] }
                         (targetController as? Listener)?.updateCategoriesForMangas(mangas, newCategories)
                     }
-                        .negativeButton(android.R.string.cancel)
+                        .positiveButton(android.R.string.ok)
                 } else {
                     message(R.string.information_empty_category_dialog)
+                        .positiveButton(R.string.action_edit_categories) {
+                            /*
+                            If the selection isn't cleared and actionmode not invalidated,
+                            the top toolbar stays in action mode, (with the # of selected items,
+                            and select all / inverse buttons)
+                             */
+                            if (targetController is LibraryController) {
+                                val libController = targetController as LibraryController
+                                libController.clearSelection()
+                            }
+                            router.popCurrentController()
+                            router.pushController(CategoryController().withFadeTransaction())
+                        }
                 }
             }
     }

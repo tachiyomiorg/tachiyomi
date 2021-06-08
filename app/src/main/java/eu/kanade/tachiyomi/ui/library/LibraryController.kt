@@ -482,6 +482,12 @@ class LibraryController(
         actionMode = null
     }
 
+    fun clearSelection() {
+        selectedMangas.clear()
+        selectionRelay.call(LibrarySelectionEvent.Cleared())
+        actionMode!!.invalidate()
+    }
+
     fun openManga(manga: Manga) {
         // Notify the presenter a manga is being opened.
         presenter.onOpenManga()
