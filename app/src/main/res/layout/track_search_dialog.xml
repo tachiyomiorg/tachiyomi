@@ -40,20 +40,12 @@
             android:visibility="invisible"
             tools:visibility="visible" />
 
-        <ListView
-            android:id="@+id/track_search_list"
-            style="@style/Widget.Tachiyomi.CardView"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/track_search_recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:choiceMode="singleChoice"
-            android:clipToPadding="false"
-            android:divider="@null"
-            android:dividerHeight="10dp"
-            android:footerDividersEnabled="true"
-            android:headerDividersEnabled="true"
-            android:listSelector="@drawable/list_item_selector"
-            android:scrollbars="none"
-            android:visibility="invisible"
+            android:layout_height="wrap_content"
+            android:paddingVertical="8dp"
+            android:visibility="gone"
             tools:listitem="@layout/track_search_item"
             tools:visibility="visible" />
 

@@ -38,6 +38,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.util.lang.truncateCenter
 import timber.log.Timber
+import uy.kohesive.injekt.api.get
 import java.io.File
 import kotlin.math.roundToInt
 

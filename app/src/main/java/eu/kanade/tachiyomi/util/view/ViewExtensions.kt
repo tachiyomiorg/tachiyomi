@@ -4,10 +4,12 @@ package eu.kanade.tachiyomi.util.view
 
 import android.annotation.SuppressLint
 import android.graphics.Point
+import android.text.TextUtils
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import androidx.annotation.MenuRes
 import androidx.annotation.StringRes
 import androidx.appcompat.view.menu.MenuBuilder
@@ -16,12 +18,17 @@ import androidx.appcompat.widget.TooltipCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.forEach
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.card.MaterialCardView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import com.google.android.material.elevation.ElevationOverlayProvider
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.util.system.getResourceColor
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 
 /**
  * Returns coordinates of view.
@@ -173,4 +180,22 @@ inline fun ChipGroup.setChips(
 
         addView(chip)
     }
+}
+
+/**
+ * Applies elevation overlay to a MaterialCardView
+ */
+inline fun MaterialCardView.applyElevationOverlay() {
+    if (Injekt.get<PreferencesHelper>().isDarkMode()) {
+        val provider = ElevationOverlayProvider(context)
+        setCardBackgroundColor(provider.compositeOverlay(cardBackgroundColor.defaultColor, cardElevation))
+    }
+}
+
+/**
+ * Sets TextView max lines dynamically. Can only be called when the view is already laid out.
+ */
+inline fun TextView.setMaxLinesAndEllipsize(_ellipsize: TextUtils.TruncateAt = TextUtils.TruncateAt.END) = post {
+    maxLines = (measuredHeight - paddingTop - paddingBottom) / lineHeight
+    ellipsize = _ellipsize
 }

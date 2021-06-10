@@ -148,24 +148,6 @@
     <!--Widgets-->
     <!--=======-->
 
-    <style name="Widget.Tachiyomi.CardView" parent="CardView">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">16dp</item>
-        <item name="android:layout_marginTop">8dp</item>
-        <item name="android:layout_marginBottom">8dp</item>
-        <item name="android:layout_marginStart">8dp</item>
-        <item name="android:layout_marginEnd">8dp</item>
-        <item name="cardBackgroundColor">?attr/colorSurface</item>
-        <item name="cardCornerRadius">@dimen/card_radius</item>
-        <item name="cardElevation">2dp</item>
-    </style>
-
-    <style name="Widget.Tachiyomi.CardView.Item">
-        <item name="android:layout_marginTop">@dimen/space_between_cards</item>
-        <item name="android:layout_marginBottom">@dimen/space_between_cards</item>
-    </style>
-
     <style name="Widget.Tachiyomi.GridView" parent="android:Widget">
         <item name="android:smoothScrollbar">true</item>
         <item name="android:numColumns">auto_fit</item>
@@ -305,6 +287,14 @@
         <item name="md_divider_color">@color/md_divider_dark_theme</item>
         <item name="md_item_selector">@drawable/md_item_selector_dark</item>
         <item name="md_button_selector">@drawable/md_btn_selector_dark</item>
+    </style>
+
+    <!--================-->
+    <!--Shape Appearance-->
+    <!--================-->
+    <style name="ShapeAppearanceOverlay.MaterialCardView.Tracker" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
     </style>
 
 </resources>

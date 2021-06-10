@@ -96,7 +96,8 @@ class TrackSheet(
                 }
             }
         } else {
-            TrackSearchDialog(controller, item.service).showDialog(controller.router, TAG_SEARCH_CONTROLLER)
+            TrackSearchDialog(controller, item.service, item.track?.tracking_url)
+                .showDialog(controller.router, TAG_SEARCH_CONTROLLER)
         }
     }
 

@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
@@ -20,7 +20,6 @@ import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import reactivecircus.flowbinding.android.widget.itemClicks
 import reactivecircus.flowbinding.android.widget.textChanges
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
@@ -32,23 +31,24 @@ class TrackSearchDialog : DialogController {
 
     private var adapter: TrackSearchAdapter? = null
 
-    private var selectedItem: Track? = null
-
     private val service: TrackService
+    private val currentTrackUrl: String?
 
     private val trackController
         get() = targetController as MangaController
 
-    constructor(target: MangaController, service: TrackService) : super(
-        bundleOf(KEY_SERVICE to service.id)
+    constructor(target: MangaController, service: TrackService, currentTrackUrl: String?) : super(
+        bundleOf(KEY_SERVICE to service.id, KEY_CURRENT_URL to currentTrackUrl)
     ) {
         targetController = target
         this.service = service
+        this.currentTrackUrl = currentTrackUrl
     }
 
     @Suppress("unused")
     constructor(bundle: Bundle) : super(bundle) {
         service = Injekt.get<TrackManager>().getService(bundle.getInt(KEY_SERVICE))!!
+        currentTrackUrl = bundle.getString(KEY_CURRENT_URL)
     }
 
     @Suppress("DEPRECATION")
@@ -67,18 +67,9 @@ class TrackSearchDialog : DialogController {
 
     fun onViewCreated(view: View, savedState: Bundle?) {
         // Create adapter
-        val adapter = TrackSearchAdapter(view.context)
-        this.adapter = adapter
-        binding!!.trackSearchList.adapter = adapter
-
-        // Set listeners
-        selectedItem = null
-
-        binding!!.trackSearchList.itemClicks()
-            .onEach { position ->
-                selectedItem = adapter.getItem(position)
-            }
-            .launchIn(trackController.viewScope)
+        adapter = TrackSearchAdapter(currentTrackUrl)
+        binding!!.trackSearchRecyclerview.layoutManager = LinearLayoutManager(view.context)
+        binding!!.trackSearchRecyclerview.adapter = adapter
 
         // Do an initial search based on the manga's title
         if (savedState == null) {
@@ -106,27 +97,29 @@ class TrackSearchDialog : DialogController {
     private fun search(query: String) {
         val binding = binding ?: return
         binding.progress.isVisible = true
-        binding.trackSearchList.isVisible = false
+        binding.trackSearchRecyclerview.isVisible = false
         trackController.presenter.trackingSearch(query, service)
     }
 
     fun onSearchResults(results: List<TrackSearch>) {
-        selectedItem = null
         val binding = binding ?: return
         binding.progress.isVisible = false
-        binding.trackSearchList.isVisible = true
-        adapter?.setItems(results)
+        binding.trackSearchRecyclerview.isVisible = true
+        adapter?.items = results
     }
 
     fun onSearchResultsError() {
         val binding = binding ?: return
         binding.progress.isVisible = false
-        binding.trackSearchList.isVisible = false
-        adapter?.setItems(emptyList())
+        binding.trackSearchRecyclerview.isVisible = false
+        adapter?.items = emptyList()
     }
 
     private fun onPositiveButtonClick() {
-        trackController.presenter.registerTracking(selectedItem, service)
+        adapter?.let {
+            val item = it.items[it.selectedItemPosition]
+            trackController.presenter.registerTracking(item, service)
+        }
     }
 
     private fun onRemoveButtonClick() {
@@ -135,5 +128,6 @@ class TrackSearchDialog : DialogController {
 
     private companion object {
         const val KEY_SERVICE = "service_id"
+        const val KEY_CURRENT_URL = "current_url"
     }
 }
