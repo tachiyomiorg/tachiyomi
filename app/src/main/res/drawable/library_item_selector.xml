@@ -10,7 +10,7 @@
                 android:bottom="2dp"
                 android:left="2dp">
                 <shape android:shape="rectangle">
-                    <corners android:radius="@dimen/card_radius" />
+                    <corners android:radius="@dimen/card_selector_radius" />
                     <solid android:color="?attr/colorLibrarySelectionActive" />
                 </shape>
             </item>
@@ -22,7 +22,7 @@
                 android:bottom="2dp"
                 android:left="2dp">
                 <shape android:shape="rectangle">
-                    <corners android:radius="@dimen/card_radius" />
+                    <corners android:radius="@dimen/card_selector_radius" />
                     <solid android:color="?attr/colorLibrarySelectionActive" />
                 </shape>
             </item>
@@ -33,7 +33,7 @@
                 android:bottom="2dp"
                 android:left="2dp">
                 <shape android:shape="rectangle">
-                    <corners android:radius="@dimen/card_radius" />
+                    <corners android:radius="@dimen/card_selector_radius" />
                     <solid android:color="?android:attr/colorBackground" />
                 </shape>
             </item>

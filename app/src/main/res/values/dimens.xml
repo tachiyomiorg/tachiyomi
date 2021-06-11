@@ -6,6 +6,7 @@
 
     <dimen name="space_between_cards">4dp</dimen>
     <dimen name="card_radius">4dp</dimen>
+    <dimen name="card_selector_radius">6dp</dimen>
     <dimen name="dialog_radius">8dp</dimen>
 
     <dimen name="fab_size">56dp</dimen>
