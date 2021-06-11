@@ -4,96 +4,40 @@
     <!--========-->
     <!--Toolbars-->
     <!--========-->
-    <style name="Theme.Toolbar" parent="@style/ThemeOverlay.MaterialComponents.ActionBar" />
 
-    <style name="Theme.Toolbar.Custom.Light" parent="@style/ThemeOverlay.MaterialComponents.ActionBar">
-        <item name="android:colorControlHighlight">?attr/rippleToolbarColor</item>
+    <style name="ThemeOverlay.Tachiyomi.ActionBar" parent="ThemeOverlay.MaterialComponents.ActionBar">
+        <item name="android:colorControlHighlight">?attr/rippleColorToolbar</item>
     </style>
 
-    <style name="Theme.Toolbar.Custom.Dark" parent="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
-        <item name="android:colorControlHighlight">?attr/rippleToolbarColor</item>
+    <style name="Widget.Tachiyomi.Toolbar.Button.Navigation" parent="Widget.AppCompat.Toolbar.Button.Navigation">
+        <item name="tint">?attr/colorOnToolbar</item>
     </style>
 
-    <style name="Theme.Toolbar.Custom.Amoled" parent="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
-        <item name="android:colorControlHighlight">?attr/rippleToolbarColor</item>
+    <style name="Widget.Tachiyomi.ActionMode" parent="Widget.AppCompat.ActionMode">
+        <item name="background">?attr/colorToolbar</item>
+        <item name="titleTextStyle">@style/TextAppearance.Tachiyomi.ActionMode.Title</item>
     </style>
 
-    <style name="Theme.Toolbar.Custom.PopupTheme" parent="Theme.Toolbar.Custom.Dark">
-        <item name="popupTheme">@style/ThemeOverlay.MaterialComponents.Light</item>
+    <style name="Theme.Tachiyomi.ActionMode.CloseButton" parent="Widget.AppCompat.ActionButton.CloseMode">
+        <item name="android:tint">?attr/colorOnToolbar</item>
     </style>
 
-    <style name="Theme.Toolbar.Navigation" parent="Widget.AppCompat.Toolbar.Button.Navigation">
-        <item name="tint">?attr/colorOnPrimary</item>
+    <style name="Theme.Tachiyomi.ActionButton.Overflow" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:tint">?attr/colorOnToolbar</item>
     </style>
 
-    <style name="Theme.ActionMode" parent="Base.Widget.AppCompat.ActionMode">
-        <item name="background">?attr/colorPrimary</item>
-    </style>
-
-    <style name="Theme.ActionMode.CloseButton" parent="Base.Widget.AppCompat.ActionButton.CloseMode">
-        <item name="android:tint">?attr/colorOnPrimary</item>
+    <style name="Widget.Tachiyomi.Toolbar.Primary" parent="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="android:elevation">0dp</item>
     </style>
 
 
     <!--===========-->
     <!--AlertDialog-->
     <!--===========-->
-    <style name="Theme.AlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
-        <item name="android:windowMinWidthMajor">@android:dimen/dialog_min_width_major</item>
-        <item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
-
+    <style name="ThemeOverlay.Tachiyomi.MaterialAlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
         <item name="android:background">?attr/colorSurface</item>
-        <item name="shapeAppearanceOverlay">@style/Theme.MaterialAlertDialog.Style.ShapeAppearance</item>
-
-        <item name="materialAlertDialogTitleTextStyle">@style/Theme.MaterialAlertDialog.Style.Title</item>
         <item name="android:textColorPrimary">?attr/colorOnSurface</item>
         <item name="android:textColor">?attr/colorOnSurface</item>
-
-        <item name="buttonBarPositiveButtonStyle">@style/Theme.Widget.Button</item>
-        <item name="buttonBarNegativeButtonStyle">@style/Theme.Widget.Button</item>
-        <item name="buttonBarNeutralButtonStyle">@style/Theme.Widget.Button</item>
-    </style>
-
-    <style name="Theme.MaterialAlertDialog.Style.ShapeAppearance" parent="">
-        <item name="cornerSize">@dimen/dialog_radius</item>
-    </style>
-
-    <style name="Theme.MaterialAlertDialog.Style.Title" parent="@style/MaterialAlertDialog.MaterialComponents.Title.Text">
-        <item name="android:textColor">?android:textColorPrimary</item>
-        <item name="android:textSize">@dimen/md_title_textsize</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
-    </style>
-
-    <style name="Theme.AlertDialog.Light" parent="Theme.AlertDialog">
-        <item name="colorAccent">@color/colorAccentLight</item>
-    </style>
-
-    <style name="Theme.AlertDialog.Light.StrawberryDaiquiri" parent="Theme.AlertDialog">
-        <item name="colorAccent">@color/colorAccentStrawberry</item>
-    </style>
-
-    <style name="Theme.AlertDialog.Light.Yotsuba" parent="Theme.AlertDialog">
-        <item name="colorAccent">@color/colorAccentYotsuba</item>
-    </style>
-
-    <style name="Theme.AlertDialog.Dark" parent="Theme.AlertDialog">
-        <item name="colorAccent">@color/colorAccentDark</item>
-    </style>
-
-    <style name="Theme.AlertDialog.Dark.GreenApple" parent="Theme.AlertDialog">
-        <item name="colorAccent">@color/colorAccentApple</item>
-    </style>
-
-    <style name="Theme.AlertDialog.Dark.MidnightDusk" parent="Theme.AlertDialog">
-        <item name="colorAccent">@color/colorAccentDusk</item>
-    </style>
-
-    <style name="Theme.AlertDialog.Amoled" parent="Theme.AlertDialog">
-        <item name="colorAccent">@color/colorAccentAmoled</item>
-    </style>
-
-    <style name="Theme.AlertDialog.Amoled.HotPink" parent="Theme.AlertDialog">
-        <item name="colorAccent">@color/colorAccentPink</item>
     </style>
 
 
@@ -101,19 +45,16 @@
     <!--BottomSheet-->
     <!--===========-->
 
-    <style name="Theme.BottomSheet" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
-        <item name="android:windowIsFloating">false</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">?attr/colorSurface</item>
-        <item name="bottomSheetStyle">@style/Theme.BottomSheet.Style</item>
-        <item name="android:windowAnimationStyle">@style/Animation.BottomSheetDialog</item>
+    <style name="ThemeOverlay.Tachiyomi.BottomSheetDialog" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Widget.Tachiyomi.BottomSheet.Modal</item>
+        <item name="android:windowAnimationStyle">@style/Animation.Tachiyomi.BottomSheetDialog</item>
     </style>
 
-    <style name="Theme.BottomSheet.Style" parent="Widget.MaterialComponents.BottomSheet">
-        <item name="shapeAppearanceOverlay">@style/Theme.BottomSheet.Style.ShapeAppearance</item>
+    <style name="Widget.Tachiyomi.BottomSheet.Modal" parent="Widget.MaterialComponents.BottomSheet.Modal">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Tachiyomi.BottomSheet</item>
     </style>
 
-    <style name="Theme.BottomSheet.Style.ShapeAppearance" parent="">
+    <style name="ShapeAppearanceOverlay.Tachiyomi.BottomSheet" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopRight">@dimen/dialog_radius</item>
         <item name="cornerSizeTopLeft">@dimen/dialog_radius</item>
@@ -121,7 +62,7 @@
         <item name="cornerSizeBottomLeft">0dp</item>
     </style>
 
-    <style name="Animation.BottomSheetDialog" parent="Animation.AppCompat.Dialog">
+    <style name="Animation.Tachiyomi.BottomSheetDialog" parent="Animation.AppCompat.Dialog">
         <item name="android:windowEnterAnimation">@anim/bottom_sheet_slide_in</item>
         <item name="android:windowExitAnimation">@anim/bottom_sheet_slide_out</item>
     </style>
@@ -130,7 +71,7 @@
     <!--===============-->
     <!--Text Appearance-->
     <!--===============-->
-    <style name="TextAppearance" parent="@android:style/TextAppearance">
+    <style name="TextAppearance" parent="android:TextAppearance">
         <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
 
@@ -185,7 +126,7 @@
     </style>
 
     <style name="TextAppearance.Widget.Button" parent="TextAppearance.MaterialComponents.Button">
-        <item name="android:letterSpacing">0</item>
+        <item name="android:letterSpacing">-0.006</item>
         <item name="android:textAllCaps">false</item>
     </style>
 
@@ -198,25 +139,16 @@
         <item name="android:letterSpacing">0</item>
     </style>
 
+    <style name="TextAppearance.Tachiyomi.ActionMode.Title" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textColor">?attr/colorOnToolbar</item>
+    </style>
+
 
     <!--=======-->
     <!--Widgets-->
     <!--=======-->
-    <style name="Theme.Widget" />
 
-    <style name="Theme.Widget.FAB" parent="@style/Widget.MaterialComponents.ExtendedFloatingActionButton.Icon">
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="fabCustomSize">@dimen/fab_size</item>
-        <item name="android:minWidth">@dimen/fab_size</item>
-        <item name="android:layout_gravity">bottom|end</item>
-        <item name="android:layout_margin">16dp</item>
-        <item name="android:scaleType">fitCenter</item>
-        <item name="layout_anchorGravity">bottom|right|end</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
-    </style>
-
-    <style name="Theme.Widget.CardView" parent="CardView">
+    <style name="Widget.Tachiyomi.CardView" parent="CardView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">16dp</item>
@@ -229,19 +161,19 @@
         <item name="cardElevation">2dp</item>
     </style>
 
-    <style name="Theme.Widget.CardView.Item">
+    <style name="Widget.Tachiyomi.CardView.Item">
         <item name="android:layout_marginTop">@dimen/space_between_cards</item>
         <item name="android:layout_marginBottom">@dimen/space_between_cards</item>
     </style>
 
-    <style name="Theme.Widget.GridView">
+    <style name="Widget.Tachiyomi.GridView" parent="android:Widget">
         <item name="android:smoothScrollbar">true</item>
         <item name="android:numColumns">auto_fit</item>
         <item name="android:stretchMode">columnWidth</item>
         <item name="android:scrollbarStyle">outsideOverlay</item>
     </style>
 
-    <style name="Theme.Widget.GridView.Source">
+    <style name="Widget.Tachiyomi.GridView.Source">
         <item name="android:gravity">top|left</item>
         <item name="android:smoothScrollbar">true</item>
         <item name="android:cacheColorHint">?android:attr/textColorHint</item>
@@ -251,26 +183,26 @@
     </style>
 
 
-    <style name="Theme.Widget.SpinnerItem" parent="Widget.AppCompat.DropDownItem.Spinner">
+    <style name="Widget.Tachiyomi.SpinnerItem" parent="Widget.AppCompat.DropDownItem.Spinner">
         <item name="android:textColor">?attr/colorOnSurface</item>
         <item name="android:background">@drawable/list_item_selector</item>
     </style>
 
 
-    <style name="Theme.Widget.Snackbar" parent="Widget.MaterialComponents.Snackbar">
+    <style name="Widget.Tachiyomi.Snackbar" parent="Widget.MaterialComponents.Snackbar">
         <item name="android:background">@drawable/snackbar_background</item>
         <item name="actionTextColorAlpha">1</item>
     </style>
-    <style name="Theme.Widget.Snackbar.TextView" parent="@style/Widget.MaterialComponents.Snackbar.TextView">
+    <style name="Widget.Tachiyomi.Snackbar.TextView" parent="Widget.MaterialComponents.Snackbar.TextView">
         <item name="android:textColor">?attr/colorOnSurface</item>
     </style>
 
 
-    <style name="Theme.Widget.Chip" parent="Widget.MaterialComponents.Chip.Action">
+    <style name="Widget.Tachiyomi.Chip.Action" parent="Widget.MaterialComponents.Chip.Action">
         <item name="chipStrokeWidth">1dp</item>
-        <item name="chipStrokeColor">?attr/colorAccent</item>
-        <item name="chipBackgroundColor">@color/background_color_chip_state</item>
-        <item name="android:textColor">?attr/colorAccent</item>
+        <item name="chipStrokeColor">?attr/colorPrimary</item>
+        <item name="chipBackgroundColor">@android:color/transparent</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
 
         <!-- Custom chip states -->
         <item name="android:clickable">true</item>
@@ -286,79 +218,29 @@
     </style>
 
 
-    <style name="Theme.Widget.BasicSwitch" parent="Widget.MaterialComponents.CompoundButton.Switch">
+    <style name="Widget.Tachiyomi.BasicSwitch" parent="Widget.MaterialComponents.CompoundButton.Switch">
         <item name="useMaterialThemeColors">false</item>
     </style>
 
 
-    <style name="Theme.Widget.CircularProgressIndicator" parent="Widget.MaterialComponents.CircularProgressIndicator">
-        <item name="indicatorColor">?attr/colorAccent</item>
-    </style>
-    <style name="Theme.Widget.CircularProgressIndicator.Small" parent="Theme.Widget.CircularProgressIndicator">
+    <style name="Widget.Tachiyomi.CircularProgressIndicator.Small" parent="Widget.MaterialComponents.CircularProgressIndicator">
         <item name="indicatorSize">16dp</item>
         <item name="trackThickness">2dp</item>
-    </style>
-
-    <style name="Theme.Widget.LinearProgressIndicator" parent="Widget.MaterialComponents.LinearProgressIndicator">
-        <item name="indicatorColor">?attr/colorAccent</item>
-    </style>
-
-
-    <!--=======================-->
-    <!--Widgets.TextInputLayout-->
-    <!--=======================-->
-
-    <style name="ThemeOverlay.Widget.TextInputEditText.OutlinedBox" parent="ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox">
-        <item name="colorControlActivated">?attr/colorSecondary</item>
-    </style>
-
-    <style name="Theme.Widget.TextInputLayout.OutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="materialThemeOverlay">@style/ThemeOverlay.Widget.TextInputEditText.OutlinedBox</item>
-        <item name="boxStrokeColor">@color/text_input_stroke</item>
-        <item name="hintTextColor">?attr/colorSecondary</item>
-    </style>
-
-    <style name="Theme.Widget.TextInputLayout.OutlinedBox.Dense" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
-        <item name="materialThemeOverlay">@style/ThemeOverlay.Widget.TextInputEditText.OutlinedBox</item>
-        <item name="boxStrokeColor">@color/text_input_stroke</item>
-        <item name="hintTextColor">?attr/colorSecondary</item>
     </style>
 
 
     <!--==============-->
     <!--Widgets.Button-->
     <!--==============-->
-    <style name="Theme.Widget.Button" parent="Widget.MaterialComponents.Button.TextButton">
-        <item name="android:textColor">?attr/colorAccent</item>
-        <item name="rippleColor">?attr/rippleSecondaryColor</item>
-        <item name="android:textAllCaps">false</item>
-    </style>
-
-    <style name="Theme.Widget.Button.FilledAccent" parent="Widget.MaterialComponents.Button">
-        <item name="android:textColor">?attr/colorOnSecondary</item>
-        <item name="backgroundTint">?attr/colorAccent</item>
-        <item name="rippleColor">?attr/rippleColor</item>
-        <item name="android:textAllCaps">false</item>
-    </style>
-
-    <style name="Theme.Widget.Button.Action" parent="Widget.MaterialComponents.Button.UnelevatedButton.Icon">
-        <item name="android:textSize">12sp</item>
-        <item name="android:textAllCaps">false</item>
-
-        <item name="backgroundTint">@android:color/transparent</item>
-        <item name="rippleColor">?attr/rippleColor</item>
-
+    <style name="Widget.Tachiyomi.Button.ActionButton" parent="Widget.MaterialComponents.Button.TextButton.Icon">
         <item name="iconGravity">top</item>
         <item name="iconTint">@color/button_action_selector</item>
         <item name="iconPadding">4dp</item>
         <item name="android:textColor">@color/button_action_selector</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
-    <style name="Theme.Widget.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
-        <item name="android:letterSpacing">0.0</item>
-        <item name="android:textColor">?attr/colorAccent</item>
-        <item name="android:textAllCaps">false</item>
-
+    <style name="Widget.Tachiyomi.Button.InlineButton" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:minHeight">0dp</item>
         <item name="android:minWidth">0dp</item>
         <item name="android:paddingTop">0dp</item>
@@ -375,18 +257,25 @@
     <!--=================-->
     <!--Widgets.TabLayout-->
     <!--=================-->
-    <style name="Theme.Widget.Tabs" parent="Widget.MaterialComponents.TabLayout.Colored">
+    <style name="Widget.Tachiyomi.TabLayout" parent="Widget.MaterialComponents.TabLayout">
         <item name="tabGravity">center</item>
         <item name="tabIndicator">@drawable/tab_indicator</item>
-        <item name="tabIndicatorColor">?attr/colorAccentOnPrimary</item>
-        <item name="tabTextColor">@color/tabs_selector</item>
         <item name="tabIndicatorFullWidth">false</item>
         <item name="tabIndicatorHeight">3dp</item>
         <item name="tabInlineLabel">true</item>
         <item name="tabMinWidth">75dp</item>
         <item name="tabMode">scrollable</item>
-        <item name="tabTextAppearance">@style/TextAppearance.Widget.Tab</item>
-        <item name="tabRippleColor">?attr/rippleSecondaryColor</item>
+        <item name="tabRippleColor">?attr/colorControlHighlight</item>
+    </style>
+
+    <style name="Widget.Tachiyomi.TabLayout.Colored" parent="Widget.MaterialComponents.TabLayout.Colored">
+        <item name="tabGravity">center</item>
+        <item name="tabIndicator">@drawable/tab_indicator</item>
+        <item name="tabIndicatorFullWidth">false</item>
+        <item name="tabIndicatorHeight">3dp</item>
+        <item name="tabInlineLabel">true</item>
+        <item name="tabMinWidth">75dp</item>
+        <item name="tabMode">scrollable</item>
     </style>
 
 
@@ -406,12 +295,21 @@
         <item name="android:textSize">15sp</item>
     </style>
 
+    <!--================================-->
+    <!--material-dialogs style overrides-->
+    <!--================================-->
+    <style name="MD_Light" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="android:backgroundDimAmount">0.32</item>
+        <item name="md_divider_color">@color/md_divider_light_theme</item>
+        <item name="md_item_selector">@drawable/md_item_selector</item>
+        <item name="md_button_selector">@drawable/md_btn_selector</item>
+    </style>
 
-    <!--===============-->
-    <!--Custom Selector-->
-    <!--===============-->
-    <style name="PreferenceThemeCustom" parent="@style/PreferenceThemeOverlay">
-        <item name="android:selectableItemBackground">@drawable/ripple_background</item>
+    <style name="MD_Dark" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="android:backgroundDimAmount">0.32</item>
+        <item name="md_divider_color">@color/md_divider_dark_theme</item>
+        <item name="md_item_selector">@drawable/md_item_selector_dark</item>
+        <item name="md_button_selector">@drawable/md_btn_selector_dark</item>
     </style>
 
 </resources>

@@ -17,14 +17,17 @@
         <attr name="summary" format="reference|string" />
     </declare-styleable>
 
-    <attr name="colorLibrarySelection" format="reference|integer"/>
-    <attr name="colorLibrarySelectionActive" format="reference|integer"/>
     <attr name="colorFilterActive" format="reference|integer"/>
-    <attr name="colorBackgroundSplash" format="reference|integer"/>
-    <attr name="colorAccentOnPrimary" format="reference|integer"/>
     <attr name="colorTertiary" format="reference|integer"/>
     <attr name="colorOnTertiary" format="reference|integer"/>
-    <attr name="rippleSecondaryColor" format="reference|integer"/>
-    <attr name="rippleToolbarColor" format="reference|integer"/>
+
+    <!-- Ripple color for toolbar elements -->
+    <attr name="rippleColorToolbar" format="reference|color"/>
+
+    <!-- Toolbar color. Not actually used by the toolbar. -->
+    <attr name="colorToolbar" format="reference|color"/>
+
+    <!-- For anything that is drawn on the toolbar -->
+    <attr name="colorOnToolbar" format="reference|integer"/>
 
 </resources>

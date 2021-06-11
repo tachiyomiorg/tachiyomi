@@ -22,7 +22,7 @@
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/progress"
-            style="@style/Theme.Widget.CircularProgressIndicator.Small"
+            style="@style/Widget.Tachiyomi.CircularProgressIndicator.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -50,7 +50,6 @@
         android:lineSpacingExtra="-4dp"
         android:maxLines="2"
         android:padding="4dp"
-        android:shadowColor="@color/textColorPrimaryLight"
         app:layout_constraintEnd_toEndOf="@+id/card"
         app:layout_constraintStart_toStartOf="@+id/card"
         app:layout_constraintTop_toBottomOf="@+id/card"

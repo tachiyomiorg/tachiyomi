@@ -12,8 +12,8 @@
 
         <!-- Remove background color so rounded sheet corners work -->
         <com.google.android.material.tabs.TabLayout
+            style="@style/Widget.Tachiyomi.TabLayout"
             android:id="@+id/tabs"
-            style="@style/Theme.Widget.Tabs"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
@@ -22,15 +22,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tabGravity="fill"
-            app:tabIndicatorColor="?attr/colorAccent"
-            app:tabMode="fixed"
-            app:tabTextColor="@color/tabs_selector_background" />
+            app:tabMode="fixed" />
 
         <ImageButton
             android:id="@+id/menu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/ripple_regular"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/action_menu"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
@@ -39,7 +37,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_overflow_24dp"
-            app:tint="?attr/colorOnBackground"
+            app:tint="?attr/colorOnSurface"
             tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

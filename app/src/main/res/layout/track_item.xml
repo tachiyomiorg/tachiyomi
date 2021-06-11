@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/track"
-    style="@style/Theme.Widget.CardView.Item"
+    style="@style/Widget.Tachiyomi.CardView.Item"
     android:padding="0dp">
 
     <LinearLayout
@@ -45,7 +45,7 @@
 
                 <Button
                     android:id="@+id/track_set"
-                    style="@style/Theme.Widget.Button"
+                    style="?attr/borderlessButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

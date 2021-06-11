@@ -6,17 +6,17 @@
     android:viewportHeight="48">
 
     <path
-        android:fillColor="@color/colorPrimary"
+        android:fillColor="@color/accent_lightblue"
         android:pathData="M24,24m-22,0a22,22 0,1 1,44 0a22,22 0,1 1,-44 0" />
 
     <group
         android:translateX="12"
         android:translateY="12">
         <path
-            android:fillColor="@color/textColorPrimaryDark"
+            android:fillColor="@color/md_white_1000"
             android:pathData="M4,6H2v14c0,1.1 0.9,2 2,2h14v-2H4V6z" />
         <path
-            android:fillColor="@color/textColorPrimaryDark"
+            android:fillColor="@color/md_white_1000"
             android:pathData="M20,2L8,2c-1.1,0 -2,0.9 -2,2v12c0,1.1 0.9,2 2,2h12c1.1,0 2,-0.9 2,-2L22,4c0,-1.1 -0.9,-2 -2,-2zM20,12l-2.5,-1.5L15,12L15,4h5v8z" />
     </group>
 </vector>

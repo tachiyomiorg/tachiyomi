@@ -61,7 +61,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
+            android:background="?attr/colorToolbar"
             android:minHeight="?attr/actionBarSize" />
 
         <LinearLayout
@@ -90,7 +90,7 @@
                     android:contentDescription="@string/action_previous_chapter"
                     android:padding="@dimen/screen_edge_margin"
                     app:srcCompat="@drawable/ic_skip_previous_24dp"
-                    app:tint="?attr/colorOnPrimary" />
+                    app:tint="?attr/colorOnToolbar" />
 
                 <LinearLayout
                     android:id="@+id/reader_seekbar"
@@ -106,7 +106,7 @@
                         android:layout_width="32dp"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:textColor="?attr/colorOnPrimary"
+                        android:textColor="?attr/colorOnToolbar"
                         android:textSize="15sp"
                         tools:text="1" />
 
@@ -127,7 +127,7 @@
                         android:layout_width="32dp"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:textColor="?attr/colorOnPrimary"
+                        android:textColor="?attr/colorOnToolbar"
                         android:textSize="15sp"
                         tools:text="15" />
 
@@ -142,7 +142,7 @@
                     android:contentDescription="@string/action_next_chapter"
                     android:padding="@dimen/screen_edge_margin"
                     app:srcCompat="@drawable/ic_skip_next_24dp"
-                    app:tint="?attr/colorOnPrimary" />
+                    app:tint="?attr/colorOnToolbar" />
 
             </LinearLayout>
 
@@ -150,59 +150,59 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_gravity="bottom"
-                android:background="?attr/colorPrimary">
+                android:background="?attr/colorToolbar">
 
                 <ImageButton
                     android:id="@+id/action_reading_mode"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:background="@drawable/ripple_regular"
+                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="@string/viewer"
                     android:padding="@dimen/screen_edge_margin"
                     app:layout_constraintEnd_toStartOf="@id/action_crop_borders"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_reader_default_24dp"
-                    app:tint="?attr/colorOnPrimary" />
+                    app:tint="?attr/colorOnToolbar" />
 
                 <ImageButton
                     android:id="@+id/action_crop_borders"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:background="@drawable/ripple_regular"
+                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="@string/pref_crop_borders"
                     android:padding="@dimen/screen_edge_margin"
                     app:layout_constraintEnd_toStartOf="@id/action_rotation"
                     app:layout_constraintStart_toEndOf="@+id/action_reading_mode"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_crop_24dp"
-                    app:tint="?attr/colorOnPrimary" />
+                    app:tint="?attr/colorOnToolbar" />
 
                 <ImageButton
                     android:id="@+id/action_rotation"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:background="@drawable/ripple_regular"
+                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="@string/pref_rotation_type"
                     android:padding="@dimen/screen_edge_margin"
                     app:layout_constraintEnd_toStartOf="@id/action_settings"
                     app:layout_constraintStart_toEndOf="@+id/action_crop_borders"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_screen_rotation_24dp"
-                    app:tint="?attr/colorOnPrimary" />
+                    app:tint="?attr/colorOnToolbar" />
 
                 <ImageButton
                     android:id="@+id/action_settings"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:background="@drawable/ripple_regular"
+                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="@string/action_settings"
                     android:padding="@dimen/screen_edge_margin"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/action_rotation"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_settings_24dp"
-                    app:tint="?attr/colorOnPrimary" />
+                    app:tint="?attr/colorOnToolbar" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

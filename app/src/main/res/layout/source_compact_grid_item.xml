@@ -96,7 +96,7 @@
             android:lineSpacingExtra="-4dp"
             android:maxLines="2"
             android:padding="8dp"
-            android:shadowColor="@color/textColorPrimaryLight"
+            android:shadowColor="@color/md_black_1000"
             android:shadowDx="0"
             android:shadowDy="0"
             android:shadowRadius="4"
@@ -105,7 +105,7 @@
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/progress"
-            style="@style/Theme.Widget.CircularProgressIndicator.Small"
+            style="@style/Widget.Tachiyomi.CircularProgressIndicator.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

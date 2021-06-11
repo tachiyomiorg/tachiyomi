@@ -20,7 +20,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="?attr/colorToolbar"
         android:elevation="2dp"
         android:padding="16dp">
 
@@ -98,7 +98,6 @@
 
         <Button
             android:id="@+id/extension_uninstall_button"
-            style="@style/Theme.Widget.Button.FilledAccent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"

@@ -1,21 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="?attr/colorLibrarySelection">
+    android:color="?attr/colorPrimary">
     <item>
-        <selector xmlns:android="http://schemas.android.com/apk/res/android">
-            <item android:state_selected="true">
-                <shape android:shape="rectangle">
-                    <corners android:radius="@dimen/card_selector_radius" />
-                    <solid android:color="@color/selector_overlay" />
-                </shape>
-            </item>
-
-            <item android:state_activated="true">
-                <shape android:shape="rectangle">
-                    <corners android:radius="@dimen/card_selector_radius" />
-                    <solid android:color="@color/selector_overlay" />
-                </shape>
-            </item>
-        </selector>
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/card_selector_radius" />
+            <solid android:color="@color/library_item_foreground" />
+        </shape>
     </item>
 </ripple>

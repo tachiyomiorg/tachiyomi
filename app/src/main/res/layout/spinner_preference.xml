@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="?attr/listPreferredItemHeightSmall"
-    android:background="@drawable/selectable_item_background"
+    android:background="?attr/selectableItemBackground"
     android:paddingStart="16dp"
     android:paddingEnd="16dp">
 
@@ -47,7 +47,7 @@
         app:layout_constraintBottom_toBottomOf="@id/details"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/details"
-        app:tint="?android:attr/textColorSecondary"
+        app:tint="?android:attr/colorControlNormal"
         tools:ignore="ContentDescription" />
 
     <androidx.constraintlayout.widget.Guideline

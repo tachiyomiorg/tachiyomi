@@ -9,7 +9,7 @@
     android:paddingTop="8dp"
     android:paddingEnd="8dp"
     android:paddingBottom="8dp"
-    android:background="@drawable/selectable_item_background"
+    android:background="?attr/selectableItemBackground"
     android:orientation="horizontal">
 
     <ImageView
@@ -57,7 +57,7 @@
         android:id="@+id/remove"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/ripple_regular"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/action_resume"
         android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -70,7 +70,7 @@
         android:id="@+id/resume"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/ripple_regular"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/action_resume"
         android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"

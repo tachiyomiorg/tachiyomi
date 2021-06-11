@@ -77,7 +77,7 @@
             android:layout_height="0dp"
             app:elevation="0dp"
             app:itemIconTint="@color/nav_selector"
-            app:itemRippleColor="?attr/rippleSecondaryColor"
+            app:itemRippleColor="?attr/colorControlHighlight"
             app:itemTextColor="@color/nav_selector"
             app:labelVisibilityMode="labeled"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -87,7 +87,7 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
-            style="@style/Theme.Widget.Tabs"
+            style="@style/Widget.Tachiyomi.TabLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"

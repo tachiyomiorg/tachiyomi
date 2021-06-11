@@ -11,13 +11,10 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:theme="?attr/actionBarTheme"
         app:layout_scrollFlags="scroll|enterAlways" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
-        style="@style/Theme.Widget.Tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
