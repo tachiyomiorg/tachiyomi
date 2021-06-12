@@ -77,6 +77,7 @@
     <string name="action_start">Start</string>
     <string name="action_resume">Resume</string>
     <string name="action_open_in_browser">Open in browser</string>
+    <string name="action_start_downloading_now">Start downloading now</string>
     <!-- Do not translate "WebView" -->
     <string name="action_open_in_web_view">Open in WebView</string>
     <string name="action_web_view" translatable="false">WebView</string>
@@ -574,7 +575,7 @@
     <string name="also_set_chapter_settings_for_library">Also apply to all manga in my library</string>
     <string name="set_chapter_settings_as_default">Set as default</string>
     <string name="no_chapters_error">No chapters found</string>
-    <string name="start_downloading_now">Start downloading now</string>
+    <string name="no_chapters_error">No chapters found</string>action
 
     <!-- Tracking Screen -->
     <string name="tracker_anilist" translatable="false">AniList</string>
