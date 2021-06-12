@@ -158,6 +158,11 @@ class Downloader(
     }
 
     /**
+     * Check if downloader is paused
+     */
+    fun isPaused() = !isRunning
+
+    /**
      * Removes everything from the queue.
      *
      * @param isNotification value that determines if status is set (needed for view updates)

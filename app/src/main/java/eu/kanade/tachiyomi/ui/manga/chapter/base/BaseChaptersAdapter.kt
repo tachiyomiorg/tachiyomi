@@ -18,5 +18,6 @@ abstract class BaseChaptersAdapter<T : IFlexible<*>>(
     interface OnChapterClickListener {
         fun downloadChapter(position: Int)
         fun deleteChapter(position: Int)
+        fun startDownloadNow(position: Int)
     }
 }
