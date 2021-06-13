@@ -118,6 +118,15 @@ class LibraryItem(
             }
     }
 
+    /**
+     * Filters a manga by checking whether the query is the manga's source OR part of
+     * the genres of the manga
+     * Checking for genre is done only if the query isn't part of the source name.
+     *
+     * @param query the query to check
+     * @param sourceName name of the manga's source
+     * @param genres list containing manga's genres
+     */
     private fun containsSourceOrGenre(query: String, sourceName: String, genres: List<String>?): Boolean {
         val minus = query.startsWith("-")
         val tag = if (minus) { query.substringAfter("-") } else query
