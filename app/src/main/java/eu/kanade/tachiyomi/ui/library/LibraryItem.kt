@@ -118,19 +118,13 @@ class LibraryItem(
             }
     }
 
-    private fun containsSourceOrGenre(tag: String, sourceName: String, genres: List<String>?): Boolean {
-        return if (tag.startsWith("-")) {
-            if (!sourceName.contains(tag.substringAfter("-"), true)) {
-                containsGenre(tag, genres)
-            } else {
-                false
-            }
-        } else {
-            if (!sourceName.contains(tag, true)) {
-                containsGenre(tag, genres)
-            } else {
-                true
-            }
+    private fun containsSourceOrGenre(query: String, sourceName: String, genres: List<String>?): Boolean {
+        val minus = query.startsWith("-")
+        val tag = if (minus) { query.substringAfter("-") } else query
+        val containsGenre by lazy { containsGenre(query, genres) }
+        return when (sourceName.contains(tag, true)) {
+            false -> containsGenre
+            else -> !minus
         }
     }
 
