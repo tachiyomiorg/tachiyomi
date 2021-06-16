@@ -178,13 +178,38 @@ class LibrarySettingsSheet(
                 listOf(alphabetically, lastRead, lastChecked, unread, total, latestChapter, chapterFetchDate, dateAdded)
             override val footer = null
 
-            override fun initModels() {
-                val sorting = preferences.librarySortingMode().get()
-                val order = if (preferences.librarySortingAscending().get()) {
-                    Item.MultiSort.SORT_ASC
+            private fun getSortDirectionPrefernece(): Int {
+                return if (preferences.categorisedDisplaySettings().get() && currentCategory != null && currentCategory?.id != 0) {
+                    if (currentCategory?.sortMode == Category.ASCENDING) {
+                        Item.MultiSort.SORT_ASC
+                    } else {
+                        Item.MultiSort.SORT_DESC
+                    }
                 } else {
-                    Item.MultiSort.SORT_DESC
+                    if (preferences.librarySortingAscending().get()) {
+                        Item.MultiSort.SORT_ASC
+                    } else {
+                        Item.MultiSort.SORT_DESC
+                    }
                 }
+            }
+
+            // Gets user preference of currently selected display mode at current category
+            private fun getSortModePreference(): Int {
+                return if (preferences.categorisedDisplaySettings().get() && currentCategory != null && currentCategory?.id != 0) {
+                    when (currentCategory?.sortMode) {
+                        Category.ALPHABETICAL -> LibrarySort.ALPHA
+
+                        else -> LibrarySort.ALPHA
+                    }
+                } else {
+                    preferences.librarySortingMode().get()
+                }
+            }
+
+            override fun initModels() {
+                val sorting = getSortModePreference()
+                val order = getSortDirectionPrefernece()
 
                 alphabetically.state =
                     if (sorting == LibrarySort.ALPHA) order else Item.MultiSort.SORT_NONE
@@ -219,22 +244,61 @@ class LibrarySettingsSheet(
                     else -> throw Exception("Unknown state")
                 }
 
-                preferences.librarySortingMode().set(
-                    when (item) {
-                        alphabetically -> LibrarySort.ALPHA
-                        lastRead -> LibrarySort.LAST_READ
-                        lastChecked -> LibrarySort.LAST_CHECKED
-                        unread -> LibrarySort.UNREAD
-                        total -> LibrarySort.TOTAL
-                        latestChapter -> LibrarySort.LATEST_CHAPTER
-                        chapterFetchDate -> LibrarySort.CHAPTER_FETCH_DATE
-                        dateAdded -> LibrarySort.DATE_ADDED
-                        else -> throw Exception("Unknown sorting")
-                    }
-                )
-                preferences.librarySortingAscending().set(item.state == Item.MultiSort.SORT_ASC)
+                setSortModePreference(item)
+
+                setSortDirectionPrefernece(item)
 
                 item.group.items.forEach { adapter.notifyItemChanged(it) }
+            }
+
+            private fun setSortDirectionPrefernece(item: Item.MultiStateGroup) {
+                if (preferences.categorisedDisplaySettings().get() && currentCategory != null && currentCategory?.id != 0) {
+                    val flag = if (item.state == Item.MultiSort.SORT_ASC) {
+                        Category.ASCENDING
+                    } else {
+                        Category.DESCENDING
+                    }
+
+                    currentCategory?.sortMode = flag
+
+                    db.insertCategory(currentCategory!!).executeAsBlocking()
+                } else {
+                    preferences.librarySortingAscending().set(item.state == Item.MultiSort.SORT_ASC)
+                }
+            }
+
+            private fun setSortModePreference(item: Item) {
+                if (preferences.categorisedDisplaySettings().get() && currentCategory != null && currentCategory?.id != 0) {
+                    val flag = when (item) {
+                        alphabetically -> Category.ALPHABETICAL
+                        lastRead -> Category.LAST_READ
+                        lastChecked -> Category.LAST_CHECKED
+                        unread -> Category.UNREAD
+                        total -> Category.TOTAL_CHAPTERS
+                        latestChapter -> Category.LATEST_CHAPTER
+                        chapterFetchDate -> Category.DATE_FETCHED
+                        dateAdded -> Category.DATE_ADDED
+                        else -> throw NotImplementedError("Unknown display mode")
+                    }
+
+                    currentCategory?.sortMode = flag
+
+                    db.insertCategory(currentCategory!!).executeAsBlocking()
+                } else {
+                    preferences.librarySortingMode().set(
+                        when (item) {
+                            alphabetically -> LibrarySort.ALPHA
+                            lastRead -> LibrarySort.LAST_READ
+                            lastChecked -> LibrarySort.LAST_CHECKED
+                            unread -> LibrarySort.UNREAD
+                            total -> LibrarySort.TOTAL
+                            latestChapter -> LibrarySort.LATEST_CHAPTER
+                            chapterFetchDate -> LibrarySort.CHAPTER_FETCH_DATE
+                            dateAdded -> LibrarySort.DATE_ADDED
+                            else -> throw NotImplementedError("Unknown display mode")
+                        }
+                    )
+                }
             }
         }
     }

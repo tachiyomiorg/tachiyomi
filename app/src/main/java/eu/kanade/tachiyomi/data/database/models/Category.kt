@@ -45,8 +45,8 @@ interface Category : Serializable {
         const val DATE_ADDED = 0b00011100
         const val SORT_MASK = 0b00111100 // Mask supports for more sorting flags
 
-        const val ASCENDING = 0b00000000
-        const val DESCENDING = 0b01000000
+        const val ASCENDING = 0b01000000
+        const val DESCENDING = 0b00000000
         const val SORT_DIRECTION_MASK = 0b01000000
 
 
