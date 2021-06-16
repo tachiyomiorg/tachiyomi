@@ -45,6 +45,8 @@ class LibrarySettingsSheet(
      * @param currentCategory ID of currently shown category
      */
     fun show(currentCategory: Category) {
+        sort.currentCategory = currentCategory
+        sort.adjustDisplaySelection()
         display.currentCategory = currentCategory
         display.adjustDisplaySelection()
         super.show()
@@ -158,8 +160,16 @@ class LibrarySettingsSheet(
     inner class Sort @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
         Settings(context, attrs) {
 
+        private val sort = SortGroup()
+
         init {
-            setGroups(listOf(SortGroup()))
+            setGroups(listOf(sort))
+        }
+
+        // Refreshes Display Setting selections
+        fun adjustDisplaySelection() {
+            sort.initModels()
+            sort.items.forEach { adapter.notifyItemChanged(it) }
         }
 
         inner class SortGroup : Group {
@@ -180,7 +190,7 @@ class LibrarySettingsSheet(
 
             private fun getSortDirectionPrefernece(): Int {
                 return if (preferences.categorisedDisplaySettings().get() && currentCategory != null && currentCategory?.id != 0) {
-                    if (currentCategory?.sortMode == Category.ASCENDING) {
+                    if (currentCategory?.sortDirection == Category.ASCENDING) {
                         Item.MultiSort.SORT_ASC
                     } else {
                         Item.MultiSort.SORT_DESC
@@ -199,7 +209,13 @@ class LibrarySettingsSheet(
                 return if (preferences.categorisedDisplaySettings().get() && currentCategory != null && currentCategory?.id != 0) {
                     when (currentCategory?.sortMode) {
                         Category.ALPHABETICAL -> LibrarySort.ALPHA
-
+                        Category.LAST_READ -> LibrarySort.LAST_READ
+                        Category.LAST_CHECKED -> LibrarySort.LAST_CHECKED
+                        Category.UNREAD -> LibrarySort.UNREAD
+                        Category.TOTAL_CHAPTERS -> LibrarySort.TOTAL
+                        Category.LATEST_CHAPTER -> LibrarySort.LATEST_CHAPTER
+                        Category.DATE_FETCHED -> LibrarySort.CHAPTER_FETCH_DATE
+                        Category.DATE_ADDED -> LibrarySort.DATE_ADDED
                         else -> LibrarySort.ALPHA
                     }
                 } else {
@@ -259,7 +275,7 @@ class LibrarySettingsSheet(
                         Category.DESCENDING
                     }
 
-                    currentCategory?.sortMode = flag
+                    currentCategory?.sortDirection = flag
 
                     db.insertCategory(currentCategory!!).executeAsBlocking()
                 } else {

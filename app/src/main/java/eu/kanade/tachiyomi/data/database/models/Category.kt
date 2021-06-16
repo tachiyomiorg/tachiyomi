@@ -49,7 +49,6 @@ interface Category : Serializable {
         const val DESCENDING = 0b00000000
         const val SORT_DIRECTION_MASK = 0b01000000
 
-
         fun create(name: String): Category = CategoryImpl().apply {
             this.name = name
         }

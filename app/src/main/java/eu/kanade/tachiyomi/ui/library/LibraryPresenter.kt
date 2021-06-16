@@ -98,7 +98,7 @@ class LibraryPresenter(
                     lib.copy(mangaMap = applyFilters(lib.mangaMap, tracks))
                 }
                 .combineLatest(sortTriggerRelay.observeOn(Schedulers.io())) { lib, _ ->
-                    lib.copy(mangaMap = applySort(lib.mangaMap))
+                    lib.copy(mangaMap = applySort(lib.categories, lib.mangaMap))
                 }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeLatestCache({ view, (categories, mangaMap) ->
@@ -223,14 +223,39 @@ class LibraryPresenter(
         }
     }
 
+    private fun getSortDirectionPrefernece(category: Category): Boolean {
+        return if (preferences.categorisedDisplaySettings().get() && category.id != 0) {
+            category.sortDirection == Category.ASCENDING
+        } else {
+            preferences.librarySortingAscending().get()
+        }
+    }
+
+    // Gets user preference of currently selected display mode at current category
+    private fun getSortModePreference(category: Category): Int {
+        return if (preferences.categorisedDisplaySettings().get() && category.id != 0) {
+            when (category.sortMode) {
+                Category.ALPHABETICAL -> LibrarySort.ALPHA
+                Category.LAST_READ -> LibrarySort.LAST_READ
+                Category.LAST_CHECKED -> LibrarySort.LAST_CHECKED
+                Category.UNREAD -> LibrarySort.UNREAD
+                Category.TOTAL_CHAPTERS -> LibrarySort.TOTAL
+                Category.LATEST_CHAPTER -> LibrarySort.LATEST_CHAPTER
+                Category.DATE_FETCHED -> LibrarySort.CHAPTER_FETCH_DATE
+                Category.DATE_ADDED -> LibrarySort.DATE_ADDED
+                else -> LibrarySort.ALPHA
+            }
+        } else {
+            preferences.librarySortingMode().get()
+        }
+    }
+
     /**
      * Applies library sorting to the given map of manga.
      *
      * @param map the map to sort.
      */
-    private fun applySort(map: LibraryMap): LibraryMap {
-        val sortingMode = preferences.librarySortingMode().get()
-
+    private fun applySort(categories: List<Category>, map: LibraryMap): LibraryMap {
         val lastReadManga by lazy {
             var counter = 0
             db.getLastReadManga().executeAsBlocking().associate { it.id!! to counter++ }
@@ -248,8 +273,17 @@ class LibraryPresenter(
             db.getChapterFetchDateManga().executeAsBlocking().associate { it.id!! to counter++ }
         }
 
-        val sortAscending = preferences.librarySortingAscending().get()
+        val sortingModes = categories.associate { category ->
+            (category.id ?: 0) to getSortModePreference(category)
+        }
+
+        val sortAscending = categories.associate { category ->
+            (category.id ?: 0) to getSortDirectionPrefernece(category)
+        }
+
         val sortFn: (LibraryItem, LibraryItem) -> Int = { i1, i2 ->
+            val sortingMode = sortingModes[i1.manga.category]!!
+            val sortAscending = sortAscending[i1.manga.category]!!
             when (sortingMode) {
                 LibrarySort.ALPHA -> i1.manga.title.compareTo(i2.manga.title, true)
                 LibrarySort.LAST_READ -> {
@@ -290,13 +324,17 @@ class LibraryPresenter(
             }
         }
 
-        val comparator = if (sortAscending) {
-            Comparator(sortFn)
-        } else {
-            Collections.reverseOrder(sortFn)
-        }
+        return map.mapValues { entry ->
+            val sortAscending = sortAscending[entry.key]!!
 
-        return map.mapValues { entry -> entry.value.sortedWith(comparator) }
+            val comparator = if (sortAscending) {
+                Comparator(sortFn)
+            } else {
+                Collections.reverseOrder(sortFn)
+            }
+
+            entry.value.sortedWith(comparator)
+        }
     }
 
     /**

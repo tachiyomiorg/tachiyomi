@@ -103,7 +103,8 @@ class LibraryController(
     /**
      * Adapter of the view pager.
      */
-    private var adapter: LibraryAdapter? = null
+    var adapter: LibraryAdapter? = null
+        private set
 
     /**
      * Sheet containing filter/sort/display items.
