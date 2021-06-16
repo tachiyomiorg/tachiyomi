@@ -205,6 +205,7 @@ object Migrations {
                 val oldSortingMode = prefs.getInt(PreferenceKeys.librarySortingMode, 0)
                 val oldSortingDirection = prefs.getBoolean(PreferenceKeys.librarySortingDirection, true)
 
+                @Suppress("DEPRECATION")
                 val newSortingMode = when (oldSortingMode) {
                     LibrarySort.ALPHA -> SortModeSetting.ALPHABETICAL
                     LibrarySort.LAST_READ -> SortModeSetting.LAST_READ
@@ -221,8 +222,6 @@ object Migrations {
                     true -> SortDirectionSetting.ASCENDING
                     else -> SortDirectionSetting.DESCENDING
                 }
-
-                Timber.d("Upgrading old library sort and direction")
 
                 prefs.edit(commit = true) {
                     remove(PreferenceKeys.librarySortingMode)
