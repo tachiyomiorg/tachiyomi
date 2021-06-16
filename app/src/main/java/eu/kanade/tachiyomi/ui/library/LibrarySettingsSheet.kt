@@ -188,19 +188,11 @@ class LibrarySettingsSheet(
                 listOf(alphabetically, lastRead, lastChecked, unread, total, latestChapter, chapterFetchDate, dateAdded)
             override val footer = null
 
-            private fun getSortDirectionPrefernece(): Int {
+            private fun getSortDirectionPreference(): Boolean {
                 return if (preferences.categorisedDisplaySettings().get() && currentCategory != null && currentCategory?.id != 0) {
-                    if (currentCategory?.sortDirection == Category.ASCENDING) {
-                        Item.MultiSort.SORT_ASC
-                    } else {
-                        Item.MultiSort.SORT_DESC
-                    }
+                    currentCategory?.sortDirection == Category.ASCENDING
                 } else {
-                    if (preferences.librarySortingAscending().get()) {
-                        Item.MultiSort.SORT_ASC
-                    } else {
-                        Item.MultiSort.SORT_DESC
-                    }
+                    preferences.librarySortingAscending().get()
                 }
             }
 
@@ -225,7 +217,11 @@ class LibrarySettingsSheet(
 
             override fun initModels() {
                 val sorting = getSortModePreference()
-                val order = getSortDirectionPrefernece()
+                val order = if (getSortDirectionPreference()) {
+                    Item.MultiSort.SORT_ASC
+                } else {
+                    Item.MultiSort.SORT_DESC
+                }
 
                 alphabetically.state =
                     if (sorting == LibrarySort.ALPHA) order else Item.MultiSort.SORT_NONE

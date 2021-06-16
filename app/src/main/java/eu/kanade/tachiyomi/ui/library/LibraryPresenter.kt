@@ -223,7 +223,7 @@ class LibraryPresenter(
         }
     }
 
-    private fun getSortDirectionPrefernece(category: Category): Boolean {
+    private fun getSortDirectionPreference(category: Category): Boolean {
         return if (preferences.categorisedDisplaySettings().get() && category.id != 0) {
             category.sortDirection == Category.ASCENDING
         } else {
@@ -278,7 +278,7 @@ class LibraryPresenter(
         }
 
         val sortAscending = categories.associate { category ->
-            (category.id ?: 0) to getSortDirectionPrefernece(category)
+            (category.id ?: 0) to getSortDirectionPreference(category)
         }
 
         val sortFn: (LibraryItem, LibraryItem) -> Int = { i1, i2 ->
