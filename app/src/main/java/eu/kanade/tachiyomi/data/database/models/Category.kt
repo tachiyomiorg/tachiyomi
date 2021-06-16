@@ -1,5 +1,7 @@
 package eu.kanade.tachiyomi.data.database.models
 
+import eu.kanade.tachiyomi.ui.library.setting.SortDirectionSetting
+import eu.kanade.tachiyomi.ui.library.setting.SortModeSetting
 import java.io.Serializable
 
 interface Category : Serializable {
@@ -21,12 +23,12 @@ interface Category : Serializable {
         set(mode) = setFlags(mode, MASK)
 
     var sortMode: Int
-        get() = flags and SORT_MASK
-        set(mode) = setFlags(mode, SORT_MASK)
+        get() = flags and SortModeSetting.MASK
+        set(mode) = setFlags(mode, SortModeSetting.MASK)
 
     var sortDirection: Int
-        get() = flags and SORT_DIRECTION_MASK
-        set(mode) = setFlags(mode, SORT_DIRECTION_MASK)
+        get() = flags and SortDirectionSetting.MASK
+        set(mode) = setFlags(mode, SortDirectionSetting.MASK)
 
     companion object {
 
@@ -34,20 +36,6 @@ interface Category : Serializable {
         const val COMFORTABLE_GRID = 0b00000001
         const val LIST = 0b00000010
         const val MASK = 0b00000011
-
-        const val ALPHABETICAL = 0b00000000
-        const val LAST_READ = 0b00000100
-        const val LAST_CHECKED = 0b00001000
-        const val UNREAD = 0b00001100
-        const val TOTAL_CHAPTERS = 0b00010000
-        const val LATEST_CHAPTER = 0b00010100
-        const val DATE_FETCHED = 0b00011000
-        const val DATE_ADDED = 0b00011100
-        const val SORT_MASK = 0b00111100 // Mask supports for more sorting flags
-
-        const val ASCENDING = 0b01000000
-        const val DESCENDING = 0b00000000
-        const val SORT_DIRECTION_MASK = 0b01000000
 
         fun create(name: String): Category = CategoryImpl().apply {
             this.name = name

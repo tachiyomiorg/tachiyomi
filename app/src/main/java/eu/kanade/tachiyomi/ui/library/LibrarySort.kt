@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.ui.library
 
+@Deprecated("Deprecated in favor for SortModeSetting")
 object LibrarySort {
 
     const val ALPHA = 0

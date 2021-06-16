@@ -12,9 +12,12 @@ import eu.kanade.tachiyomi.data.updater.UpdaterJob
 import eu.kanade.tachiyomi.extension.ExtensionUpdateJob
 import eu.kanade.tachiyomi.network.PREF_DOH_CLOUDFLARE
 import eu.kanade.tachiyomi.ui.library.LibrarySort
+import eu.kanade.tachiyomi.ui.library.setting.SortDirectionSetting
+import eu.kanade.tachiyomi.ui.library.setting.SortModeSetting
 import eu.kanade.tachiyomi.ui.reader.setting.OrientationType
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.widget.ExtendedNavigationView
+import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import java.io.File
@@ -96,9 +99,15 @@ object Migrations {
             }
             if (oldVersion < 44) {
                 // Reset sorting preference if using removed sort by source
+                val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+
+                val oldSortingMode = prefs.getInt(PreferenceKeys.librarySortingMode, 0)
+
                 @Suppress("DEPRECATION")
-                if (preferences.librarySortingMode().get() == LibrarySort.SOURCE) {
-                    preferences.librarySortingMode().set(LibrarySort.ALPHA)
+                if (oldSortingMode == LibrarySort.SOURCE) {
+                    prefs.edit {
+                        putInt(PreferenceKeys.librarySortingMode, LibrarySort.ALPHA)
+                    }
                 }
             }
             if (oldVersion < 52) {
@@ -188,6 +197,41 @@ object Migrations {
                 if (updateInterval == 1 || updateInterval == 2) {
                     preferences.libraryUpdateInterval().set(3)
                     LibraryUpdateJob.setupTask(context, 3)
+                }
+            }
+            if (oldVersion < 64) {
+                val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+
+                val oldSortingMode = prefs.getInt(PreferenceKeys.librarySortingMode, 0)
+                val oldSortingDirection = prefs.getBoolean(PreferenceKeys.librarySortingDirection, true)
+
+                val newSortingMode = when (oldSortingMode) {
+                    LibrarySort.ALPHA -> SortModeSetting.ALPHABETICAL
+                    LibrarySort.LAST_READ -> SortModeSetting.LAST_READ
+                    LibrarySort.LAST_CHECKED -> SortModeSetting.LAST_CHECKED
+                    LibrarySort.UNREAD -> SortModeSetting.UNREAD
+                    LibrarySort.TOTAL -> SortModeSetting.TOTAL_CHAPTERS
+                    LibrarySort.LATEST_CHAPTER -> SortModeSetting.LATEST_CHAPTER
+                    LibrarySort.CHAPTER_FETCH_DATE -> SortModeSetting.DATE_FETCHED
+                    LibrarySort.DATE_ADDED -> SortModeSetting.DATE_ADDED
+                    else -> SortModeSetting.ALPHABETICAL
+                }
+
+                val newSortingDirection = when (oldSortingDirection) {
+                    true -> SortDirectionSetting.ASCENDING
+                    else -> SortDirectionSetting.DESCENDING
+                }
+
+                Timber.d("Upgrading old library sort and direction")
+
+                prefs.edit(commit = true) {
+                    remove(PreferenceKeys.librarySortingMode)
+                    remove(PreferenceKeys.librarySortingDirection)
+                }
+
+                prefs.edit {
+                    putString(PreferenceKeys.librarySortingMode, newSortingMode.name)
+                    putString(PreferenceKeys.librarySortingDirection, newSortingDirection.name)
                 }
             }
             return true
