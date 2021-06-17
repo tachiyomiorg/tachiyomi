@@ -135,46 +135,50 @@
 
     </LinearLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_favorite"
-        style="@style/Theme.Widget.Button.Action"
+    <LinearLayout
+        android:id="@+id/manga_actions"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="@string/add_to_library"
-        app:icon="@drawable/ic_favorite_border_24dp"
-        app:layout_constraintEnd_toStartOf="@+id/btn_tracking"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/manga_detail" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_tracking"
-        style="@style/Theme.Widget.Button.Action"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/manga_tracking_tab"
-        android:visibility="gone"
-        app:icon="@drawable/ic_sync_24dp"
-        app:layout_constraintEnd_toStartOf="@+id/btn_webview"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_favorite"
-        app:layout_constraintTop_toTopOf="@+id/btn_favorite"
-        tools:visibility="visible" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_webview"
-        style="@style/Theme.Widget.Button.Action"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/action_web_view"
-        android:visibility="gone"
-        app:icon="@drawable/ic_public_24dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_tracking"
-        app:layout_constraintTop_toTopOf="@+id/btn_favorite"
-        tools:visibility="visible" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/manga_detail">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_favorite"
+            style="@style/Theme.Widget.Button.Action"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/add_to_library"
+            app:icon="@drawable/ic_favorite_border_24dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_tracking"
+            style="@style/Theme.Widget.Button.Action"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/manga_tracking_tab"
+            android:visibility="gone"
+            app:icon="@drawable/ic_sync_24dp"
+            tools:visibility="visible" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_webview"
+            style="@style/Theme.Widget.Button.Action"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/action_web_view"
+            android:visibility="gone"
+            app:icon="@drawable/ic_public_24dp"
+            tools:visibility="visible" />
+
+    </LinearLayout>
 
     <androidx.constraintlayout.motion.widget.MotionLayout
         android:id="@+id/manga_summary_section"
@@ -184,7 +188,7 @@
         app:layoutDescription="@xml/manga_summary_section_scene"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_favorite">
+        app:layout_constraintTop_toBottomOf="@id/manga_actions">
 
         <TextView
             android:id="@+id/manga_summary_text"

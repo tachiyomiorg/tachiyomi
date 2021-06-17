@@ -6,9 +6,7 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.work.Constraints
 import androidx.work.CoroutineWorker
 import androidx.work.ExistingPeriodicWorkPolicy
-import androidx.work.ExperimentalExpeditedWork
 import androidx.work.NetworkType
-import androidx.work.OutOfQuotaPolicy
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
@@ -66,7 +64,6 @@ class ExtensionUpdateJob(private val context: Context, workerParams: WorkerParam
     companion object {
         private const val TAG = "ExtensionUpdate"
 
-        @ExperimentalExpeditedWork
         fun setupTask(context: Context, forceAutoUpdateJob: Boolean? = null) {
             val preferences = Injekt.get<PreferencesHelper>()
             val autoUpdateJob = forceAutoUpdateJob ?: preferences.automaticExtUpdates().get()
@@ -81,7 +78,6 @@ class ExtensionUpdateJob(private val context: Context, workerParams: WorkerParam
                     1,
                     TimeUnit.HOURS
                 )
-                    .setExpedited(OutOfQuotaPolicy.DROP_WORK_REQUEST)
                     .addTag(TAG)
                     .setConstraints(constraints)
                     .build()

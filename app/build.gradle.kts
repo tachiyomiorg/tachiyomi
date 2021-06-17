@@ -153,7 +153,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
 
     // Job scheduling
-    implementation("androidx.work:work-runtime-ktx:2.7.0-alpha04")
+    implementation("androidx.work:work-runtime-ktx:2.6.0-beta01")
 
     // UI library
     implementation("com.google.android.material:material:1.4.0-rc01")

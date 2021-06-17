@@ -33,6 +33,11 @@
     <color name="rippleSecondaryColorStrawberry">#0AED4A65</color>
     <color name="selectorColorStrawberry">#BFED4A65</color>
 
+    <!-- Yotsuba Theme -->
+    <color name="colorAccentYotsuba">#FC8C5C</color>
+    <color name="rippleSecondaryColorYotsuba">#0AFC8C5C</color>
+    <color name="selectorColorYotsuba">#BFFC8C5C</color>
+
     <!-- Dark Theme -->
     <color name="colorAccentDark">#3399FF</color>
     <color name="textColorPrimaryDark">@color/md_white_1000</color>

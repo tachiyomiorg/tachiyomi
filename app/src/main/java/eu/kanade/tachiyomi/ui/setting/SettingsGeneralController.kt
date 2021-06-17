@@ -124,12 +124,14 @@ class SettingsGeneralController : SettingsController() {
                 entriesRes = arrayOf(
                     R.string.theme_light_default,
                     R.string.theme_light_blue,
-                    R.string.theme_light_strawberrydaiquiri
+                    R.string.theme_light_strawberrydaiquiri,
+                    R.string.theme_light_yotsuba
                 )
                 entryValues = arrayOf(
                     Values.LightThemeVariant.default.name,
                     Values.LightThemeVariant.blue.name,
-                    Values.LightThemeVariant.strawberrydaiquiri.name
+                    Values.LightThemeVariant.strawberrydaiquiri.name,
+                    Values.LightThemeVariant.yotsuba.name
                 )
                 defaultValue = Values.LightThemeVariant.default.name
                 summary = "%s"

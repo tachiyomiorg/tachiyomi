@@ -67,7 +67,7 @@ class MoreController :
             key = Keys.incognitoMode
             summaryRes = R.string.pref_incognito_mode_summary
             titleRes = R.string.pref_incognito_mode
-            iconRes = R.drawable.ic_glasses_black_24dp
+            iconRes = R.drawable.ic_glasses_24dp
             iconTint = tintColor
             defaultValue = false
         }

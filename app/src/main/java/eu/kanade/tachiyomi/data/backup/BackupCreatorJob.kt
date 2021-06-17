@@ -3,8 +3,6 @@ package eu.kanade.tachiyomi.data.backup
 import android.content.Context
 import androidx.core.net.toUri
 import androidx.work.ExistingPeriodicWorkPolicy
-import androidx.work.ExperimentalExpeditedWork
-import androidx.work.OutOfQuotaPolicy
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.Worker
@@ -33,7 +31,6 @@ class BackupCreatorJob(private val context: Context, workerParams: WorkerParamet
     companion object {
         private const val TAG = "BackupCreator"
 
-        @ExperimentalExpeditedWork
         fun setupTask(context: Context, prefInterval: Int? = null) {
             val preferences = Injekt.get<PreferencesHelper>()
             val interval = prefInterval ?: preferences.backupInterval().get()
@@ -44,7 +41,6 @@ class BackupCreatorJob(private val context: Context, workerParams: WorkerParamet
                     10,
                     TimeUnit.MINUTES
                 )
-                    .setExpedited(OutOfQuotaPolicy.RUN_AS_NON_EXPEDITED_WORK_REQUEST)
                     .addTag(TAG)
                     .build()
 

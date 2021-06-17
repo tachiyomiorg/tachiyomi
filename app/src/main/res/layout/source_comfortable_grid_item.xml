@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="2dp"
     android:background="@drawable/library_item_selector"
+    android:foreground="@drawable/library_item_selector_overlay"
     android:padding="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout

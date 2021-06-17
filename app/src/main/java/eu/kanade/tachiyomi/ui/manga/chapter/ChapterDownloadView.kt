@@ -48,8 +48,6 @@ class ChapterDownloadView @JvmOverloads constructor(context: Context, attrs: Att
                 state == Download.State.NOT_DOWNLOADED || state == Download.State.QUEUE
             if (shouldBeVisible) {
                 hideAnimationBehavior = BaseProgressIndicator.HIDE_NONE
-                show()
-
                 if (state == Download.State.NOT_DOWNLOADED || state == Download.State.QUEUE) {
                     trackThickness = 2.dpToPx
                     setIndicatorColor(context.getThemeColor(android.R.attr.textColorHint))
@@ -72,6 +70,7 @@ class ChapterDownloadView @JvmOverloads constructor(context: Context, attrs: Att
                     setIndicatorColor(context.getThemeColor(android.R.attr.textColorPrimary))
                     setProgressCompat(progress, true)
                 }
+                show()
             } else {
                 hideAnimationBehavior = BaseProgressIndicator.HIDE_OUTWARD
                 hide()

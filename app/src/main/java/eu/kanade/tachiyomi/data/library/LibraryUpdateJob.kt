@@ -3,9 +3,7 @@ package eu.kanade.tachiyomi.data.library
 import android.content.Context
 import androidx.work.Constraints
 import androidx.work.ExistingPeriodicWorkPolicy
-import androidx.work.ExperimentalExpeditedWork
 import androidx.work.NetworkType
-import androidx.work.OutOfQuotaPolicy
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.Worker
@@ -31,7 +29,6 @@ class LibraryUpdateJob(private val context: Context, workerParams: WorkerParamet
     companion object {
         private const val TAG = "LibraryUpdate"
 
-        @ExperimentalExpeditedWork
         fun setupTask(context: Context, prefInterval: Int? = null) {
             val preferences = Injekt.get<PreferencesHelper>()
             val interval = prefInterval ?: preferences.libraryUpdateInterval().get()
@@ -55,7 +52,6 @@ class LibraryUpdateJob(private val context: Context, workerParams: WorkerParamet
                     10,
                     TimeUnit.MINUTES
                 )
-                    .setExpedited(OutOfQuotaPolicy.RUN_AS_NON_EXPEDITED_WORK_REQUEST)
                     .addTag(TAG)
                     .setConstraints(constraints)
                     .build()

@@ -12,32 +12,23 @@
 
     <ConstraintSet android:id="@+id/start">
         <Constraint
-            android:id="@+id/btn_tracking"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            motion:layout_constraintEnd_toStartOf="@+id/btn_webview"
-            motion:layout_constraintHorizontal_bias="0.5"
-            motion:layout_constraintStart_toEndOf="@+id/btn_favorite"
-            motion:layout_constraintTop_toTopOf="@+id/btn_favorite"
-            motion:visibilityMode="ignore" />
-        <Constraint
-            android:id="@+id/btn_webview"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            motion:layout_constraintEnd_toEndOf="parent"
-            motion:layout_constraintHorizontal_bias="0.5"
-            motion:layout_constraintStart_toEndOf="@+id/btn_tracking"
-            motion:layout_constraintTop_toTopOf="@+id/btn_favorite"
-            motion:visibilityMode="ignore" />
-        <Constraint
             android:id="@+id/manga_summary_section"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
-            motion:layout_constraintTop_toBottomOf="@+id/btn_favorite"
+            motion:layout_constraintTop_toBottomOf="@id/manga_actions"
             motion:visibilityMode="ignore" />
+        <Constraint
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@id/backdrop"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/manga_actions"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
@@ -72,19 +63,12 @@
             android:id="@+id/btn_favorite"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            motion:layout_constraintEnd_toStartOf="@+id/btn_tracking"
-            motion:layout_constraintHorizontal_bias="0.5"
-            motion:layout_constraintStart_toStartOf="parent"
-            motion:layout_constraintTop_toBottomOf="@id/manga_detail" />
-        <Constraint
-            android:id="@+id/btn_favorite"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             motion:layout_constraintEnd_toStartOf="@+id/btn_tracking"
             motion:layout_constraintHorizontal_bias="0.5"
             motion:layout_constraintStart_toStartOf="parent"
-            motion:layout_constraintTop_toBottomOf="@id/manga_detail" />
+            motion:layout_constraintTop_toBottomOf="@id/manga_detail"
+            android:layout_marginStart="16dp" />
         <Constraint
             android:id="@+id/manga_detail"
             android:layout_width="0dp"
@@ -122,7 +106,8 @@
             motion:layout_constraintHorizontal_bias="0.5"
             motion:layout_constraintStart_toEndOf="@+id/btn_tracking"
             motion:layout_constraintTop_toTopOf="@+id/btn_favorite"
-            motion:visibilityMode="ignore" />
+            motion:visibilityMode="ignore"
+            android:layout_marginEnd="16dp" />
         <Constraint
             android:id="@+id/manga_summary_section"
             android:layout_width="match_parent"
@@ -130,7 +115,17 @@
             android:layout_marginTop="8dp"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
-            motion:layout_constraintTop_toBottomOf="@+id/btn_favorite"
+            motion:layout_constraintTop_toBottomOf="@id/manga_actions"
             motion:visibilityMode="ignore" />
+        <Constraint
+            android:id="@+id/manga_actions"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@id/manga_detail"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp" />
     </ConstraintSet>
 </MotionScene>

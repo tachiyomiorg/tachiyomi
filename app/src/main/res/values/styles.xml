@@ -72,6 +72,10 @@
         <item name="colorAccent">@color/colorAccentStrawberry</item>
     </style>
 
+    <style name="Theme.AlertDialog.Light.Yotsuba" parent="Theme.AlertDialog">
+        <item name="colorAccent">@color/colorAccentYotsuba</item>
+    </style>
+
     <style name="Theme.AlertDialog.Dark" parent="Theme.AlertDialog">
         <item name="colorAccent">@color/colorAccentDark</item>
     </style>

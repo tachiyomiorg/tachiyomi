@@ -148,6 +148,7 @@
     <string name="theme_light_default">Default</string>
     <string name="theme_light_blue">Light Blue</string>
     <string name="theme_light_strawberrydaiquiri">Strawberry Daiquiri</string>
+    <string name="theme_light_yotsuba">Yotsuba</string>
     <string name="pref_theme_dark">Dark theme</string>
     <string name="theme_dark_default">Default</string>
     <string name="theme_dark_blue">Dark Blue</string>
@@ -728,6 +729,7 @@
     <string name="information_no_recent_manga">Nothing read recently</string>
     <string name="information_empty_library">Your library is empty. Add series to your library from Browse.</string>
     <string name="information_empty_category">You have no categories. Tap the plus button to create one for organizing your library.</string>
+    <string name="information_empty_category_dialog">You don\'t have any categories yet.</string>
     <string name="information_cloudflare_bypass_failure">Failed to bypass Cloudflare</string>
     <!-- Do not translate "WebView" -->
     <string name="information_webview_required">WebView is required for Tachiyomi</string>
