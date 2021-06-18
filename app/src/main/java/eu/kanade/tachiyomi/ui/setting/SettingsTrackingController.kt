@@ -1,6 +1,9 @@
 package eu.kanade.tachiyomi.ui.setting
 
 import android.app.Activity
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import androidx.preference.PreferenceScreen
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.track.NoLoginTrackService
@@ -112,6 +115,17 @@ class SettingsTrackingController :
         updatePreference(trackManager.bangumi.id)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.settings_tracking, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_tracking_help -> activity?.openInBrowser(HELP_URL)
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     private fun updatePreference(id: Int) {
         val pref = findPreference(Keys.trackUsername(id)) as? LoginPreference
         pref?.notifyChanged()
@@ -125,3 +139,5 @@ class SettingsTrackingController :
         updatePreference(service.id)
     }
 }
+
+private const val HELP_URL = "https://tachiyomi.org/help/guides/tracking/"

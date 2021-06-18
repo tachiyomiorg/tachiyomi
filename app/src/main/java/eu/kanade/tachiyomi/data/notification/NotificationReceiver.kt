@@ -2,12 +2,11 @@ package eu.kanade.tachiyomi.data.notification
 
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
-import android.content.ClipData
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
-import android.os.Handler
+import androidx.core.content.ContextCompat
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.backup.BackupRestoreService
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
@@ -25,6 +24,7 @@ import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.storage.DiskUtil
 import eu.kanade.tachiyomi.util.storage.getUriCompat
 import eu.kanade.tachiyomi.util.system.notificationManager
+import eu.kanade.tachiyomi.util.system.toShareIntent
 import eu.kanade.tachiyomi.util.system.toast
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
@@ -130,16 +130,8 @@ class NotificationReceiver : BroadcastReceiver() {
      * @param notificationId id of notification
      */
     private fun shareImage(context: Context, path: String, notificationId: Int) {
-        val intent = Intent(Intent.ACTION_SEND).apply {
-            val uri = File(path).getUriCompat(context)
-            putExtra(Intent.EXTRA_STREAM, uri)
-            clipData = ClipData.newRawUri(null, uri)
-            type = "image/*"
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_GRANT_READ_URI_PERMISSION
-        }
         dismissNotification(context, notificationId)
-        // Launch share activity
-        context.startActivity(intent)
+        context.startActivity(File(path).getUriCompat(context).toShareIntent())
     }
 
     /**
@@ -150,16 +142,8 @@ class NotificationReceiver : BroadcastReceiver() {
      * @param notificationId id of notification
      */
     private fun shareFile(context: Context, uri: Uri, fileMimeType: String, notificationId: Int) {
-        val sendIntent = Intent(Intent.ACTION_SEND).apply {
-            putExtra(Intent.EXTRA_STREAM, uri)
-            clipData = ClipData.newRawUri(null, uri)
-            type = fileMimeType
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_GRANT_READ_URI_PERMISSION
-        }
-        // Dismiss notification
         dismissNotification(context, notificationId)
-        // Launch share activity
-        context.startActivity(sendIntent)
+        context.startActivity(uri.toShareIntent(fileMimeType))
     }
 
     /**
@@ -208,7 +192,7 @@ class NotificationReceiver : BroadcastReceiver() {
      */
     private fun cancelRestore(context: Context, notificationId: Int) {
         BackupRestoreService.stop(context)
-        Handler().post { dismissNotification(context, notificationId) }
+        ContextCompat.getMainExecutor(context).execute { dismissNotification(context, notificationId) }
     }
 
     /**
@@ -219,7 +203,7 @@ class NotificationReceiver : BroadcastReceiver() {
      */
     private fun cancelLibraryUpdate(context: Context, notificationId: Int) {
         LibraryUpdateService.stop(context)
-        Handler().post { dismissNotification(context, notificationId) }
+        ContextCompat.getMainExecutor(context).execute { dismissNotification(context, notificationId) }
     }
 
     /**

@@ -29,6 +29,7 @@
                 android:id="@+id/info_recycler"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:clipToPadding="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/chapters_recycler"
                 app:layout_constraintStart_toStartOf="parent"
@@ -50,18 +51,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:listitem="@layout/chapters_item" />
 
-            <eu.kanade.tachiyomi.widget.MaterialFastScroll
-                android:id="@+id/fast_scroller"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="end"
-                app:fastScrollerBubbleEnabled="false"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:visibility="visible" />
-
             <eu.kanade.tachiyomi.widget.ActionToolbar
                 android:id="@+id/action_toolbar"
                 android:layout_width="0dp"
@@ -75,5 +64,14 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </eu.kanade.tachiyomi.widget.ThemedSwipeRefreshLayout>
+
+    <eu.kanade.tachiyomi.widget.MaterialFastScroll
+        android:id="@+id/fast_scroller"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="end"
+        app:fastScrollerBubbleEnabled="false"
+        tools:visibility="visible" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

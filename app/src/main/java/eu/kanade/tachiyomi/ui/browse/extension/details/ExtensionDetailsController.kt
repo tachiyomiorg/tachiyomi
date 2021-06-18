@@ -114,7 +114,7 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
                 .forEach {
                     val preferenceBlock = {
                         it.value
-                            .sortedWith(compareBy({ !it.isEnabled() }, { it.name.toLowerCase() }))
+                            .sortedWith(compareBy({ !it.isEnabled() }, { it.name.lowercase() }))
                             .forEach { source ->
                                 val sourcePrefs = mutableListOf<Preference>()
 

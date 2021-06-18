@@ -262,7 +262,13 @@ class LibraryController(
     }
 
     fun showSettingsSheet() {
-        settingsSheet?.show()
+        if (adapter?.categories?.isNotEmpty() == true) {
+            adapter?.categories?.get(binding.libraryPager.currentItem)?.let { category ->
+                settingsSheet?.show(category)
+            }
+        } else {
+            settingsSheet?.show()
+        }
     }
 
     fun onNextLibraryUpdate(categories: List<Category>, mangaMap: Map<Int, List<LibraryItem>>) {
@@ -518,6 +524,16 @@ class LibraryController(
         } else if (selectedMangas.remove(manga)) {
             selectionRelay.call(LibrarySelectionEvent.Unselected(manga))
         }
+    }
+
+    /**
+     * Clear all of the manga currently selected, and
+     * invalidate the action mode to revert the top toolbar
+     */
+    fun clearSelection() {
+        selectedMangas.clear()
+        selectionRelay.call(LibrarySelectionEvent.Cleared())
+        invalidateActionMode()
     }
 
     /**

@@ -8,9 +8,9 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.mikepenz.aboutlibraries.LibsBuilder
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.updater.UpdateResult
+import eu.kanade.tachiyomi.data.updater.GithubUpdateChecker
+import eu.kanade.tachiyomi.data.updater.GithubUpdateResult
 import eu.kanade.tachiyomi.data.updater.UpdaterService
-import eu.kanade.tachiyomi.data.updater.github.GithubUpdateChecker
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.base.controller.NoToolbarElevationController
 import eu.kanade.tachiyomi.ui.base.controller.openInBrowser
@@ -23,11 +23,9 @@ import eu.kanade.tachiyomi.util.preference.onClick
 import eu.kanade.tachiyomi.util.preference.preference
 import eu.kanade.tachiyomi.util.preference.titleRes
 import eu.kanade.tachiyomi.util.system.copyToClipboard
-import eu.kanade.tachiyomi.util.system.openInBrowser
 import eu.kanade.tachiyomi.util.system.toast
 import timber.log.Timber
 import java.text.DateFormat
-import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
@@ -110,14 +108,14 @@ class AboutController : SettingsController(), NoToolbarElevationController {
         launchNow {
             try {
                 when (val result = updateChecker.checkForUpdate()) {
-                    is UpdateResult.NewUpdate<*> -> {
+                    is GithubUpdateResult.NewUpdate -> {
                         val body = result.release.info
-                        val url = result.release.downloadLink
+                        val url = result.release.getDownloadLink()
 
                         // Create confirmation window
                         NewUpdateDialogController(body, url).showDialog(router)
                     }
-                    is UpdateResult.NoNewUpdate -> {
+                    is GithubUpdateResult.NoNewUpdate -> {
                         activity?.toast(R.string.update_check_no_new_updates)
                     }
                 }
@@ -168,8 +166,8 @@ class AboutController : SettingsController(), NoToolbarElevationController {
             )
             outputDf.timeZone = TimeZone.getDefault()
 
-            buildTime.toDateTimestampString(dateFormat)
-        } catch (e: ParseException) {
+            buildTime!!.toDateTimestampString(dateFormat)
+        } catch (e: Exception) {
             BuildConfig.BUILD_TIME
         }
     }

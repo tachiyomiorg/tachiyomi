@@ -1,7 +1,6 @@
-package eu.kanade.tachiyomi.data.updater.github
+package eu.kanade.tachiyomi.data.updater
 
 import eu.kanade.tachiyomi.BuildConfig
-import eu.kanade.tachiyomi.data.updater.UpdateResult
 import eu.kanade.tachiyomi.network.GET
 import eu.kanade.tachiyomi.network.NetworkHelper
 import eu.kanade.tachiyomi.network.await
@@ -21,7 +20,7 @@ class GithubUpdateChecker {
         }
     }
 
-    suspend fun checkForUpdate(): UpdateResult {
+    suspend fun checkForUpdate(): GithubUpdateResult {
         return withIOContext {
             networkService.client
                 .newCall(GET("https://api.github.com/repos/$repo/releases/latest"))
@@ -32,7 +31,7 @@ class GithubUpdateChecker {
                     if (isNewVersion(it.version)) {
                         GithubUpdateResult.NewUpdate(it)
                     } else {
-                        GithubUpdateResult.NoNewUpdate()
+                        GithubUpdateResult.NoNewUpdate
                     }
                 }
         }

@@ -66,7 +66,7 @@ class PreferencesHelper(val context: Context) {
 
     fun hideBottomBarOnScroll() = flowPrefs.getBoolean(Keys.hideBottomBarOnScroll, true)
 
-    fun showSideNavOnBottom() = flowPrefs.getBoolean(Keys.showSideNavOnBottom, false)
+    fun sideNavIconAlignment() = flowPrefs.getInt(Keys.sideNavIconAlignment, 0)
 
     fun useAuthenticator() = flowPrefs.getBoolean(Keys.useAuthenticator, false)
 
@@ -82,7 +82,7 @@ class PreferencesHelper(val context: Context) {
 
     fun autoUpdateTrackers() = prefs.getBoolean(Keys.autoUpdateTrackers, false)
 
-    fun showLibraryUpdateErrors() = prefs.getBoolean(Keys.showLibraryUpdateErrors, false)
+    fun showLibraryUpdateErrors() = prefs.getBoolean(Keys.showLibraryUpdateErrors, true)
 
     fun themeMode() = flowPrefs.getEnum(Keys.themeMode, Values.ThemeMode.system)
 
@@ -283,6 +283,8 @@ class PreferencesHelper(val context: Context) {
     fun lang() = prefs.getString(Keys.lang, "")
 
     fun defaultCategory() = prefs.getInt(Keys.defaultCategory, -1)
+
+    fun categorisedDisplaySettings() = flowPrefs.getBoolean(Keys.categorizedDisplay, false)
 
     fun skipRead() = prefs.getBoolean(Keys.skipRead, false)
 

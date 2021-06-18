@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Build
 import android.view.View
 import android.view.Window
+import android.view.WindowManager
 import eu.kanade.tachiyomi.util.system.InternalResourceHelper
 import eu.kanade.tachiyomi.util.system.getResourceColor
 
@@ -40,5 +41,13 @@ fun Window.setNavigationBarTransparentCompat(context: Context) {
     } else {
         // Set navbar scrim 70% of navigationBarColor
         context.getResourceColor(android.R.attr.navigationBarColor, 0.7F)
+    }
+}
+
+fun Window.setSecureScreen(enabled: Boolean) {
+    if (enabled) {
+        setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
+    } else {
+        clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
     }
 }

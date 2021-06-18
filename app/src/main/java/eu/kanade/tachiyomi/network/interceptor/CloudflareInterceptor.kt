@@ -2,11 +2,10 @@ package eu.kanade.tachiyomi.network.interceptor
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.os.Handler
-import android.os.Looper
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.network.NetworkHelper
 import eu.kanade.tachiyomi.source.online.HttpSource
@@ -28,7 +27,7 @@ import java.util.concurrent.TimeUnit
 
 class CloudflareInterceptor(private val context: Context) : Interceptor {
 
-    private val handler = Handler(Looper.getMainLooper())
+    private val executor = ContextCompat.getMainExecutor(context)
 
     private val networkHelper: NetworkHelper by injectLazy()
 
@@ -92,7 +91,7 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
         val headers = request.headers.toMultimap().mapValues { it.value.getOrNull(0) ?: "" }.toMutableMap()
         headers["X-Requested-With"] = WebViewUtil.REQUESTED_WITH
 
-        handler.post {
+        executor.execute {
             val webview = WebView(context)
             webView = webview
             webview.setDefaultSettings()
@@ -146,7 +145,7 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
         // around 4 seconds but it can take more due to slow networks or server issues.
         latch.await(12, TimeUnit.SECONDS)
 
-        handler.post {
+        executor.execute {
             if (!cloudflareBypassed) {
                 isWebViewOutdated = webView?.isOutdated() == true
             }

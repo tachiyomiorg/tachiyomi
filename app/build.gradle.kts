@@ -135,16 +135,16 @@ dependencies {
 
     // AndroidX libraries
     implementation("androidx.annotation:annotation:1.3.0-alpha01")
-    implementation("androidx.appcompat:appcompat:1.4.0-alpha01")
+    implementation("androidx.appcompat:appcompat:1.4.0-alpha02")
     implementation("androidx.biometric:biometric-ktx:1.2.0-alpha03")
     implementation("androidx.browser:browser:1.3.0")
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.0-beta02")
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.1.0")
-    implementation("androidx.core:core-ktx:1.6.0-beta01")
+    implementation("androidx.core:core-ktx:1.6.0-beta02")
     implementation("androidx.multidex:multidex:2.0.1")
     implementation("androidx.preference:preference-ktx:1.1.1")
-    implementation("androidx.recyclerview:recyclerview:1.2.0")
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
 
     val lifecycleVersion = "2.4.0-alpha01"
@@ -153,10 +153,10 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
 
     // Job scheduling
-    implementation("androidx.work:work-runtime-ktx:2.7.0-alpha03")
+    implementation("androidx.work:work-runtime-ktx:2.6.0-beta01")
 
     // UI library
-    implementation("com.google.android.material:material:1.4.0-beta01")
+    implementation("com.google.android.material:material:1.4.0-rc01")
 
     "standardImplementation"("com.google.firebase:firebase-core:19.0.0")
 
@@ -174,13 +174,13 @@ dependencies {
     implementation("com.squareup.okio:okio:2.10.0")
 
     // TLS 1.3 support for Android < 10
-    implementation("org.conscrypt:conscrypt-android:2.5.1")
+    implementation("org.conscrypt:conscrypt-android:2.5.2")
 
     // JSON
     val kotlinSerializationVersion = "1.2.0"
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinSerializationVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-protobuf:$kotlinSerializationVersion")
-    implementation("com.google.code.gson:gson:2.8.6")
+    implementation("com.google.code.gson:gson:2.8.7")
     implementation("com.github.salomonbrys.kotson:kotson:2.5.0")
 
     // JavaScript engine
@@ -219,7 +219,7 @@ dependencies {
     implementation("com.github.tachiyomiorg:subsampling-scale-image-view:846abe0") {
         exclude(module = "image-decoder")
     }
-    implementation("com.github.tachiyomiorg:image-decoder:7a44c9b")
+    implementation("com.github.tachiyomiorg:image-decoder:ac5f65c")
 
     // Logging
     implementation("com.jakewharton.timber:timber:4.7.1")

@@ -51,6 +51,7 @@ class TrackSearchDialog : DialogController {
         service = Injekt.get<TrackManager>().getService(bundle.getInt(KEY_SERVICE))!!
     }
 
+    @Suppress("DEPRECATION")
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         binding = TrackSearchDialogBinding.inflate(LayoutInflater.from(activity!!))
         val dialog = MaterialDialog(activity!!)

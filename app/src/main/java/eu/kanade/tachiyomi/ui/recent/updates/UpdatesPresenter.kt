@@ -41,7 +41,7 @@ class UpdatesPresenter(
 
         downloadManager.queue.getStatusObservable()
             .observeOn(Schedulers.io())
-            .onBackpressureLatest()
+            .onBackpressureBuffer()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeLatestCache(
                 { view, it ->
@@ -55,7 +55,7 @@ class UpdatesPresenter(
 
         downloadManager.queue.getProgressObservable()
             .observeOn(Schedulers.io())
-            .onBackpressureLatest()
+            .onBackpressureBuffer()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeLatestCache(UpdatesController::onChapterDownloadUpdate) { _, error ->
                 Timber.e(error)

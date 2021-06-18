@@ -35,6 +35,10 @@ import eu.kanade.tachiyomi.util.lang.withUIContext
 import eu.kanade.tachiyomi.util.prepUpdateCover
 import eu.kanade.tachiyomi.util.removeCovers
 import eu.kanade.tachiyomi.util.shouldDownloadNewChapters
+import eu.kanade.tachiyomi.util.storage.DiskUtil
+import eu.kanade.tachiyomi.util.storage.getPicturesDir
+import eu.kanade.tachiyomi.util.storage.getTempShareDir
+import eu.kanade.tachiyomi.util.system.ImageUtil
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.updateCoverLastModified
 import eu.kanade.tachiyomi.widget.ExtendedNavigationView.Item.TriStateGroup.State
@@ -49,6 +53,7 @@ import rx.schedulers.Schedulers
 import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import java.io.File
 import java.util.Date
 
 class MangaPresenter(
@@ -275,6 +280,33 @@ class MangaPresenter(
         moveMangaToCategories(manga, listOfNotNull(category))
     }
 
+    fun shareCover(context: Context): File {
+        return saveCover(getTempShareDir(context))
+    }
+
+    fun saveCover(context: Context) {
+        saveCover(getPicturesDir(context))
+    }
+
+    private fun saveCover(directory: File): File {
+        val cover = coverCache.getCoverFile(manga) ?: throw Exception("Cover url was null")
+        if (!cover.exists()) throw Exception("Cover not in cache")
+        val type = ImageUtil.findImageType(cover.inputStream())
+            ?: throw Exception("Not an image")
+
+        directory.mkdirs()
+
+        val filename = DiskUtil.buildValidFilename("${manga.title}.${type.extension}")
+
+        val destFile = File(directory, filename)
+        cover.inputStream().use { input ->
+            destFile.outputStream().use { output ->
+                input.copyTo(output)
+            }
+        }
+        return destFile
+    }
+
     /**
      * Update cover with local file.
      *
@@ -327,7 +359,7 @@ class MangaPresenter(
         observeDownloadsStatusSubscription?.let { remove(it) }
         observeDownloadsStatusSubscription = downloadManager.queue.getStatusObservable()
             .observeOn(Schedulers.io())
-            .onBackpressureLatest()
+            .onBackpressureBuffer()
             .filter { download -> download.manga.id == manga.id }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeLatestCache(
@@ -343,7 +375,7 @@ class MangaPresenter(
         observeDownloadsPageSubscription?.let { remove(it) }
         observeDownloadsPageSubscription = downloadManager.queue.getProgressObservable()
             .observeOn(Schedulers.io())
-            .onBackpressureLatest()
+            .onBackpressureBuffer()
             .filter { download -> download.manga.id == manga.id }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeLatestCache(MangaController::onChapterDownloadUpdate) { _, error ->

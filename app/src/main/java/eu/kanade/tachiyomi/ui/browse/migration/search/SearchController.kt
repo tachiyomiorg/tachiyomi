@@ -86,6 +86,7 @@ class SearchController(
 
         private val preferences: PreferencesHelper by injectLazy()
 
+        @Suppress("DEPRECATION")
         override fun onCreateDialog(savedViewState: Bundle?): Dialog {
             val prefValue = preferences.migrateFlags().get()
 

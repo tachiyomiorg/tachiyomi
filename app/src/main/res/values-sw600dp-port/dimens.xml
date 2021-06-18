@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="tablet_horizontal_cover_margin">80dp</dimen>
+</resources>

@@ -34,7 +34,7 @@ class MigrationSourcesPresenter(
                 val source = sourceManager.getOrStub(it.key)
                 SourceItem(source, it.value.size, header)
             }
-            .sortedBy { it.source.name.toLowerCase() }
+            .sortedBy { it.source.name.lowercase() }
             .toList()
     }
 }

@@ -138,6 +138,7 @@ class WebViewActivity : BaseViewBindingActivity<WebviewActivityBinding>() {
         }
     }
 
+    @Suppress("UNNECESSARY_SAFE_CALL")
     override fun onDestroy() {
         super.onDestroy()
 

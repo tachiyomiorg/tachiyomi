@@ -6,6 +6,7 @@
 
     <dimen name="space_between_cards">4dp</dimen>
     <dimen name="card_radius">4dp</dimen>
+    <dimen name="card_selector_radius">6dp</dimen>
     <dimen name="dialog_radius">8dp</dimen>
 
     <dimen name="fab_size">56dp</dimen>
@@ -14,4 +15,6 @@
     <dimen name="action_toolbar_list_padding">72dp</dimen>
 
     <dimen name="screen_edge_margin">16dp</dimen>
+
+    <dimen name="tablet_horizontal_cover_margin">128dp</dimen>
 </resources>

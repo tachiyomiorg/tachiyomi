@@ -37,6 +37,7 @@ import eu.kanade.tachiyomi.util.chapter.syncChaptersWithTrackServiceTwoWay
 import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.lang.withUIContext
 import eu.kanade.tachiyomi.util.removeCovers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.catch
@@ -44,7 +45,6 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
-import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -104,7 +104,7 @@ open class BrowseSourcePresenter(
     /**
      * Subscription for one request from the pager.
      */
-    private var pageSubscription: Subscription? = null
+    private var nextPageJob: Job? = null
 
     private val loggedServices by lazy { Injekt.get<TrackManager>().services.filter { it.isLogged } }
 
@@ -175,14 +175,14 @@ open class BrowseSourcePresenter(
     fun requestNext() {
         if (!hasNextPage()) return
 
-        pageSubscription?.let { remove(it) }
-        pageSubscription = Observable.defer { pager.requestNext() }
-            .subscribeFirst(
-                { _, _ ->
-                    // Nothing to do when onNext is emitted.
-                },
-                BrowseSourceController::onAddPageError
-            )
+        nextPageJob?.cancel()
+        nextPageJob = launchIO {
+            try {
+                pager.requestNextPage()
+            } catch (e: Throwable) {
+                withUIContext { view?.onAddPageError(e) }
+            }
+        }
     }
 
     /**

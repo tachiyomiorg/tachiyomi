@@ -271,8 +271,8 @@ fun Context.createFileInCacheDir(name: String): File {
 }
 
 /**
- * We consider anything with a width of >= 600dp as a tablet, i.e. with layouts in layout-sw600dp.
+ * We consider anything with a width of >= 720dp as a tablet, i.e. with layouts in layout-sw720dp.
  */
 fun Context.isTablet(): Boolean {
-    return resources.configuration.screenWidthDp >= 600
+    return resources.configuration.smallestScreenWidthDp >= 720
 }

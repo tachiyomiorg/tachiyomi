@@ -188,6 +188,7 @@ class DownloadController :
                 onUpdateDownloadedPages(download)
             }
             Download.State.ERROR -> unsubscribeProgress(download)
+            else -> { /* unused */ }
         }
     }
 

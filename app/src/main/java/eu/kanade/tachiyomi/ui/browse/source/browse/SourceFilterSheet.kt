@@ -6,7 +6,6 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.databinding.SourceFilterSheetBinding
@@ -29,11 +28,6 @@ class SourceFilterSheet(
         filterNavView.onResetClicked = onResetClicked
 
         return filterNavView
-    }
-
-    override fun show() {
-        super.show()
-        behavior.state = BottomSheetBehavior.STATE_EXPANDED
     }
 
     fun setFilters(items: List<IFlexible<*>>) {

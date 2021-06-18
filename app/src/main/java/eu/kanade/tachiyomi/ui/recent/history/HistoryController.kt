@@ -30,6 +30,7 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.appcompat.queryTextChanges
+import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
 
 /**
@@ -117,6 +118,7 @@ class HistoryController :
     fun onAddPageError(error: Throwable) {
         adapter?.onLoadMoreComplete(null)
         adapter?.endlessTargetCount = 1
+        Timber.e(error)
     }
 
     override fun onUpdateEmptyView(size: Int) {

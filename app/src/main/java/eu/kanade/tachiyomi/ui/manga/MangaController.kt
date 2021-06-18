@@ -13,12 +13,12 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
+import androidx.annotation.FloatRange
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
-import androidx.core.graphics.blue
-import androidx.core.graphics.green
-import androidx.core.graphics.red
 import androidx.core.os.bundleOf
+import androidx.core.view.children
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -78,7 +78,8 @@ import eu.kanade.tachiyomi.util.chapter.NoChaptersException
 import eu.kanade.tachiyomi.util.hasCustomCover
 import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.lang.launchUI
-import eu.kanade.tachiyomi.util.system.getResourceColor
+import eu.kanade.tachiyomi.util.storage.getUriCompat
+import eu.kanade.tachiyomi.util.system.toShareIntent
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.getCoordinates
 import eu.kanade.tachiyomi.util.view.shrinkOnScroll
@@ -137,7 +138,7 @@ class MangaController :
     private val preferences: PreferencesHelper by injectLazy()
     private val coverCache: CoverCache by injectLazy()
 
-    private val toolbarTextColor by lazy { view!!.context.getResourceColor(R.attr.colorOnPrimary) }
+    private var toolbarTextView: TextView? = null
 
     private var mangaInfoAdapter: MangaInfoHeaderAdapter? = null
     private var chaptersHeaderAdapter: MangaChaptersHeaderAdapter? = null
@@ -294,28 +295,22 @@ class MangaController :
         updateFilterIconState()
     }
 
-    private fun updateToolbarTitleAlpha(alpha: Int? = null) {
+    private fun updateToolbarTitleAlpha(@FloatRange(from = 0.0, to = 1.0) alpha: Float? = null) {
         val scrolledList = binding.fullRecycler ?: binding.infoRecycler!!
-
-        val calculatedAlpha = when {
+        if (toolbarTextView == null) {
+            toolbarTextView = (activity as? MainActivity)?.binding?.toolbar?.children
+                ?.find { it is TextView } as TextView
+        }
+        toolbarTextView?.alpha = when {
             // Specific alpha provided
             alpha != null -> alpha
 
             // First item isn't in view, full opacity
-            ((scrolledList.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition() > 0) -> 255
+            ((scrolledList.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition() > 0) -> 1F
 
             // Based on scroll amount when first item is in view
-            else -> min(scrolledList.computeVerticalScrollOffset(), 255)
+            else -> min(scrolledList.computeVerticalScrollOffset(), 255) / 255F
         }
-
-        (activity as? MainActivity)?.binding?.toolbar?.setTitleTextColor(
-            Color.argb(
-                calculatedAlpha,
-                toolbarTextColor.red,
-                toolbarTextColor.green,
-                toolbarTextColor.blue
-            )
-        )
     }
 
     private fun updateFilterIconState() {
@@ -362,7 +357,8 @@ class MangaController :
         chaptersAdapter = null
         settingsSheet = null
         addSnackbar?.dismiss()
-        updateToolbarTitleAlpha(255)
+        updateToolbarTitleAlpha(1F)
+        toolbarTextView = null
         super.onDestroyView(view)
     }
 
@@ -402,8 +398,11 @@ class MangaController :
             R.id.download_custom, R.id.download_unread, R.id.download_all
             -> downloadChapters(item.itemId)
 
+            R.id.action_share_cover -> shareCover()
+            R.id.action_save_cover -> saveCover()
+            R.id.action_edit_cover -> changeCover()
+
             R.id.action_edit_categories -> onCategoriesClick()
-            R.id.action_edit_cover -> handleChangeCover()
             R.id.action_migrate -> migrateManga()
         }
         return super.onOptionsItemSelected(item)
@@ -661,20 +660,35 @@ class MangaController :
         }
     }
 
-    private fun handleChangeCover() {
-        val manga = manga ?: return
-        if (manga.hasCustomCover(coverCache)) {
-            showEditCoverDialog(manga)
-        } else {
-            openMangaCoverPicker(manga)
+    private fun shareCover() {
+        try {
+            val activity = activity!!
+            val cover = presenter.shareCover(activity)
+            val uri = cover.getUriCompat(activity)
+            startActivity(Intent.createChooser(uri.toShareIntent(), activity.getString(R.string.action_share)))
+        } catch (e: Exception) {
+            Timber.e(e)
+            activity?.toast(R.string.error_sharing_cover)
         }
     }
 
-    /**
-     * Edit custom cover for selected manga.
-     */
-    private fun showEditCoverDialog(manga: Manga) {
-        ChangeMangaCoverDialog(this, manga).showDialog(router)
+    private fun saveCover() {
+        try {
+            presenter.saveCover(activity!!)
+            activity?.toast(R.string.cover_saved)
+        } catch (e: Exception) {
+            Timber.e(e)
+            activity?.toast(R.string.error_saving_cover)
+        }
+    }
+
+    private fun changeCover() {
+        val manga = manga ?: return
+        if (manga.hasCustomCover(coverCache)) {
+            ChangeMangaCoverDialog(this, manga).showDialog(router)
+        } else {
+            openMangaCoverPicker(manga)
+        }
     }
 
     override fun openMangaCoverPicker(manga: Manga) {

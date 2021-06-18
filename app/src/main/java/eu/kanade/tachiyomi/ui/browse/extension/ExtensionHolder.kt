@@ -40,7 +40,7 @@ class ExtensionHolder(view: View, val adapter: ExtensionAdapter) :
             extension is Extension.Installed && extension.isObsolete -> itemView.context.getString(R.string.ext_obsolete)
             extension.isNsfw && shouldLabelNsfw -> itemView.context.getString(R.string.ext_nsfw_short)
             else -> ""
-        }.toUpperCase()
+        }.uppercase()
 
         binding.image.clear()
         if (extension is Extension.Available) {

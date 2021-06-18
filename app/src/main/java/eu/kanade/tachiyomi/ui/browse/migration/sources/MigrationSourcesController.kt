@@ -72,8 +72,6 @@ class MigrationSourcesController :
         parentController!!.router.pushController(controller.withFadeTransaction())
         return false
     }
-
-    companion object {
-        const val HELP_URL = "https://tachiyomi.org/help/guides/source-migration/"
-    }
 }
+
+private const val HELP_URL = "https://tachiyomi.org/help/guides/source-migration/"

@@ -32,6 +32,12 @@ open class BasePresenter<V> : RxPresenter<V>() {
         presenterScope.cancel()
     }
 
+    // We're trying to avoid using Rx, so we "undeprecate" this
+    @Suppress("DEPRECATION")
+    override fun getView(): V? {
+        return super.getView()
+    }
+
     /**
      * Subscribes an observable with [deliverFirst] and adds it to the presenter's lifecycle
      * subscription list.

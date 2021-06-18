@@ -312,6 +312,13 @@ class LibraryPresenter(
                 dbCategories
             }
 
+            libraryManga.forEach { (categoryId, libraryManga) ->
+                val category = categories.first { category -> category.id == categoryId }
+                libraryManga.forEach { libraryItem ->
+                    libraryItem.displayMode = category.displayMode
+                }
+            }
+
             this.categories = categories
             Library(categories, libraryManga)
         }
@@ -333,10 +340,18 @@ class LibraryPresenter(
      * value.
      */
     private fun getLibraryMangasObservable(): Observable<LibraryMap> {
-        val libraryDisplayMode = preferences.libraryDisplayMode()
+        val defaultLibraryDisplayMode = preferences.libraryDisplayMode()
+        val shouldSetFromCategory = preferences.categorisedDisplaySettings()
         return db.getLibraryMangas().asRxObservable()
             .map { list ->
-                list.map { LibraryItem(it, libraryDisplayMode) }.groupBy { it.manga.category }
+                list.map { libraryManga ->
+                    // Display mode based on user preference: take it from global library setting or category
+                    LibraryItem(
+                        libraryManga,
+                        shouldSetFromCategory,
+                        defaultLibraryDisplayMode
+                    )
+                }.groupBy { it.manga.category }
             }
     }
 

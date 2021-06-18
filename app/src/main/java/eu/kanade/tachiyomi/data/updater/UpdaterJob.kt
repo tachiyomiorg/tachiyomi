@@ -8,7 +8,6 @@ import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import eu.kanade.tachiyomi.data.updater.github.GithubUpdateChecker
 import kotlinx.coroutines.runBlocking
 import java.util.concurrent.TimeUnit
 
@@ -19,8 +18,8 @@ class UpdaterJob(private val context: Context, workerParams: WorkerParameters) :
         try {
             val result = GithubUpdateChecker().checkForUpdate()
 
-            if (result is UpdateResult.NewUpdate<*>) {
-                UpdaterNotifier(context).promptUpdate(result.release.downloadLink)
+            if (result is GithubUpdateResult.NewUpdate) {
+                UpdaterNotifier(context).promptUpdate(result.release.getDownloadLink())
             }
             Result.success()
         } catch (e: Exception) {

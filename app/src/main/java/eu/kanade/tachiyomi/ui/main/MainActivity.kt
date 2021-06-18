@@ -142,9 +142,13 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
         }
 
         if (binding.sideNav != null) {
-            preferences.showSideNavOnBottom()
+            preferences.sideNavIconAlignment()
                 .asImmediateFlow {
-                    binding.sideNav?.menuGravity = if (!it) Gravity.TOP else Gravity.BOTTOM
+                    binding.sideNav?.menuGravity = when (it) {
+                        1 -> Gravity.CENTER
+                        2 -> Gravity.BOTTOM
+                        else -> Gravity.TOP
+                    }
                 }
                 .launchIn(lifecycleScope)
         }
@@ -168,7 +172,9 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
                         controller?.showSettingsSheet()
                     }
                     R.id.nav_updates -> {
-                        router.pushController(DownloadController().withFadeTransaction())
+                        if (router.backstackSize == 1) {
+                            router.pushController(DownloadController().withFadeTransaction())
+                        }
                     }
                 }
             }
@@ -231,6 +237,7 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
             .asImmediateFlow { binding.downloadedOnly.isVisible = it }
             .launchIn(lifecycleScope)
 
+        binding.incognitoMode.isVisible = preferences.incognitoMode().get()
         preferences.incognitoMode().asFlow()
             .drop(1)
             .onEach {
@@ -351,11 +358,12 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
         return true
     }
 
+    @Suppress("UNNECESSARY_SAFE_CALL")
     override fun onDestroy() {
         super.onDestroy()
 
         // Binding sometimes isn't actually instantiated yet somehow
-        nav.setOnItemSelectedListener(null)
+        nav?.setOnItemSelectedListener(null)
         binding?.toolbar.setNavigationOnClickListener(null)
     }
 

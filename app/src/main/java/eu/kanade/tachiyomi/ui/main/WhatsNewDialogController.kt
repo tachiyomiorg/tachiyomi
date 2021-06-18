@@ -10,6 +10,7 @@ import eu.kanade.tachiyomi.ui.base.controller.openInBrowser
 
 class WhatsNewDialogController(bundle: Bundle? = null) : DialogController(bundle) {
 
+    @Suppress("DEPRECATION")
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         return MaterialDialog(activity!!)
             .title(text = activity!!.getString(R.string.updated_version, BuildConfig.VERSION_NAME))

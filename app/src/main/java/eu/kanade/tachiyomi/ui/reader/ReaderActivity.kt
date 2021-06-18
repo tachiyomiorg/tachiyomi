@@ -88,6 +88,9 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
                 addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             }
         }
+
+        private const val ENABLED_BUTTON_IMAGE_ALPHA = 255
+        private const val DISABLED_BUTTON_IMAGE_ALPHA = 64
     }
 
     private val preferences: PreferencesHelper by injectLazy()
@@ -422,8 +425,6 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
 
                     presenter.setMangaOrientationType(newOrientation.flagValue)
 
-                    updateOrientationShortcut(newOrientation.flagValue)
-
                     menuToggleToast?.cancel()
                     menuToggleToast = toast(newOrientation.stringRes)
                 }
@@ -589,12 +590,27 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
 
     /**
      * Called from the presenter whenever a new [viewerChapters] have been set. It delegates the
-     * method to the current viewer, but also set the subtitle on the toolbar.
+     * method to the current viewer, but also set the subtitle on the toolbar, and
+     * hides or disables the reader prev/next buttons if there's a prev or next chapter
      */
     fun setChapters(viewerChapters: ViewerChapters) {
         binding.pleaseWait.isVisible = false
         viewer?.setChapters(viewerChapters)
         binding.toolbar.subtitle = viewerChapters.currChapter.chapter.name
+
+        val leftChapterObject = if (viewer is R2LPagerViewer) viewerChapters.nextChapter else viewerChapters.prevChapter
+        val rightChapterObject = if (viewer is R2LPagerViewer) viewerChapters.prevChapter else viewerChapters.nextChapter
+
+        if (leftChapterObject == null && rightChapterObject == null) {
+            binding.leftChapter.isVisible = false
+            binding.rightChapter.isVisible = false
+        } else {
+            binding.leftChapter.isEnabled = leftChapterObject != null
+            binding.leftChapter.imageAlpha = if (leftChapterObject != null) ENABLED_BUTTON_IMAGE_ALPHA else DISABLED_BUTTON_IMAGE_ALPHA
+
+            binding.rightChapter.isEnabled = rightChapterObject != null
+            binding.rightChapter.imageAlpha = if (rightChapterObject != null) ENABLED_BUTTON_IMAGE_ALPHA else DISABLED_BUTTON_IMAGE_ALPHA
+        }
 
         // Invalidate menu to show proper chapter bookmark state
         invalidateOptionsMenu()
@@ -792,6 +808,7 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
         if (newOrientation.flag != requestedOrientation) {
             requestedOrientation = newOrientation.flag
         }
+        updateOrientationShortcut(presenter.getMangaOrientationType(resolveDefault = false))
     }
 
     /**

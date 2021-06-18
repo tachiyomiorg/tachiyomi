@@ -75,6 +75,7 @@
             style="@style/Widget.MaterialComponents.NavigationRailView.Colored"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
+            app:elevation="0dp"
             app:itemIconTint="@color/nav_selector"
             app:itemRippleColor="?attr/rippleSecondaryColor"
             app:itemTextColor="@color/nav_selector"

@@ -2,8 +2,8 @@ package eu.kanade.tachiyomi.ui.setting
 
 import android.app.Dialog
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.core.text.buildSpannedString
 import androidx.preference.PreferenceScreen
 import com.afollestad.materialdialogs.MaterialDialog
@@ -16,6 +16,7 @@ import eu.kanade.tachiyomi.data.preference.CHARGING
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.UNMETERED_NETWORK
 import eu.kanade.tachiyomi.data.preference.asImmediateFlow
+import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.category.CategoryController
@@ -39,11 +40,13 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import uy.kohesive.injekt.injectLazy
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 
 class SettingsLibraryController : SettingsController() {
 
     private val db: DatabaseHelper = Injekt.get()
+    private val trackManager: TrackManager by injectLazy()
 
     override fun setupPreferenceScreen(screen: PreferenceScreen) = screen.apply {
         titleRes = R.string.pref_category_library
@@ -121,6 +124,12 @@ class SettingsLibraryController : SettingsController() {
                     true
                 }
             }
+
+            switchPreference {
+                key = Keys.categorizedDisplay
+                titleRes = R.string.categorized_display_settings
+                defaultValue = false
+            }
         }
 
         preferenceCategory {
@@ -162,7 +171,7 @@ class SettingsLibraryController : SettingsController() {
 
                 onChange {
                     // Post to event looper to allow the preference to be updated.
-                    Handler().post { LibraryUpdateJob.setupTask(context) }
+                    ContextCompat.getMainExecutor(context).execute { LibraryUpdateJob.setupTask(context) }
                     true
                 }
 
@@ -265,16 +274,18 @@ class SettingsLibraryController : SettingsController() {
                 summaryRes = R.string.pref_library_update_refresh_metadata_summary
                 defaultValue = false
             }
-            switchPreference {
-                key = Keys.autoUpdateTrackers
-                titleRes = R.string.pref_library_update_refresh_trackers
-                summaryRes = R.string.pref_library_update_refresh_trackers_summary
-                defaultValue = false
+            if (trackManager.hasLoggedServices()) {
+                switchPreference {
+                    key = Keys.autoUpdateTrackers
+                    titleRes = R.string.pref_library_update_refresh_trackers
+                    summaryRes = R.string.pref_library_update_refresh_trackers_summary
+                    defaultValue = false
+                }
             }
             switchPreference {
                 key = Keys.showLibraryUpdateErrors
                 titleRes = R.string.pref_library_update_error_notification
-                defaultValue = false
+                defaultValue = true
             }
         }
     }

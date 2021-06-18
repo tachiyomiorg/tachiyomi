@@ -148,20 +148,24 @@
     <string name="theme_light_default">Default</string>
     <string name="theme_light_blue">Light Blue</string>
     <string name="theme_light_strawberrydaiquiri">Strawberry Daiquiri</string>
+    <string name="theme_light_yotsuba">Yotsuba</string>
     <string name="pref_theme_dark">Dark theme</string>
     <string name="theme_dark_default">Default</string>
     <string name="theme_dark_blue">Dark Blue</string>
     <string name="theme_dark_greenapple">Green Apple</string>
     <string name="theme_dark_midnightdusk">Midnight Dusk</string>
     <string name="theme_dark_amoled">AMOLED Black</string>
-    <string name="theme_dark_amoled_hotpink">Hot Pink</string>
+    <string name="theme_dark_amoled_hotpink">AMOLED Hot Pink</string>
     <string name="pref_start_screen">Start screen</string>
     <string name="pref_language">Language</string>
     <string name="system_default">Default</string>
     <string name="pref_date_format">Date format</string>
     <string name="pref_confirm_exit">Confirm exit</string>
     <string name="pref_hide_bottom_bar_on_scroll">Hide bottom bar on scroll</string>
-    <string name="pref_move_side_nav_to_bottom">Move side navigation buttons to bottom</string>
+    <string name="pref_side_nav_icon_alignment">Side navigation icon alignment</string>
+    <string name="alignment_top">Top</string>
+    <string name="alignment_center">Center</string>
+    <string name="alignment_bottom">Bottom</string>
     <string name="pref_manage_notifications">Manage notifications</string>
 
     <string name="pref_category_security">Security</string>
@@ -210,12 +214,13 @@
     <string name="pref_update_only_non_completed">Only update ongoing manga</string>
     <string name="pref_library_update_refresh_metadata">Automatically refresh metadata</string>
     <string name="pref_library_update_refresh_metadata_summary">Check for new cover and details when updating library</string>
-    <string name="pref_library_update_refresh_trackers">Automatically update trackers</string>
+    <string name="pref_library_update_refresh_trackers">Automatically refresh trackers</string>
     <string name="pref_library_update_refresh_trackers_summary">Update trackers when updating library</string>
     <string name="pref_library_update_error_notification">Show update errors notifications</string>
 
     <string name="default_category">Default category</string>
     <string name="default_category_summary">Always ask</string>
+    <string name="categorized_display_settings">Per-category display settings</string>
     <plurals name="num_categories">
         <item quantity="one">%d category</item>
         <item quantity="other">%d categories</item>
@@ -374,6 +379,7 @@
     <string name="pref_download_new_categories_details">Manga in excluded categories will not be downloaded even if they are also in included categories.</string>
 
       <!-- Tracking section -->
+    <string name="tracking_guide">Tracking guide</string>
     <string name="pref_auto_update_manga_sync">Update chapter progress after reading</string>
     <string name="pref_auto_add_track">Track silently when adding manga to library</string>
     <string name="services">Services</string>
@@ -559,6 +565,10 @@
     <string name="download_custom">Custom</string>
     <string name="download_all">All</string>
     <string name="download_unread">Unread</string>
+    <string name="manga_cover">Cover</string>
+    <string name="cover_saved">Cover saved</string>
+    <string name="error_saving_cover">Error saving cover</string>
+    <string name="error_sharing_cover">Error sharing cover</string>
     <string name="confirm_delete_chapters">Are you sure you want to delete the selected chapters?</string>
     <string name="invalid_download_dir">Invalid download location</string>
     <string name="chapter_settings">Chapter settings</string>
@@ -720,6 +730,7 @@
     <string name="information_no_recent_manga">Nothing read recently</string>
     <string name="information_empty_library">Your library is empty. Add series to your library from Browse.</string>
     <string name="information_empty_category">You have no categories. Tap the plus button to create one for organizing your library.</string>
+    <string name="information_empty_category_dialog">You don\'t have any categories yet.</string>
     <string name="information_cloudflare_bypass_failure">Failed to bypass Cloudflare</string>
     <!-- Do not translate "WebView" -->
     <string name="information_webview_required">WebView is required for Tachiyomi</string>
