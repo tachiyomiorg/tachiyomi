@@ -12,7 +12,7 @@
 
         <!-- Theme colors -->
         <item name="colorPrimary">@color/accent_light</item>
-        <item name="colorPrimaryVariant">@color/accent_light</item>
+        <item name="colorPrimaryVariant">?attr/colorPrimary</item>
         <item name="colorOnPrimary">@color/md_white_1000</item>
         <item name="colorSecondary">?attr/colorPrimary</item>
         <item name="colorSecondaryVariant">?attr/colorPrimaryVariant</item>
@@ -27,7 +27,7 @@
         <item name="android:listDivider">@drawable/line_divider</item>
 
         <!-- Ripples -->
-        <item name="colorControlHighlight">@color/ripple_colored_light</item>
+        <item name="colorControlHighlight">@color/ripple_colored</item>
         <item name="rippleColorToolbar">?attr/colorControlHighlight</item>
 
         <!-- Handles RTL text -->
@@ -91,8 +91,6 @@
     <style name="Theme.Tachiyomi.Light.Blue">
         <!-- Theme colors -->
         <item name="colorPrimary">@color/accent_lightblue</item>
-        <item name="colorPrimaryVariant">@color/accent_lightblue</item>
-        <item name="colorOnPrimary">@color/md_white_1000</item>
         <item name="colorFilterActive">@color/filterColorDark</item>
         <item name="colorToolbar">?attr/colorPrimary</item>
         <item name="colorOnToolbar">?attr/colorOnPrimary</item>
@@ -124,22 +122,14 @@
     <style name="Theme.Tachiyomi.Light.StrawberryDaiquiri">
         <!-- Theme colors -->
         <item name="colorPrimary">@color/accent_strawberry</item>
-        <item name="colorPrimaryVariant">@color/accent_strawberry</item>
         <item name="colorTertiary">@color/md_blue_A400</item>
-
-        <!-- Ripples -->
-        <item name="colorControlHighlight">@color/ripple_colored_strawberry</item>
     </style>
 
     <!--== Yotsuba theme ==-->
     <style name="Theme.Tachiyomi.Light.Yotsuba">
         <!-- Theme colors -->
         <item name="colorPrimary">@color/accent_yotsuba</item>
-        <item name="colorPrimaryVariant">@color/accent_yotsuba</item>
         <item name="colorTertiary">@color/md_blue_A400</item>
-
-        <!-- Ripples -->
-        <item name="colorControlHighlight">@color/ripple_colored_yotsuba</item>
     </style>
 
     <!--=============-->
@@ -153,7 +143,7 @@
 
         <!-- Theme colors -->
         <item name="colorPrimary">@color/accent_dark</item>
-        <item name="colorPrimaryVariant">@color/accent_dark</item>
+        <item name="colorPrimaryVariant">?attr/colorPrimary</item>
         <item name="colorOnPrimary">@color/md_white_1000</item>
         <item name="colorSecondary">?attr/colorPrimary</item>
         <item name="colorSecondaryVariant">?attr/colorPrimaryVariant</item>
@@ -168,7 +158,7 @@
         <item name="android:listDivider">@drawable/line_divider</item>
 
         <!-- Ripples -->
-        <item name="colorControlHighlight">@color/ripple_colored_dark</item>
+        <item name="colorControlHighlight">@color/ripple_colored</item>
         <item name="rippleColorToolbar">?attr/colorControlHighlight</item>
 
         <!-- Handles RTL text -->
@@ -224,13 +214,12 @@
     <!--== Dark Blue theme ==-->
     <style name="Theme.Tachiyomi.Dark.Blue">
         <!-- Theme colors -->
-        <item name="colorPrimary">@color/accent_lightblue</item>
-        <item name="colorPrimaryVariant">@color/accent_lightblue</item>
+        <item name="colorPrimary">@color/accent_darkblue</item>
         <item name="colorToolbar">?attr/colorPrimary</item>
         <item name="colorOnToolbar">?attr/colorOnPrimary</item>
 
         <!-- Ripples -->
-        <item name="colorControlHighlight">@color/ripple_colored_lightblue</item>
+        <item name="colorControlHighlight">@color/ripple_colored_darkblue</item>
         <item name="rippleColorToolbar">@color/md_white_1000_12</item>
 
         <!-- Themes -->
@@ -250,28 +239,19 @@
     <style name="Theme.Tachiyomi.Dark.GreenApple">
         <!-- Theme colors -->
         <item name="colorPrimary">@color/accent_greenapple</item>
-        <item name="colorPrimaryVariant">@color/accent_greenapple</item>
         <item name="colorOnPrimary">@color/md_black_1000</item>
         <item name="colorTertiary">@color/md_blue_A400</item>
-
-        <!-- Ripples -->
-        <item name="colorControlHighlight">@color/ripple_colored_greenapple</item>
     </style>
 
     <!--== Midnight Dusk theme ==-->
     <style name="Theme.Tachiyomi.Dark.MidnightDusk">
         <!-- Theme colors -->
         <item name="colorPrimary">@color/accent_midnightdusk</item>
-        <item name="colorPrimaryVariant">@color/accent_midnightdusk</item>
         <item name="colorTertiary">@color/md_blue_A400</item>
         <item name="colorSurface">@color/surface_midnightdusk</item>
 
         <!-- Base background/text colors -->
         <item name="android:colorBackground">@color/background_midnightdusk</item>
-
-        <!-- Ripples -->
-        <item name="colorControlHighlight">@color/ripple_colored_midnightdusk</item>
-        <item name="rippleColorToolbar">@color/ripple_colored_midnightdusk</item>
     </style>
 
     <!--===============-->
@@ -285,7 +265,7 @@
 
         <!-- Theme colors -->
         <item name="colorPrimary">@color/accent_amoled</item>
-        <item name="colorPrimaryVariant">@color/accent_amoled</item>
+        <item name="colorPrimaryVariant">?attr/colorPrimary</item>
         <item name="colorOnPrimary">@color/md_white_1000</item>
         <item name="colorSecondary">?attr/colorPrimary</item>
         <item name="colorSecondaryVariant">?attr/colorPrimaryVariant</item>
@@ -300,7 +280,7 @@
         <item name="android:listDivider">@drawable/line_divider</item>
 
         <!-- Ripples -->
-        <item name="colorControlHighlight">@color/ripple_colored_amoled</item>
+        <item name="colorControlHighlight">@color/ripple_colored</item>
         <item name="rippleColorToolbar">?attr/colorControlHighlight</item>
 
         <!-- Handles RTL text -->
@@ -356,11 +336,7 @@
     <style name="Theme.Tachiyomi.Amoled.HotPink">
         <!-- Theme colors -->
         <item name="colorPrimary">@color/accent_hotpink</item>
-        <item name="colorPrimaryVariant">@color/accent_hotpink</item>
         <item name="colorTertiary">@color/md_blue_A400</item>
-
-        <!-- Ripples -->
-        <item name="colorControlHighlight">@color/ripple_colored_hotpink</item>
     </style>
 
     <!--===============-->
