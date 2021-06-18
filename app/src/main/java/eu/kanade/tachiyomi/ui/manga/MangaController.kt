@@ -296,7 +296,7 @@ class MangaController :
         val scrolledList = binding.fullRecycler ?: binding.infoRecycler!!
         if (toolbarTextView == null) {
             toolbarTextView = (activity as? MainActivity)?.binding?.toolbar?.children
-                ?.find { it is TextView } as TextView
+                ?.find { it is TextView } as? TextView
         }
         toolbarTextView?.alpha = when {
             // Specific alpha provided
