@@ -60,7 +60,7 @@ open class ExtendedNavigationView @JvmOverloads constructor(
         /**
          * An item with which needs more than two states (selected/deselected).
          */
-        abstract class MultiState(val resTitle: Int, var state: Int = 0, var enabled: Boolean = true, var isVisible: Boolean = true) : Item() {
+        abstract class MultiState(val resTitle: Int, var state: Int = 0, var enabled: Boolean = true, var isVisible: Boolean = true, open var resTitleString: String) : Item() {
 
             /**
              * Returns the drawable associated to every possible each state.
@@ -84,13 +84,13 @@ open class ExtendedNavigationView @JvmOverloads constructor(
          * An item with which needs more than two states (selected/deselected) belonging to a group.
          * The group must handle selections and restrictions.
          */
-        abstract class MultiStateGroup(resTitle: Int, override val group: Group, state: Int = 0, enabled: Boolean = true) :
-            MultiState(resTitle, state, enabled), GroupedItem
+        abstract class MultiStateGroup(resTitle: Int, override val group: Group, state: Int = 0, enabled: Boolean = true, resTitleString: String) :
+            MultiState(resTitle, state, enabled, resTitleString = resTitleString), GroupedItem
 
         /**
          * A multistate item for sorting lists (unselected, ascending, descending).
          */
-        class MultiSort(resId: Int, group: Group) : MultiStateGroup(resId, group) {
+        class MultiSort(resId: Int, group: Group, resTitleString: String = "") : MultiStateGroup(resId, group, resTitleString = resTitleString) {
 
             companion object {
                 const val SORT_NONE = 0
@@ -110,8 +110,9 @@ open class ExtendedNavigationView @JvmOverloads constructor(
 
         /**
          * A checkbox with 3 states (unselected, checked, explicitly unchecked).
+         * TODO: Rename to TriFilterGroup as there could be multiple Tri-states groups if more to come
          */
-        class TriStateGroup(resId: Int, group: Group) : MultiStateGroup(resId, group) {
+        class TriStateGroup(resId: Int, group: Group, resTitleString: String = "") : MultiStateGroup(resId, group, resTitleString = resTitleString) {
 
             enum class State(val value: Int) {
                 IGNORE(0),
@@ -124,6 +125,27 @@ open class ExtendedNavigationView @JvmOverloads constructor(
                     State.IGNORE.value -> tintVector(context, R.drawable.ic_check_box_outline_blank_24dp, R.attr.colorControlNormal)
                     State.INCLUDE.value -> tintVector(context, R.drawable.ic_check_box_24dp)
                     State.EXCLUDE.value -> tintVector(context, R.drawable.ic_check_box_x_24dp)
+                    else -> throw Exception("Unknown state")
+                }
+            }
+        }
+
+        /**
+         * A checkbox with 3 states (unselected, checked, explicitly unchecked).
+         */
+        class TriDisplayGroup(resId: Int, group: Group, resTitleString: String = "") : MultiStateGroup(resId, group, resTitleString = resTitleString) {
+
+            enum class State(val value: Int) {
+                IGNORE(0),
+                COMMON(1),
+                MIX(2)
+            }
+
+            override fun getStateDrawable(context: Context): Drawable? {
+                return when (state) {
+                    State.IGNORE.value -> tintVector(context, R.drawable.ic_check_box_outline_blank_24dp, R.attr.colorControlNormal)
+                    State.COMMON.value -> tintVector(context, R.drawable.ic_check_box_24dp)
+                    State.MIX.value -> tintVector(context, R.drawable.ic_indeterminate_check_box_24dp)
                     else -> throw Exception("Unknown state")
                 }
             }
@@ -251,7 +273,11 @@ open class ExtendedNavigationView @JvmOverloads constructor(
                 is MultiStateHolder -> {
                     val item = items[position] as Item.MultiStateGroup
                     val drawable = item.getStateDrawable(context)
-                    holder.text.setText(item.resTitle)
+                    if (item.resTitleString.isNotEmpty()) {
+                        holder.text.text = item.resTitleString
+                    } else {
+                        holder.text.setText(item.resTitle)
+                    }
                     holder.text.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null)
 
                     holder.itemView.isClickable = item.enabled

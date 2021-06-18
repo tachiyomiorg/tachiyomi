@@ -423,6 +423,18 @@ class LibraryPresenter(
     }
 
     /**
+     * Returns the common categories for the given list of manga.
+     *
+     * @param mangas the list of manga.
+     */
+    fun getMixCategories(mangas: List<Manga>): Collection<Category> {
+        if (mangas.isEmpty()) return emptyList()
+        val mc = mangas.toSet().map { db.getCategoriesForManga(it).executeAsBlocking() }
+        val common = mc.reduce { set1, set2 -> set1.intersect(set2).toMutableList() }
+        return mc.flatten().distinct().subtract(common).toMutableList()
+    }
+
+    /**
      * Queues all unread chapters from the given list of manga.
      *
      * @param mangas the list of manga.
@@ -509,6 +521,24 @@ class LibraryPresenter(
 
         for (manga in mangas) {
             categories.mapTo(mc) { MangaCategory.create(manga, it) }
+        }
+
+        db.setMangaCategories(mc, mangas)
+    }
+
+    /**
+     * Bulk update categories of mangas using old and new common categories.
+     *
+     * @param mangas the list of manga to move.
+     * @param newCommon the selected categories.
+     * @param newMix the list of common categories pre-update
+     */
+    fun updateMangasToCategories(mangas: List<Manga>, newCommon: List<Category>, newMix: List<Category>) {
+        val mc = mutableListOf<MangaCategory>()
+        for (manga in mangas) {
+            val newCategories = db.getCategoriesForManga(manga).executeAsBlocking()
+                .filter { newMix.contains(it) }.plus(newCommon).distinct()
+            newCategories.mapTo(mc) { MangaCategory.create(manga, it) }
         }
 
         db.setMangaCategories(mc, mangas)
