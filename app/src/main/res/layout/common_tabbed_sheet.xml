@@ -21,7 +21,6 @@
             app:layout_constraintEnd_toStartOf="@+id/menu"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tabRippleColor="@color/ripple_tabs"
             app:tabGravity="fill"
             app:tabMode="fixed" />
 

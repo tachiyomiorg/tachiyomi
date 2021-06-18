@@ -3,7 +3,6 @@
     <color name="splash">@color/accent_lightblue</color>
 
     <!-- Light Theme -->
-
     <color name="accent_light">@color/md_blue_A400</color>
     <color name="divider_light">@color/md_black_1000_12</color>
     <color name="surface_light">@color/md_white_1000</color>
