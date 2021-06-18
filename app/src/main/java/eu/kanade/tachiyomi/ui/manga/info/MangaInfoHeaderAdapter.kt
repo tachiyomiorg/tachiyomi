@@ -119,6 +119,12 @@ class MangaInfoHeaderAdapter(
                 binding.btnWebview.clicks()
                     .onEach { controller.openMangaInWebView() }
                     .launchIn(controller.viewScope)
+
+                binding.btnWebview.longClicks()
+                    .onEach {
+                        controller.openMangaInBrowser()
+                    }
+                    .launchIn(controller.viewScope)
             }
 
             binding.mangaFullTitle.longClicks()

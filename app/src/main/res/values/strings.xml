@@ -538,6 +538,7 @@
     <string name="clipboard_copy_error">Failed to copy to clipboard</string>
     <string name="source_not_installed">Source not installed: %1$s</string>
     <string name="snack_add_to_library">Add manga to library?</string>
+    <string name="open_in_browser_error_no_browser">No web browser installed</string>
 
     <!-- Manga chapters fragment -->
     <string name="display_mode_chapter">Chapter %1$s</string>

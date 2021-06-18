@@ -3,8 +3,10 @@ package eu.kanade.tachiyomi.ui.manga
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.app.Activity
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -469,6 +471,25 @@ class MangaController :
         val activity = activity ?: return
         val intent = WebViewActivity.newIntent(activity, url, source.id, presenter.manga.title)
         startActivity(intent)
+    }
+
+    fun openMangaInBrowser() {
+        val source = presenter.source as? HttpSource ?: return
+
+        val url = try {
+            source.mangaDetailsRequest(presenter.manga).url.toString()
+        } catch (e: Exception) {
+            return
+        }
+
+        val intent = Intent.makeMainSelectorActivity(Intent.ACTION_MAIN, Intent.CATEGORY_APP_BROWSER)
+        intent.data = Uri.parse(url)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        try {
+            startActivity(intent)
+        } catch (e: ActivityNotFoundException) {
+            activity?.toast(R.string.open_in_browser_error_no_browser)
+        }
     }
 
     fun shareManga() {
