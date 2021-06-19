@@ -558,7 +558,7 @@ class ReaderPresenter(
     /**
      * Saves the image of this [page] in the given [directory] and returns the file location.
      */
-    private fun saveImage(page: ReaderPage, directory: File, manga: Manga): File {
+    private fun saveImage(prefix: String = "", page: ReaderPage, directory: File, manga: Manga): File {
         val stream = page.stream!!
         val type = ImageUtil.findImageType(stream) ?: throw Exception("Not an image")
 
@@ -568,13 +568,16 @@ class ReaderPresenter(
 
         // Build destination file.
         val filenameSuffix = " - ${page.number}.${type.extension}"
-        val filenamePrefix = if (preferences.addSpoiler()) "SPOILER_" else ""
         val validFilename = DiskUtil.buildValidFilename(
-            "${manga.title} - ${chapter.name}".takeBytes(MAX_FILE_NAME_BYTES - filenameSuffix.byteSize())
+            prefix + (
+                "${manga.title} - " +
+                    "${chapter.name}"
+                ).takeBytes(
+                MAX_FILE_NAME_BYTES - filenameSuffix.byteSize()
+            ) + filenameSuffix
         )
-        val filename = filenamePrefix + validFilename + filenameSuffix
 
-        val destFile = File(directory, filename)
+        val destFile = File(directory, validFilename)
         stream().use { input ->
             destFile.outputStream().use { output ->
                 input.copyTo(output)
@@ -604,7 +607,7 @@ class ReaderPresenter(
         }
 
         // Copy file in background.
-        Observable.fromCallable { saveImage(page, destDir, manga) }
+        Observable.fromCallable { saveImage("", page, destDir, manga) }
             .doOnNext { file ->
                 DiskUtil.scanMedia(context, file)
                 notifier.onComplete(file)
@@ -633,7 +636,7 @@ class ReaderPresenter(
         val destDir = getTempShareDir(context)
 
         Observable.fromCallable { destDir.deleteRecursively() } // Keep only the last shared file
-            .map { saveImage(page, destDir, manga) }
+            .map { saveImage("SPOILER_", page, destDir, manga) }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeFirst(

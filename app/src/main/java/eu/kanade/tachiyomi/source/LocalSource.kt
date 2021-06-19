@@ -67,17 +67,27 @@ class LocalSource(private val context: Context) : CatalogueSource {
 
     override fun fetchPopularManga(page: Int) = fetchSearchManga(page, "", POPULAR_FILTERS)
 
-    override fun fetchSearchManga(page: Int, query: String, filters: FilterList): Observable<MangasPage> {
+    override fun fetchSearchManga(
+        page: Int,
+        query: String,
+        filters: FilterList
+    ): Observable<MangasPage> {
         val baseDirs = getBaseDirectories(context)
 
-        val time = if (filters === LATEST_FILTERS) System.currentTimeMillis() - LATEST_THRESHOLD else 0L
+        val time =
+            if (filters === LATEST_FILTERS) System.currentTimeMillis() - LATEST_THRESHOLD else 0L
         var mangaDirs = baseDirs
             .asSequence()
             .mapNotNull { it.listFiles()?.toList() }
             .flatten()
             .filter { it.isDirectory }
             .filterNot { it.name.startsWith('.') }
-            .filter { if (time == 0L) it.name.contains(query, ignoreCase = true) else it.lastModified() >= time }
+            .filter {
+                if (time == 0L) it.name.contains(
+                    query,
+                    ignoreCase = true
+                ) else it.lastModified() >= time
+            }
             .distinctBy { it.name }
 
         val state = ((if (filters.isEmpty()) POPULAR_FILTERS else filters)[0] as OrderBy).state
@@ -145,7 +155,7 @@ class LocalSource(private val context: Context) : CatalogueSource {
             .asSequence()
             .mapNotNull { File(it, manga.url).listFiles()?.toList() }
             .flatten()
-            .firstOrNull { it.extension == "json" }
+            .firstOrNull { it.extension == "xml" }
             ?.apply {
                 val reader = this.inputStream().bufferedReader()
                 val json = JsonParser.parseReader(reader).asJsonObject
@@ -210,7 +220,8 @@ class LocalSource(private val context: Context) : CatalogueSource {
             val chapterChar = chapterName[chapterNameIndex]
             val mangaChar = mangaTitle[mangaTitleIndex]
             if (!chapterChar.equals(mangaChar, true)) {
-                val invalidChapterChar = !chapterChar.isLetterOrDigit() && !chapterChar.isWhitespace()
+                val invalidChapterChar =
+                    !chapterChar.isLetterOrDigit() && !chapterChar.isWhitespace()
                 val invalidMangaChar = !mangaChar.isLetterOrDigit() && !mangaChar.isWhitespace()
 
                 if (!invalidChapterChar && !invalidMangaChar) {
@@ -281,7 +292,13 @@ class LocalSource(private val context: Context) : CatalogueSource {
                 ZipFile(format.file).use { zip ->
                     val entry = zip.entries().toList()
                         .sortedWith { f1, f2 -> f1.name.compareToCaseInsensitiveNaturalOrder(f2.name) }
-                        .find { !it.isDirectory && ImageUtil.isImage(it.name) { zip.getInputStream(it) } }
+                        .find {
+                            !it.isDirectory && ImageUtil.isImage(it.name) {
+                                zip.getInputStream(
+                                    it
+                                )
+                            }
+                        }
 
                     entry?.let { updateCover(context, manga, zip.getInputStream(it)) }
                 }
@@ -290,7 +307,13 @@ class LocalSource(private val context: Context) : CatalogueSource {
                 Archive(format.file).use { archive ->
                     val entry = archive.fileHeaders
                         .sortedWith { f1, f2 -> f1.fileName.compareToCaseInsensitiveNaturalOrder(f2.fileName) }
-                        .find { !it.isDirectory && ImageUtil.isImage(it.fileName) { archive.getInputStream(it) } }
+                        .find {
+                            !it.isDirectory && ImageUtil.isImage(it.fileName) {
+                                archive.getInputStream(
+                                    it
+                                )
+                            }
+                        }
 
                     entry?.let { updateCover(context, manga, archive.getInputStream(it)) }
                 }
@@ -310,7 +333,8 @@ class LocalSource(private val context: Context) : CatalogueSource {
     override fun getFilterList() = POPULAR_FILTERS
 
     private val POPULAR_FILTERS = FilterList(OrderBy(context))
-    private val LATEST_FILTERS = FilterList(OrderBy(context).apply { state = Filter.Sort.Selection(1, false) })
+    private val LATEST_FILTERS =
+        FilterList(OrderBy(context).apply { state = Filter.Sort.Selection(1, false) })
 
     private class OrderBy(context: Context) : Filter.Sort(
         context.getString(R.string.local_filter_order_by),
