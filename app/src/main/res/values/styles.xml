@@ -203,6 +203,7 @@
         <item name="chipStrokeColor">?attr/colorPrimary</item>
         <item name="chipBackgroundColor">@android:color/transparent</item>
         <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="rippleColor">?attr/colorControlHighlight</item>
 
         <!-- Custom chip states -->
         <item name="android:clickable">true</item>
