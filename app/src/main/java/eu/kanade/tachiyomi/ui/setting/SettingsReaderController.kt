@@ -329,6 +329,12 @@ class SettingsReaderController : SettingsController() {
                 summaryRes = R.string.pref_create_folder_per_manga_summary
                 defaultValue = false
             }
+            switchPreference {
+                key = Keys.addSpoiler
+                titleRes = R.string.pref_add_SPOILER_to_image_name
+                summaryRes = R.string.pref_add_SPOILER_to_image_name_summary
+                defaultValue = false
+            }
         }
     }
 }

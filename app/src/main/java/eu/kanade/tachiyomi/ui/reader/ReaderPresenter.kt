@@ -568,9 +568,15 @@ class ReaderPresenter(
 
         // Build destination file.
         val filenameSuffix = " - ${page.number}.${type.extension}"
-        val filename = DiskUtil.buildValidFilename(
-            "${manga.title} - ${chapter.name}".takeBytes(MAX_FILE_NAME_BYTES - filenameSuffix.byteSize())
-        ) + filenameSuffix
+        val filename = if (preferences.addSpoiler()) {
+            DiskUtil.buildValidFilename(
+                "SPOILER_${manga.title} - ${chapter.name}".takeBytes(MAX_FILE_NAME_BYTES - filenameSuffix.byteSize())
+            ) + filenameSuffix
+        } else {
+            DiskUtil.buildValidFilename(
+                "${manga.title} - ${chapter.name}".takeBytes(MAX_FILE_NAME_BYTES - filenameSuffix.byteSize())
+            ) + filenameSuffix
+        }
 
         val destFile = File(directory, filename)
         stream().use { input ->

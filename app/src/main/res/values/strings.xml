@@ -300,6 +300,8 @@
     <string name="pref_read_with_long_tap">Show on long tap</string>
     <string name="pref_create_folder_per_manga">Save pages into separate folders</string>
     <string name="pref_create_folder_per_manga_summary">Creates folders according to manga title</string>
+    <string name="pref_add_SPOILER_to_image_name">Add SPOILER_ to image names</string>
+    <string name="pref_add_SPOILER_to_image_name_summary">Spoiler marks any images shared to Discord</string>
     <string name="pref_reader_theme">Background color</string>
     <string name="white_background">White</string>
     <string name="gray_background">Gray</string>
