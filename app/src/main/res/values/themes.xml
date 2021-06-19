@@ -445,6 +445,7 @@
         <item name="actionBarPopupTheme">@style/ThemeOverlay.MaterialComponents</item>
         <item name="switchStyle">@style/Theme.Widget.BasicSwitch</item>
         <item name="bottomSheetDialogTheme">@style/Theme.BottomSheet</item>
+        <item name="android:alertDialogTheme">@style/Theme.AlertDialog.Light</item>
     </style>
 
     <!--== Light Reader ==-->
@@ -468,6 +469,7 @@
         <item name="actionBarPopupTheme">@style/ThemeOverlay.MaterialComponents</item>
         <item name="switchStyle">@style/Theme.Widget.BasicSwitch</item>
         <item name="bottomSheetDialogTheme">@style/Theme.BottomSheet</item>
+        <item name="android:alertDialogTheme">@style/Theme.AlertDialog.Amoled</item>
     </style>
 
     <!--== Dark Reader ==-->
@@ -480,6 +482,10 @@
 
         <!-- Base background/text colors -->
         <item name="android:colorBackground">@color/backgroundDark</item>
+
+        <!-- Alert Dialog -->
+        <item name="android:alertDialogTheme">@style/Theme.AlertDialog.Dark</item>
+
     </style>
 
     <!--===============-->
