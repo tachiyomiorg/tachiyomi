@@ -84,6 +84,8 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val didMigration = if (savedInstanceState == null) Migrations.upgrade(preferences) else false
+
         binding = MainActivityBinding.inflate(layoutInflater)
 
         // Do not let the launcher create a new activity http://stackoverflow.com/questions/16283079
@@ -224,7 +226,7 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
             preferences.incognitoMode().set(false)
 
             // Show changelog prompt on update
-            if (Migrations.upgrade(preferences) && !BuildConfig.DEBUG) {
+            if (didMigration && !BuildConfig.DEBUG) {
                 WhatsNewDialogController().showDialog(router)
             }
         }
