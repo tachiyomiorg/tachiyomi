@@ -558,7 +558,7 @@ class ReaderPresenter(
     /**
      * Saves the image of this [page] in the given [directory] and returns the file location.
      */
-    private fun saveImage(prefix: String = "", page: ReaderPage, directory: File, manga: Manga): File {
+    fun saveImage(page: ReaderPage, directory: File, manga: Manga, prefix: String = ""): File {
         val stream = page.stream!!
         val type = ImageUtil.findImageType(stream) ?: throw Exception("Not an image")
 
@@ -605,7 +605,7 @@ class ReaderPresenter(
         }
 
         // Copy file in background.
-        Observable.fromCallable { saveImage("", page, destDir, manga) }
+        Observable.fromCallable { saveImage(page, destDir, manga) }
             .doOnNext { file ->
                 DiskUtil.scanMedia(context, file)
                 notifier.onComplete(file)
@@ -634,7 +634,7 @@ class ReaderPresenter(
         val destDir = getTempShareDir(context)
 
         Observable.fromCallable { destDir.deleteRecursively() } // Keep only the last shared file
-            .map { saveImage("SPOILER_", page, destDir, manga) }
+            .map { saveImage(page, destDir, manga, "SPOILER_") }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeFirst(
