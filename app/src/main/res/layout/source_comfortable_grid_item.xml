@@ -107,6 +107,7 @@
             android:lineSpacingExtra="-4dp"
             android:maxLines="2"
             android:padding="4dp"
+            android:textColor="@color/source_comfortable_item_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/card"
             tools:text="Sample name" />
