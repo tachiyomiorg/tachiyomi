@@ -37,8 +37,18 @@
             android:layout_marginTop="32dp"
             android:layout_marginBottom="32dp"
             android:indeterminate="true"
-            android:visibility="invisible"
-            tools:visibility="visible" />
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingHorizontal="32dp"
+            android:paddingTop="32dp"
+            android:visibility="gone"
+            android:textAppearance="?attr/textAppearanceBody2"
+            tools:text="@string/no_results_found" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/track_search_recyclerview"

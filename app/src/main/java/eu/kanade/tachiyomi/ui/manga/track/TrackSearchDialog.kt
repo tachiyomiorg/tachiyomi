@@ -107,20 +107,29 @@ class TrackSearchDialog : DialogController {
         val binding = binding ?: return
         binding.progress.isVisible = true
         binding.trackSearchRecyclerview.isVisible = false
+        binding.message.isVisible = false
         trackController.presenter.trackingSearch(query, service)
     }
 
     fun onSearchResults(results: List<TrackSearch>) {
         val binding = binding ?: return
         binding.progress.isVisible = false
-        binding.trackSearchRecyclerview.isVisible = true
+
+        val emptyResult = results.isEmpty()
         adapter?.items = results
+        binding.trackSearchRecyclerview.isVisible = !emptyResult
+        binding.message.isVisible = emptyResult
+        if (emptyResult) {
+            binding.message.text = binding.message.context.getString(R.string.no_results_found)
+        }
     }
 
     fun onSearchResultsError() {
         val binding = binding ?: return
         binding.progress.isVisible = false
         binding.trackSearchRecyclerview.isVisible = false
+        binding.message.isVisible = true
+        binding.message.text = binding.message.context.getString(R.string.unknown_error)
         adapter?.items = emptyList()
     }
 
