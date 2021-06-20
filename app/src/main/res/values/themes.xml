@@ -58,6 +58,7 @@
         <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.Surface</item>
         <item name="tabStyle">@style/Widget.Tachiyomi.TabLayout</item>
         <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView</item>
+        <item name="navigationRailStyle">@style/Widget.MaterialComponents.NavigationRailView</item>
 
         <!-- Text Appearances -->
         <item name="textAppearanceButton">@style/TextAppearance.Widget.Button</item>
@@ -110,7 +111,7 @@
         <item name="toolbarStyle">@style/Widget.Tachiyomi.Toolbar.Primary</item>
         <item name="tabStyle">@style/Widget.Tachiyomi.TabLayout.Colored</item>
         <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView.Colored</item>
-
+        <item name="navigationRailStyle">@style/Widget.MaterialComponents.NavigationRailView.Colored</item>
 
         <!-- Status/Navigation bar -->
         <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
@@ -190,6 +191,7 @@
         <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.Surface</item>
         <item name="tabStyle">@style/Widget.Tachiyomi.TabLayout</item>
         <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView</item>
+        <item name="navigationRailStyle">@style/Widget.MaterialComponents.NavigationRailView</item>
         <item name="elevationOverlayEnabled">false</item>
 
         <!-- Text Appearances -->
@@ -231,6 +233,7 @@
         <item name="toolbarStyle">@style/Widget.Tachiyomi.Toolbar.Primary</item>
         <item name="tabStyle">@style/Widget.Tachiyomi.TabLayout.Colored</item>
         <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView.Colored</item>
+        <item name="navigationRailStyle">@style/Widget.MaterialComponents.NavigationRailView.Colored</item>
 
         <!-- Status/Navigation bar -->
         <item name="android:statusBarColor">?attr/colorPrimary</item>
@@ -312,6 +315,7 @@
         <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.Surface</item>
         <item name="tabStyle">@style/Widget.Tachiyomi.TabLayout</item>
         <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView</item>
+        <item name="navigationRailStyle">@style/Widget.MaterialComponents.NavigationRailView</item>
         <item name="elevationOverlayEnabled">false</item>
 
         <!-- Some ROMs make black navbars white (e.g. OxygenOS) -->
