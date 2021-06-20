@@ -63,10 +63,10 @@ class TrackHolder(private val binding: TrackItemBinding, adapter: TrackAdapter) 
                 if (track.score != 0F) {
                     item.service.getScoreList()
                     binding.trackScore.text = item.service.displayScore(track)
-                    binding.trackScore.alpha = 1F
+                    binding.trackScore.alpha = SET_STATUS_TEXT_ALPHA
                 } else {
                     binding.trackScore.text = ctx.getString(R.string.score)
-                    binding.trackScore.alpha = 0.5F
+                    binding.trackScore.alpha = UNSET_STATUS_TEXT_ALPHA
                 }
             }
             binding.trackScore.isVisible = supportsScoring
@@ -76,21 +76,26 @@ class TrackHolder(private val binding: TrackItemBinding, adapter: TrackAdapter) 
             if (supportsReadingDates) {
                 if (track.started_reading_date != 0L) {
                     binding.trackStartDate.text = dateFormat.format(track.started_reading_date)
-                    binding.trackStartDate.alpha = 1F
+                    binding.trackStartDate.alpha = SET_STATUS_TEXT_ALPHA
                 } else {
                     binding.trackStartDate.text = ctx.getString(R.string.track_started_reading_date)
-                    binding.trackStartDate.alpha = 0.5F
+                    binding.trackStartDate.alpha = UNSET_STATUS_TEXT_ALPHA
                 }
                 if (track.finished_reading_date != 0L) {
                     binding.trackFinishDate.text = dateFormat.format(track.finished_reading_date)
-                    binding.trackFinishDate.alpha = 1F
+                    binding.trackFinishDate.alpha = SET_STATUS_TEXT_ALPHA
                 } else {
                     binding.trackFinishDate.text = ctx.getString(R.string.track_finished_reading_date)
-                    binding.trackFinishDate.alpha = 0.5F
+                    binding.trackFinishDate.alpha = UNSET_STATUS_TEXT_ALPHA
                 }
             }
             binding.bottomDivider.isVisible = supportsReadingDates
             binding.bottomRow.isVisible = supportsReadingDates
         }
+    }
+
+    companion object {
+        private const val SET_STATUS_TEXT_ALPHA = 1F
+        private const val UNSET_STATUS_TEXT_ALPHA = 0.5F
     }
 }

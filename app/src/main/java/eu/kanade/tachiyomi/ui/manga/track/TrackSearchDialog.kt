@@ -37,12 +37,14 @@ class TrackSearchDialog : DialogController {
     private val trackController
         get() = targetController as MangaController
 
-    constructor(target: MangaController, service: TrackService, currentTrackUrl: String?) : super(
-        bundleOf(KEY_SERVICE to service.id, KEY_CURRENT_URL to currentTrackUrl)
-    ) {
+    constructor(
+        target: MangaController,
+        _service: TrackService,
+        _currentTrackUrl: String?
+    ) : super(bundleOf(KEY_SERVICE to _service.id, KEY_CURRENT_URL to _currentTrackUrl)) {
         targetController = target
-        this.service = service
-        this.currentTrackUrl = currentTrackUrl
+        service = _service
+        currentTrackUrl = _currentTrackUrl
     }
 
     @Suppress("unused")
@@ -54,31 +56,35 @@ class TrackSearchDialog : DialogController {
     @Suppress("DEPRECATION")
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         binding = TrackSearchDialogBinding.inflate(LayoutInflater.from(activity!!))
-        val dialog = MaterialDialog(activity!!)
-            .customView(view = binding!!.root)
-            .positiveButton(android.R.string.ok) { onPositiveButtonClick() }
-            .negativeButton(android.R.string.cancel)
 
-        if (currentTrackUrl != null) {
-            dialog.neutralButton(R.string.action_remove) { onRemoveButtonClick() }
-        }
-
-        onViewCreated(dialog.view, savedViewState)
-
-        return dialog
-    }
-
-    fun onViewCreated(view: View, savedState: Bundle?) {
         // Create adapter
         adapter = TrackSearchAdapter(currentTrackUrl)
-        binding!!.trackSearchRecyclerview.layoutManager = LinearLayoutManager(view.context)
+        binding!!.trackSearchRecyclerview.layoutManager = LinearLayoutManager(binding!!.root.context)
         binding!!.trackSearchRecyclerview.adapter = adapter
 
         // Do an initial search based on the manga's title
-        if (savedState == null) {
+        if (savedViewState == null) {
             val title = trackController.presenter.manga.title
             binding!!.trackSearch.append(title)
             search(title)
+        }
+
+        return MaterialDialog(activity!!).apply {
+            customView(view = binding!!.root)
+            positiveButton(android.R.string.ok) {
+                val adapter = adapter ?: return@positiveButton
+                val item = adapter.items.getOrNull(adapter.selectedItemPosition)
+                if (item != null) {
+                    trackController.presenter.registerTracking(item, service)
+                }
+            }
+            negativeButton(android.R.string.cancel)
+
+            if (currentTrackUrl != null) {
+                neutralButton(R.string.action_remove) {
+                    trackController.presenter.unregisterTracking(service)
+                }
+            }
         }
     }
 
@@ -90,11 +96,11 @@ class TrackSearchDialog : DialogController {
 
     override fun onAttach(view: View) {
         super.onAttach(view)
-        binding!!.trackSearch.textChanges()
-            .debounce(TimeUnit.SECONDS.toMillis(1))
-            .filter { it.isNotBlank() }
-            .onEach { search(it.toString()) }
-            .launchIn(trackController.viewScope)
+        binding?.trackSearch?.textChanges()
+            ?.debounce(TimeUnit.SECONDS.toMillis(1))
+            ?.filter { it.isNotBlank() }
+            ?.onEach { search(it.toString()) }
+            ?.launchIn(trackController.viewScope)
     }
 
     private fun search(query: String) {
@@ -116,18 +122,6 @@ class TrackSearchDialog : DialogController {
         binding.progress.isVisible = false
         binding.trackSearchRecyclerview.isVisible = false
         adapter?.items = emptyList()
-    }
-
-    private fun onPositiveButtonClick() {
-        val adapter = adapter ?: return
-        val item = adapter.items.getOrNull(adapter.selectedItemPosition)
-        if (item != null) {
-            trackController.presenter.registerTracking(item, service)
-        }
-    }
-
-    private fun onRemoveButtonClick() {
-        trackController.presenter.unregisterTracking(service)
     }
 
     private companion object {
