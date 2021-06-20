@@ -27,7 +27,7 @@
         <item name="android:listDivider">@drawable/line_divider</item>
 
         <!-- Ripples -->
-        <item name="colorControlHighlight">@color/ripple_colored</item>
+        <item name="colorControlHighlight">@color/ripple_colored_light</item>
         <item name="rippleColorToolbar">?attr/colorControlHighlight</item>
 
         <!-- Handles RTL text -->
@@ -125,6 +125,7 @@
         <!-- Theme colors -->
         <item name="colorPrimary">@color/accent_strawberry</item>
         <item name="colorTertiary">@color/md_blue_A400</item>
+        <item name="colorControlHighlight">@color/ripple_colored_strawberry</item>
     </style>
 
     <!--== Yotsuba theme ==-->
@@ -132,6 +133,7 @@
         <!-- Theme colors -->
         <item name="colorPrimary">@color/accent_yotsuba</item>
         <item name="colorTertiary">@color/md_blue_A400</item>
+        <item name="colorControlHighlight">@color/ripple_colored_yotsuba</item>
     </style>
 
     <!--=============-->
@@ -160,7 +162,7 @@
         <item name="android:listDivider">@drawable/line_divider</item>
 
         <!-- Ripples -->
-        <item name="colorControlHighlight">@color/ripple_colored</item>
+        <item name="colorControlHighlight">@color/ripple_colored_dark</item>
         <item name="rippleColorToolbar">?attr/colorControlHighlight</item>
 
         <!-- Handles RTL text -->
@@ -246,6 +248,7 @@
         <item name="colorPrimary">@color/accent_greenapple</item>
         <item name="colorOnPrimary">@color/md_black_1000</item>
         <item name="colorTertiary">@color/md_blue_A400</item>
+        <item name="colorControlHighlight">@color/ripple_colored_greenapple</item>
     </style>
 
     <!--== Midnight Dusk theme ==-->
@@ -254,9 +257,8 @@
         <item name="colorPrimary">@color/accent_midnightdusk</item>
         <item name="colorTertiary">@color/md_blue_A400</item>
         <item name="colorSurface">@color/surface_midnightdusk</item>
-
-        <!-- Base background/text colors -->
         <item name="android:colorBackground">@color/background_midnightdusk</item>
+        <item name="colorControlHighlight">@color/ripple_colored_midnightdusk</item>
     </style>
 
     <!--===============-->
@@ -285,7 +287,7 @@
         <item name="android:listDivider">@drawable/line_divider</item>
 
         <!-- Ripples -->
-        <item name="colorControlHighlight">@color/ripple_colored</item>
+        <item name="colorControlHighlight">@color/ripple_colored_amoled</item>
         <item name="rippleColorToolbar">?attr/colorControlHighlight</item>
 
         <!-- Handles RTL text -->
@@ -344,6 +346,7 @@
         <!-- Theme colors -->
         <item name="colorPrimary">@color/accent_hotpink</item>
         <item name="colorTertiary">@color/md_blue_A400</item>
+        <item name="colorControlHighlight">@color/ripple_colored_hotpink</item>
     </style>
 
     <!--===============-->
