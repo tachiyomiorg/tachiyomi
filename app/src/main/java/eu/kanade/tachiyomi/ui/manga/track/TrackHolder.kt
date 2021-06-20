@@ -9,7 +9,7 @@ import eu.kanade.tachiyomi.databinding.TrackItemBinding
 import uy.kohesive.injekt.injectLazy
 import java.text.DateFormat
 
-class TrackHolder(private val binding: TrackItemBinding, private val adapter: TrackAdapter) : RecyclerView.ViewHolder(binding.root) {
+class TrackHolder(private val binding: TrackItemBinding, adapter: TrackAdapter) : RecyclerView.ViewHolder(binding.root) {
 
     private val preferences: PreferencesHelper by injectLazy()
 
@@ -47,7 +47,6 @@ class TrackHolder(private val binding: TrackItemBinding, private val adapter: Tr
         binding.bottomDivider.isVisible = track != null
         binding.bottomRow.isVisible = track != null
 
-        binding.itemDivider.isVisible = adapter.items.indexOf(item) != 0
         binding.card.isVisible = track != null
 
         if (track != null) {

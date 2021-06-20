@@ -8,15 +8,7 @@
     android:clipToPadding="false"
     android:orientation="vertical"
     android:paddingHorizontal="16dp"
-    android:paddingBottom="16dp">
-
-    <View
-        android:id="@+id/item_divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="12dp"
-        android:alpha="0.25"
-        android:background="?android:attr/textColorHint" />
+    android:paddingVertical="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
