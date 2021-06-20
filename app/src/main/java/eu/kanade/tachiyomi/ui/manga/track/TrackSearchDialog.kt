@@ -4,11 +4,13 @@ import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import androidx.appcompat.app.AppCompatDialog
 import androidx.core.os.bundleOf
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.customview.customView
+import dev.chrisbanes.insetter.applyInsetter
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.TrackService
@@ -16,6 +18,7 @@ import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.databinding.TrackSearchDialogBinding
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.manga.MangaController
+import eu.kanade.tachiyomi.util.view.setNavigationBarTransparentCompat
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
@@ -57,50 +60,84 @@ class TrackSearchDialog : DialogController {
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         binding = TrackSearchDialogBinding.inflate(LayoutInflater.from(activity!!))
 
+        // Toolbar stuff
+        binding!!.toolbar.setNavigationOnClickListener { dialog?.dismiss() }
+        binding!!.toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.done -> {
+                    val adapter = adapter ?: return@setOnMenuItemClickListener true
+                    val item = adapter.items.getOrNull(adapter.selectedItemPosition)
+                    if (item != null) {
+                        trackController.presenter.registerTracking(item, service)
+                        dialog?.dismiss()
+                    }
+                }
+                R.id.remove -> {
+                    trackController.presenter.unregisterTracking(service)
+                    dialog?.dismiss()
+                }
+            }
+            true
+        }
+        binding!!.toolbar.menu.findItem(R.id.remove).isVisible = currentTrackUrl != null
+
         // Create adapter
-        adapter = TrackSearchAdapter(currentTrackUrl)
+        adapter = TrackSearchAdapter(currentTrackUrl) { which ->
+            binding!!.toolbar.menu.findItem(R.id.done).isEnabled = which != null
+        }
         binding!!.trackSearchRecyclerview.layoutManager = LinearLayoutManager(binding!!.root.context)
         binding!!.trackSearchRecyclerview.adapter = adapter
 
         // Do an initial search based on the manga's title
         if (savedViewState == null) {
             val title = trackController.presenter.manga.title
-            binding!!.trackSearch.append(title)
+            binding!!.titleInput.editText?.append(title)
             search(title)
         }
 
-        return MaterialDialog(activity!!).apply {
-            customView(view = binding!!.root)
-            positiveButton(android.R.string.ok) {
-                val adapter = adapter ?: return@positiveButton
-                val item = adapter.items.getOrNull(adapter.selectedItemPosition)
-                if (item != null) {
-                    trackController.presenter.registerTracking(item, service)
-                }
-            }
-            negativeButton(android.R.string.cancel)
+        // Input listener
+        binding?.titleInput?.editText?.textChanges()
+            ?.debounce(TimeUnit.SECONDS.toMillis(1))
+            ?.filter { it.isNotBlank() }
+            ?.onEach { search(it.toString()) }
+            ?.launchIn(trackController.viewScope)
 
-            if (currentTrackUrl != null) {
-                neutralButton(R.string.action_remove) {
-                    trackController.presenter.unregisterTracking(service)
-                }
+        // Edge to edge
+        ViewCompat.setOnApplyWindowInsetsListener(binding!!.titleInput) { _, insets ->
+            if (insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom > 0) {
+                dialog?.window?.setNavigationBarTransparentCompat(binding!!.root.context)
+            }
+            insets
+        }
+        binding!!.appbar.applyInsetter {
+            type(navigationBars = true, statusBars = true) {
+                padding(left = true, top = true, right = true)
             }
         }
+        binding!!.trackSearchRecyclerview.applyInsetter {
+            type(navigationBars = true) {
+                padding()
+            }
+        }
+
+        return AppCompatDialog(activity!!, R.style.ThemeOverlay_Tachiyomi_Dialog_Fullscreen).apply {
+            setContentView(binding!!.root)
+        }
+    }
+
+    override fun onAttach(view: View) {
+        super.onAttach(view)
+
+        binding!!.container.fitsSystemWindows = false
+        @Suppress("DEPRECATION")
+        dialog?.window?.decorView?.systemUiVisibility =
+            View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
     }
 
     override fun onDestroyView(view: View) {
         super.onDestroyView(view)
         binding = null
         adapter = null
-    }
-
-    override fun onAttach(view: View) {
-        super.onAttach(view)
-        binding?.trackSearch?.textChanges()
-            ?.debounce(TimeUnit.SECONDS.toMillis(1))
-            ?.filter { it.isNotBlank() }
-            ?.onEach { search(it.toString()) }
-            ?.launchIn(trackController.viewScope)
     }
 
     private fun search(query: String) {

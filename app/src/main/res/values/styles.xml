@@ -297,4 +297,15 @@
         <item name="cornerSize">8dp</item>
     </style>
 
+    <style name="ThemeOverlay.Tachiyomi.Dialog.Fullscreen" parent="ThemeOverlay.MaterialComponents">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">?android:attr/colorBackground</item>
+        <item name="android:windowAnimationStyle">@style/Animation.Tachiyomi.Dialog</item>
+    </style>
+
+    <style name="Animation.Tachiyomi.Dialog" parent="Animation.AppCompat.Dialog">
+        <item name="android:windowEnterAnimation">@anim/fade_in_short</item>
+        <item name="android:windowExitAnimation">@anim/fade_out_short</item>
+    </style>
+
 </resources>

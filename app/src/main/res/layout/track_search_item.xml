@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="16dp"
+    android:layout_marginHorizontal="12dp"
     android:layout_marginVertical="4dp"
     android:checkable="true"
     android:clickable="true"
@@ -20,7 +20,7 @@
 
         <ImageView
             android:id="@+id/track_search_cover"
-            android:layout_width="120dp"
+            android:layout_width="126dp"
             android:layout_height="180dp"
             android:contentDescription="@string/description_cover"
             android:scaleType="centerCrop"

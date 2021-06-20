@@ -7,7 +7,10 @@ import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.databinding.TrackSearchItemBinding
 import eu.kanade.tachiyomi.util.view.applyElevationOverlay
 
-class TrackSearchAdapter(private val currentTrackUrl: String?) : RecyclerView.Adapter<TrackSearchHolder>() {
+class TrackSearchAdapter(
+    private val currentTrackUrl: String?,
+    private val onSelectionChanged: (TrackSearch?) -> Unit
+) : RecyclerView.Adapter<TrackSearchHolder>() {
     var selectedItemPosition = -1
         set(value) {
             if (field != value) {
@@ -15,14 +18,15 @@ class TrackSearchAdapter(private val currentTrackUrl: String?) : RecyclerView.Ad
                 field = value
                 // Just notify the now-unselected item
                 notifyItemChanged(previousPosition)
+                onSelectionChanged(items.getOrNull(value))
             }
         }
 
     var items = emptyList<TrackSearch>()
         set(value) {
             if (field != value) {
-                selectedItemPosition = value.indexOfFirst { it.tracking_url == currentTrackUrl }
                 field = value
+                selectedItemPosition = value.indexOfFirst { it.tracking_url == currentTrackUrl }
                 notifyDataSetChanged()
             }
         }
