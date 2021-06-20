@@ -52,8 +52,10 @@ class TrackHolder(private val binding: TrackItemBinding, adapter: TrackAdapter) 
         if (track != null) {
             val ctx = binding.trackTitle.context
             binding.trackTitle.text = track.title
-            binding.trackChapters.text = "${track.last_chapter_read} / " +
-                if (track.total_chapters > 0) track.total_chapters else "-"
+            binding.trackChapters.text = track.last_chapter_read.toString()
+            if (track.total_chapters > 0) {
+                binding.trackChapters.text = "${binding.trackChapters.text} / ${track.total_chapters}"
+            }
             binding.trackStatus.text = item.service.getStatus(track.status)
 
             val supportsScoring = item.service.getScoreList().isNotEmpty()
