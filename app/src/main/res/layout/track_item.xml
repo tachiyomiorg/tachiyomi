@@ -71,8 +71,7 @@
             android:id="@+id/top_divider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:alpha="0.25"
-            android:background="?android:attr/textColorHint" />
+            android:background="?android:divider" />
 
         <LinearLayout
             android:id="@+id/middle_row"
@@ -98,8 +97,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:alpha="0.25"
-                android:background="?android:attr/textColorHint"
+                android:background="?android:divider"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -121,8 +119,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:alpha="0.25"
-                android:background="?android:attr/textColorHint"/>
+                android:background="?android:divider"/>
 
             <TextView
                 android:id="@+id/track_score"
@@ -143,8 +140,7 @@
             android:id="@+id/bottom_divider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:alpha="0.25"
-            android:background="?android:attr/textColorHint" />
+            android:background="?android:divider" />
 
         <LinearLayout
             android:id="@+id/bottom_row"
@@ -170,8 +166,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:alpha="0.25"
-                android:background="?android:attr/textColorHint"
+                android:background="?android:divider"
                 app:layout_constraintBottom_toBottomOf="parent" />
 
             <TextView
