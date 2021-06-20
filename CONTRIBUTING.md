@@ -26,7 +26,7 @@ When creating a fork, remember to:
 - To avoid confusion with the main app:
     - Change the app name
     - Change the app icon
-    - Change or disable the [app update checker](https://github.com/tachiyomiorg/tachiyomi/blob/master/app/src/main/java/eu/kanade/tachiyomi/data/updater/github/GithubUpdateChecker.kt)
+    - Change or disable the [app update checker](https://github.com/tachiyomiorg/tachiyomi/blob/master/app/src/main/java/eu/kanade/tachiyomi/data/updater/GithubUpdateChecker.kt)
 - To avoid installation conflicts:
     - Change the `applicationId` in [`build.gradle.kts`](https://github.com/tachiyomiorg/tachiyomi/blob/master/app/build.gradle.kts)
 - To avoid having your data polluting the main app's analytics and crash report services:
