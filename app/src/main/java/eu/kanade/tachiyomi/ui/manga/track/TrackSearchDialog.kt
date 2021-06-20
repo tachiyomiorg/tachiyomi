@@ -58,7 +58,10 @@ class TrackSearchDialog : DialogController {
             .customView(view = binding!!.root)
             .positiveButton(android.R.string.ok) { onPositiveButtonClick() }
             .negativeButton(android.R.string.cancel)
-            .neutralButton(R.string.action_remove) { onRemoveButtonClick() }
+
+        if (currentTrackUrl != null) {
+            dialog.neutralButton(R.string.action_remove) { onRemoveButtonClick() }
+        }
 
         onViewCreated(dialog.view, savedViewState)
 
