@@ -116,8 +116,9 @@ class TrackSearchDialog : DialogController {
     }
 
     private fun onPositiveButtonClick() {
-        adapter?.let {
-            val item = it.items[it.selectedItemPosition]
+        val adapter = adapter ?: return
+        val item = adapter.items.getOrNull(adapter.selectedItemPosition)
+        if (item != null) {
             trackController.presenter.registerTracking(item, service)
         }
     }
