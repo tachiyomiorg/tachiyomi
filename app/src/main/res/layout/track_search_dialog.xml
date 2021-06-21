@@ -42,6 +42,7 @@
                 android:id="@+id/title_input_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:imeOptions="actionSearch"
                 android:inputType="text"
                 android:maxLines="1" />
 

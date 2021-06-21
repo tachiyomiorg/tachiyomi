@@ -2,9 +2,13 @@ package eu.kanade.tachiyomi.ui.manga.track
 
 import android.app.Dialog
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatDialog
+import androidx.core.content.getSystemService
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import dev.chrisbanes.insetter.applyInsetter
@@ -16,14 +20,12 @@ import eu.kanade.tachiyomi.databinding.TrackSearchDialogBinding
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.view.setNavigationBarTransparentCompat
-import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import reactivecircus.flowbinding.android.widget.textChanges
+import reactivecircus.flowbinding.android.widget.editorActionEvents
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
-import java.util.concurrent.TimeUnit
 
 class TrackSearchDialog : DialogController {
 
@@ -36,6 +38,8 @@ class TrackSearchDialog : DialogController {
 
     private val trackController
         get() = targetController as MangaController
+
+    private lateinit var currentlySearched: String
 
     constructor(
         target: MangaController,
@@ -86,16 +90,33 @@ class TrackSearchDialog : DialogController {
 
         // Do an initial search based on the manga's title
         if (savedViewState == null) {
-            val title = trackController.presenter.manga.title
-            binding!!.titleInput.editText?.append(title)
-            search(title)
+            currentlySearched = trackController.presenter.manga.title
+            binding!!.titleInput.editText?.append(currentlySearched)
         }
+        search(currentlySearched)
 
         // Input listener
-        binding?.titleInput?.editText?.textChanges()
-            ?.debounce(TimeUnit.SECONDS.toMillis(1))
-            ?.filter { it.isNotBlank() }
-            ?.onEach { search(it.toString()) }
+        binding?.titleInput?.editText
+            ?.editorActionEvents {
+                when (it.actionId) {
+                    EditorInfo.IME_ACTION_SEARCH -> {
+                        true
+                    }
+                    else -> {
+                        it.keyEvent?.action == KeyEvent.ACTION_DOWN && it.keyEvent?.keyCode == KeyEvent.KEYCODE_ENTER
+                    }
+                }
+            }
+            ?.filter { it.view.text.isNotBlank() }
+            ?.onEach {
+                val query = it.view.text.toString()
+                if (query != currentlySearched) {
+                    currentlySearched = query
+                    search(it.view.text.toString())
+                    it.view.context.getSystemService<InputMethodManager>()?.hideSoftInputFromWindow(it.view.windowToken, 0)
+                    it.view.clearFocus()
+                }
+            }
             ?.launchIn(trackController.viewScope)
 
         // Edge to edge
