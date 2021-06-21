@@ -40,6 +40,7 @@
     <string name="action_sort_total">Total chapters</string>
     <string name="action_sort_last_read">Last read</string>
     <string name="action_sort_last_checked">Last checked</string>
+    <string name="action_sort_next_updated">Next expected update</string>
     <string name="action_sort_latest_chapter">Latest chapter</string>
     <string name="action_sort_chapter_fetch_date">Date fetched</string>
     <string name="action_sort_date_added">Date added</string>
