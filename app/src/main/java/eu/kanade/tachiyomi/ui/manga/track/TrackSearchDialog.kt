@@ -10,6 +10,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatDialog
 import androidx.core.content.getSystemService
 import androidx.core.os.bundleOf
+import androidx.core.view.WindowCompat
 import androidx.core.view.isVisible
 import dev.chrisbanes.insetter.applyInsetter
 import eu.kanade.tachiyomi.R
@@ -154,11 +155,10 @@ class TrackSearchDialog : DialogController {
 
     override fun onAttach(view: View) {
         super.onAttach(view)
-        dialog?.window?.setNavigationBarTransparentCompat(activity!!)
-        binding!!.container.fitsSystemWindows = false
-        @Suppress("DEPRECATION")
-        dialog?.window?.decorView?.systemUiVisibility =
-            View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        dialog?.window?.let { window ->
+            window.setNavigationBarTransparentCompat(window.context)
+            WindowCompat.setDecorFitsSystemWindows(window, false)
+        }
     }
 
     override fun onDestroyView(view: View) {
