@@ -28,6 +28,8 @@ object MangaTable {
 
     const val COL_LAST_UPDATE = "last_update"
 
+    const val COL_NEXT_UPDATE = "next_update"
+
     const val COL_DATE_ADDED = "date_added"
 
     const val COL_INITIALIZED = "initialized"
@@ -57,6 +59,7 @@ object MangaTable {
             $COL_THUMBNAIL_URL TEXT,
             $COL_FAVORITE INTEGER NOT NULL,
             $COL_LAST_UPDATE LONG,
+            $COL_NEXT_UPDATE LONG,
             $COL_INITIALIZED BOOLEAN NOT NULL,
             $COL_VIEWER INTEGER NOT NULL,
             $COL_CHAPTER_FLAGS INTEGER NOT NULL,
@@ -86,4 +89,7 @@ object MangaTable {
             "FROM $TABLE INNER JOIN ${ChapterTable.TABLE} " +
             "ON $TABLE.$COL_ID = ${ChapterTable.TABLE}.${ChapterTable.COL_MANGA_ID} " +
             "GROUP BY $TABLE.$COL_ID)"
+
+    val addNextUpdateCol: String
+        get() = "ALTER TABLE $TABLE ADD COLUMN $COL_NEXT_UPDATE LONG DEFAULT 0"
 }
