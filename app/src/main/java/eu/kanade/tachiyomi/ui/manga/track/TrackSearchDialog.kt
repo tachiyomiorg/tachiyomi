@@ -182,18 +182,19 @@ class TrackSearchDialog : DialogController {
         val emptyResult = results.isEmpty()
         adapter?.items = results
         binding.trackSearchRecyclerview.isVisible = !emptyResult
+        binding.trackSearchRecyclerview.scrollToPosition(0)
         binding.message.isVisible = emptyResult
         if (emptyResult) {
             binding.message.text = binding.message.context.getString(R.string.no_results_found)
         }
     }
 
-    fun onSearchResultsError() {
+    fun onSearchResultsError(message: String?) {
         val binding = binding ?: return
         binding.progress.isVisible = false
         binding.trackSearchRecyclerview.isVisible = false
         binding.message.isVisible = true
-        binding.message.text = binding.message.context.getString(R.string.unknown_error)
+        binding.message.text = message ?: binding.message.context.getString(R.string.unknown_error)
         adapter?.items = emptyList()
     }
 
