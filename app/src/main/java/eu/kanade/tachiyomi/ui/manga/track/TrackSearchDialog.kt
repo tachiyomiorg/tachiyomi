@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatDialog
 import androidx.core.os.bundleOf
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import dev.chrisbanes.insetter.applyInsetter
 import eu.kanade.tachiyomi.R
@@ -101,20 +99,30 @@ class TrackSearchDialog : DialogController {
             ?.launchIn(trackController.viewScope)
 
         // Edge to edge
-        ViewCompat.setOnApplyWindowInsetsListener(binding!!.titleInput) { _, insets ->
-            if (insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom > 0) {
-                dialog?.window?.setNavigationBarTransparentCompat(binding!!.root.context)
-            }
-            insets
-        }
         binding!!.appbar.applyInsetter {
             type(navigationBars = true, statusBars = true) {
                 padding(left = true, top = true, right = true)
             }
         }
+        binding!!.titleInput.applyInsetter {
+            type(navigationBars = true) {
+                margin(horizontal = true)
+            }
+        }
+        binding!!.progress.applyInsetter {
+            type(navigationBars = true) {
+                margin()
+            }
+        }
+        binding!!.message.applyInsetter {
+            type(navigationBars = true) {
+                margin()
+            }
+        }
         binding!!.trackSearchRecyclerview.applyInsetter {
             type(navigationBars = true) {
-                padding()
+                padding(vertical = true)
+                margin(horizontal = true)
             }
         }
 
@@ -125,7 +133,7 @@ class TrackSearchDialog : DialogController {
 
     override fun onAttach(view: View) {
         super.onAttach(view)
-
+        dialog?.window?.setNavigationBarTransparentCompat(activity!!)
         binding!!.container.fitsSystemWindows = false
         @Suppress("DEPRECATION")
         dialog?.window?.decorView?.systemUiVisibility =

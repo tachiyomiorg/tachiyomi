@@ -19,7 +19,7 @@
 
         <ImageView
             android:id="@+id/track_search_cover"
-            android:layout_width="126dp"
+            android:layout_width="130dp"
             android:layout_height="180dp"
             android:contentDescription="@string/description_cover"
             android:scaleType="centerCrop"

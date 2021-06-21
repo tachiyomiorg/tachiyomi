@@ -57,8 +57,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="32dp"
                 android:indeterminate="true"
                 android:visibility="gone" />
 
@@ -67,8 +65,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:paddingHorizontal="32dp"
-                android:paddingTop="32dp"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:visibility="gone"
                 tools:text="@string/no_results_found" />
@@ -78,10 +74,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginHorizontal="8dp"
                 android:clipToPadding="false"
-                android:columnWidth="326dp"
+                android:columnWidth="330dp"
                 android:paddingBottom="8dp"
+                android:paddingHorizontal="8dp"
                 android:visibility="gone"
                 tools:listitem="@layout/track_search_item"
                 tools:visibility="visible" />
