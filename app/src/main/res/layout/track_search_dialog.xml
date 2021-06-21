@@ -73,12 +73,14 @@
                 android:visibility="gone"
                 tools:text="@string/no_results_found" />
 
-            <androidx.recyclerview.widget.RecyclerView
+            <eu.kanade.tachiyomi.widget.AutofitRecyclerView
                 android:id="@+id/track_search_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:layout_marginHorizontal="8dp"
                 android:clipToPadding="false"
+                android:columnWidth="326dp"
                 android:paddingBottom="8dp"
                 android:visibility="gone"
                 tools:listitem="@layout/track_search_item"

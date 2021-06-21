@@ -9,7 +9,6 @@ import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
-import androidx.recyclerview.widget.LinearLayoutManager
 import dev.chrisbanes.insetter.applyInsetter
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.track.TrackManager
@@ -85,7 +84,6 @@ class TrackSearchDialog : DialogController {
         adapter = TrackSearchAdapter(currentTrackUrl) { which ->
             binding!!.toolbar.menu.findItem(R.id.done).isEnabled = which != null
         }
-        binding!!.trackSearchRecyclerview.layoutManager = LinearLayoutManager(binding!!.root.context)
         binding!!.trackSearchRecyclerview.adapter = adapter
 
         // Do an initial search based on the manga's title
