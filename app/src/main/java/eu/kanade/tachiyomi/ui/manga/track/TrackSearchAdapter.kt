@@ -17,7 +17,7 @@ class TrackSearchAdapter(
                 val previousPosition = field
                 field = value
                 // Just notify the now-unselected item
-                notifyItemChanged(previousPosition)
+                notifyItemChanged(previousPosition, UncheckPayload)
                 onSelectionChanged(items.getOrNull(value))
             }
         }
@@ -41,5 +41,17 @@ class TrackSearchAdapter(
 
     override fun onBindViewHolder(holder: TrackSearchHolder, position: Int) {
         holder.bind(items[position], position)
+    }
+
+    override fun onBindViewHolder(holder: TrackSearchHolder, position: Int, payloads: MutableList<Any>) {
+        if (payloads.getOrNull(0) == UncheckPayload) {
+            holder.setUnchecked()
+        } else {
+            super.onBindViewHolder(holder, position, payloads)
+        }
+    }
+
+    companion object {
+        private object UncheckPayload
     }
 }

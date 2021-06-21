@@ -54,4 +54,8 @@ class TrackSearchHolder(
         binding.trackSearchSummary.setMaxLinesAndEllipsize()
         binding.trackSearchSummary.text = track.summary
     }
+
+    fun setUnchecked() {
+        binding.container.isChecked = false
+    }
 }
