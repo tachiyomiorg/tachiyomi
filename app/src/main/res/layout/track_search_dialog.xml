@@ -77,8 +77,8 @@
                 android:layout_marginTop="8dp"
                 android:clipToPadding="false"
                 android:columnWidth="330dp"
-                android:paddingBottom="8dp"
                 android:paddingHorizontal="8dp"
+                android:paddingBottom="8dp"
                 android:visibility="gone"
                 tools:listitem="@layout/track_search_item"
                 tools:visibility="visible" />

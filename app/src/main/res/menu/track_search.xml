@@ -12,9 +12,9 @@
 
     <item
         android:id="@+id/done"
+        android:enabled="false"
         android:icon="@drawable/ic_check_24dp"
         android:title="@android:string/ok"
-        android:enabled="false"
         app:iconTint="?android:attr/textColorPrimary"
         app:showAsAction="ifRoom" />
 </menu>
