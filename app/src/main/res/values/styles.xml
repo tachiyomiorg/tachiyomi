@@ -219,11 +219,6 @@
     </style>
 
 
-    <style name="Widget.Tachiyomi.BasicSwitch" parent="Widget.MaterialComponents.CompoundButton.Switch">
-        <item name="useMaterialThemeColors">false</item>
-    </style>
-
-
     <style name="Widget.Tachiyomi.CircularProgressIndicator.Small" parent="Widget.MaterialComponents.CircularProgressIndicator">
         <item name="indicatorSize">16dp</item>
         <item name="trackThickness">2dp</item>

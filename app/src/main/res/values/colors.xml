@@ -53,9 +53,6 @@
     <color name="accent_hotpink">#FF3399</color>
     <color name="ripple_colored_hotpink">#1FFF3399</color>
 
-    <!-- Reader Theme -->
-    <color name="reader_toolbar">#242529</color>
-
     <color name="filterColorLight">#FFC107</color>
     <color name="filterColorDark">#FFEB3B</color>
     <color name="filterColorAmoled">#FFEB3B</color>

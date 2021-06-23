@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.data.preference
 
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Environment
 import androidx.core.content.edit
 import androidx.core.net.toUri
@@ -10,6 +11,7 @@ import com.tfcporciuncula.flow.Preference
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferenceValues.DisplayMode
+import eu.kanade.tachiyomi.data.preference.PreferenceValues.ThemeMode.*
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.track.anilist.Anilist
 import eu.kanade.tachiyomi.ui.reader.setting.OrientationType
@@ -41,6 +43,17 @@ operator fun <T> Preference<Set<T>>.minusAssign(item: T) {
 fun Preference<Boolean>.toggle(): Boolean {
     set(!get())
     return get()
+}
+
+fun PreferencesHelper.isDarkMode(): Boolean {
+    return when (themeMode().get()) {
+        light -> false
+        dark -> true
+        system -> {
+            context.applicationContext.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK ==
+                Configuration.UI_MODE_NIGHT_YES
+        }
+    }
 }
 
 class PreferencesHelper(val context: Context) {
@@ -84,7 +97,7 @@ class PreferencesHelper(val context: Context) {
 
     fun showLibraryUpdateErrors() = prefs.getBoolean(Keys.showLibraryUpdateErrors, true)
 
-    fun themeMode() = flowPrefs.getEnum(Keys.themeMode, Values.ThemeMode.system)
+    fun themeMode() = flowPrefs.getEnum(Keys.themeMode, system)
 
     fun themeLight() = flowPrefs.getEnum(Keys.themeLight, Values.LightThemeVariant.default)
 
