@@ -142,7 +142,6 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
         binding = ReaderActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        WindowCompat.setDecorFitsSystemWindows(window, false)
         windowInsetsController.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
 
         if (presenter.needsInit()) {
@@ -560,6 +559,7 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
             binding.viewerContainer.removeAllViews()
         }
         viewer = newViewer
+        updateViewerInset(preferences.fullscreen().get())
         binding.viewerContainer.addView(newViewer.getView())
 
         if (preferences.showReadingMode()) {
@@ -815,6 +815,19 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
     }
 
     /**
+     * Updates viewer inset depending on fullscreen reader preferences.
+     */
+    fun updateViewerInset(fullscreen: Boolean) {
+        viewer?.getView()?.applyInsetter {
+            if (!fullscreen) {
+                type(navigationBars = true, statusBars = true) {
+                    padding()
+                }
+            }
+        }
+    }
+
+    /**
      * Class that handles the user preferences of the reader.
      */
     private inner class ReaderConfig {
@@ -877,6 +890,13 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
 
             preferences.grayscale().asFlow()
                 .onEach { setGrayscale(it) }
+                .launchIn(lifecycleScope)
+
+            preferences.fullscreen().asFlow()
+                .onEach {
+                    WindowCompat.setDecorFitsSystemWindows(window, !it)
+                    updateViewerInset(it)
+                }
                 .launchIn(lifecycleScope)
         }
 
