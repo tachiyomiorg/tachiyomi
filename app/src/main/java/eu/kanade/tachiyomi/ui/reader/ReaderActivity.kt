@@ -6,11 +6,13 @@ import android.app.ProgressDialog
 import android.content.ClipData
 import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.ColorMatrix
 import android.graphics.ColorMatrixColorFilter
 import android.graphics.Paint
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.view.KeyEvent
@@ -23,14 +25,13 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.SeekBar
 import android.widget.Toast
-import androidx.core.graphics.ColorUtils
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
-import com.mikepenz.aboutlibraries.util.getThemeColor
+import com.google.android.material.shape.MaterialShapeDrawable
 import dev.chrisbanes.insetter.applyInsetter
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Chapter
@@ -358,7 +359,6 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
 
         val alpha = if (preferences.isDarkMode()) 230 else 242 // 90% dark 95% light
         listOf(
-            binding.toolbar,
             binding.toolbarBottom,
             binding.leftChapter,
             binding.readerSeekbar,
@@ -367,9 +367,10 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
             it.background.alpha = alpha
         }
 
-        val systemBarsColor = ColorUtils.setAlphaComponent(getThemeColor(R.attr.colorToolbar), alpha)
+        val systemBarsColor = (binding.toolbarBottom.background as ColorDrawable).color
         window.statusBarColor = systemBarsColor
         window.navigationBarColor = systemBarsColor
+        (binding.toolbar.background as MaterialShapeDrawable).fillColor = ColorStateList.valueOf(systemBarsColor)
 
         // Set initial visibility
         setMenuVisibility(menuVisible)
