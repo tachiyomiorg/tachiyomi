@@ -270,6 +270,8 @@ class MangaController :
         chaptersAdapter?.fastScroller = binding.fastScroller
 
         actionFabScrollListener = actionFab?.shrinkOnScroll(chapterRecycler)
+        // Initially set FAB invisible; will become visible if unread chapters are present
+        actionFab?.isVisible = false
 
         binding.swipeRefresh.refreshes()
             .onEach {
@@ -339,6 +341,11 @@ class MangaController :
                         }
                     )
                 }
+                /*
+                This else branch shouldn't ever be reached, since
+                the FAB is hidden when there's no unread chapters,
+                but there's no harm in keeping it in.
+                 */
             } else {
                 view?.context?.toast(R.string.no_next_chapter)
             }
@@ -739,8 +746,14 @@ class MangaController :
         }
 
         val context = view?.context
-        if (context != null && chapters.any { it.read }) {
-            actionFab?.text = context.getString(R.string.action_resume)
+        val unreadChapters = chapters.count { !it.read }
+        if (unreadChapters > 0) {
+            actionFab?.isVisible = true
+            if (context != null && unreadChapters < chapters.size) {
+                actionFab?.text = context.getString(R.string.action_resume)
+            }
+        } else {
+            actionFab?.isVisible = false
         }
     }
 
