@@ -164,8 +164,8 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
         initializeMenu()
 
         binding.pageNumber.applyInsetter {
-            type(navigationBars = true, displayCutout = true) {
-                margin(animated = true)
+            type(navigationBars = true) {
+                margin()
             }
         }
 
@@ -301,16 +301,13 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
         }
 
         binding.toolbar.applyInsetter {
-            type(statusBars = true, displayCutout = true) {
-                margin(top = true, animated = true)
-            }
-            type(navigationBars = true) {
-                margin(horizontal = true)
+            type(navigationBars = true, statusBars = true) {
+                margin(top = true, horizontal = true)
             }
         }
         binding.readerMenuBottom.applyInsetter {
-            type(navigationBars = true, displayCutout = true) {
-                margin(bottom = true, horizontal = true, animated = true)
+            type(navigationBars = true) {
+                margin(bottom = true, horizontal = true)
             }
         }
 
