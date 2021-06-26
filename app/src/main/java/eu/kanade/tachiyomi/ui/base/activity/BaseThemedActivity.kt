@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.ui.base.activity
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -19,7 +20,7 @@ abstract class BaseThemedActivity : AppCompatActivity() {
     val preferences: PreferencesHelper by injectLazy()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(getThemeResourceId(preferences))
+        applyThemePreferences(preferences)
 
         Injekt.get<PreferencesHelper>().incognitoMode()
             .asImmediateFlow {
@@ -31,23 +32,30 @@ abstract class BaseThemedActivity : AppCompatActivity() {
     }
 
     companion object {
-        fun getThemeResourceId(preferences: PreferencesHelper): Int {
-            return if (preferences.isDarkMode()) {
-                when (preferences.themeDark().get()) {
-                    DarkThemeVariant.default -> R.style.Theme_Tachiyomi_Dark
-                    DarkThemeVariant.blue -> R.style.Theme_Tachiyomi_Dark_Blue
-                    DarkThemeVariant.greenapple -> R.style.Theme_Tachiyomi_Dark_GreenApple
-                    DarkThemeVariant.midnightdusk -> R.style.Theme_Tachiyomi_Dark_MidnightDusk
-                    DarkThemeVariant.amoled -> R.style.Theme_Tachiyomi_Amoled
-                    DarkThemeVariant.hotpink -> R.style.Theme_Tachiyomi_Amoled_HotPink
+        fun Activity.applyThemePreferences(preferences: PreferencesHelper) {
+            val isDarkMode = preferences.isDarkMode()
+
+            setTheme(
+                if (isDarkMode) {
+                    when (preferences.themeDark().get()) {
+                        DarkThemeVariant.default -> R.style.Theme_Tachiyomi_Dark
+                        DarkThemeVariant.blue -> R.style.Theme_Tachiyomi_Dark_Blue
+                        DarkThemeVariant.greenapple -> R.style.Theme_Tachiyomi_Dark_GreenApple
+                        DarkThemeVariant.midnightdusk -> R.style.Theme_Tachiyomi_Dark_MidnightDusk
+                        DarkThemeVariant.hotpink -> R.style.Theme_Tachiyomi_Dark_HotPink
+                    }
+                } else {
+                    when (preferences.themeLight().get()) {
+                        LightThemeVariant.default -> R.style.Theme_Tachiyomi_Light
+                        LightThemeVariant.blue -> R.style.Theme_Tachiyomi_Light_Blue
+                        LightThemeVariant.strawberrydaiquiri -> R.style.Theme_Tachiyomi_Light_StrawberryDaiquiri
+                        LightThemeVariant.yotsuba -> R.style.Theme_Tachiyomi_Light_Yotsuba
+                    }
                 }
-            } else {
-                when (preferences.themeLight().get()) {
-                    LightThemeVariant.default -> R.style.Theme_Tachiyomi_Light
-                    LightThemeVariant.blue -> R.style.Theme_Tachiyomi_Light_Blue
-                    LightThemeVariant.strawberrydaiquiri -> R.style.Theme_Tachiyomi_Light_StrawberryDaiquiri
-                    LightThemeVariant.yotsuba -> R.style.Theme_Tachiyomi_Light_Yotsuba
-                }
+            )
+
+            if (isDarkMode && preferences.themeDarkAmoled().get()) {
+                setTheme(R.style.ThemeOverlay_Tachiyomi_Amoled)
             }
         }
     }

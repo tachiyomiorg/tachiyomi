@@ -94,6 +94,8 @@ class PreferencesHelper(val context: Context) {
 
     fun themeDark() = flowPrefs.getEnum(Keys.themeDark, Values.DarkThemeVariant.default)
 
+    fun themeDarkAmoled() = flowPrefs.getBoolean(Keys.themeDarkAmoled, false)
+
     fun pageTransitions() = flowPrefs.getBoolean(Keys.enableTransitions, true)
 
     fun doubleTapAnimSpeed() = flowPrefs.getInt(Keys.doubleTapAnimationSpeed, 500)

@@ -31,7 +31,6 @@ object PreferenceValues {
         blue,
         greenapple,
         midnightdusk,
-        amoled,
         hotpink,
     }
 

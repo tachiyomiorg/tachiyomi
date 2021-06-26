@@ -263,93 +263,24 @@
         <item name="colorControlHighlight">@color/ripple_colored_midnightdusk</item>
     </style>
 
-    <!--===============-->
-    <!-- AMOLED Themes -->
-    <!--===============-->
-
-    <!--== AMOLED base ==-->
-    <style name="Theme.Base.Amoled" parent="Theme.MaterialComponents.NoActionBar">
-        <!-- Disallow 'Force dark theme' -->
-        <item name="android:forceDarkAllowed" tools:targetApi="Q">false</item>
-
-        <!-- Theme colors -->
-        <item name="colorPrimary">@color/accent_amoled</item>
-        <item name="colorPrimaryVariant">?attr/colorPrimary</item>
-        <item name="colorOnPrimary">@color/md_white_1000</item>
-        <item name="colorSecondary">?attr/colorPrimary</item>
-        <item name="colorSecondaryVariant">?attr/colorPrimaryVariant</item>
-        <item name="colorOnSecondary">?attr/colorOnPrimary</item>
-        <item name="colorTertiary">@color/green</item>
-        <item name="colorOnTertiary">@color/md_white_1000</item>
-        <item name="colorToolbar">?attr/colorSurface</item>
-        <item name="colorOnToolbar">?attr/colorOnSurface</item>
-        <item name="colorSurface">@color/surface_amoled</item>
-        <item name="android:colorBackground">@color/background_amoled</item>
-        <item name="android:divider">@color/divider_amoled</item>
-        <item name="android:listDivider">@drawable/line_divider</item>
-
-        <!-- Ripples -->
-        <item name="colorControlHighlight">@color/ripple_colored_amoled</item>
-        <item name="rippleColorToolbar">?attr/colorControlHighlight</item>
-
-        <!-- Handles RTL text -->
-        <item name="android:textAlignment">gravity</item>
-        <item name="android:textDirection">locale</item>
-
-        <!-- Themes -->
-        <item name="android:statusBarColor">?attr/colorSurface</item>
-        <item name="android:navigationBarDividerColor" tools:targetApi="o_mr1">@null</item>
-        <item name="android:enforceNavigationBarContrast" tools:targetApi="Q">false</item>
-        <item name="android:enforceStatusBarContrast" tools:targetApi="Q">false</item>
-        <item name="android:itemTextAppearance">@style/TextAppearance.Widget.Menu</item>
-        <item name="android:backgroundDimAmount">0.32</item>
-        <item name="windowActionModeOverlay">true</item>
-        <item name="actionModeStyle">@style/Widget.Tachiyomi.ActionMode</item>
-        <item name="actionOverflowButtonStyle">@style/Theme.Tachiyomi.ActionButton.Overflow</item>
-        <item name="actionModeCloseButtonStyle">@style/Theme.Tachiyomi.ActionMode.CloseButton</item>
-        <item name="actionModeCloseDrawable">@drawable/ic_close_24dp</item>
-        <item name="actionBarTheme">@style/ThemeOverlay.Tachiyomi.ActionBar</item>
-        <item name="toolbarNavigationButtonStyle">@style/Widget.Tachiyomi.Toolbar.Button.Navigation</item>
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
-        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.Tachiyomi.BottomSheetDialog</item>
-        <item name="chipStyle">@style/Widget.Tachiyomi.Chip.Action</item>
-        <item name="snackbarStyle">@style/Widget.Tachiyomi.Snackbar</item>
-        <item name="snackbarTextViewStyle">@style/Widget.Tachiyomi.Snackbar.TextView</item>
-        <item name="textInputStyle">@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox</item>
-        <item name="appBarLayoutStyle">@style/Widget.MaterialComponents.AppBarLayout.Surface</item>
-        <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.Surface</item>
-        <item name="tabStyle">@style/Widget.Tachiyomi.TabLayout</item>
-        <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView</item>
-        <item name="navigationRailStyle">@style/Widget.MaterialComponents.NavigationRailView</item>
-        <item name="elevationOverlayEnabled">false</item>
-
-        <!-- Some ROMs make black navbars white (e.g. OxygenOS) -->
-        <item name="android:navigationBarColor">#000001</item>
-
-        <!-- Text Appearances -->
-        <item name="textAppearanceButton">@style/TextAppearance.Widget.Button</item>
-
-        <!-- Material Dialogs -->
-        <item name="md_background_color">?attr/colorSurface</item>
-        <item name="md_color_title">?attr/colorOnSurface</item>
-        <item name="md_color_content">?attr/colorOnSurface</item>
-        <item name="md_color_button_text">?attr/colorPrimary</item>
-        <item name="md_button_casing">literal</item>
-        <item name="md_corner_radius">@dimen/dialog_radius</item>
-
-        <!-- Custom Attributes-->
-        <item name="colorFilterActive">@color/filterColorAmoled</item>
-    </style>
-
-    <!--== AMOLED theme ==-->
-    <style name="Theme.Tachiyomi.Amoled" parent="Theme.Base.Amoled" />
-
     <!--== Hot Pink theme ==-->
-    <style name="Theme.Tachiyomi.Amoled.HotPink">
+    <style name="Theme.Tachiyomi.Dark.HotPink">
         <!-- Theme colors -->
         <item name="colorPrimary">@color/accent_hotpink</item>
         <item name="colorTertiary">@color/md_blue_A400</item>
         <item name="colorControlHighlight">@color/ripple_colored_hotpink</item>
+    </style>
+
+    <!--===============-->
+    <!-- AMOLED Themes -->
+    <!--===============-->
+
+    <!--== AMOLED theme ==-->
+    <style name="ThemeOverlay.Tachiyomi.Amoled" parent="">
+        <item name="colorSurface">@color/surface_amoled</item>
+        <item name="android:colorBackground">@color/background_amoled</item>
+        <item name="android:divider">@color/divider_amoled</item>
+        <item name="colorFilterActive">@color/filterColorAmoled</item>
     </style>
 
     <!--===============-->
