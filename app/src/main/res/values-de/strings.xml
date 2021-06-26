@@ -357,10 +357,7 @@
     <string name="theme_light">Aus</string>
     <string name="theme_dark">An</string>
     <string name="theme_system">Systemeinstellung</string>
-    <string name="pref_theme_dark">Dunkeldesign</string>
-    <string name="theme_dark_default">Standard</string>
-    <string name="theme_dark_blue">Dunkelblau</string>
-    <string name="theme_dark_amoled">AMOLED Schwarz</string>
+    <string name="theme_darkblue">Dunkelblau</string>
     <string name="pref_manage_notifications">Benachrichtigungen verwalten</string>
     <string name="pref_category_security">Sicherheit</string>
     <string name="lock_with_biometrics">Entsperren erforderlich</string>
@@ -402,9 +399,7 @@
         <item quantity="one">Für 1 Titel</item>
         <item quantity="other">Für %d Titel</item>
     </plurals>
-    <string name="pref_theme_light">Helldesign</string>
-    <string name="theme_light_default">Standard</string>
-    <string name="theme_light_blue">Hellblau</string>
+    <string name="theme_default">Standard</string>
     <string name="action_menu">Menü</string>
     <string name="action_reorganize_by">Umordnen</string>
     <string name="action_newest">Neueste</string>
@@ -640,16 +635,16 @@
     <string name="unread">Ungelesen</string>
     <string name="pref_auto_add_track">Heimlich tracken, wenn neue Manga der Bibliothek hinzugefügt werden</string>
     <string name="pref_move_side_nav_to_bottom">Seitennavigations-Buttons nach unten verlegen</string>
-    <string name="theme_dark_amoled_hotpink">Heißes Pink</string>
-    <string name="theme_dark_midnightdusk">Mitternachtsdämmerung</string>
+    <string name="theme_hotpink">Heißes Pink</string>
+    <string name="theme_midnightdusk">Mitternachtsdämmerung</string>
     <string name="date">Datum</string>
     <string name="local_filter_order_by">Sortiere nach</string>
     <string name="local_invalid_format">Ungültiges Kapitelformat</string>
     <string name="chapter_not_found">Kapitel nicht gefunden</string>
     <string name="pref_library_update_refresh_trackers_summary">Tracker aktualisieren, wenn die Bibliothek aktualisiert wird</string>
     <string name="pref_library_update_refresh_trackers">Tracker automatisch aktualisieren</string>
-    <string name="theme_light_strawberrydaiquiri">Erdbeer-Daiquiri</string>
-    <string name="theme_dark_greenapple">Grüner Apfel</string>
+    <string name="theme_strawberrydaiquiri">Erdbeer-Daiquiri</string>
+    <string name="theme_greenapple">Grüner Apfel</string>
     <string name="restrictions">Einschränkungen: %s</string>
     <string name="action_display_local_badge">Lokal-Plaketten</string>
     <string name="off">Aus</string>

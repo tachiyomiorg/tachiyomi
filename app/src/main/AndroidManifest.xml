@@ -32,7 +32,7 @@
         android:largeHeap="true"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:theme="@style/Theme.Base.Light"
+        android:theme="@style/Theme.Tachiyomi"
         android:networkSecurityConfig="@xml/network_security_config">
         <activity
             android:name=".ui.main.MainActivity"
@@ -84,7 +84,7 @@
         </activity>
         <activity
             android:name=".ui.security.UnlockActivity"
-            android:theme="@style/Theme.Base.Light" />
+            android:theme="@style/Theme.Tachiyomi" />
         <activity
             android:name=".ui.webview.WebViewActivity"
             android:configChanges="uiMode|orientation|screenSize" />

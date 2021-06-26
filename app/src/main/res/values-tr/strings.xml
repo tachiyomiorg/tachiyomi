@@ -357,10 +357,7 @@
     <string name="theme_light">Kapalı</string>
     <string name="theme_dark">Açık</string>
     <string name="theme_system">Sisteme uy</string>
-    <string name="pref_theme_dark">Karanlık tema</string>
-    <string name="theme_dark_default">Öntanımlı</string>
-    <string name="theme_dark_blue">Koyu Mavi</string>
-    <string name="theme_dark_amoled">AMOLED Siyah</string>
+    <string name="theme_darkblue">Koyu Mavi</string>
     <string name="pref_manage_notifications">Bildirimleri yönet</string>
     <string name="pref_category_security">Güvenlik</string>
     <string name="lock_with_biometrics">Kilit açma gerektir</string>
@@ -402,9 +399,7 @@
         <item quantity="one">1 başlık için</item>
         <item quantity="other">%d başlık için</item>
     </plurals>
-    <string name="pref_theme_light">Aydınlık tema</string>
-    <string name="theme_light_default">Öntanımlı</string>
-    <string name="theme_light_blue">Açık Mavi</string>
+    <string name="theme_default">Öntanımlı</string>
     <string name="action_menu">Menü</string>
     <string name="action_reorganize_by">Yeniden sırala</string>
     <string name="action_newest">En yeni</string>
@@ -640,16 +635,16 @@
     <string name="unread">Okunmayan</string>
     <string name="pref_auto_add_track">Kitaplığa manga eklerken sessizce izle</string>
     <string name="pref_move_side_nav_to_bottom">Yan gezinme düğmelerini alta taşı</string>
-    <string name="theme_dark_amoled_hotpink">Sıcak Pembe</string>
-    <string name="theme_dark_midnightdusk">Alacakaranlık</string>
+    <string name="theme_hotpink">Sıcak Pembe</string>
+    <string name="theme_midnightdusk">Alacakaranlık</string>
     <string name="date">Tarih</string>
     <string name="local_filter_order_by">Sıralama ölçütü</string>
     <string name="local_invalid_format">Geçersiz bölüm biçimi</string>
     <string name="chapter_not_found">Bölüm bulunamadı</string>
     <string name="pref_library_update_refresh_trackers_summary">Kitaplığı güncellerken izleyicileri güncelle</string>
     <string name="pref_library_update_refresh_trackers">İzleyicileri otomatik olarak güncelle</string>
-    <string name="theme_light_strawberrydaiquiri">Çilekli Kokteyl</string>
-    <string name="theme_dark_greenapple">Yeşil Elma</string>
+    <string name="theme_strawberrydaiquiri">Çilekli Kokteyl</string>
+    <string name="theme_greenapple">Yeşil Elma</string>
     <string name="restrictions">Kısıtlamalar: %s</string>
     <string name="action_display_local_badge">Yerel rozetler</string>
 </resources>

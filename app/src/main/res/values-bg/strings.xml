@@ -468,13 +468,8 @@
     <string name="pref_category_security">Сигурност</string>
     <string name="pref_manage_notifications">Уведомления</string>
     <string name="pref_confirm_exit">Потвърждение при излизане</string>
-    <string name="theme_dark_amoled">AMOLED черно</string>
-    <string name="theme_dark_blue">Тъмносин</string>
-    <string name="theme_dark_default">По подразбиране</string>
-    <string name="pref_theme_dark">Тъмна тема</string>
-    <string name="theme_light_blue">Светлосин</string>
-    <string name="theme_light_default">По подразбиране</string>
-    <string name="pref_theme_light">Светла тема</string>
+    <string name="theme_darkblue">Тъмносин</string>
+    <string name="theme_default">По подразбиране</string>
     <string name="theme_system">Система на абонаментите</string>
     <string name="theme_dark">Включено</string>
     <string name="theme_light">Изключено</string>

@@ -82,8 +82,9 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
     private var fixedViewsToBottom = mutableMapOf<View, AppBarLayout.OnOffsetChangedListener>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val didMigration = if (savedInstanceState == null) Migrations.upgrade(preferences) else false
         super.onCreate(savedInstanceState)
+
+        val didMigration = if (savedInstanceState == null) Migrations.upgrade(preferences) else false
 
         binding = MainActivityBinding.inflate(layoutInflater)
 

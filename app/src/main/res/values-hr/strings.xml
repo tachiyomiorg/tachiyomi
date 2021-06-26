@@ -68,13 +68,8 @@
     <string name="system_default">Standardno</string>
     <string name="pref_language">Jezik</string>
     <string name="pref_start_screen">Početni ekran</string>
-    <string name="theme_dark_amoled">AMOLED crna</string>
-    <string name="theme_dark_blue">Tamnoplava</string>
-    <string name="theme_dark_default">Standardno</string>
-    <string name="pref_theme_dark">Tamna tema</string>
-    <string name="theme_light_blue">Svjetloplava</string>
-    <string name="theme_light_default">Standardno</string>
-    <string name="pref_theme_light">Svijetla tema</string>
+    <string name="theme_darkblue">Tamnoplava</string>
+    <string name="theme_default">Standardno</string>
     <string name="theme_system">Slijedi sustav</string>
     <string name="theme_dark">Uključeno</string>
     <string name="theme_light">Isključeno</string>
@@ -647,6 +642,6 @@
     <string name="pref_create_folder_per_manga">Spremi stranice u zasebne mape</string>
     <string name="pref_reader_actions">Radnje</string>
     <string name="cancel_all_for_series">Prekini sve za ovu seriju</string>
-    <string name="theme_dark_greenapple">Zelena jabuka</string>
-    <string name="theme_light_strawberrydaiquiri">Jagoda Daikiri</string>
+    <string name="theme_greenapple">Zelena jabuka</string>
+    <string name="theme_strawberrydaiquiri">Jagoda Daikiri</string>
 </resources>

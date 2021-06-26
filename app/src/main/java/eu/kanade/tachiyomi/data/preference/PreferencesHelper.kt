@@ -90,9 +90,7 @@ class PreferencesHelper(val context: Context) {
 
     fun themeMode() = flowPrefs.getEnum(Keys.themeMode, system)
 
-    fun themeLight() = flowPrefs.getEnum(Keys.themeLight, Values.LightThemeVariant.default)
-
-    fun themeDark() = flowPrefs.getEnum(Keys.themeDark, Values.DarkThemeVariant.default)
+    fun appTheme() = flowPrefs.getEnum(Keys.appTheme, Values.AppTheme.DEFAULT)
 
     fun themeDarkAmoled() = flowPrefs.getBoolean(Keys.themeDarkAmoled, false)
 

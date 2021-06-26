@@ -349,12 +349,10 @@
     <string name="theme_light">Mati</string>
     <string name="theme_dark">Nyala</string>
     <string name="theme_system">Ikuti sistem</string>
-    <string name="theme_dark_blue">Biru Gelap</string>
-    <string name="theme_dark_amoled">AMOLED Hitam</string>
+    <string name="theme_darkblue">Biru Gelap</string>
     <string name="pref_manage_notifications">Kelola notifikasi</string>
     <string name="pref_category_security">Keamanan</string>
     <string name="unlock_app">Buka Tachiyomi</string>
-    <string name="theme_light_blue">Biru Terang</string>
     <string name="action_menu">Menu</string>
     <string name="action_reorganize_by">Susun ulang</string>
     <string name="action_newest">Terbaru</string>
@@ -375,9 +373,6 @@
     <string name="secure_screen_summary">Sembunyikan konten aplikasi saat berpindah aplikasi dan blokir tangkapan layar</string>
     <string name="hide_notification_content">Sembunyikan konten notifikasi</string>
     <string name="pref_always_show_chapter_transition">Selalu tampilkan transisi bab</string>
-    <string name="pref_theme_dark">Tema gelap</string>
-    <string name="theme_dark_default">Gelap standar</string>
-    <string name="pref_theme_light">Tema terang</string>
     <string name="logout">Keluar</string>
     <string name="logout_success">Anda sudah keluar</string>
     <string name="currently_reading">Sedang dibaca</string>
@@ -390,7 +385,7 @@
     <string name="pref_disable_battery_optimization">Nonaktifkan optimisasi baterai</string>
     <string name="battery_optimization_disabled">Optimalisasi baterai sudah dimatikan</string>
     <string name="email">Alamat surel</string>
-    <string name="theme_light_default">Terang standar</string>
+    <string name="theme_default">Terang standar</string>
     <string name="secure_screen">Amankan layar</string>
     <string name="logout_title">Keluar dari %1$s\?</string>
     <string name="pref_category_display">Tampilan</string>
@@ -624,10 +619,10 @@
     <string name="pref_grayscale">Skala Abu-abu</string>
     <string name="pref_show_navigation_mode">Tampilkan tata letak navigasi</string>
     <string name="pref_library_update_categories_details">Manga dalam kategori yang dikecualikan tidak akan diperbarui meskipun masuk dalam kategori yang disertakan.</string>
-    <string name="theme_light_strawberrydaiquiri">Stroberi Daiquiri</string>
-    <string name="theme_dark_amoled_hotpink">Merah Muda Menyala</string>
-    <string name="theme_dark_midnightdusk">Malam Gelap</string>
-    <string name="theme_dark_greenapple">Apel Hijau</string>
+    <string name="theme_strawberrydaiquiri">Stroberi Daiquiri</string>
+    <string name="theme_hotpink">Merah Muda Menyala</string>
+    <string name="theme_midnightdusk">Malam Gelap</string>
+    <string name="theme_greenapple">Apel Hijau</string>
     <string name="date">Tanggal</string>
     <string name="local_filter_order_by">Urutkan berdasarkan</string>
     <string name="local_invalid_format">Format bab tidak valid</string>

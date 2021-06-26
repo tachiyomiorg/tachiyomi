@@ -276,13 +276,8 @@
     <string name="system_default">Predeterminado</string>
     <string name="pref_language">Idioma</string>
     <string name="pref_start_screen">Pantalla inicial</string>
-    <string name="theme_dark_amoled">AMOLED negro</string>
-    <string name="theme_dark_blue">Azul oscuro</string>
-    <string name="theme_dark_default">Predeterminado</string>
-    <string name="pref_theme_dark">Tema oscuro</string>
-    <string name="theme_light_blue">Azul claro</string>
-    <string name="theme_light_default">Predeterminado</string>
-    <string name="pref_theme_light">Tema claro</string>
+    <string name="theme_darkblue">Azul oscuro</string>
+    <string name="theme_default">Predeterminado</string>
     <string name="theme_dark">Encendido</string>
     <string name="theme_light">Apagado</string>
     <string name="theme_system">Usar el del sistema</string>

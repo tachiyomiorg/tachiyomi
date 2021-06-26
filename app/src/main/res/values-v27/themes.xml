@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Base.V27.Theme.Tachiyomi.Light" parent="Base.Theme.Tachiyomi.Light">
+    <style name="Base.V27.Tachiyomi" parent="Base.Theme.Tachiyomi">
         <item name="android:navigationBarColor">?attr/colorSurface</item>
-        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:windowLightNavigationBar">@bool/lightNavigationBar</item>
     </style>
 
-    <style name="Theme.Tachiyomi.Light" parent="Base.V27.Theme.Tachiyomi.Light" />
+    <style name="Theme.Tachiyomi" parent="Base.V27.Tachiyomi" />
 </resources>

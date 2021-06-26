@@ -6,7 +6,6 @@ import androidx.preference.PreferenceManager
 import eu.kanade.tachiyomi.data.backup.BackupCreatorJob
 import eu.kanade.tachiyomi.data.library.LibraryUpdateJob
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys
-import eu.kanade.tachiyomi.data.preference.PreferenceValues
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.updater.UpdaterJob
@@ -231,21 +230,6 @@ object Migrations {
                 prefs.edit {
                     putString(PreferenceKeys.librarySortingMode, newSortingMode.name)
                     putString(PreferenceKeys.librarySortingDirection, newSortingDirection.name)
-                }
-            }
-            if (oldVersion < 65) {
-                // AMOLED dark theme merger
-                val currentDarkTheme = prefs.getString(
-                    PreferenceKeys.themeDark,
-                    PreferenceValues.DarkThemeVariant.default.name
-                )
-                prefs.edit {
-                    if (currentDarkTheme == "amoled" || currentDarkTheme == "hotpink") {
-                        putBoolean(PreferenceKeys.themeDarkAmoled, true)
-                    }
-                    if (currentDarkTheme == "amoled") {
-                        remove(PreferenceKeys.themeDark)
-                    }
                 }
             }
             return true

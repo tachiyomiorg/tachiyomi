@@ -357,9 +357,7 @@
     <string name="theme_light">关闭</string>
     <string name="theme_dark">开启</string>
     <string name="theme_system">跟随系统</string>
-    <string name="theme_dark_default">默认</string>
-    <string name="theme_dark_blue">深蓝</string>
-    <string name="theme_dark_amoled">纯黑（AMOLED）</string>
+    <string name="theme_darkblue">深蓝</string>
     <string name="pref_manage_notifications">通知管理</string>
     <string name="pref_category_security">安全</string>
     <string name="lock_when_idle">应用待机时锁定</string>
@@ -375,7 +373,6 @@
     <string name="unlock_app">解锁 Tachiyomi</string>
     <string name="secure_screen_summary">在切换应用时隐藏预览，并禁止截取屏幕截图</string>
     <string name="pref_category_display">显示</string>
-    <string name="pref_theme_dark">深色主题</string>
     <string name="channel_new_chapters">章节更新</string>
     <string name="hide_notification_content">隐藏通知内容</string>
     <string name="lock_with_biometrics">需要解锁</string>
@@ -398,9 +395,7 @@
     <plurals name="notification_new_chapters_summary">
         <item quantity="other">共 %d 个漫画</item>
     </plurals>
-    <string name="pref_theme_light">浅色主题</string>
-    <string name="theme_light_default">默认</string>
-    <string name="theme_light_blue">浅蓝</string>
+    <string name="theme_default">默认</string>
     <string name="action_menu">菜单</string>
     <string name="action_reorganize_by">重新排序</string>
     <string name="action_newest">最新</string>
@@ -628,16 +623,16 @@
     <string name="source_unsupported">源不受支持</string>
     <string name="unread">未读</string>
     <string name="pref_move_side_nav_to_bottom">将侧导航按钮移到底部</string>
-    <string name="theme_dark_amoled_hotpink">亮粉</string>
-    <string name="theme_dark_midnightdusk">午夜黄昏</string>
+    <string name="theme_hotpink">亮粉</string>
+    <string name="theme_midnightdusk">午夜黄昏</string>
     <string name="date">日期</string>
     <string name="local_filter_order_by">排序依据</string>
     <string name="local_invalid_format">无效章节格式</string>
     <string name="chapter_not_found">未找到章节</string>
-    <string name="theme_light_strawberrydaiquiri">草莓黛琦莉</string>
+    <string name="theme_strawberrydaiquiri">草莓黛琦莉</string>
     <string name="pref_library_update_refresh_trackers_summary">更新书架时更新追踪器</string>
     <string name="pref_library_update_refresh_trackers">自动更新追踪器</string>
-    <string name="theme_dark_greenapple">绿苹果</string>
+    <string name="theme_greenapple">绿苹果</string>
     <string name="restrictions">限制：%s</string>
     <string name="action_display_local_badge">本地徽章</string>
     <string name="off">关</string>

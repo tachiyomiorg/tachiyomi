@@ -852,7 +852,7 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
                     binding.readerContainer.setBackgroundResource(
                         when (preferences.readerTheme().get()) {
                             0 -> android.R.color.white
-                            2 -> R.color.background_dark
+                            2 -> R.color.reader_background_dark
                             else -> android.R.color.black
                         }
                     )

@@ -387,10 +387,7 @@
     <string name="theme_light">Desligado</string>
     <string name="theme_dark">Ligado</string>
     <string name="theme_system">Seguir o do sistema</string>
-    <string name="pref_theme_dark">Tema escuro</string>
-    <string name="theme_dark_default">Padrão</string>
-    <string name="theme_dark_blue">Azul escuro</string>
-    <string name="theme_dark_amoled">Preto AMOLED</string>
+    <string name="theme_darkblue">Azul escuro</string>
     <string name="pref_manage_notifications">Gerir notificações</string>
     <string name="pref_category_security">Segurança</string>
     <string name="lock_with_biometrics">Requerer desbloqueio</string>
@@ -427,9 +424,7 @@
         <item quantity="one">Para 1 título</item>
         <item quantity="other">Para %d títulos</item>
     </plurals>
-    <string name="pref_theme_light">Tema claro</string>
-    <string name="theme_light_default">Padrão</string>
-    <string name="theme_light_blue">Azul claro</string>
+    <string name="theme_default">Padrão</string>
     <string name="action_menu">Menu</string>
     <string name="action_reorganize_by">Reordenar</string>
     <string name="action_newest">Mais novos</string>

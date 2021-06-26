@@ -171,13 +171,8 @@
     <string name="system_default">Por defecto</string>
     <string name="pref_language">Idioma</string>
     <string name="pref_start_screen">Pantalla inicial</string>
-    <string name="theme_dark_amoled">Negro AMOLED</string>
-    <string name="theme_dark_blue">Azul escuro</string>
-    <string name="theme_dark_default">Por defecto</string>
-    <string name="pref_theme_dark">Modo escuro</string>
-    <string name="theme_light_blue">Azul claro</string>
-    <string name="theme_light_default">Por defecto</string>
-    <string name="pref_theme_light">Modo claro</string>
+    <string name="theme_darkblue">Azul escuro</string>
+    <string name="theme_default">Por defecto</string>
     <string name="theme_dark">Encendido</string>
     <string name="theme_light">Apagado</string>
     <string name="theme_system">Utilizar o do sistema</string>

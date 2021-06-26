@@ -357,10 +357,7 @@
     <string name="theme_light">Istudadu</string>
     <string name="theme_dark">Allutu</string>
     <string name="theme_system">Sighi su sistema</string>
-    <string name="pref_theme_dark">Tema iscuru</string>
-    <string name="theme_dark_default">Predefinidu</string>
-    <string name="theme_dark_blue">Biaitu iscuru</string>
-    <string name="theme_dark_amoled">Nieddu AMOLED</string>
+    <string name="theme_darkblue">Biaitu iscuru</string>
     <string name="pref_manage_notifications">Amministra sas notìficas</string>
     <string name="pref_category_security">Seguresa</string>
     <string name="lock_with_biometrics">Tocat a l\'isblocare</string>
@@ -402,9 +399,7 @@
         <item quantity="one">Pro 1 tìtulu</item>
         <item quantity="other">Pro %d tìtulos</item>
     </plurals>
-    <string name="pref_theme_light">Tema craru</string>
-    <string name="theme_light_default">Predefinidu</string>
-    <string name="theme_light_blue">Biaitu craru</string>
+    <string name="theme_default">Predefinidu</string>
     <string name="action_menu">Menù</string>
     <string name="action_reorganize_by">Riòrdina</string>
     <string name="action_newest">Prus noos</string>
@@ -639,7 +634,7 @@
     <string name="source_unsupported">Sa mitza no est suportada</string>
     <string name="unread">Non lèghidos</string>
     <string name="pref_auto_add_track">Arrasta a sa muda cando annanghes manga a sa biblioteca</string>
-    <string name="theme_light_strawberrydaiquiri">Daiquiri de fràgola</string>
+    <string name="theme_strawberrydaiquiri">Daiquiri de fràgola</string>
     <string name="date">Data</string>
     <string name="local_filter_order_by">Òrdina pro</string>
     <string name="local_invalid_format">Formadu de su capìtulu non vàlidu</string>
@@ -647,7 +642,7 @@
     <string name="pref_library_update_refresh_trackers_summary">Agiorna sos arrastadores cando agiornas sa biblioteca</string>
     <string name="pref_library_update_refresh_trackers">Agiorna sos arrastadores automaticamente</string>
     <string name="pref_move_side_nav_to_bottom">Moe sos butones de navigatzione laterales cara a bassu</string>
-    <string name="theme_dark_amoled_hotpink">Rosa caente</string>
-    <string name="theme_dark_midnightdusk">Intrinada de mesanote</string>
-    <string name="theme_dark_greenapple">Mela birde</string>
+    <string name="theme_hotpink">Rosa caente</string>
+    <string name="theme_midnightdusk">Intrinada de mesanote</string>
+    <string name="theme_greenapple">Mela birde</string>
 </resources>

@@ -357,10 +357,7 @@
     <string name="theme_light">Pois päältä</string>
     <string name="theme_dark">Päällä</string>
     <string name="theme_system">Seuraa järjestelmää</string>
-    <string name="pref_theme_dark">Tumma teema</string>
-    <string name="theme_dark_default">Oletus</string>
-    <string name="theme_dark_blue">Tummansininen</string>
-    <string name="theme_dark_amoled">AMOLED teema</string>
+    <string name="theme_darkblue">Tummansininen</string>
     <string name="pref_manage_notifications">Hallitse ilmoituksia</string>
     <string name="pref_category_security">Turvallisuus</string>
     <string name="lock_with_biometrics">Vaadi lukituksen avaaminen</string>
@@ -402,9 +399,7 @@
         <item quantity="one">Yhdelle sarjalle</item>
         <item quantity="other">%d sarjalle</item>
     </plurals>
-    <string name="pref_theme_light">Vaalea teema</string>
-    <string name="theme_light_default">Oletus</string>
-    <string name="theme_light_blue">Vaaleansininen</string>
+    <string name="theme_default">Oletus</string>
     <string name="action_menu">Valikko</string>
     <string name="action_reorganize_by">Uudelleenjärjestä</string>
     <string name="action_newest">Uusin</string>
@@ -640,11 +635,11 @@
     <string name="unread">Lukemattomat</string>
     <string name="pref_auto_add_track">Seuraa hiljaa, kun lisäät mangaa kirjastoon</string>
     <string name="pref_move_side_nav_to_bottom">Siirrä sivunavigointipainikkeet alareunaan</string>
-    <string name="theme_dark_midnightdusk">Midnight Dusk</string>
-    <string name="theme_light_strawberrydaiquiri">Mansikka Daiquiri</string>
+    <string name="theme_midnightdusk">Midnight Dusk</string>
+    <string name="theme_strawberrydaiquiri">Mansikka Daiquiri</string>
     <string name="local_invalid_format">Väärä lukuformaatti</string>
     <string name="chapter_not_found">Lukua ei löytynyt</string>
     <string name="restrictions">Rajoitukset: %s</string>
-    <string name="theme_dark_amoled_hotpink">Kuuma pinkki</string>
-    <string name="theme_dark_greenapple">Vihreä omena</string>
+    <string name="theme_hotpink">Kuuma pinkki</string>
+    <string name="theme_greenapple">Vihreä omena</string>
 </resources>

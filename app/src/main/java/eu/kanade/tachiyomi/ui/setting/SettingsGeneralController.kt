@@ -119,66 +119,23 @@ class SettingsGeneralController : SettingsController() {
                 }
             }
             listPreference {
-                key = Keys.themeLight
-                titleRes = R.string.pref_theme_light
-                entriesRes = arrayOf(
-                    R.string.theme_light_default,
-                    R.string.theme_light_blue,
-                    R.string.theme_light_strawberrydaiquiri,
-                    R.string.theme_light_yotsuba
-                )
-                entryValues = arrayOf(
-                    Values.LightThemeVariant.default.name,
-                    Values.LightThemeVariant.blue.name,
-                    Values.LightThemeVariant.strawberrydaiquiri.name,
-                    Values.LightThemeVariant.yotsuba.name
-                )
-                defaultValue = Values.LightThemeVariant.default.name
+                key = Keys.appTheme
+                titleRes = R.string.pref_app_theme
+
+                val appThemes = Values.AppTheme.values()
+                entriesRes = appThemes.map { it.titleResId }.toTypedArray()
+                entryValues = appThemes.map { it.name }.toTypedArray()
+                defaultValue = appThemes[0].name
                 summary = "%s"
 
-                preferences.themeMode().asImmediateFlow { isVisible = it != Values.ThemeMode.dark }
-                    .launchIn(viewScope)
-
                 onChange {
-                    if (preferences.themeMode().get() != Values.ThemeMode.dark) {
-                        activity?.recreate()
-                    }
-                    true
-                }
-            }
-            listPreference {
-                key = Keys.themeDark
-                titleRes = R.string.pref_theme_dark
-                entriesRes = arrayOf(
-                    R.string.theme_dark_default,
-                    R.string.theme_dark_blue,
-                    R.string.theme_dark_greenapple,
-                    R.string.theme_dark_amoled_hotpink,
-                    R.string.theme_dark_midnightdusk
-                )
-                entryValues = arrayOf(
-                    Values.DarkThemeVariant.default.name,
-                    Values.DarkThemeVariant.blue.name,
-                    Values.DarkThemeVariant.greenapple.name,
-                    Values.DarkThemeVariant.hotpink.name,
-                    Values.DarkThemeVariant.midnightdusk.name
-                )
-                defaultValue = Values.DarkThemeVariant.default.name
-                summary = "%s"
-
-                preferences.themeMode().asImmediateFlow { isVisible = it != Values.ThemeMode.light }
-                    .launchIn(viewScope)
-
-                onChange {
-                    if (preferences.themeMode().get() != Values.ThemeMode.light) {
-                        activity?.recreate()
-                    }
+                    activity?.recreate()
                     true
                 }
             }
             switchPreference {
                 key = Keys.themeDarkAmoled
-                titleRes = R.string.theme_dark_pure_black
+                titleRes = R.string.pref_dark_theme_pure_black
                 defaultValue = false
 
                 preferences.themeMode().asImmediateFlow { isVisible = it != Values.ThemeMode.light }

@@ -30,4 +30,6 @@
     <!-- For anything that is drawn on the toolbar -->
     <attr name="colorOnToolbar" format="reference|integer"/>
 
+    <attr name="lightSystemBarsOnPrimary" format="reference|boolean"/>
+
 </resources>

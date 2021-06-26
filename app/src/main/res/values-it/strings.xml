@@ -390,10 +390,7 @@
     <string name="theme_light">Disattivo</string>
     <string name="theme_dark">Attivo</string>
     <string name="theme_system">Segui l\'impostazione di sistema</string>
-    <string name="pref_theme_dark">Tema scuro</string>
-    <string name="theme_dark_default">Predefinito</string>
-    <string name="theme_dark_blue">Blu scuro</string>
-    <string name="theme_dark_amoled">Nero AMOLED</string>
+    <string name="theme_darkblue">Blu scuro</string>
     <string name="pref_manage_notifications">Gestisci le notifiche</string>
     <string name="pref_category_security">Sicurezza</string>
     <string name="lock_with_biometrics">Sblocco richiesto</string>
@@ -443,9 +440,7 @@
     <string name="pref_always_show_chapter_transition">Mostra sempre la transizione tra capitoli</string>
     <string name="pref_enable_automatic_extension_updates">Controlla aggiornamenti per le estensioni</string>
     <string name="hide_notification_content">Nascondi contenuto notifica</string>
-    <string name="theme_light_blue">Blu chiaro</string>
-    <string name="theme_light_default">Predefinito</string>
-    <string name="pref_theme_light">Tema chiaro</string>
+    <string name="theme_default">Predefinito</string>
     <string name="action_move_to_bottom">Muovi in fondo</string>
     <string name="action_move_to_top">Muovi in cima</string>
     <string name="action_oldest">Vecchi</string>

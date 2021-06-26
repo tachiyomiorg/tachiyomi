@@ -3,13 +3,8 @@
     <string name="system_default">पूर्वनिर्धारित</string>
     <string name="pref_language">भाषा</string>
     <string name="pref_start_screen">स्क्रिनको सुरूवात</string>
-    <string name="theme_dark_amoled">AMOLED कालो</string>
-    <string name="theme_dark_blue">गाढा निलो</string>
-    <string name="theme_dark_default">पूर्वनिर्धारित</string>
-    <string name="pref_theme_dark">अँध्यारो थिम</string>
-    <string name="theme_light_blue">हल्का निलो</string>
-    <string name="theme_light_default">पूर्वनिर्धारित</string>
-    <string name="pref_theme_light">प्रकाश थिम</string>
+    <string name="theme_darkblue">गाढा निलो</string>
+    <string name="theme_default">पूर्वनिर्धारित</string>
     <string name="theme_dark">खुल्ला</string>
     <string name="theme_light">बन्द</string>
     <string name="pref_theme_mode">अँध्यारो मोड</string>

@@ -363,11 +363,8 @@
     <string name="lock_when_idle">Uzamknout při nečinnosti</string>
     <string name="pref_category_security">Bezpečnost</string>
     <string name="pref_manage_notifications">Spravovat oznámení</string>
-    <string name="theme_dark_blue">Tmavě modrý</string>
-    <string name="theme_dark_default">Výchozí</string>
-    <string name="pref_theme_dark">Temný vzhled</string>
-    <string name="theme_light_blue">Světle modrý</string>
-    <string name="theme_light_default">Výchozí</string>
+    <string name="theme_darkblue">Tmavě modrý</string>
+    <string name="theme_default">Výchozí</string>
     <string name="action_oldest">Nejstarší</string>
     <string name="action_newest">Nejnovější</string>
     <string name="action_view_chapters">Zobrazit kapitoly</string>
@@ -491,8 +488,6 @@
     <string name="secure_screen">Chráněná obrazovka</string>
     <string name="lock_with_biometrics">Vyžadovat odemknutí</string>
     <string name="pref_confirm_exit">Potvrdit opuštění</string>
-    <string name="theme_dark_amoled">AMOLED černý</string>
-    <string name="pref_theme_light">Světlý vzhled</string>
     <string name="theme_dark">Zapnuto</string>
     <string name="theme_light">Vypnuto</string>
     <string name="pref_theme_mode">Temný vzhled</string>
@@ -656,9 +651,9 @@
     <string name="pref_library_update_refresh_trackers">Automaticky aktualizovat sledovače</string>
     <string name="restrictions">Omezení: %s</string>
     <string name="pref_move_side_nav_to_bottom">Přesunout boční navigační tlačítka do spodní části</string>
-    <string name="theme_dark_amoled_hotpink">Žhavá Růžová</string>
-    <string name="theme_dark_midnightdusk">Půlnoční Soumrak</string>
-    <string name="theme_dark_greenapple">Zelené Jablko</string>
-    <string name="theme_light_strawberrydaiquiri">Jahodové Daiquiri</string>
+    <string name="theme_hotpink">Žhavá Růžová</string>
+    <string name="theme_midnightdusk">Půlnoční Soumrak</string>
+    <string name="theme_greenapple">Zelené Jablko</string>
+    <string name="theme_strawberrydaiquiri">Jahodové Daiquiri</string>
     <string name="action_display_local_badge">Místní odznaky</string>
 </resources>

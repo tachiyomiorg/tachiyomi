@@ -169,13 +169,8 @@
     <string name="system_default">Noklusējums</string>
     <string name="pref_language">Valoda</string>
     <string name="pref_start_screen">Sākuma ekrāns</string>
-    <string name="theme_dark_amoled">AMOLED melns</string>
-    <string name="theme_dark_blue">Tumši zils</string>
-    <string name="theme_dark_default">Noklusējums</string>
-    <string name="pref_theme_dark">Tumšais motīvs</string>
-    <string name="theme_light_blue">Gaiši zils</string>
-    <string name="theme_light_default">Noklusējums</string>
-    <string name="pref_theme_light">Gaišais režīms</string>
+    <string name="theme_darkblue">Tumši zils</string>
+    <string name="theme_default">Noklusējums</string>
     <string name="theme_dark">Ieslēgts</string>
     <string name="theme_light">Izslēgts</string>
     <string name="theme_system">Sekot sistēmu</string>

@@ -391,10 +391,7 @@
     <string name="theme_light">Désactivé</string>
     <string name="theme_dark">Activé</string>
     <string name="theme_system">Par défaut du système</string>
-    <string name="pref_theme_dark">Thème sombre</string>
-    <string name="theme_dark_default">Par défaut</string>
-    <string name="theme_dark_blue">Bleu foncé</string>
-    <string name="theme_dark_amoled">Noir AMOLED</string>
+    <string name="theme_darkblue">Bleu foncé</string>
     <string name="pref_manage_notifications">Notifications</string>
     <string name="pref_category_security">Sécurité</string>
     <string name="lock_with_biometrics">Déverrouillage obligatoire</string>
@@ -436,13 +433,11 @@
         <item quantity="one">Pour 1 titre</item>
         <item quantity="other">Pour %d titres</item>
     </plurals>
-    <string name="theme_light_default">Par défaut</string>
-    <string name="theme_light_blue">Bleu clair</string>
+    <string name="theme_default">Par défaut</string>
     <string name="action_menu">Menu</string>
     <string name="action_reorganize_by">Réorganiser</string>
     <string name="action_newest">Plus récent</string>
     <string name="action_oldest">Plus ancien</string>
-    <string name="pref_theme_light">Thème clair</string>
     <string name="action_move_to_top">Déplacer au début</string>
     <string name="action_move_to_bottom">Déplacer à la fin</string>
     <string name="channel_ext_updates">Mises à jour d\'extensions</string>
@@ -680,10 +675,10 @@
     <string name="pref_library_update_refresh_trackers">Mise à jour automatique des traqueurs</string>
     <string name="restrictions">Restrictions : %s</string>
     <string name="pref_move_side_nav_to_bottom">Déplacer les boutons de navigation latéraux vers le bas</string>
-    <string name="theme_dark_amoled_hotpink">Rose chaud</string>
-    <string name="theme_dark_midnightdusk">Crépuscule de minuit</string>
-    <string name="theme_dark_greenapple">Pomme verte</string>
-    <string name="theme_light_strawberrydaiquiri">Daiquiri fraise</string>
+    <string name="theme_hotpink">Rose chaud</string>
+    <string name="theme_midnightdusk">Crépuscule de minuit</string>
+    <string name="theme_greenapple">Pomme verte</string>
+    <string name="theme_strawberrydaiquiri">Daiquiri fraise</string>
     <string name="cancel_all_for_series">Tout annuler pour cette série</string>
     <string name="action_display_local_badge">Badges locaux</string>
 </resources>

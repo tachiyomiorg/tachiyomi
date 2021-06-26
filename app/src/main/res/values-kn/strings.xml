@@ -22,13 +22,8 @@
     <string name="system_default">ಡೀಫಾಲ್ಟ್</string>
     <string name="pref_language">ಭಾಷೆ</string>
     <string name="pref_start_screen">ಮೊದಲ ಪುಟ</string>
-    <string name="theme_dark_amoled">ಗಾಢವಾದ್ ಕಪ್ಪು</string>
-    <string name="theme_dark_blue">ಗಾಢವಾದ್ ನೀಲಿ</string>
-    <string name="theme_dark_default">ಡೀಫಾಲ್ಟ್</string>
-    <string name="pref_theme_dark">ಡಾರ್ಕ್ ಥೀಮ್</string>
-    <string name="theme_light_blue">ತಿಳಿ ನೀಲಿ</string>
-    <string name="theme_light_default">ಡೀಫಾಲ್ಟ್</string>
-    <string name="pref_theme_light">ಲೈಟ್ ಥೀಮ್</string>
+    <string name="theme_darkblue">ಗಾಢವಾದ್ ನೀಲಿ</string>
+    <string name="theme_default">ಡೀಫಾಲ್ಟ್</string>
     <string name="theme_system">ಸಿಸ್ಟಮ್ ಅನುಕರಿಸಿ</string>
     <string name="theme_dark">ಆನ್</string>
     <string name="theme_light">ಆಫ</string>

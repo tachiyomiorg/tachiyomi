@@ -6,12 +6,12 @@
     <!--============-->
 
     <!--== Theme base ==-->
-    <style name="Theme.Base.Light" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Base.Theme.Tachiyomi" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Disallow 'Force dark theme' -->
         <item name="android:forceDarkAllowed" tools:targetApi="Q">false</item>
 
         <!-- Theme colors -->
-        <item name="colorPrimary">@color/accent_light</item>
+        <item name="colorPrimary">@color/accent_default</item>
         <item name="colorPrimaryVariant">?attr/colorPrimary</item>
         <item name="colorOnPrimary">@color/md_white_1000</item>
         <item name="colorSecondary">?attr/colorPrimary</item>
@@ -21,13 +21,13 @@
         <item name="colorOnTertiary">@color/md_white_1000</item>
         <item name="colorToolbar">?attr/colorSurface</item>
         <item name="colorOnToolbar">?attr/colorOnSurface</item>
-        <item name="colorSurface">@color/surface_light</item>
-        <item name="android:colorBackground">@color/background_light</item>
-        <item name="android:divider">@color/divider_light</item>
+        <item name="colorSurface">@color/surface_default</item>
+        <item name="android:colorBackground">@color/background_default</item>
+        <item name="android:divider">@color/divider_default</item>
         <item name="android:listDivider">@drawable/line_divider</item>
 
         <!-- Ripples -->
-        <item name="colorControlHighlight">@color/ripple_colored_light</item>
+        <item name="colorControlHighlight">@color/ripple_colored_default</item>
         <item name="rippleColorToolbar">?attr/colorControlHighlight</item>
 
         <!-- Handles RTL text -->
@@ -35,143 +35,8 @@
         <item name="android:textDirection">locale</item>
 
         <!-- Themes -->
-        <item name="android:statusBarColor">@color/md_black_1000</item>
-        <item name="android:navigationBarColor">@color/md_black_1000</item>
-        <item name="android:navigationBarDividerColor" tools:targetApi="o_mr1">@null</item>
-        <item name="android:enforceNavigationBarContrast" tools:targetApi="Q">false</item>
-        <item name="android:enforceStatusBarContrast" tools:targetApi="Q">false</item>
-        <item name="android:itemTextAppearance">@style/TextAppearance.Widget.Menu</item>
-        <item name="android:backgroundDimAmount">0.32</item>
-        <item name="windowActionModeOverlay">true</item>
-        <item name="actionModeStyle">@style/Widget.Tachiyomi.ActionMode</item>
-        <item name="actionOverflowButtonStyle">@style/Theme.Tachiyomi.ActionButton.Overflow</item>
-        <item name="actionModeCloseButtonStyle">@style/Theme.Tachiyomi.ActionMode.CloseButton</item>
-        <item name="actionModeCloseDrawable">@drawable/ic_close_24dp</item>
-        <item name="actionBarTheme">@style/ThemeOverlay.Tachiyomi.ActionBar</item>
-        <item name="toolbarNavigationButtonStyle">@style/Widget.Tachiyomi.Toolbar.Button.Navigation</item>
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
-        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.Tachiyomi.BottomSheetDialog</item>
-        <item name="chipStyle">@style/Widget.Tachiyomi.Chip.Action</item>
-        <item name="snackbarStyle">@style/Widget.Tachiyomi.Snackbar</item>
-        <item name="snackbarTextViewStyle">@style/Widget.Tachiyomi.Snackbar.TextView</item>
-        <item name="textInputStyle">@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox</item>
-        <item name="appBarLayoutStyle">@style/Widget.MaterialComponents.AppBarLayout.Surface</item>
-        <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.Surface</item>
-        <item name="tabStyle">@style/Widget.Tachiyomi.TabLayout</item>
-        <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView</item>
-        <item name="navigationRailStyle">@style/Widget.MaterialComponents.NavigationRailView</item>
-
-        <!-- Text Appearances -->
-        <item name="textAppearanceButton">@style/TextAppearance.Widget.Button</item>
-
-        <!-- Material Dialogs -->
-        <item name="md_background_color">?attr/colorSurface</item>
-        <item name="md_color_title">?attr/colorOnSurface</item>
-        <item name="md_color_content">?attr/colorOnSurface</item>
-        <item name="md_color_button_text">?attr/colorPrimary</item>
-        <item name="md_button_casing">literal</item>
-        <item name="md_corner_radius">@dimen/dialog_radius</item>
-
-        <!-- Custom Attributes-->
-        <item name="colorFilterActive">@color/filterColorLight</item>
-    </style>
-
-    <!--==============-->
-    <!-- Light Themes -->
-    <!--==============-->
-
-    <!--== Light base ==-->
-    <style name="Base.Theme.Tachiyomi.Light" parent="Theme.Base.Light">
-        <!-- Base background/text colors -->
+        <item name="android:windowLightStatusBar">@bool/lightStatusBar</item>
         <item name="android:statusBarColor">?attr/colorSurface</item>
-        <item name="android:windowLightStatusBar">true</item>
-    </style>
-
-    <!--== Light theme ==-->
-    <style name="Theme.Tachiyomi.Light" parent="Base.Theme.Tachiyomi.Light" />
-
-    <!--== Light Blue theme ==-->
-    <style name="Theme.Tachiyomi.Light.Blue">
-        <!-- Theme colors -->
-        <item name="colorPrimary">@color/accent_lightblue</item>
-        <item name="colorFilterActive">@color/filterColorDark</item>
-        <item name="colorToolbar">?attr/colorPrimary</item>
-        <item name="colorOnToolbar">?attr/colorOnPrimary</item>
-
-        <!-- Base background/text colors -->
-        <item name="background">@color/accent_lightblue</item>
-
-        <!-- Ripples -->
-        <item name="colorControlHighlight">@color/ripple_colored_lightblue</item>
-        <item name="rippleColorToolbar">@color/md_white_1000_12</item>
-
-        <!-- Themes -->
-        <item name="actionModeStyle">@style/Widget.Tachiyomi.ActionMode</item>
-        <item name="toolbarNavigationButtonStyle">@style/Widget.Tachiyomi.Toolbar.Button.Navigation</item>
-        <item name="appBarLayoutStyle">@style/Widget.MaterialComponents.AppBarLayout.Primary</item>
-        <item name="toolbarStyle">@style/Widget.Tachiyomi.Toolbar.Primary</item>
-        <item name="tabStyle">@style/Widget.Tachiyomi.TabLayout.Colored</item>
-        <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView.Colored</item>
-        <item name="navigationRailStyle">@style/Widget.MaterialComponents.NavigationRailView.Colored</item>
-
-        <!-- Status/Navigation bar -->
-        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
-        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
-        <item name="android:statusBarColor">?attr/colorPrimary</item>
-        <item name="android:navigationBarColor">?attr/colorPrimary</item>
-    </style>
-
-    <!--== Strawberry Daiquiri theme ==-->
-    <style name="Theme.Tachiyomi.Light.StrawberryDaiquiri">
-        <!-- Theme colors -->
-        <item name="colorPrimary">@color/accent_strawberry</item>
-        <item name="colorTertiary">@color/md_blue_A400</item>
-        <item name="colorControlHighlight">@color/ripple_colored_strawberry</item>
-    </style>
-
-    <!--== Yotsuba theme ==-->
-    <style name="Theme.Tachiyomi.Light.Yotsuba">
-        <!-- Theme colors -->
-        <item name="colorPrimary">@color/accent_yotsuba</item>
-        <item name="colorTertiary">@color/md_blue_A400</item>
-        <item name="colorControlHighlight">@color/ripple_colored_yotsuba</item>
-    </style>
-
-    <!--=============-->
-    <!-- Dark Themes -->
-    <!--=============-->
-
-    <!--== Dark base ==-->
-    <style name="Theme.Base.Dark" parent="Theme.MaterialComponents.NoActionBar">
-        <!-- Disallow 'Force dark theme' -->
-        <item name="android:forceDarkAllowed" tools:targetApi="Q">false</item>
-
-        <!-- Theme colors -->
-        <item name="colorPrimary">@color/accent_dark</item>
-        <item name="colorPrimaryVariant">?attr/colorPrimary</item>
-        <item name="colorOnPrimary">@color/md_white_1000</item>
-        <item name="colorSecondary">?attr/colorPrimary</item>
-        <item name="colorSecondaryVariant">?attr/colorPrimaryVariant</item>
-        <item name="colorOnSecondary">?attr/colorOnPrimary</item>
-        <item name="colorTertiary">@color/green</item>
-        <item name="colorOnTertiary">@color/md_white_1000</item>
-        <item name="colorToolbar">?attr/colorSurface</item>
-        <item name="colorOnToolbar">?attr/colorOnSurface</item>
-        <item name="colorSurface">@color/surface_dark</item>
-        <item name="android:colorBackground">@color/background_dark</item>
-        <item name="android:divider">@color/divider_dark</item>
-        <item name="android:listDivider">@drawable/line_divider</item>
-
-        <!-- Ripples -->
-        <item name="colorControlHighlight">@color/ripple_colored_dark</item>
-        <item name="rippleColorToolbar">?attr/colorControlHighlight</item>
-
-        <!-- Handles RTL text -->
-        <item name="android:textAlignment">gravity</item>
-        <item name="android:textDirection">locale</item>
-
-        <!-- Themes -->
-        <item name="android:statusBarColor">@color/md_black_1000</item>
         <item name="android:navigationBarColor">@color/md_black_1000</item>
         <item name="android:navigationBarDividerColor" tools:targetApi="o_mr1">@null</item>
         <item name="android:enforceNavigationBarContrast" tools:targetApi="Q">false</item>
@@ -197,6 +62,7 @@
         <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView</item>
         <item name="navigationRailStyle">@style/Widget.MaterialComponents.NavigationRailView</item>
         <item name="elevationOverlayEnabled">false</item>
+        <item name="lightSystemBarsOnPrimary">false</item>
 
         <!-- Text Appearances -->
         <item name="textAppearanceButton">@style/TextAppearance.Widget.Button</item>
@@ -210,25 +76,69 @@
         <item name="md_corner_radius">@dimen/dialog_radius</item>
 
         <!-- Custom Attributes-->
-        <item name="colorFilterActive">@color/filterColorDark</item>
+        <item name="colorFilterActive">@color/filterColorLight</item>
     </style>
 
-    <!--== Dark theme ==-->
-    <style name="Theme.Tachiyomi.Dark" parent="Theme.Base.Dark">
-        <item name="android:statusBarColor">?attr/colorSurface</item>
-        <item name="android:navigationBarColor">?attr/colorSurface</item>
-    </style>
+    <style name="Theme.Tachiyomi" parent="Base.Theme.Tachiyomi" />
 
-    <!--== Dark Blue theme ==-->
-    <style name="Theme.Tachiyomi.Dark.Blue">
+    <style name="Theme.Tachiyomi.DarkBlue">
         <!-- Theme colors -->
-        <item name="colorPrimary">@color/accent_darkblue</item>
+        <item name="colorPrimary">@color/accent_lightblue</item>
+        <item name="colorControlHighlight">@color/ripple_colored_lightblue</item>
+    </style>
+
+    <!--== Strawberry Daiquiri theme ==-->
+    <style name="Theme.Tachiyomi.StrawberryDaiquiri">
+        <!-- Theme colors -->
+        <item name="colorPrimary">@color/accent_strawberry</item>
+        <item name="colorTertiary">@color/md_blue_A400</item>
+        <item name="colorControlHighlight">@color/ripple_colored_strawberry</item>
+    </style>
+
+    <!--== Yotsuba theme ==-->
+    <style name="Theme.Tachiyomi.Yotsuba">
+        <!-- Theme colors -->
+        <item name="colorPrimary">@color/accent_yotsuba</item>
+        <item name="colorTertiary">@color/md_blue_A400</item>
+        <item name="colorControlHighlight">@color/ripple_colored_yotsuba</item>
+    </style>
+
+    <!--== Green Apple theme ==-->
+    <style name="Theme.Tachiyomi.GreenApple">
+        <!-- Theme colors -->
+        <item name="colorPrimary">@color/accent_greenapple</item>
+        <item name="colorOnPrimary">@color/md_black_1000</item>
+        <item name="colorTertiary">@color/md_blue_A400</item>
+        <item name="colorControlHighlight">@color/ripple_colored_greenapple</item>
+        <item name="lightSystemBarsOnPrimary">true</item>
+    </style>
+
+    <!--== Midnight Dusk theme ==-->
+    <style name="Theme.Tachiyomi.MidnightDusk">
+        <!-- Theme colors -->
+        <item name="colorPrimary">@color/accent_midnightdusk</item>
+        <item name="colorTertiary">@color/md_blue_A400</item>
+        <item name="colorControlHighlight">@color/ripple_colored_midnightdusk</item>
+    </style>
+
+    <!--== Hot Pink theme ==-->
+    <style name="Theme.Tachiyomi.HotPink">
+        <!-- Theme colors -->
+        <item name="colorPrimary">@color/accent_hotpink</item>
+        <item name="colorTertiary">@color/md_blue_A400</item>
+        <item name="colorControlHighlight">@color/ripple_colored_hotpink</item>
+    </style>
+
+    <!--== AMOLED theme overlay ==-->
+    <style name="ThemeOverlay.Tachiyomi.Amoled" parent="" />
+
+    <!--== Colored bars (toolbar-navbar-navrail) theme overlay ==-->
+    <style name="ThemeOverlay.Tachiyomi.ColoredBars" parent="">
         <item name="colorToolbar">?attr/colorPrimary</item>
         <item name="colorOnToolbar">?attr/colorOnPrimary</item>
 
-        <!-- Ripples -->
-        <item name="colorControlHighlight">@color/ripple_colored_darkblue</item>
-        <item name="rippleColorToolbar">@color/md_white_1000_12</item>
+        <!-- Base background/text colors -->
+        <item name="background">?attr/colorPrimary</item>
 
         <!-- Themes -->
         <item name="actionModeStyle">@style/Widget.Tachiyomi.ActionMode</item>
@@ -240,47 +150,10 @@
         <item name="navigationRailStyle">@style/Widget.MaterialComponents.NavigationRailView.Colored</item>
 
         <!-- Status/Navigation bar -->
+        <item name="android:windowLightStatusBar" tools:targetApi="m">?attr/lightSystemBarsOnPrimary</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">?attr/lightSystemBarsOnPrimary</item>
         <item name="android:statusBarColor">?attr/colorPrimary</item>
         <item name="android:navigationBarColor">?attr/colorPrimary</item>
-    </style>
-
-    <!--== Green Apple theme ==-->
-    <style name="Theme.Tachiyomi.Dark.GreenApple">
-        <!-- Theme colors -->
-        <item name="colorPrimary">@color/accent_greenapple</item>
-        <item name="colorOnPrimary">@color/md_black_1000</item>
-        <item name="colorTertiary">@color/md_blue_A400</item>
-        <item name="colorControlHighlight">@color/ripple_colored_greenapple</item>
-    </style>
-
-    <!--== Midnight Dusk theme ==-->
-    <style name="Theme.Tachiyomi.Dark.MidnightDusk">
-        <!-- Theme colors -->
-        <item name="colorPrimary">@color/accent_midnightdusk</item>
-        <item name="colorTertiary">@color/md_blue_A400</item>
-        <item name="colorSurface">@color/surface_midnightdusk</item>
-        <item name="android:colorBackground">@color/background_midnightdusk</item>
-        <item name="colorControlHighlight">@color/ripple_colored_midnightdusk</item>
-    </style>
-
-    <!--== Hot Pink theme ==-->
-    <style name="Theme.Tachiyomi.Dark.HotPink">
-        <!-- Theme colors -->
-        <item name="colorPrimary">@color/accent_hotpink</item>
-        <item name="colorTertiary">@color/md_blue_A400</item>
-        <item name="colorControlHighlight">@color/ripple_colored_hotpink</item>
-    </style>
-
-    <!--===============-->
-    <!-- AMOLED Themes -->
-    <!--===============-->
-
-    <!--== AMOLED theme ==-->
-    <style name="ThemeOverlay.Tachiyomi.Amoled" parent="">
-        <item name="colorSurface">@color/surface_amoled</item>
-        <item name="android:colorBackground">@color/background_amoled</item>
-        <item name="android:divider">@color/divider_amoled</item>
-        <item name="colorFilterActive">@color/filterColorAmoled</item>
     </style>
 
     <!--===============-->
@@ -288,10 +161,12 @@
     <!--===============-->
 
     <!--== Splash theme ==-->
-    <style name="Theme.Splash" parent="Theme.Tachiyomi.Light.Blue">
+    <style name="Theme.Splash" parent="Theme.Tachiyomi">
         <item name="android:windowBackground">@drawable/splash_background</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
     </style>
 
 </resources>

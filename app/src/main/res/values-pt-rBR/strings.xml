@@ -357,10 +357,7 @@
     <string name="theme_light">Desligado</string>
     <string name="theme_dark">Ligado</string>
     <string name="theme_system">Seguir o sistema</string>
-    <string name="pref_theme_dark">Tema escuro</string>
-    <string name="theme_dark_default">Padrão</string>
-    <string name="theme_dark_blue">Azul Escuro</string>
-    <string name="theme_dark_amoled">Preto AMOLED</string>
+    <string name="theme_darkblue">Azul Escuro</string>
     <string name="pref_manage_notifications">Gerenciar notificações</string>
     <string name="pref_category_security">Segurança</string>
     <string name="lock_with_biometrics">Requer desbloqueio</string>
@@ -402,9 +399,7 @@
         <item quantity="one">Para 1 título</item>
         <item quantity="other">Para %d títulos</item>
     </plurals>
-    <string name="pref_theme_light">Tema claro</string>
-    <string name="theme_light_default">Padrão</string>
-    <string name="theme_light_blue">Azul Claro</string>
+    <string name="theme_default">Padrão</string>
     <string name="action_menu">Menu</string>
     <string name="action_reorganize_by">Reordenar</string>
     <string name="action_newest">Mais novos</string>
@@ -640,16 +635,16 @@
     <string name="unread">Não lido</string>
     <string name="pref_auto_add_track">Monitora de modo silencioso ao adicionar um mangá na biblioteca</string>
     <string name="pref_move_side_nav_to_bottom">Mover os botões de navegação laterais para baixo</string>
-    <string name="theme_dark_amoled_hotpink">Rosa Quente</string>
-    <string name="theme_dark_midnightdusk">Aurora-da-noite</string>
-    <string name="theme_light_strawberrydaiquiri">Daiquiri de Morango</string>
+    <string name="theme_hotpink">Rosa Quente</string>
+    <string name="theme_midnightdusk">Aurora-da-noite</string>
+    <string name="theme_strawberrydaiquiri">Daiquiri de Morango</string>
     <string name="date">Data</string>
     <string name="local_filter_order_by">Ordenar por</string>
     <string name="local_invalid_format">Formato de capítulo inválido</string>
     <string name="chapter_not_found">Capítulo não encontrado</string>
     <string name="pref_library_update_refresh_trackers_summary">Atualizar os monitoradores durante a atualização da biblioteca</string>
     <string name="pref_library_update_refresh_trackers">Atualizar os monitoradores automaticamente</string>
-    <string name="theme_dark_greenapple">Maçã Verde</string>
+    <string name="theme_greenapple">Maçã Verde</string>
     <string name="restrictions">Restrições: %s</string>
     <string name="action_display_local_badge">Selos da fonte local</string>
     <string name="off">Desligado</string>
