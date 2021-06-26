@@ -1,7 +1,6 @@
 package eu.kanade.tachiyomi.widget.sheet
 
 import android.content.Context
-import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.util.DisplayMetrics
@@ -10,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.preference.PreferenceValues
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.util.system.displayCompat
 import eu.kanade.tachiyomi.util.view.setNavigationBarTransparentCompat
@@ -45,16 +43,9 @@ abstract class BaseBottomSheetDialog(context: Context) : BottomSheetDialog(conte
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             window?.setNavigationBarTransparentCompat(context)
-            val isDarkMode = when (Injekt.get<PreferencesHelper>().themeMode().get()) {
-                PreferenceValues.ThemeMode.light -> false
-                PreferenceValues.ThemeMode.dark -> true
-                PreferenceValues.ThemeMode.system ->
-                    context.resources.configuration.uiMode and
-                        Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
-            }
             val bottomSheet = rootView.parent as ViewGroup
             var flags = bottomSheet.systemUiVisibility
-            flags = if (isDarkMode) {
+            flags = if (Injekt.get<PreferencesHelper>().isDarkMode()) {
                 flags and View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR.inv()
             } else {
                 flags or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR

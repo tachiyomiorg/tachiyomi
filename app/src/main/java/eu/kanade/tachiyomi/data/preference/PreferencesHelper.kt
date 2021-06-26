@@ -45,17 +45,6 @@ fun Preference<Boolean>.toggle(): Boolean {
     return get()
 }
 
-fun PreferencesHelper.isDarkMode(): Boolean {
-    return when (themeMode().get()) {
-        light -> false
-        dark -> true
-        system -> {
-            context.applicationContext.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK ==
-                Configuration.UI_MODE_NIGHT_YES
-        }
-    }
-}
-
 class PreferencesHelper(val context: Context) {
 
     private val prefs = PreferenceManager.getDefaultSharedPreferences(context)
@@ -333,6 +322,17 @@ class PreferencesHelper(val context: Context) {
             putInt(Keys.defaultChapterSortBySourceOrNumber, manga.sorting)
             putInt(Keys.defaultChapterDisplayByNameOrNumber, manga.displayMode)
             putInt(Keys.defaultChapterSortByAscendingOrDescending, if (manga.sortDescending()) Manga.CHAPTER_SORT_DESC else Manga.CHAPTER_SORT_ASC)
+        }
+    }
+
+    fun isDarkMode(): Boolean {
+        return when (themeMode().get()) {
+            light -> false
+            dark -> true
+            system -> {
+                context.applicationContext.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK ==
+                    Configuration.UI_MODE_NIGHT_YES
+            }
         }
     }
 }

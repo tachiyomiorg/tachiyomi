@@ -8,7 +8,6 @@ import eu.kanade.tachiyomi.data.preference.PreferenceValues.DarkThemeVariant
 import eu.kanade.tachiyomi.data.preference.PreferenceValues.LightThemeVariant
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.asImmediateFlow
-import eu.kanade.tachiyomi.data.preference.isDarkMode
 import eu.kanade.tachiyomi.util.view.setSecureScreen
 import kotlinx.coroutines.flow.launchIn
 import uy.kohesive.injekt.Injekt
