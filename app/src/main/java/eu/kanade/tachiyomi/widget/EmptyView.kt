@@ -2,7 +2,6 @@ package eu.kanade.tachiyomi.widget
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.Color
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
@@ -12,6 +11,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.view.isVisible
 import com.google.android.material.button.MaterialButton
+import com.mikepenz.aboutlibraries.util.getThemeColor
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.databinding.CommonViewEmptyBinding
 import kotlin.random.Random
@@ -42,17 +42,22 @@ class EmptyView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         binding.textLabel.text = message
 
         binding.actionsContainer.removeAllViews()
+        val buttonContext = ContextThemeWrapper(context, R.style.Widget_Tachiyomi_Button_ActionButton)
+        val buttonColor = ColorStateList.valueOf(context.getThemeColor(R.attr.colorOnBackground))
         actions?.forEach {
-            val button = MaterialButton(ContextThemeWrapper(context, R.style.Theme_Widget_Button_Action)).apply {
+            val button = MaterialButton(
+                buttonContext,
+                null,
+                R.attr.borderlessButtonStyle
+            ).apply {
                 layoutParams = LinearLayout.LayoutParams(
                     0,
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     1f / actions.size
                 )
 
-                backgroundTintList = ColorStateList.valueOf(Color.TRANSPARENT)
-                stateListAnimator = null
-                elevation = 0f
+                setTextColor(buttonColor)
+                iconTint = buttonColor
 
                 setIconResource(it.iconResId)
                 setText(it.stringResId)

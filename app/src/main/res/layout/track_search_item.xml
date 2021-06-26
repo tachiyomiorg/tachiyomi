@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/Theme.Widget.CardView.Item"
+    style="@style/Widget.Tachiyomi.CardView.Item"
     android:layout_margin="0dp"
     android:padding="0dp">
 

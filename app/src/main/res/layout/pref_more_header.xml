@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/colorPrimary"
+    android:background="?attr/colorToolbar"
     android:elevation="2dp"
     android:padding="32dp">
 
@@ -12,6 +12,6 @@
         android:layout_height="56dp"
         android:layout_gravity="center"
         app:srcCompat="@drawable/ic_tachi"
-        app:tint="?attr/colorOnPrimary" />
+        app:tint="?attr/colorOnToolbar" />
 
 </FrameLayout>

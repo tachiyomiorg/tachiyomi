@@ -149,7 +149,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_favorite"
-            style="@style/Theme.Widget.Button.Action"
+            style="@style/Widget.Tachiyomi.Button.ActionButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -158,7 +158,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_tracking"
-            style="@style/Theme.Widget.Button.Action"
+            style="@style/Widget.Tachiyomi.Button.ActionButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -169,7 +169,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_webview"
-            style="@style/Theme.Widget.Button.Action"
+            style="@style/Widget.Tachiyomi.Button.ActionButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -219,7 +219,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/manga_info_toggle_more"
-            style="@style/Theme.Widget.Button.TextButton"
+            style="@style/Widget.Tachiyomi.Button.InlineButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="8dp"
@@ -231,7 +231,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/manga_info_toggle_less"
-            style="@style/Theme.Widget.Button.TextButton"
+            style="@style/Widget.Tachiyomi.Button.InlineButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="8dp"

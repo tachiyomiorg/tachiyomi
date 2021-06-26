@@ -22,7 +22,7 @@
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/progress"
-            style="@style/Theme.Widget.CircularProgressIndicator.Small"
+            style="@style/Widget.Tachiyomi.CircularProgressIndicator.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -38,6 +38,32 @@
             tools:ignore="ContentDescription"
             tools:src="@mipmap/ic_launcher" />
 
+        <LinearLayout
+            android:id="@+id/badges"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/rounded_rectangle">
+
+            <TextView
+                android:id="@+id/favorite_text"
+                style="@style/TextAppearance.Regular.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorSecondary"
+                android:maxLines="1"
+                android:paddingStart="3dp"
+                android:paddingTop="1dp"
+                android:paddingEnd="3dp"
+                android:paddingBottom="1dp"
+                android:text="@string/in_library"
+                android:textColor="?attr/colorOnSecondary"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
     </FrameLayout>
 
     <TextView
@@ -50,7 +76,6 @@
         android:lineSpacingExtra="-4dp"
         android:maxLines="2"
         android:padding="4dp"
-        android:shadowColor="@color/textColorPrimaryLight"
         app:layout_constraintEnd_toEndOf="@+id/card"
         app:layout_constraintStart_toStartOf="@+id/card"
         app:layout_constraintTop_toBottomOf="@+id/card"

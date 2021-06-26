@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Base.V27.Theme.Tachiyomi.Light" parent="Base.Theme.Tachiyomi.Light">
-        <item name="android:navigationBarColor">?attr/colorPrimary</item>
+        <item name="android:navigationBarColor">?attr/colorSurface</item>
         <item name="android:windowLightNavigationBar">true</item>
     </style>
 

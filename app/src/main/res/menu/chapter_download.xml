@@ -2,6 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/start_download"
+        android:title="@string/action_start_downloading_now" />
+
+    <item
         android:id="@+id/delete_download"
         android:title="@string/action_delete" />
 

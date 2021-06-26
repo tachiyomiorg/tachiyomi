@@ -14,16 +14,6 @@ jobs:
           rules: |
             [
               {
-                "type": "title",
-                "regex": ".*THIS ISSUE IS IN THE WRONG REPO.*",
-                "message": "It was not opened in the correct repo, as the template mentioned."
-              },
-              {
-                "type": "title",
-                "regex": ".*<Write short description here>*",
-                "message": "The description in the title was not filled out."
-              },
-              {
                 "type": "body",
                 "regex": ".*DELETE THIS SECTION IF YOU HAVE READ AND ACKNOWLEDGED IT.*",
                 "message": "The acknowledgment section was not removed."

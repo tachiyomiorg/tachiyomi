@@ -7,12 +7,12 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp"
     app:cardBackgroundColor="?android:attr/colorBackground"
-    app:cardElevation="0dp">
+    app:cardElevation="0dp"
+    app:cardForegroundColor="@color/draggable_card_foreground">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/list_item_selector_background">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/reorder"
@@ -98,7 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/download_progress_text"
-            android:background="@drawable/ripple_regular"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/action_menu"
             android:paddingHorizontal="10dp"
             android:paddingVertical="16dp"

@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.data.preference
 
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Environment
 import androidx.core.content.edit
 import androidx.core.net.toUri
@@ -9,6 +10,7 @@ import com.tfcporciuncula.flow.FlowSharedPreferences
 import com.tfcporciuncula.flow.Preference
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.data.preference.PreferenceValues.ThemeMode.*
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.track.anilist.Anilist
 import eu.kanade.tachiyomi.ui.library.setting.DisplayModeSetting
@@ -86,7 +88,7 @@ class PreferencesHelper(val context: Context) {
 
     fun showLibraryUpdateErrors() = prefs.getBoolean(Keys.showLibraryUpdateErrors, true)
 
-    fun themeMode() = flowPrefs.getEnum(Keys.themeMode, Values.ThemeMode.system)
+    fun themeMode() = flowPrefs.getEnum(Keys.themeMode, system)
 
     fun themeLight() = flowPrefs.getEnum(Keys.themeLight, Values.LightThemeVariant.default)
 
@@ -321,6 +323,17 @@ class PreferencesHelper(val context: Context) {
             putInt(Keys.defaultChapterSortBySourceOrNumber, manga.sorting)
             putInt(Keys.defaultChapterDisplayByNameOrNumber, manga.displayMode)
             putInt(Keys.defaultChapterSortByAscendingOrDescending, if (manga.sortDescending()) Manga.CHAPTER_SORT_DESC else Manga.CHAPTER_SORT_ASC)
+        }
+    }
+
+    fun isDarkMode(): Boolean {
+        return when (themeMode().get()) {
+            light -> false
+            dark -> true
+            system -> {
+                context.applicationContext.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK ==
+                    Configuration.UI_MODE_NIGHT_YES
+            }
         }
     }
 }

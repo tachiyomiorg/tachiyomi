@@ -1,104 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Application Colors -->
-    <color name="colorPrimary">#54759E</color>
-    <color name="colorPrimaryDark">#435E7E</color>
-    <color name="colorPrimary_70">#B354759E</color>
-
-    <!-- Dark Application Colors -->
-    <color name="colorDarkPrimary">#242529</color>
-    <color name="colorDarkPrimaryDark">#202125</color>
-
-    <!-- AMOLED Application Colors -->
-    <color name="colorAmoledPrimary">@color/md_black_1000</color>
-
-    <!-- Splash Color -->
-    <color name="splashBackgroundColor">@color/colorPrimary</color>
+    <color name="splash">@color/accent_lightblue</color>
 
     <!-- Light Theme -->
-    <color name="colorAccentLight">@color/md_blue_A400</color>
-    <color name="textColorPrimaryLight">@color/md_black_1000_87</color>
-    <color name="textColorSecondaryLight">@color/md_black_1000_54</color>
-    <color name="textColorHintLight">@color/md_black_1000_38</color>
-    <color name="dividerLight">@color/md_black_1000_12</color>
-    <color name="rippleColorLight">@color/md_black_1000_6</color>
-    <color name="rippleSecondaryColorLight">@color/md_blue_A400_4</color>
-    <color name="rippleToolbarColorLight">@color/rippleColorLight</color>
-    <color name="backgroundLight">@color/md_grey_50</color>
-    <color name="dialogLight">@color/md_white_1000</color>
-    <color name="selectorColorLight">@color/md_blue_A400_75</color>
+    <color name="accent_light">@color/md_blue_A400</color>
+    <color name="divider_light">@color/md_black_1000_12</color>
+    <color name="surface_light">@color/md_white_1000</color>
+    <color name="background_light">@color/md_grey_50</color>
+    <color name="ripple_colored_light">@color/md_blue_A400_12</color>
+
+    <!-- Light Blue Theme -->
+    <color name="accent_lightblue">#54759E</color>
+    <color name="ripple_colored_lightblue">#1F54759E</color>
 
     <!-- Strawberry Daiquiri Theme -->
-    <color name="colorAccentStrawberry">#ED4A65</color>
-    <color name="rippleSecondaryColorStrawberry">#0AED4A65</color>
-    <color name="selectorColorStrawberry">#BFED4A65</color>
+    <color name="accent_strawberry">#ED4A65</color>
+    <color name="ripple_colored_strawberry">#1FED4A65</color>
 
     <!-- Yotsuba Theme -->
-    <color name="colorAccentYotsuba">#FC8C5C</color>
-    <color name="rippleSecondaryColorYotsuba">#0AFC8C5C</color>
-    <color name="selectorColorYotsuba">#BFFC8C5C</color>
+    <color name="accent_yotsuba">#FC8C5C</color>
+    <color name="ripple_colored_yotsuba">#1FFC8C5C</color>
 
     <!-- Dark Theme -->
-    <color name="colorAccentDark">#3399FF</color>
-    <color name="textColorPrimaryDark">@color/md_white_1000</color>
-    <color name="textColorSecondaryDark">@color/md_white_1000_70</color>
-    <color name="textColorHintDark">@color/md_white_1000_50</color>
-    <color name="dividerDark">@android:color/transparent</color>
-    <color name="rippleColorDark">@color/md_white_1000_6</color>
-    <color name="rippleSecondaryColorDark">#0A3399FF</color>
-    <color name="rippleToolbarColorDark">@color/rippleColorDark</color>
-    <color name="backgroundDark">@color/colorDarkPrimaryDark</color>
-    <color name="dialogDark">@color/colorDarkPrimary</color>
-    <color name="selectorColorDark">@color/md_blue_A200_50</color>
+    <color name="accent_dark">#3399FF</color>
+    <color name="divider_dark">@color/md_white_1000_12</color>
+    <color name="surface_dark">#242529</color>
+    <color name="background_dark">#202125</color>
+    <color name="ripple_colored_dark">#1F3399FF</color>
+
+    <!-- Dark Blue Theme -->
+    <color name="accent_darkblue">#54759E</color>
+    <color name="ripple_colored_darkblue">#1F54759E</color>
 
     <!-- Green Apple Theme -->
-    <color name="colorAccentApple">#48E484</color>
-    <color name="colorOnSecondaryApple">@color/md_black_1000</color>
-    <color name="rippleSecondaryColorApple">#0A48E484</color>
-    <color name="selectorColorApple">#BF48E484</color>
+    <color name="accent_greenapple">#48E484</color>
+    <color name="ripple_colored_greenapple">#1F48E484</color>
 
     <!-- Midnight Dusk Theme -->
-    <color name="colorAccentDusk">#F02475</color>
-    <color name="textColorPrimaryDusk">@color/md_white_1000</color>
-    <color name="textColorSecondaryDusk">@color/md_white_1000_70</color>
-    <color name="textColorHintDusk">@color/md_white_1000_50</color>
-    <color name="dividerDusk">#12ffffff</color>
-    <color name="rippleSecondaryColorDusk">#0FF02475</color>
-    <color name="backgroundDusk">#16151D</color>
-    <color name="dialogDusk">#201F27</color>
-    <color name="selectorColorDusk">#BFF02475</color>
+    <color name="accent_midnightdusk">#F02475</color>
+    <color name="background_midnightdusk">#16151D</color>
+    <color name="surface_midnightdusk">#201F27</color>
+    <color name="ripple_colored_midnightdusk">#1FF02475</color>
 
     <!-- AMOLED Theme -->
-    <color name="colorAccentAmoled">#3399FF</color>
-    <color name="textColorPrimaryAmoled">@color/md_white_1000</color>
-    <color name="textColorSecondaryAmoled">@color/md_white_1000_70</color>
-    <color name="textColorHintAmoled">@color/md_white_1000_50</color>
-    <color name="dividerAmoled">@android:color/transparent</color>
-    <color name="rippleColorAmoled">@color/md_white_1000_8</color>
-    <color name="rippleSecondaryColorAmoled">#0A3399FF</color>
-    <color name="rippleToolbarColorAmoled">@color/rippleColorAmoled</color>
-    <color name="backgroundAmoled">@color/colorAmoledPrimary</color>
-    <color name="dialogAmoled">@color/colorAmoledPrimary</color>
-    <color name="selectorColorAmoled">@color/md_blue_A200_75</color>
+    <color name="accent_amoled">#3399FF</color>
+    <color name="divider_amoled">@android:color/transparent</color>
+    <color name="surface_amoled">@color/md_black_1000</color>
+    <color name="background_amoled">@color/md_black_1000</color>
+    <color name="ripple_colored_amoled">#1F3399FF</color>
 
     <!-- Hot Pink Theme -->
-    <color name="colorAccentPink">#FF3399</color>
-    <color name="textColorPrimaryPink">@color/md_white_1000</color>
-    <color name="textColorSecondaryPink">@color/md_white_1000_70</color>
-    <color name="textColorHintPink">@color/md_white_1000_50</color>
-    <color name="rippleSecondaryColorPink">#0AFF3399</color>
-    <color name="selectorColorPink">#BFFF69B4</color>
-
-    <!-- Reader Theme -->
-    <color name="readerColorDarkPrimary">@color/colorDarkPrimary</color>
-    <color name="pageNumberBackgroundLight">@color/md_grey_50_75</color>
-    <color name="pageNumberBackgroundDark">@color/md_grey_900_75</color>
+    <color name="accent_hotpink">#FF3399</color>
+    <color name="ripple_colored_hotpink">#1FFF3399</color>
 
     <color name="filterColorLight">#FFC107</color>
     <color name="filterColorDark">#FFEB3B</color>
     <color name="filterColorAmoled">#FFEB3B</color>
 
-    <!-- Text Colors -->
+    <!-- Material Design Colors -->
+    <color name="md_black_1000">#000000</color>
     <color name="md_black_1000_87">#DE000000</color>
     <color name="md_black_1000_54">#8A000000</color>
     <color name="md_black_1000_38">#61000000</color>
@@ -115,9 +75,6 @@
     <color name="md_white_1000_8">#14FFFFFF</color>
     <color name="md_white_1000_6">#0FFFFFFF</color>
 
-    <!-- Material Design Colors -->
-    <color name="md_black_1000">#000000</color>
-
     <color name="md_grey_50">#FAFAFA</color>
     <color name="md_grey_50_75">#BFFAFAFA</color>
     <color name="md_grey_100">#F5F5F5</color>
@@ -133,7 +90,7 @@
     <color name="md_blue_A400">#2979FF</color>
     <color name="md_blue_A400_75">#BF2979FF</color>
     <color name="md_blue_A400_38">#612979FF</color>
-    <color name="md_blue_A400_4">#0A2979FF</color>
+    <color name="md_blue_A400_12">#1F2979FF</color>
 
     <color name="md_blue_grey_900">#263238</color>
     <color name="md_blue_grey_800">#37474F</color>

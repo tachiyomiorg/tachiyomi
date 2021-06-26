@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="?attr/rippleColor">
+    android:color="?attr/colorControlHighlight">
     <item>
         <selector>
             <item android:state_selected="true">
-                <color android:color="?attr/rippleColor" />
+                <color android:color="?attr/colorControlHighlight" />
             </item>
 
             <item android:state_activated="true">
-                <color android:color="?attr/rippleColor" />
+                <color android:color="?attr/colorControlHighlight" />
             </item>
 
             <item>

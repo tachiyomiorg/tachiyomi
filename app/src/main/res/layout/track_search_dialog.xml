@@ -42,7 +42,7 @@
 
         <ListView
             android:id="@+id/track_search_list"
-            style="@style/Theme.Widget.CardView"
+            style="@style/Widget.Tachiyomi.CardView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:choiceMode="singleChoice"

@@ -17,13 +17,11 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
             android:theme="?attr/actionBarTheme"
             app:layout_scrollFlags="scroll|enterAlways" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
-            style="@style/Theme.Widget.Tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -77,13 +75,10 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
-        style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:itemIconTint="@color/nav_selector"
-        app:itemRippleColor="?attr/rippleSecondaryColor"
-        app:itemTextColor="@color/nav_selector"
+        app:itemRippleColor="@color/ripple_toolbar_fainter"
         app:labelVisibilityMode="labeled"
         app:layout_insetEdge="bottom"
         app:menu="@menu/main_nav" />

@@ -2,7 +2,7 @@
 <eu.kanade.tachiyomi.widget.AutofitRecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/source_grid"
-    style="@style/Theme.Widget.GridView.Source"
+    style="@style/Widget.Tachiyomi.GridView.Source"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipToPadding="false"

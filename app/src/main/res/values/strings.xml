@@ -120,6 +120,7 @@
     <string name="action_webview_back">Back</string>
     <string name="action_webview_forward">Forward</string>
     <string name="action_webview_refresh">Refresh</string>
+    <string name="action_start_downloading_now">Start downloading now</string>
 
     <!-- Operations -->
     <string name="loading">Loading…</string>

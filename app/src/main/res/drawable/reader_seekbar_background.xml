@@ -2,5 +2,5 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
     <corners android:radius="?attr/actionBarSize" />
-    <solid android:color="?attr/colorPrimary" />
+    <solid android:color="?attr/colorToolbar" />
 </shape>
