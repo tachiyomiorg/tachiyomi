@@ -130,10 +130,9 @@ class LibraryItem(
     private fun containsSourceOrGenre(query: String, sourceName: String, genres: List<String>?): Boolean {
         val minus = query.startsWith("-")
         val tag = if (minus) { query.substringAfter("-") } else query
-        val containsGenre by lazy { containsGenre(query, genres) }
         return when (sourceName.contains(tag, true)) {
-            false -> containsGenre
-            else -> !minus
+            false -> containsGenre(query, genres)
+            else  -> !minus
         }
     }
 
