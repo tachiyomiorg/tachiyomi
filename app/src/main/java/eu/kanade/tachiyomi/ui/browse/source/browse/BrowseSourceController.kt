@@ -24,7 +24,6 @@ import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.preference.PreferenceValues.DisplayMode
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.asImmediateFlow
 import eu.kanade.tachiyomi.databinding.SourceControllerBinding
@@ -37,6 +36,7 @@ import eu.kanade.tachiyomi.ui.base.controller.SearchableNucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchController
 import eu.kanade.tachiyomi.ui.library.ChangeMangaCategoriesDialog
+import eu.kanade.tachiyomi.ui.library.setting.DisplayModeSetting
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.more.MoreController
@@ -205,7 +205,7 @@ open class BrowseSourceController(bundle: Bundle) :
             binding.catalogueView.removeView(oldRecycler)
         }
 
-        val recycler = if (preferences.sourceDisplayMode().get() == DisplayMode.LIST) {
+        val recycler = if (preferences.sourceDisplayMode().get() == DisplayModeSetting.LIST) {
             RecyclerView(view.context).apply {
                 id = R.id.recycler
                 layoutManager = LinearLayoutManager(context)
@@ -273,9 +273,9 @@ open class BrowseSourceController(bundle: Bundle) :
         )
 
         val displayItem = when (preferences.sourceDisplayMode().get()) {
-            DisplayMode.COMPACT_GRID -> R.id.action_compact_grid
-            DisplayMode.COMFORTABLE_GRID -> R.id.action_comfortable_grid
-            DisplayMode.LIST -> R.id.action_list
+            DisplayModeSetting.COMPACT_GRID -> R.id.action_compact_grid
+            DisplayModeSetting.COMFORTABLE_GRID -> R.id.action_comfortable_grid
+            DisplayModeSetting.LIST -> R.id.action_list
         }
         menu.findItem(displayItem).isChecked = true
     }
@@ -297,9 +297,9 @@ open class BrowseSourceController(bundle: Bundle) :
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_search -> expandActionViewFromInteraction = true
-            R.id.action_compact_grid -> setDisplayMode(DisplayMode.COMPACT_GRID)
-            R.id.action_comfortable_grid -> setDisplayMode(DisplayMode.COMFORTABLE_GRID)
-            R.id.action_list -> setDisplayMode(DisplayMode.LIST)
+            R.id.action_compact_grid -> setDisplayMode(DisplayModeSetting.COMPACT_GRID)
+            R.id.action_comfortable_grid -> setDisplayMode(DisplayModeSetting.COMFORTABLE_GRID)
+            R.id.action_list -> setDisplayMode(DisplayModeSetting.LIST)
             R.id.action_open_in_web_view -> openInWebView()
             R.id.action_local_source_help -> openLocalSourceHelpGuide()
         }
@@ -446,7 +446,7 @@ open class BrowseSourceController(bundle: Bundle) :
      *
      * @param mode the mode to change to
      */
-    private fun setDisplayMode(mode: DisplayMode) {
+    private fun setDisplayMode(mode: DisplayModeSetting) {
         val view = view ?: return
         val adapter = adapter ?: return
 

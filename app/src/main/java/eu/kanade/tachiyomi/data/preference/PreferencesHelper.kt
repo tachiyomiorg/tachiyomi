@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.data.preference
 
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Environment
 import androidx.core.content.edit
 import androidx.core.net.toUri
@@ -9,9 +10,12 @@ import com.tfcporciuncula.flow.FlowSharedPreferences
 import com.tfcporciuncula.flow.Preference
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.preference.PreferenceValues.DisplayMode
+import eu.kanade.tachiyomi.data.preference.PreferenceValues.ThemeMode.*
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.track.anilist.Anilist
+import eu.kanade.tachiyomi.ui.library.setting.DisplayModeSetting
+import eu.kanade.tachiyomi.ui.library.setting.SortDirectionSetting
+import eu.kanade.tachiyomi.ui.library.setting.SortModeSetting
 import eu.kanade.tachiyomi.ui.reader.setting.OrientationType
 import eu.kanade.tachiyomi.ui.reader.setting.ReadingModeType
 import eu.kanade.tachiyomi.widget.ExtendedNavigationView
@@ -84,7 +88,7 @@ class PreferencesHelper(val context: Context) {
 
     fun showLibraryUpdateErrors() = prefs.getBoolean(Keys.showLibraryUpdateErrors, true)
 
-    fun themeMode() = flowPrefs.getEnum(Keys.themeMode, Values.ThemeMode.system)
+    fun themeMode() = flowPrefs.getEnum(Keys.themeMode, system)
 
     fun themeLight() = flowPrefs.getEnum(Keys.themeLight, Values.LightThemeVariant.default)
 
@@ -182,7 +186,7 @@ class PreferencesHelper(val context: Context) {
 
     fun lastVersionCode() = flowPrefs.getInt("last_version_code", 0)
 
-    fun sourceDisplayMode() = flowPrefs.getEnum(Keys.sourceDisplayMode, DisplayMode.COMPACT_GRID)
+    fun sourceDisplayMode() = flowPrefs.getEnum(Keys.sourceDisplayMode, DisplayModeSetting.COMPACT_GRID)
 
     fun enabledLanguages() = flowPrefs.getStringSet(Keys.enabledLanguages, setOf("en", Locale.getDefault().language))
 
@@ -233,7 +237,7 @@ class PreferencesHelper(val context: Context) {
 
     fun libraryUpdatePrioritization() = flowPrefs.getInt(Keys.libraryUpdatePrioritization, 0)
 
-    fun libraryDisplayMode() = flowPrefs.getEnum(Keys.libraryDisplayMode, DisplayMode.COMPACT_GRID)
+    fun libraryDisplayMode() = flowPrefs.getEnum(Keys.libraryDisplayMode, DisplayModeSetting.COMPACT_GRID)
 
     fun downloadBadge() = flowPrefs.getBoolean(Keys.downloadBadge, false)
 
@@ -255,9 +259,8 @@ class PreferencesHelper(val context: Context) {
 
     fun filterTracking(name: Int) = flowPrefs.getInt("${Keys.filterTracked}_$name", ExtendedNavigationView.Item.TriStateGroup.State.IGNORE.value)
 
-    fun librarySortingMode() = flowPrefs.getInt(Keys.librarySortingMode, 0)
-
-    fun librarySortingAscending() = flowPrefs.getBoolean("library_sorting_ascending", true)
+    fun librarySortingMode() = flowPrefs.getEnum(Keys.librarySortingMode, SortModeSetting.ALPHABETICAL)
+    fun librarySortingAscending() = flowPrefs.getEnum(Keys.librarySortingDirection, SortDirectionSetting.ASCENDING)
 
     fun automaticExtUpdates() = flowPrefs.getBoolean(Keys.automaticExtUpdates, true)
 
@@ -320,6 +323,17 @@ class PreferencesHelper(val context: Context) {
             putInt(Keys.defaultChapterSortBySourceOrNumber, manga.sorting)
             putInt(Keys.defaultChapterDisplayByNameOrNumber, manga.displayMode)
             putInt(Keys.defaultChapterSortByAscendingOrDescending, if (manga.sortDescending()) Manga.CHAPTER_SORT_DESC else Manga.CHAPTER_SORT_ASC)
+        }
+    }
+
+    fun isDarkMode(): Boolean {
+        return when (themeMode().get()) {
+            light -> false
+            dark -> true
+            system -> {
+                context.applicationContext.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK ==
+                    Configuration.UI_MODE_NIGHT_YES
+            }
         }
     }
 }

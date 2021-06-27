@@ -39,6 +39,7 @@
         <item name="android:navigationBarColor">@color/md_black_1000</item>
         <item name="android:navigationBarDividerColor" tools:targetApi="o_mr1">@null</item>
         <item name="android:enforceNavigationBarContrast" tools:targetApi="Q">false</item>
+        <item name="android:enforceStatusBarContrast" tools:targetApi="Q">false</item>
         <item name="android:itemTextAppearance">@style/TextAppearance.Widget.Menu</item>
         <item name="android:backgroundDimAmount">0.32</item>
         <item name="windowActionModeOverlay">true</item>
@@ -174,6 +175,7 @@
         <item name="android:navigationBarColor">@color/md_black_1000</item>
         <item name="android:navigationBarDividerColor" tools:targetApi="o_mr1">@null</item>
         <item name="android:enforceNavigationBarContrast" tools:targetApi="Q">false</item>
+        <item name="android:enforceStatusBarContrast" tools:targetApi="Q">false</item>
         <item name="android:itemTextAppearance">@style/TextAppearance.Widget.Menu</item>
         <item name="android:backgroundDimAmount">0.32</item>
         <item name="windowActionModeOverlay">true</item>
@@ -298,6 +300,7 @@
         <item name="android:statusBarColor">?attr/colorSurface</item>
         <item name="android:navigationBarDividerColor" tools:targetApi="o_mr1">@null</item>
         <item name="android:enforceNavigationBarContrast" tools:targetApi="Q">false</item>
+        <item name="android:enforceStatusBarContrast" tools:targetApi="Q">false</item>
         <item name="android:itemTextAppearance">@style/TextAppearance.Widget.Menu</item>
         <item name="android:backgroundDimAmount">0.32</item>
         <item name="windowActionModeOverlay">true</item>
@@ -347,64 +350,6 @@
         <item name="colorPrimary">@color/accent_hotpink</item>
         <item name="colorTertiary">@color/md_blue_A400</item>
         <item name="colorControlHighlight">@color/ripple_colored_hotpink</item>
-    </style>
-
-    <!--===============-->
-    <!-- Reader Themes -->
-    <!--===============-->
-
-    <!--== Light Reader base ==-->
-    <style name="Theme.Base.Reader.Light" parent="Theme.Base.Light">
-        <!-- Theme colors -->
-        <item name="colorSurface">@color/md_white_1000</item>
-        <item name="colorToolbar">@color/reader_toolbar</item>
-        <item name="colorOnToolbar">@color/md_white_1000</item>
-
-        <!-- Base background/text colors -->
-        <item name="android:colorBackground">@color/md_white_1000</item>
-        <item name="android:statusBarColor">?attr/colorToolbar</item>
-        <item name="android:navigationBarColor">?attr/colorToolbar</item>
-
-        <!-- Themes -->
-        <item name="toolbarStyle">@style/Widget.Tachiyomi.Toolbar.Primary</item>
-        <item name="switchStyle">@style/Widget.Tachiyomi.BasicSwitch</item>
-        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.Tachiyomi.BottomSheetDialog</item>
-        <item name="android:alertDialogTheme">@style/ThemeOverlay.Tachiyomi.MaterialAlertDialog</item>
-    </style>
-
-    <!--== Light Reader ==-->
-    <style name="Theme.Reader.Light" parent="Theme.Base.Reader.Light" />
-
-    <!--== Dark Reader base ==-->
-    <style name="Theme.Base.Reader.Dark" parent="Theme.Base.Dark">
-        <!-- Theme colors -->
-        <item name="colorSurface">@color/md_black_1000</item>
-        <item name="colorToolbar">@color/reader_toolbar</item>
-
-        <!-- Base background/text colors -->
-        <item name="android:colorBackground">@color/md_black_1000</item>
-        <item name="android:statusBarColor">?attr/colorToolbar</item>
-        <item name="android:navigationBarColor">?attr/colorToolbar</item>
-
-        <!-- Themes -->
-        <item name="switchStyle">@style/Widget.Tachiyomi.BasicSwitch</item>
-        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.Tachiyomi.BottomSheetDialog</item>
-        <item name="android:alertDialogTheme">@style/ThemeOverlay.Tachiyomi.MaterialAlertDialog</item>
-    </style>
-
-    <!--== Dark Reader ==-->
-    <style name="Theme.Reader.Dark" parent="Theme.Base.Reader.Dark" />
-
-    <!--== Dark Grey Reader ==-->
-    <style name="Theme.Reader.Dark.Grey" parent="Theme.Base.Reader.Dark">
-        <!-- Theme colors -->
-        <item name="colorSurface">@color/background_dark</item>
-
-        <!-- Base background/text colors -->
-        <item name="android:colorBackground">@color/background_dark</item>
-
-        <!-- Alert Dialog -->
-        <item name="android:alertDialogTheme">@style/ThemeOverlay.Tachiyomi.MaterialAlertDialog</item>
     </style>
 
     <!--===============-->

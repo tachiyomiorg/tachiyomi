@@ -147,6 +147,7 @@ object PreferenceKeys {
     const val filterTracked = "pref_filter_library_tracked"
 
     const val librarySortingMode = "library_sorting_mode"
+    const val librarySortingDirection = "library_sorting_ascending"
 
     const val automaticExtUpdates = "automatic_ext_updates"
 

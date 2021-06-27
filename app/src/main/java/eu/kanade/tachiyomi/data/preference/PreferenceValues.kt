@@ -37,12 +37,6 @@ object PreferenceValues {
 
     /* ktlint-enable experimental:enum-entry-name-case */
 
-    enum class DisplayMode {
-        COMPACT_GRID,
-        COMFORTABLE_GRID,
-        LIST,
-    }
-
     enum class TappingInvertMode(val shouldInvertHorizontal: Boolean = false, val shouldInvertVertical: Boolean = false) {
         NONE,
         HORIZONTAL(shouldInvertHorizontal = true),

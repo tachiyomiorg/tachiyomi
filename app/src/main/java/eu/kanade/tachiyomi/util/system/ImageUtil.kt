@@ -43,7 +43,6 @@ object ImageUtil {
     fun findImageType(stream: InputStream): ImageType? {
         try {
             return when (getImageType(stream)?.format) {
-                // TODO: image-decoder library currently doesn't actually detect AVIF yet
                 Format.Avif -> ImageType.AVIF
                 Format.Gif -> ImageType.GIF
                 Format.Heif -> ImageType.HEIF

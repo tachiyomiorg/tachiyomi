@@ -22,7 +22,6 @@ jobs:
   build:
     name: Build app
     needs: check_wrapper
-    if: "!startsWith(github.event.head_commit.message, '[SKIP CI]')"
     runs-on: ubuntu-latest
 
     steps:

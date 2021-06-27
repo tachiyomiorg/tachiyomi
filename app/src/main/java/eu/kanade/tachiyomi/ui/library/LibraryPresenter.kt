@@ -15,6 +15,8 @@ import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
+import eu.kanade.tachiyomi.ui.library.setting.SortDirectionSetting
+import eu.kanade.tachiyomi.ui.library.setting.SortModeSetting
 import eu.kanade.tachiyomi.util.isLocal
 import eu.kanade.tachiyomi.util.lang.combineLatest
 import eu.kanade.tachiyomi.util.lang.isNullOrUnsubscribed
@@ -98,7 +100,7 @@ class LibraryPresenter(
                     lib.copy(mangaMap = applyFilters(lib.mangaMap, tracks))
                 }
                 .combineLatest(sortTriggerRelay.observeOn(Schedulers.io())) { lib, _ ->
-                    lib.copy(mangaMap = applySort(lib.mangaMap))
+                    lib.copy(mangaMap = applySort(lib.categories, lib.mangaMap))
                 }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeLatestCache({ view, (categories, mangaMap) ->
@@ -228,9 +230,7 @@ class LibraryPresenter(
      *
      * @param map the map to sort.
      */
-    private fun applySort(map: LibraryMap): LibraryMap {
-        val sortingMode = preferences.librarySortingMode().get()
-
+    private fun applySort(categories: List<Category>, map: LibraryMap): LibraryMap {
         val lastReadManga by lazy {
             var counter = 0
             db.getLastReadManga().executeAsBlocking().associate { it.id!! to counter++ }
@@ -248,55 +248,67 @@ class LibraryPresenter(
             db.getChapterFetchDateManga().executeAsBlocking().associate { it.id!! to counter++ }
         }
 
-        val sortAscending = preferences.librarySortingAscending().get()
+        val sortingModes = categories.associate { category ->
+            (category.id ?: 0) to SortModeSetting.get(preferences, category)
+        }
+
+        val sortAscending = categories.associate { category ->
+            (category.id ?: 0) to SortDirectionSetting.get(preferences, category)
+        }
+
         val sortFn: (LibraryItem, LibraryItem) -> Int = { i1, i2 ->
+            val sortingMode = sortingModes[i1.manga.category]!!
+            val sortAscending = sortAscending[i1.manga.category]!! == SortDirectionSetting.ASCENDING
             when (sortingMode) {
-                LibrarySort.ALPHA -> i1.manga.title.compareTo(i2.manga.title, true)
-                LibrarySort.LAST_READ -> {
+                SortModeSetting.ALPHABETICAL -> i1.manga.title.compareTo(i2.manga.title, true)
+                SortModeSetting.LAST_READ -> {
                     // Get index of manga, set equal to list if size unknown.
                     val manga1LastRead = lastReadManga[i1.manga.id!!] ?: lastReadManga.size
                     val manga2LastRead = lastReadManga[i2.manga.id!!] ?: lastReadManga.size
                     manga1LastRead.compareTo(manga2LastRead)
                 }
-                LibrarySort.LAST_CHECKED -> i2.manga.last_update.compareTo(i1.manga.last_update)
-                LibrarySort.UNREAD -> when {
+                SortModeSetting.LAST_CHECKED -> i2.manga.last_update.compareTo(i1.manga.last_update)
+                SortModeSetting.UNREAD -> when {
                     // Ensure unread content comes first
                     i1.manga.unread == i2.manga.unread -> 0
                     i1.manga.unread == 0 -> if (sortAscending) 1 else -1
                     i2.manga.unread == 0 -> if (sortAscending) -1 else 1
                     else -> i1.manga.unread.compareTo(i2.manga.unread)
                 }
-                LibrarySort.TOTAL -> {
+                SortModeSetting.TOTAL_CHAPTERS -> {
                     val manga1TotalChapter = totalChapterManga[i1.manga.id!!] ?: 0
                     val mange2TotalChapter = totalChapterManga[i2.manga.id!!] ?: 0
                     manga1TotalChapter.compareTo(mange2TotalChapter)
                 }
-                LibrarySort.LATEST_CHAPTER -> {
+                SortModeSetting.LATEST_CHAPTER -> {
                     val manga1latestChapter = latestChapterManga[i1.manga.id!!]
                         ?: latestChapterManga.size
                     val manga2latestChapter = latestChapterManga[i2.manga.id!!]
                         ?: latestChapterManga.size
                     manga1latestChapter.compareTo(manga2latestChapter)
                 }
-                LibrarySort.CHAPTER_FETCH_DATE -> {
+                SortModeSetting.DATE_FETCHED -> {
                     val manga1chapterFetchDate = chapterFetchDateManga[i1.manga.id!!]
                         ?: chapterFetchDateManga.size
                     val manga2chapterFetchDate = chapterFetchDateManga[i2.manga.id!!]
                         ?: chapterFetchDateManga.size
                     manga1chapterFetchDate.compareTo(manga2chapterFetchDate)
                 }
-                LibrarySort.DATE_ADDED -> i2.manga.date_added.compareTo(i1.manga.date_added)
-                else -> throw Exception("Unknown sorting mode")
+                SortModeSetting.DATE_ADDED -> i2.manga.date_added.compareTo(i1.manga.date_added)
             }
         }
 
-        val comparator = if (sortAscending) {
-            Comparator(sortFn)
-        } else {
-            Collections.reverseOrder(sortFn)
-        }
+        return map.mapValues { entry ->
+            val sortAscending = sortAscending[entry.key]!! == SortDirectionSetting.ASCENDING
 
-        return map.mapValues { entry -> entry.value.sortedWith(comparator) }
+            val comparator = if (sortAscending) {
+                Comparator(sortFn)
+            } else {
+                Collections.reverseOrder(sortFn)
+            }
+
+            entry.value.sortedWith(comparator)
+        }
     }
 
     /**
