@@ -22,7 +22,6 @@ object LibraryUpdateRanker {
      * Orders the manga based on the distance between the next expected update and now.
      * The comparator is reversed, placing the smallest (and thus closest to updating now) first.
      */
-    //   @RequiresApi(Build.VERSION_CODES.N)
     fun nextFirstRanking(): Comparator<Manga> {
         val time = System.currentTimeMillis()
         return Collections.reverseOrder(
