@@ -38,7 +38,7 @@
     <!-- AMOLED Theme -->
     <color name="divider_amoled">@android:color/transparent</color>
     <color name="surface_amoled">#000001</color>
-    <color name="background_amoled">#000001</color>
+    <color name="background_amoled">#000000</color>
 
     <!-- Hot Pink Theme -->
     <color name="accent_hotpink">#FF3399</color>
@@ -51,7 +51,7 @@
     <color name="reader_background_dark">#202125</color>
 
     <!-- Material Design Colors -->
-    <color name="md_black_1000">#000001</color>
+    <color name="md_black_1000">#000000</color>
     <color name="md_black_1000_87">#DE000000</color>
     <color name="md_black_1000_54">#8A000000</color>
     <color name="md_black_1000_38">#61000000</color>
