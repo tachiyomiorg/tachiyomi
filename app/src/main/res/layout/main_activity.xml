@@ -78,8 +78,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:itemRippleColor="@color/ripple_toolbar_fainter"
-        app:labelVisibilityMode="labeled"
         app:layout_insetEdge="bottom"
         app:menu="@menu/main_nav" />
 

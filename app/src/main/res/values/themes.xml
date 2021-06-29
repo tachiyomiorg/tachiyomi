@@ -59,8 +59,8 @@
         <item name="appBarLayoutStyle">@style/Widget.MaterialComponents.AppBarLayout.Surface</item>
         <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.Surface</item>
         <item name="tabStyle">@style/Widget.Tachiyomi.TabLayout</item>
-        <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView</item>
-        <item name="navigationRailStyle">@style/Widget.MaterialComponents.NavigationRailView</item>
+        <item name="bottomNavigationStyle">@style/Widget.Tachiyomi.BottomNavigationView</item>
+        <item name="navigationRailStyle">@style/Widget.Tachiyomi.NavigationRailView</item>
         <item name="elevationOverlayEnabled">false</item>
         <item name="lightSystemBarsOnPrimary">false</item>
 
@@ -141,13 +141,14 @@
         <item name="background">?attr/colorPrimary</item>
 
         <!-- Themes -->
+        <item name="actionBarTheme">@style/ThemeOverlay.Tachiyomi.ActionBar.Colored</item>
         <item name="actionModeStyle">@style/Widget.Tachiyomi.ActionMode</item>
         <item name="toolbarNavigationButtonStyle">@style/Widget.Tachiyomi.Toolbar.Button.Navigation</item>
         <item name="appBarLayoutStyle">@style/Widget.MaterialComponents.AppBarLayout.Primary</item>
         <item name="toolbarStyle">@style/Widget.Tachiyomi.Toolbar.Primary</item>
         <item name="tabStyle">@style/Widget.Tachiyomi.TabLayout.Colored</item>
-        <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView.Colored</item>
-        <item name="navigationRailStyle">@style/Widget.MaterialComponents.NavigationRailView.Colored</item>
+        <item name="bottomNavigationStyle">@style/Widget.Tachiyomi.BottomNavigationView.Colored</item>
+        <item name="navigationRailStyle">@style/Widget.Tachiyomi.NavigationRailView.Colored</item>
 
         <!-- Status/Navigation bar -->
         <item name="android:windowLightStatusBar" tools:targetApi="m">?attr/lightSystemBarsOnPrimary</item>
