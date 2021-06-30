@@ -65,8 +65,13 @@ interface Source : tachiyomi.source.Source {
     @Suppress("DEPRECATION")
     override suspend fun getMangaDetails(manga: MangaInfo): MangaInfo {
         val sManga = manga.toSManga()
+        // Pull out and seperate the source status from the user status
+        val userPubStat = sManga.status and 0xF0
+        sManga.status = sManga.status and 0x0F
+
         val networkManga = fetchMangaDetails(sManga).awaitSingle()
         sManga.copyFrom(networkManga)
+        sManga.status = userPubStat or sManga.status
         return sManga.toMangaInfo()
     }
 
@@ -75,7 +80,9 @@ interface Source : tachiyomi.source.Source {
      */
     @Suppress("DEPRECATION")
     override suspend fun getChapterList(manga: MangaInfo): List<ChapterInfo> {
-        return fetchChapterList(manga.toSManga()).awaitSingle()
+        val sManga = manga.toSManga()
+        sManga.status = sManga.status and 0x0F
+        return fetchChapterList(sManga).awaitSingle()
             .map { it.toChapterInfo() }
     }
 

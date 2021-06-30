@@ -133,7 +133,7 @@ class LibraryPresenter(
 
         val filterFnCompleted: (LibraryItem) -> Boolean = completed@{ item ->
             if (filterCompleted == State.IGNORE.value) return@completed true
-            val isCompleted = item.manga.status == SManga.COMPLETED
+            val isCompleted = item.manga.publicationStatus == SManga.COMPLETED
 
             return@completed if (filterCompleted == State.INCLUDE.value) isCompleted
             else !isCompleted

@@ -251,7 +251,7 @@ class LibraryUpdateService(
             listToInclude.minus(listToExclude)
         }
         if (target == Target.CHAPTERS && preferences.updateOnlyNonCompleted()) {
-            listToUpdate = listToUpdate.filterNot { it.status == SManga.COMPLETED }
+            listToUpdate = listToUpdate.filterNot { it.publicationStatus == SManga.COMPLETED }
         }
 
         val selectedScheme = preferences.libraryUpdatePrioritization().get()

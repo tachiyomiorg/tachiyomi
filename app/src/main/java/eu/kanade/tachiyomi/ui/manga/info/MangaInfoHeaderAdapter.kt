@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.ui.manga.info
 
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -145,6 +146,14 @@ class MangaInfoHeaderAdapter(
                 }
                 .launchIn(controller.viewScope)
 
+            if (controller.presenter.manga.favorite) {
+                binding.mangaStatus.clicks()
+                    .onEach {
+                        controller.onPublicationStatusClick()
+                    }
+                    .launchIn(controller.viewScope)
+            }
+
             binding.mangaAuthor.clicks()
                 .onEach {
                     controller.performGlobalSearch(binding.mangaAuthor.text.toString())
@@ -231,12 +240,18 @@ class MangaInfoHeaderAdapter(
 
             // Update status TextView.
             binding.mangaStatus.setText(
-                when (manga.status) {
+                when (manga.publicationStatus) {
                     SManga.ONGOING -> R.string.ongoing
                     SManga.COMPLETED -> R.string.completed
                     SManga.LICENSED -> R.string.licensed
                     else -> R.string.unknown_status
                 }
+            )
+
+            // Set status text as italic if it has been manually set
+            binding.mangaStatus.setTypeface(
+                null,
+                if (manga.overridePublicationStatus != 0) Typeface.ITALIC else Typeface.NORMAL
             )
 
             // Set the favorite drawable to the correct one.
