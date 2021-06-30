@@ -11,6 +11,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.content.res.Resources
 import android.graphics.Color
 import android.net.ConnectivityManager
@@ -38,7 +39,6 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.util.lang.truncateCenter
 import timber.log.Timber
-import uy.kohesive.injekt.api.get
 import java.io.File
 import kotlin.math.roundToInt
 
@@ -276,4 +276,11 @@ fun Context.createFileInCacheDir(name: String): File {
  */
 fun Context.isTablet(): Boolean {
     return resources.configuration.smallestScreenWidthDp >= 720
+}
+
+/**
+ * Returns true if current context is in night mode
+ */
+fun Context.isNightMode(): Boolean {
+    return resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
 }

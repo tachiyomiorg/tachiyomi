@@ -9,11 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.util.system.displayCompat
+import eu.kanade.tachiyomi.util.system.isNightMode
 import eu.kanade.tachiyomi.util.view.setNavigationBarTransparentCompat
-import uy.kohesive.injekt.Injekt
-import uy.kohesive.injekt.api.get
 
 abstract class BaseBottomSheetDialog(context: Context) : BottomSheetDialog(context) {
 
@@ -45,7 +43,7 @@ abstract class BaseBottomSheetDialog(context: Context) : BottomSheetDialog(conte
             window?.setNavigationBarTransparentCompat(context)
             val bottomSheet = rootView.parent as ViewGroup
             var flags = bottomSheet.systemUiVisibility
-            flags = if (Injekt.get<PreferencesHelper>().isDarkMode()) {
+            flags = if (context.isNightMode()) {
                 flags and View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR.inv()
             } else {
                 flags or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR

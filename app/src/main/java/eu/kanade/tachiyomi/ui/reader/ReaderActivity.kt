@@ -61,6 +61,7 @@ import eu.kanade.tachiyomi.ui.reader.viewer.pager.R2LPagerViewer
 import eu.kanade.tachiyomi.util.storage.getUriCompat
 import eu.kanade.tachiyomi.util.system.GLUtil
 import eu.kanade.tachiyomi.util.system.hasDisplayCutout
+import eu.kanade.tachiyomi.util.system.isNightMode
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.popupMenu
 import eu.kanade.tachiyomi.util.view.setTooltip
@@ -353,7 +354,7 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
 
         initBottomShortcuts()
 
-        val alpha = if (preferences.isDarkMode()) 230 else 242 // 90% dark 95% light
+        val alpha = if (isNightMode()) 230 else 242 // 90% dark 95% light
         val toolbarColor = ColorUtils.setAlphaComponent(getThemeColor(R.attr.colorToolbar), alpha)
         listOf(
             binding.toolbarBottom,

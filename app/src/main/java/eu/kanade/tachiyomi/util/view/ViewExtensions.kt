@@ -25,10 +25,8 @@ import com.google.android.material.elevation.ElevationOverlayProvider
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.util.system.getResourceColor
-import uy.kohesive.injekt.Injekt
-import uy.kohesive.injekt.api.get
+import eu.kanade.tachiyomi.util.system.isNightMode
 
 /**
  * Returns coordinates of view.
@@ -186,7 +184,7 @@ inline fun ChipGroup.setChips(
  * Applies elevation overlay to a MaterialCardView
  */
 inline fun MaterialCardView.applyElevationOverlay() {
-    if (Injekt.get<PreferencesHelper>().isDarkMode()) {
+    if (context.isNightMode()) {
         val provider = ElevationOverlayProvider(context)
         setCardBackgroundColor(provider.compositeOverlay(cardBackgroundColor.defaultColor, cardElevation))
     }
