@@ -221,7 +221,7 @@
 
     <string name="default_category">Default category</string>
     <string name="default_category_summary">Always ask</string>
-    <string name="categorized_display_settings">Per-category display settings</string>
+    <string name="categorized_display_settings">Per-category settings for sort and display</string>
     <plurals name="num_categories">
         <item quantity="one">%d category</item>
         <item quantity="other">%d categories</item>
