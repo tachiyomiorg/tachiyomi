@@ -45,7 +45,7 @@
     <string name="action_update">Обновить</string>
     <string name="action_update_library">Обновить библиотеку</string>
     <string name="all">Всё</string>
-    <string name="black_background">Черный</string>
+    <string name="black_background">Чёрный</string>
     <string name="cache_delete_error">Возникла ошибка при удалении кэша</string>
     <string name="cache_deleted">Кэш очищен. %1$d файлов было удалено</string>
     <string name="chapter_downloading_progress">Загружается (%1$d/%2$d)</string>
@@ -360,7 +360,7 @@
     <string name="pref_theme_dark">Тёмная тема</string>
     <string name="theme_dark_default">По умолчанию</string>
     <string name="theme_dark_blue">Темно Синий</string>
-    <string name="theme_dark_amoled">AMOLED Черный</string>
+    <string name="theme_dark_amoled">AMOLED Чёрный</string>
     <string name="pref_manage_notifications">Управлять уведомлениями</string>
     <string name="pref_category_security">Безопасность</string>
     <string name="lock_with_biometrics">Требовать разблокировку</string>
@@ -609,8 +609,8 @@
     <string name="l_nav">L-образная</string>
     <string name="default_nav">По умолчанию</string>
     <string name="channel_crash_logs">Логи о вылетах</string>
-    <string name="track_finished_reading_date">Дата окончания чтения</string>
-    <string name="track_started_reading_date">Дата начала чтения</string>
+    <string name="track_finished_reading_date">Дата окончания</string>
+    <string name="track_started_reading_date">Дата начала</string>
     <string name="crash_log_saved">Логи о вылетах сохранены</string>
     <string name="pref_dump_crash_logs_summary">Сохраняет логи ошибок в файл для отправки разработчикам</string>
     <string name="pref_dump_crash_logs">Выгрузка логов о вылетах</string>
@@ -662,8 +662,7 @@
     <string name="source_unsupported">Источник не поддерживается</string>
     <string name="unread">Не прочитано</string>
     <string name="pref_auto_add_track">Отслеживать бесшумно, при добавлении манги в библиотеку</string>
-    <string name="pref_move_side_nav_to_bottom">Переместить боковые навигационные кнопки в нижнюю часть</string>
-    <string name="theme_dark_amoled_hotpink">Ярко Розовый</string>
+    <string name="theme_dark_amoled_hotpink">Ярко Розовый AMOLED</string>
     <string name="theme_dark_midnightdusk">Полночные Сумерки</string>
     <string name="theme_light_strawberrydaiquiri">Клубничный Дайкири</string>
     <string name="date">Дата</string>
@@ -677,4 +676,18 @@
     <string name="action_display_local_badge">Локальные значки</string>
     <string name="off">Выключено</string>
     <string name="on">Включено</string>
+    <string name="pref_side_nav_icon_alignment">Выравнивание значков боковой навигации</string>
+    <string name="error_sharing_cover">Ошибка отправки обложки</string>
+    <string name="error_saving_cover">Ошибка сохранения обложки</string>
+    <string name="cover_saved">Обложка сохранена</string>
+    <string name="manga_cover">Обложка</string>
+    <string name="alignment_bottom">Понизу</string>
+    <string name="alignment_center">Посередине</string>
+    <string name="alignment_top">Поверху</string>
+    <string name="categorized_display_settings">Настройки сортировки и отображения для каждой категории</string>
+    <string name="tracking_guide">Руководство по отслеживанию</string>
+    <string name="information_empty_category_dialog">В вашей библиотеке ещё нет категорий.</string>
+    <string name="theme_light_yotsuba">Ёцуба</string>
+    <string name="action_start_downloading_now">Начать загрузку сейчас</string>
+    <string name="action_sort_next_updated">Следующее ожидаемое обновление</string>
 </resources>

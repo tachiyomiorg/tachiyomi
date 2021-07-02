@@ -627,8 +627,7 @@
     <string name="error_no_match">未找到匹配项</string>
     <string name="source_unsupported">源不受支持</string>
     <string name="unread">未读</string>
-    <string name="pref_move_side_nav_to_bottom">将侧导航按钮移到底部</string>
-    <string name="theme_dark_amoled_hotpink">亮粉</string>
+    <string name="theme_dark_amoled_hotpink">AMOLED 亮粉</string>
     <string name="theme_dark_midnightdusk">午夜黄昏</string>
     <string name="date">日期</string>
     <string name="local_filter_order_by">排序依据</string>
@@ -636,10 +635,23 @@
     <string name="chapter_not_found">未找到章节</string>
     <string name="theme_light_strawberrydaiquiri">草莓黛琦莉</string>
     <string name="pref_library_update_refresh_trackers_summary">更新书架时更新追踪器</string>
-    <string name="pref_library_update_refresh_trackers">自动更新追踪器</string>
-    <string name="theme_dark_greenapple">绿苹果</string>
+    <string name="pref_library_update_refresh_trackers">自动刷新追踪器</string>
+    <string name="theme_dark_greenapple">青苹果</string>
     <string name="restrictions">限制：%s</string>
-    <string name="action_display_local_badge">本地徽章</string>
+    <string name="action_display_local_badge">本地标记</string>
     <string name="off">关</string>
     <string name="on">开</string>
+    <string name="error_sharing_cover">分享封面时出错</string>
+    <string name="error_saving_cover">保存封面时出错</string>
+    <string name="cover_saved">已保存封面</string>
+    <string name="manga_cover">封面</string>
+    <string name="alignment_bottom">底部对齐</string>
+    <string name="alignment_center">居中对齐</string>
+    <string name="alignment_top">顶端对齐</string>
+    <string name="pref_side_nav_icon_alignment">侧导航图标对齐</string>
+    <string name="categorized_display_settings">每个类别的排序和显示设置</string>
+    <string name="tracking_guide">追踪指南</string>
+    <string name="theme_light_yotsuba">四叶妹妹</string>
+    <string name="information_empty_category_dialog">你还没有任何分类。</string>
+    <string name="action_start_downloading_now">现在开始下载</string>
 </resources>

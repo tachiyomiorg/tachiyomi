@@ -5,7 +5,7 @@
     <string name="manga">만화</string>
     <string name="chapters">챕터</string>
     <string name="track">동기화</string>
-    <string name="label_backup">백업</string>
+    <string name="label_backup">백업 및 복원</string>
     <string name="action_settings">설정</string>
     <string name="action_filter">필터</string>
     <string name="action_filter_downloaded">다운로드됨</string>
@@ -42,7 +42,7 @@
     <string name="action_cancel">취소</string>
     <string name="action_sort">정렬</string>
     <string name="action_install">설치</string>
-    <string name="label_settings">세팅</string>
+    <string name="label_settings">설정</string>
     <string name="action_display">디스플레이</string>
     <string name="history">기록</string>
     <string name="label_download_queue">다운로드 대기열</string>
@@ -331,4 +331,9 @@
     <string name="label_help">도움</string>
     <string name="email">이메일 주소</string>
     <string name="website">웹사이트</string>
+    <string name="unlock_app">Tachiyomi 해제하기</string>
+    <string name="confirm_exit">뒤로가기를 한번 더 눌러 종료</string>
+    <string name="action_menu">메뉴</string>
+    <string name="label_more">더보기</string>
+    <string name="label_sources">소스</string>
 </resources>
