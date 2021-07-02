@@ -79,16 +79,7 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
         recycler.addOnScrollListener(
             object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                    val position = layoutManager.findLastEndVisibleItemPosition()
-                    val item = adapter.items.getOrNull(position)
-                    val allowPreload = checkAllowPreload(item as? ReaderPage)
-                    if (item != null && currentPage != item) {
-                        currentPage = item
-                        when (item) {
-                            is ReaderPage -> onPageSelected(item, allowPreload)
-                            is ChapterTransition -> onTransitionSelected(item)
-                        }
-                    }
+                    onScrolled()
 
                     if (dy < 0) {
                         val firstIndex = layoutManager.findFirstVisibleItemPosition()
@@ -134,6 +125,11 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
 
         config.imagePropertyChangedListener = {
             refreshAdapter()
+        }
+
+        config.navigationModeChangedListener = {
+            val showOnStart = config.navigationOverlayOnStart || config.forceNavigationOverlay
+            activity.binding.navigationOverlay.setNavigation(config.navigator, showOnStart)
         }
 
         frame.layoutParams = ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT)
@@ -238,8 +234,24 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
         val position = adapter.items.indexOf(page)
         if (position != -1) {
             recycler.scrollToPosition(position)
+            if (layoutManager.findLastEndVisibleItemPosition() == -1) {
+                onScrolled(position)
+            }
         } else {
             Timber.d("Page $page not found in adapter")
+        }
+    }
+
+    fun onScrolled(pos: Int? = null) {
+        val position = pos ?: layoutManager.findLastEndVisibleItemPosition()
+        val item = adapter.items.getOrNull(position)
+        val allowPreload = checkAllowPreload(item as? ReaderPage)
+        if (item != null && currentPage != item) {
+            currentPage = item
+            when (item) {
+                is ReaderPage -> onPageSelected(item, allowPreload)
+                is ChapterTransition -> onTransitionSelected(item)
+            }
         }
     }
 

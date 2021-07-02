@@ -28,12 +28,12 @@
         android:id="@+id/btn_chapters_filter"
         android:layout_width="28dp"
         android:layout_height="28dp"
-        android:background="?selectableItemBackgroundBorderless"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/action_filter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_filter_list_24dp"
-        app:tint="?attr/colorOnPrimary" />
+        app:tint="?attr/colorOnBackground" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

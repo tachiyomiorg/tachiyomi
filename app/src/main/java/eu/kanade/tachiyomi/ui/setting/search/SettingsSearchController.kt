@@ -6,7 +6,6 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import eu.kanade.tachiyomi.R
@@ -33,17 +32,7 @@ class SettingsSearchController :
         setHasOptionsMenu(true)
     }
 
-    /**
-     * Initiate the view with [R.layout.settings_search_controller].
-     *
-     * @param inflater used to load the layout xml.
-     * @param container containing parent views.
-     * @return inflated view
-     */
-    override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        binding = SettingsSearchControllerBinding.inflate(inflater)
-        return binding.root
-    }
+    override fun createBinding(inflater: LayoutInflater) = SettingsSearchControllerBinding.inflate(inflater)
 
     override fun getTitle(): String? {
         return presenter.query

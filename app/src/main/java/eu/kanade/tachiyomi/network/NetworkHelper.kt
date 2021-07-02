@@ -1,16 +1,16 @@
 package eu.kanade.tachiyomi.network
 
 import android.content.Context
+import coil.util.CoilUtils
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.network.interceptor.CloudflareInterceptor
+import eu.kanade.tachiyomi.network.interceptor.UserAgentInterceptor
 import okhttp3.Cache
-import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.OkHttpClient
-import okhttp3.dnsoverhttps.DnsOverHttps
 import okhttp3.logging.HttpLoggingInterceptor
 import uy.kohesive.injekt.injectLazy
 import java.io.File
-import java.net.InetAddress
 import java.util.concurrent.TimeUnit
 
 class NetworkHelper(context: Context) {
@@ -23,44 +23,32 @@ class NetworkHelper(context: Context) {
 
     val cookieManager = AndroidCookieJar()
 
-    val client by lazy {
-        val builder = OkHttpClient.Builder()
-            .cookieJar(cookieManager)
-            .cache(Cache(cacheDir, cacheSize))
-            .connectTimeout(30, TimeUnit.SECONDS)
-            .readTimeout(30, TimeUnit.SECONDS)
-            .addInterceptor(UserAgentInterceptor())
+    private val baseClientBuilder: OkHttpClient.Builder
+        get() {
+            val builder = OkHttpClient.Builder()
+                .cookieJar(cookieManager)
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .addInterceptor(UserAgentInterceptor())
 
-        if (BuildConfig.DEBUG) {
-            val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
-                level = HttpLoggingInterceptor.Level.HEADERS
+            if (BuildConfig.DEBUG) {
+                val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
+                    level = HttpLoggingInterceptor.Level.HEADERS
+                }
+                builder.addInterceptor(httpLoggingInterceptor)
             }
-            builder.addInterceptor(httpLoggingInterceptor)
+
+            when (preferences.dohProvider()) {
+                PREF_DOH_CLOUDFLARE -> builder.dohCloudflare()
+                PREF_DOH_GOOGLE -> builder.dohGoogle()
+            }
+
+            return builder
         }
 
-        if (preferences.enableDoh()) {
-            builder.dns(
-                DnsOverHttps.Builder().client(builder.build())
-                    .url("https://cloudflare-dns.com/dns-query".toHttpUrl())
-                    .bootstrapDnsHosts(
-                        listOf(
-                            InetAddress.getByName("162.159.36.1"),
-                            InetAddress.getByName("162.159.46.1"),
-                            InetAddress.getByName("1.1.1.1"),
-                            InetAddress.getByName("1.0.0.1"),
-                            InetAddress.getByName("162.159.132.53"),
-                            InetAddress.getByName("2606:4700:4700::1111"),
-                            InetAddress.getByName("2606:4700:4700::1001"),
-                            InetAddress.getByName("2606:4700:4700::0064"),
-                            InetAddress.getByName("2606:4700:4700::6400")
-                        )
-                    )
-                    .build()
-            )
-        }
+    val client by lazy { baseClientBuilder.cache(Cache(cacheDir, cacheSize)).build() }
 
-        builder.build()
-    }
+    val coilClient by lazy { baseClientBuilder.cache(CoilUtils.createDefaultCache(context)).build() }
 
     val cloudflareClient by lazy {
         client.newBuilder()

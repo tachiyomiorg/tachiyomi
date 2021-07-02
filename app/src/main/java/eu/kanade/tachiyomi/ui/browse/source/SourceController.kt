@@ -8,13 +8,12 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
-import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItems
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
+import dev.chrisbanes.insetter.applyInsetter
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
@@ -26,18 +25,13 @@ import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
-import eu.kanade.tachiyomi.ui.base.controller.NucleusController
+import eu.kanade.tachiyomi.ui.base.controller.SearchableNucleusController
 import eu.kanade.tachiyomi.ui.base.controller.requestPermissionsSafe
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.browse.BrowseController
 import eu.kanade.tachiyomi.ui.browse.source.browse.BrowseSourceController
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchController
 import eu.kanade.tachiyomi.ui.browse.source.latest.LatestUpdatesController
-import kotlinx.coroutines.flow.filterIsInstance
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
-import reactivecircus.flowbinding.appcompat.QueryTextEvent
-import reactivecircus.flowbinding.appcompat.queryTextEvents
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
@@ -48,7 +42,7 @@ import uy.kohesive.injekt.api.get
  * [SourceAdapter.OnLatestClickListener] call function data on latest item click
  */
 class SourceController :
-    NucleusController<SourceMainControllerBinding, SourcePresenter>(),
+    SearchableNucleusController<SourceMainControllerBinding, SourcePresenter>(),
     FlexibleAdapter.OnItemClickListener,
     FlexibleAdapter.OnItemLongClickListener,
     SourceAdapter.OnSourceClickListener {
@@ -72,20 +66,16 @@ class SourceController :
         return SourcePresenter()
     }
 
-    /**
-     * Initiate the view with [R.layout.source_main_controller].
-     *
-     * @param inflater used to load the layout xml.
-     * @param container containing parent views.
-     * @return inflated view.
-     */
-    override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        binding = SourceMainControllerBinding.inflate(inflater)
-        return binding.root
-    }
+    override fun createBinding(inflater: LayoutInflater) = SourceMainControllerBinding.inflate(inflater)
 
     override fun onViewCreated(view: View) {
         super.onViewCreated(view)
+
+        binding.recycler.applyInsetter {
+            type(navigationBars = true) {
+                padding()
+            }
+        }
 
         adapter = SourceAdapter(this)
 
@@ -201,37 +191,6 @@ class SourceController :
     }
 
     /**
-     * Adds items to the options menu.
-     *
-     * @param menu menu containing options.
-     * @param inflater used to load the menu xml.
-     */
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        // Inflate menu
-        inflater.inflate(R.menu.source_main, menu)
-
-        // Initialize search option.
-        val searchItem = menu.findItem(R.id.action_search)
-        val searchView = searchItem.actionView as SearchView
-        searchView.maxWidth = Int.MAX_VALUE
-
-        // Change hint to show global search.
-        searchView.queryHint = applicationContext?.getString(R.string.action_global_search_hint)
-
-        // Create query listener which opens the global search view.
-        searchView.queryTextEvents()
-            .filterIsInstance<QueryTextEvent.QuerySubmitted>()
-            .onEach { performGlobalSearch(it.queryText.toString()) }
-            .launchIn(viewScope)
-    }
-
-    private fun performGlobalSearch(query: String) {
-        parentController!!.router.pushController(
-            GlobalSearchController(query).withFadeTransaction()
-        )
-    }
-
-    /**
      * Called when an option menu item has been selected by the user.
      *
      * @param item The selected item.
@@ -289,5 +248,22 @@ class SourceController :
                     dialog.dismiss()
                 }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        createOptionsMenu(
+            menu,
+            inflater,
+            R.menu.browse_sources,
+            R.id.action_search,
+            R.string.action_global_search_hint,
+            false // GlobalSearch handles the searching here
+        )
+    }
+
+    override fun onSearchViewQueryTextSubmit(query: String?) {
+        parentController!!.router.pushController(
+            GlobalSearchController(query).withFadeTransaction()
+        )
     }
 }

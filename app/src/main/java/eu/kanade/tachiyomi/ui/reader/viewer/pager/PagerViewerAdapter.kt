@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.ui.reader.viewer.pager
 import android.view.View
 import android.view.ViewGroup
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
+import eu.kanade.tachiyomi.ui.reader.model.InsertPage
 import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.model.ViewerChapters
@@ -18,8 +19,13 @@ class PagerViewerAdapter(private val viewer: PagerViewer) : ViewPagerAdapter() {
     /**
      * List of currently set items.
      */
-    var items: List<Any> = emptyList()
+    var items: MutableList<Any> = mutableListOf()
         private set
+
+    /**
+     * Holds preprocessed items so they don't get removed when changing chapter
+     */
+    private var preprocessed: MutableMap<Int, InsertPage> = mutableMapOf()
 
     var nextTransition: ChapterTransition.Next? = null
         private set
@@ -53,10 +59,25 @@ class PagerViewerAdapter(private val viewer: PagerViewer) : ViewPagerAdapter() {
             newItems.add(ChapterTransition.Prev(chapters.currChapter, chapters.prevChapter))
         }
 
+        var insertPageLastPage: InsertPage? = null
+
         // Add current chapter.
         val currPages = chapters.currChapter.pages
         if (currPages != null) {
-            newItems.addAll(currPages)
+            val pages = currPages.toMutableList()
+
+            val lastPage = pages.last()
+
+            // Insert preprocessed pages into current page list
+            preprocessed.keys.sortedDescending()
+                .forEach { key ->
+                    if (lastPage.index == key) {
+                        insertPageLastPage = preprocessed[key]
+                    }
+                    preprocessed[key]?.let { pages.add(key + 1, it) }
+                }
+
+            newItems.addAll(pages)
         }
 
         currentChapter = chapters.currChapter
@@ -80,12 +101,21 @@ class PagerViewerAdapter(private val viewer: PagerViewer) : ViewPagerAdapter() {
             }
         }
 
+        // Resets double-page splits, else insert pages get misplaced
+        items.filterIsInstance<InsertPage>().also { items.removeAll(it) }
+
         if (viewer is R2LPagerViewer) {
             newItems.reverse()
         }
 
+        preprocessed = mutableMapOf()
         items = newItems
         notifyDataSetChanged()
+
+        // Will skip insert page otherwise
+        if (insertPageLastPage != null) {
+            viewer.moveToPage(insertPageLastPage!!)
+        }
     }
 
     /**
@@ -119,5 +149,43 @@ class PagerViewerAdapter(private val viewer: PagerViewer) : ViewPagerAdapter() {
             }
         }
         return POSITION_NONE
+    }
+
+    fun onPageSplit(currentPage: Any?, newPage: InsertPage) {
+        if (currentPage !is ReaderPage) return
+
+        val currentIndex = items.indexOf(currentPage)
+
+        // Put aside preprocessed pages for next chapter so they don't get removed when changing chapter
+        if (currentPage.chapter.chapter.id != currentChapter?.chapter?.id) {
+            preprocessed[newPage.index] = newPage
+            return
+        }
+
+        val placeAtIndex = when (viewer) {
+            is L2RPagerViewer,
+            is VerticalPagerViewer -> currentIndex + 1
+            else -> currentIndex
+        }
+
+        // It will enter a endless cycle of insert pages
+        if (viewer is R2LPagerViewer && placeAtIndex - 1 >= 0 && items[placeAtIndex - 1] is InsertPage) {
+            return
+        }
+
+        // Same here it will enter a endless cycle of insert pages
+        if (items[placeAtIndex] is InsertPage) {
+            return
+        }
+
+        items.add(placeAtIndex, newPage)
+
+        notifyDataSetChanged()
+    }
+
+    fun cleanupPageSplit() {
+        val insertPages = items.filterIsInstance(InsertPage::class.java)
+        items.removeAll(insertPages)
+        notifyDataSetChanged()
     }
 }

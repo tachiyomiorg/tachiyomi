@@ -12,19 +12,19 @@ import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
 import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.preference.PreferenceValues.DisplayMode
 import eu.kanade.tachiyomi.databinding.SourceComfortableGridItemBinding
 import eu.kanade.tachiyomi.databinding.SourceCompactGridItemBinding
+import eu.kanade.tachiyomi.ui.library.setting.DisplayModeSetting
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
 
-class SourceItem(val manga: Manga, private val displayMode: Preference<DisplayMode>) :
+class SourceItem(val manga: Manga, private val displayMode: Preference<DisplayModeSetting>) :
     AbstractFlexibleItem<SourceHolder<*>>() {
 
     override fun getLayoutRes(): Int {
         return when (displayMode.get()) {
-            DisplayMode.COMPACT_GRID -> R.layout.source_compact_grid_item
-            DisplayMode.COMFORTABLE_GRID -> R.layout.source_comfortable_grid_item
-            DisplayMode.LIST -> R.layout.source_list_item
+            DisplayModeSetting.COMPACT_GRID -> R.layout.source_compact_grid_item
+            DisplayModeSetting.COMFORTABLE_GRID -> R.layout.source_comfortable_grid_item
+            DisplayModeSetting.LIST -> R.layout.source_list_item
         }
     }
 
@@ -33,7 +33,7 @@ class SourceItem(val manga: Manga, private val displayMode: Preference<DisplayMo
         adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>
     ): SourceHolder<*> {
         return when (displayMode.get()) {
-            DisplayMode.COMPACT_GRID -> {
+            DisplayModeSetting.COMPACT_GRID -> {
                 val binding = SourceCompactGridItemBinding.bind(view)
                 val parent = adapter.recyclerView as AutofitRecyclerView
                 val coverHeight = parent.itemWidth / 3 * 4
@@ -50,7 +50,7 @@ class SourceItem(val manga: Manga, private val displayMode: Preference<DisplayMo
                 }
                 SourceGridHolder(view, adapter)
             }
-            DisplayMode.COMFORTABLE_GRID -> {
+            DisplayModeSetting.COMFORTABLE_GRID -> {
                 val binding = SourceComfortableGridItemBinding.bind(view)
                 val parent = adapter.recyclerView as AutofitRecyclerView
                 val coverHeight = parent.itemWidth / 3 * 4
@@ -62,7 +62,7 @@ class SourceItem(val manga: Manga, private val displayMode: Preference<DisplayMo
                 }
                 SourceComfortableGridHolder(view, adapter)
             }
-            DisplayMode.LIST -> {
+            DisplayModeSetting.LIST -> {
                 SourceListHolder(view, adapter)
             }
         }

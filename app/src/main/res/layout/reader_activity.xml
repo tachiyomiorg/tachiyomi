@@ -43,6 +43,12 @@
         android:layout_height="match_parent"
         android:visibility="gone" />
 
+    <eu.kanade.tachiyomi.ui.reader.ReaderNavigationOverlayView
+        android:id="@+id/navigation_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
     <FrameLayout
         android:id="@+id/reader_menu"
         android:layout_width="match_parent"
@@ -54,67 +60,151 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary" />
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize" />
 
         <LinearLayout
             android:id="@+id/reader_menu_bottom"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="?attr/colorPrimary"
-            android:descendantFocusability="blocksDescendants"
-            android:gravity="center"
-            android:layoutDirection="ltr"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/left_chapter"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/reader_nav"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?selectableItemBackgroundBorderless"
-                android:contentDescription="@string/action_previous_chapter"
-                android:padding="@dimen/material_layout_keylines_screen_edge_margin"
-                app:srcCompat="@drawable/ic_skip_previous_24dp"
-                app:tint="?attr/colorOnPrimary" />
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                android:layoutDirection="ltr"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/left_page_text"
-                android:layout_width="32dp"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:textSize="15sp"
-                tools:text="1" />
+                <ImageButton
+                    android:id="@+id/left_chapter"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/reader_seekbar_button"
+                    android:contentDescription="@string/action_previous_chapter"
+                    android:padding="@dimen/screen_edge_margin"
+                    app:srcCompat="@drawable/ic_skip_previous_24dp"
+                    app:tint="?attr/colorOnToolbar" />
 
-            <!--
-                Wonky way of setting height due to issues with horizontally centering the thumb in Android 5.
-                See https://stackoverflow.com/questions/15701767/android-thumb-is-not-centered-in-seekbar
-            -->
-            <eu.kanade.tachiyomi.ui.reader.ReaderSeekBar
-                android:id="@+id/page_seekbar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:maxHeight="?attr/actionBarSize"
-                android:minHeight="?attr/actionBarSize" />
+                <LinearLayout
+                    android:id="@+id/reader_seekbar"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/reader_seekbar_background"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp">
 
-            <TextView
-                android:id="@+id/right_page_text"
-                android:layout_width="32dp"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:textSize="15sp"
-                tools:text="15" />
+                    <TextView
+                        android:id="@+id/left_page_text"
+                        android:layout_width="32dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textColor="?attr/colorOnToolbar"
+                        android:textSize="15sp"
+                        tools:text="1" />
 
-            <ImageButton
-                android:id="@+id/right_chapter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="?selectableItemBackgroundBorderless"
-                android:contentDescription="@string/action_next_chapter"
-                android:padding="@dimen/material_layout_keylines_screen_edge_margin"
-                app:srcCompat="@drawable/ic_skip_next_24dp"
-                app:tint="?attr/colorOnPrimary" />
+                    <!--
+                        Wonky way of setting height due to issues with horizontally centering the thumb in Android 5.
+                        See https://stackoverflow.com/questions/15701767/android-thumb-is-not-centered-in-seekbar
+                    -->
+                    <eu.kanade.tachiyomi.ui.reader.ReaderSeekBar
+                        android:id="@+id/page_seekbar"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:maxHeight="?attr/actionBarSize"
+                        android:minHeight="?attr/actionBarSize" />
+
+                    <TextView
+                        android:id="@+id/right_page_text"
+                        android:layout_width="32dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textColor="?attr/colorOnToolbar"
+                        android:textSize="15sp"
+                        tools:text="15" />
+
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/right_chapter"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/reader_seekbar_button"
+                    android:contentDescription="@string/action_next_chapter"
+                    android:padding="@dimen/screen_edge_margin"
+                    app:srcCompat="@drawable/ic_skip_next_24dp"
+                    app:tint="?attr/colorOnToolbar" />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/toolbar_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_gravity="bottom"
+                android:background="?attr/colorToolbar">
+
+                <ImageButton
+                    android:id="@+id/action_reading_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/viewer"
+                    android:padding="@dimen/screen_edge_margin"
+                    app:layout_constraintEnd_toStartOf="@id/action_crop_borders"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_reader_default_24dp"
+                    app:tint="?attr/colorOnToolbar" />
+
+                <ImageButton
+                    android:id="@+id/action_crop_borders"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/pref_crop_borders"
+                    android:padding="@dimen/screen_edge_margin"
+                    app:layout_constraintEnd_toStartOf="@id/action_rotation"
+                    app:layout_constraintStart_toEndOf="@+id/action_reading_mode"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_crop_24dp"
+                    app:tint="?attr/colorOnToolbar" />
+
+                <ImageButton
+                    android:id="@+id/action_rotation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/pref_rotation_type"
+                    android:padding="@dimen/screen_edge_margin"
+                    app:layout_constraintEnd_toStartOf="@id/action_settings"
+                    app:layout_constraintStart_toEndOf="@+id/action_crop_borders"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_screen_rotation_24dp"
+                    app:tint="?attr/colorOnToolbar" />
+
+                <ImageButton
+                    android:id="@+id/action_settings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/action_settings"
+                    android:padding="@dimen/screen_edge_margin"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/action_rotation"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_settings_24dp"
+                    app:tint="?attr/colorOnToolbar" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
 

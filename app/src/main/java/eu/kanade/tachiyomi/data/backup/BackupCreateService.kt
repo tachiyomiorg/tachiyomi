@@ -10,7 +10,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import com.hippo.unifile.UniFile
 import eu.kanade.tachiyomi.data.backup.full.FullBackupManager
-import eu.kanade.tachiyomi.data.backup.legacy.LegacyBackupManager
 import eu.kanade.tachiyomi.data.notification.Notifications
 import eu.kanade.tachiyomi.util.system.acquireWakeLock
 import eu.kanade.tachiyomi.util.system.isServiceRunning
@@ -48,12 +47,11 @@ class BackupCreateService : Service() {
          * @param uri path of Uri
          * @param flags determines what to backup
          */
-        fun start(context: Context, uri: Uri, flags: Int, type: Int) {
+        fun start(context: Context, uri: Uri, flags: Int) {
             if (!isRunning(context)) {
                 val intent = Intent(context, BackupCreateService::class.java).apply {
                     putExtra(BackupConst.EXTRA_URI, uri)
                     putExtra(BackupConst.EXTRA_FLAGS, flags)
-                    putExtra(BackupConst.EXTRA_TYPE, type)
                 }
                 ContextCompat.startForegroundService(context, intent)
             }
@@ -101,15 +99,9 @@ class BackupCreateService : Service() {
         if (intent == null) return START_NOT_STICKY
 
         try {
-            val uri = intent.getParcelableExtra<Uri>(BackupConst.EXTRA_URI)
+            val uri = intent.getParcelableExtra<Uri>(BackupConst.EXTRA_URI)!!
             val backupFlags = intent.getIntExtra(BackupConst.EXTRA_FLAGS, 0)
-            val backupType = intent.getIntExtra(BackupConst.EXTRA_TYPE, BackupConst.BACKUP_TYPE_LEGACY)
-            val backupManager = when (backupType) {
-                BackupConst.BACKUP_TYPE_FULL -> FullBackupManager(this)
-                else -> LegacyBackupManager(this)
-            }
-
-            val backupFileUri = backupManager.createBackup(uri, backupFlags, false)?.toUri()
+            val backupFileUri = FullBackupManager(this).createBackup(uri, backupFlags, false)?.toUri()
             val unifile = UniFile.fromUri(this, backupFileUri)
             notifier.showBackupComplete(unifile)
         } catch (e: Exception) {

@@ -6,7 +6,6 @@
     <string name="label_extensions">ఎక్సటెంషన్లు</string>
     <string name="label_migration">వలస</string>
     <string name="label_backup">బ్యాకప్</string>
-    <string name="label_categories">కేటగిరీలు</string>
     <string name="label_sources">మూలాలు</string>
     <string name="label_recent_manga">చరిత్ర</string>
     <string name="label_recent_updates">అప్డేట్లు</string>
@@ -34,7 +33,7 @@
     <string name="action_mark_as_read">చదివినట్లు గుర్తించండి</string>
     <string name="action_select_inverse">విలోమాన్ని ఎంచుకోండి</string>
     <string name="action_select_all">అన్నింటినీ ఎంచుకోండి</string>
-    <string name="action_global_search">"గ్లోబల్  సర్చ్"</string>
+    <string name="action_global_search">ప్రపంచ శోధన</string>
     <string name="action_search_settings">వెతికే సెట్టింగ్లు</string>
     <string name="action_search">వెతకండి</string>
     <string name="action_sort_date_added">యాడ్ చేసిన తేదీ</string>
@@ -61,4 +60,15 @@
     <string name="information_empty_library">మీ గ్రంధాలయం ఖాళీగా ఉంది. బ్రౌజ్ ద్వారా సిరీస్లను యాడ్ చేసుకోండి.</string>
     <string name="information_no_recent_manga">ఈమధ్య మీరు ఏమి చదవలేదు</string>
     <string name="information_no_recent">కొత్త అప్డేట్లు లెవ్వు</string>
+    <string name="action_remove">తొలగించండి</string>
+    <string name="action_retry">మళ్లీ ప్రయత్నించండి</string>
+    <string name="action_next_chapter">తదుపరి అధ్యాయం</string>
+    <string name="action_previous_chapter">మునుపటి అధ్యాయం</string>
+    <string name="action_pause">విరామం ఇయ్యుము</string>
+    <string name="action_stop">ఆపుము</string>
+    <string name="action_view_chapters">అధ్యాయాన్ని చూపీయు</string>
+    <string name="action_edit_cover">కవర్ ని ఎడిట్ చేయు</string>
+    <string name="action_move_category">కేటగోరీలను సెట్ చేయు</string>
+    <string name="action_sort_chapter_fetch_date">పొందిన తేదీ</string>
+    <string name="action_filter_tracked">ట్రాకింగ్</string>
 </resources>

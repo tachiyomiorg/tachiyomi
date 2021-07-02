@@ -6,19 +6,22 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.bumptech.glide.Glide
+import coil.imageLoader
+import coil.request.ImageRequest
+import coil.transform.CircleCropTransformation
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.data.notification.NotificationReceiver
 import eu.kanade.tachiyomi.data.notification.Notifications
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.util.lang.chop
+import eu.kanade.tachiyomi.util.lang.launchUI
 import eu.kanade.tachiyomi.util.system.notification
 import eu.kanade.tachiyomi.util.system.notificationBuilder
 import eu.kanade.tachiyomi.util.system.notificationManager
@@ -75,7 +78,8 @@ class LibraryUpdateNotifier(private val context: Context) {
         context.notificationManager.notify(
             Notifications.ID_LIBRARY_PROGRESS,
             progressNotificationBuilder
-                .setContentTitle(title)
+                .setContentTitle(title.chop(40))
+                .setContentText("($current/$total)")
                 .setProgress(total, current, false)
                 .build()
         )
@@ -110,7 +114,7 @@ class LibraryUpdateNotifier(private val context: Context) {
                 setContentIntent(errorLogIntent)
                 addAction(
                     R.drawable.ic_folder_24dp,
-                    context.getString(R.string.action_open_log),
+                    context.getString(R.string.action_show_errors),
                     errorLogIntent
                 )
             }
@@ -165,14 +169,17 @@ class LibraryUpdateNotifier(private val context: Context) {
 
             // Per-manga notification
             if (!preferences.hideNotificationContent()) {
-                updates.forEach { (manga, chapters) ->
-                    notify(manga.id.hashCode(), createNewChaptersNotification(manga, chapters))
+                launchUI {
+                    updates.forEach { (manga, chapters) ->
+                        notify(manga.id.hashCode(), createNewChaptersNotification(manga, chapters))
+                    }
                 }
             }
         }
     }
 
-    private fun createNewChaptersNotification(manga: Manga, chapters: Array<Chapter>): Notification {
+    private suspend fun createNewChaptersNotification(manga: Manga, chapters: Array<Chapter>): Notification {
+        val icon = getMangaIcon(manga)
         return context.notification(Notifications.CHANNEL_NEW_CHAPTERS) {
             setContentTitle(manga.title)
 
@@ -182,7 +189,6 @@ class LibraryUpdateNotifier(private val context: Context) {
 
             setSmallIcon(R.drawable.ic_tachi)
 
-            val icon = getMangaIcon(manga)
             if (icon != null) {
                 setLargeIcon(icon)
             }
@@ -197,7 +203,7 @@ class LibraryUpdateNotifier(private val context: Context) {
 
             // Mark chapters as read action
             addAction(
-                R.drawable.ic_glasses_black_24dp,
+                R.drawable.ic_glasses_24dp,
                 context.getString(R.string.action_mark_as_read),
                 NotificationReceiver.markAsReadPendingBroadcast(
                     context,
@@ -226,23 +232,14 @@ class LibraryUpdateNotifier(private val context: Context) {
         context.notificationManager.cancel(Notifications.ID_LIBRARY_PROGRESS)
     }
 
-    private fun getMangaIcon(manga: Manga): Bitmap? {
-        return try {
-            Glide.with(context)
-                .asBitmap()
-                .load(manga.toMangaThumbnail())
-                .dontTransform()
-                .centerCrop()
-                .circleCrop()
-                .override(
-                    NOTIF_ICON_SIZE,
-                    NOTIF_ICON_SIZE
-                )
-                .submit()
-                .get()
-        } catch (e: Exception) {
-            null
-        }
+    private suspend fun getMangaIcon(manga: Manga): Bitmap? {
+        val request = ImageRequest.Builder(context)
+            .data(manga)
+            .transformations(CircleCropTransformation())
+            .size(NOTIF_ICON_SIZE)
+            .build()
+        val drawable = context.imageLoader.execute(request).drawable
+        return (drawable as? BitmapDrawable)?.bitmap
     }
 
     private fun getNewChaptersDescription(chapters: Array<Chapter>): String {

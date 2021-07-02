@@ -9,6 +9,9 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.database.models.MangaCategory
 import eu.kanade.tachiyomi.data.database.models.toMangaInfo
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.track.TrackManager
+import eu.kanade.tachiyomi.data.track.TrackService
+import eu.kanade.tachiyomi.data.track.UnattendedTrackService
 import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.Filter
@@ -30,9 +33,11 @@ import eu.kanade.tachiyomi.ui.browse.source.filter.TextSectionItem
 import eu.kanade.tachiyomi.ui.browse.source.filter.TriStateItem
 import eu.kanade.tachiyomi.ui.browse.source.filter.TriStateSectionItem
 import eu.kanade.tachiyomi.util.chapter.ChapterSettingsHelper
+import eu.kanade.tachiyomi.util.chapter.syncChaptersWithTrackServiceTwoWay
 import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.lang.withUIContext
 import eu.kanade.tachiyomi.util.removeCovers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.catch
@@ -40,7 +45,6 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
-import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -65,12 +69,6 @@ open class BrowseSourcePresenter(
      * Selected source.
      */
     lateinit var source: CatalogueSource
-
-    /**
-     * Query from the view.
-     */
-    var query = searchQuery ?: ""
-        private set
 
     /**
      * Modifiable list of filters.
@@ -106,7 +104,13 @@ open class BrowseSourcePresenter(
     /**
      * Subscription for one request from the pager.
      */
-    private var pageSubscription: Subscription? = null
+    private var nextPageJob: Job? = null
+
+    private val loggedServices by lazy { Injekt.get<TrackManager>().services.filter { it.isLogged } }
+
+    init {
+        query = searchQuery ?: ""
+    }
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
@@ -171,14 +175,14 @@ open class BrowseSourcePresenter(
     fun requestNext() {
         if (!hasNextPage()) return
 
-        pageSubscription?.let { remove(it) }
-        pageSubscription = Observable.defer { pager.requestNext() }
-            .subscribeFirst(
-                { _, _ ->
-                    // Nothing to do when onNext is emitted.
-                },
-                BrowseSourceController::onAddPageError
-            )
+        nextPageJob?.cancel()
+        nextPageJob = launchIO {
+            try {
+                pager.requestNextPage()
+            } catch (e: Throwable) {
+                withUIContext { view?.onAddPageError(e) }
+            }
+        }
     }
 
     /**
@@ -262,9 +266,34 @@ open class BrowseSourcePresenter(
             manga.removeCovers(coverCache)
         } else {
             ChapterSettingsHelper.applySettingDefaults(manga)
+
+            if (prefs.autoAddTrack()) {
+                autoAddTrack(manga)
+            }
         }
 
         db.insertManga(manga).executeAsBlocking()
+    }
+
+    private fun autoAddTrack(manga: Manga) {
+        loggedServices
+            .filterIsInstance<UnattendedTrackService>()
+            .filter { it.accept(source) }
+            .forEach { service ->
+                launchIO {
+                    try {
+                        service.match(manga)?.let { track ->
+                            track.manga_id = manga.id!!
+                            (service as TrackService).bind(track)
+                            db.insertTrack(track).executeAsBlocking()
+
+                            syncChaptersWithTrackServiceTwoWay(db, db.getChapters(manga).executeAsBlocking(), track, service as TrackService)
+                        }
+                    } catch (e: Exception) {
+                        Timber.w(e, "Could not match manga: ${manga.title} with service $service")
+                    }
+                }
+            }
     }
 
     /**

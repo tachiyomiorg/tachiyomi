@@ -48,12 +48,6 @@ open class GlobalSearchPresenter(
     val sources by lazy { getSourcesToQuery() }
 
     /**
-     * Query from the view.
-     */
-    var query = ""
-        private set
-
-    /**
      * Fetches the different sources by user settings.
      */
     private var fetchSourcesSubscription: Subscription? = null
@@ -111,7 +105,7 @@ open class GlobalSearchPresenter(
         return sourceManager.getCatalogueSources()
             .filter { it.lang in languages }
             .filterNot { it.id.toString() in disabledSourceIds }
-            .sortedWith(compareBy({ it.id.toString() !in pinnedSourceIds }, { "${it.name.toLowerCase()} (${it.lang})" }))
+            .sortedWith(compareBy({ it.id.toString() !in pinnedSourceIds }, { "${it.name.lowercase()} (${it.lang})" }))
     }
 
     private fun getSourcesToQuery(): List<CatalogueSource> {
@@ -191,7 +185,7 @@ open class GlobalSearchPresenter(
                             { it.results.isNullOrEmpty() },
                             // Same as initial sort, i.e. pinned first then alphabetically
                             { it.source.id.toString() !in pinnedSourceIds },
-                            { "${it.source.name.toLowerCase()} (${it.source.lang})" }
+                            { "${it.source.name.lowercase()} (${it.source.lang})" }
                         )
                     )
             }

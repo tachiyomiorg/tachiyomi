@@ -66,8 +66,10 @@ class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
         return track.score.toInt().toString()
     }
 
-    override suspend fun add(track: Track): Track {
-        return api.addItemToList(track)
+    private suspend fun add(track: Track): Track {
+        track.status = READING
+        track.score = 0F
+        return api.updateItem(track)
     }
 
     override suspend fun update(track: Track): Track {
@@ -102,7 +104,7 @@ class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
     }
 
     override suspend fun refresh(track: Track): Track {
-        return api.findListItem(track) ?: api.addItemToList(track)
+        return api.findListItem(track) ?: add(track)
     }
 
     override suspend fun login(username: String, password: String) = login(password)

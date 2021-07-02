@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi
 
+import android.os.Build
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
 import eu.kanade.tachiyomi.data.backup.BackupCreatorJob
@@ -9,7 +10,11 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.updater.UpdaterJob
 import eu.kanade.tachiyomi.extension.ExtensionUpdateJob
+import eu.kanade.tachiyomi.network.PREF_DOH_CLOUDFLARE
 import eu.kanade.tachiyomi.ui.library.LibrarySort
+import eu.kanade.tachiyomi.ui.library.setting.SortDirectionSetting
+import eu.kanade.tachiyomi.ui.library.setting.SortModeSetting
+import eu.kanade.tachiyomi.ui.reader.setting.OrientationType
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.widget.ExtendedNavigationView
 import uy.kohesive.injekt.Injekt
@@ -93,9 +98,15 @@ object Migrations {
             }
             if (oldVersion < 44) {
                 // Reset sorting preference if using removed sort by source
+                val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+
+                val oldSortingMode = prefs.getInt(PreferenceKeys.librarySortingMode, 0)
+
                 @Suppress("DEPRECATION")
-                if (preferences.librarySortingMode().get() == LibrarySort.SOURCE) {
-                    preferences.librarySortingMode().set(LibrarySort.ALPHA)
+                if (oldSortingMode == LibrarySort.SOURCE) {
+                    prefs.edit {
+                        putInt(PreferenceKeys.librarySortingMode, LibrarySort.ALPHA)
+                    }
                 }
             }
             if (oldVersion < 52) {
@@ -125,6 +136,100 @@ object Migrations {
                 if (trackManager.myAnimeList.isLogged) {
                     trackManager.myAnimeList.logout()
                     context.toast(R.string.myanimelist_relogin)
+                }
+            }
+            if (oldVersion < 57) {
+                // Migrate DNS over HTTPS setting
+                val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+                val wasDohEnabled = prefs.getBoolean("enable_doh", false)
+                if (wasDohEnabled) {
+                    prefs.edit {
+                        putInt(PreferenceKeys.dohProvider, PREF_DOH_CLOUDFLARE)
+                        remove("enable_doh")
+                    }
+                }
+            }
+            if (oldVersion < 59) {
+                // Reset rotation to Free after replacing Lock
+                val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+                if (prefs.contains("pref_rotation_type_key")) {
+                    prefs.edit {
+                        putInt("pref_rotation_type_key", 1)
+                    }
+                }
+
+                // Disable update check for Android 5.x users
+                if (BuildConfig.INCLUDE_UPDATER && Build.VERSION.SDK_INT <= Build.VERSION_CODES.M) {
+                    UpdaterJob.cancelTask(context)
+                }
+            }
+            if (oldVersion < 60) {
+                // Re-enable update check that was prevously accidentally disabled for M
+                if (BuildConfig.INCLUDE_UPDATER && Build.VERSION.SDK_INT == Build.VERSION_CODES.M) {
+                    UpdaterJob.setupTask(context)
+                }
+
+                // Migrate Rotation and Viewer values to default values for viewer_flags
+                val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+                val newOrientation = when (prefs.getInt("pref_rotation_type_key", 1)) {
+                    1 -> OrientationType.FREE.flagValue
+                    2 -> OrientationType.PORTRAIT.flagValue
+                    3 -> OrientationType.LANDSCAPE.flagValue
+                    4 -> OrientationType.LOCKED_PORTRAIT.flagValue
+                    5 -> OrientationType.LOCKED_LANDSCAPE.flagValue
+                    else -> OrientationType.FREE.flagValue
+                }
+
+                // Reading mode flag and prefValue is the same value
+                val newReadingMode = prefs.getInt("pref_default_viewer_key", 1)
+
+                prefs.edit {
+                    putInt("pref_default_orientation_type_key", newOrientation)
+                    remove("pref_rotation_type_key")
+                    putInt("pref_default_reading_mode_key", newReadingMode)
+                    remove("pref_default_viewer_key")
+                }
+            }
+            if (oldVersion < 61) {
+                // Handle removed every 1 or 2 hour library updates
+                val updateInterval = preferences.libraryUpdateInterval().get()
+                if (updateInterval == 1 || updateInterval == 2) {
+                    preferences.libraryUpdateInterval().set(3)
+                    LibraryUpdateJob.setupTask(context, 3)
+                }
+            }
+            if (oldVersion < 64) {
+                val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+
+                val oldSortingMode = prefs.getInt(PreferenceKeys.librarySortingMode, 0)
+                val oldSortingDirection = prefs.getBoolean(PreferenceKeys.librarySortingDirection, true)
+
+                @Suppress("DEPRECATION")
+                val newSortingMode = when (oldSortingMode) {
+                    LibrarySort.ALPHA -> SortModeSetting.ALPHABETICAL
+                    LibrarySort.LAST_READ -> SortModeSetting.LAST_READ
+                    LibrarySort.LAST_CHECKED -> SortModeSetting.LAST_CHECKED
+                    LibrarySort.UNREAD -> SortModeSetting.UNREAD
+                    LibrarySort.TOTAL -> SortModeSetting.TOTAL_CHAPTERS
+                    LibrarySort.LATEST_CHAPTER -> SortModeSetting.LATEST_CHAPTER
+                    LibrarySort.CHAPTER_FETCH_DATE -> SortModeSetting.DATE_FETCHED
+                    LibrarySort.DATE_ADDED -> SortModeSetting.DATE_ADDED
+                    else -> SortModeSetting.ALPHABETICAL
+                }
+
+                val newSortingDirection = when (oldSortingDirection) {
+                    true -> SortDirectionSetting.ASCENDING
+                    else -> SortDirectionSetting.DESCENDING
+                }
+
+                prefs.edit(commit = true) {
+                    remove(PreferenceKeys.librarySortingMode)
+                    remove(PreferenceKeys.librarySortingDirection)
+                }
+
+                prefs.edit {
+                    putString(PreferenceKeys.librarySortingMode, newSortingMode.name)
+                    putString(PreferenceKeys.librarySortingDirection, newSortingDirection.name)
                 }
             }
             return true

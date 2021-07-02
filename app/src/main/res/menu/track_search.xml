@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/remove"
+        android:icon="@drawable/ic_delete_24dp"
+        android:title="@string/action_remove"
+        android:visible="false"
+        app:iconTint="?attr/colorOnToolbar"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/done"
+        android:enabled="false"
+        android:icon="@drawable/ic_check_24dp"
+        android:title="@android:string/ok"
+        app:iconTint="?attr/colorOnToolbar"
+        app:showAsAction="ifRoom" />
+</menu>

@@ -6,6 +6,6 @@
   it (i.e. blue themes).
 -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:color="?attr/colorAccentOnPrimary" android:state_selected="true"/>
-    <item android:alpha="0.60" android:color="?attr/colorOnPrimary"/>
+    <item android:color="?attr/colorPrimary" android:state_selected="true" />
+    <item android:alpha="0.60" android:color="?attr/colorOnToolbar" />
 </selector>

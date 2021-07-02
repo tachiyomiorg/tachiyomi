@@ -2,12 +2,12 @@ package eu.kanade.tachiyomi.data.backup.legacy
 
 import android.content.Context
 import android.net.Uri
-import com.google.gson.JsonObject
-import com.google.gson.JsonParser
-import com.google.gson.stream.JsonReader
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.backup.AbstractBackupRestoreValidator
 import eu.kanade.tachiyomi.data.backup.legacy.models.Backup
+import kotlinx.serialization.decodeFromString
+import okio.buffer
+import okio.source
 
 class LegacyBackupRestoreValidator : AbstractBackupRestoreValidator() {
     /**
@@ -17,30 +17,30 @@ class LegacyBackupRestoreValidator : AbstractBackupRestoreValidator() {
      * @return List of missing sources or missing trackers.
      */
     override fun validate(context: Context, uri: Uri): Results {
-        val reader = JsonReader(context.contentResolver.openInputStream(uri)!!.bufferedReader())
-        val json = JsonParser.parseReader(reader).asJsonObject
+        val backupManager = LegacyBackupManager(context)
 
-        val version = json.get(Backup.VERSION)
-        val mangasJson = json.get(Backup.MANGAS)
-        if (version == null || mangasJson == null) {
+        val backup = backupManager.parser.decodeFromString<Backup>(
+            context.contentResolver.openInputStream(uri)!!.source().buffer().use { it.readUtf8() }
+        )
+
+        if (backup.version == null) {
             throw Exception(context.getString(R.string.invalid_backup_file_missing_data))
         }
 
-        val mangas = mangasJson.asJsonArray
-        if (mangas.size() == 0) {
+        if (backup.mangas.isEmpty()) {
             throw Exception(context.getString(R.string.invalid_backup_file_missing_manga))
         }
 
-        val sources = getSourceMapping(json)
+        val sources = getSourceMapping(backup.extensions ?: emptyList())
         val missingSources = sources
             .filter { sourceManager.get(it.key) == null }
             .values
             .sorted()
 
-        val trackers = mangas
-            .filter { it.asJsonObject.has("track") }
-            .flatMap { it.asJsonObject["track"].asJsonArray }
-            .map { it.asJsonObject["s"].asInt }
+        val trackers = backup.mangas
+            .filterNot { it.track.isNullOrEmpty() }
+            .flatMap { it.track ?: emptyList() }
+            .map { it.sync_id }
             .distinct()
         val missingTrackers = trackers
             .mapNotNull { trackManager.getService(it) }
@@ -52,12 +52,10 @@ class LegacyBackupRestoreValidator : AbstractBackupRestoreValidator() {
     }
 
     companion object {
-        fun getSourceMapping(json: JsonObject): Map<Long, String> {
-            val extensionsMapping = json.get(Backup.EXTENSIONS) ?: return emptyMap()
-
-            return extensionsMapping.asJsonArray
+        fun getSourceMapping(extensionsMapping: List<String>): Map<Long, String> {
+            return extensionsMapping
                 .map {
-                    val items = it.asString.split(":")
+                    val items = it.split(":")
                     items[0].toLong() to items[1]
                 }
                 .toMap()

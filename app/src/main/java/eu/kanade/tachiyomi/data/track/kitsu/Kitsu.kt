@@ -21,9 +21,6 @@ class Kitsu(private val context: Context, id: Int) : TrackService(id) {
         const val ON_HOLD = 3
         const val DROPPED = 4
         const val PLAN_TO_READ = 5
-
-        const val DEFAULT_STATUS = READING
-        const val DEFAULT_SCORE = 0f
     }
 
     @StringRes
@@ -70,7 +67,7 @@ class Kitsu(private val context: Context, id: Int) : TrackService(id) {
         return df.format(track.score)
     }
 
-    override suspend fun add(track: Track): Track {
+    private suspend fun add(track: Track): Track {
         return api.addLibManga(track, getUserId())
     }
 
@@ -85,8 +82,8 @@ class Kitsu(private val context: Context, id: Int) : TrackService(id) {
             track.media_id = remoteTrack.media_id
             update(track)
         } else {
-            track.score = DEFAULT_SCORE
-            track.status = DEFAULT_STATUS
+            track.status = READING
+            track.score = 0F
             add(track)
         }
     }

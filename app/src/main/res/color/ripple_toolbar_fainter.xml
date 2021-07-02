@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 34% of 12% = ~4% -->
+    <item android:alpha="0.34" android:color="?attr/rippleColorToolbar" />
+</selector>

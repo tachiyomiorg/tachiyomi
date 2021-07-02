@@ -1,6 +1,5 @@
 package eu.kanade.tachiyomi.ui.setting
 
-import androidx.biometric.BiometricManager
 import androidx.preference.PreferenceScreen
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.asImmediateFlow
@@ -9,6 +8,7 @@ import eu.kanade.tachiyomi.util.preference.intListPreference
 import eu.kanade.tachiyomi.util.preference.summaryRes
 import eu.kanade.tachiyomi.util.preference.switchPreference
 import eu.kanade.tachiyomi.util.preference.titleRes
+import eu.kanade.tachiyomi.util.system.AuthenticatorUtil
 import kotlinx.coroutines.flow.launchIn
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 
@@ -17,9 +17,9 @@ class SettingsSecurityController : SettingsController() {
     override fun setupPreferenceScreen(screen: PreferenceScreen) = screen.apply {
         titleRes = R.string.pref_category_security
 
-        if (BiometricManager.from(context).canAuthenticate() == BiometricManager.BIOMETRIC_SUCCESS) {
+        if (AuthenticatorUtil.isSupported(context)) {
             switchPreference {
-                key = Keys.useBiometricLock
+                key = Keys.useAuthenticator
                 titleRes = R.string.lock_with_biometrics
                 defaultValue = false
             }
@@ -38,7 +38,7 @@ class SettingsSecurityController : SettingsController() {
                 defaultValue = "0"
                 summary = "%s"
 
-                preferences.useBiometricLock().asImmediateFlow { isVisible = it }
+                preferences.useAuthenticator().asImmediateFlow { isVisible = it }
                     .launchIn(viewScope)
             }
         }

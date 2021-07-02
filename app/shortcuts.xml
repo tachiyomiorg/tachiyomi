@@ -17,7 +17,7 @@
         android:shortcutDisabledMessage="@string/app_not_available"
         android:shortcutId="show_recently_updated"
         android:shortcutLongLabel="@string/label_recent_updates"
-        android:shortcutShortLabel="@string/short_recent_updates">
+        android:shortcutShortLabel="@string/label_recent_updates">
         <intent
             android:action="eu.kanade.tachiyomi.SHOW_RECENTLY_UPDATED"
             android:targetClass="eu.kanade.tachiyomi.ui.main.MainActivity" />

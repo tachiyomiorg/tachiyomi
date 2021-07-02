@@ -1,107 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/webtoon_prefs"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:text="@string/webtoon_viewer"
-        android:textColor="?attr/colorAccent"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textAppearance="@style/TextAppearance.Medium.SubHeading" />
 
-    <TextView
-        android:id="@+id/webtoon_side_padding_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/pref_webtoon_side_padding"
-        app:layout_constraintBaseline_toBaselineOf="@id/webtoon_side_padding"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/verticalcenter" />
-
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/webtoon_side_padding"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:entries="@array/webtoon_side_padding"
-        app:layout_constraintLeft_toRightOf="@id/verticalcenter"
-        app:layout_constraintRight_toRightOf="@id/spinner_end"
-        app:layout_constraintTop_toBottomOf="@+id/tapping_inverted" />
-
-    <TextView
-        android:id="@+id/webtoon_nav_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/pref_viewer_nav"
-        app:layout_constraintBaseline_toBaselineOf="@id/webtoon_nav"
-        app:layout_constraintEnd_toStartOf="@id/verticalcenter"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatSpinner
+    <eu.kanade.tachiyomi.widget.MaterialSpinnerView
         android:id="@+id/webtoon_nav"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:entries="@array/webtoon_nav"
-        app:layout_constraintEnd_toEndOf="@id/spinner_end"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@id/verticalcenter"
-        app:layout_constraintTop_toBottomOf="@+id/webtoon_prefs" />
+        app:title="@string/pref_viewer_nav" />
+
+    <eu.kanade.tachiyomi.widget.MaterialSpinnerView
+        android:id="@+id/tapping_inverted"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/invert_tapping_mode"
+        app:title="@string/pref_read_with_tapping_inverted" />
+
+    <eu.kanade.tachiyomi.widget.MaterialSpinnerView
+        android:id="@+id/webtoon_side_padding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/webtoon_side_padding"
+        app:title="@string/pref_webtoon_side_padding" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/crop_borders_webtoon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:text="@string/pref_crop_borders"
+        android:textColor="?android:attr/textColorSecondary" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/dual_page_split"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="@string/pref_dual_page_split"
+        android:textColor="?android:attr/textColorSecondary" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/dual_page_invert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="@string/pref_dual_page_invert"
         android:textColor="?android:attr/textColorSecondary"
-        app:layout_constraintTop_toBottomOf="@+id/webtoon_side_padding" />
-
-    <TextView
-        android:id="@+id/tapping_inverted_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/pref_read_with_tapping_inverted"
-        app:layout_constraintBaseline_toBaselineOf="@id/tapping_inverted"
-        app:layout_constraintEnd_toStartOf="@id/verticalcenter"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/tapping_inverted"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:entries="@array/invert_tapping_mode"
-        app:layout_constraintEnd_toEndOf="@id/spinner_end"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@id/verticalcenter"
-        app:layout_constraintTop_toBottomOf="@+id/webtoon_nav" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/verticalcenter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+        android:visibility="gone"
+        tools:visibility="visible" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/tapping_prefs_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="webtoon_nav_text,webtoon_nav,tapping_inverted_text,tapping_inverted"
-        tools:layout_editor_absoluteX="24dp" />
+        app:constraint_referenced_ids="webtoon_nav,tapping_inverted,dual_page_split,dual_page_invert" />
 
-    <android.widget.Space
-        android:id="@+id/spinner_end"
-        android:layout_width="16dp"
-        android:layout_height="0dp"
-        app:layout_constraintStart_toEndOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

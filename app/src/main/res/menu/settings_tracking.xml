@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_tracking_help"
+        android:icon="@drawable/ic_help_24dp"
+        android:title="@string/tracking_guide"
+        app:iconTint="?attr/colorOnToolbar"
+        app:showAsAction="ifRoom" />
+
+</menu>

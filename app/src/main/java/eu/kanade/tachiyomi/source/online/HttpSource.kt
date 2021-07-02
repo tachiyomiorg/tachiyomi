@@ -10,7 +10,6 @@ import eu.kanade.tachiyomi.source.model.MangasPage
 import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.source.model.SChapter
 import eu.kanade.tachiyomi.source.model.SManga
-import eu.kanade.tachiyomi.util.system.WebViewUtil
 import okhttp3.Headers
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -55,7 +54,7 @@ abstract class HttpSource : CatalogueSource {
      * Note the generated id sets the sign bit to 0.
      */
     override val id by lazy {
-        val key = "${name.toLowerCase()}/$lang/$versionId"
+        val key = "${name.lowercase()}/$lang/$versionId"
         val bytes = MessageDigest.getInstance("MD5").digest(key.toByteArray())
         (0..7).map { bytes[it].toLong() and 0xff shl 8 * (7 - it) }.reduce(Long::or) and Long.MAX_VALUE
     }
@@ -75,13 +74,13 @@ abstract class HttpSource : CatalogueSource {
      * Headers builder for requests. Implementations can override this method for custom headers.
      */
     protected open fun headersBuilder() = Headers.Builder().apply {
-        add("User-Agent", WebViewUtil.DEFAULT_USER_AGENT)
+        add("User-Agent", DEFAULT_USER_AGENT)
     }
 
     /**
      * Visible name of the source.
      */
-    override fun toString() = "$name (${lang.toUpperCase()})"
+    override fun toString() = "$name (${lang.uppercase()})"
 
     /**
      * Returns an observable containing a page with a list of manga. Normally it's not needed to
@@ -370,4 +369,8 @@ abstract class HttpSource : CatalogueSource {
      * Returns the list of filters for the source.
      */
     override fun getFilterList() = FilterList()
+
+    companion object {
+        const val DEFAULT_USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36 Edg/88.0.705.63"
+    }
 }

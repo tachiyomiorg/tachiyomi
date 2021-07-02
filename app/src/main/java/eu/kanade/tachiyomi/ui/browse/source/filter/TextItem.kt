@@ -2,6 +2,7 @@ package eu.kanade.tachiyomi.ui.browse.source.filter
 
 import android.view.View
 import android.widget.EditText
+import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputLayout
 import eu.davidea.flexibleadapter.FlexibleAdapter
@@ -10,7 +11,6 @@ import eu.davidea.flexibleadapter.items.IFlexible
 import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.source.model.Filter
-import eu.kanade.tachiyomi.widget.SimpleTextWatcher
 
 open class TextItem(val filter: Filter.Text) : AbstractFlexibleItem<TextItem.Holder>() {
 
@@ -25,11 +25,9 @@ open class TextItem(val filter: Filter.Text) : AbstractFlexibleItem<TextItem.Hol
     override fun bindViewHolder(adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>, holder: Holder, position: Int, payloads: List<Any?>?) {
         holder.wrapper.hint = filter.name
         holder.edit.setText(filter.state)
-        holder.edit.addTextChangedListener(object : SimpleTextWatcher() {
-            override fun onTextChanged(text: CharSequence, start: Int, before: Int, count: Int) {
-                filter.state = text.toString()
-            }
-        })
+        holder.edit.doOnTextChanged { text, _, _, _ ->
+            filter.state = text.toString()
+        }
     }
 
     override fun equals(other: Any?): Boolean {

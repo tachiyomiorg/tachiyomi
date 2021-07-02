@@ -17,13 +17,11 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
             android:theme="?attr/actionBarTheme"
-            app:layout_scrollFlags="scroll|enterAlways|snap" />
+            app:layout_scrollFlags="scroll|enterAlways" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
-            style="@style/Theme.Widget.Tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -31,7 +29,7 @@
             android:id="@+id/downloaded_only"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/green"
+            android:background="?attr/colorTertiary"
             android:visibility="gone"
             tools:visibility="visible">
 
@@ -41,7 +39,7 @@
                 android:layout_gravity="center"
                 android:padding="4dp"
                 android:text="@string/label_downloaded_only"
-                android:textColor="@color/md_white_1000" />
+                android:textColor="?attr/colorOnTertiary" />
 
         </FrameLayout>
 
@@ -71,24 +69,16 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/root_fab"
-        style="@style/Theme.Widget.FAB"
-        android:visibility="gone"
-        tools:icon="@drawable/ic_add_24dp"
-        tools:text="Action"
-        tools:visibility="visible" />
+    <include
+        android:id="@+id/fab_layout"
+        layout="@layout/main_activity_fab" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
-        style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:itemIconTint="@color/bottom_nav_selector"
-        app:itemTextColor="@color/bottom_nav_selector"
-        app:labelVisibilityMode="labeled"
         app:layout_insetEdge="bottom"
-        app:menu="@menu/bottom_nav" />
+        app:menu="@menu/main_nav" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/label_more"
-            android:padding="@dimen/material_component_text_fields_padding_above_and_below_label"
+            android:padding="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -59,15 +59,15 @@
         android:id="@+id/no_results_found"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="@dimen/material_component_text_fields_padding_above_and_below_label"
-        android:paddingEnd="@dimen/material_component_text_fields_padding_above_and_below_label"
-        android:paddingBottom="@dimen/material_component_text_fields_padding_above_and_below_label"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp"
         android:text="@string/no_results_found"
         android:visibility="gone" />
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/progress"
-        style="@style/Theme.Widget.CircularProgressIndicator.Small"
+        style="@style/Widget.Tachiyomi.CircularProgressIndicator.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

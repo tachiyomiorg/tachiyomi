@@ -9,9 +9,9 @@ plugins {
 allprojects {
     repositories {
         mavenCentral()
-        jcenter()
         google()
         maven { setUrl("https://www.jitpack.io") }
+        jcenter()
     }
 }
 
@@ -20,13 +20,16 @@ subprojects {
 
     kotlinter {
         experimentalRules = true
+
+        // Doesn't play well with Android Studio
+        disabledRules = arrayOf("experimental:argument-list-wrapping")
     }
 }
 
 buildscript {
     dependencies {
         classpath("com.github.zellius:android-shortcut-gradle-plugin:0.1.2")
-        classpath("com.google.gms:google-services:4.3.4")
+        classpath("com.google.gms:google-services:4.3.8")
         classpath("com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:${BuildPluginsVersion.ABOUTLIB_PLUGIN}")
         classpath(kotlin("serialization", version = BuildPluginsVersion.KOTLIN))
     }

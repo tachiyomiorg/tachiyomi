@@ -14,7 +14,10 @@ import eu.kanade.tachiyomi.data.notification.Notifications
 import eu.kanade.tachiyomi.util.system.acquireWakeLock
 import eu.kanade.tachiyomi.util.system.isServiceRunning
 import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -40,12 +43,11 @@ class BackupRestoreService : Service() {
          * @param context context of application
          * @param uri path of Uri
          */
-        fun start(context: Context, uri: Uri, mode: Int, online: Boolean?) {
+        fun start(context: Context, uri: Uri, mode: Int) {
             if (!isRunning(context)) {
                 val intent = Intent(context, BackupRestoreService::class.java).apply {
                     putExtra(BackupConst.EXTRA_URI, uri)
                     putExtra(BackupConst.EXTRA_MODE, mode)
-                    online?.let { putExtra(BackupConst.EXTRA_TYPE, it) }
                 }
                 ContextCompat.startForegroundService(context, intent)
             }
@@ -68,12 +70,14 @@ class BackupRestoreService : Service() {
      */
     private lateinit var wakeLock: PowerManager.WakeLock
 
+    private lateinit var ioScope: CoroutineScope
     private var backupRestore: AbstractBackupRestore<*>? = null
     private lateinit var notifier: BackupNotifier
 
     override fun onCreate() {
         super.onCreate()
 
+        ioScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
         notifier = BackupNotifier(this)
         wakeLock = acquireWakeLock(javaClass.name)
 
@@ -92,6 +96,7 @@ class BackupRestoreService : Service() {
 
     private fun destroyJob() {
         backupRestore?.job?.cancel()
+        ioScope.cancel()
         if (wakeLock.isHeld) {
             wakeLock.release()
         }
@@ -113,15 +118,15 @@ class BackupRestoreService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val uri = intent?.getParcelableExtra<Uri>(BackupConst.EXTRA_URI) ?: return START_NOT_STICKY
         val mode = intent.getIntExtra(BackupConst.EXTRA_MODE, BackupConst.BACKUP_TYPE_FULL)
-        val online = intent.getBooleanExtra(BackupConst.EXTRA_TYPE, true)
 
         // Cancel any previous job if needed.
         backupRestore?.job?.cancel()
 
         backupRestore = when (mode) {
-            BackupConst.BACKUP_TYPE_FULL -> FullBackupRestore(this, notifier, online)
+            BackupConst.BACKUP_TYPE_FULL -> FullBackupRestore(this, notifier)
             else -> LegacyBackupRestore(this, notifier)
         }
+
         val handler = CoroutineExceptionHandler { _, exception ->
             Timber.e(exception)
             backupRestore?.writeErrorLog()
@@ -129,14 +134,15 @@ class BackupRestoreService : Service() {
             notifier.showRestoreError(exception.message)
             stopSelf(startId)
         }
-        backupRestore?.job = GlobalScope.launch(handler) {
+        val job = ioScope.launch(handler) {
             if (backupRestore?.restoreBackup(uri) == false) {
                 notifier.showRestoreError(getString(R.string.restoring_backup_canceled))
             }
         }
-        backupRestore?.job?.invokeOnCompletion {
+        job.invokeOnCompletion {
             stopSelf(startId)
         }
+        backupRestore?.job = job
 
         return START_NOT_STICKY
     }

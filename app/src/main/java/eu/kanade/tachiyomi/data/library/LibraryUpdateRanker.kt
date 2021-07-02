@@ -1,6 +1,9 @@
 package eu.kanade.tachiyomi.data.library
 
 import eu.kanade.tachiyomi.data.database.models.Manga
+import java.util.Collections
+import kotlin.Comparator
+import kotlin.math.abs
 
 /**
  * This class will provide various functions to rank manga to efficiently schedule manga to update.
@@ -9,8 +12,25 @@ object LibraryUpdateRanker {
 
     val rankingScheme = listOf(
         (this::lexicographicRanking)(),
-        (this::latestFirstRanking)()
+        (this::latestFirstRanking)(),
+        (this::nextFirstRanking)()
     )
+
+    /**
+     * Provides a total ordering over all the Mangas.
+     *
+     * Orders the manga based on the distance between the next expected update and now.
+     * The comparator is reversed, placing the smallest (and thus closest to updating now) first.
+     */
+    fun nextFirstRanking(): Comparator<Manga> {
+        val time = System.currentTimeMillis()
+        return Collections.reverseOrder(
+            Comparator { mangaFirst: Manga,
+                mangaSecond: Manga ->
+                compareValues(abs(mangaSecond.next_update - time), abs(mangaFirst.next_update - time))
+            }
+        )
+    }
 
     /**
      * Provides a total ordering over all the [Manga]s.

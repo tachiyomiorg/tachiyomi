@@ -8,7 +8,9 @@ import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.Worker
 import androidx.work.WorkerParameters
+import eu.kanade.tachiyomi.data.preference.CHARGING
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.preference.UNMETERED_NETWORK
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import java.util.concurrent.TimeUnit
@@ -31,9 +33,9 @@ class LibraryUpdateJob(private val context: Context, workerParams: WorkerParamet
             val preferences = Injekt.get<PreferencesHelper>()
             val interval = prefInterval ?: preferences.libraryUpdateInterval().get()
             if (interval > 0) {
-                val restrictions = preferences.libraryUpdateRestriction()!!
-                val acRestriction = "ac" in restrictions
-                val wifiRestriction = if ("wifi" in restrictions) {
+                val restrictions = preferences.libraryUpdateRestriction().get()
+                val acRestriction = CHARGING in restrictions
+                val wifiRestriction = if (UNMETERED_NETWORK in restrictions) {
                     NetworkType.UNMETERED
                 } else {
                     NetworkType.CONNECTED

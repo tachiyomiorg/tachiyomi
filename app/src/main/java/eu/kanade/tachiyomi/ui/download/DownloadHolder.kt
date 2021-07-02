@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.ui.download
 
 import android.view.View
+import androidx.recyclerview.widget.ItemTouchHelper
 import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.download.model.Download
@@ -63,7 +64,7 @@ class DownloadHolder(private val view: View, val adapter: DownloadAdapter) :
         if (binding.downloadProgress.max == 1) {
             binding.downloadProgress.max = pages.size * 100
         }
-        binding.downloadProgress.progress = download.totalProgress
+        binding.downloadProgress.setProgressCompat(download.totalProgress, true)
     }
 
     /**
@@ -77,19 +78,26 @@ class DownloadHolder(private val view: View, val adapter: DownloadAdapter) :
     override fun onItemReleased(position: Int) {
         super.onItemReleased(position)
         adapter.downloadItemListener.onItemReleased(position)
+        binding.container.isDragged = false
+    }
+
+    override fun onActionStateChanged(position: Int, actionState: Int) {
+        super.onActionStateChanged(position, actionState)
+        if (actionState == ItemTouchHelper.ACTION_STATE_DRAG) {
+            binding.container.isDragged = true
+        }
     }
 
     private fun showPopupMenu(view: View) {
         view.popupMenu(
-            R.menu.download_single,
-            {
+            menuRes = R.menu.download_single,
+            initMenu = {
                 findItem(R.id.move_to_top).isVisible = bindingAdapterPosition != 0
                 findItem(R.id.move_to_bottom).isVisible =
                     bindingAdapterPosition != adapter.itemCount - 1
             },
-            {
+            onMenuItemClick = {
                 adapter.downloadItemListener.onMenuItemClick(bindingAdapterPosition, this)
-                true
             }
         )
     }

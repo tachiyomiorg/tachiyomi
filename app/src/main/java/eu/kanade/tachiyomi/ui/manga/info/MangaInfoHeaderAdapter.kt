@@ -1,18 +1,13 @@
 package eu.kanade.tachiyomi.ui.manga.info
 
-import android.graphics.PorterDuff
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.load.engine.DiskCacheStrategy
+import coil.loadAny
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.glide.GlideApp
-import eu.kanade.tachiyomi.data.glide.MangaThumbnail
-import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.databinding.MangaInfoHeaderBinding
 import eu.kanade.tachiyomi.source.Source
@@ -21,7 +16,6 @@ import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.system.copyToClipboard
-import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.view.setChips
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.merge
@@ -34,7 +28,8 @@ import uy.kohesive.injekt.injectLazy
 
 class MangaInfoHeaderAdapter(
     private val controller: MangaController,
-    private val fromSource: Boolean
+    private val fromSource: Boolean,
+    private val isTablet: Boolean,
 ) :
     RecyclerView.Adapter<MangaInfoHeaderAdapter.HeaderViewHolder>() {
 
@@ -47,7 +42,6 @@ class MangaInfoHeaderAdapter(
     private lateinit var binding: MangaInfoHeaderBinding
 
     private var initialLoad: Boolean = true
-    private var currentMangaThumbnail: MangaThumbnail? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeaderViewHolder {
         binding = MangaInfoHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -249,17 +243,8 @@ class MangaInfoHeaderAdapter(
             setFavoriteButtonState(manga.favorite)
 
             // Set cover if changed.
-            val mangaThumbnail = manga.toMangaThumbnail()
-            if (mangaThumbnail != currentMangaThumbnail) {
-                currentMangaThumbnail = mangaThumbnail
-                listOf(binding.mangaCover, binding.backdrop)
-                    .forEach {
-                        GlideApp.with(view.context)
-                            .load(mangaThumbnail)
-                            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                            .centerCrop()
-                            .into(it)
-                    }
+            listOfNotNull(binding.mangaCover, binding.backdrop).forEach {
+                it.loadAny(manga)
             }
 
             // Manga info section
@@ -290,31 +275,29 @@ class MangaInfoHeaderAdapter(
 
                 // Handle showing more or less info
                 merge(
-                    binding.mangaSummarySection.clicks(),
                     binding.mangaSummaryText.clicks(),
                     binding.mangaInfoToggleMore.clicks(),
-                    binding.mangaInfoToggleLess.clicks()
+                    binding.mangaInfoToggleLess.clicks(),
+                    binding.mangaSummarySection.clicks()
                 )
                     .onEach { toggleMangaInfo() }
                     .launchIn(controller.viewScope)
 
-                // Expand manga info if navigated from source listing
-                if (initialLoad && fromSource) {
+                // Expand manga info if navigated from source listing or explicitly set to
+                // (e.g. on tablets)
+                if (initialLoad && (fromSource || isTablet)) {
                     toggleMangaInfo()
                     initialLoad = false
+                    // wrap_content and autoFixTextSize can cause unwanted behaviour this tries to solve it
+                    binding.mangaFullTitle.requestLayout()
                 }
-            }
 
-            // backgroundTint attribute doesn't work properly on Android 5
-            if (Build.VERSION.SDK_INT == Build.VERSION_CODES.LOLLIPOP) {
-                listOf(binding.backdropOverlay, binding.mangaInfoToggleMoreScrim)
-                    .forEach {
-                        @Suppress("DEPRECATION")
-                        it.background.setColorFilter(
-                            view.context.getResourceColor(android.R.attr.colorBackground),
-                            PorterDuff.Mode.SRC_ATOP
-                        )
-                    }
+                // Refreshes will change the state and it needs to be set to correct state to display correctly
+                if (binding.mangaSummaryText.maxLines == 2) {
+                    binding.mangaSummarySection.transitionToState(R.id.start)
+                } else {
+                    binding.mangaSummarySection.transitionToState(R.id.end)
+                }
             }
         }
 
@@ -325,18 +308,17 @@ class MangaInfoHeaderAdapter(
         private fun toggleMangaInfo() {
             val isCurrentlyExpanded = binding.mangaSummaryText.maxLines != 2
 
-            binding.mangaInfoToggleMoreScrim.isVisible = isCurrentlyExpanded
-            binding.mangaInfoToggleMore.isVisible = isCurrentlyExpanded
-            binding.mangaInfoToggleLess.isVisible = !isCurrentlyExpanded
+            if (isCurrentlyExpanded) {
+                binding.mangaSummarySection.transitionToStart()
+            } else {
+                binding.mangaSummarySection.transitionToEnd()
+            }
 
             binding.mangaSummaryText.maxLines = if (isCurrentlyExpanded) {
                 2
             } else {
                 Int.MAX_VALUE
             }
-
-            binding.mangaGenresTagsCompact.isVisible = isCurrentlyExpanded
-            binding.mangaGenresTagsFullChips.isVisible = !isCurrentlyExpanded
         }
 
         /**

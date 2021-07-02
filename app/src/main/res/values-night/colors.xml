@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="splash">@color/background_default</color>
+
+    <color name="accent_default">#3399FF</color>
+    <color name="divider_default">@color/md_white_1000_12</color>
+    <color name="surface_default">#242529</color>
+    <color name="background_default">#202125</color>
+    <color name="ripple_colored_default">#1F3399FF</color>
+</resources>

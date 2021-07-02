@@ -13,12 +13,14 @@
         <item>@string/black_background</item>
         <item>@string/gray_background</item>
         <item>@string/white_background</item>
+        <item>@string/automatic_background</item>
     </string-array>
 
     <string-array name="reader_themes_values">
         <item>1</item>
         <item>2</item>
         <item>0</item>
+        <item>3</item>
     </string-array>
 
     <string-array name="image_scale_type">
@@ -61,17 +63,12 @@
     </string-array>
 
     <string-array name="rotation_type">
+        <item>@string/default_rotation_type</item>
         <item>@string/rotation_free</item>
-        <item>@string/rotation_lock</item>
+        <item>@string/rotation_portrait</item>
+        <item>@string/rotation_landscape</item>
         <item>@string/rotation_force_portrait</item>
         <item>@string/rotation_force_landscape</item>
-    </string-array>
-
-    <string-array name="rotation_type_values">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
     </string-array>
 
     <string-array name="color_filter_modes">
@@ -97,6 +94,7 @@
         <item>@string/l_nav</item>
         <item>@string/kindlish_nav</item>
         <item>@string/edge_nav</item>
+        <item>@string/right_and_left_nav</item>
     </string-array>
 
     <string-array name="webtoon_nav">
@@ -104,5 +102,6 @@
         <item>@string/l_nav</item>
         <item>@string/kindlish_nav</item>
         <item>@string/edge_nav</item>
+        <item>@string/right_and_left_nav</item>
     </string-array>
 </resources>

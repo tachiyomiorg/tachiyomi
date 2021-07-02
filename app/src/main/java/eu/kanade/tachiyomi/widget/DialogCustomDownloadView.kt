@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
+import androidx.core.widget.doOnTextChanged
 import eu.kanade.tachiyomi.databinding.DownloadCustomAmountBinding
 import timber.log.Timber
 
@@ -65,16 +66,14 @@ class DialogCustomDownloadView @JvmOverloads constructor(context: Context, attrs
         }
 
         // When user inputs custom number set amount equal to input.
-        binding.myNumber.addTextChangedListener(object : SimpleTextWatcher() {
-            override fun onTextChanged(text: CharSequence, start: Int, before: Int, count: Int) {
-                try {
-                    amount = getAmount(text.toString().toInt())
-                } catch (error: NumberFormatException) {
-                    // Catch NumberFormatException to prevent parse exception when input is empty.
-                    Timber.e(error)
-                }
+        binding.myNumber.doOnTextChanged { text, _, _, _ ->
+            try {
+                amount = getAmount(text.toString().toInt())
+            } catch (error: NumberFormatException) {
+                // Catch NumberFormatException to prevent parse exception when input is empty.
+                Timber.e(error)
             }
-        })
+        }
     }
 
     /**

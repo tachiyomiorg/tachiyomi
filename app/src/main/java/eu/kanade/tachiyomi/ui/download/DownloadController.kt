@@ -5,11 +5,11 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+import dev.chrisbanes.insetter.applyInsetter
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.download.DownloadService
 import eu.kanade.tachiyomi.data.download.model.Download
@@ -54,10 +54,7 @@ class DownloadController :
         setHasOptionsMenu(true)
     }
 
-    override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        binding = DownloadControllerBinding.inflate(inflater)
-        return binding.root
-    }
+    override fun createBinding(inflater: LayoutInflater) = DownloadControllerBinding.inflate(inflater)
 
     override fun createPresenter(): DownloadPresenter {
         return DownloadPresenter()
@@ -69,6 +66,12 @@ class DownloadController :
 
     override fun onViewCreated(view: View) {
         super.onViewCreated(view)
+
+        binding.recycler.applyInsetter {
+            type(navigationBars = true) {
+                padding()
+            }
+        }
 
         // Check if download queue is empty and update information accordingly.
         setInformationView()
@@ -185,6 +188,7 @@ class DownloadController :
                 onUpdateDownloadedPages(download)
             }
             Download.State.ERROR -> unsubscribeProgress(download)
+            else -> { /* unused */ }
         }
     }
 
@@ -352,6 +356,15 @@ class DownloadController :
                 adapter.removeItem(position)
                 val downloads = adapter.currentItems.mapNotNull { it?.download }
                 presenter.reorder(downloads)
+            }
+            R.id.cancel_series -> {
+                val download = adapter?.getItem(position)?.download ?: return
+                val allDownloadsForSeries = adapter?.currentItems
+                    ?.filter { download.manga.id == it.download.manga.id }
+                    ?.map(DownloadItem::download)
+                if (!allDownloadsForSeries.isNullOrEmpty()) {
+                    presenter.cancelDownloads(allDownloadsForSeries)
+                }
             }
         }
     }

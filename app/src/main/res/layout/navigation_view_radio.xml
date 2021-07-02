@@ -16,7 +16,7 @@
         android:clickable="false"
         android:gravity="center_vertical|start"
         android:maxLines="1"
-        android:paddingStart="@dimen/material_component_lists_icon_left_padding"
+        android:paddingHorizontal="16dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
 </LinearLayout>

@@ -5,10 +5,10 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
 import androidx.recyclerview.widget.LinearLayoutManager
+import dev.chrisbanes.insetter.applyInsetter
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.SelectableAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
@@ -18,7 +18,6 @@ import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService
 import eu.kanade.tachiyomi.data.notification.Notifications
 import eu.kanade.tachiyomi.databinding.UpdatesControllerBinding
-import eu.kanade.tachiyomi.ui.base.controller.NoToolbarElevationController
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.RootController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
@@ -36,13 +35,10 @@ import timber.log.Timber
 
 /**
  * Fragment that shows recent chapters.
- * Uses [R.layout.updates_controller].
- * UI related actions should be called from here.
  */
 class UpdatesController :
     NucleusController<UpdatesControllerBinding, UpdatesPresenter>(),
     RootController,
-    NoToolbarElevationController,
     ActionMode.Callback,
     FlexibleAdapter.OnItemClickListener,
     FlexibleAdapter.OnItemLongClickListener,
@@ -74,13 +70,21 @@ class UpdatesController :
         return UpdatesPresenter()
     }
 
-    override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        binding = UpdatesControllerBinding.inflate(inflater)
-        return binding.root
-    }
+    override fun createBinding(inflater: LayoutInflater) = UpdatesControllerBinding.inflate(inflater)
 
     override fun onViewCreated(view: View) {
         super.onViewCreated(view)
+        binding.recycler.applyInsetter {
+            type(navigationBars = true) {
+                padding()
+            }
+        }
+        binding.actionToolbar.applyInsetter {
+            type(navigationBars = true) {
+                margin(bottom = true)
+            }
+        }
+
         view.context.notificationManager.cancel(Notifications.ID_NEW_CHAPTERS)
 
         // Init RecyclerView and adapter
@@ -109,12 +113,12 @@ class UpdatesController :
             }
             .launchIn(viewScope)
 
-        (activity!! as MainActivity).fixViewToBottom(binding.actionToolbar)
+        (activity as? MainActivity)?.fixViewToBottom(binding.actionToolbar)
     }
 
     override fun onDestroyView(view: View) {
         destroyActionModeIfNeeded()
-        (activity!! as MainActivity).clearFixViewToBottom(binding.actionToolbar)
+        (activity as? MainActivity)?.clearFixViewToBottom(binding.actionToolbar)
         binding.actionToolbar.destroy()
         adapter = null
         super.onDestroyView(view)
@@ -210,6 +214,7 @@ class UpdatesController :
      */
     private fun downloadChapters(chapters: List<UpdatesItem>) {
         presenter.downloadChapters(chapters)
+        destroyActionModeIfNeeded()
     }
 
     /**
@@ -237,8 +242,7 @@ class UpdatesController :
         adapter?.currentItems
             ?.filterIsInstance<UpdatesItem>()
             ?.find { it.chapter.id == download.chapter.id }?.let {
-                adapter?.updateItem(it)
-                adapter?.notifyDataSetChanged()
+                adapter?.updateItem(it, it.status)
             }
     }
 
@@ -251,6 +255,7 @@ class UpdatesController :
         if (presenter.preferences.removeAfterMarkedAsRead()) {
             deleteChapters(chapters)
         }
+        destroyActionModeIfNeeded()
     }
 
     /**
@@ -259,10 +264,12 @@ class UpdatesController :
      */
     private fun markAsUnread(chapters: List<UpdatesItem>) {
         presenter.markChapterRead(chapters, false)
+        destroyActionModeIfNeeded()
     }
 
     override fun deleteChapters(chaptersToDelete: List<UpdatesItem>) {
         presenter.deleteChapters(chaptersToDelete)
+        destroyActionModeIfNeeded()
     }
 
     private fun destroyActionModeIfNeeded() {
@@ -309,6 +316,11 @@ class UpdatesController :
         val item = adapter?.getItem(position) as? UpdatesItem ?: return
         deleteChapters(listOf(item))
         adapter?.updateItem(item)
+    }
+
+    override fun startDownloadNow(position: Int) {
+        val chapter = adapter?.getItem(position) as? UpdatesItem ?: return
+        presenter.startDownloadingNow(chapter)
     }
 
     /**

@@ -18,6 +18,7 @@ sealed class Extension {
         override val versionCode: Int,
         override val lang: String,
         override val isNsfw: Boolean,
+        val pkgFactory: String?,
         val sources: List<Source>,
         val hasUpdate: Boolean = false,
         val isObsolete: Boolean = false,

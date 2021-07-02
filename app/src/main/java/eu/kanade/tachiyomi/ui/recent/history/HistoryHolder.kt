@@ -1,15 +1,12 @@
 package eu.kanade.tachiyomi.ui.recent.history
 
 import android.view.View
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
+import coil.clear
+import coil.loadAny
+import coil.transform.RoundedCornersTransformation
 import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.MangaChapterHistory
-import eu.kanade.tachiyomi.data.glide.GlideApp
-import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.databinding.HistoryItemBinding
 import eu.kanade.tachiyomi.util.lang.toTimestampString
 import java.util.Date
@@ -68,15 +65,11 @@ class HistoryHolder(
             binding.mangaSubtitle.text = Date(history.last_read).toTimestampString()
         }
 
-        val radius = itemView.context.resources.getDimensionPixelSize(R.dimen.card_radius)
-        val requestOptions = RequestOptions().transform(CenterCrop(), RoundedCorners(radius))
-
         // Set cover
-        GlideApp.with(itemView.context).clear(binding.cover)
-        GlideApp.with(itemView.context)
-            .load(manga.toMangaThumbnail())
-            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-            .apply(requestOptions)
-            .into(binding.cover)
+        val radius = itemView.context.resources.getDimension(R.dimen.card_radius)
+        binding.cover.clear()
+        binding.cover.loadAny(item.manga) {
+            transformations(RoundedCornersTransformation(radius))
+        }
     }
 }

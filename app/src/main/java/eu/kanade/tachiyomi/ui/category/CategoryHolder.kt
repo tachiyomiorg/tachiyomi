@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.ui.category
 
 import android.view.View
+import androidx.recyclerview.widget.ItemTouchHelper
 import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.databinding.CategoriesItemBinding
@@ -36,5 +37,13 @@ class CategoryHolder(view: View, val adapter: CategoryAdapter) : FlexibleViewHol
     override fun onItemReleased(position: Int) {
         super.onItemReleased(position)
         adapter.onItemReleaseListener.onItemReleased(position)
+        binding.container.isDragged = false
+    }
+
+    override fun onActionStateChanged(position: Int, actionState: Int) {
+        super.onActionStateChanged(position, actionState)
+        if (actionState == ItemTouchHelper.ACTION_STATE_DRAG) {
+            binding.container.isDragged = true
+        }
     }
 }

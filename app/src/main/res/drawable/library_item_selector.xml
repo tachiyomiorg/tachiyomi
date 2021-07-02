@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="?attr/colorLibrarySelection">
+    android:color="?attr/colorPrimary">
+    <item android:id="@android:id/mask">
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/card_selector_radius" />
+            <solid android:color="#80FFFFFF" />
+        </shape>
+    </item>
     <item>
-        <selector>
-            <item android:state_selected="true">
-                <color android:color="?attr/colorLibrarySelectionActive" />
-            </item>
-
-            <item android:state_activated="true">
-                <color android:color="?attr/colorLibrarySelectionActive" />
-            </item>
-
-            <item>
-                <color android:color="?android:attr/colorBackground" />
-            </item>
-        </selector>
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/card_selector_radius" />
+            <solid android:color="@color/library_item_background" />
+        </shape>
     </item>
 </ripple>

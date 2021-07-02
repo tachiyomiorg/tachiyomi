@@ -21,9 +21,6 @@ class Shikimori(private val context: Context, id: Int) : TrackService(id) {
         const val DROPPED = 4
         const val PLANNING = 5
         const val REPEATING = 6
-
-        const val DEFAULT_STATUS = READING
-        const val DEFAULT_SCORE = 0
     }
 
     private val json: Json by injectLazy()
@@ -43,7 +40,7 @@ class Shikimori(private val context: Context, id: Int) : TrackService(id) {
         return track.score.toInt().toString()
     }
 
-    override suspend fun add(track: Track): Track {
+    private suspend fun add(track: Track): Track {
         return api.addLibManga(track, getUsername())
     }
 
@@ -59,8 +56,8 @@ class Shikimori(private val context: Context, id: Int) : TrackService(id) {
             update(track)
         } else {
             // Set default fields if it's not found in the list
-            track.score = DEFAULT_SCORE.toFloat()
-            track.status = DEFAULT_STATUS
+            track.status = READING
+            track.score = 0F
             add(track)
         }
     }

@@ -44,6 +44,8 @@ data class ALUserManga(
     val list_status: String,
     val score_raw: Int,
     val chapters_read: Int,
+    val start_date_fuzzy: Long,
+    val completed_date_fuzzy: Long,
     val manga: ALManga
 ) {
 
@@ -51,6 +53,8 @@ data class ALUserManga(
         media_id = manga.media_id
         status = toTrackStatus()
         score = score_raw.toFloat()
+        started_reading_date = start_date_fuzzy
+        finished_reading_date = completed_date_fuzzy
         last_chapter_read = chapters_read
         library_id = this@ALUserManga.library_id
         total_chapters = manga.total_chapters

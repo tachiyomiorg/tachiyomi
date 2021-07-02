@@ -9,14 +9,14 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
+import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
+import eu.kanade.tachiyomi.ui.category.CategoryController
 
 class ChangeMangaCategoriesDialog<T>(bundle: Bundle? = null) :
     DialogController(bundle) where T : Controller, T : ChangeMangaCategoriesDialog.Listener {
 
     private var mangas = emptyList<Manga>()
-
     private var categories = emptyList<Category>()
-
     private var preselected = emptyArray<Int>()
 
     constructor(
@@ -34,16 +34,30 @@ class ChangeMangaCategoriesDialog<T>(bundle: Bundle? = null) :
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         return MaterialDialog(activity!!)
             .title(R.string.action_move_category)
-            .listItemsMultiChoice(
-                items = categories.map { it.name },
-                initialSelection = preselected.toIntArray(),
-                allowEmptySelection = true
-            ) { _, selections, _ ->
-                val newCategories = selections.map { categories[it] }
-                (targetController as? Listener)?.updateCategoriesForMangas(mangas, newCategories)
-            }
-            .positiveButton(android.R.string.ok)
             .negativeButton(android.R.string.cancel)
+            .apply {
+                if (categories.isNotEmpty()) {
+                    listItemsMultiChoice(
+                        items = categories.map { it.name },
+                        initialSelection = preselected.toIntArray(),
+                        allowEmptySelection = true
+                    ) { _, selections, _ ->
+                        val newCategories = selections.map { categories[it] }
+                        (targetController as? Listener)?.updateCategoriesForMangas(mangas, newCategories)
+                    }
+                        .positiveButton(android.R.string.ok)
+                } else {
+                    message(R.string.information_empty_category_dialog)
+                        .positiveButton(R.string.action_edit_categories) {
+                            if (targetController is LibraryController) {
+                                val libController = targetController as LibraryController
+                                libController.clearSelection()
+                            }
+                            router.popCurrentController()
+                            router.pushController(CategoryController().withFadeTransaction())
+                        }
+                }
+            }
     }
 
     interface Listener {

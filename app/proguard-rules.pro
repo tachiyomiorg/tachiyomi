@@ -1,29 +1,19 @@
 -dontobfuscate
 
-# Extensions may require methods unused in the core app
--dontwarn eu.kanade.tachiyomi.**
--keep class eu.kanade.tachiyomi.** { public protected private *; }
+# Keep extension's common dependencies
+-keep,allowoptimization class eu.kanade.tachiyomi.** { public protected *; }
+-keep,allowoptimization class androidx.preference.** { *; }
+-keep,allowoptimization class kotlin.** { public protected *; }
+-keep,allowoptimization class okhttp3.** { public protected *; }
+-keep,allowoptimization class okio.** { public protected *; }
+-keep,allowoptimization class rx.** { public protected *; }
+-keep,allowoptimization class org.jsoup.** { public protected *; }
+-keep,allowoptimization class com.google.gson.** { public protected *; }
+-keep,allowoptimization class com.github.salomonbrys.kotson.** { public protected *; }
+-keep,allowoptimization class com.squareup.duktape.** { public protected *; }
+-keep,allowoptimization class uy.kohesive.injekt.** { public protected *; }
 
--keep class org.jsoup.** { *; }
--keep class kotlin.** { *; }
--keep class okhttp3.** { *; }
--keep class com.google.gson.** { *; }
--keep class com.github.salomonbrys.kotson.** { *; }
--keep class com.squareup.duktape.** { *; }
-
-# Design library
--dontwarn com.google.android.material.**
--keep class com.google.android.material.** { *; }
--keep interface com.google.android.material.** { *; }
--keep public class com.google.android.material.R$* { *; }
-
--keep class com.hippo.image.** { *; }
--keep interface com.hippo.image.** { *; }
--keepclassmembers class * extends nucleus.presenter.Presenter {
-    <init>();
-}
-
-# RxJava 1.1.0
+##---------------Begin: proguard configuration for RxJava 1.x  ----------
 -dontwarn sun.misc.**
 
 -keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
@@ -39,30 +29,38 @@
     rx.internal.util.atomic.LinkedQueueNode consumerNode;
 }
 
-# ReactiveNetwork
--dontwarn com.github.pwittchen.reactivenetwork.**
+-dontnote rx.internal.util.PlatformDependent
+##---------------End: proguard configuration for RxJava 1.x  ----------
 
-## GSON ##
-
+##---------------Begin: proguard configuration for Gson  ----------
 # Gson uses generic type information stored in a class file when working with fields. Proguard
 # removes such information by default, so configure it to keep all of it.
 -keepattributes Signature
 
-# Gson specific classes
--keep class sun.misc.Unsafe { *; }
+# For using GSON @Expose annotation
+-keepattributes *Annotation*
 
-# Prevent proguard from stripping interface information from TypeAdapterFactory,
+# Gson specific classes
+-dontwarn sun.misc.**
+
+# Prevent proguard from stripping interface information from TypeAdapter, TypeAdapterFactory,
 # JsonSerializer, JsonDeserializer instances (so they can be used in @JsonAdapter)
+-keep class * extends com.google.gson.TypeAdapter
 -keep class * implements com.google.gson.TypeAdapterFactory
 -keep class * implements com.google.gson.JsonSerializer
 -keep class * implements com.google.gson.JsonDeserializer
 
+# Prevent R8 from leaving Data object members always null
+-keepclassmembers,allowobfuscation class * {
+  @com.google.gson.annotations.SerializedName <fields>;
+}
+##---------------End: proguard configuration for Gson  ----------
 
-## kotlinx.serialization ##
-
+##---------------Begin: proguard configuration for kotlinx.serialization  ----------
 -keepattributes *Annotation*, InnerClasses
 -dontnote kotlinx.serialization.AnnotationsKt # core serialization annotations
 
+# kotlinx-serialization-json specific. Add this if you have java.lang.NoClassDefFoundError kotlinx.serialization.json.JsonObjectSerializer
 -keepclassmembers class kotlinx.serialization.json.** {
     *** Companion;
 }
@@ -77,3 +75,9 @@
 -keepclasseswithmembers class eu.kanade.tachiyomi.** {
     kotlinx.serialization.KSerializer serializer(...);
 }
+
+-keep class kotlinx.serialization.**
+-keepclassmembers class kotlinx.serialization.** {
+    <methods>;
+}
+##---------------End: proguard configuration for kotlinx.serialization  ----------

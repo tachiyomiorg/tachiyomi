@@ -5,10 +5,14 @@ import android.util.AttributeSet
 import android.view.View
 import com.bluelinelabs.conductor.Router
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.preference.PreferenceValues.DisplayMode
+import eu.kanade.tachiyomi.data.database.DatabaseHelper
+import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.TrackService
+import eu.kanade.tachiyomi.ui.library.setting.DisplayModeSetting
+import eu.kanade.tachiyomi.ui.library.setting.SortDirectionSetting
+import eu.kanade.tachiyomi.ui.library.setting.SortModeSetting
 import eu.kanade.tachiyomi.widget.ExtendedNavigationView
 import eu.kanade.tachiyomi.widget.ExtendedNavigationView.Item.TriStateGroup.State
 import eu.kanade.tachiyomi.widget.sheet.TabbedBottomSheetDialog
@@ -20,11 +24,12 @@ class LibrarySettingsSheet(
     router: Router,
     private val trackManager: TrackManager = Injekt.get(),
     onGroupClickListener: (ExtendedNavigationView.Group) -> Unit
-) : TabbedBottomSheetDialog(router) {
+) : TabbedBottomSheetDialog(router.activity!!) {
 
     val filters: Filter
     private val sort: Sort
     private val display: Display
+    private val db: DatabaseHelper by injectLazy()
 
     init {
         filters = Filter(router.activity!!)
@@ -35,6 +40,18 @@ class LibrarySettingsSheet(
 
         display = Display(router.activity!!)
         display.onGroupClicked = onGroupClickListener
+    }
+
+    /**
+     * adjusts selected button to match real state.
+     * @param currentCategory ID of currently shown category
+     */
+    fun show(currentCategory: Category) {
+        sort.currentCategory = currentCategory
+        sort.adjustDisplaySelection()
+        display.currentCategory = currentCategory
+        display.adjustDisplaySelection()
+        super.show()
     }
 
     override fun getTabViews(): List<View> = listOf(
@@ -145,8 +162,16 @@ class LibrarySettingsSheet(
     inner class Sort @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
         Settings(context, attrs) {
 
+        private val sort = SortGroup()
+
         init {
-            setGroups(listOf(SortGroup()))
+            setGroups(listOf(sort))
+        }
+
+        // Refreshes Display Setting selections
+        fun adjustDisplaySelection() {
+            sort.initModels()
+            sort.items.forEach { adapter.notifyItemChanged(it) }
         }
 
         inner class SortGroup : Group {
@@ -157,35 +182,38 @@ class LibrarySettingsSheet(
             private val lastChecked = Item.MultiSort(R.string.action_sort_last_checked, this)
             private val unread = Item.MultiSort(R.string.action_filter_unread, this)
             private val latestChapter = Item.MultiSort(R.string.action_sort_latest_chapter, this)
+            private val chapterFetchDate = Item.MultiSort(R.string.action_sort_chapter_fetch_date, this)
             private val dateAdded = Item.MultiSort(R.string.action_sort_date_added, this)
 
             override val header = null
             override val items =
-                listOf(alphabetically, lastRead, lastChecked, unread, total, latestChapter, dateAdded)
+                listOf(alphabetically, lastRead, lastChecked, unread, total, latestChapter, chapterFetchDate, dateAdded)
             override val footer = null
 
             override fun initModels() {
-                val sorting = preferences.librarySortingMode().get()
-                val order = if (preferences.librarySortingAscending().get()) {
+                val sorting = SortModeSetting.get(preferences, currentCategory)
+                val order = if (SortDirectionSetting.get(preferences, currentCategory) == SortDirectionSetting.ASCENDING) {
                     Item.MultiSort.SORT_ASC
                 } else {
                     Item.MultiSort.SORT_DESC
                 }
 
                 alphabetically.state =
-                    if (sorting == LibrarySort.ALPHA) order else Item.MultiSort.SORT_NONE
+                    if (sorting == SortModeSetting.ALPHABETICAL) order else Item.MultiSort.SORT_NONE
                 lastRead.state =
-                    if (sorting == LibrarySort.LAST_READ) order else Item.MultiSort.SORT_NONE
+                    if (sorting == SortModeSetting.LAST_READ) order else Item.MultiSort.SORT_NONE
                 lastChecked.state =
-                    if (sorting == LibrarySort.LAST_CHECKED) order else Item.MultiSort.SORT_NONE
+                    if (sorting == SortModeSetting.LAST_CHECKED) order else Item.MultiSort.SORT_NONE
                 unread.state =
-                    if (sorting == LibrarySort.UNREAD) order else Item.MultiSort.SORT_NONE
+                    if (sorting == SortModeSetting.UNREAD) order else Item.MultiSort.SORT_NONE
                 total.state =
-                    if (sorting == LibrarySort.TOTAL) order else Item.MultiSort.SORT_NONE
+                    if (sorting == SortModeSetting.TOTAL_CHAPTERS) order else Item.MultiSort.SORT_NONE
                 latestChapter.state =
-                    if (sorting == LibrarySort.LATEST_CHAPTER) order else Item.MultiSort.SORT_NONE
+                    if (sorting == SortModeSetting.LATEST_CHAPTER) order else Item.MultiSort.SORT_NONE
+                chapterFetchDate.state =
+                    if (sorting == SortModeSetting.DATE_FETCHED) order else Item.MultiSort.SORT_NONE
                 dateAdded.state =
-                    if (sorting == LibrarySort.DATE_ADDED) order else Item.MultiSort.SORT_NONE
+                    if (sorting == SortModeSetting.DATE_ADDED) order else Item.MultiSort.SORT_NONE
             }
 
             override fun onItemClicked(item: Item) {
@@ -203,21 +231,49 @@ class LibrarySettingsSheet(
                     else -> throw Exception("Unknown state")
                 }
 
-                preferences.librarySortingMode().set(
-                    when (item) {
-                        alphabetically -> LibrarySort.ALPHA
-                        lastRead -> LibrarySort.LAST_READ
-                        lastChecked -> LibrarySort.LAST_CHECKED
-                        unread -> LibrarySort.UNREAD
-                        total -> LibrarySort.TOTAL
-                        latestChapter -> LibrarySort.LATEST_CHAPTER
-                        dateAdded -> LibrarySort.DATE_ADDED
-                        else -> throw Exception("Unknown sorting")
-                    }
-                )
-                preferences.librarySortingAscending().set(item.state == Item.MultiSort.SORT_ASC)
+                setSortModePreference(item)
+
+                setSortDirectionPrefernece(item)
 
                 item.group.items.forEach { adapter.notifyItemChanged(it) }
+            }
+
+            private fun setSortDirectionPrefernece(item: Item.MultiStateGroup) {
+                val flag = if (item.state == Item.MultiSort.SORT_ASC) {
+                    SortDirectionSetting.ASCENDING
+                } else {
+                    SortDirectionSetting.DESCENDING
+                }
+
+                if (preferences.categorisedDisplaySettings().get() && currentCategory != null && currentCategory?.id != 0) {
+                    currentCategory?.sortDirection = flag.flag
+
+                    db.insertCategory(currentCategory!!).executeAsBlocking()
+                } else {
+                    preferences.librarySortingAscending().set(flag)
+                }
+            }
+
+            private fun setSortModePreference(item: Item) {
+                val flag = when (item) {
+                    alphabetically -> SortModeSetting.ALPHABETICAL
+                    lastRead -> SortModeSetting.LAST_READ
+                    lastChecked -> SortModeSetting.LAST_CHECKED
+                    unread -> SortModeSetting.UNREAD
+                    total -> SortModeSetting.TOTAL_CHAPTERS
+                    latestChapter -> SortModeSetting.LATEST_CHAPTER
+                    chapterFetchDate -> SortModeSetting.DATE_FETCHED
+                    dateAdded -> SortModeSetting.DATE_ADDED
+                    else -> throw NotImplementedError("Unknown display mode")
+                }
+
+                if (preferences.categorisedDisplaySettings().get() && currentCategory != null && currentCategory?.id != 0) {
+                    currentCategory?.sortMode = flag.flag
+
+                    db.insertCategory(currentCategory!!).executeAsBlocking()
+                } else {
+                    preferences.librarySortingMode().set(flag)
+                }
             }
         }
     }
@@ -228,8 +284,31 @@ class LibrarySettingsSheet(
     inner class Display @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
         Settings(context, attrs) {
 
+        private val displayGroup: DisplayGroup
+        private val badgeGroup: BadgeGroup
+        private val tabsGroup: TabsGroup
+
         init {
-            setGroups(listOf(DisplayGroup(), BadgeGroup(), TabsGroup()))
+            displayGroup = DisplayGroup()
+            badgeGroup = BadgeGroup()
+            tabsGroup = TabsGroup()
+            setGroups(listOf(displayGroup, badgeGroup, tabsGroup))
+        }
+
+        // Refreshes Display Setting selections
+        fun adjustDisplaySelection() {
+            val mode = getDisplayModePreference()
+            displayGroup.setGroupSelections(mode)
+            displayGroup.items.forEach { adapter.notifyItemChanged(it) }
+        }
+
+        // Gets user preference of currently selected display mode at current category
+        private fun getDisplayModePreference(): DisplayModeSetting {
+            return if (preferences.categorisedDisplaySettings().get() && currentCategory != null && currentCategory?.id != 0) {
+                DisplayModeSetting.fromFlag(currentCategory?.displayMode)
+            } else {
+                preferences.libraryDisplayMode().get()
+            }
         }
 
         inner class DisplayGroup : Group {
@@ -243,10 +322,8 @@ class LibrarySettingsSheet(
             override val footer = null
 
             override fun initModels() {
-                val mode = preferences.libraryDisplayMode().get()
-                compactGrid.checked = mode == DisplayMode.COMPACT_GRID
-                comfortableGrid.checked = mode == DisplayMode.COMFORTABLE_GRID
-                list.checked = mode == DisplayMode.LIST
+                val mode = getDisplayModePreference()
+                setGroupSelections(mode)
             }
 
             override fun onItemClicked(item: Item) {
@@ -256,30 +333,49 @@ class LibrarySettingsSheet(
                 item.group.items.forEach { (it as Item.Radio).checked = false }
                 item.checked = true
 
-                preferences.libraryDisplayMode().set(
-                    when (item) {
-                        compactGrid -> DisplayMode.COMPACT_GRID
-                        comfortableGrid -> DisplayMode.COMFORTABLE_GRID
-                        list -> DisplayMode.LIST
-                        else -> throw NotImplementedError("Unknown display mode")
-                    }
-                )
+                setDisplayModePreference(item)
 
                 item.group.items.forEach { adapter.notifyItemChanged(it) }
+            }
+
+            // Sets display group selections based on given mode
+            fun setGroupSelections(mode: DisplayModeSetting) {
+                compactGrid.checked = mode == DisplayModeSetting.COMPACT_GRID
+                comfortableGrid.checked = mode == DisplayModeSetting.COMFORTABLE_GRID
+                list.checked = mode == DisplayModeSetting.LIST
+            }
+
+            private fun setDisplayModePreference(item: Item) {
+                val flag = when (item) {
+                    compactGrid -> DisplayModeSetting.COMPACT_GRID
+                    comfortableGrid -> DisplayModeSetting.COMFORTABLE_GRID
+                    list -> DisplayModeSetting.LIST
+                    else -> throw NotImplementedError("Unknown display mode")
+                }
+
+                if (preferences.categorisedDisplaySettings().get() && currentCategory != null && currentCategory?.id != 0) {
+                    currentCategory?.displayMode = flag.flag
+
+                    db.insertCategory(currentCategory!!).executeAsBlocking()
+                } else {
+                    preferences.libraryDisplayMode().set(flag)
+                }
             }
         }
 
         inner class BadgeGroup : Group {
             private val downloadBadge = Item.CheckboxGroup(R.string.action_display_download_badge, this)
             private val unreadBadge = Item.CheckboxGroup(R.string.action_display_unread_badge, this)
+            private val localBadge = Item.CheckboxGroup(R.string.action_display_local_badge, this)
 
             override val header = Item.Header(R.string.badges_header)
-            override val items = listOf(downloadBadge, unreadBadge)
+            override val items = listOf(downloadBadge, unreadBadge, localBadge)
             override val footer = null
 
             override fun initModels() {
                 downloadBadge.checked = preferences.downloadBadge().get()
                 unreadBadge.checked = preferences.unreadBadge().get()
+                localBadge.checked = preferences.localBadge().get()
             }
 
             override fun onItemClicked(item: Item) {
@@ -288,6 +384,7 @@ class LibrarySettingsSheet(
                 when (item) {
                     downloadBadge -> preferences.downloadBadge().set((item.checked))
                     unreadBadge -> preferences.unreadBadge().set((item.checked))
+                    localBadge -> preferences.localBadge().set((item.checked))
                 }
                 adapter.notifyItemChanged(item)
             }
@@ -328,6 +425,8 @@ class LibrarySettingsSheet(
          * Click listener to notify the parent fragment when an item from a group is clicked.
          */
         var onGroupClicked: (Group) -> Unit = {}
+
+        var currentCategory: Category? = null
 
         fun setGroups(groups: List<Group>) {
             adapter = Adapter(groups.map { it.createItems() }.flatten())

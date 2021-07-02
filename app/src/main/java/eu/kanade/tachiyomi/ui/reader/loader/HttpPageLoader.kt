@@ -85,8 +85,7 @@ class HttpPageLoader(
      * the local cache, otherwise fallbacks to network.
      */
     override fun getPages(): Observable<List<ReaderPage>> {
-        return chapterCache
-            .getPageListFromCache(chapter.chapter)
+        return Observable.fromCallable { chapterCache.getPageListFromCache(chapter.chapter) }
             .onErrorResumeNext { source.fetchPageList(chapter.chapter) }
             .map { pages ->
                 pages.mapIndexed { index, page ->

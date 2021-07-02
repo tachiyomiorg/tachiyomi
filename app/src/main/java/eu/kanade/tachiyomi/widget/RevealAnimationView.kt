@@ -49,10 +49,8 @@ class RevealAnimationView @JvmOverloads constructor(context: Context, attrs: Att
      * @param centerX x starting point
      * @param centerY y starting point
      * @param listener animation listener
-     *
-     * @return sdk version lower then 21
      */
-    fun showRevealEffect(centerX: Int, centerY: Int, listener: Animator.AnimatorListener): Boolean {
+    fun showRevealEffect(centerX: Int, centerY: Int, listener: Animator.AnimatorListener) {
         this.isVisible = true
 
         val height = this.height
@@ -71,6 +69,5 @@ class RevealAnimationView @JvmOverloads constructor(context: Context, attrs: Att
 
         anim.addListener(listener)
         anim.start()
-        return true
     }
 }

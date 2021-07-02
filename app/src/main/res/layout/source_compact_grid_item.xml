@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="2dp"
     android:background="@drawable/library_item_selector"
+    android:foreground="@drawable/library_item_selector_overlay"
     android:padding="4dp">
 
     <FrameLayout
@@ -17,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?attr/colorSurface"
+            android:scaleType="centerCrop"
             tools:ignore="ContentDescription"
             tools:src="@mipmap/ic_launcher" />
 
@@ -40,13 +43,13 @@
                 style="@style/TextAppearance.Regular.Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/green"
+                android:background="?attr/colorTertiary"
                 android:paddingStart="3dp"
                 android:paddingTop="1dp"
                 android:paddingEnd="3dp"
                 android:paddingBottom="1dp"
                 android:text="@string/local_source_badge"
-                android:textColor="@color/md_white_1000"
+                android:textColor="?attr/colorOnTertiary"
                 android:visibility="gone"
                 tools:visibility="visible" />
 
@@ -55,12 +58,12 @@
                 style="@style/TextAppearance.Regular.Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/green"
+                android:background="?attr/colorTertiary"
                 android:paddingStart="3dp"
                 android:paddingTop="1dp"
                 android:paddingEnd="3dp"
                 android:paddingBottom="1dp"
-                android:textColor="@color/md_white_1000"
+                android:textColor="?attr/colorOnTertiary"
                 android:visibility="gone"
                 tools:text="120"
                 tools:visibility="visible" />
@@ -70,14 +73,30 @@
                 style="@style/TextAppearance.Regular.Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/colorAccentDark"
+                android:background="?attr/colorSecondary"
                 android:paddingStart="3dp"
                 android:paddingTop="1dp"
                 android:paddingEnd="3dp"
                 android:paddingBottom="1dp"
-                android:textColor="@color/md_white_1000"
+                android:textColor="?attr/colorOnSecondary"
                 android:visibility="gone"
                 tools:text="120"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/favorite_text"
+                style="@style/TextAppearance.Regular.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorSecondary"
+                android:maxLines="1"
+                android:paddingStart="3dp"
+                android:paddingTop="1dp"
+                android:paddingEnd="3dp"
+                android:paddingBottom="1dp"
+                android:text="@string/in_library"
+                android:textColor="?attr/colorOnSecondary"
+                android:visibility="gone"
                 tools:visibility="visible" />
 
         </LinearLayout>
@@ -93,7 +112,7 @@
             android:lineSpacingExtra="-4dp"
             android:maxLines="2"
             android:padding="8dp"
-            android:shadowColor="@color/textColorPrimaryLight"
+            android:shadowColor="@color/md_black_1000"
             android:shadowDx="0"
             android:shadowDy="0"
             android:shadowRadius="4"
@@ -102,7 +121,7 @@
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/progress"
-            style="@style/Theme.Widget.CircularProgressIndicator.Small"
+            style="@style/Widget.Tachiyomi.CircularProgressIndicator.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

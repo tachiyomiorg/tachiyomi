@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.ui.manga.chapter
 
 import android.content.Context
+import android.os.Bundle
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.view.isVisible
@@ -16,21 +17,18 @@ import eu.kanade.tachiyomi.widget.sheet.TabbedBottomSheetDialog
 class ChaptersSettingsSheet(
     private val router: Router,
     private val presenter: MangaPresenter,
-    onGroupClickListener: (ExtendedNavigationView.Group) -> Unit
-) : TabbedBottomSheetDialog(router) {
+    private val onGroupClickListener: (ExtendedNavigationView.Group) -> Unit
+) : TabbedBottomSheetDialog(router.activity!!) {
 
-    val filters: Filter
-    private val sort: Sort
-    private val display: Display
+    val filters = Filter(router.activity!!)
+    private val sort = Sort(router.activity!!)
+    private val display = Display(router.activity!!)
 
-    init {
-        filters = Filter(router.activity!!)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
         filters.onGroupClicked = onGroupClickListener
-
-        sort = Sort(router.activity!!)
         sort.onGroupClicked = onGroupClickListener
-
-        display = Display(router.activity!!)
         display.onGroupClicked = onGroupClickListener
 
         binding.menu.isVisible = true
@@ -51,16 +49,12 @@ class ChaptersSettingsSheet(
 
     private fun showPopupMenu(view: View) {
         view.popupMenu(
-            R.menu.default_chapter_filter,
-            {
-            },
-            {
-                when (this.itemId) {
+            menuRes = R.menu.default_chapter_filter,
+            onMenuItemClick = {
+                when (itemId) {
                     R.id.set_as_default -> {
                         SetChapterSettingsDialog(presenter.manga).showDialog(router)
-                        true
                     }
-                    else -> true
                 }
             }
         )
@@ -156,11 +150,11 @@ class ChaptersSettingsSheet(
                 }
 
                 source.state =
-                    if (sorting == Manga.SORTING_SOURCE) order else Item.MultiSort.SORT_NONE
+                    if (sorting == Manga.CHAPTER_SORTING_SOURCE) order else Item.MultiSort.SORT_NONE
                 chapterNum.state =
-                    if (sorting == Manga.SORTING_NUMBER) order else Item.MultiSort.SORT_NONE
+                    if (sorting == Manga.CHAPTER_SORTING_NUMBER) order else Item.MultiSort.SORT_NONE
                 uploadDate.state =
-                    if (sorting == Manga.SORTING_UPLOAD_DATE) order else Item.MultiSort.SORT_NONE
+                    if (sorting == Manga.CHAPTER_SORTING_UPLOAD_DATE) order else Item.MultiSort.SORT_NONE
             }
 
             override fun onItemClicked(item: Item) {
@@ -179,9 +173,9 @@ class ChaptersSettingsSheet(
                 }
 
                 when (item) {
-                    source -> presenter.setSorting(Manga.SORTING_SOURCE)
-                    chapterNum -> presenter.setSorting(Manga.SORTING_NUMBER)
-                    uploadDate -> presenter.setSorting(Manga.SORTING_UPLOAD_DATE)
+                    source -> presenter.setSorting(Manga.CHAPTER_SORTING_SOURCE)
+                    chapterNum -> presenter.setSorting(Manga.CHAPTER_SORTING_NUMBER)
+                    uploadDate -> presenter.setSorting(Manga.CHAPTER_SORTING_UPLOAD_DATE)
                     else -> throw Exception("Unknown sorting")
                 }
 
@@ -213,8 +207,8 @@ class ChaptersSettingsSheet(
 
             override fun initModels() {
                 val mode = presenter.manga.displayMode
-                displayTitle.checked = mode == Manga.DISPLAY_NAME
-                displayChapterNum.checked = mode == Manga.DISPLAY_NUMBER
+                displayTitle.checked = mode == Manga.CHAPTER_DISPLAY_NAME
+                displayChapterNum.checked = mode == Manga.CHAPTER_DISPLAY_NUMBER
             }
 
             override fun onItemClicked(item: Item) {
@@ -225,8 +219,8 @@ class ChaptersSettingsSheet(
                 item.checked = true
 
                 when (item) {
-                    displayTitle -> presenter.setDisplayMode(Manga.DISPLAY_NAME)
-                    displayChapterNum -> presenter.setDisplayMode(Manga.DISPLAY_NUMBER)
+                    displayTitle -> presenter.setDisplayMode(Manga.CHAPTER_DISPLAY_NAME)
+                    displayChapterNum -> presenter.setDisplayMode(Manga.CHAPTER_DISPLAY_NUMBER)
                     else -> throw NotImplementedError("Unknown display mode")
                 }
 

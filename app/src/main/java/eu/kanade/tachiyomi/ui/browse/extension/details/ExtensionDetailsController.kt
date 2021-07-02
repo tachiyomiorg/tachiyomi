@@ -12,9 +12,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.view.ContextThemeWrapper
-import androidx.core.net.toUri
 import androidx.core.os.bundleOf
 import androidx.preference.Preference
 import androidx.preference.PreferenceGroupAdapter
@@ -23,6 +21,7 @@ import androidx.preference.PreferenceScreen
 import androidx.preference.SwitchPreferenceCompat
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
+import dev.chrisbanes.insetter.applyInsetter
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.EmptyPreferenceDataStore
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
@@ -36,6 +35,7 @@ import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.getPreferenceKey
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.ToolbarLiftOnScrollController
+import eu.kanade.tachiyomi.ui.base.controller.openInBrowser
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.util.preference.DSL
 import eu.kanade.tachiyomi.util.preference.onChange
@@ -64,10 +64,9 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
         setHasOptionsMenu(true)
     }
 
-    override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
+    override fun createBinding(inflater: LayoutInflater): ExtensionDetailControllerBinding {
         val themedInflater = inflater.cloneInContext(getPreferenceThemeContext())
-        binding = ExtensionDetailControllerBinding.inflate(themedInflater)
-        return binding.root
+        return ExtensionDetailControllerBinding.inflate(themedInflater)
     }
 
     override fun createPresenter(): ExtensionDetailsPresenter {
@@ -81,6 +80,12 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
     @SuppressLint("PrivateResource")
     override fun onViewCreated(view: View) {
         super.onViewCreated(view)
+
+        binding.extensionPrefsRecycler.applyInsetter {
+            type(navigationBars = true) {
+                padding()
+            }
+        }
 
         val extension = presenter.extension ?: return
         val context = view.context
@@ -109,7 +114,7 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
                 .forEach {
                     val preferenceBlock = {
                         it.value
-                            .sortedWith(compareBy({ !it.isEnabled() }, { it.name.toLowerCase() }))
+                            .sortedWith(compareBy({ !it.isEnabled() }, { it.name.lowercase() }))
                             .forEach { source ->
                                 val sourcePrefs = mutableListOf<Preference>()
 
@@ -208,9 +213,12 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
 
     private fun openCommitHistory() {
         val pkgName = presenter.extension!!.pkgName.substringAfter("eu.kanade.tachiyomi.extension.")
-        val url = "https://github.com/tachiyomiorg/tachiyomi-extensions/commits/master/src/${pkgName.replace(".", "/")}"
-        val intent = Intent(Intent.ACTION_VIEW, url.toUri())
-        startActivity(intent)
+        val pkgFactory = presenter.extension!!.pkgFactory
+        val url = when {
+            !pkgFactory.isNullOrEmpty() -> "$URL_EXTENSION_COMMITS/multisrc/src/main/java/eu/kanade/tachiyomi/multisrc/$pkgFactory"
+            else -> "$URL_EXTENSION_COMMITS/src/${pkgName.replace(".", "/")}"
+        }
+        openInBrowser(url)
     }
 
     private fun openInSettings() {
@@ -232,5 +240,7 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
 
     private companion object {
         const val PKGNAME_KEY = "pkg_name"
+
+        private const val URL_EXTENSION_COMMITS = "https://github.com/tachiyomiorg/tachiyomi-extensions/commits/master"
     }
 }

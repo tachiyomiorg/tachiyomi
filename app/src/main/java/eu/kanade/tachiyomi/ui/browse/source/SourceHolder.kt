@@ -8,7 +8,6 @@ import eu.kanade.tachiyomi.databinding.SourceMainControllerCardItemBinding
 import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.icon
 import eu.kanade.tachiyomi.util.system.LocaleHelper
-import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.view.setVectorCompat
 
 class SourceHolder(private val view: View, val adapter: SourceAdapter) :
@@ -46,9 +45,9 @@ class SourceHolder(private val view: View, val adapter: SourceAdapter) :
 
         binding.pin.isVisible = true
         if (item.isPinned) {
-            binding.pin.setVectorCompat(R.drawable.ic_push_pin_24dp, view.context.getResourceColor(R.attr.colorAccent))
+            binding.pin.setVectorCompat(R.drawable.ic_push_pin_24dp, R.attr.colorAccent)
         } else {
-            binding.pin.setVectorCompat(R.drawable.ic_push_pin_outline_24dp, view.context.getResourceColor(android.R.attr.textColorHint))
+            binding.pin.setVectorCompat(R.drawable.ic_push_pin_outline_24dp, android.R.attr.textColorHint)
         }
     }
 }

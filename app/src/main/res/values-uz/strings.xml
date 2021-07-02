@@ -2,10 +2,6 @@
 <resources>
     <string name="action_stop">Tõxatish</string>
     <string name="action_view_chapters">Bõlimlarni kõrish</string>
-    <string name="action_next_unread">Keyingi õqilmagan</string>
-    <string name="action_show_downloaded">Yuklangan</string>
-    <string name="action_sort_down">Saralash</string>
-    <string name="action_sort_up">Saralash</string>
     <string name="action_edit_cover">Muqovani õzgartirish</string>
     <string name="action_move_category">Kategoriyalar õrnatish</string>
     <string name="action_rename_category">Kategoriyani qayta nomlash</string>
@@ -60,7 +56,6 @@
     <string name="label_extensions">Qõshimchalar</string>
     <string name="label_migration">Kõchish</string>
     <string name="label_backup">Saqlash</string>
-    <string name="label_categories">Kategoriyalar</string>
     <string name="label_sources">Manbalar</string>
     <string name="label_recent_manga">Tarix</string>
     <string name="label_recent_updates">Yangilanishlar</string>
@@ -68,5 +63,5 @@
     <string name="label_download_queue">Yuklash navbati</string>
     <string name="label_settings">Sozlamalar</string>
     <string name="label_more">Kõproq</string>
-    <string name="name">Ism</string>
+    <string name="name">Name</string>
 </resources>

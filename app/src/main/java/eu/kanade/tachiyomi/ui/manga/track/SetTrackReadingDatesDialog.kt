@@ -40,6 +40,7 @@ class SetTrackReadingDatesDialog<T> : DialogController
         dateToUpdate = ReadingDate.Start
     }
 
+    @Suppress("DEPRECATION")
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         return MaterialDialog(activity!!)
             .title(
@@ -49,10 +50,10 @@ class SetTrackReadingDatesDialog<T> : DialogController
                 }
             )
             .datePicker(currentDate = getCurrentDate()) { _, date ->
-                listener?.setReadingDate(item, dateToUpdate, date.timeInMillis)
+                listener.setReadingDate(item, dateToUpdate, date.timeInMillis)
             }
             .neutralButton(R.string.action_remove) {
-                listener?.setReadingDate(item, dateToUpdate, 0L)
+                listener.setReadingDate(item, dateToUpdate, 0L)
             }
     }
 

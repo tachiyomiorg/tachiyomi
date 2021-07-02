@@ -111,24 +111,6 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
         }
     }
 
-    suspend fun addItemToList(track: Track): Track {
-        return withIOContext {
-            val formBody: RequestBody = FormBody.Builder()
-                .add("status", "reading")
-                .add("score", "0")
-                .add("start_date", convertToIsoDate(System.currentTimeMillis())!!)
-                .build()
-            val request = Request.Builder()
-                .url(mangaUrl(track.media_id).toString())
-                .put(formBody)
-                .build()
-            authClient.newCall(request)
-                .await()
-                .parseAs<JsonObject>()
-                .let { parseMangaItem(it, track) }
-        }
-    }
-
     suspend fun updateItem(track: Track): Track {
         return withIOContext {
             val formBodyBuilder = FormBody.Builder()

@@ -49,12 +49,17 @@ data class SourceItem(
 
     override fun equals(other: Any?): Boolean {
         if (other is SourceItem) {
-            return source.id == other.source.id && getHeader()?.code == other.getHeader()?.code
+            return source.id == other.source.id &&
+                getHeader()?.code == other.getHeader()?.code &&
+                isPinned == other.isPinned
         }
         return false
     }
 
     override fun hashCode(): Int {
-        return source.id.hashCode() + (getHeader()?.code?.hashCode() ?: 0).toInt()
+        var result = source.id.hashCode()
+        result = 31 * result + (header?.hashCode() ?: 0)
+        result = 31 * result + isPinned.hashCode()
+        return result
     }
 }

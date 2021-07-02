@@ -1,9 +1,10 @@
 package eu.kanade.tachiyomi.ui.browse.extension
 
 import android.view.View
+import coil.clear
+import coil.load
 import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.databinding.ExtensionCardItemBinding
 import eu.kanade.tachiyomi.extension.model.Extension
@@ -35,17 +36,15 @@ class ExtensionHolder(view: View, val adapter: ExtensionAdapter) :
         binding.lang.text = LocaleHelper.getSourceDisplayName(extension.lang, itemView.context)
         binding.warning.text = when {
             extension is Extension.Untrusted -> itemView.context.getString(R.string.ext_untrusted)
-            extension is Extension.Installed && extension.isObsolete -> itemView.context.getString(R.string.ext_obsolete)
             extension is Extension.Installed && extension.isUnofficial -> itemView.context.getString(R.string.ext_unofficial)
+            extension is Extension.Installed && extension.isObsolete -> itemView.context.getString(R.string.ext_obsolete)
             extension.isNsfw && shouldLabelNsfw -> itemView.context.getString(R.string.ext_nsfw_short)
             else -> ""
-        }.toUpperCase()
+        }.uppercase()
 
-        GlideApp.with(itemView.context).clear(binding.image)
+        binding.image.clear()
         if (extension is Extension.Available) {
-            GlideApp.with(itemView.context)
-                .load(extension.iconUrl)
-                .into(binding.image)
+            binding.image.load(extension.iconUrl)
         } else {
             extension.getApplicationIcon(itemView.context)?.let { binding.image.setImageDrawable(it) }
         }

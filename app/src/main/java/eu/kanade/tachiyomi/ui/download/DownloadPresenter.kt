@@ -65,4 +65,8 @@ class DownloadPresenter : BasePresenter<DownloadController>() {
     fun cancelDownload(download: Download) {
         downloadManager.deletePendingDownload(download)
     }
+
+    fun cancelDownloads(downloads: List<Download>) {
+        downloadManager.deletePendingDownloads(*downloads.toTypedArray())
+    }
 }

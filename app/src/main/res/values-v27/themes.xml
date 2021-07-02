@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="Theme.Tachiyomi.Light.Api27">
-        <item name="android:statusBarColor">@color/md_white_1000</item>
-        <item name="android:windowLightStatusBar">true</item>
-
-        <item name="android:navigationBarColor">@color/md_white_1000</item>
-        <item name="android:windowLightNavigationBar">true</item>
+    <style name="Base.V27.Tachiyomi" parent="Base.Theme.Tachiyomi">
+        <item name="android:navigationBarColor">?attr/colorSurface</item>
+        <item name="android:windowLightNavigationBar">@bool/lightNavigationBar</item>
     </style>
 
+    <style name="Theme.Tachiyomi" parent="Base.V27.Tachiyomi" />
 </resources>

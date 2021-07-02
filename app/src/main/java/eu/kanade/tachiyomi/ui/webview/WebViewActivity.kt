@@ -91,7 +91,7 @@ class WebViewActivity : BaseViewBindingActivity<WebviewActivityBinding>() {
                 }
             }
         } else {
-            binding.webview.restoreState(bundle)
+            binding.webview.restoreState(bundle!!)
         }
 
         if (bundle == null) {
@@ -138,9 +138,12 @@ class WebViewActivity : BaseViewBindingActivity<WebviewActivityBinding>() {
         }
     }
 
+    @Suppress("UNNECESSARY_SAFE_CALL")
     override fun onDestroy() {
-        binding.webview?.destroy()
         super.onDestroy()
+
+        // Binding sometimes isn't actually instantiated yet somehow
+        binding?.webview?.destroy()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -154,7 +157,7 @@ class WebViewActivity : BaseViewBindingActivity<WebviewActivityBinding>() {
         backItem?.isEnabled = binding.webview.canGoBack()
         forwardItem?.isEnabled = binding.webview.canGoForward()
 
-        val iconTintColor = getResourceColor(R.attr.colorOnPrimary)
+        val iconTintColor = getResourceColor(R.attr.colorOnToolbar)
         val translucentIconTintColor = ColorUtils.setAlphaComponent(iconTintColor, 127)
         backItem?.icon?.setTint(if (binding.webview.canGoBack()) iconTintColor else translucentIconTintColor)
         forwardItem?.icon?.setTint(if (binding.webview.canGoForward()) iconTintColor else translucentIconTintColor)
@@ -197,7 +200,7 @@ class WebViewActivity : BaseViewBindingActivity<WebviewActivityBinding>() {
     }
 
     private fun openInBrowser() {
-        openInBrowser(binding.webview.url)
+        openInBrowser(binding.webview.url!!)
     }
 
     companion object {

@@ -13,4 +13,8 @@
         android:id="@+id/cancel_download"
         android:title="@string/action_cancel" />
 
+    <item
+        android:id="@+id/cancel_series"
+        android:title="@string/cancel_all_for_series" />
+
 </menu>

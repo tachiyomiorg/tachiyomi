@@ -11,10 +11,25 @@
         <attr name="max_seek" format="integer"/>
     </declare-styleable>
 
-    <attr name="colorLibrarySelection" format="reference|integer"/>
-    <attr name="colorLibrarySelectionActive" format="reference|integer"/>
+    <declare-styleable name="MaterialSpinnerView">
+        <attr name="title" format="reference|string"/>
+        <attr name="android:entries"/>
+        <attr name="summary" format="reference|string" />
+    </declare-styleable>
+
     <attr name="colorFilterActive" format="reference|integer"/>
-    <attr name="colorBackgroundSplash" format="reference|integer"/>
-    <attr name="colorAccentOnPrimary" format="reference|integer"/>
+    <attr name="colorTertiary" format="reference|integer"/>
+    <attr name="colorOnTertiary" format="reference|integer"/>
+
+    <!-- Ripple color for toolbar elements -->
+    <attr name="rippleColorToolbar" format="reference|color"/>
+
+    <!-- Toolbar color. Not actually used by the toolbar. -->
+    <attr name="colorToolbar" format="reference|color"/>
+
+    <!-- For anything that is drawn on the toolbar -->
+    <attr name="colorOnToolbar" format="reference|integer"/>
+
+    <attr name="lightSystemBarsOnPrimary" format="reference|boolean"/>
 
 </resources>

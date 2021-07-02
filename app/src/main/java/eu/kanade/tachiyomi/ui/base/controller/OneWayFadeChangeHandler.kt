@@ -2,6 +2,7 @@ package eu.kanade.tachiyomi.ui.base.controller
 
 import android.animation.Animator
 import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.view.View
 import android.view.ViewGroup
 import com.bluelinelabs.conductor.ControllerChangeHandler
@@ -26,15 +27,17 @@ class OneWayFadeChangeHandler : FadeChangeHandler {
         isPush: Boolean,
         toAddedToContainer: Boolean
     ): Animator {
+        val animator = AnimatorSet()
         if (to != null) {
-            return super.getAnimator(container, from, to, isPush, toAddedToContainer)
+            val start: Float = if (toAddedToContainer) 0F else to.alpha
+            animator.play(ObjectAnimator.ofFloat(to, View.ALPHA, start, 1f))
         }
 
         if (from != null && (!isPush || removesFromViewOnPush())) {
-            container.removeView(from)
+            from.alpha = 0f
         }
 
-        return AnimatorSet()
+        return animator
     }
 
     override fun copy(): ControllerChangeHandler {

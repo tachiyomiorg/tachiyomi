@@ -17,7 +17,8 @@ object ChapterSettingsHelper {
     fun setGlobalSettings(manga: Manga?) {
         manga?.let {
             prefs.setChapterSettingsDefault(it)
-            db.updateFlags(it).executeAsBlocking()
+            db.updateChapterFlags(it).executeAsBlocking()
+            db.updateViewerFlags(it).executeAsBlocking()
         }
     }
 
@@ -34,7 +35,8 @@ object ChapterSettingsHelper {
             setChapterOrder(prefs.sortChapterByAscendingOrDescending())
         }
 
-        db.updateFlags(manga).executeAsBlocking()
+        db.updateChapterFlags(manga).executeAsBlocking()
+        db.updateViewerFlags(manga).executeAsBlocking()
     }
 
     /**
@@ -54,7 +56,8 @@ object ChapterSettingsHelper {
                 manga
             }
 
-            db.updateFlags(updatedMangas).executeAsBlocking()
+            db.updateChapterFlags(updatedMangas).executeAsBlocking()
+            db.updateViewerFlags(updatedMangas).executeAsBlocking()
         }
     }
 }

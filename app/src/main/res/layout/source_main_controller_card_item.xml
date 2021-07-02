@@ -48,11 +48,11 @@
         app:layout_constraintStart_toEndOf="@id/image"
         app:layout_constraintTop_toBottomOf="@+id/title"
         tools:text="English"
-        tools:visibility="visible"/>
+        tools:visibility="visible" />
 
     <Button
         android:id="@+id/source_latest"
-        style="@style/Theme.Widget.Button"
+        style="?attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxHeight="48dp"
@@ -70,9 +70,9 @@
     <ImageButton
         android:id="@+id/pin"
         android:layout_width="40dp"
-        android:layout_height="0dp"
+        android:layout_height="40dp"
         android:layout_marginEnd="8dp"
-        android:background="?selectableItemBackgroundBorderless"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/action_pin"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"

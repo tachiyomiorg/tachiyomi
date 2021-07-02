@@ -17,6 +17,7 @@ import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.TrackService
+import eu.kanade.tachiyomi.data.track.UnattendedTrackService
 import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.model.toSChapter
@@ -25,13 +26,19 @@ import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import eu.kanade.tachiyomi.ui.manga.chapter.ChapterItem
 import eu.kanade.tachiyomi.ui.manga.track.TrackItem
 import eu.kanade.tachiyomi.util.chapter.ChapterSettingsHelper
+import eu.kanade.tachiyomi.util.chapter.getChapterSort
 import eu.kanade.tachiyomi.util.chapter.syncChaptersWithSource
+import eu.kanade.tachiyomi.util.chapter.syncChaptersWithTrackServiceTwoWay
 import eu.kanade.tachiyomi.util.isLocal
 import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.lang.withUIContext
 import eu.kanade.tachiyomi.util.prepUpdateCover
 import eu.kanade.tachiyomi.util.removeCovers
 import eu.kanade.tachiyomi.util.shouldDownloadNewChapters
+import eu.kanade.tachiyomi.util.storage.DiskUtil
+import eu.kanade.tachiyomi.util.storage.getPicturesDir
+import eu.kanade.tachiyomi.util.storage.getTempShareDir
+import eu.kanade.tachiyomi.util.system.ImageUtil
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.updateCoverLastModified
 import eu.kanade.tachiyomi.widget.ExtendedNavigationView.Item.TriStateGroup.State
@@ -46,6 +53,7 @@ import rx.schedulers.Schedulers
 import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import java.io.File
 import java.util.Date
 
 class MangaPresenter(
@@ -63,10 +71,9 @@ class MangaPresenter(
      */
     private var fetchMangaJob: Job? = null
 
-    /**
-     * List of chapters of the manga. It's always unfiltered and unsorted.
-     */
-    var chapters: List<ChapterItem> = emptyList()
+    var allChapters: List<ChapterItem> = emptyList()
+        private set
+    var filteredAndSortedChapters: List<ChapterItem> = emptyList()
         private set
 
     /**
@@ -122,7 +129,13 @@ class MangaPresenter(
         // Prepare the relay.
         chaptersRelay.flatMap { applyChapterFilters(it) }
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribeLatestCache(MangaController::onNextChapters) { _, error -> Timber.e(error) }
+            .subscribeLatestCache(
+                { _, chapters ->
+                    filteredAndSortedChapters = chapters
+                    view?.onNextChapters(chapters)
+                },
+                { _, error -> Timber.e(error) }
+            )
 
         // Manga info - end
 
@@ -141,7 +154,7 @@ class MangaPresenter(
                     setDownloadedChapters(chapters)
 
                     // Store the last emission
-                    this.chapters = chapters
+                    this.allChapters = chapters
 
                     // Listen for download status changes
                     observeDownloads()
@@ -267,6 +280,33 @@ class MangaPresenter(
         moveMangaToCategories(manga, listOfNotNull(category))
     }
 
+    fun shareCover(context: Context): File {
+        return saveCover(getTempShareDir(context))
+    }
+
+    fun saveCover(context: Context) {
+        saveCover(getPicturesDir(context))
+    }
+
+    private fun saveCover(directory: File): File {
+        val cover = coverCache.getCoverFile(manga) ?: throw Exception("Cover url was null")
+        if (!cover.exists()) throw Exception("Cover not in cache")
+        val type = ImageUtil.findImageType(cover.inputStream())
+            ?: throw Exception("Not an image")
+
+        directory.mkdirs()
+
+        val filename = DiskUtil.buildValidFilename("${manga.title}.${type.extension}")
+
+        val destFile = File(directory, filename)
+        cover.inputStream().use { input ->
+            destFile.outputStream().use { output ->
+                input.copyTo(output)
+            }
+        }
+        return destFile
+    }
+
     /**
      * Update cover with local file.
      *
@@ -284,6 +324,7 @@ class MangaPresenter(
                     } else if (manga.favorite) {
                         coverCache.setCustomCoverToCache(manga, it)
                         manga.updateCoverLastModified(db)
+                        coverCache.clearMemoryCache()
                     }
                 }
             }
@@ -300,6 +341,7 @@ class MangaPresenter(
             .fromCallable {
                 coverCache.deleteCustomCover(manga)
                 manga.updateCoverLastModified(db)
+                coverCache.clearMemoryCache()
             }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -316,17 +358,26 @@ class MangaPresenter(
     private fun observeDownloads() {
         observeDownloadsStatusSubscription?.let { remove(it) }
         observeDownloadsStatusSubscription = downloadManager.queue.getStatusObservable()
-            .observeOn(AndroidSchedulers.mainThread())
+            .observeOn(Schedulers.io())
+            .onBackpressureBuffer()
             .filter { download -> download.manga.id == manga.id }
-            .doOnNext { onDownloadStatusChange(it) }
-            .subscribeLatestCache(MangaController::onChapterDownloadUpdate) { _, error ->
-                Timber.e(error)
-            }
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeLatestCache(
+                { view, it ->
+                    onDownloadStatusChange(it)
+                    view.onChapterDownloadUpdate(it)
+                },
+                { _, error ->
+                    Timber.e(error)
+                }
+            )
 
         observeDownloadsPageSubscription?.let { remove(it) }
         observeDownloadsPageSubscription = downloadManager.queue.getProgressObservable()
-            .observeOn(AndroidSchedulers.mainThread())
+            .observeOn(Schedulers.io())
+            .onBackpressureBuffer()
             .filter { download -> download.manga.id == manga.id }
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribeLatestCache(MangaController::onChapterDownloadUpdate) { _, error ->
                 Timber.e(error)
             }
@@ -388,7 +439,7 @@ class MangaPresenter(
      * Updates the UI after applying the filters.
      */
     private fun refreshChapters() {
-        chaptersRelay.call(chapters)
+        chaptersRelay.call(allChapters)
     }
 
     /**
@@ -420,23 +471,7 @@ class MangaPresenter(
             observable = observable.filter { !it.bookmark }
         }
 
-        val sortFunction: (Chapter, Chapter) -> Int = when (manga.sorting) {
-            Manga.SORTING_SOURCE -> when (sortDescending()) {
-                true -> { c1, c2 -> c1.source_order.compareTo(c2.source_order) }
-                false -> { c1, c2 -> c2.source_order.compareTo(c1.source_order) }
-            }
-            Manga.SORTING_NUMBER -> when (sortDescending()) {
-                true -> { c1, c2 -> c2.chapter_number.compareTo(c1.chapter_number) }
-                false -> { c1, c2 -> c1.chapter_number.compareTo(c2.chapter_number) }
-            }
-            Manga.SORTING_UPLOAD_DATE -> when (sortDescending()) {
-                true -> { c1, c2 -> c2.date_upload.compareTo(c1.date_upload) }
-                false -> { c1, c2 -> c1.date_upload.compareTo(c2.date_upload) }
-            }
-            else -> throw NotImplementedError("Unimplemented sorting method")
-        }
-
-        return observable.toSortedList(sortFunction)
+        return observable.toSortedList(getChapterSort(manga))
     }
 
     /**
@@ -446,7 +481,7 @@ class MangaPresenter(
     private fun onDownloadStatusChange(download: Download) {
         // Assign the download to the model object.
         if (download.status == Download.State.QUEUE) {
-            chapters.find { it.id == download.chapter.id }?.let {
+            allChapters.find { it.id == download.chapter.id }?.let {
                 if (it.download == null) {
                     it.download = download
                 }
@@ -463,7 +498,27 @@ class MangaPresenter(
      * Returns the next unread chapter or null if everything is read.
      */
     fun getNextUnreadChapter(): ChapterItem? {
-        return chapters.sortedByDescending { it.source_order }.find { !it.read }
+        return if (sortDescending()) {
+            return filteredAndSortedChapters.findLast { !it.read }
+        } else {
+            filteredAndSortedChapters.find { !it.read }
+        }
+    }
+
+    fun getUnreadChaptersSorted(): List<ChapterItem> {
+        val chapters = allChapters
+            .sortedWith(getChapterSort(manga))
+            .filter { !it.read && it.status == Download.State.NOT_DOWNLOADED }
+            .distinctBy { it.name }
+        return if (sortDescending()) {
+            chapters.reversed()
+        } else {
+            chapters
+        }
+    }
+
+    fun startDownloadingNow(chapter: Chapter) {
+        downloadManager.startDownloadNow(chapter)
     }
 
     /**
@@ -484,7 +539,7 @@ class MangaPresenter(
             db.updateChaptersProgress(chapters).executeAsBlocking()
 
             if (preferences.removeAfterMarkedAsRead()) {
-                deleteChapters(chapters)
+                deleteChapters(chapters.filter { it.read })
             }
         }
     }
@@ -546,8 +601,8 @@ class MangaPresenter(
      * Reverses the sorting and requests an UI update.
      */
     fun reverseSortOrder() {
-        manga.setChapterOrder(if (sortDescending()) Manga.SORT_ASC else Manga.SORT_DESC)
-        db.updateFlags(manga).executeAsBlocking()
+        manga.setChapterOrder(if (sortDescending()) Manga.CHAPTER_SORT_ASC else Manga.CHAPTER_SORT_DESC)
+        db.updateChapterFlags(manga).executeAsBlocking()
         refreshChapters()
     }
 
@@ -558,10 +613,10 @@ class MangaPresenter(
     fun setUnreadFilter(state: State) {
         manga.readFilter = when (state) {
             State.IGNORE -> Manga.SHOW_ALL
-            State.INCLUDE -> Manga.SHOW_UNREAD
-            State.EXCLUDE -> Manga.SHOW_READ
+            State.INCLUDE -> Manga.CHAPTER_SHOW_UNREAD
+            State.EXCLUDE -> Manga.CHAPTER_SHOW_READ
         }
-        db.updateFlags(manga).executeAsBlocking()
+        db.updateChapterFlags(manga).executeAsBlocking()
         refreshChapters()
     }
 
@@ -572,10 +627,10 @@ class MangaPresenter(
     fun setDownloadedFilter(state: State) {
         manga.downloadedFilter = when (state) {
             State.IGNORE -> Manga.SHOW_ALL
-            State.INCLUDE -> Manga.SHOW_DOWNLOADED
-            State.EXCLUDE -> Manga.SHOW_NOT_DOWNLOADED
+            State.INCLUDE -> Manga.CHAPTER_SHOW_DOWNLOADED
+            State.EXCLUDE -> Manga.CHAPTER_SHOW_NOT_DOWNLOADED
         }
-        db.updateFlags(manga).executeAsBlocking()
+        db.updateChapterFlags(manga).executeAsBlocking()
         refreshChapters()
     }
 
@@ -586,10 +641,10 @@ class MangaPresenter(
     fun setBookmarkedFilter(state: State) {
         manga.bookmarkedFilter = when (state) {
             State.IGNORE -> Manga.SHOW_ALL
-            State.INCLUDE -> Manga.SHOW_BOOKMARKED
-            State.EXCLUDE -> Manga.SHOW_NOT_BOOKMARKED
+            State.INCLUDE -> Manga.CHAPTER_SHOW_BOOKMARKED
+            State.EXCLUDE -> Manga.CHAPTER_SHOW_NOT_BOOKMARKED
         }
-        db.updateFlags(manga).executeAsBlocking()
+        db.updateChapterFlags(manga).executeAsBlocking()
         refreshChapters()
     }
 
@@ -599,7 +654,7 @@ class MangaPresenter(
      */
     fun setDisplayMode(mode: Int) {
         manga.displayMode = mode
-        db.updateFlags(manga).executeAsBlocking()
+        db.updateChapterFlags(manga).executeAsBlocking()
     }
 
     /**
@@ -608,7 +663,7 @@ class MangaPresenter(
      */
     fun setSorting(sort: Int) {
         manga.sorting = sort
-        db.updateFlags(manga).executeAsBlocking()
+        db.updateChapterFlags(manga).executeAsBlocking()
         refreshChapters()
     }
 
@@ -627,8 +682,8 @@ class MangaPresenter(
             return State.INCLUDE
         }
         return when (manga.downloadedFilter) {
-            Manga.SHOW_DOWNLOADED -> State.INCLUDE
-            Manga.SHOW_NOT_DOWNLOADED -> State.EXCLUDE
+            Manga.CHAPTER_SHOW_DOWNLOADED -> State.INCLUDE
+            Manga.CHAPTER_SHOW_NOT_DOWNLOADED -> State.EXCLUDE
             else -> State.IGNORE
         }
     }
@@ -638,8 +693,8 @@ class MangaPresenter(
      */
     fun onlyBookmarked(): State {
         return when (manga.bookmarkedFilter) {
-            Manga.SHOW_BOOKMARKED -> State.INCLUDE
-            Manga.SHOW_NOT_BOOKMARKED -> State.EXCLUDE
+            Manga.CHAPTER_SHOW_BOOKMARKED -> State.INCLUDE
+            Manga.CHAPTER_SHOW_NOT_BOOKMARKED -> State.EXCLUDE
             else -> State.IGNORE
         }
     }
@@ -649,8 +704,8 @@ class MangaPresenter(
      */
     fun onlyUnread(): State {
         return when (manga.readFilter) {
-            Manga.SHOW_UNREAD -> State.INCLUDE
-            Manga.SHOW_READ -> State.EXCLUDE
+            Manga.CHAPTER_SHOW_UNREAD -> State.INCLUDE
+            Manga.CHAPTER_SHOW_READ -> State.EXCLUDE
             else -> State.IGNORE
         }
     }
@@ -691,6 +746,10 @@ class MangaPresenter(
                             async {
                                 val track = it.service.refresh(it.track!!)
                                 db.insertTrack(track).executeAsBlocking()
+
+                                if (it.service is UnattendedTrackService) {
+                                    syncChaptersWithTrackServiceTwoWay(db, allChapters, track, it.service)
+                                }
                             }
                         }
                         .awaitAll()
@@ -722,6 +781,10 @@ class MangaPresenter(
                 try {
                     service.bind(item)
                     db.insertTrack(item).executeAsBlocking()
+
+                    if (service is UnattendedTrackService) {
+                        syncChaptersWithTrackServiceTwoWay(db, allChapters, item, service)
+                    }
                 } catch (e: Throwable) {
                     withUIContext { view?.applicationContext?.toast(e.message) }
                 }

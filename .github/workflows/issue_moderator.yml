@@ -1,0 +1,14 @@
+name: Issue moderator
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  moderate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Moderate issues
+        uses: tachiyomiorg/issue-moderator-action@v1.1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}

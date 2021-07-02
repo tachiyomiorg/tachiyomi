@@ -32,7 +32,7 @@
         android:largeHeap="true"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:theme="@style/Theme.Tachiyomi.Light"
+        android:theme="@style/Theme.Tachiyomi"
         android:networkSecurityConfig="@xml/network_security_config">
         <activity
             android:name=".ui.main.MainActivity"
@@ -83,8 +83,8 @@
                 android:resource="@xml/s_pen_actions"/>
         </activity>
         <activity
-            android:name=".ui.security.BiometricUnlockActivity"
-            android:theme="@style/Theme.Splash" />
+            android:name=".ui.security.UnlockActivity"
+            android:theme="@style/Theme.Tachiyomi" />
         <activity
             android:name=".ui.webview.WebViewActivity"
             android:configChanges="uiMode|orientation|screenSize" />

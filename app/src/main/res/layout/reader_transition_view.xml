@@ -23,12 +23,12 @@
         android:gravity="center_vertical">
 
         <ImageView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:layout_marginEnd="8dp"
-            android:scaleType="center"
+            android:scaleType="fitCenter"
             app:srcCompat="@drawable/ic_warning_white_24dp"
-            app:tint="?attr/colorOnBackground"
+            app:tint="?attr/colorError"
             tools:ignore="ContentDescription" />
 
         <TextView

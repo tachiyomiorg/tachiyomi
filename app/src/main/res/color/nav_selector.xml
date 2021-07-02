@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Based on mtrl_bottom_nav_colored_item_tint
+-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:alpha="1.0" android:color="?attr/colorPrimary" android:state_checked="true" />
+    <item android:alpha="0.6" android:color="?attr/colorOnSurface" />
+</selector>

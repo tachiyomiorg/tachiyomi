@@ -1,0 +1,17 @@
+<animated-selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/normal"
+        android:drawable="@drawable/ic_more_24dp"
+        android:state_checked="false" />
+
+    <item
+        android:id="@+id/checked"
+        android:drawable="@drawable/ic_more_24dp"
+        android:state_checked="true" />
+
+    <transition
+        android:drawable="@drawable/anim_more_enter"
+        android:fromId="@id/normal"
+        android:toId="@id/checked" />
+
+</animated-selector>

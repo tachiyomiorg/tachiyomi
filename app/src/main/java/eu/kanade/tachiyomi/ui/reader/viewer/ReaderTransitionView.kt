@@ -8,8 +8,11 @@ import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
 import androidx.core.view.isVisible
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.databinding.ReaderTransitionViewBinding
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 
 class ReaderTransitionView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
     LinearLayout(context, attrs) {
@@ -28,6 +31,14 @@ class ReaderTransitionView @JvmOverloads constructor(context: Context, attrs: At
         }
 
         missingChapterWarning(transition)
+
+        val color = when (Injekt.get<PreferencesHelper>().readerTheme().get()) {
+            0 -> context.getColor(android.R.color.black)
+            else -> context.getColor(android.R.color.white)
+        }
+        listOf(binding.upperText, binding.warningText, binding.lowerText).forEach {
+            it.setTextColor(color)
+        }
     }
 
     /**
@@ -41,12 +52,12 @@ class ReaderTransitionView @JvmOverloads constructor(context: Context, attrs: At
         if (hasPrevChapter) {
             binding.upperText.textAlignment = TEXT_ALIGNMENT_TEXT_START
             binding.upperText.text = buildSpannedString {
-                bold { append(context.getString(R.string.transition_current)) }
-                append("\n${transition.from.chapter.name}")
-            }
-            binding.lowerText.text = buildSpannedString {
                 bold { append(context.getString(R.string.transition_previous)) }
                 append("\n${prevChapter!!.chapter.name}")
+            }
+            binding.lowerText.text = buildSpannedString {
+                bold { append(context.getString(R.string.transition_current)) }
+                append("\n${transition.from.chapter.name}")
             }
         } else {
             binding.upperText.textAlignment = TEXT_ALIGNMENT_CENTER

@@ -19,9 +19,9 @@ class DirectoryPageLoader(val file: File) : PageLoader() {
      */
     override fun getPages(): Observable<List<ReaderPage>> {
         return file.listFiles()
-            .filter { !it.isDirectory && ImageUtil.isImage(it.name) { FileInputStream(it) } }
-            .sortedWith { f1, f2 -> f1.name.compareToCaseInsensitiveNaturalOrder(f2.name) }
-            .mapIndexed { i, file ->
+            ?.filter { !it.isDirectory && ImageUtil.isImage(it.name) { FileInputStream(it) } }
+            ?.sortedWith { f1, f2 -> f1.name.compareToCaseInsensitiveNaturalOrder(f2.name) }
+            ?.mapIndexed { i, file ->
                 val streamFn = { FileInputStream(file) }
                 ReaderPage(i).apply {
                     stream = streamFn

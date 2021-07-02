@@ -8,14 +8,15 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary">
+        android:layout_height="wrap_content">
 
+        <!-- Remove background color so rounded sheet corners work -->
         <com.google.android.material.tabs.TabLayout
+            style="@style/Widget.Tachiyomi.TabLayout"
             android:id="@+id/tabs"
-            style="@style/Theme.Widget.Tabs"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/menu"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +28,7 @@
             android:id="@+id/menu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="?selectableItemBackgroundBorderless"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/action_menu"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
@@ -35,13 +36,13 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_more_vert_24dp"
-            app:tint="?attr/colorOnPrimary"
+            app:srcCompat="@drawable/ic_overflow_24dp"
+            app:tint="?attr/colorOnSurface"
             tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <eu.kanade.tachiyomi.widget.MaxHeightViewPager
+    <eu.kanade.tachiyomi.widget.sheet.BottomSheetViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

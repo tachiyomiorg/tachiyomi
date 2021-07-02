@@ -1,125 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/pager_prefs"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:text="@string/pager_viewer"
-        android:textColor="?attr/colorAccent"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textAppearance="@style/TextAppearance.Medium.SubHeading" />
 
-    <TextView
-        android:id="@+id/pager_nav_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/pref_viewer_nav"
-        app:layout_constraintBaseline_toBaselineOf="@id/pager_nav"
-        app:layout_constraintEnd_toStartOf="@id/verticalcenter"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatSpinner
+    <eu.kanade.tachiyomi.widget.MaterialSpinnerView
         android:id="@+id/pager_nav"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:entries="@array/pager_nav"
-        app:layout_constraintEnd_toEndOf="@id/spinner_end"
-        app:layout_constraintStart_toEndOf="@id/verticalcenter"
-        app:layout_constraintTop_toBottomOf="@id/pager_prefs" />
+        app:title="@string/pref_viewer_nav" />
 
-    <TextView
-        android:id="@+id/scale_type_text"
-        android:layout_width="0dp"
+    <eu.kanade.tachiyomi.widget.MaterialSpinnerView
+        android:id="@+id/tapping_inverted"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/pref_image_scale_type"
-        app:layout_constraintBaseline_toBaselineOf="@id/scale_type"
-        app:layout_constraintEnd_toStartOf="@id/verticalcenter"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:entries="@array/invert_tapping_mode"
+        app:title="@string/pref_read_with_tapping_inverted" />
 
-    <androidx.appcompat.widget.AppCompatSpinner
+    <eu.kanade.tachiyomi.widget.MaterialSpinnerView
         android:id="@+id/scale_type"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:entries="@array/image_scale_type"
-        app:layout_constraintEnd_toEndOf="@id/spinner_end"
-        app:layout_constraintStart_toEndOf="@id/verticalcenter"
-        app:layout_constraintTop_toBottomOf="@+id/tapping_inverted" />
+        app:title="@string/pref_image_scale_type" />
 
-    <TextView
-        android:id="@+id/zoom_start_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/pref_zoom_start"
-        app:layout_constraintBaseline_toBaselineOf="@id/zoom_start"
-        app:layout_constraintEnd_toStartOf="@id/verticalcenter"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatSpinner
+    <eu.kanade.tachiyomi.widget.MaterialSpinnerView
         android:id="@+id/zoom_start"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:entries="@array/zoom_start"
-        app:layout_constraintEnd_toEndOf="@id/spinner_end"
-        app:layout_constraintStart_toEndOf="@id/verticalcenter"
-        app:layout_constraintTop_toBottomOf="@id/scale_type" />
+        app:title="@string/pref_zoom_start" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/crop_borders"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:text="@string/pref_crop_borders"
+        android:textColor="?android:attr/textColorSecondary" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/dual_page_split"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="@string/pref_dual_page_split"
+        android:textColor="?android:attr/textColorSecondary" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/dual_page_invert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="@string/pref_dual_page_invert"
         android:textColor="?android:attr/textColorSecondary"
-        app:layout_constraintTop_toBottomOf="@id/zoom_start" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/verticalcenter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
-
-    <TextView
-        android:id="@+id/tapping_inverted_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/pref_read_with_tapping_inverted"
-        app:layout_constraintBaseline_toBaselineOf="@id/tapping_inverted"
-        app:layout_constraintEnd_toStartOf="@id/verticalcenter"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/tapping_inverted"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:entries="@array/invert_tapping_mode"
-        app:layout_constraintEnd_toEndOf="@id/spinner_end"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@id/verticalcenter"
-        app:layout_constraintTop_toBottomOf="@+id/pager_nav" />
+        android:visibility="gone"
+        tools:visibility="visible" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/tapping_prefs_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="pager_nav_text,pager_nav,tapping_inverted_text,tapping_inverted"
-        tools:layout_editor_absoluteX="24dp" />
+        app:constraint_referenced_ids="pager_nav,tapping_inverted,dual_page_split,dual_page_invert" />
 
-    <android.widget.Space
-        android:id="@+id/spinner_end"
-        android:layout_width="16dp"
-        android:layout_height="0dp"
-        app:layout_constraintStart_toEndOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

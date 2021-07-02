@@ -6,14 +6,14 @@
         android:id="@+id/action_web_back"
         android:icon="@drawable/ic_arrow_back_24dp"
         android:title="@string/action_webview_back"
-        app:iconTint="?attr/colorOnPrimary"
+        app:iconTint="?attr/colorOnToolbar"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_web_forward"
         android:icon="@drawable/ic_arrow_forward_24dp"
         android:title="@string/action_webview_forward"
-        app:iconTint="?attr/colorOnPrimary"
+        app:iconTint="?attr/colorOnToolbar"
         app:showAsAction="ifRoom" />
 
     <item

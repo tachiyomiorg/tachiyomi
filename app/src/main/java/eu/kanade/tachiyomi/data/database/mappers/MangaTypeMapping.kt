@@ -22,6 +22,7 @@ import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_GENRE
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_ID
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_INITIALIZED
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_LAST_UPDATE
+import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_NEXT_UPDATE
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_SOURCE
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_STATUS
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_THUMBNAIL_URL
@@ -62,8 +63,9 @@ class MangaPutResolver : DefaultPutResolver<Manga>() {
             COL_THUMBNAIL_URL to obj.thumbnail_url,
             COL_FAVORITE to obj.favorite,
             COL_LAST_UPDATE to obj.last_update,
+            COL_NEXT_UPDATE to obj.next_update,
             COL_INITIALIZED to obj.initialized,
-            COL_VIEWER to obj.viewer,
+            COL_VIEWER to obj.viewer_flags,
             COL_CHAPTER_FLAGS to obj.chapter_flags,
             COL_COVER_LAST_MODIFIED to obj.cover_last_modified,
             COL_DATE_ADDED to obj.date_added
@@ -84,8 +86,9 @@ interface BaseMangaGetResolver {
         thumbnail_url = cursor.getString(cursor.getColumnIndex(COL_THUMBNAIL_URL))
         favorite = cursor.getInt(cursor.getColumnIndex(COL_FAVORITE)) == 1
         last_update = cursor.getLong(cursor.getColumnIndex(COL_LAST_UPDATE))
+        next_update = cursor.getLong(cursor.getColumnIndex(COL_NEXT_UPDATE))
         initialized = cursor.getInt(cursor.getColumnIndex(COL_INITIALIZED)) == 1
-        viewer = cursor.getInt(cursor.getColumnIndex(COL_VIEWER))
+        viewer_flags = cursor.getInt(cursor.getColumnIndex(COL_VIEWER))
         chapter_flags = cursor.getInt(cursor.getColumnIndex(COL_CHAPTER_FLAGS))
         cover_last_modified = cursor.getLong(cursor.getColumnIndex(COL_COVER_LAST_MODIFIED))
         date_added = cursor.getLong(cursor.getColumnIndex(COL_DATE_ADDED))

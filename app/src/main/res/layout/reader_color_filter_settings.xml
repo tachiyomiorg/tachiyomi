@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Color filter -->
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switch_color_filter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="@string/pref_custom_color_filter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Red filter -->
+
+        <TextView
+            android:id="@+id/txt_color_filter_red_symbol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:text="@string/color_filter_r_value"
+            android:textAppearance="@style/TextAppearance.Medium.SubHeading"
+            app:layout_constraintBottom_toBottomOf="@id/seekbar_color_filter_red"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/seekbar_color_filter_red" />
+
+        <SeekBar
+            android:id="@+id/seekbar_color_filter_red"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:max="255"
+            android:padding="8dp"
+            app:layout_constraintEnd_toStartOf="@id/txt_color_filter_red_value"
+            app:layout_constraintStart_toEndOf="@id/color_filter_symbols_barrier"
+            app:layout_constraintTop_toBottomOf="@id/switch_color_filter" />
+
+        <TextView
+            android:id="@+id/txt_color_filter_red_value"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="16dp"
+            android:textAppearance="@style/TextAppearance.Medium.SubHeading"
+            app:layout_constraintBottom_toBottomOf="@id/seekbar_color_filter_red"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/seekbar_color_filter_red"
+            tools:text="255" />
+
+        <!-- Green filter -->
+
+        <TextView
+            android:id="@+id/txt_color_filter_green_symbol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:text="@string/color_filter_g_value"
+            android:textAppearance="@style/TextAppearance.Medium.SubHeading"
+            app:layout_constraintBottom_toBottomOf="@id/seekbar_color_filter_green"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/seekbar_color_filter_green" />
+
+        <SeekBar
+            android:id="@+id/seekbar_color_filter_green"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:max="255"
+            android:padding="8dp"
+            app:layout_constraintEnd_toStartOf="@id/txt_color_filter_green_value"
+            app:layout_constraintStart_toEndOf="@id/color_filter_symbols_barrier"
+            app:layout_constraintTop_toBottomOf="@id/seekbar_color_filter_red" />
+
+        <TextView
+            android:id="@+id/txt_color_filter_green_value"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="16dp"
+            android:textAppearance="@style/TextAppearance.Medium.SubHeading"
+            app:layout_constraintBottom_toBottomOf="@id/seekbar_color_filter_green"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/seekbar_color_filter_green"
+            tools:text="255" />
+
+        <!-- Blue filter -->
+
+        <TextView
+            android:id="@+id/txt_color_filter_blue_symbol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:text="@string/color_filter_b_value"
+            android:textAppearance="@style/TextAppearance.Medium.SubHeading"
+            app:layout_constraintBottom_toBottomOf="@id/seekbar_color_filter_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/seekbar_color_filter_blue" />
+
+        <SeekBar
+            android:id="@+id/seekbar_color_filter_blue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:max="255"
+            android:padding="8dp"
+            app:layout_constraintEnd_toStartOf="@id/txt_color_filter_blue_value"
+            app:layout_constraintStart_toEndOf="@id/color_filter_symbols_barrier"
+            app:layout_constraintTop_toBottomOf="@id/seekbar_color_filter_green" />
+
+        <TextView
+            android:id="@+id/txt_color_filter_blue_value"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="16dp"
+            android:textAppearance="@style/TextAppearance.Medium.SubHeading"
+            app:layout_constraintBottom_toBottomOf="@id/seekbar_color_filter_blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/seekbar_color_filter_blue"
+            tools:text="255" />
+
+        <!-- Alpha filter -->
+
+        <TextView
+            android:id="@+id/txt_color_filter_alpha_symbol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:text="@string/color_filter_a_value"
+            android:textAppearance="@style/TextAppearance.Medium.SubHeading"
+            app:layout_constraintBottom_toBottomOf="@id/seekbar_color_filter_alpha"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/seekbar_color_filter_alpha" />
+
+        <SeekBar
+            android:id="@+id/seekbar_color_filter_alpha"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:max="255"
+            android:padding="8dp"
+            app:layout_constraintEnd_toStartOf="@id/txt_color_filter_alpha_value"
+            app:layout_constraintStart_toEndOf="@id/color_filter_symbols_barrier"
+            app:layout_constraintTop_toBottomOf="@id/seekbar_color_filter_blue" />
+
+        <TextView
+            android:id="@+id/txt_color_filter_alpha_value"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="16dp"
+            android:textAppearance="@style/TextAppearance.Medium.SubHeading"
+            app:layout_constraintBottom_toBottomOf="@id/seekbar_color_filter_alpha"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/seekbar_color_filter_alpha"
+            tools:text="255" />
+
+        <!-- Filter mode -->
+
+        <eu.kanade.tachiyomi.widget.MaterialSpinnerView
+            android:id="@+id/color_filter_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/color_filter_modes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/seekbar_color_filter_alpha"
+            app:title="@string/pref_color_filter_mode" />
+
+        <!-- Grayscale -->
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/grayscale"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="@string/pref_grayscale"
+            android:textColor="?android:attr/textColorSecondary"
+            app:layout_constraintTop_toBottomOf="@id/color_filter_mode" />
+
+        <!-- Brightness -->
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/custom_brightness"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="@string/pref_custom_brightness"
+            app:layout_constraintTop_toBottomOf="@id/grayscale" />
+
+        <!-- Brightness value -->
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/txt_brightness_seekbar_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:textAppearance="@style/TextAppearance.Medium.SubHeading"
+            android:tint="?attr/colorOnBackground"
+            app:layout_constraintBottom_toBottomOf="@id/brightness_seekbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/brightness_seekbar"
+            app:srcCompat="@drawable/ic_brightness_5_24dp" />
+
+        <eu.kanade.tachiyomi.widget.NegativeSeekBar
+            android:id="@+id/brightness_seekbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:padding="8dp"
+            app:layout_constraintEnd_toStartOf="@id/txt_brightness_seekbar_value"
+            app:layout_constraintStart_toEndOf="@id/txt_brightness_seekbar_icon"
+            app:layout_constraintTop_toBottomOf="@id/custom_brightness"
+            app:max_seek="100"
+            app:min_seek="-75" />
+
+        <TextView
+            android:id="@+id/txt_brightness_seekbar_value"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:textAppearance="@style/TextAppearance.Medium.SubHeading"
+            app:layout_constraintBottom_toBottomOf="@id/brightness_seekbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/brightness_seekbar"
+            tools:text="50" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/color_filter_symbols_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="txt_color_filter_alpha_symbol,txt_color_filter_blue_symbol,txt_color_filter_red_symbol,txt_color_filter_green_symbol" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

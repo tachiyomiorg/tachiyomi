@@ -11,9 +11,6 @@ class MyAnimeListInterceptor(private val myanimelist: MyAnimeList, private var t
     private val json: Json by injectLazy()
 
     private var oauth: OAuth? = null
-        set(value) {
-            field = value?.copy(expires_in = System.currentTimeMillis() + (value.expires_in * 1000))
-        }
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()
@@ -24,21 +21,19 @@ class MyAnimeListInterceptor(private val myanimelist: MyAnimeList, private var t
         if (oauth == null) {
             oauth = myanimelist.loadOAuth()
         }
-        // Refresh access token if null or expired.
-        if (oauth!!.isExpired()) {
+        // Refresh access token if expired
+        if (oauth != null && oauth!!.isExpired()) {
             chain.proceed(MyAnimeListApi.refreshTokenRequest(oauth!!.refresh_token)).use {
                 if (it.isSuccessful) {
                     setAuth(json.decodeFromString(it.body!!.string()))
                 }
             }
         }
-
-        // Throw on null auth.
         if (oauth == null) {
             throw Exception("No authentication token")
         }
 
-        // Add the authorization header to the original request.
+        // Add the authorization header to the original request
         val authRequest = originalRequest.newBuilder()
             .addHeader("Authorization", "Bearer ${oauth!!.access_token}")
             .build()

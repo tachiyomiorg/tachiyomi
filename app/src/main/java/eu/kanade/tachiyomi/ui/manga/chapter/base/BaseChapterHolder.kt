@@ -26,10 +26,16 @@ open class BaseChapterHolder(
 
                         // Download.State.DOWNLOADING, Download.State.QUEUE
                         findItem(R.id.cancel_download).isVisible = item.status != Download.State.DOWNLOADED
+
+                        // Download.State.QUEUE
+                        findItem(R.id.start_download).isVisible = item.status == Download.State.QUEUE
                     },
                     onMenuItemClick = {
-                        adapter.clickListener.deleteChapter(position)
-                        true
+                        if (itemId == R.id.start_download) {
+                            adapter.clickListener.startDownloadNow(position)
+                        } else {
+                            adapter.clickListener.deleteChapter(position)
+                        }
                     }
                 )
             }

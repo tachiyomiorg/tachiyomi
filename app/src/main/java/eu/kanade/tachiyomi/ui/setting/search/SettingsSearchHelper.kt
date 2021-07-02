@@ -101,7 +101,8 @@ object SettingsSearchHelper {
             (pref.title != null && pref.isVisible) -> {
                 // Is an actual preference
                 val title = pref.title.toString()
-                val summary = pref.summary?.toString() ?: ""
+                // ListPreferences occasionally run into ArrayIndexOutOfBoundsException issues
+                val summary = try { pref.summary?.toString() ?: "" } catch (e: Throwable) { "" }
                 val breadcrumbsStr = addLocalizedBreadcrumb(breadcrumbs, "${pref.title}")
 
                 prefSearchResultList.add(

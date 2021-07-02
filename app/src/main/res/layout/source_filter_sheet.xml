@@ -14,21 +14,9 @@
         android:paddingStart="?attr/listPreferredItemPaddingStart"
         android:paddingEnd="?attr/listPreferredItemPaddingEnd">
 
-        <ImageView
-            android:id="@id/pull_up_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="24dp"
-            android:alpha="0.5"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_drag_pill_24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="?attr/colorOnSurface" />
-
         <Button
             android:id="@+id/reset_btn"
-            style="@style/Theme.Widget.Button"
+            style="?attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/action_reset"
@@ -38,7 +26,6 @@
 
         <Button
             android:id="@+id/filter_btn"
-            style="@style/Theme.Widget.Button.FilledAccent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -54,8 +41,8 @@
         android:layout_height="0dp"
         android:layout_gravity="top"
         android:layout_weight="1"
-        android:paddingBottom="8dp"
         android:clipChildren="false"
-        android:clipToPadding="false" />
+        android:clipToPadding="false"
+        android:paddingBottom="8dp" />
 
 </LinearLayout>

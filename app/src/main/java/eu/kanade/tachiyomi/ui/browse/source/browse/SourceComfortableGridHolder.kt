@@ -1,11 +1,14 @@
 package eu.kanade.tachiyomi.ui.browse.source.browse
 
 import android.view.View
-import com.bumptech.glide.load.engine.DiskCacheStrategy
+import androidx.core.view.isVisible
+import coil.clear
+import coil.imageLoader
+import coil.request.ImageRequest
+import coil.transition.CrossfadeTransition
 import eu.davidea.flexibleadapter.FlexibleAdapter
+import eu.kanade.tachiyomi.data.coil.MangaCoverFetcher
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.glide.GlideApp
-import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.databinding.SourceComfortableGridItemBinding
 import eu.kanade.tachiyomi.widget.StateImageViewTarget
 
@@ -35,6 +38,12 @@ class SourceComfortableGridHolder(private val view: View, private val adapter: F
         // Set alpha of thumbnail.
         binding.thumbnail.alpha = if (manga.favorite) 0.3f else 1.0f
 
+        // For rounded corners
+        binding.badges.clipToOutline = true
+
+        // Set favorite badge
+        binding.favoriteText.isVisible = manga.favorite
+
         setImage(manga)
     }
 
@@ -42,14 +51,17 @@ class SourceComfortableGridHolder(private val view: View, private val adapter: F
         // For rounded corners
         binding.card.clipToOutline = true
 
-        GlideApp.with(view.context).clear(binding.thumbnail)
+        binding.thumbnail.clear()
         if (!manga.thumbnail_url.isNullOrEmpty()) {
-            GlideApp.with(view.context)
-                .load(manga.toMangaThumbnail())
-                .diskCacheStrategy(DiskCacheStrategy.DATA)
-                .centerCrop()
-                .placeholder(android.R.color.transparent)
-                .into(StateImageViewTarget(binding.thumbnail, binding.progress))
+            val crossfadeDuration = view.context.imageLoader.defaults.transition.let {
+                if (it is CrossfadeTransition) it.durationMillis else 0
+            }
+            val request = ImageRequest.Builder(view.context)
+                .data(manga)
+                .setParameter(MangaCoverFetcher.USE_CUSTOM_COVER, false)
+                .target(StateImageViewTarget(binding.thumbnail, binding.progress, crossfadeDuration))
+                .build()
+            itemView.context.imageLoader.enqueue(request)
         }
     }
 }

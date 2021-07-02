@@ -37,9 +37,9 @@ abstract class AbstractBackupRestore<T : AbstractBackupManager>(protected val co
 
     protected val errors = mutableListOf<Pair<Date, String>>()
 
-    abstract fun performRestore(uri: Uri): Boolean
+    abstract suspend fun performRestore(uri: Uri): Boolean
 
-    fun restoreBackup(uri: Uri): Boolean {
+    suspend fun restoreBackup(uri: Uri): Boolean {
         val startTime = System.currentTimeMillis()
         restoreProgress = 0
         errors.clear()

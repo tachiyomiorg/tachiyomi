@@ -7,31 +7,20 @@ jobs:
   autoclose:
     runs-on: ubuntu-latest
     steps:
-    - name: Autoclose when created in wrong repo
-      uses: arkon/issue-closer-action@v1.1
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        type: title
-        regex: ".*THIS ISSUE IS IN THE WRONG REPO.*"
-        message: "@${issue.user.login} this issue was automatically closed because it was not opened in the correct repo, as the template mentioned."
-    - name: Autoclose when no short description provided
-      uses: arkon/issue-closer-action@v1.1
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        type: title
-        regex: ".*<Write short description here>*"
-        message: "@${issue.user.login} this issue was automatically closed because you did not fill out the description in the title."
-    - name: Autoclose when body acknowledgement section not removed
-      uses: arkon/issue-closer-action@v1.1
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        type: body
-        regex: ".*DELETE THIS SECTION IF YOU HAVE READ AND ACKNOWLEDGED IT.*"
-        message: "@${issue.user.login} this issue was automatically closed because the acknowledgment section was not removed."
-    - name: Autoclose when body requested information not filled out
-      uses: arkon/issue-closer-action@v1.1
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        type: body
-        regex: ".*\\* (Tachiyomi version|Android version|Device): \\?.*"
-        message: "@${issue.user.login} this issue was automatically closed because the requested information was not filled out."
+      - name: Autoclose issues
+        uses: arkon/issue-closer-action@v3.4
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          rules: |
+            [
+              {
+                "type": "body",
+                "regex": ".*DELETE THIS SECTION IF YOU HAVE READ AND ACKNOWLEDGED IT.*",
+                "message": "The acknowledgment section was not removed."
+              },
+              {
+                "type": "body",
+                "regex": ".*\\* (Tachiyomi version|Android version|Device): \\?.*",
+                "message": "Requested information in the template was not filled out."
+              }
+            ]

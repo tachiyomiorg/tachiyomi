@@ -5,8 +5,8 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import dev.chrisbanes.insetter.applyInsetter
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.databinding.MigrationSourcesControllerBinding
@@ -29,13 +29,16 @@ class MigrationSourcesController :
         return MigrationSourcesPresenter()
     }
 
-    override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        binding = MigrationSourcesControllerBinding.inflate(inflater)
-        return binding.root
-    }
+    override fun createBinding(inflater: LayoutInflater) = MigrationSourcesControllerBinding.inflate(inflater)
 
     override fun onViewCreated(view: View) {
         super.onViewCreated(view)
+
+        binding.recycler.applyInsetter {
+            type(navigationBars = true) {
+                padding()
+            }
+        }
 
         adapter = SourceAdapter(this)
         binding.recycler.layoutManager = LinearLayoutManager(view.context)
@@ -49,7 +52,7 @@ class MigrationSourcesController :
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.source_migration, menu)
+        inflater.inflate(R.menu.browse_migrate, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -69,8 +72,6 @@ class MigrationSourcesController :
         parentController!!.router.pushController(controller.withFadeTransaction())
         return false
     }
-
-    companion object {
-        const val HELP_URL = "https://tachiyomi.org/help/guides/source-migration/"
-    }
 }
+
+private const val HELP_URL = "https://tachiyomi.org/help/guides/source-migration/"

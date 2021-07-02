@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <eu.kanade.tachiyomi.widget.RevealAnimationView
+        android:id="@+id/reveal_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/colorAccent"
+        android:elevation="5dp"
+        android:visibility="invisible" />
+
+    <eu.kanade.tachiyomi.widget.ThemedSwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linear_recycler_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/info_recycler"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/chapters_recycler"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_max="450dp"
+                app:layout_constraintWidth_percent="0.5"
+                tools:itemCount="1"
+                tools:listitem="@layout/manga_info_header" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/chapters_recycler"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingBottom="@dimen/fab_list_padding"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/info_recycler"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/chapters_item" />
+
+            <eu.kanade.tachiyomi.widget.ActionToolbar
+                android:id="@+id/action_toolbar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/chapters_recycler"
+                app:layout_constraintStart_toStartOf="@+id/chapters_recycler"
+                app:layout_dodgeInsetEdges="bottom" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </eu.kanade.tachiyomi.widget.ThemedSwipeRefreshLayout>
+
+    <eu.kanade.tachiyomi.widget.MaterialFastScroll
+        android:id="@+id/fast_scroller"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="end"
+        app:fastScrollerBubbleEnabled="false"
+        tools:visibility="visible" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

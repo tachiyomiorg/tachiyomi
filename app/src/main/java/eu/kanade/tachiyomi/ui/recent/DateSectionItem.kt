@@ -8,13 +8,13 @@ import eu.davidea.flexibleadapter.items.AbstractHeaderItem
 import eu.davidea.flexibleadapter.items.IFlexible
 import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.databinding.RecentSectionItemBinding
+import eu.kanade.tachiyomi.databinding.SectionHeaderItemBinding
 import java.util.Date
 
 class DateSectionItem(val date: Date) : AbstractHeaderItem<DateSectionItem.DateSectionItemHolder>() {
 
     override fun getLayoutRes(): Int {
-        return R.layout.recent_section_item
+        return R.layout.section_header_item
     }
 
     override fun createViewHolder(view: View, adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>): DateSectionItemHolder {
@@ -39,12 +39,12 @@ class DateSectionItem(val date: Date) : AbstractHeaderItem<DateSectionItem.DateS
 
     inner class DateSectionItemHolder(view: View, adapter: FlexibleAdapter<*>) : FlexibleViewHolder(view, adapter, true) {
 
-        private val binding = RecentSectionItemBinding.bind(view)
+        private val binding = SectionHeaderItemBinding.bind(view)
 
         private val now = Date().time
 
         fun bind(item: DateSectionItem) {
-            binding.sectionText.text = DateUtils.getRelativeTimeSpanString(item.date.time, now, DateUtils.DAY_IN_MILLIS)
+            binding.title.text = DateUtils.getRelativeTimeSpanString(item.date.time, now, DateUtils.DAY_IN_MILLIS)
         }
     }
 }

@@ -1,0 +1,36 @@
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
+    <aapt:attr name="android:drawable">
+        <vector
+            android:name="history_enter"
+            android:width="24dp"
+            android:height="24dp"
+            android:viewportWidth="24"
+            android:viewportHeight="24">
+            <path
+                android:name="clock"
+                android:fillColor="#000000"
+                android:pathData="M 12 8 L 12 13 L 16.28 15.54 L 17 14.33 L 13.5 12.25 L 13.5 8 L 12 8 Z" />
+            <group
+                android:name="arrow_head"
+                android:pivotX="13"
+                android:pivotY="12">
+                <path
+                    android:name="arrow"
+                    android:fillColor="#000000"
+                    android:pathData="M 13 3 C 8.03 3 4 7.03 4 12 L 1 12 L 4.89 15.89 L 4.96 16.03 L 9 12 L 6 12 C 6 8.13 9.13 5 13 5 C 16.87 5 20 8.13 20 12 C 20 15.87 16.87 19 13 19 C 11.07 19 9.32 18.21 8.06 16.94 L 6.64 18.36 C 8.27 19.99 10.51 21 13 21 C 17.97 21 22 16.97 22 12 C 22 7.03 17.97 3 13 3 Z M 13 3 Z" />
+            </group>
+        </vector>
+    </aapt:attr>
+    <target android:name="arrow_head">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="500"
+                android:interpolator="@android:interpolator/fast_out_slow_in"
+                android:propertyName="rotation"
+                android:valueFrom="360"
+                android:valueTo="0"
+                android:valueType="floatType" />
+        </aapt:attr>
+    </target>
+</animated-vector>

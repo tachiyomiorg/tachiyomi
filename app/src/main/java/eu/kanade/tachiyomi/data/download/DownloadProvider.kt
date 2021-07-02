@@ -53,8 +53,8 @@ class DownloadProvider(private val context: Context) {
             return downloadsDir
                 .createDirectory(getSourceDirName(source))
                 .createDirectory(getMangaDirName(manga))
-        } catch (e: NullPointerException) {
-            Timber.w(e)
+        } catch (e: Throwable) {
+            Timber.e(e, "Invalid download directory")
             throw Exception(context.getString(R.string.invalid_download_dir))
         }
     }
@@ -65,7 +65,7 @@ class DownloadProvider(private val context: Context) {
      * @param source the source to query.
      */
     fun findSourceDir(source: Source): UniFile? {
-        return downloadsDir.findFile(getSourceDirName(source))
+        return downloadsDir.findFile(getSourceDirName(source), true)
     }
 
     /**
@@ -76,7 +76,7 @@ class DownloadProvider(private val context: Context) {
      */
     fun findMangaDir(manga: Manga, source: Source): UniFile? {
         val sourceDir = findSourceDir(source)
-        return sourceDir?.findFile(getMangaDirName(manga))
+        return sourceDir?.findFile(getMangaDirName(manga), true)
     }
 
     /**
@@ -89,7 +89,7 @@ class DownloadProvider(private val context: Context) {
     fun findChapterDir(chapter: Chapter, manga: Manga, source: Source): UniFile? {
         val mangaDir = findMangaDir(manga, source)
         return getValidChapterDirNames(chapter).asSequence()
-            .mapNotNull { mangaDir?.findFile(it) }
+            .mapNotNull { mangaDir?.findFile(it, true) }
             .firstOrNull()
     }
 
@@ -115,7 +115,7 @@ class DownloadProvider(private val context: Context) {
      * @param source the source to query.
      */
     fun getSourceDirName(source: Source): String {
-        return source.toString()
+        return DiskUtil.buildValidFilename(source.toString())
     }
 
     /**
@@ -150,6 +150,7 @@ class DownloadProvider(private val context: Context) {
         return listOf(
             getChapterDirName(chapter),
 
+            // TODO: remove this
             // Legacy chapter directory name used in v0.9.2 and before
             DiskUtil.buildValidFilename(chapter.name)
         )

@@ -2,10 +2,12 @@ package eu.kanade.tachiyomi.ui.reader
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import androidx.core.app.NotificationCompat
-import com.bumptech.glide.load.engine.DiskCacheStrategy
+import coil.imageLoader
+import coil.request.CachePolicy
+import coil.request.ImageRequest
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.data.notification.NotificationHandler
 import eu.kanade.tachiyomi.data.notification.NotificationReceiver
 import eu.kanade.tachiyomi.data.notification.Notifications
@@ -30,25 +32,25 @@ class SaveImageNotifier(private val context: Context) {
         get() = Notifications.ID_DOWNLOAD_IMAGE
 
     /**
-     * Called when image download/copy is complete. This method must be called in a background
-     * thread.
+     * Called when image download/copy is complete.
      *
      * @param file image file containing downloaded page image.
      */
     fun onComplete(file: File) {
-        val bitmap = GlideApp.with(context)
-            .asBitmap()
-            .load(file)
-            .diskCacheStrategy(DiskCacheStrategy.NONE)
-            .skipMemoryCache(true)
-            .submit(720, 1280)
-            .get()
-
-        if (bitmap != null) {
-            showCompleteNotification(file, bitmap)
-        } else {
-            onError(null)
-        }
+        val request = ImageRequest.Builder(context)
+            .data(file)
+            .memoryCachePolicy(CachePolicy.DISABLED)
+            .size(720, 1280)
+            .target(
+                onSuccess = { result ->
+                    showCompleteNotification(file, (result as BitmapDrawable).bitmap)
+                },
+                onError = {
+                    onError(null)
+                }
+            )
+            .build()
+        context.imageLoader.enqueue(request)
     }
 
     private fun showCompleteNotification(file: File, image: Bitmap) {
