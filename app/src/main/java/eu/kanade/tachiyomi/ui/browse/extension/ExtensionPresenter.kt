@@ -82,11 +82,13 @@ open class ExtensionPresenter(
         }
         if (installedSorted.isNotEmpty() || untrustedSorted.isNotEmpty()) {
             val header = ExtensionGroupItem(context.getString(R.string.ext_installed), installedSorted.size + untrustedSorted.size)
-            items += untrustedSorted.map { extension ->
-                ExtensionItem(extension, header)
-            }
+
             items += installedSorted.map { extension ->
                 ExtensionItem(extension, header, currentDownloads[extension.pkgName])
+            }
+
+            items += untrustedSorted.map { extension ->
+                ExtensionItem(extension, header)
             }
         }
         if (availableSorted.isNotEmpty()) {
