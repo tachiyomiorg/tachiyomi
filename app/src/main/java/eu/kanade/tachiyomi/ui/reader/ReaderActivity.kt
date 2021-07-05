@@ -7,7 +7,6 @@ import android.content.ClipData
 import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
-import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.ColorMatrix
@@ -41,7 +40,6 @@ import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.notification.NotificationReceiver
 import eu.kanade.tachiyomi.data.notification.Notifications
-import eu.kanade.tachiyomi.data.preference.PreferenceValues
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.toggle
 import eu.kanade.tachiyomi.databinding.ReaderActivityBinding
@@ -909,24 +907,10 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
          * Picks background color for [ReaderActivity] based on light/dark theme preference
          */
         private fun automaticBackgroundColor(): Int {
-            return when (preferences.themeMode().get()) {
-                PreferenceValues.ThemeMode.light -> {
-                    android.R.color.white
-                }
-                PreferenceValues.ThemeMode.dark -> {
-                    R.color.reader_background_dark
-                }
-                PreferenceValues.ThemeMode.system -> {
-                    val nightModeFlags: Int = baseContext.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
-                    when (nightModeFlags) {
-                        Configuration.UI_MODE_NIGHT_YES -> {
-                            R.color.reader_background_dark
-                        }
-                        else -> {
-                            android.R.color.white
-                        }
-                    }
-                }
+            return if (baseContext.isNightMode()) {
+                R.color.reader_background_dark
+            } else {
+                android.R.color.white
             }
         }
 
