@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.ui.reader.viewer
 
 import android.content.Context
+import android.content.res.Configuration
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
@@ -8,22 +9,24 @@ import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
 import androidx.core.view.isVisible
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.preference.PreferenceValues
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.databinding.ReaderTransitionViewBinding
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
-import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import uy.kohesive.injekt.injectLazy
 
 class ReaderTransitionView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
     LinearLayout(context, attrs) {
 
     private val binding: ReaderTransitionViewBinding
 
+    private val preferences: PreferencesHelper by injectLazy()
+
     init {
         binding = ReaderTransitionViewBinding.inflate(LayoutInflater.from(context), this, true)
         layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
     }
-
     fun bind(transition: ChapterTransition) {
         when (transition) {
             is ChapterTransition.Prev -> bindPrevChapterTransition(transition)
@@ -32,12 +35,38 @@ class ReaderTransitionView @JvmOverloads constructor(context: Context, attrs: At
 
         missingChapterWarning(transition)
 
-        val color = when (Injekt.get<PreferencesHelper>().readerTheme().get()) {
+        val color = when (preferences.readerTheme().get()) {
             0 -> context.getColor(android.R.color.black)
+            3 -> context.getColor(automaticTextColor())
             else -> context.getColor(android.R.color.white)
         }
         listOf(binding.upperText, binding.warningText, binding.lowerText).forEach {
             it.setTextColor(color)
+        }
+    }
+
+    /**
+     * Picks text color for [ReaderActivity] based on light/dark theme preference
+     */
+    private fun automaticTextColor(): Int {
+        return when (preferences.themeMode().get()) {
+            PreferenceValues.ThemeMode.light -> {
+                android.R.color.black
+            }
+            PreferenceValues.ThemeMode.dark -> {
+                android.R.color.white
+            }
+            PreferenceValues.ThemeMode.system -> {
+                val nightModeFlags: Int = context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+                when (nightModeFlags) {
+                    Configuration.UI_MODE_NIGHT_YES -> {
+                        android.R.color.white
+                    }
+                    else -> {
+                        android.R.color.black
+                    }
+                }
+            }
         }
     }
 
