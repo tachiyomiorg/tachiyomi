@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.ui.base.activity
 
+import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -8,6 +9,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferenceValues
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.asImmediateFlow
+import eu.kanade.tachiyomi.util.system.LocaleHelper
 import eu.kanade.tachiyomi.util.view.setSecureScreen
 import kotlinx.coroutines.flow.launchIn
 import uy.kohesive.injekt.Injekt
@@ -17,6 +19,10 @@ import uy.kohesive.injekt.injectLazy
 abstract class BaseThemedActivity : AppCompatActivity() {
 
     val preferences: PreferencesHelper by injectLazy()
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(LocaleHelper.createLocaleWrapper(newBase))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         applyThemePreferences(preferences)

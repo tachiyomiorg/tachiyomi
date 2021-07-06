@@ -232,11 +232,7 @@ class SettingsGeneralController : SettingsController() {
                 summary = "%s"
 
                 onChange { newValue ->
-                    val activity = activity ?: return@onChange false
-                    val app = activity.application
-                    LocaleHelper.changeLocale(newValue.toString())
-                    LocaleHelper.updateConfiguration(app, app.resources.configuration)
-                    activity.recreate()
+                    activity?.recreate()
                     true
                 }
             }
