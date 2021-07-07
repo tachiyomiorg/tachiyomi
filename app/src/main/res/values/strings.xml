@@ -517,6 +517,7 @@
     <!-- Manga info fragment -->
     <string name="description">Description</string>
     <string name="ongoing">Ongoing</string>
+    <string name="from_source">From Source</string>
     <string name="unknown">Unknown</string>
     <string name="unknown_author">Unknown author</string>
     <string name="unknown_status">Unknown status</string>

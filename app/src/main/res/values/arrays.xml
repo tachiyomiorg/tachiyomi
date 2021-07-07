@@ -106,8 +106,7 @@
     </string-array>
 
     <string-array name="manga_override_status_options">
-        <!-- This string says "Default" so we're using it here, rather than making new string -->
-        <item>@string/default_viewer</item>
+        <item>@string/from_source</item>
         <item>@string/ongoing</item>
         <item>@string/completed</item>
         <item>@string/licensed</item>
