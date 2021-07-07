@@ -225,7 +225,7 @@ dependencies {
     implementation("com.github.tachiyomiorg:subsampling-scale-image-view:846abe0") {
         exclude(module = "image-decoder")
     }
-    implementation("com.github.tachiyomiorg:image-decoder:0e91111")
+    implementation("com.github.tachiyomiorg:image-decoder:7481a4a")
 
     // Logging
     implementation("com.jakewharton.timber:timber:4.7.1")
