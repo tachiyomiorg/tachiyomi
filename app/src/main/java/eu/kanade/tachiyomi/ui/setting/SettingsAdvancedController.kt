@@ -8,7 +8,7 @@ import android.os.Bundle
 import android.provider.Settings
 import androidx.core.net.toUri
 import androidx.preference.PreferenceScreen
-import com.afollestad.materialdialogs.MaterialDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.cache.ChapterCache
@@ -184,12 +184,13 @@ class SettingsAdvancedController : SettingsController() {
 
     class ClearDatabaseDialogController : DialogController() {
         override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-            return MaterialDialog(activity!!)
-                .message(R.string.clear_database_confirmation)
-                .positiveButton(android.R.string.ok) {
+            return MaterialAlertDialogBuilder(activity!!)
+                .setMessage(R.string.clear_database_confirmation)
+                .setPositiveButton(android.R.string.ok) { _, _ ->
                     (targetController as? SettingsAdvancedController)?.clearDatabase()
                 }
-                .negativeButton(android.R.string.cancel)
+                .setNegativeButton(android.R.string.cancel, null)
+                .create()
         }
     }
 
