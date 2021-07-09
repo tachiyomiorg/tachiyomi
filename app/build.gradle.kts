@@ -245,12 +245,6 @@ dependencies {
     implementation("com.github.tachiyomiorg:DirectionalViewPager:1.0.0")
     implementation("dev.chrisbanes.insetter:insetter:0.6.0")
 
-    // 3.2.0+ introduces weird UI blinking or cut off issues on some devices
-    val materialDialogsVersion = "3.1.1"
-    implementation("com.afollestad.material-dialogs:core:$materialDialogsVersion")
-    implementation("com.afollestad.material-dialogs:input:$materialDialogsVersion")
-    implementation("com.afollestad.material-dialogs:datetime:$materialDialogsVersion")
-
     // Conductor
     val conductorVersion = "3.0.0"
     implementation("com.bluelinelabs:conductor:$conductorVersion")

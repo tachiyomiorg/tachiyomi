@@ -67,14 +67,6 @@
         <item name="elevationOverlayEnabled">false</item>
         <item name="lightSystemBarsOnPrimary">false</item>
 
-        <!-- Material Dialogs -->
-        <item name="md_background_color">?attr/colorSurface</item>
-        <item name="md_color_title">?attr/colorOnSurface</item>
-        <item name="md_color_content">?attr/colorOnSurface</item>
-        <item name="md_color_button_text">?attr/colorPrimary</item>
-        <item name="md_button_casing">literal</item>
-        <item name="md_corner_radius">@dimen/dialog_radius</item>
-
         <!-- Custom Attributes-->
         <item name="colorFilterActive">@color/filter_light</item>
     </style>
