@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.util.lang
 import java.text.DateFormat
 import java.util.Calendar
 import java.util.Date
+import java.util.TimeZone
 
 fun Date.toDateTimestampString(dateFormatter: DateFormat): String {
     val date = dateFormatter.format(this)
@@ -42,4 +43,29 @@ fun Long.toCalendar(): Calendar? {
     val cal = Calendar.getInstance()
     cal.timeInMillis = this
     return cal
+}
+
+/**
+ * Convert epoch long to Calendar instance in UTC
+ *
+ * @return UTC Calendar instance at supplied epoch time. Null if epoch was 0.
+ */
+fun Long.toUtcCalendar(): Calendar? {
+    if (this == 0L) {
+        return null
+    }
+    val rawCalendar = Calendar.getInstance().apply {
+        timeInMillis = this@toUtcCalendar
+    }
+    return Calendar.getInstance(TimeZone.getTimeZone("UTC")).apply {
+        clear()
+        set(
+            rawCalendar.get(Calendar.YEAR),
+            rawCalendar.get(Calendar.MONTH),
+            rawCalendar.get(Calendar.DAY_OF_MONTH),
+            rawCalendar.get(Calendar.HOUR_OF_DAY),
+            rawCalendar.get(Calendar.MINUTE),
+            rawCalendar.get(Calendar.SECOND)
+        )
+    }
 }

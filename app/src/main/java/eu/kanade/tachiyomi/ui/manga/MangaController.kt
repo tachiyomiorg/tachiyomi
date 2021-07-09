@@ -287,7 +287,7 @@ class MangaController :
             }
         }
 
-        trackSheet = TrackSheet(this, manga!!)
+        trackSheet = TrackSheet(this, manga!!, (activity as MainActivity).supportFragmentManager)
 
         updateFilterIconState()
     }
