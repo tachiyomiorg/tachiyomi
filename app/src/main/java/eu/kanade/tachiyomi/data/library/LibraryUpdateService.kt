@@ -30,6 +30,7 @@ import eu.kanade.tachiyomi.source.model.toSManga
 import eu.kanade.tachiyomi.util.chapter.NoChaptersException
 import eu.kanade.tachiyomi.util.chapter.syncChaptersWithSource
 import eu.kanade.tachiyomi.util.chapter.syncChaptersWithTrackServiceTwoWay
+import eu.kanade.tachiyomi.util.lang.withIOContext
 import eu.kanade.tachiyomi.util.prepUpdateCover
 import eu.kanade.tachiyomi.util.shouldDownloadNewChapters
 import eu.kanade.tachiyomi.util.storage.getUriCompat
@@ -47,6 +48,8 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.supervisorScope
+import kotlinx.coroutines.sync.Semaphore
+import kotlinx.coroutines.sync.withPermit
 import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
@@ -270,43 +273,54 @@ class LibraryUpdateService(
      * @return an observable delivering the progress of each update.
      */
     suspend fun updateChapterList() {
+        val semaphore = Semaphore(5)
         val progressCount = AtomicInteger(0)
         val newUpdates = mutableListOf<Pair<LibraryManga, Array<Chapter>>>()
         val failedUpdates = mutableListOf<Pair<Manga, String?>>()
         var hasDownloads = false
         val loggedServices by lazy { trackManager.services.filter { it.isLogged } }
 
-        mangaToUpdate.forEach { manga ->
-            if (updateJob?.isActive != true) {
-                return
-            }
+        withIOContext {
+            mangaToUpdate.groupBy { it.source }
+                .values
+                .map { mangaInSource ->
+                    async {
+                        semaphore.withPermit {
+                            mangaInSource.forEach { manga ->
+                                if (updateJob?.isActive != true) {
+                                    return@async
+                                }
 
-            notifier.showProgressNotification(manga, progressCount.andIncrement, mangaToUpdate.size)
+                                notifier.showProgressNotification(manga, progressCount.andIncrement, mangaToUpdate.size)
 
-            try {
-                val (newChapters, _) = updateManga(manga)
+                                try {
+                                    val (newChapters, _) = updateManga(manga)
 
-                if (newChapters.isNotEmpty()) {
-                    if (manga.shouldDownloadNewChapters(db, preferences)) {
-                        downloadChapters(manga, newChapters)
-                        hasDownloads = true
+                                    if (newChapters.isNotEmpty()) {
+                                        if (manga.shouldDownloadNewChapters(db, preferences)) {
+                                            downloadChapters(manga, newChapters)
+                                            hasDownloads = true
+                                        }
+
+                                        // Convert to the manga that contains new chapters
+                                        newUpdates.add(manga to newChapters.sortedByDescending { ch -> ch.source_order }.toTypedArray())
+                                    }
+                                } catch (e: Throwable) {
+                                    val errorMessage = if (e is NoChaptersException) {
+                                        getString(R.string.no_chapters_error)
+                                    } else {
+                                        e.message
+                                    }
+                                    failedUpdates.add(manga to errorMessage)
+                                }
+
+                                if (preferences.autoUpdateTrackers()) {
+                                    updateTrackings(manga, loggedServices)
+                                }
+                            }
+                        }
                     }
-
-                    // Convert to the manga that contains new chapters
-                    newUpdates.add(manga to newChapters.sortedByDescending { ch -> ch.source_order }.toTypedArray())
                 }
-            } catch (e: Throwable) {
-                val errorMessage = if (e is NoChaptersException) {
-                    getString(R.string.no_chapters_error)
-                } else {
-                    e.message
-                }
-                failedUpdates.add(manga to errorMessage)
-            }
-
-            if (preferences.autoUpdateTrackers()) {
-                updateTrackings(manga, loggedServices)
-            }
         }
 
         notifier.cancelProgressNotification()
