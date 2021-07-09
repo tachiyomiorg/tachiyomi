@@ -111,6 +111,16 @@
         <item name="lightSystemBarsOnPrimary">true</item>
     </style>
 
+    <!--== Yin Yang theme ==-->
+    <style name="Theme.Tachiyomi.YinYang">
+        <!-- Theme colors -->
+        <item name="colorPrimary">@color/accent_yinyang</item>
+        <item name="colorOnSecondary">@color/color_on_secondary_yinyang</item>
+        <item name="colorTertiary">@color/color_on_secondary_yinyang</item>
+        <item name="colorOnTertiary">@color/accent_yinyang</item>
+        <item name="colorControlHighlight">@color/ripple_colored_yinyang</item>
+    </style>
+
     <!--== Midnight Dusk theme ==-->
     <style name="Theme.Tachiyomi.MidnightDusk">
         <!-- Theme colors -->

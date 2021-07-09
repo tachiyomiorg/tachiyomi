@@ -152,6 +152,7 @@
     <string name="theme_yotsuba">Yotsuba</string>
     <string name="theme_blue">Blue</string>
     <string name="theme_greenapple">Green Apple</string>
+    <string name="theme_yinyang">Yin &amp; Yang</string>
     <string name="theme_midnightdusk">Midnight Dusk</string>
     <string name="pref_dark_theme_pure_black">Pure black dark mode</string>
     <string name="pref_start_screen">Start screen</string>
@@ -671,6 +672,7 @@
 
     <!-- Library update service notifications -->
     <string name="notification_check_updates">Checking for new chapters</string>
+    <string name="notification_updating">Updating library… (%1$d/%2$d)</string>
     <string name="notification_new_chapters">New chapters found</string>
     <plurals name="notification_new_chapters_summary">
         <item quantity="one">For 1 title</item>

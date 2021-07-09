@@ -25,6 +25,11 @@
     <color name="accent_greenapple">#48E484</color>
     <color name="ripple_colored_greenapple">#1F48E484</color>
 
+    <!-- Yin Yang Theme -->
+    <color name="accent_yinyang">#000000</color>
+    <color name="color_on_secondary_yinyang">#FFFFFF</color>
+    <color name="ripple_colored_yinyang">#999999</color>
+
     <!-- Midnight Dusk Theme -->
     <color name="accent_midnightdusk">#F02475</color>
     <color name="background_midnightdusk">#16151D</color>

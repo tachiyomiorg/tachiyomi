@@ -28,6 +28,7 @@ object PreferenceValues {
         MIDNIGHT_DUSK(R.string.theme_midnightdusk),
         STRAWBERRY_DAIQUIRI(R.string.theme_strawberrydaiquiri),
         YOTSUBA(R.string.theme_yotsuba),
+        YINYANG(R.string.theme_yinyang),
 
         // Deprecated
         DARK_BLUE(null),
