@@ -321,6 +321,7 @@ class LibraryUpdateService(
                         }
                     }
                 }
+                .awaitAll()
         }
 
         notifier.cancelProgressNotification()
