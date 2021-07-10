@@ -30,16 +30,16 @@ class BrowseController :
     RootController,
     TabbedController {
 
-    constructor(toExtensions: Boolean = false) : super(
-        bundleOf(TO_EXTENSIONS_EXTRA to toExtensions)
+    constructor(selectedTab: Int = SOURCES_CONTROLLER) : super(
+        bundleOf(SELECTED_TAB_EXTRA to selectedTab)
     )
 
     @Suppress("unused")
-    constructor(bundle: Bundle) : this(bundle.getBoolean(TO_EXTENSIONS_EXTRA))
+    constructor(bundle: Bundle) : this(bundle.getInt(SELECTED_TAB_EXTRA))
 
     private val preferences: PreferencesHelper by injectLazy()
 
-    private val toExtensions = args.getBoolean(TO_EXTENSIONS_EXTRA, false)
+    private val selectedTab = args.getInt(SELECTED_TAB_EXTRA, SOURCES_CONTROLLER)
 
     val extensionListUpdateRelay: PublishRelay<Boolean> = PublishRelay.create()
 
@@ -57,9 +57,7 @@ class BrowseController :
         adapter = BrowseAdapter()
         binding.pager.adapter = adapter
 
-        if (toExtensions) {
-            binding.pager.currentItem = EXTENSIONS_CONTROLLER
-        }
+        binding.pager.currentItem = selectedTab
     }
 
     override fun onDestroyView(view: View) {
@@ -72,7 +70,6 @@ class BrowseController :
         if (type.isEnter) {
             (activity as? MainActivity)?.binding?.tabs?.apply {
                 setupWithViewPager(binding.pager)
-
                 // Show badge on tab for extension updates
                 setExtensionUpdateBadge()
             }
@@ -101,6 +98,10 @@ class BrowseController :
                 getTabAt(EXTENSIONS_CONTROLLER)?.removeBadge()
             }
         }
+    }
+
+    fun setActiveTab(tab: Int) {
+        binding.pager.currentItem = tab
     }
 
     private inner class BrowseAdapter : RouterPagerAdapter(this@BrowseController) {
@@ -134,7 +135,7 @@ class BrowseController :
     }
 
     companion object {
-        const val TO_EXTENSIONS_EXTRA = "to_extensions"
+        const val SELECTED_TAB_EXTRA = "selected_tab"
 
         const val SOURCES_CONTROLLER = 0
         const val EXTENSIONS_CONTROLLER = 1

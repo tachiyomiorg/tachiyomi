@@ -19,6 +19,7 @@ import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.browse.BrowseController
 import eu.kanade.tachiyomi.ui.browse.extension.details.ExtensionDetailsController
+import eu.kanade.tachiyomi.ui.browse.migration.manga.MigrationMangaController
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -203,6 +204,26 @@ open class ExtensionController :
     }
 
     override fun uninstallExtension(pkgName: String) {
-        presenter.uninstallExtension(pkgName)
+        val dependentSources = presenter.findSourcesDependentOnExtension(pkgName)
+        if (dependentSources.isNotEmpty()) {
+            ExtensionUninstallWarnDialog(dependentSources)
+                .also { dialog ->
+                    dialog.migrationCallback = {
+                        router.popCurrentController()
+                        if (dependentSources.size == 1) {
+                            val targetSource = dependentSources[0]
+                            parentController!!.router.pushController(MigrationMangaController(targetSource.id, targetSource.name).withFadeTransaction())
+                        } else {
+                            val browseController = parentController as BrowseController
+                            browseController.setActiveTab(BrowseController.MIGRATION_CONTROLLER)
+                        }
+                    }
+
+                    dialog.uninstallCallback = { presenter.uninstallExtension(pkgName) }
+                }
+                .showDialog(router)
+        } else {
+            presenter.uninstallExtension(pkgName)
+        }
     }
 }

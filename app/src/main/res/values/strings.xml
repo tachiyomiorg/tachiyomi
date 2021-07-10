@@ -249,6 +249,7 @@
     <string name="untrusted_extension_message">This extension was signed with an untrusted certificate and wasn\'t activated.\n\nA malicious extension could read any login credentials stored in Tachiyomi or execute arbitrary code.\n\nBy trusting this certificate you accept these risks.</string>
     <string name="obsolete_extension_message">This extension is no longer available.</string>
     <string name="unofficial_extension_message">This extension is not from the official Tachiyomi extensions list.</string>
+    <string name="ext_uninstall_warning_message">One or more manga in your library depend on sources provided by this extension. If you uninstall this extension, you will not be able to read or receive updates for those manga. Migrate those manga to continue to read them and receive updates\n\nSource Dependencies:\n%1$s</string>
     <string name="ext_version_info">Version: %1$s</string>
     <string name="ext_language_info">Language: %1$s</string>
     <string name="ext_nsfw_short">18+</string>

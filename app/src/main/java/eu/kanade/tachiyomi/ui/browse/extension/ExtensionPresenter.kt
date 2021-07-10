@@ -148,6 +148,8 @@ open class ExtensionPresenter(
         extensionManager.uninstallExtension(pkgName)
     }
 
+    fun findSourcesDependentOnExtension(pkgName: String) = extensionManager.findSourcesDependentOnExtension(pkgName)
+
     fun findAvailableExtensions() {
         extensionManager.findAvailableExtensions()
     }
