@@ -121,6 +121,10 @@
         <item name="colorTertiary">@color/color_on_secondary_yinyang</item>
         <item name="colorOnTertiary">@color/accent_yinyang</item>
         <item name="colorControlHighlight">@color/ripple_colored_yinyang</item>
+
+        <!-- Themes -->
+        <item name="chipTextColor">@color/color_on_secondary_yinyang</item>
+        <item name="chipBackgroundColor">@color/accent_yinyang</item>
     </style>
 
     <!--== Midnight Dusk theme ==-->

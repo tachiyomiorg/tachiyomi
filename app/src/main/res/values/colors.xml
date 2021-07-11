@@ -29,6 +29,7 @@
     <color name="accent_yinyang">#000000</color>
     <color name="color_on_secondary_yinyang">#FFFFFF</color>
     <color name="ripple_colored_yinyang">#999999</color>
+    <color name="chip_text_yinyang">#000000</color>
 
     <!-- Midnight Dusk Theme -->
     <color name="accent_midnightdusk">#F02475</color>
