@@ -357,10 +357,7 @@
     <string name="theme_light">Uit</string>
     <string name="theme_dark">Aan</string>
     <string name="theme_system">Volg systeeminstelling</string>
-    <string name="pref_theme_dark">Donker thema</string>
-    <string name="theme_dark_default">Standaard</string>
-    <string name="theme_dark_blue">Donkerblauw</string>
-    <string name="theme_dark_amoled">AMOLED-zwart</string>
+    <string name="theme_darkblue">Donkerblauw</string>
     <string name="pref_manage_notifications">Meldingen beheren</string>
     <string name="pref_category_security">Beveiliging</string>
     <string name="lock_with_biometrics">Ontgrendelen vereisen</string>
@@ -455,9 +452,7 @@
     <string name="pref_enable_automatic_extension_updates">Zoeken naar updates voor extensies</string>
     <string name="hide_notification_content">Meldingsinhoud verbergen</string>
     <string name="pref_confirm_exit">Bevestig sluiten</string>
-    <string name="theme_light_blue">Lichtblauw</string>
-    <string name="theme_light_default">Standaard</string>
-    <string name="pref_theme_light">Licht thema</string>
+    <string name="theme_default">Standaard</string>
     <string name="action_move_to_top">Verplaats naar top</string>
     <string name="action_unpin">Lospinnen</string>
     <string name="viewer">Leesmodus</string>

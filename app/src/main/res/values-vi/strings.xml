@@ -416,13 +416,8 @@
     <string name="pref_category_security">Bảo mật</string>
     <string name="pref_manage_notifications">Quản lý thông báo</string>
     <string name="pref_date_format">Định dạng ngày</string>
-    <string name="theme_dark_amoled">AMOLED đen</string>
-    <string name="theme_dark_blue">Xanh đen</string>
-    <string name="theme_dark_default">Mặc định</string>
-    <string name="pref_theme_dark">Chủ đề tối</string>
-    <string name="theme_light_blue">Xanh trắng</string>
-    <string name="theme_light_default">Mặc định</string>
-    <string name="pref_theme_light">Chủ đề sáng</string>
+    <string name="theme_darkblue">Xanh đen</string>
+    <string name="theme_default">Mặc định</string>
     <string name="theme_system">Theo hệ thống</string>
     <string name="theme_dark">Bật</string>
     <string name="theme_light">Tắt</string>

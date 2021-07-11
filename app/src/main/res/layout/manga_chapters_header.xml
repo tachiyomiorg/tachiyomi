@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/selectable_item_background"
+    android:background="?attr/selectableItemBackground"
     android:paddingStart="16dp"
     android:paddingTop="4dp"
     android:paddingEnd="12dp"
@@ -28,12 +28,12 @@
         android:id="@+id/btn_chapters_filter"
         android:layout_width="28dp"
         android:layout_height="28dp"
-        android:background="@drawable/ripple_regular"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/action_filter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_filter_list_24dp"
-        app:tint="?attr/colorOnPrimary" />
+        app:tint="?attr/colorOnBackground" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -70,13 +70,8 @@
     <string name="system_default">ነባሪ</string>
     <string name="pref_language">ቋንቋ</string>
     <string name="pref_start_screen">ማያ ገጹን ይጀምሩ</string>
-    <string name="theme_dark_amoled">AMOLED ጥቁር</string>
-    <string name="theme_dark_blue">ጥቁር ሰማያዊ</string>
-    <string name="theme_dark_default">ነባሪ</string>
-    <string name="pref_theme_dark">ጨለማ ጭብጥ</string>
-    <string name="theme_light_blue">ዉሃ ሰማያዊ</string>
-    <string name="theme_light_default">ነባሪ</string>
-    <string name="pref_theme_light">የብርሃን ጭብጥ</string>
+    <string name="theme_darkblue">ጥቁር ሰማያዊ</string>
+    <string name="theme_default">ነባሪ</string>
     <string name="theme_dark">በርቷል</string>
     <string name="theme_light">ጠፍቷል</string>
     <string name="theme_system">ስርዓት ይከተሉ</string>

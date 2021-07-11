@@ -1,0 +1,39 @@
+name: ⭐ Feature request
+description: Suggest a feature to improve Tachiyomi
+labels: [Feature request]
+body:
+
+  - type: checkboxes
+    id: acknowledgements
+    attributes:
+      label: Acknowledgements
+      description: Read this carefully, we will close and ignore your issue if you skimmed through this.
+      options:
+        - label: I have searched the existing issues and this is a new ticket, **NOT** a duplicate or related to another open issue.
+          required: true
+        - label: I have written a short but informative title.
+          required: true
+        - label: If this is an issue with an extension, I should be opening an issue in the [extensions repository](https://github.com/tachiyomiorg/tachiyomi-extensions/issues/new/choose).
+          required: true
+        - label: I have updated the app to version **[0.11.1](https://github.com/tachiyomiorg/tachiyomi/releases/tag/v0.11.1)**.
+          required: true
+        - label: I will fill out all of the requested information in this form.
+          required: true
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Describe your suggested feature
+      description: How can an existing extension be improved?
+      placeholder: |
+        Example:
+          "It should work like this..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: other-details
+    attributes:
+      label: Other details
+      placeholder: |
+        Additional details and attachments.

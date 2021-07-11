@@ -356,10 +356,7 @@
     <string name="theme_light">Oprită</string>
     <string name="theme_dark">Pornită</string>
     <string name="theme_system">Tema sistemului</string>
-    <string name="pref_theme_dark">Temă întunecată</string>
-    <string name="theme_dark_default">Implicită</string>
-    <string name="theme_dark_blue">Albastru Închis</string>
-    <string name="theme_dark_amoled">Negru AMOLED</string>
+    <string name="theme_darkblue">Albastru Închis</string>
     <string name="pref_manage_notifications">Setări notificări</string>
     <string name="pref_category_security">Securitate</string>
     <string name="lock_with_biometrics">Necesită deblocare</string>
@@ -406,9 +403,7 @@
         <item quantity="few">Pentru %d titluri</item>
         <item quantity="other">Pentru %d titluri</item>
     </plurals>
-    <string name="pref_theme_light">Temă deschisă</string>
-    <string name="theme_light_default">Implicit</string>
-    <string name="theme_light_blue">Albastru deschis</string>
+    <string name="theme_default">Implicit</string>
     <string name="action_menu">Meniu</string>
     <string name="action_reorganize_by">Reordonează</string>
     <string name="action_newest">Cele mai recente</string>

@@ -359,13 +359,8 @@
     <string name="pref_category_security">إعدادات الأمان</string>
     <string name="pref_manage_notifications">إدارة الإشعارات</string>
     <string name="pref_date_format">صيغة التاريخ</string>
-    <string name="theme_dark_amoled">أسود AMOLED</string>
-    <string name="theme_dark_blue">أزرق غامق</string>
-    <string name="theme_dark_default">الافتراضي</string>
-    <string name="pref_theme_dark">المظهر الداكن</string>
-    <string name="theme_light_blue">أزرق فاتح</string>
-    <string name="theme_light_default">الافتراضي</string>
-    <string name="pref_theme_light">المظهر الفاتح</string>
+    <string name="theme_darkblue">أزرق غامق</string>
+    <string name="theme_default">الافتراضي</string>
     <string name="theme_system">اتبع مظهر النظام</string>
     <string name="theme_dark">مفعّل</string>
     <string name="theme_light">غير مفعّل</string>

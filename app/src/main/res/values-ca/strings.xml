@@ -357,10 +357,7 @@
     <string name="theme_light">Desactivat</string>
     <string name="theme_dark">Activat</string>
     <string name="theme_system">Per defecte del sistema</string>
-    <string name="pref_theme_dark">Tema fosc</string>
-    <string name="theme_dark_default">Per defecte</string>
-    <string name="theme_dark_blue">Blau Fosc</string>
-    <string name="theme_dark_amoled">Negre AMOLED</string>
+    <string name="theme_darkblue">Blau Fosc</string>
     <string name="pref_manage_notifications">Gestiona les notificacions</string>
     <string name="pref_category_security">Seguretat</string>
     <string name="lock_with_biometrics">Requereix desbloqueig</string>
@@ -402,9 +399,7 @@
         <item quantity="one">Per a 1 títol</item>
         <item quantity="other">Per a %d títols</item>
     </plurals>
-    <string name="pref_theme_light">Tema clar</string>
-    <string name="theme_light_default">Per defecte</string>
-    <string name="theme_light_blue">Blau Clar</string>
+    <string name="theme_default">Per defecte</string>
     <string name="action_menu">Menú</string>
     <string name="action_reorganize_by">Reordena</string>
     <string name="action_newest">Els més nous</string>
@@ -645,8 +640,8 @@
     <string name="pref_library_update_refresh_trackers_summary">Actualitza els rastrejadors en actualitzar la biblioteca</string>
     <string name="pref_library_update_refresh_trackers">Actualitza els rastrejadors automàticament</string>
     <string name="pref_move_side_nav_to_bottom">Mou els botons de navegació laterals a la part inferior</string>
-    <string name="theme_dark_amoled_hotpink">Rosa calent</string>
-    <string name="theme_dark_midnightdusk">Vespre de mitjanit</string>
-    <string name="theme_light_strawberrydaiquiri">Daiquiri de maduixa</string>
+    <string name="theme_hotpink">Rosa calent</string>
+    <string name="theme_midnightdusk">Vespre de mitjanit</string>
+    <string name="theme_strawberrydaiquiri">Daiquiri de maduixa</string>
     <string name="chapter_not_found">Capítol no trobat</string>
 </resources>

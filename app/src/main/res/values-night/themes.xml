@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--===============-->
-    <!-- Launch Screen -->
-    <!--===============-->
-    <style name="Theme.Splash" parent="Theme.Tachiyomi.Dark">
-        <item name="colorBackgroundSplash">@color/backgroundDark</item>
+    <!--== AMOLED theme overlay ==-->
+    <style name="ThemeOverlay.Tachiyomi.Amoled" parent="">
+        <item name="colorSurface">@color/surface_amoled</item>
+        <item name="android:colorBackground">@color/background_amoled</item>
+        <item name="android:divider">@color/divider_amoled</item>
+        <item name="colorFilterActive">@color/filter_dark</item>
+    </style>
 
-        <item name="android:windowBackground">@drawable/splash_background</item>
-        <item name="android:statusBarColor">?attr/colorBackgroundSplash</item>
-        <item name="android:navigationBarColor">?attr/colorBackgroundSplash</item>
+    <!--== Midnight Dusk theme ==-->
+    <style name="Theme.Tachiyomi.MidnightDusk">
+        <!-- Theme colors -->
+        <item name="colorPrimary">@color/accent_midnightdusk</item>
+        <item name="colorTertiary">@color/md_blue_A400</item>
+        <item name="colorControlHighlight">@color/ripple_colored_midnightdusk</item>
+        <item name="colorSurface">@color/surface_midnightdusk</item>
+        <item name="android:colorBackground">@color/background_midnightdusk</item>
     </style>
 
 </resources>

@@ -115,13 +115,8 @@
     <string name="pref_date_format">तारिकेचा स्वरूप</string>
     <string name="system_default">डिफॉल्ट</string>
     <string name="pref_language">भाषा</string>
-    <string name="theme_dark_amoled">पूर्ण काडा (AMOLED)</string>
-    <string name="theme_dark_blue">गडद निडा</string>
-    <string name="theme_dark_default">डिफॉल्ट</string>
-    <string name="pref_theme_dark">गडद थीमचा प्रकार</string>
-    <string name="theme_light_blue">फिक्का निडा</string>
-    <string name="theme_light_default">डिफॉल्ट</string>
-    <string name="pref_theme_light">लाइट थीमची रुपे</string>
+    <string name="theme_darkblue">गडद निडा</string>
+    <string name="theme_default">डिफॉल्ट</string>
     <string name="theme_system">तंत्राचे अनुसरण करा</string>
     <string name="theme_dark">डार्क</string>
     <string name="theme_light">लाइट</string>

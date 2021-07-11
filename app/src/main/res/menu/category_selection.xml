@@ -6,14 +6,14 @@
         android:id="@+id/action_edit"
         android:icon="@drawable/ic_edit_24dp"
         android:title="@string/action_edit"
-        app:iconTint="?attr/colorOnPrimary"
+        app:iconTint="?attr/colorOnToolbar"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_delete"
         android:icon="@drawable/ic_delete_24dp"
         android:title="@string/action_delete"
-        app:iconTint="?attr/colorOnPrimary"
+        app:iconTint="?attr/colorOnToolbar"
         app:showAsAction="ifRoom" />
 
 </menu>

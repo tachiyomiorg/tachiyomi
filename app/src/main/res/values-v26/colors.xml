@@ -2,6 +2,6 @@
 <resources>
 
     <!-- Reader Theme -->
-    <color name="readerColorDarkPrimary">#BF212121</color>
+    <color name="reader_toolbar">#BF212121</color>
 
 </resources>

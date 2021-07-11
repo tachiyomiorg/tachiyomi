@@ -61,9 +61,9 @@ open class ExtensionPresenter(
 
         val items = mutableListOf<ExtensionItem>()
 
-        val updatesSorted = installed.filter { it.hasUpdate && (showNsfwExtensions || !it.isNsfw) }.sortedBy { it.pkgName }
-        val installedSorted = installed.filter { !it.hasUpdate && (showNsfwExtensions || !it.isNsfw) }.sortedWith(compareBy({ !it.isObsolete }, { it.pkgName }))
-        val untrustedSorted = untrusted.sortedBy { it.pkgName }
+        val updatesSorted = installed.filter { it.hasUpdate && (showNsfwExtensions || !it.isNsfw) }.sortedBy { it.name }
+        val installedSorted = installed.filter { !it.hasUpdate && (showNsfwExtensions || !it.isNsfw) }.sortedWith(compareBy({ !it.isObsolete }, { it.name }))
+        val untrustedSorted = untrusted.sortedBy { it.name }
         val availableSorted = available
             // Filter out already installed extensions and disabled languages
             .filter { avail ->
@@ -82,9 +82,11 @@ open class ExtensionPresenter(
         }
         if (installedSorted.isNotEmpty() || untrustedSorted.isNotEmpty()) {
             val header = ExtensionGroupItem(context.getString(R.string.ext_installed), installedSorted.size + untrustedSorted.size)
+
             items += installedSorted.map { extension ->
                 ExtensionItem(extension, header, currentDownloads[extension.pkgName])
             }
+
             items += untrustedSorted.map { extension ->
                 ExtensionItem(extension, header)
             }

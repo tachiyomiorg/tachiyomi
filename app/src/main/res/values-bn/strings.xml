@@ -366,13 +366,8 @@
     <string name="pref_manage_notifications">বিজ্ঞপ্তিগুলি নিয়ন্ত্রণ করুন</string>
     <string name="pref_confirm_exit">বের হতে নিশ্চিত করুন</string>
     <string name="pref_date_format">তারিখের রীতি</string>
-    <string name="theme_dark_amoled">অ্যামোলেড কালো</string>
-    <string name="theme_dark_blue">গাঢ় নীল</string>
-    <string name="theme_dark_default">প্রকৃত</string>
-    <string name="pref_theme_dark">কালো থিম</string>
-    <string name="theme_light_blue">হালকা নীল</string>
-    <string name="theme_light_default">প্রকৃত</string>
-    <string name="pref_theme_light">সাদা থিম</string>
+    <string name="theme_darkblue">গাঢ় নীল</string>
+    <string name="theme_default">প্রকৃত</string>
     <string name="theme_dark">চালু করুন</string>
     <string name="theme_light">বন্ধ করুন</string>
     <string name="theme_system">সিস্টেমকে অনুসরণ করুন</string>

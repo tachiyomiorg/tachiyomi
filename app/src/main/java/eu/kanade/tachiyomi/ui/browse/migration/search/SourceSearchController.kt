@@ -26,7 +26,7 @@ class SourceSearchController(
     override fun onItemClick(view: View, position: Int): Boolean {
         val item = adapter?.getItem(position) as? SourceItem ?: return false
         newManga = item.manga
-        val searchController = router.backstack.findLast { it.controller().javaClass == SearchController::class.java }?.controller() as SearchController?
+        val searchController = router.backstack.findLast { it.controller.javaClass == SearchController::class.java }?.controller as SearchController?
         val dialog =
             SearchController.MigrationDialog(oldManga, newManga, this)
         dialog.targetController = searchController

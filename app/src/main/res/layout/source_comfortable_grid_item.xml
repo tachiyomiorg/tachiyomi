@@ -84,11 +84,27 @@
                     tools:text="120"
                     tools:visibility="visible" />
 
+                <TextView
+                    android:id="@+id/favorite_text"
+                    style="@style/TextAppearance.Regular.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/colorSecondary"
+                    android:maxLines="1"
+                    android:paddingStart="3dp"
+                    android:paddingTop="1dp"
+                    android:paddingEnd="3dp"
+                    android:paddingBottom="1dp"
+                    android:text="@string/in_library"
+                    android:textColor="?attr/colorOnSecondary"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
             </LinearLayout>
 
             <com.google.android.material.progressindicator.CircularProgressIndicator
                 android:id="@+id/progress"
-                style="@style/Theme.Widget.CircularProgressIndicator.Small"
+                style="@style/Widget.Tachiyomi.CircularProgressIndicator.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -107,7 +123,7 @@
             android:lineSpacingExtra="-4dp"
             android:maxLines="2"
             android:padding="4dp"
-            android:shadowColor="@color/textColorPrimaryLight"
+            android:textColor="@color/source_comfortable_item_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/card"
             tools:text="Sample name" />

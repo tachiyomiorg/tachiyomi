@@ -1,76 +1,57 @@
 package eu.kanade.tachiyomi.ui.manga.track
 
-import android.content.Context
-import android.view.View
+import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import androidx.core.view.isVisible
-import coil.clear
-import coil.load
-import eu.kanade.tachiyomi.R
+import androidx.recyclerview.widget.RecyclerView
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.databinding.TrackSearchItemBinding
-import eu.kanade.tachiyomi.util.view.inflate
+import eu.kanade.tachiyomi.util.view.applyElevationOverlay
 
-class TrackSearchAdapter(context: Context) :
-    ArrayAdapter<TrackSearch>(context, R.layout.track_search_item, mutableListOf<TrackSearch>()) {
+class TrackSearchAdapter(
+    private val currentTrackUrl: String?,
+    private val onSelectionChanged: (TrackSearch?) -> Unit
+) : RecyclerView.Adapter<TrackSearchHolder>() {
+    var selectedItemPosition = -1
+        set(value) {
+            if (field != value) {
+                val previousPosition = field
+                field = value
+                // Just notify the now-unselected item
+                notifyItemChanged(previousPosition, UncheckPayload)
+                onSelectionChanged(items.getOrNull(value))
+            }
+        }
 
-    override fun getView(position: Int, view: View?, parent: ViewGroup): View {
-        var v = view
-        // Get the data item for this position
-        val track = getItem(position)!!
-        // Check if an existing view is being reused, otherwise inflate the view
-        val holder: TrackSearchHolder // view lookup cache stored in tag
-        if (v == null) {
-            v = parent.inflate(R.layout.track_search_item)
-            holder = TrackSearchHolder(v)
-            v.tag = holder
+    var items = emptyList<TrackSearch>()
+        set(value) {
+            if (field != value) {
+                field = value
+                selectedItemPosition = value.indexOfFirst { it.tracking_url == currentTrackUrl }
+                notifyDataSetChanged()
+            }
+        }
+
+    override fun getItemCount(): Int = items.size
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackSearchHolder {
+        val binding = TrackSearchItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        binding.container.applyElevationOverlay()
+        return TrackSearchHolder(binding, this)
+    }
+
+    override fun onBindViewHolder(holder: TrackSearchHolder, position: Int) {
+        holder.bind(items[position], position)
+    }
+
+    override fun onBindViewHolder(holder: TrackSearchHolder, position: Int, payloads: MutableList<Any>) {
+        if (payloads.getOrNull(0) == UncheckPayload) {
+            holder.setUnchecked()
         } else {
-            holder = v.tag as TrackSearchHolder
+            super.onBindViewHolder(holder, position, payloads)
         }
-        holder.onSetValues(track)
-        return v
     }
 
-    fun setItems(syncs: List<TrackSearch>) {
-        setNotifyOnChange(false)
-        clear()
-        addAll(syncs)
-        notifyDataSetChanged()
-    }
-
-    class TrackSearchHolder(private val view: View) {
-
-        private val binding = TrackSearchItemBinding.bind(view)
-
-        fun onSetValues(track: TrackSearch) {
-            binding.trackSearchTitle.text = track.title
-            binding.trackSearchSummary.text = track.summary
-            binding.trackSearchCover.clear()
-            if (track.cover_url.isNotEmpty()) {
-                binding.trackSearchCover.load(track.cover_url)
-            }
-
-            val hasStatus = track.publishing_status.isNotBlank()
-            binding.trackSearchStatus.isVisible = hasStatus
-            binding.trackSearchStatusResult.isVisible = hasStatus
-            if (hasStatus) {
-                binding.trackSearchStatusResult.text = track.publishing_status.capitalize()
-            }
-
-            val hasType = track.publishing_type.isNotBlank()
-            binding.trackSearchType.isVisible = hasType
-            binding.trackSearchTypeResult.isVisible = hasType
-            if (hasType) {
-                binding.trackSearchTypeResult.text = track.publishing_type.capitalize()
-            }
-
-            val hasStartDate = track.start_date.isNotBlank()
-            binding.trackSearchStart.isVisible = hasStartDate
-            binding.trackSearchStartResult.isVisible = hasStartDate
-            if (hasStartDate) {
-                binding.trackSearchStartResult.text = track.start_date
-            }
-        }
+    companion object {
+        private object UncheckPayload
     }
 }

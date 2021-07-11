@@ -5,7 +5,7 @@
         android:id="@+id/action_history"
         android:icon="@drawable/ic_history_24dp"
         android:title="@string/whats_new"
-        app:iconTint="?attr/colorOnPrimary"
+        app:iconTint="?attr/colorOnToolbar"
         app:showAsAction="ifRoom" />
 
     <item

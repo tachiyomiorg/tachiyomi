@@ -1,0 +1,106 @@
+name: 🐞 Issue report
+description: Report an issue in Tachiyomi
+labels: [Bug]
+body:
+
+  - type: checkboxes
+    id: acknowledgements
+    attributes:
+      label: Acknowledgements
+      description: Read this carefully, we will close and ignore your issue if you skimmed through this.
+      options:
+        - label: I have searched the existing issues and this is a new ticket, **NOT** a duplicate or related to another open issue.
+          required: true
+        - label: I have written a short but informative title.
+          required: true
+        - label: If this is an issue with an extension, I should be opening an issue in the [extensions repository](https://github.com/tachiyomiorg/tachiyomi-extensions/issues/new/choose).
+          required: true
+        - label: I have tried the [troubleshooting guide](https://tachiyomi.org/help/guides/troubleshooting/).
+          required: true
+        - label: I have updated the app to version **[0.11.1](https://github.com/tachiyomiorg/tachiyomi/releases/tag/v0.11.1)**.
+          required: true
+        - label: I have updated all installed extensions.
+          required: true
+        - label: I will fill out all of the requested information in this form.
+          required: true
+
+  - type: input
+    id: tachiyomi-version
+    attributes:
+      label: Tachiyomi version
+      description: You can find your Tachiyomi version in **More → About**.
+      placeholder: |
+        Example: "0.11.1"
+    validations:
+      required: true
+
+  - type: input
+    id: android-version
+    attributes:
+      label: Android version
+      description: You can find this somewhere in your Android settings.
+      placeholder: |
+        Example: "Android 11"
+    validations:
+      required: true
+
+  - type: input
+    id: device
+    attributes:
+      label: Device
+      description: List your device and model.
+      placeholder: |
+        Example: "Google Pixel 5"
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce-steps
+    attributes:
+      label: Steps to reproduce
+      description: Provide an example of the issue.
+      placeholder: |
+        Example:
+          1. First step
+          2. Second step
+          3. Issue here
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: Explain what you should expect to happen.
+      placeholder: |
+        Example:
+          "This should happen..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual behavior
+      description: Explain what actually happens.
+      placeholder: |
+        Example: 
+          "This happened instead..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: crash-logs
+    attributes:
+      label: Crash logs
+      description: |
+        If you're experiencing crashes, share the crash logs from **More → Settings → Advanced** then press **Dump crash logs**.
+      placeholder: |
+        You can paste the crash logs in pure text or upload it as an attachment.
+
+  - type: textarea
+    id: other-details
+    attributes:
+      label: Other details
+      placeholder: |
+        Additional details and attachments.

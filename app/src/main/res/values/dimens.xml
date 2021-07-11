@@ -17,4 +17,7 @@
     <dimen name="screen_edge_margin">16dp</dimen>
 
     <dimen name="tablet_horizontal_cover_margin">128dp</dimen>
+
+    <!-- material-dialogs button radius -->
+    <dimen name="md_action_button_corner_radius">4dp</dimen>
 </resources>

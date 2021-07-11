@@ -8,6 +8,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.net.toUri
 import androidx.core.os.bundleOf
 import androidx.documentfile.provider.DocumentFile
@@ -35,6 +36,7 @@ import eu.kanade.tachiyomi.util.preference.preference
 import eu.kanade.tachiyomi.util.preference.preferenceCategory
 import eu.kanade.tachiyomi.util.preference.summaryRes
 import eu.kanade.tachiyomi.util.preference.titleRes
+import eu.kanade.tachiyomi.util.system.MiuiUtil
 import eu.kanade.tachiyomi.util.system.toast
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -76,6 +78,11 @@ class SettingsBackupController : SettingsController() {
             summaryRes = R.string.pref_restore_backup_summ
 
             onClick {
+                if (MiuiUtil.isMiui() && MiuiUtil.isMiuiOptimizationDisabled()) {
+                    context.toast(R.string.restore_miui_warning, Toast.LENGTH_LONG)
+                    return@onClick
+                }
+
                 if (!BackupRestoreService.isRunning(context)) {
                     val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
                         addCategory(Intent.CATEGORY_OPENABLE)

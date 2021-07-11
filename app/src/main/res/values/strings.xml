@@ -40,6 +40,7 @@
     <string name="action_sort_total">Total chapters</string>
     <string name="action_sort_last_read">Last read</string>
     <string name="action_sort_last_checked">Last checked</string>
+    <string name="action_sort_next_updated">Next expected update</string>
     <string name="action_sort_latest_chapter">Latest chapter</string>
     <string name="action_sort_chapter_fetch_date">Date fetched</string>
     <string name="action_sort_date_added">Date added</string>
@@ -120,6 +121,7 @@
     <string name="action_webview_back">Back</string>
     <string name="action_webview_forward">Forward</string>
     <string name="action_webview_refresh">Refresh</string>
+    <string name="action_start_downloading_now">Start downloading now</string>
 
     <!-- Operations -->
     <string name="loading">Loading…</string>
@@ -144,18 +146,15 @@
     <string name="theme_system">Follow system</string>
     <string name="theme_light">Off</string>
     <string name="theme_dark">On</string>
-    <string name="pref_theme_light">Light theme</string>
-    <string name="theme_light_default">Default</string>
-    <string name="theme_light_blue">Light Blue</string>
-    <string name="theme_light_strawberrydaiquiri">Strawberry Daiquiri</string>
-    <string name="theme_light_yotsuba">Yotsuba</string>
-    <string name="pref_theme_dark">Dark theme</string>
-    <string name="theme_dark_default">Default</string>
-    <string name="theme_dark_blue">Dark Blue</string>
-    <string name="theme_dark_greenapple">Green Apple</string>
-    <string name="theme_dark_midnightdusk">Midnight Dusk</string>
-    <string name="theme_dark_amoled">AMOLED Black</string>
-    <string name="theme_dark_amoled_hotpink">AMOLED Hot Pink</string>
+    <string name="pref_app_theme">App theme</string>
+    <string name="theme_default">Default</string>
+    <string name="theme_strawberrydaiquiri">Strawberry Daiquiri</string>
+    <string name="theme_yotsuba">Yotsuba</string>
+    <string name="theme_blue">Blue</string>
+    <string name="theme_greenapple">Green Apple</string>
+    <string name="theme_yinyang">Yin &amp; Yang</string>
+    <string name="theme_midnightdusk">Midnight Dusk</string>
+    <string name="pref_dark_theme_pure_black">Pure black dark mode</string>
     <string name="pref_start_screen">Start screen</string>
     <string name="pref_language">Language</string>
     <string name="system_default">Default</string>
@@ -220,7 +219,7 @@
 
     <string name="default_category">Default category</string>
     <string name="default_category_summary">Always ask</string>
-    <string name="categorized_display_settings">Per-category display settings</string>
+    <string name="categorized_display_settings">Per-category settings for sort and display</string>
     <plurals name="num_categories">
         <item quantity="one">%d category</item>
         <item quantity="other">%d categories</item>
@@ -364,9 +363,9 @@
     <string name="pref_download_directory">Download location</string>
     <string name="pref_download_only_over_wifi">Only download over Wi-Fi</string>
     <string name="pref_category_delete_chapters">Delete chapters</string>
-    <string name="pref_remove_after_marked_as_read">After manually marked as read</string>
-    <string name="pref_remove_after_read">After reading</string>
-    <string name="pref_remove_bookmarked_chapters">Delete bookmarked chapters</string>
+    <string name="pref_remove_after_marked_as_read">After marked as read</string>
+    <string name="pref_remove_after_read">Automatically after reading</string>
+    <string name="pref_remove_bookmarked_chapters">Allow deleting bookmarked chapters</string>
     <string name="custom_dir">Custom location</string>
     <string name="disabled">Disabled</string>
     <string name="last_read_chapter">Last read chapter</string>
@@ -419,6 +418,7 @@
     <string name="backup_choice">What do you want to backup?</string>
     <string name="creating_backup">Creating backup</string>
     <string name="creating_backup_error">Backup failed</string>
+    <string name="restore_miui_warning">MIUI Optimization must be enabled for restore to work correctly.</string>
     <string name="restore_in_progress">Restore is already in progress</string>
     <string name="restoring_backup">Restoring backup</string>
     <string name="restoring_backup_error">Restoring backup failed</string>
@@ -604,8 +604,8 @@
     <string name="status">Status</string>
     <string name="track_status">Status</string>
     <string name="track_start_date">Started</string>
-    <string name="track_started_reading_date">Started reading date</string>
-    <string name="track_finished_reading_date">Finished reading date</string>
+    <string name="track_started_reading_date">Start date</string>
+    <string name="track_finished_reading_date">Finish date</string>
     <string name="track_type">Type</string>
     <string name="track_author">Author</string>
     <string name="error_invalid_date_supplied">Invalid date supplied</string>
@@ -673,6 +673,7 @@
 
     <!-- Library update service notifications -->
     <string name="notification_check_updates">Checking for new chapters</string>
+    <string name="notification_updating">Updating library… (%1$d/%2$d)</string>
     <string name="notification_new_chapters">New chapters found</string>
     <plurals name="notification_new_chapters_summary">
         <item quantity="one">For 1 title</item>

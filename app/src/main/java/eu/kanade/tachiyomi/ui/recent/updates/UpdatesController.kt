@@ -318,6 +318,11 @@ class UpdatesController :
         adapter?.updateItem(item)
     }
 
+    override fun startDownloadNow(position: Int) {
+        val chapter = adapter?.getItem(position) as? UpdatesItem ?: return
+        presenter.startDownloadingNow(chapter)
+    }
+
     /**
      * Called when ActionMode created.
      * @param mode the ActionMode object

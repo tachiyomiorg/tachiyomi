@@ -9,6 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Moderate issues
-        uses: tachiyomiorg/issue-moderator-action@v1.0
+        uses: tachiyomiorg/issue-moderator-action@v1.1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}

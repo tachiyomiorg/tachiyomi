@@ -11,6 +11,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.content.res.Resources
 import android.graphics.Color
 import android.net.ConnectivityManager
@@ -93,7 +94,7 @@ fun Context.copyToClipboard(label: String, content: String) {
  */
 fun Context.notificationBuilder(channelId: String, block: (NotificationCompat.Builder.() -> Unit)? = null): NotificationCompat.Builder {
     val builder = NotificationCompat.Builder(this, channelId)
-        .setColor(ContextCompat.getColor(this, R.color.colorPrimary))
+        .setColor(ContextCompat.getColor(this, R.color.accent_blue))
     if (block != null) {
         builder.block()
     }
@@ -275,4 +276,11 @@ fun Context.createFileInCacheDir(name: String): File {
  */
 fun Context.isTablet(): Boolean {
     return resources.configuration.smallestScreenWidthDp >= 720
+}
+
+/**
+ * Returns true if current context is in night mode
+ */
+fun Context.isNightMode(): Boolean {
+    return resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
 }

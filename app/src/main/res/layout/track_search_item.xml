@@ -1,65 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/Theme.Widget.CardView.Item"
-    android:layout_margin="0dp"
-    android:padding="0dp">
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:checkable="true"
+    android:clickable="true"
+    android:focusable="true"
+    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialCardView.Tracker">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="216dp"
-        android:background="@drawable/list_item_selector"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/track_search_cover"
-            android:layout_width="135dp"
-            android:layout_height="match_parent"
+            android:layout_width="68dp"
+            android:layout_height="95dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
             android:contentDescription="@string/description_cover"
             android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
             tools:src="@mipmap/ic_launcher" />
 
         <TextView
             android:id="@+id/track_search_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:maxLines="3"
-            android:textAppearance="@style/TextAppearance.Regular.Body1.Bold"
-            android:textSize="16sp"
+            android:layout_marginEnd="36dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textSize="17sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/track_search_cover"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="One Piece" />
+            tools:text="@string/app_name" />
 
         <TextView
             android:id="@+id/track_search_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:maxLines="1"
             android:text="@string/track_type"
-            android:textAppearance="@style/TextAppearance.Regular.Body1.Bold"
-            android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@id/track_search_cover"
+            android:textAppearance="?attr/textAppearanceSubtitle2"
+            app:layout_constraintStart_toStartOf="@+id/track_search_title"
             app:layout_constraintTop_toBottomOf="@id/track_search_title" />
 
         <TextView
             android:id="@+id/track_search_type_result"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="12dp"
             android:maxLines="1"
-            android:textAppearance="@style/TextAppearance.Regular.Body1.Secondary"
-            android:textSize="12sp"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="?android:attr/textColorSecondary"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/track_search_type"
             app:layout_constraintTop_toBottomOf="@id/track_search_title"
             tools:text="Manga" />
@@ -68,22 +74,23 @@
             android:id="@+id/track_search_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:maxLines="1"
             android:text="@string/track_start_date"
-            android:textAppearance="@style/TextAppearance.Regular.Body1.Bold"
-            android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@id/track_search_cover"
+            android:textAppearance="?attr/textAppearanceSubtitle2"
+            app:layout_constraintStart_toStartOf="@+id/track_search_type"
             app:layout_constraintTop_toBottomOf="@id/track_search_type" />
 
         <TextView
             android:id="@+id/track_search_start_result"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="12dp"
+            android:ellipsize="end"
             android:maxLines="1"
-            android:textAppearance="@style/TextAppearance.Regular.Body1.Secondary"
-            android:textSize="12sp"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="?android:attr/textColorSecondary"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/track_search_start"
             app:layout_constraintTop_toBottomOf="@id/track_search_type"
             tools:text="2018-10-01" />
@@ -92,22 +99,24 @@
             android:id="@+id/track_search_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:ellipsize="end"
             android:maxLines="1"
             android:text="@string/track_status"
-            android:textAppearance="@style/TextAppearance.Regular.Body1.Bold"
-            android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@id/track_search_cover"
+            android:textAppearance="?attr/textAppearanceSubtitle2"
+            app:layout_constraintStart_toStartOf="@+id/track_search_start"
             app:layout_constraintTop_toBottomOf="@id/track_search_start" />
 
         <TextView
             android:id="@+id/track_search_status_result"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="12dp"
+            android:ellipsize="end"
             android:maxLines="1"
-            android:textAppearance="@style/TextAppearance.Regular.Body1.Secondary"
-            android:textSize="12sp"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="?android:attr/textColorSecondary"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/track_search_status"
             app:layout_constraintTop_toBottomOf="@id/track_search_start"
             tools:text="Ongoing" />
@@ -115,23 +124,27 @@
         <TextView
             android:id="@+id/track_search_summary"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="16dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="12dp"
             android:ellipsize="end"
-            android:maxLines="7"
-            android:textAppearance="@style/TextAppearance.Regular.Body1.Secondary"
-            android:textSize="12sp"
+            android:maxLines="4"
+            android:textAppearance="?attr/textAppearanceCaption"
+            android:textColor="?android:attr/textColorSecondary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@id/track_search_cover"
-            app:layout_constraintTop_toBottomOf="@+id/track_search_status"
-            app:layout_constraintVertical_bias="0.333"
-            tools:text="This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits " />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/barrier"
+            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas condimentum et turpis ut sollicitudin. Donec tellus dolor, rhoncus a mattis eget, tempor quis augue. Fusce eleifend dignissim turpis a molestie.  Praesent tincidunt, risus sed egestas fringilla, urna orci ultrices libero, id iaculis sem lorem placerat lacus." />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="track_search_start_result,track_search_title,track_search_type_result,track_search_status,track_search_cover,track_search_status_result,track_search_type,track_search_start" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

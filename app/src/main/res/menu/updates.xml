@@ -7,7 +7,7 @@
         android:id="@+id/action_update_library"
         android:icon="@drawable/ic_refresh_24dp"
         android:title="@string/action_update_library"
-        app:iconTint="?attr/colorOnPrimary"
+        app:iconTint="?attr/colorOnToolbar"
         app:showAsAction="ifRoom" />
 
 </menu>

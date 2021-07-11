@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bluelinelabs.conductor.RestoreViewOnCreateController
+import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.SimpleSwapChangeHandler
@@ -16,7 +16,7 @@ import com.bluelinelabs.conductor.changehandler.SimpleSwapChangeHandler
  *
  * Implementations should override this class and implement [.onCreateDialog] to create a custom dialog, such as an [android.app.AlertDialog]
  */
-abstract class DialogController : RestoreViewOnCreateController {
+abstract class DialogController : Controller {
 
     protected var dialog: Dialog? = null
         private set

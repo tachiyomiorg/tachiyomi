@@ -147,11 +147,8 @@ class LibraryController(
 
         if (preferences.categoryNumberOfItems().get() && libraryMangaRelay.hasValue()) {
             libraryMangaRelay.value.mangas.let { mangaMap ->
-                if (!showCategoryTabs) {
+                if (!showCategoryTabs || adapter?.categories?.size == 1) {
                     title += " (${mangaMap[currentCategory?.id]?.size ?: 0})"
-                } else if (adapter?.categories?.size == 1) {
-                    // Only "Default" category
-                    title += " (${mangaMap[0]?.size ?: 0})"
                 }
             }
         }
@@ -294,6 +291,11 @@ class LibraryController(
         adapter.itemsPerCategory = adapter.categories
             .map { (it.id ?: -1) to (mangaMap[it.id]?.size ?: 0) }
             .toMap()
+
+        if (preferences.categorisedDisplaySettings().get()) {
+            // Reattach adapter so it doesn't get de-synced
+            reattachAdapter()
+        }
 
         // Restore active category.
         binding.libraryPager.setCurrentItem(activeCat, false)
@@ -595,7 +597,7 @@ class LibraryController(
 
     override fun onSearchViewQueryTextChange(newText: String?) {
         // Ignore events if this controller isn't at the top to avoid query being reset
-        if (router.backstack.lastOrNull()?.controller() == this) {
+        if (router.backstack.lastOrNull()?.controller == this) {
             presenter.query = newText ?: ""
             performSearch()
         }

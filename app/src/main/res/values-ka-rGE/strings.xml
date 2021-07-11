@@ -90,11 +90,7 @@
     <string name="theme_system">სისტემური</string>
     <string name="theme_light">მსუბუქი</string>
     <string name="theme_dark">ბნელი</string>
-    <string name="pref_theme_light">მსუბუქი თემა</string>
-    <string name="theme_light_blue">მოლურჯო მსუბუქი</string>
-    <string name="pref_theme_dark">ბნელი თემა</string>
-    <string name="theme_dark_blue">მოლურჯო ბნელი</string>
-    <string name="theme_dark_amoled">AMOLED ბნელი</string>
+    <string name="theme_darkblue">მოლურჯო ბნელი</string>
     <string name="pref_language">ენა</string>
     <string name="pref_date_format">თარიღის ფორმატი</string>
     <string name="pref_confirm_exit">გამოსვლის დადასტურება</string>
@@ -126,8 +122,7 @@
     <string name="pref_library_update_refresh_metadata">ავტომატურად განაახლე მეტადატა</string>
     <string name="label_migration">მიგრაცია</string>
     <string name="default_category">ნაგულისხმევი კატეგორია</string>
-    <string name="theme_light_default">ნაგულისხმევი</string>
-    <string name="theme_dark_default">ნაგულისხმევი</string>
+    <string name="theme_default">ნაგულისხმევი</string>
     <string name="system_default">ნაგულისხმევი</string>
     <string name="default_columns">ნაგულისხმევი</string>
     <string name="default_category_summary">ყოველთვის მკითხე</string>

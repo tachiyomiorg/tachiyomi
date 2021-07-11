@@ -1,5 +1,8 @@
 package eu.kanade.tachiyomi.data.database.models
 
+import eu.kanade.tachiyomi.ui.library.setting.DisplayModeSetting
+import eu.kanade.tachiyomi.ui.library.setting.SortDirectionSetting
+import eu.kanade.tachiyomi.ui.library.setting.SortModeSetting
 import java.io.Serializable
 
 interface Category : Serializable {
@@ -17,15 +20,18 @@ interface Category : Serializable {
     }
 
     var displayMode: Int
-        get() = flags and MASK
-        set(mode) = setFlags(mode, MASK)
+        get() = flags and DisplayModeSetting.MASK
+        set(mode) = setFlags(mode, DisplayModeSetting.MASK)
+
+    var sortMode: Int
+        get() = flags and SortModeSetting.MASK
+        set(mode) = setFlags(mode, SortModeSetting.MASK)
+
+    var sortDirection: Int
+        get() = flags and SortDirectionSetting.MASK
+        set(mode) = setFlags(mode, SortDirectionSetting.MASK)
 
     companion object {
-
-        const val COMPACT_GRID = 0b00000000
-        const val COMFORTABLE_GRID = 0b00000001
-        const val LIST = 0b00000010
-        const val MASK = 0b00000011
 
         fun create(name: String): Category = CategoryImpl().apply {
             this.name = name

@@ -1,11 +1,11 @@
 package eu.kanade.tachiyomi.util.system
 
-import android.app.Application
 import android.content.Context
+import android.content.ContextWrapper
 import android.content.res.Configuration
 import android.os.Build
-import android.view.ContextThemeWrapper
-import androidx.core.os.ConfigurationCompat
+import android.os.LocaleList
+import androidx.core.os.LocaleListCompat
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.browse.source.SourcePresenter
@@ -15,35 +15,9 @@ import java.util.Locale
 /**
  * Utility class to change the application's language in runtime.
  */
-@Suppress("DEPRECATION")
 object LocaleHelper {
 
     private val preferences: PreferencesHelper by injectLazy()
-
-    private var systemLocale: Locale? = null
-
-    /**
-     * The application's locale. When it's null, the system locale is used.
-     */
-    private var appLocale = getLocaleFromString(preferences.lang())
-
-    /**
-     * The currently applied locale. Used to avoid losing the selected language after a non locale
-     * configuration change to the application.
-     */
-    private var currentLocale: Locale? = null
-
-    /**
-     * Returns the locale for the value stored in preferences, or null if it's system language.
-     *
-     * @param pref the string value stored in preferences.
-     */
-    fun getLocaleFromString(pref: String?): Locale? {
-        if (pref.isNullOrEmpty()) {
-            return null
-        }
-        return getLocale(pref)
-    }
 
     /**
      * Returns Display name of a string language code
@@ -60,18 +34,35 @@ object LocaleHelper {
 
     /**
      * Returns Display name of a string language code
+     *
+     * @param lang empty for system language
      */
     fun getDisplayName(lang: String?): String {
-        return when (lang) {
-            null -> ""
-            "" -> {
-                systemLocale!!.getDisplayName(systemLocale).capitalize()
-            }
-            else -> {
-                val locale = getLocale(lang)
-                locale.getDisplayName(locale).capitalize()
-            }
+        if (lang == null) {
+            return ""
         }
+
+        val locale = if (lang.isEmpty()) {
+            LocaleListCompat.getAdjustedDefault()[0]
+        } else {
+            getLocale(lang)
+        }
+        return locale.getDisplayName(locale).replaceFirstChar { it.uppercase(locale) }
+    }
+
+    /**
+     * Creates a ContextWrapper using selected Locale
+     */
+    fun createLocaleWrapper(context: Context): ContextWrapper {
+        val appLocale = getLocaleFromString(preferences.lang().get())
+        val newConfiguration = Configuration(context.resources.configuration)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            val localeList = LocaleList(appLocale)
+            newConfiguration.setLocales(localeList)
+        } else {
+            newConfiguration.setLocale(appLocale)
+        }
+        return ContextWrapper(context.createConfigurationContext(newConfiguration))
     }
 
     /**
@@ -87,57 +78,14 @@ object LocaleHelper {
     }
 
     /**
-     * Changes the application's locale with a new preference.
+     * Returns the locale for the value stored in preferences, defaults to main system language.
      *
-     * @param pref the new value stored in preferences.
+     * @param pref the string value stored in preferences.
      */
-    fun changeLocale(pref: String) {
-        appLocale = getLocaleFromString(pref)
-    }
-
-    /**
-     * Updates the app's language to an activity.
-     */
-    fun updateConfiguration(wrapper: ContextThemeWrapper) {
-        if (appLocale != null) {
-            val config = Configuration(preferences.context.resources.configuration)
-            config.setLocale(appLocale)
-            wrapper.applyOverrideConfiguration(config)
+    private fun getLocaleFromString(pref: String?): Locale {
+        if (pref.isNullOrEmpty()) {
+            return LocaleListCompat.getDefault()[0]
         }
-    }
-
-    /**
-     * Updates the app's language to the application.
-     */
-    fun updateConfiguration(app: Application, config: Configuration, configChange: Boolean = false) {
-        if (systemLocale == null) {
-            systemLocale = ConfigurationCompat.getLocales(config)[0]
-        }
-        if (configChange) {
-            val configLocale = ConfigurationCompat.getLocales(config)[0]
-            if (currentLocale == configLocale) {
-                return
-            }
-            systemLocale = configLocale
-        }
-        currentLocale = appLocale ?: systemLocale ?: Locale.getDefault()
-        val newConfig = updateConfigLocale(config, currentLocale!!)
-        val resources = app.resources
-        resources.updateConfiguration(newConfig, resources.displayMetrics)
-
-        Locale.setDefault(currentLocale)
-    }
-
-    /**
-     * Returns a new configuration with the given locale applied.
-     */
-    private fun updateConfigLocale(config: Configuration, locale: Locale): Configuration {
-        val newConfig = Configuration(config)
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-            newConfig.locale = locale
-        } else {
-            newConfig.setLocale(locale)
-        }
-        return newConfig
+        return getLocale(pref)
     }
 }

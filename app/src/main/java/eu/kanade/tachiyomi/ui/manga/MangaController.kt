@@ -300,7 +300,7 @@ class MangaController :
         val scrolledList = binding.fullRecycler ?: binding.infoRecycler!!
         if (toolbarTextView == null) {
             toolbarTextView = (activity as? MainActivity)?.binding?.toolbar?.children
-                ?.find { it is TextView } as TextView
+                ?.find { it is TextView } as? TextView
         }
         toolbarTextView?.alpha = when {
             // Specific alpha provided
@@ -618,7 +618,7 @@ class MangaController :
             return
         }
 
-        when (val previousController = router.backstack[router.backstackSize - 2].controller()) {
+        when (val previousController = router.backstack[router.backstackSize - 2].controller) {
             is LibraryController -> {
                 router.handleBack()
                 previousController.search(query)
@@ -639,6 +639,29 @@ class MangaController :
                 router.handleBack()
                 previousController.searchWithQuery(query)
             }
+        }
+    }
+
+    /**
+     * Performs a genre search using the provided genre name.
+     *
+     * @param genreName the search genre to the parent controller
+     */
+    fun performGenreSearch(genreName: String) {
+        if (router.backstackSize < 2) {
+            return
+        }
+
+        val previousController = router.backstack[router.backstackSize - 2].controller
+        val presenterSource = presenter.source
+
+        if (previousController is BrowseSourceController &&
+            presenterSource is HttpSource
+        ) {
+            router.handleBack()
+            previousController.searchWithGenre(genreName)
+        } else {
+            performSearch(genreName)
         }
     }
 
@@ -1092,6 +1115,11 @@ class MangaController :
         Timber.e(error)
     }
 
+    override fun startDownloadNow(position: Int) {
+        val chapter = chaptersAdapter?.getItem(position) ?: return
+        presenter.startDownloadingNow(chapter)
+    }
+
     // OVERFLOW MENU DIALOGS
 
     private fun downloadChapters(choice: Int) {
@@ -1148,8 +1176,7 @@ class MangaController :
 
     fun onTrackingSearchResultsError(error: Throwable) {
         Timber.e(error)
-        activity?.toast(error.message)
-        getTrackingSearchDialog()?.onSearchResultsError()
+        getTrackingSearchDialog()?.onSearchResultsError(error.message)
     }
 
     private fun getTrackingSearchDialog(): TrackSearchDialog? {

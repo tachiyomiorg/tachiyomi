@@ -101,12 +101,13 @@ abstract class SettingsController : PreferenceController() {
     private fun animatePreferenceHighlight(view: View) {
         val origBackground = view.background
         ValueAnimator
-            .ofObject(ArgbEvaluator(), Color.TRANSPARENT, view.context.getResourceColor(R.attr.rippleColor))
+            .ofObject(ArgbEvaluator(), Color.TRANSPARENT, view.context.getResourceColor(R.attr.colorControlHighlight))
             .apply {
-                duration = 500L
-                repeatCount = 2
+                duration = 200L
+                repeatCount = 5
+                repeatMode = ValueAnimator.REVERSE
                 addUpdateListener { animator -> view.setBackgroundColor(animator.animatedValue as Int) }
-                reverse()
+                start()
             }
             .doOnEnd {
                 // Restore original ripple

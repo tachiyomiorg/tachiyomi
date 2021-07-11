@@ -357,10 +357,7 @@
     <string name="theme_light">बंद</string>
     <string name="theme_dark">चालू करे</string>
     <string name="theme_system">सिस्टम का पालन करें</string>
-    <string name="pref_theme_dark">डार्क थीम</string>
-    <string name="theme_dark_default">डिफ़ॉल्ट</string>
-    <string name="theme_dark_blue">गहरा नीला</string>
-    <string name="theme_dark_amoled">अलौकिक गहरी थीम</string>
+    <string name="theme_darkblue">गहरा नीला</string>
     <string name="pref_manage_notifications">सूचनाओं का प्रबंधन</string>
     <string name="pref_category_security">सुरक्षा</string>
     <string name="lock_with_biometrics">बायोमेट्रिक्स के साथ लॉक करें</string>
@@ -402,9 +399,7 @@
         <item quantity="one">1 शीर्षक के लिए</item>
         <item quantity="other">%d शीर्षक के लिए</item>
     </plurals>
-    <string name="pref_theme_light">लाइट थीम</string>
-    <string name="theme_light_default">डिफ़ॉल्ट</string>
-    <string name="theme_light_blue">हल्का नीला</string>
+    <string name="theme_default">डिफ़ॉल्ट</string>
     <string name="action_menu">मेन्यू</string>
     <string name="action_reorganize_by">पुनःक्रमित</string>
     <string name="action_newest">नवीनतम</string>

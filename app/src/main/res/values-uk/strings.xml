@@ -357,10 +357,7 @@
     <string name="theme_light">Вимкнено</string>
     <string name="theme_dark">Увімкнено</string>
     <string name="theme_system">Використовувати системну</string>
-    <string name="pref_theme_dark">Темна тема</string>
-    <string name="theme_dark_default">За замовчуванням</string>
-    <string name="theme_dark_blue">Темно-синя</string>
-    <string name="theme_dark_amoled">AMOLED чорна</string>
+    <string name="theme_darkblue">Темно-синя</string>
     <string name="pref_manage_notifications">Керування сповіщеннями</string>
     <string name="pref_category_security">Безпека</string>
     <string name="lock_with_biometrics">Вимагати розблокування</string>
@@ -407,9 +404,7 @@
         <item quantity="few">Для %d тайтлів</item>
         <item quantity="many">Для %d тайтлів</item>
     </plurals>
-    <string name="pref_theme_light">Світла тема</string>
-    <string name="theme_light_default">За замовчуванням</string>
-    <string name="theme_light_blue">Блакитна</string>
+    <string name="theme_default">За замовчуванням</string>
     <string name="action_menu">Меню</string>
     <string name="action_reorganize_by">Переупорядкувати</string>
     <string name="action_newest">Найновіші</string>

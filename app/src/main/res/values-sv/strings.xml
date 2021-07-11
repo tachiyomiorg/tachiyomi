@@ -357,10 +357,7 @@
     <string name="theme_light">Av</string>
     <string name="theme_dark">På</string>
     <string name="theme_system">Följ systemet</string>
-    <string name="pref_theme_dark">Mörkt tema</string>
-    <string name="theme_dark_default">Standard</string>
-    <string name="theme_dark_blue">Mörkblå</string>
-    <string name="theme_dark_amoled">AMOLED svart</string>
+    <string name="theme_darkblue">Mörkblå</string>
     <string name="pref_manage_notifications">Hantera aviseringar</string>
     <string name="pref_category_security">Säkerhet</string>
     <string name="lock_with_biometrics">Kräv upplåsning</string>
@@ -402,9 +399,7 @@
         <item quantity="one">För 1 titel</item>
         <item quantity="other">För %d titlar</item>
     </plurals>
-    <string name="pref_theme_light">Ljust tema</string>
-    <string name="theme_light_default">Standard</string>
-    <string name="theme_light_blue">Ljusblå</string>
+    <string name="theme_default">Standard</string>
     <string name="action_menu">Meny</string>
     <string name="action_reorganize_by">Ändra ordning</string>
     <string name="action_newest">Nyaste</string>
@@ -646,10 +641,10 @@
     <string name="chapter_not_found">Kapitlet hittades inte</string>
     <string name="pref_library_update_refresh_trackers_summary">Uppdatera spårare när du uppdaterar biblioteket</string>
     <string name="pref_library_update_refresh_trackers">Uppdatera spårare automatiskt</string>
-    <string name="theme_dark_amoled_hotpink">Skrikrosa</string>
-    <string name="theme_dark_midnightdusk">Midnattskymning</string>
-    <string name="theme_dark_greenapple">Grönt äpple</string>
-    <string name="theme_light_strawberrydaiquiri">Jordgubbs-Daiquiri</string>
+    <string name="theme_hotpink">Skrikrosa</string>
+    <string name="theme_midnightdusk">Midnattskymning</string>
+    <string name="theme_greenapple">Grönt äpple</string>
+    <string name="theme_strawberrydaiquiri">Jordgubbs-Daiquiri</string>
     <string name="restrictions">Begränsningar: %s</string>
     <string name="action_display_local_badge">Lokala märken</string>
 </resources>

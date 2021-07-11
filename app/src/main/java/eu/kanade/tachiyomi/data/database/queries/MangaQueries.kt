@@ -1,32 +1,19 @@
 package eu.kanade.tachiyomi.data.database.queries
 
+import com.pushtorefresh.storio.sqlite.operations.get.PreparedGetListOfObjects
 import com.pushtorefresh.storio.sqlite.queries.DeleteQuery
 import com.pushtorefresh.storio.sqlite.queries.Query
 import com.pushtorefresh.storio.sqlite.queries.RawQuery
 import eu.kanade.tachiyomi.data.database.DbProvider
 import eu.kanade.tachiyomi.data.database.models.LibraryManga
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.database.resolvers.LibraryMangaGetResolver
-import eu.kanade.tachiyomi.data.database.resolvers.MangaCoverLastModifiedPutResolver
-import eu.kanade.tachiyomi.data.database.resolvers.MangaFavoritePutResolver
-import eu.kanade.tachiyomi.data.database.resolvers.MangaFlagsPutResolver
-import eu.kanade.tachiyomi.data.database.resolvers.MangaLastUpdatedPutResolver
-import eu.kanade.tachiyomi.data.database.resolvers.MangaTitlePutResolver
+import eu.kanade.tachiyomi.data.database.resolvers.*
 import eu.kanade.tachiyomi.data.database.tables.CategoryTable
 import eu.kanade.tachiyomi.data.database.tables.ChapterTable
 import eu.kanade.tachiyomi.data.database.tables.MangaCategoryTable
 import eu.kanade.tachiyomi.data.database.tables.MangaTable
 
 interface MangaQueries : DbProvider {
-
-    fun getMangas() = db.get()
-        .listOfObjects(Manga::class.java)
-        .withQuery(
-            Query.builder()
-                .table(MangaTable.TABLE)
-                .build()
-        )
-        .prepare()
 
     fun getLibraryMangas() = db.get()
         .listOfObjects(LibraryManga::class.java)
@@ -39,17 +26,21 @@ interface MangaQueries : DbProvider {
         .withGetResolver(LibraryMangaGetResolver.INSTANCE)
         .prepare()
 
-    fun getFavoriteMangas() = db.get()
-        .listOfObjects(Manga::class.java)
-        .withQuery(
-            Query.builder()
-                .table(MangaTable.TABLE)
-                .where("${MangaTable.COL_FAVORITE} = ?")
-                .whereArgs(1)
-                .orderBy(MangaTable.COL_TITLE)
-                .build()
-        )
-        .prepare()
+    fun getFavoriteMangas(sortByTitle: Boolean = true): PreparedGetListOfObjects<Manga> {
+        var queryBuilder = Query.builder()
+            .table(MangaTable.TABLE)
+            .where("${MangaTable.COL_FAVORITE} = ?")
+            .whereArgs(1)
+
+        if (sortByTitle) {
+            queryBuilder = queryBuilder.orderBy(MangaTable.COL_TITLE)
+        }
+
+        return db.get()
+            .listOfObjects(Manga::class.java)
+            .withQuery(queryBuilder.build())
+            .prepare()
+    }
 
     fun getManga(url: String, sourceId: Long) = db.get()
         .`object`(Manga::class.java)
@@ -95,6 +86,11 @@ interface MangaQueries : DbProvider {
     fun updateViewerFlags(manga: List<Manga>) = db.put()
         .objects(manga)
         .withPutResolver(MangaFlagsPutResolver(MangaTable.COL_VIEWER, Manga::viewer_flags, true))
+        .prepare()
+
+    fun updateNextUpdated(manga: Manga) = db.put()
+        .`object`(manga)
+        .withPutResolver(MangaNextUpdatedPutResolver())
         .prepare()
 
     fun updateLastUpdated(manga: Manga) = db.put()

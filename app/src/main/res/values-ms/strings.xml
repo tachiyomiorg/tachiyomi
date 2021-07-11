@@ -357,10 +357,7 @@
     <string name="theme_light">Mati</string>
     <string name="theme_dark">Hidup</string>
     <string name="theme_system">Ikut sistem</string>
-    <string name="pref_theme_dark">Tema gelap</string>
-    <string name="theme_dark_default">Lalai</string>
-    <string name="theme_dark_blue">Biru Gelap</string>
-    <string name="theme_dark_amoled">AMOLED Hitam</string>
+    <string name="theme_darkblue">Biru Gelap</string>
     <string name="pref_manage_notifications">Uruskan pemberitahuan</string>
     <string name="pref_category_security">Keselamatan</string>
     <string name="lock_with_biometrics">Memerlukan buka kunci</string>
@@ -398,9 +395,7 @@
     <plurals name="notification_new_chapters_summary">
         <item quantity="other">Untuk %d tajuk</item>
     </plurals>
-    <string name="pref_theme_light">Tema terang</string>
-    <string name="theme_light_default">Lalai</string>
-    <string name="theme_light_blue">Biru Terang</string>
+    <string name="theme_default">Lalai</string>
     <string name="action_menu">Menu</string>
     <string name="action_reorganize_by">Susun semula</string>
     <string name="action_newest">Terbaru</string>
@@ -628,16 +623,16 @@
     <string name="source_unsupported">Sumber tidak disokong</string>
     <string name="unread">Belum dibaca</string>
     <string name="pref_move_side_nav_to_bottom">Pindahkan butang navigasi sisi ke bawah</string>
-    <string name="theme_dark_midnightdusk">Senja Tengah Malam</string>
+    <string name="theme_midnightdusk">Senja Tengah Malam</string>
     <string name="date">Tarikh</string>
     <string name="local_filter_order_by">Susun mengikut</string>
     <string name="local_invalid_format">Format bab tidak sah</string>
     <string name="chapter_not_found">Bab tidak dijumpai</string>
-    <string name="theme_dark_amoled_hotpink">Merah Jambu Panas</string>
-    <string name="theme_light_strawberrydaiquiri">Daiquiri Strawberi</string>
+    <string name="theme_hotpink">Merah Jambu Panas</string>
+    <string name="theme_strawberrydaiquiri">Daiquiri Strawberi</string>
     <string name="pref_library_update_refresh_trackers_summary">Kemas kini penjejak ketika mengemaskini pustaka</string>
     <string name="pref_library_update_refresh_trackers">Kemas kini penjejak secara automatik</string>
-    <string name="theme_dark_greenapple">Epal Hijau</string>
+    <string name="theme_greenapple">Epal Hijau</string>
     <string name="restrictions">Sekatan: %s</string>
     <string name="action_display_local_badge">Penanda setempat</string>
     <string name="off">Mati</string>

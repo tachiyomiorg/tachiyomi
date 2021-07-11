@@ -194,7 +194,7 @@ class HistoryController :
             searchView.clearFocus()
         }
         searchView.queryTextChanges()
-            .filter { router.backstack.lastOrNull()?.controller() == this }
+            .filter { router.backstack.lastOrNull()?.controller == this }
             .onEach {
                 query = it.toString()
                 presenter.updateList(query)

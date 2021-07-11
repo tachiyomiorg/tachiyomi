@@ -6,35 +6,35 @@
         android:id="@+id/action_move_to_category"
         android:icon="@drawable/ic_label_24dp"
         android:title="@string/action_move_category"
-        app:iconTint="?attr/colorOnPrimary"
+        app:iconTint="?attr/colorOnToolbar"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/action_download_unread"
         android:icon="@drawable/ic_get_app_24dp"
         android:title="@string/action_download_unread"
-        app:iconTint="?attr/colorOnPrimary"
+        app:iconTint="?attr/colorOnToolbar"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/action_mark_as_read"
         android:icon="@drawable/ic_done_24dp"
         android:title="@string/action_mark_as_read"
-        app:iconTint="?attr/colorOnPrimary"
+        app:iconTint="?attr/colorOnToolbar"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/action_mark_as_unread"
         android:icon="@drawable/ic_done_outline_24dp"
         android:title="@string/action_mark_as_unread"
-        app:iconTint="?attr/colorOnPrimary"
+        app:iconTint="?attr/colorOnToolbar"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/action_delete"
         android:icon="@drawable/ic_delete_24dp"
         android:title="@string/action_delete"
-        app:iconTint="?attr/colorOnPrimary"
+        app:iconTint="?attr/colorOnToolbar"
         app:showAsAction="always" />
 
 </menu>

@@ -95,6 +95,23 @@ class DownloadManager(private val context: Context) {
         downloader.clearQueue(isNotification)
     }
 
+    fun startDownloadNow(chapter: Chapter) {
+        val download = downloader.queue.find { it.chapter.id == chapter.id } ?: return
+        val queue = downloader.queue.toMutableList()
+        queue.remove(download)
+        queue.add(0, download)
+        reorderQueue(queue)
+        if (isPaused()) {
+            if (DownloadService.isRunning(context)) {
+                downloader.start()
+            } else {
+                DownloadService.start(context)
+            }
+        }
+    }
+
+    fun isPaused() = downloader.isPaused()
+
     /**
      * Reorders the download queue.
      *

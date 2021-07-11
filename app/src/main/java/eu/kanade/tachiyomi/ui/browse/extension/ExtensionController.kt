@@ -136,7 +136,7 @@ open class ExtensionController :
         }
 
         searchView.queryTextChanges()
-            .filter { router.backstack.lastOrNull()?.controller() == this }
+            .filter { router.backstack.lastOrNull()?.controller == this }
             .onEach {
                 query = it.toString()
                 drawExtensions()
