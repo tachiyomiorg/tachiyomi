@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import coil.loadAny
-import coil.memory.MemoryCache
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.track.TrackManager
@@ -43,9 +42,6 @@ class MangaInfoHeaderAdapter(
     private lateinit var binding: MangaInfoHeaderBinding
 
     private var initialLoad: Boolean = true
-
-    var thumbnailMemoryCacheKey: MemoryCache.Key? = null
-        private set
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeaderViewHolder {
         binding = MangaInfoHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -248,11 +244,7 @@ class MangaInfoHeaderAdapter(
 
             // Set cover if changed.
             listOfNotNull(binding.mangaCover, binding.backdrop).forEach {
-                it.loadAny(manga) {
-                    listener { _, metadata ->
-                        thumbnailMemoryCacheKey = metadata.memoryCacheKey
-                    }
-                }
+                it.loadAny(manga)
             }
 
             // Manga info section
