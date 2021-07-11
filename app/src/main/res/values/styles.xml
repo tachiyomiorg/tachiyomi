@@ -187,8 +187,8 @@
     <style name="Widget.Tachiyomi.Chip.Action" parent="Widget.MaterialComponents.Chip.Action">
         <item name="chipStrokeWidth">1dp</item>
         <item name="chipStrokeColor">?attr/colorPrimary</item>
-        <item name="chipBackgroundColor">@android:color/transparent</item>
-        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="chipBackgroundColor">?attr/chipBackgroundColor</item>
+        <item name="android:textColor">?attr/chipTextColor</item>
         <item name="rippleColor">?attr/colorControlHighlight</item>
 
         <!-- Custom chip states -->
