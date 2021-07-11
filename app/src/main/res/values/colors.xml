@@ -22,9 +22,9 @@
     <color name="ripple_colored_yotsuba">#1FFC8C5C</color>
 
     <!-- Green Apple Theme -->
-    <color name="accent_greenapple">#48E484</color>
-    <color name="accent_greenapple_variant">#188140</color>
-    <color name="ripple_colored_greenapple">#1F48E484</color>
+    <color name="accent_greenapple">#188140</color>
+    <color name="color_on_primary_greenapple">@color/md_white_1000</color>
+    <color name="ripple_colored_greenapple">#1F188140</color>
 
     <!-- Yin Yang Theme -->
     <color name="accent_yinyang">#000000</color>

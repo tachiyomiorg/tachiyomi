@@ -19,14 +19,4 @@
         <item name="android:colorBackground">@color/background_midnightdusk</item>
     </style>
 
-    <!--== Green Apple theme ==-->
-    <style name="Theme.Tachiyomi.GreenApple">
-        <!-- Theme colors -->
-        <item name="colorPrimary">@color/accent_greenapple</item>
-        <item name="colorOnPrimary">@color/md_black_1000</item>
-        <item name="colorTertiary">@color/md_blue_A400</item>
-        <item name="colorControlHighlight">@color/ripple_colored_greenapple</item>
-        <item name="lightSystemBarsOnPrimary">true</item>
-    </style>
-
 </resources>
