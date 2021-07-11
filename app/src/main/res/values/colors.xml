@@ -23,6 +23,7 @@
 
     <!-- Green Apple Theme -->
     <color name="accent_greenapple">#48E484</color>
+    <color name="accent_greenapple_variant">#188140</color>
     <color name="ripple_colored_greenapple">#1F48E484</color>
 
     <!-- Yin Yang Theme -->
