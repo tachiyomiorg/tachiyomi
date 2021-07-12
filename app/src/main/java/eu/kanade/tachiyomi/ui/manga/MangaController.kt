@@ -341,13 +341,6 @@ class MangaController :
                         }
                     )
                 }
-                /*
-                This else branch shouldn't ever be reached, since
-                the FAB is hidden when there's no unread chapters,
-                but there's no harm in keeping it in.
-                 */
-            } else {
-                view?.context?.toast(R.string.no_next_chapter)
             }
         }
     }
@@ -746,14 +739,11 @@ class MangaController :
         }
 
         val context = view?.context
-        val unreadChapters = chapters.count { !it.read }
-        if (unreadChapters > 0) {
-            actionFab?.isVisible = true
-            if (context != null && unreadChapters < chapters.size) {
+        if (context != null) {
+            actionFab?.isVisible = chapters.any { !it.read }
+            if (chapters.any { it.read }) {
                 actionFab?.text = context.getString(R.string.action_resume)
             }
-        } else {
-            actionFab?.isVisible = false
         }
     }
 
