@@ -117,6 +117,7 @@
     <style name="Theme.Tachiyomi.YinYang">
         <!-- Theme colors -->
         <item name="colorPrimary">@color/accent_yinyang</item>
+        <item name="colorOnPrimary">@color/color_on_secondary_yinyang</item>
         <item name="colorOnSecondary">@color/color_on_secondary_yinyang</item>
         <item name="colorTertiary">@color/color_on_secondary_yinyang</item>
         <item name="colorOnTertiary">@color/accent_yinyang</item>
