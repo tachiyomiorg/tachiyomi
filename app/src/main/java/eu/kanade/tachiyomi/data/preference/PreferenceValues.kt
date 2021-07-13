@@ -26,6 +26,7 @@ object PreferenceValues {
         BLUE(R.string.theme_blue),
         GREEN_APPLE(R.string.theme_greenapple),
         MIDNIGHT_DUSK(R.string.theme_midnightdusk),
+        NINOMAE(R.string.theme_ninomae),
         STRAWBERRY_DAIQUIRI(R.string.theme_strawberrydaiquiri),
         YOTSUBA(R.string.theme_yotsuba),
         YINYANG(R.string.theme_yinyang),

@@ -50,6 +50,9 @@ abstract class BaseThemedActivity : AppCompatActivity() {
                 PreferenceValues.AppTheme.MIDNIGHT_DUSK -> {
                     resIds += R.style.Theme_Tachiyomi_MidnightDusk
                 }
+                PreferenceValues.AppTheme.NINOMAE -> {
+                    resIds += R.style.Theme_Tachiyomi_Ninomae
+                }
                 PreferenceValues.AppTheme.STRAWBERRY_DAIQUIRI -> {
                     resIds += R.style.Theme_Tachiyomi_StrawberryDaiquiri
                 }

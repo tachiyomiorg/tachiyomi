@@ -113,6 +113,18 @@
         <item name="lightSystemBarsOnPrimary">true</item>
     </style>
 
+    <!--== Ninomae theme ==-->
+    <style name="Theme.Tachiyomi.Ninomae">
+        <!-- Theme colors -->
+        <item name="colorPrimary">@color/accent_ninomae</item>
+        <item name="colorOnPrimary">@color/color_on_primary_ninomae</item>
+        <item name="colorTertiary">@color/tertiary_ninomae</item>
+        <item name="colorOnTertiary">@color/color_on_tertiary_ninomae</item>
+        <item name="colorControlHighlight">@color/ripple_colored_ninomae</item>
+        <item name="colorSurface">@color/surface_ninomae</item>
+        <item name="android:colorBackground">@color/background_ninomae</item>
+    </style>
+
     <!--== Yin Yang theme ==-->
     <style name="Theme.Tachiyomi.YinYang">
         <!-- Theme colors -->
