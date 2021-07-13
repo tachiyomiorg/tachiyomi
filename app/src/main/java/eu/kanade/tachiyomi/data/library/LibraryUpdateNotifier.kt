@@ -74,7 +74,7 @@ class LibraryUpdateNotifier(private val context: Context) {
                 .setContentTitle(context.getString(R.string.notification_check_updates))
                 .setContentText("($current/$total)")
         } else {
-            val updatingText = manga.joinToString("\n") { it.title }
+            val updatingText = manga.joinToString("\n") { "• ${it.title}" }
             progressNotificationBuilder
                 .setContentTitle(context.getString(R.string.notification_updating, current, total))
                 .setStyle(NotificationCompat.BigTextStyle().bigText(updatingText))
