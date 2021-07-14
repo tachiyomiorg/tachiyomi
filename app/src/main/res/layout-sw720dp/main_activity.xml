@@ -52,7 +52,7 @@
             android:id="@+id/incognito_mode"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/md_grey_800"
+            android:background="?attr/incognitoBackgroundColor"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

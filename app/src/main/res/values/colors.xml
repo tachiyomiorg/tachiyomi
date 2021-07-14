@@ -32,6 +32,7 @@
     <color name="ripple_colored_ninomae">#1F66577E</color>
     <color name="surface_ninomae">#F7F5FF</color>
     <color name="background_ninomae">#F2EDF7</color>
+    <color name="incognito_background_ninomae">@color/accent_ninomae</color>
     <color name="filter_ninomae">#F29940</color>
 
     <!-- Strawberry Daiquiri Theme -->

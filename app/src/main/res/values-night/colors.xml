@@ -22,6 +22,7 @@
     <color name="ripple_colored_ninomae">#1FF3B375</color>
     <color name="surface_ninomae">#2A2A3C</color>
     <color name="background_ninomae">#21212E</color>
+    <color name="incognito_background_ninomae">#17171C</color>
     <color name="filter_ninomae">@color/accent_ninomae</color>
 
     <!-- Yin & Yang Theme -->

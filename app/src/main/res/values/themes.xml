@@ -53,6 +53,7 @@
         <item name="toolbarNavigationButtonStyle">@style/Widget.Tachiyomi.Toolbar.Button.Navigation</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
         <item name="bottomSheetDialogTheme">@style/ThemeOverlay.Tachiyomi.BottomSheetDialog</item>
+        <item name="incognitoBackgroundColor">@color/md_grey_800</item>
         <item name="chipStyle">@style/Widget.Tachiyomi.Chip.Action</item>
         <item name="chipTextColor">?android:attr/textColorPrimary</item>
         <item name="chipBackgroundColor">?attr/colorControlHighlight</item>
@@ -117,6 +118,9 @@
         <item name="colorControlHighlight">@color/ripple_colored_ninomae</item>
         <item name="colorSurface">@color/surface_ninomae</item>
         <item name="android:colorBackground">@color/background_ninomae</item>
+
+        <!-- Themes -->
+        <item name="incognitoBackgroundColor">@color/incognito_background_ninomae</item>
 
         <!-- Custom Attributes-->
         <item name="colorFilterActive">@color/filter_ninomae</item>
