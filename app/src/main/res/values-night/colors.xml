@@ -15,13 +15,13 @@
     <color name="ripple_colored_greenapple">#1F48E484</color>
 
     <!-- Ninomae Theme -->
-    <color name="accent_ninomae">#7C7693</color>
-    <color name="color_on_primary_ninomae">@color/md_white_1000</color>
+    <color name="accent_ninomae">#F3B375</color>
+    <color name="color_on_primary_ninomae">#484861</color>
     <color name="tertiary_ninomae">#F3B375</color>
     <color name="color_on_tertiary_ninomae">@color/md_black_1000</color>
     <color name="ripple_colored_ninomae">#1F7C7693</color>
-    <color name="surface_ninomae">#252529</color>
-    <color name="background_ninomae">#252529</color>
+    <color name="surface_ninomae">#484861</color>
+    <color name="background_ninomae">#2C2C3B</color>
 
     <!-- Yin Yang Theme -->
     <color name="accent_yinyang">#FFFFFF</color>
