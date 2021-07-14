@@ -123,6 +123,9 @@
         <item name="colorControlHighlight">@color/ripple_colored_ninomae</item>
         <item name="colorSurface">@color/surface_ninomae</item>
         <item name="android:colorBackground">@color/background_ninomae</item>
+
+        <!-- Custom Attributes-->
+        <item name="colorFilterActive">@color/filter_ninomae</item>
     </style>
 
     <!--== Yin Yang theme ==-->

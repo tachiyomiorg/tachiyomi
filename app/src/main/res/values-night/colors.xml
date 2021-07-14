@@ -16,12 +16,13 @@
 
     <!-- Ninomae Theme -->
     <color name="accent_ninomae">#F3B375</color>
-    <color name="color_on_primary_ninomae">#484861</color>
-    <color name="tertiary_ninomae">#F3B375</color>
-    <color name="color_on_tertiary_ninomae">@color/md_black_1000</color>
+    <color name="color_on_primary_ninomae">#303041</color>
+    <color name="tertiary_ninomae">@color/color_on_primary_ninomae</color>
+    <color name="color_on_tertiary_ninomae">@color/accent_ninomae</color>
     <color name="ripple_colored_ninomae">#1F7C7693</color>
-    <color name="surface_ninomae">#484861</color>
+    <color name="surface_ninomae">#39394C</color>
     <color name="background_ninomae">#2C2C3B</color>
+    <color name="filter_ninomae">@color/accent_ninomae</color>
 
     <!-- Yin Yang Theme -->
     <color name="accent_yinyang">#FFFFFF</color>

@@ -29,11 +29,12 @@
     <!-- Ninomae Theme -->
     <color name="accent_ninomae">#66577E</color>
     <color name="color_on_primary_ninomae">#F3B375</color>
-    <color name="tertiary_ninomae">#F3B375</color>
-    <color name="color_on_tertiary_ninomae">@color/md_black_1000</color>
+    <color name="tertiary_ninomae">@color/color_on_primary_ninomae</color>
+    <color name="color_on_tertiary_ninomae">#574360</color>
     <color name="ripple_colored_ninomae">#1F66577E</color>
-    <color name="surface_ninomae">#fcfaff</color>
-    <color name="background_ninomae">#f7f2ff</color>
+    <color name="surface_ninomae">#F7F5FF</color>
+    <color name="background_ninomae">#F2EDF7</color>
+    <color name="filter_ninomae">#F29940</color>
 
     <!-- Yin Yang Theme -->
     <color name="accent_yinyang">#000000</color>
