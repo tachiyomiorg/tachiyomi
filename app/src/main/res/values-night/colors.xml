@@ -16,7 +16,7 @@
 
     <!-- Ninomae Theme -->
     <color name="accent_ninomae">#F3B375</color>
-    <color name="color_on_primary_ninomae">#272735</color>
+    <color name="color_on_primary_ninomae">#242431</color>
     <color name="tertiary_ninomae">@color/color_on_primary_ninomae</color>
     <color name="color_on_tertiary_ninomae">@color/accent_ninomae</color>
     <color name="ripple_colored_ninomae">#1FF3B375</color>
