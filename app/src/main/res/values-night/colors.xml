@@ -24,7 +24,7 @@
     <color name="background_ninomae">#2C2C3B</color>
     <color name="filter_ninomae">@color/accent_ninomae</color>
 
-    <!-- Yin Yang Theme -->
+    <!-- Yin & Yang Theme -->
     <color name="accent_yinyang">#FFFFFF</color>
     <color name="color_on_secondary_yinyang">#000000</color>
     <color name="ripple_colored_yinyang">#777777</color>
