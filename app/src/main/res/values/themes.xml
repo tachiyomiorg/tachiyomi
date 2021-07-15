@@ -108,30 +108,30 @@
         <item name="colorControlHighlight">@color/ripple_colored_midnightdusk</item>
     </style>
 
-    <!--== Ninomae Theme ==-->
-    <style name="Theme.Tachiyomi.Ninomae">
-        <!-- Theme Colors -->
-        <item name="colorPrimary">@color/accent_ninomae</item>
-        <item name="colorOnPrimary">@color/color_on_primary_ninomae</item>
-        <item name="colorTertiary">@color/tertiary_ninomae</item>
-        <item name="colorOnTertiary">@color/color_on_tertiary_ninomae</item>
-        <item name="colorControlHighlight">@color/ripple_colored_ninomae</item>
-        <item name="colorSurface">@color/surface_ninomae</item>
-        <item name="android:colorBackground">@color/background_ninomae</item>
-
-        <!-- Themes -->
-        <item name="incognitoBackgroundColor">@color/incognito_background_ninomae</item>
-
-        <!-- Custom Attributes-->
-        <item name="colorFilterActive">@color/filter_ninomae</item>
-    </style>
-
     <!--== Strawberry Daiquiri Theme ==-->
     <style name="Theme.Tachiyomi.StrawberryDaiquiri">
         <!-- Theme Colors -->
         <item name="colorPrimary">@color/accent_strawberry</item>
         <item name="colorTertiary">@color/md_blue_A400</item>
         <item name="colorControlHighlight">@color/ripple_colored_strawberry</item>
+    </style>
+
+    <!--== Tako Theme ==-->
+    <style name="Theme.Tachiyomi.Tako">
+        <!-- Theme Colors -->
+        <item name="colorPrimary">@color/accent_tako</item>
+        <item name="colorOnPrimary">@color/color_on_primary_tako</item>
+        <item name="colorTertiary">@color/tertiary_tako</item>
+        <item name="colorOnTertiary">@color/color_on_tertiary_tako</item>
+        <item name="colorControlHighlight">@color/ripple_colored_tako</item>
+        <item name="colorSurface">@color/surface_tako</item>
+        <item name="android:colorBackground">@color/background_tako</item>
+
+        <!-- Themes -->
+        <item name="incognitoBackgroundColor">@color/incognito_background_tako</item>
+
+        <!-- Custom Attributes-->
+        <item name="colorFilterActive">@color/filter_tako</item>
     </style>
 
     <!--== Yin & Yang Theme ==-->

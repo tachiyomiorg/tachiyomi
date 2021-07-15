@@ -14,16 +14,16 @@
     <color name="color_on_primary_greenapple">@color/md_black_1000</color>
     <color name="ripple_colored_greenapple">#1F48E484</color>
 
-    <!-- Ninomae Theme -->
-    <color name="accent_ninomae">#F3B375</color>
-    <color name="color_on_primary_ninomae">#242431</color>
-    <color name="tertiary_ninomae">@color/color_on_primary_ninomae</color>
-    <color name="color_on_tertiary_ninomae">@color/accent_ninomae</color>
-    <color name="ripple_colored_ninomae">#1FF3B375</color>
-    <color name="surface_ninomae">#2A2A3C</color>
-    <color name="background_ninomae">#21212E</color>
-    <color name="incognito_background_ninomae">#17171C</color>
-    <color name="filter_ninomae">@color/accent_ninomae</color>
+    <!-- Tako Theme -->
+    <color name="accent_tako">#F3B375</color>
+    <color name="color_on_primary_tako">#242431</color>
+    <color name="tertiary_tako">@color/color_on_primary_tako</color>
+    <color name="color_on_tertiary_tako">@color/accent_tako</color>
+    <color name="ripple_colored_tako">#1FF3B375</color>
+    <color name="surface_tako">#2A2A3C</color>
+    <color name="background_tako">#21212E</color>
+    <color name="incognito_background_tako">#17171C</color>
+    <color name="filter_tako">@color/accent_tako</color>
 
     <!-- Yin & Yang Theme -->
     <color name="accent_yinyang">#FFFFFF</color>

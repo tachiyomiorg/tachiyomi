@@ -24,20 +24,20 @@
     <color name="surface_midnightdusk">#201F27</color>
     <color name="ripple_colored_midnightdusk">#1FF02475</color>
 
-    <!-- Ninomae Theme -->
-    <color name="accent_ninomae">#66577E</color>
-    <color name="color_on_primary_ninomae">#F3B375</color>
-    <color name="tertiary_ninomae">@color/color_on_primary_ninomae</color>
-    <color name="color_on_tertiary_ninomae">#574360</color>
-    <color name="ripple_colored_ninomae">#1F66577E</color>
-    <color name="surface_ninomae">#F7F5FF</color>
-    <color name="background_ninomae">#F2EDF7</color>
-    <color name="incognito_background_ninomae">@color/accent_ninomae</color>
-    <color name="filter_ninomae">#F29940</color>
-
     <!-- Strawberry Daiquiri Theme -->
     <color name="accent_strawberry">#ED4A65</color>
     <color name="ripple_colored_strawberry">#1FED4A65</color>
+
+    <!-- Tako Theme -->
+    <color name="accent_tako">#66577E</color>
+    <color name="color_on_primary_tako">#F3B375</color>
+    <color name="tertiary_tako">@color/color_on_primary_tako</color>
+    <color name="color_on_tertiary_tako">#574360</color>
+    <color name="ripple_colored_tako">#1F66577E</color>
+    <color name="surface_tako">#F7F5FF</color>
+    <color name="background_tako">#F2EDF7</color>
+    <color name="incognito_background_tako">@color/accent_tako</color>
+    <color name="filter_tako">#F29940</color>
 
     <!-- Yin & Yang Theme -->
     <color name="accent_yinyang">#000000</color>
