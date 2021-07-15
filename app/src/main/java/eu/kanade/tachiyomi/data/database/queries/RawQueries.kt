@@ -32,6 +32,22 @@ val libraryQuery =
 """
 
 /**
+ * Query to get the number of unread chapters for a manga, -1 if no chapters have been loaded yet.
+ */
+const val mangaUnreadQuery =
+    """
+    SELECT COALESCE(C.unread, -1) AS ${Manga.COL_UNREAD}
+    FROM ${Manga.TABLE}
+    LEFT JOIN (
+        SELECT ${Chapter.COL_MANGA_ID}, COUNT(CASE WHEN ${Chapter.COL_READ} = 0 THEN 1 END) AS unread
+        FROM ${Chapter.TABLE}
+        GROUP BY ${Chapter.COL_MANGA_ID}
+    ) AS C
+    ON ${Manga.COL_ID} = C.${Chapter.COL_MANGA_ID}
+    WHERE ${Manga.COL_ID} = ?
+"""
+
+/**
  * Query to get the recent chapters of manga from the library up to a date.
  */
 fun getRecentsQuery() =
