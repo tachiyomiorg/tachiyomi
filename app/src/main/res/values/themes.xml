@@ -74,6 +74,9 @@
     <!--== Default Theme ==-->
     <style name="Theme.Tachiyomi" parent="Base.Theme.Tachiyomi" />
 
+    <!-- Monet theme only support S+ -->
+    <style name="Theme.Tachiyomi.Monet" />
+
     <!--== Blue Theme ==-->
     <style name="Theme.Tachiyomi.Blue">
         <!-- Theme Colors -->
