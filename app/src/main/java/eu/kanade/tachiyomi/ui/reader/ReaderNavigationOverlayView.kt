@@ -10,10 +10,7 @@ import android.view.View
 import android.view.ViewPropertyAnimator
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
-import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.reader.viewer.ViewerNavigation
-import uy.kohesive.injekt.Injekt
-import uy.kohesive.injekt.api.get
 import kotlin.math.abs
 
 class ReaderNavigationOverlayView(context: Context, attributeSet: AttributeSet) : View(context, attributeSet) {
@@ -22,14 +19,12 @@ class ReaderNavigationOverlayView(context: Context, attributeSet: AttributeSet) 
 
     private var navigation: ViewerNavigation? = null
 
-    private val preferences = Injekt.get<PreferencesHelper>()
-
-    fun setNavigation(navigation: ViewerNavigation, showOnStart: Boolean) {
+    fun setNavigation(navigation: ViewerNavigation, tappingEnabled: Boolean, showOnStart: Boolean) {
         val firstLaunch = this.navigation == null
         this.navigation = navigation
         invalidate()
 
-        if (isVisible || (!showOnStart && firstLaunch) || !preferences.readWithTapping().get()) {
+        if (isVisible || (!showOnStart && firstLaunch) || !tappingEnabled) {
             return
         }
 
