@@ -31,6 +31,8 @@ import eu.kanade.tachiyomi.ui.browse.BrowseController
 import eu.kanade.tachiyomi.ui.browse.source.browse.BrowseSourceController
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchController
 import eu.kanade.tachiyomi.ui.browse.source.latest.LatestUpdatesController
+import eu.kanade.tachiyomi.ui.main.MainActivity
+import eu.kanade.tachiyomi.util.view.onAnimationsFinished
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
@@ -81,6 +83,9 @@ class SourceController :
         // Create recycler and set adapter.
         binding.recycler.layoutManager = LinearLayoutManager(view.context)
         binding.recycler.adapter = adapter
+        binding.recycler.onAnimationsFinished {
+            (activity as? MainActivity)?.ready = true
+        }
         adapter?.fastScroller = binding.fastScroller
 
         requestPermissionsSafe(arrayOf(WRITE_EXTERNAL_STORAGE), 301)

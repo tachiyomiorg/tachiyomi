@@ -81,10 +81,18 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
 
     private var fixedViewsToBottom = mutableMapOf<View, AppBarLayout.OnOffsetChangedListener>()
 
+    // To be checked by splash screen. If true then splash screen will be removed.
+    var ready = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         // Prevent splash screen showing up on configuration changes
         if (savedInstanceState == null) {
-            installSplashScreen()
+            installSplashScreen().also {
+                val startedTime = System.currentTimeMillis()
+                it.setKeepVisibleCondition {
+                    !ready && System.currentTimeMillis() - startedTime < 5000
+                }
+            }
         }
 
         super.onCreate(savedInstanceState)
@@ -361,6 +369,7 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
             }
         }
 
+        ready = true
         isHandlingShortcut = false
         return true
     }

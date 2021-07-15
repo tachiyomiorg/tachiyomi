@@ -197,3 +197,20 @@ inline fun TextView.setMaxLinesAndEllipsize(_ellipsize: TextUtils.TruncateAt = T
     maxLines = (measuredHeight - paddingTop - paddingBottom) / lineHeight
     ellipsize = _ellipsize
 }
+
+/**
+ * Callback will be run immediately when no animation running
+ */
+fun RecyclerView.onAnimationsFinished(callback: (RecyclerView) -> Unit) = post(
+    object : Runnable {
+        override fun run() {
+            if (isAnimating) {
+                itemAnimator?.isRunning {
+                    post(this)
+                }
+            } else {
+                callback(this@onAnimationsFinished)
+            }
+        }
+    }
+)
