@@ -22,7 +22,6 @@
     <color name="ripple_colored_tako">#1FF3B375</color>
     <color name="surface_tako">#2A2A3C</color>
     <color name="background_tako">#21212E</color>
-    <color name="incognito_background_tako">#17171C</color>
     <color name="filter_tako">@color/accent_tako</color>
 
     <!-- Yin & Yang Theme -->
