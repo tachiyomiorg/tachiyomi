@@ -147,11 +147,8 @@ class LibraryController(
 
         if (preferences.categoryNumberOfItems().get() && libraryMangaRelay.hasValue()) {
             libraryMangaRelay.value.mangas.let { mangaMap ->
-                if (!showCategoryTabs) {
+                if (!showCategoryTabs || adapter?.categories?.size == 1) {
                     title += " (${mangaMap[currentCategory?.id]?.size ?: 0})"
-                } else if (adapter?.categories?.size == 1) {
-                    // Only "Default" category
-                    title += " (${mangaMap[0]?.size ?: 0})"
                 }
             }
         }

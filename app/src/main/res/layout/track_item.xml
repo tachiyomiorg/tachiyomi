@@ -20,9 +20,6 @@
             android:id="@+id/logo_container"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
             app:cardBackgroundColor="#2E51A2"
             app:cardElevation="0dp"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialCardView.Tracker">
@@ -54,8 +51,9 @@
 
             <TextView
                 android:id="@+id/track_title"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="48dp"
+                android:layout_weight="1"
                 android:ellipsize="end"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:gravity="center_vertical"
@@ -63,6 +61,16 @@
                 android:paddingHorizontal="16dp"
                 android:textAppearance="?attr/textAppearanceSubtitle1"
                 tools:text="Title" />
+
+            <ImageButton
+                android:id="@+id/more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="?selectableItemBackgroundBorderless"
+                android:contentDescription="@string/label_more"
+                android:padding="8dp"
+                android:src="@drawable/ic_more_vert_24" />
 
         </LinearLayout>
 
@@ -100,11 +108,11 @@
                     android:textAppearance="?attr/textAppearanceBody2"
                     tools:text="Reading" />
 
-            <View
-                android:id="@+id/vert_divider_1"
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="?android:divider" />
+                <View
+                    android:id="@+id/vert_divider_1"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="?android:divider" />
 
                 <TextView
                     android:id="@+id/track_chapters"
@@ -119,11 +127,11 @@
                     android:textAppearance="?attr/textAppearanceBody2"
                     tools:text="12/24" />
 
-            <View
-                android:id="@+id/vert_divider_2"
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="?android:divider"/>
+                <View
+                    android:id="@+id/vert_divider_2"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="?android:divider" />
 
                 <TextView
                     android:id="@+id/track_score"
@@ -165,11 +173,11 @@
                     android:textAppearance="?attr/textAppearanceBody2"
                     tools:text="4/16/2020" />
 
-            <View
-                android:id="@+id/vert_divider_3"
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="?android:divider" />
+                <View
+                    android:id="@+id/vert_divider_3"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="?android:divider" />
 
                 <TextView
                     android:id="@+id/track_finish_date"

@@ -4,7 +4,7 @@ import android.app.Dialog
 import android.os.Bundle
 import androidx.core.os.bundleOf
 import androidx.preference.PreferenceScreen
-import com.afollestad.materialdialogs.MaterialDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.mikepenz.aboutlibraries.LibsBuilder
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.R
@@ -133,10 +133,10 @@ class AboutController : SettingsController(), NoToolbarElevationController {
         )
 
         override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-            return MaterialDialog(activity!!)
-                .title(res = R.string.update_check_notification_update_available)
-                .message(text = args.getString(BODY_KEY) ?: "")
-                .positiveButton(R.string.update_check_confirm) {
+            return MaterialAlertDialogBuilder(activity!!)
+                .setTitle(R.string.update_check_notification_update_available)
+                .setMessage(args.getString(BODY_KEY) ?: "")
+                .setPositiveButton(R.string.update_check_confirm) { _, _ ->
                     val appContext = applicationContext
                     if (appContext != null) {
                         // Start download
@@ -144,7 +144,8 @@ class AboutController : SettingsController(), NoToolbarElevationController {
                         UpdaterService.start(appContext, url)
                     }
                 }
-                .negativeButton(R.string.update_check_ignore)
+                .setNegativeButton(R.string.update_check_ignore, null)
+                .create()
         }
 
         private companion object {

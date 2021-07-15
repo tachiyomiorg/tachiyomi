@@ -19,17 +19,14 @@ class ReaderNavigationOverlayView(context: Context, attributeSet: AttributeSet) 
 
     private var navigation: ViewerNavigation? = null
 
-    fun setNavigation(navigation: ViewerNavigation, showOnStart: Boolean) {
-        if (!showOnStart && this.navigation == null) {
-            this.navigation = navigation
-            isVisible = false
-            return
-        }
-
+    fun setNavigation(navigation: ViewerNavigation, tappingEnabled: Boolean, showOnStart: Boolean) {
+        val firstLaunch = this.navigation == null
         this.navigation = navigation
         invalidate()
 
-        if (isVisible) return
+        if (isVisible || (!showOnStart && firstLaunch) || !tappingEnabled) {
+            return
+        }
 
         viewPropertyAnimator = animate()
             .alpha(1f)

@@ -47,7 +47,7 @@
             android:id="@+id/incognito_mode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/md_grey_800"
+            android:background="?attr/incognitoBackgroundColor"
             android:visibility="gone"
             tools:visibility="visible">
 

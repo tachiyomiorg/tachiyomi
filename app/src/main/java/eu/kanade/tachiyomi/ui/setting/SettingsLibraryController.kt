@@ -2,12 +2,11 @@ package eu.kanade.tachiyomi.ui.setting
 
 import android.app.Dialog
 import android.os.Bundle
-import android.view.View
+import android.view.LayoutInflater
 import androidx.core.content.ContextCompat
 import androidx.core.text.buildSpannedString
 import androidx.preference.PreferenceScreen
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.customview.customView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Category
@@ -17,6 +16,7 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.UNMETERED_NETWORK
 import eu.kanade.tachiyomi.data.preference.asImmediateFlow
 import eu.kanade.tachiyomi.data.track.TrackManager
+import eu.kanade.tachiyomi.databinding.PrefLibraryColumnsBinding
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.category.CategoryController
@@ -32,9 +32,8 @@ import eu.kanade.tachiyomi.util.preference.summaryRes
 import eu.kanade.tachiyomi.util.preference.switchPreference
 import eu.kanade.tachiyomi.util.preference.titleRes
 import eu.kanade.tachiyomi.util.system.isTablet
-import eu.kanade.tachiyomi.widget.MinMaxNumberPicker
-import eu.kanade.tachiyomi.widget.materialdialogs.QuadStateCheckBox
-import eu.kanade.tachiyomi.widget.materialdialogs.listItemsQuadStateMultiChoice
+import eu.kanade.tachiyomi.widget.materialdialogs.QuadStateTextView
+import eu.kanade.tachiyomi.widget.materialdialogs.setQuadStateMultiChoiceItems
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -299,21 +298,21 @@ class SettingsLibraryController : SettingsController() {
         private var landscape = preferences.landscapeColumns().get()
 
         override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-            val dialog = MaterialDialog(activity!!)
-                .title(R.string.pref_library_columns)
-                .customView(R.layout.pref_library_columns, horizontalPadding = true)
-                .positiveButton(android.R.string.ok) {
+            val binding = PrefLibraryColumnsBinding.inflate(LayoutInflater.from(activity!!))
+            onViewCreated(binding)
+            return MaterialAlertDialogBuilder(activity!!)
+                .setTitle(R.string.pref_library_columns)
+                .setView(binding.root)
+                .setPositiveButton(android.R.string.ok) { _, _ ->
                     preferences.portraitColumns().set(portrait)
                     preferences.landscapeColumns().set(landscape)
                 }
-                .negativeButton(android.R.string.cancel)
-
-            onViewCreated(dialog.view)
-            return dialog
+                .setNegativeButton(android.R.string.cancel, null)
+                .create()
         }
 
-        fun onViewCreated(view: View) {
-            with(view.findViewById(R.id.portrait_columns) as MinMaxNumberPicker) {
+        fun onViewCreated(binding: PrefLibraryColumnsBinding) {
+            with(binding.portraitColumns) {
                 displayedValues = arrayOf(context.getString(R.string.default_columns)) +
                     IntRange(1, 10).map(Int::toString)
                 value = portrait
@@ -322,7 +321,7 @@ class SettingsLibraryController : SettingsController() {
                     portrait = newValue
                 }
             }
-            with(view.findViewById(R.id.landscape_columns) as MinMaxNumberPicker) {
+            with(binding.landscapeColumns) {
                 displayedValues = arrayOf(context.getString(R.string.default_columns)) +
                     IntRange(1, 10).map(Int::toString)
                 value = landscape
@@ -344,30 +343,30 @@ class SettingsLibraryController : SettingsController() {
             val categories = listOf(Category.createDefault()) + dbCategories
 
             val items = categories.map { it.name }
-            val preselected = categories
+            var selected = categories
                 .map {
                     when (it.id.toString()) {
-                        in preferences.libraryUpdateCategories().get() -> QuadStateCheckBox.State.CHECKED.ordinal
-                        in preferences.libraryUpdateCategoriesExclude().get() -> QuadStateCheckBox.State.INVERSED.ordinal
-                        else -> QuadStateCheckBox.State.UNCHECKED.ordinal
+                        in preferences.libraryUpdateCategories().get() -> QuadStateTextView.State.CHECKED.ordinal
+                        in preferences.libraryUpdateCategoriesExclude().get() -> QuadStateTextView.State.INVERSED.ordinal
+                        else -> QuadStateTextView.State.UNCHECKED.ordinal
                     }
                 }
                 .toIntArray()
 
-            return MaterialDialog(activity!!)
-                .title(R.string.categories)
-                .message(R.string.pref_library_update_categories_details)
-                .listItemsQuadStateMultiChoice(
-                    items = items,
-                    initialSelected = preselected
-                ) { selections ->
-                    val included = selections
-                        .mapIndexed { index, value -> if (value == QuadStateCheckBox.State.CHECKED.ordinal) index else null }
+            return MaterialAlertDialogBuilder(activity!!)
+                .setTitle(R.string.categories)
+                .setMessage(R.string.pref_library_update_categories_details)
+                .setQuadStateMultiChoiceItems(items = items, initialSelected = selected) { selections ->
+                    selected = selections
+                }
+                .setPositiveButton(android.R.string.ok) { _, _ ->
+                    val included = selected
+                        .mapIndexed { index, value -> if (value == QuadStateTextView.State.CHECKED.ordinal) index else null }
                         .filterNotNull()
                         .map { categories[it].id.toString() }
                         .toSet()
-                    val excluded = selections
-                        .mapIndexed { index, value -> if (value == QuadStateCheckBox.State.INVERSED.ordinal) index else null }
+                    val excluded = selected
+                        .mapIndexed { index, value -> if (value == QuadStateTextView.State.INVERSED.ordinal) index else null }
                         .filterNotNull()
                         .map { categories[it].id.toString() }
                         .toSet()
@@ -375,8 +374,8 @@ class SettingsLibraryController : SettingsController() {
                     preferences.libraryUpdateCategories().set(included)
                     preferences.libraryUpdateCategoriesExclude().set(excluded)
                 }
-                .positiveButton(android.R.string.ok)
-                .negativeButton(android.R.string.cancel)
+                .setNegativeButton(android.R.string.cancel, null)
+                .create()
         }
     }
 }

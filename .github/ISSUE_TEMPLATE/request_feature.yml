@@ -24,7 +24,7 @@ body:
     id: feature-description
     attributes:
       label: Describe your suggested feature
-      description: How can an existing extension be improved?
+      description: How can Tachiyomi be improved?
       placeholder: |
         Example:
           "It should work like this..."

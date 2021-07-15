@@ -22,11 +22,23 @@ internal class ExtensionGithubApi {
     private val networkService: NetworkHelper by injectLazy()
     private val preferences: PreferencesHelper by injectLazy()
 
+    private var requiresFallbackSource = false
+
     suspend fun findExtensions(): List<Extension.Available> {
         return withIOContext {
-            networkService.client
-                .newCall(GET("${REPO_URL_PREFIX}index.min.json"))
-                .await()
+            val response = try {
+                networkService.client
+                    .newCall(GET("${REPO_URL_PREFIX}index.min.json"))
+                    .await()
+            } catch (e: Throwable) {
+                requiresFallbackSource = true
+
+                networkService.client
+                    .newCall(GET("${FALLBACK_REPO_URL_PREFIX}index.min.json"))
+                    .await()
+            }
+
+            response
                 .parseAs<JsonArray>()
                 .let { parseResponse(it) }
         }
@@ -70,18 +82,23 @@ internal class ExtensionGithubApi {
                 val versionCode = element.jsonObject["code"]!!.jsonPrimitive.int
                 val lang = element.jsonObject["lang"]!!.jsonPrimitive.content
                 val nsfw = element.jsonObject["nsfw"]!!.jsonPrimitive.int == 1
-                val icon = "${REPO_URL_PREFIX}icon/${apkName.replace(".apk", ".png")}"
+                val icon = "${getUrlPrefix()}icon/${apkName.replace(".apk", ".png")}"
 
                 Extension.Available(name, pkgName, versionName, versionCode, lang, nsfw, apkName, icon)
             }
     }
 
     fun getApkUrl(extension: Extension.Available): String {
-        return "${REPO_URL_PREFIX}apk/${extension.apkName}"
+        return "${getUrlPrefix()}apk/${extension.apkName}"
     }
 
-    companion object {
-        const val BASE_URL = "https://raw.githubusercontent.com/"
-        const val REPO_URL_PREFIX = "${BASE_URL}tachiyomiorg/tachiyomi-extensions/repo/"
+    private fun getUrlPrefix(): String {
+        return when (requiresFallbackSource) {
+            true -> FALLBACK_REPO_URL_PREFIX
+            false -> REPO_URL_PREFIX
+        }
     }
 }
+
+private const val REPO_URL_PREFIX = "https://raw.githubusercontent.com/tachiyomiorg/tachiyomi-extensions/repo/"
+private const val FALLBACK_REPO_URL_PREFIX = "https://cdn.jsdelivr.net/gh/tachiyomiorg/tachiyomi-extensions@repo/"

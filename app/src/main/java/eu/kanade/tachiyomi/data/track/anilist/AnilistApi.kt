@@ -2,9 +2,6 @@ package eu.kanade.tachiyomi.data.track.anilist
 
 import android.net.Uri
 import androidx.core.net.toUri
-import com.afollestad.date.dayOfMonth
-import com.afollestad.date.month
-import com.afollestad.date.year
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.network.POST
@@ -315,9 +312,9 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = dateValue
         return buildJsonObject {
-            put("year", calendar.year)
-            put("month", calendar.month + 1)
-            put("day", calendar.dayOfMonth)
+            put("year", calendar.get(Calendar.YEAR))
+            put("month", calendar.get(Calendar.MONTH) + 1)
+            put("day", calendar.get(Calendar.DAY_OF_MONTH))
         }
     }
 

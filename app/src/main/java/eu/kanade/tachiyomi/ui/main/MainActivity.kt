@@ -19,7 +19,6 @@ import com.bluelinelabs.conductor.Conductor
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.Router
-import com.bluelinelabs.conductor.RouterTransaction
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.behavior.HideBottomViewOnScrollBehavior
 import com.google.android.material.navigation.NavigationBarView
@@ -310,7 +309,7 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
                     router.popToRoot()
                 }
                 setSelectedNavItem(R.id.nav_browse)
-                router.pushController(BrowseController(true).withFadeTransaction())
+                router.pushController(BrowseController(toExtensions = true).withFadeTransaction())
             }
             SHORTCUT_MANGA -> {
                 val extras = intent.extras ?: return false
@@ -318,14 +317,14 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
                     router.popToRoot()
                 }
                 setSelectedNavItem(R.id.nav_library)
-                router.pushController(RouterTransaction.with(MangaController(extras)))
+                router.pushController(MangaController(extras).withFadeTransaction())
             }
             SHORTCUT_DOWNLOADS -> {
                 if (router.backstackSize > 1) {
                     router.popToRoot()
                 }
                 setSelectedNavItem(R.id.nav_more)
-                router.pushController(RouterTransaction.with(DownloadController()))
+                router.pushController(DownloadController().withFadeTransaction())
             }
             Intent.ACTION_SEARCH, Intent.ACTION_SEND, "com.google.android.gms.actions.SEARCH_ACTION" -> {
                 // If the intent match the "standard" Android search intent
@@ -342,8 +341,8 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
             }
             INTENT_SEARCH -> {
                 val query = intent.getStringExtra(INTENT_SEARCH_QUERY)
-                val filter = intent.getStringExtra(INTENT_SEARCH_FILTER)
                 if (query != null && query.isNotEmpty()) {
+                    val filter = intent.getStringExtra(INTENT_SEARCH_FILTER)
                     if (router.backstackSize > 1) {
                         router.popToRoot()
                     }
