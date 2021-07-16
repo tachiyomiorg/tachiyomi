@@ -94,17 +94,7 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // Prevent splash screen showing up on configuration changes
-        val splashScreen = if (savedInstanceState == null) {
-            installSplashScreen().apply {
-                val startTime = System.currentTimeMillis()
-                setKeepVisibleCondition {
-                    val elapsed = System.currentTimeMillis() - startTime
-                    elapsed <= SPLASH_MIN_DURATION || (!ready && elapsed <= SPLASH_MAX_DURATION)
-                }
-            }
-        } else {
-            null
-        }
+        val splashScreen = if (savedInstanceState == null) installSplashScreen() else null
 
         super.onCreate(savedInstanceState)
 
@@ -139,6 +129,11 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
             }
         }
 
+        val startTime = System.currentTimeMillis()
+        splashScreen?.setKeepVisibleCondition {
+            val elapsed = System.currentTimeMillis() - startTime
+            elapsed <= SPLASH_MIN_DURATION || (!ready && elapsed <= SPLASH_MAX_DURATION)
+        }
         setSplashScreenExitAnimation(splashScreen)
 
         tabAnimator = ViewHeightAnimator(binding.tabs, 0L)
