@@ -2,15 +2,14 @@ package eu.kanade.tachiyomi.ui.manga.track
 
 import android.app.Dialog
 import android.os.Bundle
-import android.widget.NumberPicker
+import android.view.LayoutInflater
 import androidx.core.os.bundleOf
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.customview.customView
-import com.afollestad.materialdialogs.customview.getCustomView
 import com.bluelinelabs.conductor.Controller
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.TrackManager
+import eu.kanade.tachiyomi.databinding.TrackChaptersDialogBinding
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
@@ -38,23 +37,9 @@ class SetTrackChaptersDialog<T> : DialogController
     }
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-        val item = item
+        val pickerView = TrackChaptersDialogBinding.inflate(LayoutInflater.from(activity!!))
+        val np = pickerView.chaptersPicker
 
-        val dialog = MaterialDialog(activity!!)
-            .title(R.string.chapters)
-            .customView(R.layout.track_chapters_dialog, dialogWrapContent = false)
-            .positiveButton(android.R.string.ok) { dialog ->
-                val view = dialog.getCustomView()
-                // Remove focus to update selected number
-                val np: NumberPicker = view.findViewById(R.id.chapters_picker)
-                np.clearFocus()
-
-                listener.setChaptersRead(item, np.value)
-            }
-            .negativeButton(android.R.string.cancel)
-
-        val view = dialog.getCustomView()
-        val np: NumberPicker = view.findViewById(R.id.chapters_picker)
         // Set initial value
         np.value = item.track?.last_chapter_read ?: 0
 
@@ -66,7 +51,15 @@ class SetTrackChaptersDialog<T> : DialogController
         // Don't allow to go from 0 to 9999
         np.wrapSelectorWheel = false
 
-        return dialog
+        return MaterialAlertDialogBuilder(activity!!)
+            .setTitle(R.string.chapters)
+            .setView(pickerView.root)
+            .setPositiveButton(android.R.string.ok) { _, _ ->
+                np.clearFocus()
+                listener.setChaptersRead(item, np.value)
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .create()
     }
 
     interface Listener {

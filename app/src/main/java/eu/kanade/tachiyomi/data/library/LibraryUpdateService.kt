@@ -295,7 +295,6 @@ class LibraryUpdateService(
                                 }
 
                                 currentlyUpdatingManga.add(manga)
-                                progressCount.andIncrement
                                 notifier.showProgressNotification(
                                     currentlyUpdatingManga,
                                     progressCount.get(),
@@ -328,6 +327,7 @@ class LibraryUpdateService(
                                 }
 
                                 currentlyUpdatingManga.remove(manga)
+                                progressCount.andIncrement
                                 notifier.showProgressNotification(
                                     currentlyUpdatingManga,
                                     progressCount.get(),
@@ -416,7 +416,6 @@ class LibraryUpdateService(
                                 }
 
                                 currentlyUpdatingManga.add(manga)
-                                progressCount.andIncrement
                                 notifier.showProgressNotification(
                                     currentlyUpdatingManga,
                                     progressCount.get(),
@@ -440,6 +439,7 @@ class LibraryUpdateService(
                                 }
 
                                 currentlyUpdatingManga.remove(manga)
+                                progressCount.andIncrement
                                 notifier.showProgressNotification(
                                     currentlyUpdatingManga,
                                     progressCount.get(),

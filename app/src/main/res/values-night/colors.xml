@@ -14,7 +14,17 @@
     <color name="color_on_primary_greenapple">@color/md_black_1000</color>
     <color name="ripple_colored_greenapple">#1F48E484</color>
 
-    <!-- Yin Yang Theme -->
+    <!-- Tako Theme -->
+    <color name="accent_tako">#F3B375</color>
+    <color name="color_on_primary_tako">#242431</color>
+    <color name="tertiary_tako">@color/color_on_primary_tako</color>
+    <color name="color_on_tertiary_tako">@color/accent_tako</color>
+    <color name="ripple_colored_tako">#1FF3B375</color>
+    <color name="surface_tako">#2A2A3C</color>
+    <color name="background_tako">#21212E</color>
+    <color name="filter_tako">@color/accent_tako</color>
+
+    <!-- Yin & Yang Theme -->
     <color name="accent_yinyang">#FFFFFF</color>
     <color name="color_on_secondary_yinyang">#000000</color>
     <color name="ripple_colored_yinyang">#777777</color>

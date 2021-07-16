@@ -5,12 +5,12 @@
     <!-- Base Theme -->
     <!--============-->
 
-    <!--== Theme base ==-->
+    <!--== Theme Base ==-->
     <style name="Base.Theme.Tachiyomi" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Disallow "Force dark theme" -->
         <item name="android:forceDarkAllowed" tools:targetApi="Q">false</item>
 
-        <!-- Theme colors -->
+        <!-- Theme Colors -->
         <item name="colorPrimary">@color/accent_default</item>
         <item name="colorPrimaryVariant">?attr/colorPrimary</item>
         <item name="colorOnPrimary">@color/md_white_1000</item>
@@ -30,7 +30,7 @@
         <item name="colorControlHighlight">@color/ripple_colored_default</item>
         <item name="rippleColorToolbar">?attr/colorControlHighlight</item>
 
-        <!-- Handles RTL text -->
+        <!-- Handles RTL Text -->
         <item name="android:textAlignment">gravity</item>
         <item name="android:textDirection">locale</item>
 
@@ -67,45 +67,23 @@
         <item name="elevationOverlayEnabled">false</item>
         <item name="lightSystemBarsOnPrimary">false</item>
 
-        <!-- Material Dialogs -->
-        <item name="md_background_color">?attr/colorSurface</item>
-        <item name="md_color_title">?attr/colorOnSurface</item>
-        <item name="md_color_content">?attr/colorOnSurface</item>
-        <item name="md_color_button_text">?attr/colorPrimary</item>
-        <item name="md_button_casing">literal</item>
-        <item name="md_corner_radius">@dimen/dialog_radius</item>
-
         <!-- Custom Attributes-->
         <item name="colorFilterActive">@color/filter_light</item>
     </style>
 
+    <!--== Default Theme ==-->
     <style name="Theme.Tachiyomi" parent="Base.Theme.Tachiyomi" />
 
+    <!--== Blue Theme ==-->
     <style name="Theme.Tachiyomi.Blue">
-        <!-- Theme colors -->
+        <!-- Theme Colors -->
         <item name="colorPrimary">@color/accent_blue</item>
         <item name="colorControlHighlight">@color/ripple_colored_blue</item>
     </style>
 
-    <!--== Strawberry Daiquiri theme ==-->
-    <style name="Theme.Tachiyomi.StrawberryDaiquiri">
-        <!-- Theme colors -->
-        <item name="colorPrimary">@color/accent_strawberry</item>
-        <item name="colorTertiary">@color/md_blue_A400</item>
-        <item name="colorControlHighlight">@color/ripple_colored_strawberry</item>
-    </style>
-
-    <!--== Yotsuba theme ==-->
-    <style name="Theme.Tachiyomi.Yotsuba">
-        <!-- Theme colors -->
-        <item name="colorPrimary">@color/accent_yotsuba</item>
-        <item name="colorTertiary">@color/md_blue_A400</item>
-        <item name="colorControlHighlight">@color/ripple_colored_yotsuba</item>
-    </style>
-
-    <!--== Green Apple theme ==-->
+    <!--== Green Apple Theme ==-->
     <style name="Theme.Tachiyomi.GreenApple">
-        <!-- Theme colors -->
+        <!-- Theme Colors -->
         <item name="colorPrimary">@color/accent_greenapple</item>
         <item name="colorOnPrimary">@color/color_on_primary_greenapple</item>
         <item name="colorTertiary">@color/md_blue_A400</item>
@@ -113,10 +91,42 @@
         <item name="lightSystemBarsOnPrimary">true</item>
     </style>
 
-    <!--== Yin Yang theme ==-->
+    <!--== Midnight Dusk Theme ==-->
+    <style name="Theme.Tachiyomi.MidnightDusk">
+        <!-- Theme Colors -->
+        <item name="colorPrimary">@color/accent_midnightdusk</item>
+        <item name="colorTertiary">@color/md_blue_A400</item>
+        <item name="colorControlHighlight">@color/ripple_colored_midnightdusk</item>
+    </style>
+
+    <!--== Strawberry Daiquiri Theme ==-->
+    <style name="Theme.Tachiyomi.StrawberryDaiquiri">
+        <!-- Theme Colors -->
+        <item name="colorPrimary">@color/accent_strawberry</item>
+        <item name="colorTertiary">@color/md_blue_A400</item>
+        <item name="colorControlHighlight">@color/ripple_colored_strawberry</item>
+    </style>
+
+    <!--== Tako Theme ==-->
+    <style name="Theme.Tachiyomi.Tako">
+        <!-- Theme Colors -->
+        <item name="colorPrimary">@color/accent_tako</item>
+        <item name="colorOnPrimary">@color/color_on_primary_tako</item>
+        <item name="colorTertiary">@color/tertiary_tako</item>
+        <item name="colorOnTertiary">@color/color_on_tertiary_tako</item>
+        <item name="colorControlHighlight">@color/ripple_colored_tako</item>
+        <item name="colorSurface">@color/surface_tako</item>
+        <item name="android:colorBackground">@color/background_tako</item>
+
+        <!-- Custom Attributes-->
+        <item name="colorFilterActive">@color/filter_tako</item>
+    </style>
+
+    <!--== Yin & Yang Theme ==-->
     <style name="Theme.Tachiyomi.YinYang">
-        <!-- Theme colors -->
+        <!-- Theme Colors -->
         <item name="colorPrimary">@color/accent_yinyang</item>
+        <item name="colorOnPrimary">@color/color_on_secondary_yinyang</item>
         <item name="colorOnSecondary">@color/color_on_secondary_yinyang</item>
         <item name="colorTertiary">@color/color_on_secondary_yinyang</item>
         <item name="colorOnTertiary">@color/accent_yinyang</item>
@@ -127,18 +137,18 @@
         <item name="chipBackgroundColor">@color/accent_yinyang</item>
     </style>
 
-    <!--== Midnight Dusk theme ==-->
-    <style name="Theme.Tachiyomi.MidnightDusk">
-        <!-- Theme colors -->
-        <item name="colorPrimary">@color/accent_midnightdusk</item>
+    <!--== Yotsuba Theme ==-->
+    <style name="Theme.Tachiyomi.Yotsuba">
+        <!-- Theme Colors -->
+        <item name="colorPrimary">@color/accent_yotsuba</item>
         <item name="colorTertiary">@color/md_blue_A400</item>
-        <item name="colorControlHighlight">@color/ripple_colored_midnightdusk</item>
+        <item name="colorControlHighlight">@color/ripple_colored_yotsuba</item>
     </style>
 
-    <!--== AMOLED theme overlay ==-->
+    <!--== AMOLED Mode Overlay ==-->
     <style name="ThemeOverlay.Tachiyomi.Amoled" parent="" />
 
-    <!--== Colored bars (toolbar-navbar-navrail) theme overlay ==-->
+    <!--== Colored Bars (toolbar-navbar-navrail) Mode Overlay ==-->
     <style name="ThemeOverlay.Tachiyomi.ColoredBars" parent="">
         <item name="colorToolbar">?attr/colorPrimary</item>
         <item name="colorOnToolbar">?attr/colorOnPrimary</item>
@@ -167,7 +177,7 @@
     <!-- Launch Screen -->
     <!--===============-->
 
-    <!--== Splash theme ==-->
+    <!--== Splash Theme ==-->
     <style name="Theme.Splash" parent="Theme.Tachiyomi">
         <item name="android:windowBackground">@drawable/splash_background</item>
         <item name="android:statusBarColor">@android:color/transparent</item>

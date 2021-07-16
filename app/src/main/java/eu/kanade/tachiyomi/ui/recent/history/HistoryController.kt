@@ -9,7 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.afollestad.materialdialogs.MaterialDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dev.chrisbanes.insetter.applyInsetter
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.R
@@ -221,12 +221,13 @@ class HistoryController :
 
     class ClearHistoryDialogController : DialogController() {
         override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-            return MaterialDialog(activity!!)
-                .message(R.string.clear_history_confirmation)
-                .positiveButton(android.R.string.ok) {
+            return MaterialAlertDialogBuilder(activity!!)
+                .setMessage(R.string.clear_history_confirmation)
+                .setPositiveButton(android.R.string.ok) { _, _ ->
                     (targetController as? HistoryController)?.clearHistory()
                 }
-                .negativeButton(android.R.string.cancel)
+                .setNegativeButton(android.R.string.cancel, null)
+                .create()
         }
     }
 

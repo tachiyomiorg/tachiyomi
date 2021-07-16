@@ -148,12 +148,13 @@
     <string name="theme_dark">On</string>
     <string name="pref_app_theme">App theme</string>
     <string name="theme_default">Default</string>
-    <string name="theme_strawberrydaiquiri">Strawberry Daiquiri</string>
-    <string name="theme_yotsuba">Yotsuba</string>
     <string name="theme_blue">Blue</string>
     <string name="theme_greenapple">Green Apple</string>
-    <string name="theme_yinyang">Yin &amp; Yang</string>
     <string name="theme_midnightdusk">Midnight Dusk</string>
+    <string name="theme_strawberrydaiquiri">Strawberry Daiquiri</string>
+    <string name="theme_tako">Tako</string>
+    <string name="theme_yinyang">Yin &amp; Yang</string>
+    <string name="theme_yotsuba">Yotsuba</string>
     <string name="pref_dark_theme_pure_black">Pure black dark mode</string>
     <string name="pref_start_screen">Start screen</string>
     <string name="pref_language">Language</string>

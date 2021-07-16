@@ -300,21 +300,6 @@
         <item name="android:textSize">15sp</item>
     </style>
 
-    <!--================================-->
-    <!--material-dialogs style overrides-->
-    <!--================================-->
-    <style name="MD_Light" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
-        <item name="md_divider_color">@color/md_divider_light_theme</item>
-        <item name="md_item_selector">@drawable/md_item_selector</item>
-        <item name="md_button_selector">@drawable/md_btn_selector</item>
-    </style>
-
-    <style name="MD_Dark" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
-        <item name="md_divider_color">@color/md_divider_dark_theme</item>
-        <item name="md_item_selector">@drawable/md_item_selector_dark</item>
-        <item name="md_button_selector">@drawable/md_btn_selector_dark</item>
-    </style>
-
     <!--================-->
     <!--Shape Appearance-->
     <!--================-->

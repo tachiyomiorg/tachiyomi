@@ -13,8 +13,7 @@ import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.list.listItems
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.tfcporciuncula.flow.Preference
@@ -589,11 +588,9 @@ open class BrowseSourceController(bundle: Bundle) :
         val manga = (adapter?.getItem(position) as? SourceItem?)?.manga ?: return
 
         if (manga.favorite) {
-            MaterialDialog(activity)
-                .listItems(
-                    items = listOf(activity.getString(R.string.remove_from_library)),
-                    waitForPositiveButton = false
-                ) { _, which, _ ->
+            MaterialAlertDialogBuilder(activity)
+                .setTitle(manga.title)
+                .setItems(arrayOf(activity.getString(R.string.remove_from_library))) { _, which ->
                     when (which) {
                         0 -> {
                             presenter.changeMangaFavorite(manga)

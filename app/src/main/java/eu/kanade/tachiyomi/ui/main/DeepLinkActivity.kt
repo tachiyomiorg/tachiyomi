@@ -10,7 +10,7 @@ class DeepLinkActivity : Activity() {
         super.onCreate(savedInstanceState)
 
         intent.apply {
-            flags = flags or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            flags = flags or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
             setClass(applicationContext, MainActivity::class.java)
         }
         startActivity(intent)

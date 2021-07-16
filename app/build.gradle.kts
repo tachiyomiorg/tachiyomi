@@ -198,7 +198,7 @@ dependencies {
     implementation("com.github.junrar:junrar:7.4.0")
 
     // HTML parser
-    implementation("org.jsoup:jsoup:1.13.1")
+    implementation("org.jsoup:jsoup:1.14.1")
 
     // Database
     implementation("androidx.sqlite:sqlite-ktx:2.1.0")
@@ -218,7 +218,7 @@ dependencies {
     implementation("com.github.inorichi.injekt:injekt-core:65b0440")
 
     // Image library
-    val coilVersion = "1.2.1"
+    val coilVersion = "1.3.0"
     implementation("io.coil-kt:coil:$coilVersion")
     implementation("io.coil-kt:coil-gif:$coilVersion")
 
@@ -244,12 +244,6 @@ dependencies {
     implementation("com.github.chrisbanes:PhotoView:2.3.0")
     implementation("com.github.tachiyomiorg:DirectionalViewPager:1.0.0")
     implementation("dev.chrisbanes.insetter:insetter:0.6.0")
-
-    // 3.2.0+ introduces weird UI blinking or cut off issues on some devices
-    val materialDialogsVersion = "3.1.1"
-    implementation("com.afollestad.material-dialogs:core:$materialDialogsVersion")
-    implementation("com.afollestad.material-dialogs:input:$materialDialogsVersion")
-    implementation("com.afollestad.material-dialogs:datetime:$materialDialogsVersion")
 
     // Conductor
     val conductorVersion = "3.0.0"

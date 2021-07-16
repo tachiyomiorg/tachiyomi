@@ -274,6 +274,8 @@ class MangaController :
         chaptersAdapter?.fastScroller = binding.fastScroller
 
         actionFabScrollListener = actionFab?.shrinkOnScroll(chapterRecycler)
+        // Initially set FAB invisible; will become visible if unread chapters are present
+        actionFab?.isVisible = false
 
         binding.swipeRefresh.refreshes()
             .onEach {
@@ -291,7 +293,7 @@ class MangaController :
             }
         }
 
-        trackSheet = TrackSheet(this, manga!!)
+        trackSheet = TrackSheet(this, manga!!, (activity as MainActivity).supportFragmentManager)
 
         updateFilterIconState()
     }
@@ -337,8 +339,6 @@ class MangaController :
                         }
                     )
                 }
-            } else {
-                view?.context?.toast(R.string.no_next_chapter)
             }
         }
     }
@@ -687,7 +687,7 @@ class MangaController :
         }
     }
 
-    private fun shareCover() {
+    fun shareCover() {
         try {
             val activity = activity!!
             useCoverAsBitmap { coverBitmap ->
@@ -706,7 +706,7 @@ class MangaController :
         }
     }
 
-    private fun saveCover() {
+    fun saveCover() {
         try {
             useCoverAsBitmap { coverBitmap ->
                 presenter.saveCover(activity!!, coverBitmap)
@@ -718,7 +718,7 @@ class MangaController :
         }
     }
 
-    private fun changeCover() {
+    fun changeCover() {
         val manga = manga ?: return
         if (manga.hasCustomCover(coverCache)) {
             ChangeMangaCoverDialog(this, manga).showDialog(router)
@@ -810,8 +810,11 @@ class MangaController :
         }
 
         val context = view?.context
-        if (context != null && chapters.any { it.read }) {
-            actionFab?.text = context.getString(R.string.action_resume)
+        if (context != null) {
+            actionFab?.isVisible = chapters.any { !it.read }
+            if (chapters.any { it.read }) {
+                actionFab?.text = context.getString(R.string.action_resume)
+            }
         }
     }
 
