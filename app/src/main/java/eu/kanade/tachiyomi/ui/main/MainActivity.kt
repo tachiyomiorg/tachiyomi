@@ -1,19 +1,26 @@
 package eu.kanade.tachiyomi.ui.main
 
+import android.animation.ValueAnimator
 import android.app.SearchManager
 import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.animation.doOnEnd
+import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator
+import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import androidx.lifecycle.lifecycleScope
 import androidx.preference.PreferenceDialogController
 import com.bluelinelabs.conductor.Conductor
@@ -50,6 +57,7 @@ import eu.kanade.tachiyomi.ui.recent.history.HistoryController
 import eu.kanade.tachiyomi.ui.recent.updates.UpdatesController
 import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.lang.launchUI
+import eu.kanade.tachiyomi.util.system.dpToPx
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.setNavigationBarTransparentCompat
 import kotlinx.coroutines.delay
@@ -86,13 +94,15 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // Prevent splash screen showing up on configuration changes
-        if (savedInstanceState == null) {
-            installSplashScreen().also {
+        val splashScreen = if (savedInstanceState == null) {
+            installSplashScreen().apply {
                 val startedTime = System.currentTimeMillis()
-                it.setKeepVisibleCondition {
+                setKeepVisibleCondition {
                     !ready && System.currentTimeMillis() - startedTime < 5000
                 }
             }
+        } else {
+            null
         }
 
         super.onCreate(savedInstanceState)
@@ -128,13 +138,7 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
             }
         }
 
-        // Make sure navigation bar is on bottom before we modify it
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
-            if (insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom > 0) {
-                window.setNavigationBarTransparentCompat(this)
-            }
-            insets
-        }
+        setSplashScreenExitAnimation(splashScreen)
 
         tabAnimator = ViewHeightAnimator(binding.tabs, 0L)
 
@@ -267,6 +271,79 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
                 }
             }
             .launchIn(lifecycleScope)
+    }
+
+    /**
+     * Sets custom splash screen exit animation on devices prior to Android 12.
+     *
+     * When custom animation is used, status and navigation bar color will be set to transparent and will be restored
+     * after the animation is finished.
+     */
+    private fun setSplashScreenExitAnimation(splashScreen: SplashScreen?) {
+        val setNavbarScrim = {
+            // Make sure navigation bar is on bottom before we modify it
+            ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
+                if (insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom > 0) {
+                    window.setNavigationBarTransparentCompat(this@MainActivity)
+                }
+                insets
+            }
+            ViewCompat.requestApplyInsets(binding.root)
+        }
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+            @Suppress("DEPRECATION")
+            splashScreen?.setOnExitAnimationListener { splashProvider ->
+                splashProvider.iconView.translationY = 0F
+
+                val oldStatusColor = window.statusBarColor
+                val oldNavigationColor = window.navigationBarColor
+                val oldFlags = window.decorView.systemUiVisibility
+                window.decorView.systemUiVisibility = window.decorView.systemUiVisibility and
+                    View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    window.decorView.systemUiVisibility = window.decorView.systemUiVisibility and
+                        View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR.inv()
+                }
+                window.statusBarColor = Color.TRANSPARENT
+                window.navigationBarColor = Color.TRANSPARENT
+
+                val activityAnim = ValueAnimator.ofFloat(1F, 0F).apply {
+                    interpolator = LinearOutSlowInInterpolator()
+                    duration = 400L
+                    addUpdateListener { va ->
+                        val value = va.animatedValue as Float
+                        binding.root.translationY = value * 16.dpToPx
+                    }
+                }
+
+                var barColorRestored = false
+                val splashAnim = ValueAnimator.ofFloat(1F, 0F).apply {
+                    interpolator = FastOutSlowInInterpolator()
+                    duration = 400L
+                    addUpdateListener { va ->
+                        val value = va.animatedValue as Float
+                        splashProvider.view.alpha = value
+
+                        if (!barColorRestored && value <= 0.5F) {
+                            barColorRestored = true
+                            window.decorView.systemUiVisibility = oldFlags
+                        }
+                    }
+                    doOnEnd {
+                        splashProvider.remove()
+                        window.statusBarColor = oldStatusColor
+                        window.navigationBarColor = oldNavigationColor
+                        setNavbarScrim()
+                    }
+                }
+
+                activityAnim.start()
+                splashAnim.start()
+            }
+        } else {
+            setNavbarScrim()
+        }
     }
 
     override fun onNewIntent(intent: Intent) {
