@@ -96,9 +96,10 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
         // Prevent splash screen showing up on configuration changes
         val splashScreen = if (savedInstanceState == null) {
             installSplashScreen().apply {
-                val startedTime = System.currentTimeMillis()
+                val startTime = System.currentTimeMillis()
                 setKeepVisibleCondition {
-                    !ready && System.currentTimeMillis() - startedTime < 5000
+                    val elapsed = System.currentTimeMillis() - startTime
+                    elapsed <= SPLASH_MIN_DURATION || (!ready && elapsed <= SPLASH_MAX_DURATION)
                 }
             }
         } else {
@@ -310,7 +311,7 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
 
                 val activityAnim = ValueAnimator.ofFloat(1F, 0F).apply {
                     interpolator = LinearOutSlowInInterpolator()
-                    duration = 400L
+                    duration = SPLASH_EXIT_ANIM_DURATION
                     addUpdateListener { va ->
                         val value = va.animatedValue as Float
                         binding.root.translationY = value * 16.dpToPx
@@ -320,7 +321,7 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
                 var barColorRestored = false
                 val splashAnim = ValueAnimator.ofFloat(1F, 0F).apply {
                     interpolator = FastOutSlowInInterpolator()
-                    duration = 400L
+                    duration = SPLASH_EXIT_ANIM_DURATION
                     addUpdateListener { va ->
                         val value = va.animatedValue as Float
                         splashProvider.view.alpha = value
@@ -618,6 +619,11 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
         get() = binding.bottomNav ?: binding.sideNav!!
 
     companion object {
+        // Splash screen
+        private const val SPLASH_MIN_DURATION = 500 // ms
+        private const val SPLASH_MAX_DURATION = 5000 // ms
+        private const val SPLASH_EXIT_ANIM_DURATION = 400L // ms
+
         // Shortcut actions
         const val SHORTCUT_LIBRARY = "eu.kanade.tachiyomi.SHOW_LIBRARY"
         const val SHORTCUT_RECENTLY_UPDATED = "eu.kanade.tachiyomi.SHOW_RECENTLY_UPDATED"
