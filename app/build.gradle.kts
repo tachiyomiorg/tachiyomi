@@ -22,7 +22,6 @@ val SUPPORTED_ABIS = setOf("armeabi-v7a", "arm64-v8a", "x86")
 
 android {
     compileSdkVersion(AndroidConfig.compileSdk)
-    buildToolsVersion(AndroidConfig.buildTools)
     ndkVersion = AndroidConfig.ndk
 
     defaultConfig {
