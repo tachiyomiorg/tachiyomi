@@ -668,6 +668,7 @@ class MangaController :
 
     /**
      * Fetches the cover with Coil, turns it into Bitmap and does something with it (asynchronous)
+     * @param context The context for building and executing the ImageRequest
      * @param coverHandler A function that describes what should be done with the Bitmap
      */
     private fun useCoverAsBitmap(context: Context, coverHandler: (Bitmap) -> Unit) {
