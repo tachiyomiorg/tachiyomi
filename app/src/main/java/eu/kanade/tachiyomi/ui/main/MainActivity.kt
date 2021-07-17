@@ -17,6 +17,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
@@ -288,21 +289,20 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
         }
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
-            @Suppress("DEPRECATION")
-            splashScreen?.setOnExitAnimationListener { splashProvider ->
-                splashProvider.iconView.translationY = 0F
+            val oldStatusColor = window.statusBarColor
+            val oldNavigationColor = window.navigationBarColor
+            window.statusBarColor = Color.TRANSPARENT
+            window.navigationBarColor = Color.TRANSPARENT
 
-                val oldStatusColor = window.statusBarColor
-                val oldNavigationColor = window.navigationBarColor
-                val oldFlags = window.decorView.systemUiVisibility
-                window.decorView.systemUiVisibility = window.decorView.systemUiVisibility and
-                    View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    window.decorView.systemUiVisibility = window.decorView.systemUiVisibility and
-                        View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR.inv()
-                }
-                window.statusBarColor = Color.TRANSPARENT
-                window.navigationBarColor = Color.TRANSPARENT
+            val wicc = WindowInsetsControllerCompat(window, window.decorView)
+            val isLightStatusBars = wicc.isAppearanceLightStatusBars
+            val isLightNavigationBars = wicc.isAppearanceLightNavigationBars
+            wicc.isAppearanceLightStatusBars = false
+            wicc.isAppearanceLightNavigationBars = false
+
+            splashScreen?.setOnExitAnimationListener { splashProvider ->
+                // For some reason the SplashScreen applies (incorrect) Y translation to the iconView
+                splashProvider.iconView.translationY = 0F
 
                 val activityAnim = ValueAnimator.ofFloat(1F, 0F).apply {
                     interpolator = LinearOutSlowInInterpolator()
@@ -323,7 +323,8 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
 
                         if (!barColorRestored && value <= 0.5F) {
                             barColorRestored = true
-                            window.decorView.systemUiVisibility = oldFlags
+                            wicc.isAppearanceLightStatusBars = isLightStatusBars
+                            wicc.isAppearanceLightNavigationBars = isLightNavigationBars
                         }
                     }
                     doOnEnd {
