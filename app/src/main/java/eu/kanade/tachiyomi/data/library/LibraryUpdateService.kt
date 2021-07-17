@@ -326,6 +326,10 @@ class LibraryUpdateService(
                                     updateTrackings(manga, loggedServices)
                                 }
 
+                                if (preferences.autoUpdateTrackersReadProgress()) {
+                                    updateTrackingsReadProgres(manga, loggedServices)
+                                }
+
                                 currentlyUpdatingManga.remove(manga)
                                 progressCount.andIncrement
                                 notifier.showProgressNotification(
@@ -492,6 +496,32 @@ class LibraryUpdateService(
                                 if (service is UnattendedTrackService) {
                                     syncChaptersWithTrackServiceTwoWay(db, db.getChapters(manga).executeAsBlocking(), track, service)
                                 }
+                            } catch (e: Throwable) {
+                                // Ignore errors and continue
+                                Timber.e(e)
+                            }
+                        }
+                    }
+                }
+            }
+            .awaitAll()
+    }
+
+    suspend fun updateTrackingsReadProgres(manga: LibraryManga, loggedServices: List<TrackService>) {
+        val mangaMaxRead = db.getChapters(manga).executeAsBlocking()
+            .filter { it.read }.map { it.chapter_number.toInt() }.maxOrNull() ?: 0
+
+        db.getTracks(manga).executeAsBlocking()
+            .map { track ->
+                supervisorScope {
+                    async {
+                        val service = trackManager.getService(track.sync_id)
+                        if (service != null && service in loggedServices && mangaMaxRead > track.last_chapter_read) {
+                            try {
+                                track.last_chapter_read = mangaMaxRead
+
+                                service.update(track)
+                                db.insertTrack(track).executeAsBlocking()
                             } catch (e: Throwable) {
                                 // Ignore errors and continue
                                 Timber.e(e)
