@@ -171,6 +171,8 @@ object PreferenceKeys {
 
     const val autoUpdateTrackers = "auto_update_trackers"
 
+    const val autoUpdateTrackersReadProgress = "auto_update_trackers_read_progress"
+
     const val showLibraryUpdateErrors = "show_library_update_errors"
 
     const val downloadNew = "download_new"
