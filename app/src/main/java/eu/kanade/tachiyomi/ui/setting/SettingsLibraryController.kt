@@ -281,6 +281,13 @@ class SettingsLibraryController : SettingsController() {
                     summaryRes = R.string.pref_library_update_refresh_trackers_summary
                     defaultValue = false
                 }
+
+                switchPreference {
+                    key = Keys.autoUpdateTrackersReadProgress
+                    titleRes = R.string.pref_library_update_refresh_trackers_read_progress
+                    summaryRes = R.string.pref_library_update_refresh_trackers_read_progress_summary
+                    defaultValue = false
+                }
             }
             switchPreference {
                 key = Keys.showLibraryUpdateErrors
