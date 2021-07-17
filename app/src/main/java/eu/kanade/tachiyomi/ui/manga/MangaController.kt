@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.ui.manga
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
@@ -669,28 +670,21 @@ class MangaController :
      * Fetches the cover with Coil, turns it into Bitmap and does something with it (asynchronous)
      * @param coverHandler A function that describes what should be done with the Bitmap
      */
-    private fun useCoverAsBitmap(coverHandler: (Bitmap) -> Unit) {
-        try {
-            applicationContext?.let { context ->
-                val req = ImageRequest.Builder(context)
-                    .data(manga)
-                    .target { result ->
-                        val coverBitmap = (result as BitmapDrawable).bitmap
-                        coverHandler(coverBitmap)
-                    }
-                    .build()
-                context.imageLoader.enqueue(req)
+    private fun useCoverAsBitmap(context: Context, coverHandler: (Bitmap) -> Unit) {
+        val req = ImageRequest.Builder(context)
+            .data(manga)
+            .target { result ->
+                val coverBitmap = (result as BitmapDrawable).bitmap
+                coverHandler(coverBitmap)
             }
-        } catch (e: Exception) {
-            Timber.e(e)
-            activity?.toast(R.string.error_sharing_cover)
-        }
+            .build()
+        context.imageLoader.enqueue(req)
     }
 
     fun shareCover() {
         try {
             val activity = activity!!
-            useCoverAsBitmap { coverBitmap ->
+            useCoverAsBitmap(activity) { coverBitmap ->
                 val cover = presenter.shareCover(activity, coverBitmap)
                 val uri = cover.getUriCompat(activity)
                 startActivity(
@@ -708,9 +702,10 @@ class MangaController :
 
     fun saveCover() {
         try {
-            useCoverAsBitmap { coverBitmap ->
-                presenter.saveCover(activity!!, coverBitmap)
-                activity?.toast(R.string.cover_saved)
+            val activity = activity!!
+            useCoverAsBitmap(activity) { coverBitmap ->
+                presenter.saveCover(activity, coverBitmap)
+                activity.toast(R.string.cover_saved)
             }
         } catch (e: Exception) {
             Timber.e(e)
