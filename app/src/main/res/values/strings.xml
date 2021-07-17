@@ -216,6 +216,8 @@
     <string name="pref_library_update_refresh_metadata_summary">Check for new cover and details when updating library</string>
     <string name="pref_library_update_refresh_trackers">Automatically refresh trackers</string>
     <string name="pref_library_update_refresh_trackers_summary">Update trackers when updating library</string>
+    <string name="pref_library_update_refresh_trackers_read_progress">Automatically update trackers read progress</string>
+    <string name="pref_library_update_refresh_trackers_read_progress_summary">Update trackers read progress when updating library</string>
     <string name="pref_library_update_error_notification">Show update errors notifications</string>
 
     <string name="default_category">Default category</string>
