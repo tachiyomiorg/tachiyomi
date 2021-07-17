@@ -44,19 +44,31 @@ class Shikimori(private val context: Context, id: Int) : TrackService(id) {
         return api.addLibManga(track, getUsername())
     }
 
-    override suspend fun update(track: Track): Track {
+    override suspend fun update(track: Track, didReadChapter: Boolean): Track {
+        if (track.status != COMPLETED) {
+            if (track.status != REPEATING && didReadChapter) {
+                track.status = READING
+            }
+        }
+
         return api.updateLibManga(track, getUsername())
     }
 
-    override suspend fun bind(track: Track): Track {
+    override suspend fun bind(track: Track, hasReadChapters: Boolean): Track {
         val remoteTrack = api.findLibManga(track, getUsername())
         return if (remoteTrack != null) {
             track.copyPersonalFrom(remoteTrack)
             track.library_id = remoteTrack.library_id
+
+            if (track.status != COMPLETED) {
+                val isRereading = track.status == REPEATING
+                track.status = if (isRereading.not() && hasReadChapters) READING else track.status
+            }
+
             update(track)
         } else {
             // Set default fields if it's not found in the list
-            track.status = READING
+            track.status = if (hasReadChapters) READING else PLANNING
             track.score = 0F
             add(track)
         }
@@ -93,6 +105,10 @@ class Shikimori(private val context: Context, id: Int) : TrackService(id) {
             else -> ""
         }
     }
+
+    override fun getReadingStatus(): Int = READING
+
+    override fun getRereadingStatus(): Int = REPEATING
 
     override fun getCompletionStatus(): Int = COMPLETED
 

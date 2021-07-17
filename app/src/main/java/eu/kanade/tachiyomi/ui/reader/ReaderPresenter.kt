@@ -713,7 +713,7 @@ class ReaderPresenter(
                         // for a while. The view can still be garbage collected.
                         async {
                             runCatching {
-                                service.update(track)
+                                service.update(track, true)
                                 db.insertTrack(track).executeAsBlocking()
                             }
                         }

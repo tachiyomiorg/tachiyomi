@@ -49,17 +49,27 @@ class Komga(private val context: Context, id: Int) : TrackService(id), Unattende
         }
     }
 
+    override fun getReadingStatus(): Int = READING
+
+    override fun getRereadingStatus(): Int = -1
+
     override fun getCompletionStatus(): Int = COMPLETED
 
     override fun getScoreList(): List<String> = emptyList()
 
     override fun displayScore(track: Track): String = ""
 
-    override suspend fun update(track: Track): Track {
+    override suspend fun update(track: Track, didReadChapter: Boolean): Track {
+        if (track.status != COMPLETED) {
+            if (didReadChapter) {
+                track.status = READING
+            }
+        }
+
         return api.updateProgress(track)
     }
 
-    override suspend fun bind(track: Track): Track {
+    override suspend fun bind(track: Track, hasReadChapters: Boolean): Track {
         return track
     }
 

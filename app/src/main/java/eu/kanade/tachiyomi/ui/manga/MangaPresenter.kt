@@ -779,7 +779,8 @@ class MangaPresenter(
             item.manga_id = manga.id!!
             launchIO {
                 try {
-                    service.bind(item)
+                    val hasReadChapters = allChapters.any { it.read }
+                    service.bind(item, hasReadChapters)
                     db.insertTrack(item).executeAsBlocking()
 
                     if (service is UnattendedTrackService) {
@@ -830,6 +831,9 @@ class MangaPresenter(
 
     fun setTrackerLastChapterRead(item: TrackItem, chapterNumber: Int) {
         val track = item.track!!
+        if (track.last_chapter_read == 0 && track.last_chapter_read < chapterNumber && track.status != item.service.getRereadingStatus()) {
+            track.status = item.service.getReadingStatus()
+        }
         track.last_chapter_read = chapterNumber
         if (track.total_chapters != 0 && track.last_chapter_read == track.total_chapters) {
             track.status = item.service.getCompletionStatus()
