@@ -11,5 +11,7 @@
         <item name="colorOnBackground">@color/on_background_monet</item>
         <item name="colorControlHighlight">@color/ripple_colored_monet</item>
         <item name="android:divider">@color/divider_monet</item>
+        <item name="android:textColorPrimary">@color/text_primary_monet</item>
+        <item name="android:textColorSecondary">@color/text_secondary_monet</item>
     </style>
 </resources>
