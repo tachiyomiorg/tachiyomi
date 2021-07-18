@@ -1,40 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="splash">@color/accent_lightblue</color>
+    <color name="splash">@color/accent_blue</color>
 
-    <!-- Light Theme -->
-    <color name="accent_light">@color/md_blue_A400</color>
-    <color name="divider_light">@color/md_black_1000_12</color>
-    <color name="surface_light">@color/md_white_1000</color>
-    <color name="background_light">@color/md_grey_50</color>
-    <color name="ripple_colored_light">@color/md_blue_A400_12</color>
+    <!-- Default Theme -->
+    <color name="accent_default">@color/md_blue_A400</color>
+    <color name="divider_default">@color/md_black_1000_12</color>
+    <color name="surface_default">@color/md_white_1000</color>
+    <color name="background_default">@color/md_grey_50</color>
+    <color name="ripple_colored_default">@color/md_blue_A400_12</color>
 
-    <!-- Light Blue Theme -->
-    <color name="accent_lightblue">#54759E</color>
-    <color name="ripple_colored_lightblue">#1F54759E</color>
-
-    <!-- Strawberry Daiquiri Theme -->
-    <color name="accent_strawberry">#ED4A65</color>
-    <color name="ripple_colored_strawberry">#1FED4A65</color>
-
-    <!-- Yotsuba Theme -->
-    <color name="accent_yotsuba">#FC8C5C</color>
-    <color name="ripple_colored_yotsuba">#1FFC8C5C</color>
-
-    <!-- Dark Theme -->
-    <color name="accent_dark">#3399FF</color>
-    <color name="divider_dark">@color/md_white_1000_12</color>
-    <color name="surface_dark">#242529</color>
-    <color name="background_dark">#202125</color>
-    <color name="ripple_colored_dark">#1F3399FF</color>
-
-    <!-- Dark Blue Theme -->
-    <color name="accent_darkblue">#54759E</color>
-    <color name="ripple_colored_darkblue">#1F54759E</color>
+    <!-- Blue Theme -->
+    <color name="accent_blue">#54759E</color>
+    <color name="ripple_colored_blue">#1F54759E</color>
 
     <!-- Green Apple Theme -->
-    <color name="accent_greenapple">#48E484</color>
-    <color name="ripple_colored_greenapple">#1F48E484</color>
+    <color name="accent_greenapple">#188140</color>
+    <color name="color_on_primary_greenapple">@color/md_white_1000</color>
+    <color name="ripple_colored_greenapple">#1F188140</color>
 
     <!-- Midnight Dusk Theme -->
     <color name="accent_midnightdusk">#F02475</color>
@@ -42,20 +24,39 @@
     <color name="surface_midnightdusk">#201F27</color>
     <color name="ripple_colored_midnightdusk">#1FF02475</color>
 
-    <!-- AMOLED Theme -->
-    <color name="accent_amoled">#3399FF</color>
+    <!-- Strawberry Daiquiri Theme -->
+    <color name="accent_strawberry">#ED4A65</color>
+    <color name="ripple_colored_strawberry">#1FED4A65</color>
+
+    <!-- Tako Theme -->
+    <color name="accent_tako">#66577E</color>
+    <color name="color_on_primary_tako">#F3B375</color>
+    <color name="tertiary_tako">@color/color_on_primary_tako</color>
+    <color name="color_on_tertiary_tako">#574360</color>
+    <color name="ripple_colored_tako">#1F66577E</color>
+    <color name="surface_tako">#F7F5FF</color>
+    <color name="background_tako">#F2EDF7</color>
+    <color name="filter_tako">#F29940</color>
+
+    <!-- Yin & Yang Theme -->
+    <color name="accent_yinyang">#000000</color>
+    <color name="color_on_secondary_yinyang">#FFFFFF</color>
+    <color name="ripple_colored_yinyang">#999999</color>
+    <color name="chip_text_yinyang">#000000</color>
+
+    <!-- Yotsuba Theme -->
+    <color name="accent_yotsuba">#FC8C5C</color>
+    <color name="ripple_colored_yotsuba">#1FFC8C5C</color>
+
+    <!-- AMOLED Mode -->
     <color name="divider_amoled">@android:color/transparent</color>
-    <color name="surface_amoled">@color/md_black_1000</color>
-    <color name="background_amoled">@color/md_black_1000</color>
-    <color name="ripple_colored_amoled">#1F3399FF</color>
+    <color name="surface_amoled">#000001</color>
+    <color name="background_amoled">#000000</color>
 
-    <!-- Hot Pink Theme -->
-    <color name="accent_hotpink">#FF3399</color>
-    <color name="ripple_colored_hotpink">#1FFF3399</color>
+    <color name="filter_light">#FFC107</color>
+    <color name="filter_dark">#FFEB3B</color>
 
-    <color name="filterColorLight">#FFC107</color>
-    <color name="filterColorDark">#FFEB3B</color>
-    <color name="filterColorAmoled">#FFEB3B</color>
+    <color name="reader_background_dark">#202125</color>
 
     <!-- Material Design Colors -->
     <color name="md_black_1000">#000000</color>
@@ -97,7 +98,7 @@
 
     <color name="green">#47a84a</color>
 
-    <!-- Navigation overlay colors -->
+    <!-- Navigation Overlay Colors -->
     <color name="navigation_next">#CB84E296</color>
     <color name="navigation_prev">#CCFF7733</color>
     <color name="navigation_menu">#CC95818D</color>

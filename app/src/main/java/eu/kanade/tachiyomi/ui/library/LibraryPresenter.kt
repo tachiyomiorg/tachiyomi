@@ -29,8 +29,10 @@ import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import java.text.Collator
 import java.util.Collections
 import java.util.Comparator
+import java.util.Locale
 
 /**
  * Class containing library information.
@@ -256,11 +258,17 @@ class LibraryPresenter(
             (category.id ?: 0) to SortDirectionSetting.get(preferences, category)
         }
 
+        val locale = Locale.getDefault()
+        val collator = Collator.getInstance(locale).apply {
+            strength = Collator.PRIMARY
+        }
         val sortFn: (LibraryItem, LibraryItem) -> Int = { i1, i2 ->
             val sortingMode = sortingModes[i1.manga.category]!!
             val sortAscending = sortAscending[i1.manga.category]!! == SortDirectionSetting.ASCENDING
             when (sortingMode) {
-                SortModeSetting.ALPHABETICAL -> i1.manga.title.compareTo(i2.manga.title, true)
+                SortModeSetting.ALPHABETICAL -> {
+                    collator.compare(i1.manga.title.lowercase(locale), i2.manga.title.lowercase(locale))
+                }
                 SortModeSetting.LAST_READ -> {
                     // Get index of manga, set equal to list if size unknown.
                     val manga1LastRead = lastReadManga[i1.manga.id!!] ?: lastReadManga.size

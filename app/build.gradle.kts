@@ -22,7 +22,6 @@ val SUPPORTED_ABIS = setOf("armeabi-v7a", "arm64-v8a", "x86")
 
 android {
     compileSdkVersion(AndroidConfig.compileSdk)
-    buildToolsVersion(AndroidConfig.buildTools)
     ndkVersion = AndroidConfig.ndk
 
     defaultConfig {
@@ -30,7 +29,7 @@ android {
         minSdkVersion(AndroidConfig.minSdk)
         targetSdkVersion(AndroidConfig.targetSdk)
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        versionCode = 64
+        versionCode = 65
         versionName = "0.11.1"
 
         buildConfigField("String", "COMMIT_COUNT", "\"${getCommitCount()}\"")
@@ -130,18 +129,25 @@ android {
 
 dependencies {
 
+    implementation(kotlin("reflect", version = BuildPluginsVersion.KOTLIN))
+
+    val coroutinesVersion = "1.5.1"
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
+
     // Source models and interfaces from Tachiyomi 1.x
     implementation("org.tachiyomi:source-api:1.1")
 
     // AndroidX libraries
     implementation("androidx.annotation:annotation:1.3.0-alpha01")
-    implementation("androidx.appcompat:appcompat:1.4.0-alpha02")
+    implementation("androidx.appcompat:appcompat:1.4.0-alpha03")
     implementation("androidx.biometric:biometric-ktx:1.2.0-alpha03")
     implementation("androidx.browser:browser:1.3.0")
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.0-beta02")
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.1.0")
-    implementation("androidx.core:core-ktx:1.6.0-beta02")
+    implementation("androidx.core:core-ktx:1.7.0-alpha01")
+    implementation("androidx.core:core-splashscreen:1.0.0-alpha01")
     implementation("androidx.multidex:multidex:2.0.1")
     implementation("androidx.preference:preference-ktx:1.1.1")
     implementation("androidx.recyclerview:recyclerview:1.2.1")
@@ -156,7 +162,7 @@ dependencies {
     implementation("androidx.work:work-runtime-ktx:2.6.0-beta01")
 
     // UI library
-    implementation("com.google.android.material:material:1.4.0-rc01")
+    implementation("com.google.android.material:material:1.5.0-alpha01")
 
     "standardImplementation"("com.google.firebase:firebase-core:19.0.0")
 
@@ -177,7 +183,7 @@ dependencies {
     implementation("org.conscrypt:conscrypt-android:2.5.2")
 
     // JSON
-    val kotlinSerializationVersion = "1.2.0"
+    val kotlinSerializationVersion = "1.2.2"
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinSerializationVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-protobuf:$kotlinSerializationVersion")
     implementation("com.google.code.gson:gson:2.8.7")
@@ -192,13 +198,13 @@ dependencies {
     implementation("com.github.junrar:junrar:7.4.0")
 
     // HTML parser
-    implementation("org.jsoup:jsoup:1.13.1")
+    implementation("org.jsoup:jsoup:1.14.1")
 
     // Database
     implementation("androidx.sqlite:sqlite-ktx:2.1.0")
     implementation("com.github.inorichi.storio:storio-common:8be19de@aar")
     implementation("com.github.inorichi.storio:storio-sqlite:8be19de@aar")
-    implementation("com.github.requery:sqlite-android:3.35.5")
+    implementation("com.github.requery:sqlite-android:3.36.0")
 
     // Preferences
     implementation("com.github.tfcporciuncula.flow-preferences:flow-preferences:1.4.0")
@@ -212,14 +218,14 @@ dependencies {
     implementation("com.github.inorichi.injekt:injekt-core:65b0440")
 
     // Image library
-    val coilVersion = "1.2.1"
+    val coilVersion = "1.3.0"
     implementation("io.coil-kt:coil:$coilVersion")
     implementation("io.coil-kt:coil-gif:$coilVersion")
 
     implementation("com.github.tachiyomiorg:subsampling-scale-image-view:846abe0") {
         exclude(module = "image-decoder")
     }
-    implementation("com.github.tachiyomiorg:image-decoder:0e91111")
+    implementation("com.github.tachiyomiorg:image-decoder:7481a4a")
 
     // Logging
     implementation("com.jakewharton.timber:timber:4.7.1")
@@ -239,21 +245,14 @@ dependencies {
     implementation("com.github.tachiyomiorg:DirectionalViewPager:1.0.0")
     implementation("dev.chrisbanes.insetter:insetter:0.6.0")
 
-    // 3.2.0+ introduces weird UI blinking or cut off issues on some devices
-    val materialDialogsVersion = "3.1.1"
-    implementation("com.afollestad.material-dialogs:core:$materialDialogsVersion")
-    implementation("com.afollestad.material-dialogs:input:$materialDialogsVersion")
-    implementation("com.afollestad.material-dialogs:datetime:$materialDialogsVersion")
-
     // Conductor
-    implementation("com.bluelinelabs:conductor:2.1.5")
-    implementation("com.bluelinelabs:conductor-support:2.1.5") {
-        exclude(group = "com.android.support")
-    }
-    implementation("com.github.tachiyomiorg:conductor-support-preference:2.0.1")
+    val conductorVersion = "3.0.0"
+    implementation("com.bluelinelabs:conductor:$conductorVersion")
+    implementation("com.bluelinelabs:conductor-viewpager:$conductorVersion")
+    implementation("com.github.tachiyomiorg:conductor-support-preference:$conductorVersion")
 
     // FlowBinding
-    val flowbindingVersion = "1.0.0"
+    val flowbindingVersion = "1.2.0"
     implementation("io.github.reactivecircus.flowbinding:flowbinding-android:$flowbindingVersion")
     implementation("io.github.reactivecircus.flowbinding:flowbinding-appcompat:$flowbindingVersion")
     implementation("io.github.reactivecircus.flowbinding:flowbinding-recyclerview:$flowbindingVersion")
@@ -272,12 +271,6 @@ dependencies {
     testImplementation("org.robolectric:robolectric:$robolectricVersion")
     testImplementation("org.robolectric:shadows-multidex:$robolectricVersion")
     testImplementation("org.robolectric:shadows-play-services:$robolectricVersion")
-
-    implementation(kotlin("reflect", version = BuildPluginsVersion.KOTLIN))
-
-    val coroutinesVersion = "1.4.3"
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
 
     // For detecting memory leaks; see https://square.github.io/leakcanary/
     // debugImplementation("com.squareup.leakcanary:leakcanary-android:2.7")

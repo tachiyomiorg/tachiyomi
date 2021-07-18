@@ -10,8 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.core.text.buildSpannedString
 import androidx.preference.PreferenceScreen
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.list.listItemsSingleChoice
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.hippo.unifile.UniFile
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
@@ -28,8 +27,8 @@ import eu.kanade.tachiyomi.util.preference.preferenceCategory
 import eu.kanade.tachiyomi.util.preference.switchPreference
 import eu.kanade.tachiyomi.util.preference.titleRes
 import eu.kanade.tachiyomi.util.system.toast
-import eu.kanade.tachiyomi.widget.materialdialogs.QuadStateCheckBox
-import eu.kanade.tachiyomi.widget.materialdialogs.listItemsQuadStateMultiChoice
+import eu.kanade.tachiyomi.widget.materialdialogs.QuadStateTextView
+import eu.kanade.tachiyomi.widget.materialdialogs.setQuadStateMultiChoiceItems
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uy.kohesive.injekt.Injekt
@@ -194,20 +193,22 @@ class SettingsDownloadController : SettingsController() {
             val activity = activity!!
             val currentDir = preferences.downloadsDirectory().get()
             val externalDirs = (getExternalDirs() + File(activity.getString(R.string.custom_dir))).map(File::toString)
-            val selectedIndex = externalDirs.indexOfFirst { it in currentDir }
+            var selectedIndex = externalDirs.indexOfFirst { it in currentDir }
 
-            return MaterialDialog(activity)
-                .listItemsSingleChoice(
-                    items = externalDirs,
-                    initialSelection = selectedIndex
-                ) { _, position, text ->
+            return MaterialAlertDialogBuilder(activity)
+                .setTitle(R.string.pref_download_directory)
+                .setSingleChoiceItems(externalDirs.toTypedArray(), selectedIndex) { _, which ->
+                    selectedIndex = which
+                }
+                .setPositiveButton(android.R.string.ok) { _, _ ->
                     val target = targetController as? SettingsDownloadController
-                    if (position == externalDirs.lastIndex) {
+                    if (selectedIndex == externalDirs.lastIndex) {
                         target?.customDirectorySelected()
                     } else {
-                        target?.predefinedDirectorySelected(text.toString())
+                        target?.predefinedDirectorySelected(externalDirs[selectedIndex])
                     }
                 }
+                .create()
         }
 
         private fun getExternalDirs(): List<File> {
@@ -230,30 +231,33 @@ class SettingsDownloadController : SettingsController() {
             val categories = listOf(Category.createDefault()) + dbCategories
 
             val items = categories.map { it.name }
-            val preselected = categories
+            var selected = categories
                 .map {
                     when (it.id.toString()) {
-                        in preferences.downloadNewCategories().get() -> QuadStateCheckBox.State.CHECKED.ordinal
-                        in preferences.downloadNewCategoriesExclude().get() -> QuadStateCheckBox.State.INVERSED.ordinal
-                        else -> QuadStateCheckBox.State.UNCHECKED.ordinal
+                        in preferences.downloadNewCategories().get() -> QuadStateTextView.State.CHECKED.ordinal
+                        in preferences.downloadNewCategoriesExclude().get() -> QuadStateTextView.State.INVERSED.ordinal
+                        else -> QuadStateTextView.State.UNCHECKED.ordinal
                     }
                 }
                 .toIntArray()
 
-            return MaterialDialog(activity!!)
-                .title(R.string.categories)
-                .message(R.string.pref_download_new_categories_details)
-                .listItemsQuadStateMultiChoice(
+            return MaterialAlertDialogBuilder(activity!!)
+                .setTitle(R.string.categories)
+                .setMessage(R.string.pref_download_new_categories_details)
+                .setQuadStateMultiChoiceItems(
                     items = items,
-                    initialSelected = preselected
+                    initialSelected = selected
                 ) { selections ->
-                    val included = selections
-                        .mapIndexed { index, value -> if (value == QuadStateCheckBox.State.CHECKED.ordinal) index else null }
+                    selected = selections
+                }
+                .setPositiveButton(android.R.string.ok) { _, _ ->
+                    val included = selected
+                        .mapIndexed { index, value -> if (value == QuadStateTextView.State.CHECKED.ordinal) index else null }
                         .filterNotNull()
                         .map { categories[it].id.toString() }
                         .toSet()
-                    val excluded = selections
-                        .mapIndexed { index, value -> if (value == QuadStateCheckBox.State.INVERSED.ordinal) index else null }
+                    val excluded = selected
+                        .mapIndexed { index, value -> if (value == QuadStateTextView.State.INVERSED.ordinal) index else null }
                         .filterNotNull()
                         .map { categories[it].id.toString() }
                         .toSet()
@@ -261,8 +265,8 @@ class SettingsDownloadController : SettingsController() {
                     preferences.downloadNewCategories().set(included)
                     preferences.downloadNewCategoriesExclude().set(excluded)
                 }
-                .positiveButton(android.R.string.ok)
-                .negativeButton(android.R.string.cancel)
+                .setNegativeButton(android.R.string.cancel, null)
+                .create()
         }
     }
 

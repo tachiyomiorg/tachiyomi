@@ -47,7 +47,7 @@
             android:id="@+id/incognito_mode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/md_grey_800"
+            android:background="?attr/colorPrimary"
             android:visibility="gone"
             tools:visibility="visible">
 
@@ -57,7 +57,7 @@
                 android:layout_gravity="center"
                 android:padding="4dp"
                 android:text="@string/pref_incognito_mode"
-                android:textColor="@color/md_white_1000" />
+                android:textColor="?attr/colorOnPrimary" />
 
         </FrameLayout>
 
@@ -78,9 +78,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:itemRippleColor="@color/ripple_toolbar_fainter"
-        app:labelVisibilityMode="labeled"
+        android:clickable="true"
         app:layout_insetEdge="bottom"
-        app:menu="@menu/main_nav" />
+        app:menu="@menu/main_nav"
+        tools:ignore="KeyboardInaccessibleWidget" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

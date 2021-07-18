@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eu.kanade.tachiyomi.widget.materialdialogs.QuadStateTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="?attr/materialAlertDialogBodyTextStyle"
+    android:id="@+id/quad_state_control"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:minHeight="?attr/listPreferredItemHeightSmall"
+    android:gravity="start|center_vertical"
+    android:textAlignment="viewStart"
+    android:paddingStart="@dimen/abc_select_dialog_padding_start_material"
+    android:paddingEnd="?attr/dialogPreferredPadding"
+    android:drawablePadding="20dp"
+    android:ellipsize="marquee"
+    app:drawableStartCompat="@drawable/ic_check_box_outline_blank_24dp"
+    tools:text="Quad-state item" />

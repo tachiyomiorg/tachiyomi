@@ -52,7 +52,7 @@
             android:id="@+id/incognito_mode"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/md_grey_800"
+            android:background="?attr/colorPrimary"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +65,7 @@
                 android:layout_gravity="center"
                 android:padding="4dp"
                 android:text="@string/pref_incognito_mode"
-                android:textColor="@color/md_white_1000" />
+                android:textColor="?attr/colorOnPrimary" />
 
         </FrameLayout>
 
@@ -74,8 +74,6 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             app:elevation="0dp"
-            app:itemRippleColor="@color/ripple_toolbar_fainter"
-            app:labelVisibilityMode="labeled"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/incognito_mode"

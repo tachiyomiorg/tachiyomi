@@ -11,6 +11,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.databinding.ReaderTransitionViewBinding
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
+import eu.kanade.tachiyomi.util.system.isNightMode
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
@@ -23,7 +24,6 @@ class ReaderTransitionView @JvmOverloads constructor(context: Context, attrs: At
         binding = ReaderTransitionViewBinding.inflate(LayoutInflater.from(context), this, true)
         layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
     }
-
     fun bind(transition: ChapterTransition) {
         when (transition) {
             is ChapterTransition.Prev -> bindPrevChapterTransition(transition)
@@ -34,10 +34,22 @@ class ReaderTransitionView @JvmOverloads constructor(context: Context, attrs: At
 
         val color = when (Injekt.get<PreferencesHelper>().readerTheme().get()) {
             0 -> context.getColor(android.R.color.black)
+            3 -> context.getColor(automaticTextColor())
             else -> context.getColor(android.R.color.white)
         }
         listOf(binding.upperText, binding.warningText, binding.lowerText).forEach {
             it.setTextColor(color)
+        }
+    }
+
+    /**
+     * Picks text color for [ReaderActivity] based on light/dark theme preference
+     */
+    private fun automaticTextColor(): Int {
+        return if (context.isNightMode()) {
+            android.R.color.white
+        } else {
+            android.R.color.black
         }
     }
 

@@ -147,9 +147,7 @@
     <string name="label_more">Több</string>
     <string name="label_sources">Források</string>
     <string name="pref_date_format">Dátum formátum</string>
-    <string name="theme_dark_amoled">AMOLED fekete</string>
-    <string name="theme_dark_blue">Sötétkék</string>
-    <string name="theme_light_blue">Világoskék</string>
+    <string name="theme_darkblue">Sötétkék</string>
     <string name="theme_dark">Be</string>
     <string name="theme_light">Ki</string>
     <string name="pref_category_library">Könyvtár</string>
@@ -210,10 +208,7 @@
     <string name="pref_category_security">Biztonság</string>
     <string name="pref_manage_notifications">Értesítések kezelése</string>
     <string name="pref_confirm_exit">Kilépés megerősítése</string>
-    <string name="theme_dark_default">Alapértelmezett</string>
-    <string name="pref_theme_dark">Sötét téma</string>
-    <string name="theme_light_default">Alapértelmezett</string>
-    <string name="pref_theme_light">Világos téma</string>
+    <string name="theme_default">Alapértelmezett</string>
     <string name="theme_system">Rendszerbeállítás követése</string>
     <string name="pref_theme_mode">Sötét mód</string>
     <string name="pref_category_locale">Helyszín</string>

@@ -8,7 +8,7 @@ import android.os.Bundle
 import android.provider.Settings
 import androidx.core.net.toUri
 import androidx.preference.PreferenceScreen
-import com.afollestad.materialdialogs.MaterialDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.cache.ChapterCache
@@ -19,6 +19,7 @@ import eu.kanade.tachiyomi.network.NetworkHelper
 import eu.kanade.tachiyomi.network.PREF_DOH_CLOUDFLARE
 import eu.kanade.tachiyomi.network.PREF_DOH_GOOGLE
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
+import eu.kanade.tachiyomi.ui.base.controller.openInBrowser
 import eu.kanade.tachiyomi.util.CrashLogUtil
 import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.lang.withUIContext
@@ -86,6 +87,16 @@ class SettingsAdvancedController : SettingsController() {
                 } else {
                     context.toast(R.string.battery_optimization_disabled)
                 }
+            }
+        }
+
+        preference {
+            key = "pref_dont_kill_my_app"
+            title = "Don't kill my app!"
+            summaryRes = R.string.about_dont_kill_my_app
+
+            onClick {
+                openInBrowser("https://dontkillmyapp.com/")
             }
         }
 
@@ -184,12 +195,13 @@ class SettingsAdvancedController : SettingsController() {
 
     class ClearDatabaseDialogController : DialogController() {
         override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-            return MaterialDialog(activity!!)
-                .message(R.string.clear_database_confirmation)
-                .positiveButton(android.R.string.ok) {
+            return MaterialAlertDialogBuilder(activity!!)
+                .setMessage(R.string.clear_database_confirmation)
+                .setPositiveButton(android.R.string.ok) { _, _ ->
                     (targetController as? SettingsAdvancedController)?.clearDatabase()
                 }
-                .negativeButton(android.R.string.cancel)
+                .setNegativeButton(android.R.string.cancel, null)
+                .create()
         }
     }
 

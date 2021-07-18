@@ -596,7 +596,7 @@ class ReaderPresenter(
         // Pictures directory.
         val baseDir = getPicturesDir(context).absolutePath
         val destDir = if (preferences.folderPerManga()) {
-            File(baseDir + File.separator + manga.title)
+            File(baseDir + File.separator + DiskUtil.buildValidFilename(manga.title))
         } else {
             File(baseDir)
         }
@@ -713,7 +713,7 @@ class ReaderPresenter(
                         // for a while. The view can still be garbage collected.
                         async {
                             runCatching {
-                                service.update(track)
+                                service.update(track, true)
                                 db.insertTrack(track).executeAsBlocking()
                             }
                         }

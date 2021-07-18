@@ -7,7 +7,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.content.res.Configuration
 import android.os.Build
 import android.webkit.WebView
 import androidx.core.app.NotificationManagerCompat
@@ -24,11 +23,11 @@ import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import eu.kanade.tachiyomi.data.coil.ByteBufferFetcher
 import eu.kanade.tachiyomi.data.coil.MangaCoverFetcher
+import eu.kanade.tachiyomi.data.coil.TachiyomiImageDecoder
 import eu.kanade.tachiyomi.data.notification.Notifications
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.network.NetworkHelper
 import eu.kanade.tachiyomi.ui.security.SecureActivityDelegate
-import eu.kanade.tachiyomi.util.system.LocaleHelper
 import eu.kanade.tachiyomi.util.system.notification
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -68,8 +67,6 @@ open class App : Application(), LifecycleObserver, ImageLoaderFactory {
         setupAcra()
         setupNotificationChannels()
 
-        LocaleHelper.updateConfiguration(this, resources.configuration)
-
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
 
         // Show notification to disable Incognito Mode when it's enabled
@@ -106,14 +103,10 @@ open class App : Application(), LifecycleObserver, ImageLoaderFactory {
         MultiDex.install(this)
     }
 
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        LocaleHelper.updateConfiguration(this, newConfig, true)
-    }
-
     override fun newImageLoader(): ImageLoader {
         return ImageLoader.Builder(this).apply {
             componentRegistry {
+                add(TachiyomiImageDecoder(this@App.resources))
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                     add(ImageDecoderDecoder(this@App))
                 } else {

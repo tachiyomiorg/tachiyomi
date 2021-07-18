@@ -10,14 +10,12 @@ import androidx.viewbinding.ViewBinding
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
-import com.bluelinelabs.conductor.RestoreViewOnCreateController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
 import timber.log.Timber
 
-abstract class BaseController<VB : ViewBinding>(bundle: Bundle? = null) :
-    RestoreViewOnCreateController(bundle) {
+abstract class BaseController<VB : ViewBinding>(bundle: Bundle? = null) : Controller(bundle) {
 
     protected lateinit var binding: VB
         private set

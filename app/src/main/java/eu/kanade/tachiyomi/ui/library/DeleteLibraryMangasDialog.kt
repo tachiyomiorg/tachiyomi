@@ -2,9 +2,8 @@ package eu.kanade.tachiyomi.ui.library
 
 import android.app.Dialog
 import android.os.Bundle
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.list.listItemsMultiChoice
 import com.bluelinelabs.conductor.Controller
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
@@ -20,18 +19,22 @@ class DeleteLibraryMangasDialog<T>(bundle: Bundle? = null) :
     }
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-        return MaterialDialog(activity!!)
-            .title(R.string.action_remove)
-            .listItemsMultiChoice(
-                R.array.delete_selected_mangas,
-                initialSelection = intArrayOf(0)
-            ) { _, selections, _ ->
-                val deleteFromLibrary = 0 in selections
-                val deleteChapters = 1 in selections
+        val items = resources!!.getStringArray(R.array.delete_selected_mangas)
+        val selected = items
+            .mapIndexed { i, _ -> i == 0 }
+            .toBooleanArray()
+        return MaterialAlertDialogBuilder(activity!!)
+            .setTitle(R.string.action_remove)
+            .setMultiChoiceItems(items, selected) { _, which, checked ->
+                selected[which] = checked
+            }
+            .setPositiveButton(android.R.string.ok) { _, _ ->
+                val deleteFromLibrary = selected[0]
+                val deleteChapters = selected[1]
                 (targetController as? Listener)?.deleteMangas(mangas, deleteFromLibrary, deleteChapters)
             }
-            .positiveButton(android.R.string.ok)
-            .negativeButton(android.R.string.cancel)
+            .setNegativeButton(android.R.string.cancel, null)
+            .create()
     }
 
     interface Listener {

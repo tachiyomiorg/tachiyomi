@@ -201,10 +201,8 @@
     <string name="pref_date_format">תבנית תאריך</string>
     <string name="pref_language">שפה</string>
     <string name="pref_start_screen">מסך פתיחה</string>
-    <string name="theme_dark_blue">כחול כהה</string>
-    <string name="theme_dark_default">ברירת מחדל</string>
-    <string name="theme_light_blue">כחול בהיר</string>
-    <string name="theme_light_default">ברירת מחדל</string>
+    <string name="theme_darkblue">כחול כהה</string>
+    <string name="theme_default">ברירת מחדל</string>
     <string name="theme_dark">כהה</string>
     <string name="theme_light">בהיר</string>
     <string name="pref_theme_mode">ערכת נושא של האפליקציה</string>

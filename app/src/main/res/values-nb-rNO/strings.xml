@@ -356,10 +356,7 @@
     <string name="theme_light">Av</string>
     <string name="theme_dark">På</string>
     <string name="theme_system">System</string>
-    <string name="pref_theme_dark">Mørk</string>
-    <string name="theme_dark_default">Forvalg</string>
-    <string name="theme_dark_blue">Mørkeblå</string>
-    <string name="theme_dark_amoled">AMOLED-sort</string>
+    <string name="theme_darkblue">Mørkeblå</string>
     <string name="pref_manage_notifications">Håndter merknader</string>
     <string name="pref_category_security">Sikkerhet</string>
     <string name="lock_with_biometrics">Krev opplåsning</string>
@@ -381,9 +378,7 @@
     <string name="webtoon_side_padding_20">20%</string>
     <string name="webtoon_side_padding_15">15%</string>
     <string name="webtoon_side_padding_10">10%</string>
-    <string name="theme_light_blue">Lyseblå</string>
-    <string name="theme_light_default">Forvalg</string>
-    <string name="pref_theme_light">Lys</string>
+    <string name="theme_default">Forvalg</string>
     <string name="action_move_to_bottom">Flytt til bunnen</string>
     <string name="action_move_to_top">Flytt til toppen</string>
     <string name="action_oldest">Eldste</string>

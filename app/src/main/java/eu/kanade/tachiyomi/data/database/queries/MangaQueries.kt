@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.data.database.queries
 
+import com.pushtorefresh.storio.sqlite.operations.get.PreparedGetListOfObjects
 import com.pushtorefresh.storio.sqlite.queries.DeleteQuery
 import com.pushtorefresh.storio.sqlite.queries.Query
 import com.pushtorefresh.storio.sqlite.queries.RawQuery
@@ -14,15 +15,6 @@ import eu.kanade.tachiyomi.data.database.tables.MangaTable
 
 interface MangaQueries : DbProvider {
 
-    fun getMangas() = db.get()
-        .listOfObjects(Manga::class.java)
-        .withQuery(
-            Query.builder()
-                .table(MangaTable.TABLE)
-                .build()
-        )
-        .prepare()
-
     fun getLibraryMangas() = db.get()
         .listOfObjects(LibraryManga::class.java)
         .withQuery(
@@ -34,17 +26,21 @@ interface MangaQueries : DbProvider {
         .withGetResolver(LibraryMangaGetResolver.INSTANCE)
         .prepare()
 
-    fun getFavoriteMangas() = db.get()
-        .listOfObjects(Manga::class.java)
-        .withQuery(
-            Query.builder()
-                .table(MangaTable.TABLE)
-                .where("${MangaTable.COL_FAVORITE} = ?")
-                .whereArgs(1)
-                .orderBy(MangaTable.COL_TITLE)
-                .build()
-        )
-        .prepare()
+    fun getFavoriteMangas(sortByTitle: Boolean = true): PreparedGetListOfObjects<Manga> {
+        var queryBuilder = Query.builder()
+            .table(MangaTable.TABLE)
+            .where("${MangaTable.COL_FAVORITE} = ?")
+            .whereArgs(1)
+
+        if (sortByTitle) {
+            queryBuilder = queryBuilder.orderBy(MangaTable.COL_TITLE)
+        }
+
+        return db.get()
+            .listOfObjects(Manga::class.java)
+            .withQuery(queryBuilder.build())
+            .prepare()
+    }
 
     fun getManga(url: String, sourceId: Long) = db.get()
         .`object`(Manga::class.java)

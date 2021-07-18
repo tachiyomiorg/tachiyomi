@@ -33,10 +33,6 @@ buildscript {
         classpath("com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:${BuildPluginsVersion.ABOUTLIB_PLUGIN}")
         classpath(kotlin("serialization", version = BuildPluginsVersion.KOTLIN))
     }
-    repositories {
-        google()
-        jcenter()
-    }
 }
 
 tasks.register("clean", Delete::class) {

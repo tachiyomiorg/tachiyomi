@@ -97,8 +97,10 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/reader_seekbar_background"
+                    android:clickable="true"
                     android:paddingStart="8dp"
-                    android:paddingEnd="8dp">
+                    android:paddingEnd="8dp"
+                    tools:ignore="KeyboardInaccessibleWidget">
 
                     <TextView
                         android:id="@+id/left_page_text"
@@ -150,7 +152,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_gravity="bottom"
-                android:background="?attr/colorToolbar">
+                android:background="?attr/colorToolbar"
+                android:clickable="true"
+                tools:ignore="KeyboardInaccessibleWidget">
 
                 <ImageButton
                     android:id="@+id/action_reading_mode"

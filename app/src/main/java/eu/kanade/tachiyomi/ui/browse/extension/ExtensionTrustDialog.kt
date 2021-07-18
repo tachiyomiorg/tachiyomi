@@ -3,8 +3,8 @@ package eu.kanade.tachiyomi.ui.browse.extension
 import android.app.Dialog
 import android.os.Bundle
 import androidx.core.os.bundleOf
-import com.afollestad.materialdialogs.MaterialDialog
 import com.bluelinelabs.conductor.Controller
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 
@@ -21,15 +21,16 @@ class ExtensionTrustDialog<T>(bundle: Bundle? = null) : DialogController(bundle)
     }
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-        return MaterialDialog(activity!!)
-            .title(R.string.untrusted_extension)
-            .message(R.string.untrusted_extension_message)
-            .positiveButton(R.string.ext_trust) {
+        return MaterialAlertDialogBuilder(activity!!)
+            .setTitle(R.string.untrusted_extension)
+            .setMessage(R.string.untrusted_extension_message)
+            .setPositiveButton(R.string.ext_trust) { _, _ ->
                 (targetController as? Listener)?.trustSignature(args.getString(SIGNATURE_KEY)!!)
             }
-            .negativeButton(R.string.ext_uninstall) {
+            .setNegativeButton(R.string.ext_uninstall) { _, _ ->
                 (targetController as? Listener)?.uninstallExtension(args.getString(PKGNAME_KEY)!!)
             }
+            .create()
     }
 
     private companion object {

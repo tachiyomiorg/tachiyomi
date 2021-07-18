@@ -352,10 +352,7 @@
     <string name="theme_light">オフ</string>
     <string name="theme_dark">オン</string>
     <string name="theme_system">システム設定</string>
-    <string name="pref_theme_dark">ダークテーマ</string>
-    <string name="theme_dark_default">初期設定</string>
-    <string name="theme_dark_blue">濃紺</string>
-    <string name="theme_dark_amoled">AMOLEDブラック</string>
+    <string name="theme_darkblue">濃紺</string>
     <string name="pref_manage_notifications">通知設定</string>
     <string name="pref_category_security">セキュリティ</string>
     <string name="lock_with_biometrics">アンロックを必要とする</string>
@@ -440,9 +437,7 @@
     <string name="hide_notification_content">通知コンテンツを非表示</string>
     <string name="secure_screen_summary">スクリーンショットを無効化し、「最近使ったアプリ」画面にアプリの内容を非表示します</string>
     <string name="pref_confirm_exit">終了時に確認</string>
-    <string name="theme_light_blue">水色</string>
-    <string name="theme_light_default">既定</string>
-    <string name="pref_theme_light">ライトテーマ</string>
+    <string name="theme_default">既定</string>
     <string name="action_move_to_bottom">底に移動</string>
     <string name="action_move_to_top">トップに移動</string>
     <string name="action_oldest">最古</string>

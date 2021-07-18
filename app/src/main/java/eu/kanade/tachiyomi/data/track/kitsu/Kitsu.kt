@@ -51,6 +51,10 @@ class Kitsu(private val context: Context, id: Int) : TrackService(id) {
         }
     }
 
+    override fun getReadingStatus(): Int = READING
+
+    override fun getRereadingStatus(): Int = -1
+
     override fun getCompletionStatus(): Int = COMPLETED
 
     override fun getScoreList(): List<String> {
@@ -71,18 +75,29 @@ class Kitsu(private val context: Context, id: Int) : TrackService(id) {
         return api.addLibManga(track, getUserId())
     }
 
-    override suspend fun update(track: Track): Track {
+    override suspend fun update(track: Track, didReadChapter: Boolean): Track {
+        if (track.status != COMPLETED) {
+            if (didReadChapter) {
+                track.status = READING
+            }
+        }
+
         return api.updateLibManga(track)
     }
 
-    override suspend fun bind(track: Track): Track {
+    override suspend fun bind(track: Track, hasReadChapters: Boolean): Track {
         val remoteTrack = api.findLibManga(track, getUserId())
         return if (remoteTrack != null) {
             track.copyPersonalFrom(remoteTrack)
             track.media_id = remoteTrack.media_id
+
+            if (track.status != COMPLETED) {
+                track.status = if (hasReadChapters) READING else track.status
+            }
+
             update(track)
         } else {
-            track.status = READING
+            track.status = if (hasReadChapters) READING else PLAN_TO_READ
             track.score = 0F
             add(track)
         }

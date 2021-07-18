@@ -71,11 +71,7 @@
     <string name="pref_date_format">Вӑхӑт формачӗ</string>
     <string name="pref_language">Чӗлхе</string>
     <string name="pref_start_screen">Пуҫламӑш экран</string>
-    <string name="theme_dark_amoled">AMOLED хура</string>
-    <string name="theme_dark_blue">Тӗксӗм кӑвак</string>
-    <string name="pref_theme_dark">Тӗксӗм тема тӗсӗ</string>
-    <string name="theme_light_blue">Шурӑ кӑвак</string>
-    <string name="pref_theme_light">Ҫутӑ тема</string>
+    <string name="theme_darkblue">Тӗксӗм кӑвак</string>
     <string name="theme_dark">Ҫутнӑ</string>
     <string name="theme_light">Сӳнтернӗ</string>
     <string name="pref_category_advanced">Тата</string>
@@ -194,8 +190,7 @@
     <string name="action_sort">Уйӑр</string>
     <string name="pref_theme_mode">Тӗксӗм тема</string>
     <string name="system_default">Яланхилле</string>
-    <string name="theme_dark_default">Яланхилле</string>
-    <string name="theme_light_default">Яланхилле</string>
+    <string name="theme_default">Яланхилле</string>
     <string name="theme_system">Сӳстемри пекех</string>
     <string name="pref_category_reader">Вулӑш</string>
     <string name="pref_category_tracking">Сӑнану</string>

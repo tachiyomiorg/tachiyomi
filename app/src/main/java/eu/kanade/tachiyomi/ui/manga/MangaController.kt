@@ -270,6 +270,8 @@ class MangaController :
         chaptersAdapter?.fastScroller = binding.fastScroller
 
         actionFabScrollListener = actionFab?.shrinkOnScroll(chapterRecycler)
+        // Initially set FAB invisible; will become visible if unread chapters are present
+        actionFab?.isVisible = false
 
         binding.swipeRefresh.refreshes()
             .onEach {
@@ -287,7 +289,7 @@ class MangaController :
             }
         }
 
-        trackSheet = TrackSheet(this, manga!!)
+        trackSheet = TrackSheet(this, manga!!, (activity as MainActivity).supportFragmentManager)
 
         updateFilterIconState()
     }
@@ -333,8 +335,6 @@ class MangaController :
                         }
                     )
                 }
-            } else {
-                view?.context?.toast(R.string.no_next_chapter)
             }
         }
     }
@@ -614,7 +614,7 @@ class MangaController :
             return
         }
 
-        when (val previousController = router.backstack[router.backstackSize - 2].controller()) {
+        when (val previousController = router.backstack[router.backstackSize - 2].controller) {
             is LibraryController -> {
                 router.handleBack()
                 previousController.search(query)
@@ -638,7 +638,30 @@ class MangaController :
         }
     }
 
-    private fun shareCover() {
+    /**
+     * Performs a genre search using the provided genre name.
+     *
+     * @param genreName the search genre to the parent controller
+     */
+    fun performGenreSearch(genreName: String) {
+        if (router.backstackSize < 2) {
+            return
+        }
+
+        val previousController = router.backstack[router.backstackSize - 2].controller
+        val presenterSource = presenter.source
+
+        if (previousController is BrowseSourceController &&
+            presenterSource is HttpSource
+        ) {
+            router.handleBack()
+            previousController.searchWithGenre(genreName)
+        } else {
+            performSearch(genreName)
+        }
+    }
+
+    fun shareCover() {
         try {
             val activity = activity!!
             val cover = presenter.shareCover(activity)
@@ -650,7 +673,7 @@ class MangaController :
         }
     }
 
-    private fun saveCover() {
+    fun saveCover() {
         try {
             presenter.saveCover(activity!!)
             activity?.toast(R.string.cover_saved)
@@ -660,7 +683,7 @@ class MangaController :
         }
     }
 
-    private fun changeCover() {
+    fun changeCover() {
         val manga = manga ?: return
         if (manga.hasCustomCover(coverCache)) {
             ChangeMangaCoverDialog(this, manga).showDialog(router)
@@ -752,8 +775,11 @@ class MangaController :
         }
 
         val context = view?.context
-        if (context != null && chapters.any { it.read }) {
-            actionFab?.text = context.getString(R.string.action_resume)
+        if (context != null) {
+            actionFab?.isVisible = chapters.any { !it.read }
+            if (chapters.any { it.read }) {
+                actionFab?.text = context.getString(R.string.action_resume)
+            }
         }
     }
 

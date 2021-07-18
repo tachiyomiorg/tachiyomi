@@ -341,7 +341,7 @@ abstract class HttpSource : CatalogueSource {
      */
     private fun getUrlWithoutDomain(orig: String): String {
         return try {
-            val uri = URI(orig)
+            val uri = URI(orig.replace(" ", "%20"))
             var out = uri.path
             if (uri.query != null) {
                 out += "?" + uri.query

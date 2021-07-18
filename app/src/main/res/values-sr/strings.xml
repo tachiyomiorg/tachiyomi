@@ -279,10 +279,7 @@
     <string name="theme_light">Isključeno</string>
     <string name="theme_dark">Upaljeno</string>
     <string name="theme_system">Prati sistem</string>
-    <string name="pref_theme_dark">Tamna tema</string>
-    <string name="theme_dark_default">Normalno</string>
-    <string name="theme_dark_blue">Tamno plavo</string>
-    <string name="theme_dark_amoled">AMOLED crno</string>
+    <string name="theme_darkblue">Tamno plavo</string>
     <string name="pref_manage_notifications">Podesi notifikacije</string>
     <string name="pref_category_security">Bezbednost</string>
     <string name="lock_when_idle">Zaključaj kada nekorišćeno</string>
@@ -312,9 +309,7 @@
     <string name="secure_screen_summary">Sakrij prikaz aplikacije kada mijenjate aplikaciju i blokiraj screenshot-ove</string>
     <string name="lock_with_biometrics">Biometrijski zaključaj</string>
     <string name="pref_confirm_exit">Potvrdi izlaz</string>
-    <string name="theme_light_blue">Svetlo plava</string>
-    <string name="theme_light_default">Podrazumevano</string>
-    <string name="pref_theme_light">Svijetla tema</string>
+    <string name="theme_default">Podrazumevano</string>
     <string name="action_move_to_bottom">Premesti na dno</string>
     <string name="action_move_to_top">Premesti na vrh</string>
     <string name="action_oldest">Najstarije</string>

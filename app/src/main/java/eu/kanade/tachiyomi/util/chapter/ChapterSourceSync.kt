@@ -74,6 +74,7 @@ fun syncChaptersWithSource(
                 dbChapter.name = sourceChapter.name
                 dbChapter.date_upload = sourceChapter.date_upload
                 dbChapter.chapter_number = sourceChapter.chapter_number
+                dbChapter.source_order = sourceChapter.source_order
                 toChange.add(dbChapter)
             }
         }
@@ -158,7 +159,9 @@ fun syncChaptersWithSource(
             db.insertChapters(toChange).executeAsBlocking()
         }
 
-        val topChapters = db.getChapters(manga).executeAsBlocking().sortedByDescending { it.date_upload }.take(4)
+        val topChapters = db.getChapters(manga).executeAsBlocking()
+            .sortedByDescending { it.date_upload }
+            .take(4)
         // Recalculate next update since chapters were changed
         if (topChapters.size > 1) {
             var delta = 0L
@@ -187,11 +190,11 @@ fun syncChaptersWithSource(
     return Pair(toAdd.subtract(readded).toList(), toDelete.subtract(readded).toList())
 }
 
-// checks if the chapter in db needs updated
-private fun shouldUpdateDbChapter(dbChapter: Chapter, sourceChapter: SChapter): Boolean {
+private fun shouldUpdateDbChapter(dbChapter: Chapter, sourceChapter: Chapter): Boolean {
     return dbChapter.scanlator != sourceChapter.scanlator || dbChapter.name != sourceChapter.name ||
         dbChapter.date_upload != sourceChapter.date_upload ||
-        dbChapter.chapter_number != sourceChapter.chapter_number
+        dbChapter.chapter_number != sourceChapter.chapter_number ||
+        dbChapter.source_order != sourceChapter.source_order
 }
 
 class NoChaptersException : Exception()

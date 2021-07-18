@@ -341,15 +341,10 @@
     <string name="invalid_download_dir">無效的下載位置</string>
     <string name="ext_obsolete">過舊</string>
     <string name="obsolete_extension_message">這個擴充套件已無法使用。</string>
-    <string name="theme_light_blue">淺藍</string>
-    <string name="theme_dark_blue">深藍</string>
-    <string name="theme_dark_amoled">全黑 (AMOLED)</string>
-    <string name="pref_theme_dark">深色主題</string>
-    <string name="theme_light_default">預設</string>
-    <string name="pref_theme_light">淺色主題</string>
+    <string name="theme_darkblue">深藍</string>
+    <string name="theme_default">預設</string>
     <string name="theme_light">關閉</string>
     <string name="theme_system">遵循系統</string>
-    <string name="theme_dark_default">預設</string>
     <string name="pref_theme_mode">深色模式</string>
     <string name="theme_dark">開啟</string>
     <string name="pref_date_format">日期格式</string>

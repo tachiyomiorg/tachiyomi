@@ -13,8 +13,7 @@ import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.list.listItems
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.tfcporciuncula.flow.Preference
@@ -29,6 +28,7 @@ import eu.kanade.tachiyomi.data.preference.asImmediateFlow
 import eu.kanade.tachiyomi.databinding.SourceControllerBinding
 import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.LocalSource
+import eu.kanade.tachiyomi.source.model.Filter
 import eu.kanade.tachiyomi.source.model.FilterList
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.base.controller.FabController
@@ -261,7 +261,7 @@ open class BrowseSourceController(bundle: Bundle) :
         searchItem.fixExpand(
             onExpand = { invalidateMenuOnExpand() },
             onCollapse = {
-                if (router.backstackSize >= 2 && router.backstack[router.backstackSize - 2].controller() is GlobalSearchController) {
+                if (router.backstackSize >= 2 && router.backstack[router.backstackSize - 2].controller is GlobalSearchController) {
                     router.popController(this)
                 } else {
                     nonSubmittedQuery = ""
@@ -333,6 +333,54 @@ open class BrowseSourceController(bundle: Bundle) :
         adapter?.clear()
 
         presenter.restartPager(newQuery)
+    }
+
+    /**
+     * Attempts to restart the request with a new genre-filtered query.
+     * If the genre name can't be found the filters,
+     * the standard searchWithQuery search method is used instead.
+     *
+     * @param genreName the name of the genre
+     */
+    fun searchWithGenre(genreName: String) {
+        presenter.sourceFilters = presenter.source.getFilterList()
+
+        var filterList: FilterList? = null
+
+        filter@ for (sourceFilter in presenter.sourceFilters) {
+            if (sourceFilter is Filter.Group<*>) {
+                for (filter in sourceFilter.state) {
+                    if (filter is Filter<*> && filter.name.equals(genreName, true)) {
+                        when (filter) {
+                            is Filter.TriState -> filter.state = 1
+                            is Filter.CheckBox -> filter.state = true
+                        }
+                        filterList = presenter.sourceFilters
+                        break@filter
+                    }
+                }
+            } else if (sourceFilter is Filter.Select<*>) {
+                val index = sourceFilter.values.filterIsInstance<String>()
+                    .indexOfFirst { it.equals(genreName, true) }
+
+                if (index != -1) {
+                    sourceFilter.state = index
+                    filterList = presenter.sourceFilters
+                    break
+                }
+            }
+        }
+
+        if (filterList != null) {
+            filterSheet?.setFilters(presenter.filterItems)
+
+            showProgressBar()
+
+            adapter?.clear()
+            presenter.restartPager("", filterList)
+        } else {
+            searchWithQuery(genreName)
+        }
     }
 
     /**
@@ -540,11 +588,9 @@ open class BrowseSourceController(bundle: Bundle) :
         val manga = (adapter?.getItem(position) as? SourceItem?)?.manga ?: return
 
         if (manga.favorite) {
-            MaterialDialog(activity)
-                .listItems(
-                    items = listOf(activity.getString(R.string.remove_from_library)),
-                    waitForPositiveButton = false
-                ) { _, which, _ ->
+            MaterialAlertDialogBuilder(activity)
+                .setTitle(manga.title)
+                .setItems(arrayOf(activity.getString(R.string.remove_from_library))) { _, which ->
                     when (which) {
                         0 -> {
                             presenter.changeMangaFavorite(manga)

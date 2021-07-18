@@ -100,13 +100,8 @@
     <string name="system_default">Куолутунан</string>
     <string name="pref_language">Тыл</string>
     <string name="pref_start_screen">Сүрүн экран</string>
-    <string name="theme_dark_amoled">AMOLED хара</string>
-    <string name="theme_dark_blue">Хараҥа күөх</string>
-    <string name="theme_dark_default">Куолутунан</string>
-    <string name="pref_theme_dark">Хараҥа тиэмэ</string>
-    <string name="theme_light_blue">Сырдык күөх</string>
-    <string name="theme_light_default">Куолутунан</string>
-    <string name="pref_theme_light">Сырдык тиэмэ</string>
+    <string name="theme_darkblue">Хараҥа күөх</string>
+    <string name="theme_default">Куолутунан</string>
     <string name="theme_dark">Холбоммут</string>
     <string name="theme_light">Араарыллыбыт</string>
     <string name="theme_system">Системнайы тутуһуҥ</string>

@@ -344,13 +344,8 @@
     <string name="system_default">پیش‌فرض سیستم</string>
     <string name="pref_language">انتخاب زبان</string>
     <string name="pref_start_screen">صفحه اغازین</string>
-    <string name="theme_dark_amoled">AMOLED سیاه</string>
-    <string name="theme_dark_blue">تم آبی تیره</string>
-    <string name="theme_dark_default">پیش‌فرض</string>
-    <string name="pref_theme_dark">تم تیره</string>
-    <string name="theme_light_blue">تم آبی کمرنگ</string>
-    <string name="theme_light_default">پیش‌فرض</string>
-    <string name="pref_theme_light">تم روشن</string>
+    <string name="theme_darkblue">تم آبی تیره</string>
+    <string name="theme_default">پیش‌فرض</string>
     <string name="theme_dark">روشن</string>
     <string name="theme_light">خاموش</string>
     <string name="theme_system">تم پیش‌فرض سیستم</string>

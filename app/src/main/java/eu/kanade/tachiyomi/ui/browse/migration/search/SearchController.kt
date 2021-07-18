@@ -3,10 +3,9 @@ package eu.kanade.tachiyomi.ui.browse.migration.search
 import android.app.Dialog
 import android.os.Bundle
 import androidx.core.view.isVisible
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.list.listItemsMultiChoice
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.RouterTransaction
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
@@ -89,26 +88,26 @@ class SearchController(
         @Suppress("DEPRECATION")
         override fun onCreateDialog(savedViewState: Bundle?): Dialog {
             val prefValue = preferences.migrateFlags().get()
+            val enabledFlagsPositions = MigrationFlags.getEnabledFlagsPositions(prefValue)
+            val items = MigrationFlags.titles
+                .map { resources?.getString(it) }
+                .toTypedArray()
+            val selected = items
+                .mapIndexed { i, _ -> enabledFlagsPositions.contains(i) }
+                .toBooleanArray()
 
-            val preselected =
-                MigrationFlags.getEnabledFlagsPositions(
-                    prefValue
-                )
-
-            return MaterialDialog(activity!!)
-                .title(R.string.migration_dialog_what_to_include)
-                .listItemsMultiChoice(
-                    items = MigrationFlags.titles.map { resources?.getString(it) as CharSequence },
-                    initialSelection = preselected.toIntArray()
-                ) { _, positions, _ ->
-                    // Save current settings for the next time
-                    val newValue =
-                        MigrationFlags.getFlagsFromPositions(
-                            positions.toTypedArray()
-                        )
-                    preferences.migrateFlags().set(newValue)
+            return MaterialAlertDialogBuilder(activity!!)
+                .setTitle(R.string.migration_dialog_what_to_include)
+                .setMultiChoiceItems(items, selected) { _, which, checked ->
+                    selected[which] = checked
                 }
-                .positiveButton(R.string.migrate) {
+                .setPositiveButton(R.string.migrate) { _, _ ->
+                    // Save current settings for the next time
+                    val selectedIndices = mutableListOf<Int>()
+                    selected.forEachIndexed { i, b -> if (b) selectedIndices.add(i) }
+                    val newValue = MigrationFlags.getFlagsFromPositions(selectedIndices.toTypedArray())
+                    preferences.migrateFlags().set(newValue)
+
                     if (callingController != null) {
                         if (callingController.javaClass == SourceSearchController::class.java) {
                             router.popController(callingController)
@@ -116,7 +115,7 @@ class SearchController(
                     }
                     (targetController as? SearchController)?.migrateManga(manga, newManga)
                 }
-                .negativeButton(R.string.copy) {
+                .setNegativeButton(R.string.copy) { _, _, ->
                     if (callingController != null) {
                         if (callingController.javaClass == SourceSearchController::class.java) {
                             router.popController(callingController)
@@ -124,7 +123,8 @@ class SearchController(
                     }
                     (targetController as? SearchController)?.copyManga(manga, newManga)
                 }
-                .neutralButton(android.R.string.cancel)
+                .setNeutralButton(android.R.string.cancel, null)
+                .create()
         }
     }
 

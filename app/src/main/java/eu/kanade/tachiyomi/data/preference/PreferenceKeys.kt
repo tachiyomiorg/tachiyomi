@@ -7,9 +7,9 @@ object PreferenceKeys {
 
     const val themeMode = "pref_theme_mode_key"
 
-    const val themeLight = "pref_theme_light_key"
+    const val appTheme = "pref_app_theme"
 
-    const val themeDark = "pref_theme_dark_key"
+    const val themeDarkAmoled = "pref_theme_dark_amoled_key"
 
     const val confirmExit = "pref_confirm_exit"
 

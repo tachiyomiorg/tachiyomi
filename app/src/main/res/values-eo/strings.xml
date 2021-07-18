@@ -72,12 +72,8 @@
     <string name="system_default">Operaciuma</string>
     <string name="pref_language">Lingvo</string>
     <string name="pref_start_screen">Hejmekrano</string>
-    <string name="theme_dark_blue">Malhelblua</string>
-    <string name="theme_dark_default">Defaŭlta</string>
-    <string name="pref_theme_dark">Malhela etoso</string>
-    <string name="theme_light_blue">Helblua</string>
-    <string name="theme_light_default">Defaŭlta</string>
-    <string name="pref_theme_light">Hela etoso</string>
+    <string name="theme_darkblue">Malhelblua</string>
+    <string name="theme_default">Defaŭlta</string>
     <string name="theme_dark">Ŝalti</string>
     <string name="theme_light">Malŝalti</string>
     <string name="theme_system">Laŭ operaciumo</string>
@@ -236,7 +232,6 @@
     <string name="pref_show_nsfw_source">Montri en fontlisto</string>
     <string name="pref_category_nsfw_content">MPL/NSFW (18+) fontoj</string>
     <string name="pref_confirm_exit">Konfirmi eliron</string>
-    <string name="theme_dark_amoled">AMOLED-a nigra</string>
     <string name="pref_category_locale">Lingvo</string>
     <string name="pref_category_general">Ĝenerala</string>
     <string name="app_not_available">Apo maldisponebla</string>

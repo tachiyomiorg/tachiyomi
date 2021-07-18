@@ -146,18 +146,16 @@
     <string name="theme_system">Follow system</string>
     <string name="theme_light">Off</string>
     <string name="theme_dark">On</string>
-    <string name="pref_theme_light">Light theme</string>
-    <string name="theme_light_default">Default</string>
-    <string name="theme_light_blue">Light Blue</string>
-    <string name="theme_light_strawberrydaiquiri">Strawberry Daiquiri</string>
-    <string name="theme_light_yotsuba">Yotsuba</string>
-    <string name="pref_theme_dark">Dark theme</string>
-    <string name="theme_dark_default">Default</string>
-    <string name="theme_dark_blue">Dark Blue</string>
-    <string name="theme_dark_greenapple">Green Apple</string>
-    <string name="theme_dark_midnightdusk">Midnight Dusk</string>
-    <string name="theme_dark_amoled">AMOLED Black</string>
-    <string name="theme_dark_amoled_hotpink">AMOLED Hot Pink</string>
+    <string name="pref_app_theme">App theme</string>
+    <string name="theme_default">Default</string>
+    <string name="theme_blue">Blue</string>
+    <string name="theme_greenapple">Green Apple</string>
+    <string name="theme_midnightdusk">Midnight Dusk</string>
+    <string name="theme_strawberrydaiquiri">Strawberry Daiquiri</string>
+    <string name="theme_tako">Tako</string>
+    <string name="theme_yinyang">Yin &amp; Yang</string>
+    <string name="theme_yotsuba">Yotsuba</string>
+    <string name="pref_dark_theme_pure_black">Pure black dark mode</string>
     <string name="pref_start_screen">Start screen</string>
     <string name="pref_language">Language</string>
     <string name="system_default">Default</string>
@@ -366,9 +364,9 @@
     <string name="pref_download_directory">Download location</string>
     <string name="pref_download_only_over_wifi">Only download over Wi-Fi</string>
     <string name="pref_category_delete_chapters">Delete chapters</string>
-    <string name="pref_remove_after_marked_as_read">After manually marked as read</string>
-    <string name="pref_remove_after_read">After reading</string>
-    <string name="pref_remove_bookmarked_chapters">Delete bookmarked chapters</string>
+    <string name="pref_remove_after_marked_as_read">After marked as read</string>
+    <string name="pref_remove_after_read">Automatically after reading</string>
+    <string name="pref_remove_bookmarked_chapters">Allow deleting bookmarked chapters</string>
     <string name="custom_dir">Custom location</string>
     <string name="disabled">Disabled</string>
     <string name="last_read_chapter">Last read chapter</string>
@@ -421,6 +419,7 @@
     <string name="backup_choice">What do you want to backup?</string>
     <string name="creating_backup">Creating backup</string>
     <string name="creating_backup_error">Backup failed</string>
+    <string name="restore_miui_warning">MIUI Optimization must be enabled for restore to work correctly.</string>
     <string name="restore_in_progress">Restore is already in progress</string>
     <string name="restoring_backup">Restoring backup</string>
     <string name="restoring_backup_error">Restoring backup failed</string>
@@ -449,6 +448,7 @@
     <string name="crash_log_saved">Crash logs saved</string>
     <string name="pref_disable_battery_optimization">Disable battery optimization</string>
     <string name="pref_disable_battery_optimization_summary">Helps with background library updates and backups</string>
+    <string name="about_dont_kill_my_app">Some manufacturers have additional app restrictions that kill background services. This website has more info on how to fix it.</string>
     <string name="battery_optimization_disabled">Battery optimization is already disabled</string>
     <string name="battery_optimization_setting_activity_not_found">Couldn\'t open device settings</string>
 
@@ -675,6 +675,7 @@
 
     <!-- Library update service notifications -->
     <string name="notification_check_updates">Checking for new chapters</string>
+    <string name="notification_updating">Updating library… (%1$d/%2$d)</string>
     <string name="notification_new_chapters">New chapters found</string>
     <plurals name="notification_new_chapters_summary">
         <item quantity="one">For 1 title</item>

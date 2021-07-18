@@ -9,6 +9,10 @@
         <item name="android:colorControlHighlight">?attr/rippleColorToolbar</item>
     </style>
 
+    <style name="ThemeOverlay.Tachiyomi.ActionBar.Colored" parent="ThemeOverlay.MaterialComponents.ActionBar">
+        <item name="android:colorControlHighlight">?attr/colorOnPrimary</item>
+    </style>
+
     <style name="Widget.Tachiyomi.Toolbar.Button.Navigation" parent="Widget.AppCompat.Toolbar.Button.Navigation">
         <item name="tint">?attr/colorOnToolbar</item>
     </style>
@@ -183,8 +187,8 @@
     <style name="Widget.Tachiyomi.Chip.Action" parent="Widget.MaterialComponents.Chip.Action">
         <item name="chipStrokeWidth">1dp</item>
         <item name="chipStrokeColor">?attr/colorPrimary</item>
-        <item name="chipBackgroundColor">@android:color/transparent</item>
-        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="chipBackgroundColor">?attr/chipBackgroundColor</item>
+        <item name="android:textColor">?attr/chipTextColor</item>
         <item name="rippleColor">?attr/colorControlHighlight</item>
 
         <!-- Custom chip states -->
@@ -254,7 +258,29 @@
         <item name="tabInlineLabel">true</item>
         <item name="tabMinWidth">75dp</item>
         <item name="tabMode">scrollable</item>
-        <item name="tabRippleColor">@color/ripple_toolbar_fainter</item>
+        <item name="tabRippleColor">?attr/colorOnPrimary</item>
+    </style>
+
+
+    <!--================-->
+    <!--Navigation Views-->
+    <!--================-->
+    <style name="Widget.Tachiyomi.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemRippleColor">@color/ripple_toolbar_fainter</item>
+        <item name="labelVisibilityMode">labeled</item>
+    </style>
+
+    <style name="Widget.Tachiyomi.BottomNavigationView.Colored" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="labelVisibilityMode">labeled</item>
+    </style>
+
+    <style name="Widget.Tachiyomi.NavigationRailView" parent="Widget.MaterialComponents.NavigationRailView">
+        <item name="itemRippleColor">@color/ripple_toolbar_fainter</item>
+        <item name="labelVisibilityMode">labeled</item>
+    </style>
+
+    <style name="Widget.Tachiyomi.NavigationRailView.Colored" parent="Widget.MaterialComponents.NavigationRailView.Colored">
+        <item name="labelVisibilityMode">labeled</item>
     </style>
 
 
@@ -272,21 +298,6 @@
         <item name="android:paddingBottom">8dp</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>
         <item name="android:textSize">15sp</item>
-    </style>
-
-    <!--================================-->
-    <!--material-dialogs style overrides-->
-    <!--================================-->
-    <style name="MD_Light" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
-        <item name="md_divider_color">@color/md_divider_light_theme</item>
-        <item name="md_item_selector">@drawable/md_item_selector</item>
-        <item name="md_button_selector">@drawable/md_btn_selector</item>
-    </style>
-
-    <style name="MD_Dark" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
-        <item name="md_divider_color">@color/md_divider_dark_theme</item>
-        <item name="md_item_selector">@drawable/md_item_selector_dark</item>
-        <item name="md_button_selector">@drawable/md_btn_selector_dark</item>
     </style>
 
     <!--================-->

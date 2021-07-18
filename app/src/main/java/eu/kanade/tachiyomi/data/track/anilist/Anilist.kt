@@ -72,6 +72,10 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
         }
     }
 
+    override fun getReadingStatus(): Int = READING
+
+    override fun getRereadingStatus(): Int = REPEATING
+
     override fun getCompletionStatus(): Int = COMPLETED
 
     override fun getScoreList(): List<String> {
@@ -134,7 +138,7 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
         return api.addLibManga(track)
     }
 
-    override suspend fun update(track: Track): Track {
+    override suspend fun update(track: Track, didReadChapter: Boolean): Track {
         // If user was using API v1 fetch library_id
         if (track.library_id == null || track.library_id!! == 0L) {
             val libManga = api.findLibManga(track, getUsername().toInt())
@@ -142,18 +146,30 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
             track.library_id = libManga.library_id
         }
 
+        if (track.status != COMPLETED) {
+            if (track.status != REPEATING && didReadChapter) {
+                track.status = READING
+            }
+        }
+
         return api.updateLibManga(track)
     }
 
-    override suspend fun bind(track: Track): Track {
+    override suspend fun bind(track: Track, hasReadChapters: Boolean): Track {
         val remoteTrack = api.findLibManga(track, getUsername().toInt())
         return if (remoteTrack != null) {
             track.copyPersonalFrom(remoteTrack)
             track.library_id = remoteTrack.library_id
+
+            if (track.status != COMPLETED) {
+                val isRereading = track.status == REPEATING
+                track.status = if (isRereading.not() && hasReadChapters) READING else track.status
+            }
+
             update(track)
         } else {
             // Set default fields if it's not found in the list
-            track.status = READING
+            track.status = if (hasReadChapters) READING else PLANNING
             track.score = 0F
             add(track)
         }
