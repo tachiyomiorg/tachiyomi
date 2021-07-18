@@ -288,7 +288,7 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
             ViewCompat.requestApplyInsets(binding.root)
         }
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S && splashScreen != null) {
             val oldStatusColor = window.statusBarColor
             val oldNavigationColor = window.navigationBarColor
             window.statusBarColor = Color.TRANSPARENT
@@ -300,7 +300,7 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
             wicc.isAppearanceLightStatusBars = false
             wicc.isAppearanceLightNavigationBars = false
 
-            splashScreen?.setOnExitAnimationListener { splashProvider ->
+            splashScreen.setOnExitAnimationListener { splashProvider ->
                 // For some reason the SplashScreen applies (incorrect) Y translation to the iconView
                 splashProvider.iconView.translationY = 0F
 
