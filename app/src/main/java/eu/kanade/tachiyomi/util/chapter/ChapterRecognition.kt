@@ -54,6 +54,19 @@ object ChapterRecognition {
             it.forEach { occurrence -> name = name.replace(occurrence.value, occurrence.value.trim()) }
         }
 
+        // Start by checking for one number occurrence before any name manipulation
+        // to support volume-only files
+        val occurrences: MutableList<MatchResult> = arrayListOf()
+        occurrence.findAll(name).let {
+            it.forEach { occurrence -> occurrences.add(occurrence) }
+        }
+
+        if (occurrences.size == 1) {
+            if (updateChapter(occurrences[0], chapter)) {
+                return
+            }
+        }
+
         // Remove unwanted tags.
         unwanted.findAll(name).let {
             it.forEach { occurrence -> name = name.replace(occurrence.value, "") }
@@ -64,8 +77,8 @@ object ChapterRecognition {
             return
         }
 
-        // Check one number occurrence.
-        val occurrences: MutableList<MatchResult> = arrayListOf()
+        // Check one number occurrence again now unwanted tags are removed
+        occurrences.clear()
         occurrence.findAll(name).let {
             it.forEach { occurrence -> occurrences.add(occurrence) }
         }
