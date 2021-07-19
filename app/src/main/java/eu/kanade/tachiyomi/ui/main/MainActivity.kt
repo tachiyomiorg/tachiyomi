@@ -17,7 +17,6 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
@@ -294,12 +293,6 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
             window.statusBarColor = Color.TRANSPARENT
             window.navigationBarColor = Color.TRANSPARENT
 
-            val wicc = WindowInsetsControllerCompat(window, window.decorView)
-            val isLightStatusBars = wicc.isAppearanceLightStatusBars
-            val isLightNavigationBars = wicc.isAppearanceLightNavigationBars
-            wicc.isAppearanceLightStatusBars = false
-            wicc.isAppearanceLightNavigationBars = false
-
             splashScreen.setOnExitAnimationListener { splashProvider ->
                 // For some reason the SplashScreen applies (incorrect) Y translation to the iconView
                 splashProvider.iconView.translationY = 0F
@@ -313,19 +306,12 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
                     }
                 }
 
-                var barColorRestored = false
                 val splashAnim = ValueAnimator.ofFloat(1F, 0F).apply {
                     interpolator = FastOutSlowInInterpolator()
                     duration = SPLASH_EXIT_ANIM_DURATION
                     addUpdateListener { va ->
                         val value = va.animatedValue as Float
                         splashProvider.view.alpha = value
-
-                        if (!barColorRestored && value <= 0.5F) {
-                            barColorRestored = true
-                            wicc.isAppearanceLightStatusBars = isLightStatusBars
-                            wicc.isAppearanceLightNavigationBars = isLightNavigationBars
-                        }
                     }
                     doOnEnd {
                         splashProvider.remove()
