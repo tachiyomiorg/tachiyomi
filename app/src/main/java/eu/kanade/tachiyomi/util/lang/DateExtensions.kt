@@ -46,9 +46,9 @@ fun Long.toCalendar(): Calendar? {
 }
 
 /**
- * Convert epoch long to Calendar instance in UTC
+ * Convert local time millisecond value to Calendar instance in UTC
  *
- * @return UTC Calendar instance at supplied epoch time. Null if epoch was 0.
+ * @return UTC Calendar instance at supplied time. Null if time is 0.
  */
 fun Long.toUtcCalendar(): Calendar? {
     if (this == 0L) {
@@ -58,6 +58,31 @@ fun Long.toUtcCalendar(): Calendar? {
         timeInMillis = this@toUtcCalendar
     }
     return Calendar.getInstance(TimeZone.getTimeZone("UTC")).apply {
+        clear()
+        set(
+            rawCalendar.get(Calendar.YEAR),
+            rawCalendar.get(Calendar.MONTH),
+            rawCalendar.get(Calendar.DAY_OF_MONTH),
+            rawCalendar.get(Calendar.HOUR_OF_DAY),
+            rawCalendar.get(Calendar.MINUTE),
+            rawCalendar.get(Calendar.SECOND)
+        )
+    }
+}
+
+/**
+ * Convert UTC time millisecond to Calendar instance in local time zone
+ *
+ * @return local Calendar instance at supplied UTC time. Null if time is 0.
+ */
+fun Long.toLocalCalendar(): Calendar? {
+    if (this == 0L) {
+        return null
+    }
+    val rawCalendar = Calendar.getInstance(TimeZone.getTimeZone("UTC")).apply {
+        timeInMillis = this@toLocalCalendar
+    }
+    return Calendar.getInstance().apply {
         clear()
         set(
             rawCalendar.get(Calendar.YEAR),

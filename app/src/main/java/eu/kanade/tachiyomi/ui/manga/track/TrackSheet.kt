@@ -18,6 +18,7 @@ import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.ui.base.controller.openInBrowser
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.lang.launchIO
+import eu.kanade.tachiyomi.util.lang.toLocalCalendar
 import eu.kanade.tachiyomi.util.lang.toUtcCalendar
 import eu.kanade.tachiyomi.util.lang.withUIContext
 import eu.kanade.tachiyomi.util.system.copyToClipboard
@@ -154,8 +155,11 @@ class TrackSheet(
             .setSelection(selection)
             .setCalendarConstraints(constraints)
             .build()
-        picker.addOnPositiveButtonClickListener {
-            controller.presenter.setTrackerStartDate(item, it)
+        picker.addOnPositiveButtonClickListener { utcMillis ->
+            val result = utcMillis.toLocalCalendar()?.timeInMillis
+            if (result != null) {
+                controller.presenter.setTrackerStartDate(item, result)
+            }
         }
         picker.show(fragmentManager, null)
     }
@@ -171,7 +175,7 @@ class TrackSheet(
         val constraints = CalendarConstraints.Builder().apply {
             val startMillis = item.track.started_reading_date.toUtcCalendar()?.timeInMillis
             if (startMillis != null) {
-                setValidator(DateValidatorPointForward.from(item.track.started_reading_date))
+                setValidator(DateValidatorPointForward.from(startMillis))
             }
         }.build()
 
@@ -180,8 +184,11 @@ class TrackSheet(
             .setSelection(selection)
             .setCalendarConstraints(constraints)
             .build()
-        picker.addOnPositiveButtonClickListener {
-            controller.presenter.setTrackerFinishDate(item, it)
+        picker.addOnPositiveButtonClickListener { utcMillis ->
+            val result = utcMillis.toLocalCalendar()?.timeInMillis
+            if (result != null) {
+                controller.presenter.setTrackerFinishDate(item, result)
+            }
         }
         picker.show(fragmentManager, null)
     }
