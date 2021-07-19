@@ -153,6 +153,7 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
      * Called when a new page (either a [ReaderPage] or [ChapterTransition]) is marked as active
      */
     private fun onPageChange(position: Int) {
+        activity.hideMenu()
         val page = adapter.items.getOrNull(position)
         if (page != null && currentPage != page) {
             val allowPreload = checkAllowPreload(page as? ReaderPage)

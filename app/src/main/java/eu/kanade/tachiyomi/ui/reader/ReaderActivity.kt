@@ -738,6 +738,15 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
     }
 
     /**
+     * Called from the viewer to hide the menu.
+     */
+    fun hideMenu() {
+        if (menuVisible) {
+            setMenuVisibility(false)
+        }
+    }
+
+    /**
      * Called from the page sheet. It delegates the call to the presenter to do some IO, which
      * will call [onShareImageResult] with the path the image was saved on when it's ready.
      */
