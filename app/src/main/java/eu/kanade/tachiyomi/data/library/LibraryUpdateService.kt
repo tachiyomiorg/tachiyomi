@@ -511,9 +511,19 @@ class LibraryUpdateService(
             if (errors.isNotEmpty()) {
                 val file = createFileInCacheDir("tachiyomi_update_errors.txt")
                 file.bufferedWriter().use { out ->
-                    errors.forEach { (manga, error) ->
-                        val source = sourceManager.getOrStub(manga.source)
-                        out.write("${manga.title} ($source): $error\n")
+                    // Error file format:
+                    // ! Error
+                    //   # Source
+                    //     - Manga
+                    errors.groupBy({ it.second }, { it.first }).forEach { (error, mangas) ->
+                        out.write("! ${error}\n")
+                        mangas.groupBy { it.source }.forEach { (srcId, mangas) ->
+                            val source = sourceManager.getOrStub(srcId)
+                            out.write("  # $source\n")
+                            mangas.forEach {
+                                out.write("    - ${it.title}\n")
+                            }
+                        }
                     }
                 }
                 return file
