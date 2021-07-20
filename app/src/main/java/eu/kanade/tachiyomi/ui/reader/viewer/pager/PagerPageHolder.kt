@@ -109,6 +109,7 @@ class PagerPageHolder(
         unsubscribeStatus()
         unsubscribeReadImageHeader()
         subsamplingImageView?.setOnImageEventListener(null)
+        subsamplingImageView?.setOnStateChangedListener(null)
     }
 
     /**
@@ -364,6 +365,17 @@ class PagerPageHolder(
 
                     override fun onImageLoadError(e: Exception) {
                         onImageDecodeError()
+                    }
+                }
+            )
+            setOnStateChangedListener(
+                object : SubsamplingScaleImageView.OnStateChangedListener {
+                    override fun onScaleChanged(newScale: Float, origin: Int) {
+                        viewer.activity.hideMenu()
+                    }
+
+                    override fun onCenterChanged(newCenter: PointF?, origin: Int) {
+                        viewer.activity.hideMenu()
                     }
                 }
             )
