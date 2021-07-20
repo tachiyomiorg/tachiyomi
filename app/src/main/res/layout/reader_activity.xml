@@ -22,7 +22,6 @@
             android:layout_gravity="center"
             android:indeterminate="true"
             android:visibility="gone"
-            app:indicatorSize="56dp"
             tools:visibility="visible" />
 
         <eu.kanade.tachiyomi.ui.reader.PageIndicatorTextView
