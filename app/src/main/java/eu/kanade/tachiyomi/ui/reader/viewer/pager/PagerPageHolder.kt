@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.ui.reader.viewer.pager
 
 import android.annotation.SuppressLint
+import android.app.ActionBar
 import android.graphics.PointF
 import android.graphics.drawable.Animatable
 import android.view.GestureDetector
@@ -94,9 +95,28 @@ class PagerPageHolder(
      */
     private var readImageHeaderSubscription: Subscription? = null
 
+    private var visibilityListener = ActionBar.OnMenuVisibilityListener { isVisible ->
+        if (isVisible.not()) {
+            subsamplingImageView?.setOnStateChangedListener(null)
+            return@OnMenuVisibilityListener
+        }
+        subsamplingImageView?.setOnStateChangedListener(
+            object : SubsamplingScaleImageView.OnStateChangedListener {
+                override fun onScaleChanged(newScale: Float, origin: Int) {
+                    viewer.activity.hideMenu()
+                }
+
+                override fun onCenterChanged(newCenter: PointF?, origin: Int) {
+                    viewer.activity.hideMenu()
+                }
+            }
+        )
+    }
+
     init {
         addView(progressBar)
         observeStatus()
+        viewer.activity.addOnMenuVisibilityListener(visibilityListener)
     }
 
     /**
@@ -110,6 +130,7 @@ class PagerPageHolder(
         unsubscribeReadImageHeader()
         subsamplingImageView?.setOnImageEventListener(null)
         subsamplingImageView?.setOnStateChangedListener(null)
+        viewer.activity.removeOnMenuVisibilityListener(visibilityListener)
     }
 
     /**
@@ -365,17 +386,6 @@ class PagerPageHolder(
 
                     override fun onImageLoadError(e: Exception) {
                         onImageDecodeError()
-                    }
-                }
-            )
-            setOnStateChangedListener(
-                object : SubsamplingScaleImageView.OnStateChangedListener {
-                    override fun onScaleChanged(newScale: Float, origin: Int) {
-                        viewer.activity.hideMenu()
-                    }
-
-                    override fun onCenterChanged(newCenter: PointF?, origin: Int) {
-                        viewer.activity.hideMenu()
                     }
                 }
             )
