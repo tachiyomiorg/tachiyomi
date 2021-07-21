@@ -42,6 +42,15 @@ interface MangaQueries : DbProvider {
             .prepare()
     }
 
+    fun getAllManga() = db.get()
+        .listOfObjects(Manga::class.java)
+        .withQuery(
+            Query.builder()
+                .table(MangaTable.TABLE)
+                .build()
+        )
+        .prepare()
+
     fun getManga(url: String, sourceId: Long) = db.get()
         .`object`(Manga::class.java)
         .withQuery(
@@ -117,11 +126,18 @@ interface MangaQueries : DbProvider {
 
     fun deleteMangas(mangas: List<Manga>) = db.delete().objects(mangas).prepare()
 
-    fun deleteMangasNotInLibrary() = db.delete()
+    fun deleteMangasNotInLibrary(onlySources: List<Long> = emptyList()) = db.delete()
         .byQuery(
             DeleteQuery.builder()
                 .table(MangaTable.TABLE)
-                .where("${MangaTable.COL_FAVORITE} = ?")
+                .also { query ->
+                    if (onlySources.isNotEmpty()) {
+                        // Passing onlySources.joinToString(",") doesn't work as a whereArg for some reason
+                        query.where("${MangaTable.COL_SOURCE} IN (${onlySources.joinToString(",")}) AND ${MangaTable.COL_FAVORITE} = ?")
+                    } else {
+                        query.where("${MangaTable.COL_FAVORITE} = ?")
+                    }
+                }
                 .whereArgs(0)
                 .build()
         )
