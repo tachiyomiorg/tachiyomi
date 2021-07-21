@@ -6,7 +6,7 @@ import android.view.*
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.afollestad.materialdialogs.MaterialDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import dev.chrisbanes.insetter.applyInsetter
 import eu.davidea.flexibleadapter.FlexibleAdapter
@@ -160,12 +160,13 @@ class DatabaseSourcesController :
     class ClearDatabaseSourcesDialog : DialogController() {
 
         override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-            return MaterialDialog(activity!!)
-                .message(R.string.clear_database_confirmation)
-                .positiveButton(android.R.string.ok) {
+            return MaterialAlertDialogBuilder(activity!!)
+                .setMessage(R.string.clear_database_confirmation)
+                .setPositiveButton(android.R.string.ok) { _, _ ->
                     (targetController as? DatabaseSourcesController)?.clearDatabaseForSources()
                 }
-                .negativeButton(android.R.string.cancel)
+                .setNegativeButton(android.R.string.cancel, null)
+                .create()
         }
     }
 
