@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import coil.loadAny
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.track.TrackManager
@@ -177,14 +178,32 @@ class MangaInfoHeaderAdapter(
 
             binding.mangaCover.longClicks()
                 .onEach {
-                    controller.activity?.copyToClipboard(
-                        view.context.getString(R.string.title),
-                        controller.presenter.manga.title
-                    )
+                    showCoverOptionsDialog()
                 }
                 .launchIn(controller.viewScope)
 
             setMangaInfo(manga, source)
+        }
+
+        private fun showCoverOptionsDialog() {
+            val options = listOfNotNull(
+                R.string.action_share,
+                R.string.action_save,
+                // Can only edit cover for library manga
+                if (manga.favorite) R.string.action_edit else null
+            ).map(controller.activity!!::getString).toTypedArray()
+
+            MaterialAlertDialogBuilder(controller.activity!!)
+                .setTitle(R.string.manga_cover)
+                .setItems(options) { _, item ->
+                    when (item) {
+                        0 -> controller.shareCover()
+                        1 -> controller.saveCover()
+                        2 -> controller.changeCover()
+                    }
+                }
+                .setNegativeButton(android.R.string.cancel, null)
+                .show()
         }
 
         /**
@@ -262,11 +281,11 @@ class MangaInfoHeaderAdapter(
                 if (!manga.genre.isNullOrBlank()) {
                     binding.mangaGenresTagsCompactChips.setChips(
                         manga.getGenres(),
-                        controller::performSearch
+                        controller::performGenreSearch
                     )
                     binding.mangaGenresTagsFullChips.setChips(
                         manga.getGenres(),
-                        controller::performSearch
+                        controller::performGenreSearch
                     )
                 } else {
                     binding.mangaGenresTagsCompactChips.isVisible = false

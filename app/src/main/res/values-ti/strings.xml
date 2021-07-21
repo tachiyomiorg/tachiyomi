@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="information_no_recent_manga">ኣብ ቀረባ ግዘ ኣየንበቡን</string>
+    <string name="information_no_recent">ዝሕደሱ የለዉን</string>
+    <string name="information_no_downloads">ዝወርድ የለን</string>
+    <string name="confirm_exit">ንምውፃእ ደጊምኻ ተመለስ መልጎም ንኻእ</string>
+    <string name="action_filter_unread">ዘይተነበበ</string>
+    <string name="action_filter_tracked">ተኸታቲሉ</string>
+    <string name="action_filter_bookmarked">ተቐሚጡ</string>
+    <string name="action_filter_downloaded">ወሪዱ</string>
+    <string name="action_filter">ሚሐ</string>
+    <string name="action_menu">መምረፅ</string>
+    <string name="action_settings">ስንድኦት</string>
+    <string name="label_help">ሓገዝ</string>
+    <string name="label_extension_info">ተወሰኽቲ ሓበሬታ</string>
+    <string name="label_extensions">ተወሰኽቲ</string>
+    <string name="label_migration">ቅብብል</string>
+    <string name="label_backup">መሐለውታን መመለሲን</string>
+    <string name="label_sources">ፍልፍላት</string>
+    <string name="categories">ምድባት</string>
+    <string name="history">መዝገብ</string>
+    <string name="label_recent_manga">መዝገብ</string>
+    <string name="label_recent_updates">ምምሕያሽ</string>
+    <string name="label_library">ቤተ ንባብ</string>
+    <string name="label_download_queue">ምውራድ ሰልፊ</string>
+    <string name="label_settings">ስንድኦት</string>
+    <string name="label_more">ተወሳኺ</string>
+    <string name="unlock_app">ታቺዮሚ ን ይክፈቱ</string>
+    <string name="track">ምክትታል</string>
+    <string name="chapters">ምዕራፋት</string>
+    <string name="manga">ማንጋ</string>
+    <string name="name">ስም</string>
+    <string name="action_search_settings">አለሻ ስንድኦት</string>
+    <string name="action_search">አለሻ</string>
+    <string name="action_sort_date_added">ዝተመዝገበሉ መዓልቲ</string>
+    <string name="action_sort_chapter_fetch_date">መዓልቲ ተሓዲሱ</string>
+    <string name="action_sort_latest_chapter">እዋናዊ ምዕራፍ</string>
+    <string name="action_sort_last_read">ንመወዳእታ ግዜ ዝተነበበ</string>
+    <string name="action_sort_total">ብዝሒ ምዕራፍ</string>
+    <string name="action_sort_alpha">ብፊደል</string>
+    <string name="action_filter_empty">መጻረዪ ኣወግድ</string>
+</resources>

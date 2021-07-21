@@ -64,22 +64,25 @@ class LibraryUpdateNotifier(private val context: Context) {
     /**
      * Shows the notification containing the currently updating manga and the progress.
      *
-     * @param manga the manga that's being updated.
+     * @param manga the manga that are being updated.
      * @param current the current progress.
      * @param total the total progress.
      */
-    fun showProgressNotification(manga: Manga, current: Int, total: Int) {
-        val title = if (preferences.hideNotificationContent()) {
-            context.getString(R.string.notification_check_updates)
+    fun showProgressNotification(manga: List<Manga>, current: Int, total: Int) {
+        if (preferences.hideNotificationContent()) {
+            progressNotificationBuilder
+                .setContentTitle(context.getString(R.string.notification_check_updates))
+                .setContentText("($current/$total)")
         } else {
-            manga.title
+            val updatingText = manga.joinToString("\n") { it.title.chop(40) }
+            progressNotificationBuilder
+                .setContentTitle(context.getString(R.string.notification_updating, current, total))
+                .setStyle(NotificationCompat.BigTextStyle().bigText(updatingText))
         }
 
         context.notificationManager.notify(
             Notifications.ID_LIBRARY_PROGRESS,
             progressNotificationBuilder
-                .setContentTitle(title.chop(40))
-                .setContentText("($current/$total)")
                 .setProgress(total, current, false)
                 .build()
         )

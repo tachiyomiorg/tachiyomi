@@ -3,7 +3,10 @@ package eu.kanade.tachiyomi.ui.manga
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -20,6 +23,8 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import coil.imageLoader
+import coil.request.ImageRequest
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -36,8 +41,8 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.DownloadService
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.track.EnhancedTrackService
 import eu.kanade.tachiyomi.data.track.TrackService
-import eu.kanade.tachiyomi.data.track.UnattendedTrackService
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.databinding.MangaControllerBinding
 import eu.kanade.tachiyomi.source.LocalSource
@@ -270,6 +275,8 @@ class MangaController :
         chaptersAdapter?.fastScroller = binding.fastScroller
 
         actionFabScrollListener = actionFab?.shrinkOnScroll(chapterRecycler)
+        // Initially set FAB invisible; will become visible if unread chapters are present
+        actionFab?.isVisible = false
 
         binding.swipeRefresh.refreshes()
             .onEach {
@@ -287,7 +294,7 @@ class MangaController :
             }
         }
 
-        trackSheet = TrackSheet(this, manga!!)
+        trackSheet = TrackSheet(this, manga!!, (activity as MainActivity).supportFragmentManager)
 
         updateFilterIconState()
     }
@@ -333,8 +340,6 @@ class MangaController :
                         }
                     )
                 }
-            } else {
-                view?.context?.toast(R.string.no_next_chapter)
             }
         }
     }
@@ -535,10 +540,10 @@ class MangaController :
             }
         }
 
-        if (source != null && preferences.autoAddTrack()) {
+        if (source != null) {
             presenter.trackList
                 .map { it.service }
-                .filterIsInstance<UnattendedTrackService>()
+                .filterIsInstance<EnhancedTrackService>()
                 .filter { it.accept(source!!) }
                 .forEach { service ->
                     launchIO {
@@ -638,29 +643,78 @@ class MangaController :
         }
     }
 
-    private fun shareCover() {
+    /**
+     * Performs a genre search using the provided genre name.
+     *
+     * @param genreName the search genre to the parent controller
+     */
+    fun performGenreSearch(genreName: String) {
+        if (router.backstackSize < 2) {
+            return
+        }
+
+        val previousController = router.backstack[router.backstackSize - 2].controller
+        val presenterSource = presenter.source
+
+        if (previousController is BrowseSourceController &&
+            presenterSource is HttpSource
+        ) {
+            router.handleBack()
+            previousController.searchWithGenre(genreName)
+        } else {
+            performSearch(genreName)
+        }
+    }
+
+    /**
+     * Fetches the cover with Coil, turns it into Bitmap and does something with it (asynchronous)
+     * @param context The context for building and executing the ImageRequest
+     * @param coverHandler A function that describes what should be done with the Bitmap
+     */
+    private fun useCoverAsBitmap(context: Context, coverHandler: (Bitmap) -> Unit) {
+        val req = ImageRequest.Builder(context)
+            .data(manga)
+            .target { result ->
+                val coverBitmap = (result as BitmapDrawable).bitmap
+                coverHandler(coverBitmap)
+            }
+            .build()
+        context.imageLoader.enqueue(req)
+    }
+
+    fun shareCover() {
         try {
             val activity = activity!!
-            val cover = presenter.shareCover(activity)
-            val uri = cover.getUriCompat(activity)
-            startActivity(Intent.createChooser(uri.toShareIntent(), activity.getString(R.string.action_share)))
+            useCoverAsBitmap(activity) { coverBitmap ->
+                val cover = presenter.shareCover(activity, coverBitmap)
+                val uri = cover.getUriCompat(activity)
+                startActivity(
+                    Intent.createChooser(
+                        uri.toShareIntent(),
+                        activity.getString(R.string.action_share)
+                    )
+                )
+            }
         } catch (e: Exception) {
             Timber.e(e)
             activity?.toast(R.string.error_sharing_cover)
         }
     }
 
-    private fun saveCover() {
+    fun saveCover() {
         try {
-            presenter.saveCover(activity!!)
-            activity?.toast(R.string.cover_saved)
+            val activity = activity!!
+            useCoverAsBitmap(activity) { coverBitmap ->
+                presenter.saveCover(activity, coverBitmap)
+                activity.toast(R.string.cover_saved)
+            }
         } catch (e: Exception) {
             Timber.e(e)
             activity?.toast(R.string.error_saving_cover)
         }
     }
 
-    private fun changeCover() {
+    fun changeCover() {
         val manga = manga ?: return
         if (manga.hasCustomCover(coverCache)) {
             ChangeMangaCoverDialog(this, manga).showDialog(router)
@@ -752,8 +806,11 @@ class MangaController :
         }
 
         val context = view?.context
-        if (context != null && chapters.any { it.read }) {
-            actionFab?.text = context.getString(R.string.action_resume)
+        if (context != null) {
+            actionFab?.isVisible = chapters.any { !it.read }
+            if (chapters.any { it.read }) {
+                actionFab?.text = context.getString(R.string.action_resume)
+            }
         }
     }
 

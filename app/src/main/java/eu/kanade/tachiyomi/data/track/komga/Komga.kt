@@ -6,22 +6,19 @@ import androidx.annotation.StringRes
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.database.models.Track
+import eu.kanade.tachiyomi.data.track.EnhancedTrackService
 import eu.kanade.tachiyomi.data.track.NoLoginTrackService
 import eu.kanade.tachiyomi.data.track.TrackService
-import eu.kanade.tachiyomi.data.track.UnattendedTrackService
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
-import eu.kanade.tachiyomi.source.Source
 import okhttp3.Dns
 import okhttp3.OkHttpClient
 
-class Komga(private val context: Context, id: Int) : TrackService(id), UnattendedTrackService, NoLoginTrackService {
+class Komga(private val context: Context, id: Int) : TrackService(id), EnhancedTrackService, NoLoginTrackService {
 
     companion object {
         const val UNREAD = 1
         const val READING = 2
         const val COMPLETED = 3
-
-        const val ACCEPTED_SOURCE = "eu.kanade.tachiyomi.extension.all.komga.Komga"
     }
 
     override val client: OkHttpClient =
@@ -49,17 +46,27 @@ class Komga(private val context: Context, id: Int) : TrackService(id), Unattende
         }
     }
 
+    override fun getReadingStatus(): Int = READING
+
+    override fun getRereadingStatus(): Int = -1
+
     override fun getCompletionStatus(): Int = COMPLETED
 
     override fun getScoreList(): List<String> = emptyList()
 
     override fun displayScore(track: Track): String = ""
 
-    override suspend fun update(track: Track): Track {
+    override suspend fun update(track: Track, didReadChapter: Boolean): Track {
+        if (track.status != COMPLETED) {
+            if (didReadChapter) {
+                track.status = READING
+            }
+        }
+
         return api.updateProgress(track)
     }
 
-    override suspend fun bind(track: Track): Track {
+    override suspend fun bind(track: Track, hasReadChapters: Boolean): Track {
         return track
     }
 
@@ -84,7 +91,7 @@ class Komga(private val context: Context, id: Int) : TrackService(id), Unattende
         saveCredentials("user", "pass")
     }
 
-    override fun accept(source: Source): Boolean = source::class.qualifiedName == ACCEPTED_SOURCE
+    override fun getAcceptedSources() = listOf("eu.kanade.tachiyomi.extension.all.komga.Komga")
 
     override suspend fun match(manga: Manga): TrackSearch? =
         try {

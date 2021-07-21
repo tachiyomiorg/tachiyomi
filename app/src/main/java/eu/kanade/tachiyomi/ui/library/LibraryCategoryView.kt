@@ -14,9 +14,11 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.databinding.LibraryCategoryBinding
+import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.util.lang.plusAssign
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.inflate
+import eu.kanade.tachiyomi.util.view.onAnimationsFinished
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
@@ -105,6 +107,10 @@ class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: Att
                 binding.swipeRefresh.isEnabled = firstPos <= 0
             }
             .launchIn(scope)
+
+        recycler.onAnimationsFinished {
+            (controller.activity as? MainActivity)?.ready = true
+        }
 
         // Double the distance required to trigger sync
         binding.swipeRefresh.setDistanceToTriggerSync((2 * 64 * resources.displayMetrics.density).toInt())

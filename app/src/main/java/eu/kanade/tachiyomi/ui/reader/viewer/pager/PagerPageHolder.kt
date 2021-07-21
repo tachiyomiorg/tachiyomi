@@ -14,6 +14,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.view.isVisible
+import androidx.core.view.updateLayoutParams
 import coil.imageLoader
 import coil.request.CachePolicy
 import coil.request.ImageRequest
@@ -24,7 +25,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.ui.reader.model.InsertPage
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
-import eu.kanade.tachiyomi.ui.reader.viewer.ReaderProgressBar
+import eu.kanade.tachiyomi.ui.reader.viewer.ReaderProgressIndicator
 import eu.kanade.tachiyomi.ui.reader.viewer.pager.PagerConfig.ZoomType
 import eu.kanade.tachiyomi.ui.webview.WebViewActivity
 import eu.kanade.tachiyomi.util.system.ImageUtil
@@ -56,7 +57,11 @@ class PagerPageHolder(
     /**
      * Loading progress bar to indicate the current progress.
      */
-    private val progressBar = createProgressBar()
+    private val progressIndicator = ReaderProgressIndicator(context).apply {
+        updateLayoutParams<LayoutParams> {
+            gravity = Gravity.CENTER
+        }
+    }
 
     /**
      * Image view that supports subsampling on zoom.
@@ -95,7 +100,7 @@ class PagerPageHolder(
     private var readImageHeaderSubscription: Subscription? = null
 
     init {
-        addView(progressBar)
+        addView(progressIndicator)
         observeStatus()
     }
 
@@ -136,7 +141,7 @@ class PagerPageHolder(
             .distinctUntilChanged()
             .onBackpressureLatest()
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { value -> progressBar.setProgress(value) }
+            .subscribe { value -> progressIndicator.setProgress(value) }
     }
 
     /**
@@ -191,7 +196,7 @@ class PagerPageHolder(
      * Called when the page is queued.
      */
     private fun setQueued() {
-        progressBar.isVisible = true
+        progressIndicator.show()
         retryButton?.isVisible = false
         decodeErrorLayout?.isVisible = false
     }
@@ -200,7 +205,7 @@ class PagerPageHolder(
      * Called when the page is loading.
      */
     private fun setLoading() {
-        progressBar.isVisible = true
+        progressIndicator.show()
         retryButton?.isVisible = false
         decodeErrorLayout?.isVisible = false
     }
@@ -209,7 +214,7 @@ class PagerPageHolder(
      * Called when the page is downloading.
      */
     private fun setDownloading() {
-        progressBar.isVisible = true
+        progressIndicator.show()
         retryButton?.isVisible = false
         decodeErrorLayout?.isVisible = false
     }
@@ -218,8 +223,8 @@ class PagerPageHolder(
      * Called when the page is ready.
      */
     private fun setImage() {
-        progressBar.isVisible = true
-        progressBar.completeAndFadeOut()
+        progressIndicator.setProgress(100)
+        progressIndicator.hide()
         retryButton?.isVisible = false
         decodeErrorLayout?.isVisible = false
 
@@ -301,7 +306,7 @@ class PagerPageHolder(
      * Called when the page has an error.
      */
     private fun setError() {
-        progressBar.isVisible = false
+        progressIndicator.hide()
         initRetryButton().isVisible = true
     }
 
@@ -309,28 +314,15 @@ class PagerPageHolder(
      * Called when the image is decoded and going to be displayed.
      */
     private fun onImageDecoded() {
-        progressBar.isVisible = false
+        progressIndicator.hide()
     }
 
     /**
      * Called when an image fails to decode.
      */
     private fun onImageDecodeError() {
-        progressBar.isVisible = false
+        progressIndicator.hide()
         initDecodeErrorLayout().isVisible = true
-    }
-
-    /**
-     * Creates a new progress bar.
-     */
-    @SuppressLint("PrivateResource")
-    private fun createProgressBar(): ReaderProgressBar {
-        return ReaderProgressBar(context, null).apply {
-            val size = 48.dpToPx
-            layoutParams = LayoutParams(size, size).apply {
-                gravity = Gravity.CENTER
-            }
-        }
     }
 
     /**

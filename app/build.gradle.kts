@@ -22,7 +22,6 @@ val SUPPORTED_ABIS = setOf("armeabi-v7a", "arm64-v8a", "x86")
 
 android {
     compileSdkVersion(AndroidConfig.compileSdk)
-    buildToolsVersion(AndroidConfig.buildTools)
     ndkVersion = AndroidConfig.ndk
 
     defaultConfig {
@@ -132,7 +131,7 @@ dependencies {
 
     implementation(kotlin("reflect", version = BuildPluginsVersion.KOTLIN))
 
-    val coroutinesVersion = "1.4.3"
+    val coroutinesVersion = "1.5.1"
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
 
@@ -148,6 +147,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.0-beta02")
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.1.0")
     implementation("androidx.core:core-ktx:1.7.0-alpha01")
+    implementation("androidx.core:core-splashscreen:1.0.0-alpha01")
     implementation("androidx.multidex:multidex:2.0.1")
     implementation("androidx.preference:preference-ktx:1.1.1")
     implementation("androidx.recyclerview:recyclerview:1.2.1")
@@ -162,7 +162,7 @@ dependencies {
     implementation("androidx.work:work-runtime-ktx:2.6.0-beta01")
 
     // UI library
-    implementation("com.google.android.material:material:1.4.0")
+    implementation("com.google.android.material:material:1.5.0-alpha01")
 
     "standardImplementation"("com.google.firebase:firebase-core:19.0.0")
 
@@ -183,7 +183,7 @@ dependencies {
     implementation("org.conscrypt:conscrypt-android:2.5.2")
 
     // JSON
-    val kotlinSerializationVersion = "1.2.0"
+    val kotlinSerializationVersion = "1.2.2"
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinSerializationVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-protobuf:$kotlinSerializationVersion")
     implementation("com.google.code.gson:gson:2.8.7")
@@ -198,7 +198,7 @@ dependencies {
     implementation("com.github.junrar:junrar:7.4.0")
 
     // HTML parser
-    implementation("org.jsoup:jsoup:1.13.1")
+    implementation("org.jsoup:jsoup:1.14.1")
 
     // Database
     implementation("androidx.sqlite:sqlite-ktx:2.1.0")
@@ -218,7 +218,7 @@ dependencies {
     implementation("com.github.inorichi.injekt:injekt-core:65b0440")
 
     // Image library
-    val coilVersion = "1.2.1"
+    val coilVersion = "1.3.0"
     implementation("io.coil-kt:coil:$coilVersion")
     implementation("io.coil-kt:coil-gif:$coilVersion")
 
@@ -244,12 +244,6 @@ dependencies {
     implementation("com.github.chrisbanes:PhotoView:2.3.0")
     implementation("com.github.tachiyomiorg:DirectionalViewPager:1.0.0")
     implementation("dev.chrisbanes.insetter:insetter:0.6.0")
-
-    // 3.2.0+ introduces weird UI blinking or cut off issues on some devices
-    val materialDialogsVersion = "3.1.1"
-    implementation("com.afollestad.material-dialogs:core:$materialDialogsVersion")
-    implementation("com.afollestad.material-dialogs:input:$materialDialogsVersion")
-    implementation("com.afollestad.material-dialogs:datetime:$materialDialogsVersion")
 
     // Conductor
     val conductorVersion = "3.0.0"

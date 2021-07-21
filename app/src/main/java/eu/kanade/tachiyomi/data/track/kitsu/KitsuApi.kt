@@ -84,6 +84,8 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
                         put("status", track.toKitsuStatus())
                         put("progress", track.last_chapter_read)
                         put("ratingTwenty", track.toKitsuScore())
+                        put("startedAt", KitsuDateHelper.convert(track.started_reading_date))
+                        put("finishedAt", KitsuDateHelper.convert(track.finished_reading_date))
                     }
                 }
             }

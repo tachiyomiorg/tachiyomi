@@ -383,4 +383,7 @@
     <string name="action_display_unread_badge">Olvasatlan jelvények</string>
     <string name="action_display_comfortable_grid">Kényelmes rács</string>
     <string name="action_sort_chapter_fetch_date">Lekérés dátuma</string>
+    <string name="restrictions">Korlátozások: %s</string>
+    <string name="theme_dark_amoled_hotpink">Forró rózsaszín</string>
+    <string name="theme_dark_greenapple">Zöld alma</string>
 </resources>

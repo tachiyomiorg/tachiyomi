@@ -75,7 +75,7 @@ class CategoryTest {
         assertThat(c.id).isNotZero
 
         // Add a manga to a category
-        val m = db.getMangas().executeAsBlocking()[0]
+        val m = db.getLibraryMangas().executeAsBlocking()[0]
         val mc = MangaCategory.create(m, c)
         db.insertMangaCategory(mc).executeAsBlocking()
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="splash">@color/accent_blue</color>
 
     <!-- Default Theme -->
@@ -9,26 +9,25 @@
     <color name="background_default">@color/md_grey_50</color>
     <color name="ripple_colored_default">@color/md_blue_A400_12</color>
 
+    <!-- Monet Theme -->
+    <color name="accent_monet" tools:targetApi="31">@android:color/system_accent1_600</color>
+    <color name="on_accent_monet" tools:targetApi="31">@android:color/system_accent1_10</color>
+    <color name="divider_monet" tools:targetApi="31">@android:color/system_neutral1_200</color>
+    <color name="tertiary_monet" tools:targetApi="31">@android:color/system_accent3_600</color>
+    <color name="on_tertiary_monet" tools:targetApi="31">@android:color/system_accent3_10</color>
+    <color name="surface_monet" tools:targetApi="31">@android:color/system_neutral1_50</color>
+    <color name="on_surface_monet" tools:targetApi="31">@android:color/system_neutral1_900</color>
+    <color name="background_monet" tools:targetApi="31">@color/surface_monet</color>
+    <color name="on_background_monet" tools:targetApi="31">@color/on_surface_monet</color>
+
     <!-- Blue Theme -->
     <color name="accent_blue">#54759E</color>
     <color name="ripple_colored_blue">#1F54759E</color>
 
-    <!-- Strawberry Daiquiri Theme -->
-    <color name="accent_strawberry">#ED4A65</color>
-    <color name="ripple_colored_strawberry">#1FED4A65</color>
-
-    <!-- Yotsuba Theme -->
-    <color name="accent_yotsuba">#FC8C5C</color>
-    <color name="ripple_colored_yotsuba">#1FFC8C5C</color>
-
     <!-- Green Apple Theme -->
-    <color name="accent_greenapple">#48E484</color>
-    <color name="ripple_colored_greenapple">#1F48E484</color>
-
-    <!-- Yin Yang Theme -->
-    <color name="accent_yinyang">#000000</color>
-    <color name="color_on_secondary_yinyang">#FFFFFF</color>
-    <color name="ripple_colored_yinyang">#999999</color>
+    <color name="accent_greenapple">#188140</color>
+    <color name="color_on_primary_greenapple">@color/md_white_1000</color>
+    <color name="ripple_colored_greenapple">#1F188140</color>
 
     <!-- Midnight Dusk Theme -->
     <color name="accent_midnightdusk">#F02475</color>
@@ -36,7 +35,31 @@
     <color name="surface_midnightdusk">#201F27</color>
     <color name="ripple_colored_midnightdusk">#1FF02475</color>
 
-    <!-- AMOLED Theme -->
+    <!-- Strawberry Daiquiri Theme -->
+    <color name="accent_strawberry">#ED4A65</color>
+    <color name="ripple_colored_strawberry">#1FED4A65</color>
+
+    <!-- Tako Theme -->
+    <color name="accent_tako">#66577E</color>
+    <color name="color_on_primary_tako">#F3B375</color>
+    <color name="tertiary_tako">@color/color_on_primary_tako</color>
+    <color name="color_on_tertiary_tako">#574360</color>
+    <color name="ripple_colored_tako">#1F66577E</color>
+    <color name="surface_tako">#F7F5FF</color>
+    <color name="background_tako">#F2EDF7</color>
+    <color name="filter_tako">#F29940</color>
+
+    <!-- Yin & Yang Theme -->
+    <color name="accent_yinyang">#000000</color>
+    <color name="color_on_secondary_yinyang">#FFFFFF</color>
+    <color name="ripple_colored_yinyang">#999999</color>
+    <color name="chip_text_yinyang">#000000</color>
+
+    <!-- Yotsuba Theme -->
+    <color name="accent_yotsuba">#FC8C5C</color>
+    <color name="ripple_colored_yotsuba">#1FFC8C5C</color>
+
+    <!-- AMOLED Mode -->
     <color name="divider_amoled">@android:color/transparent</color>
     <color name="surface_amoled">#000001</color>
     <color name="background_amoled">#000000</color>
@@ -86,7 +109,7 @@
 
     <color name="green">#47a84a</color>
 
-    <!-- Navigation overlay colors -->
+    <!-- Navigation Overlay Colors -->
     <color name="navigation_next">#CB84E296</color>
     <color name="navigation_prev">#CCFF7733</color>
     <color name="navigation_menu">#CC95818D</color>

@@ -7,7 +7,7 @@
     <string name="label_library">Thư Viện</string>
     <string name="label_recent_manga">Lịch Sử</string>
     <string name="label_recent_updates">Mới</string>
-    <string name="label_backup">Sao lưu</string>
+    <string name="label_backup">Sao lưu và khôi phục</string>
     <!-- Actions -->
     <string name="action_settings">Cài đặt</string>
     <string name="action_filter">Bộ lọc</string>
@@ -416,8 +416,13 @@
     <string name="pref_category_security">Bảo mật</string>
     <string name="pref_manage_notifications">Quản lý thông báo</string>
     <string name="pref_date_format">Định dạng ngày</string>
-    <string name="theme_darkblue">Xanh đen</string>
-    <string name="theme_default">Mặc định</string>
+    <string name="theme_dark_amoled">Chủ đề Amoled Đen</string>
+    <string name="theme_dark_blue">Chủ đề Dark Blue</string>
+    <string name="theme_dark_default">Mặc định</string>
+    <string name="pref_theme_dark">Chủ đề tối</string>
+    <string name="theme_light_blue">Xanh trắng</string>
+    <string name="theme_light_default">Mặc định</string>
+    <string name="pref_theme_light">Chủ đề sáng</string>
     <string name="theme_system">Theo hệ thống</string>
     <string name="theme_dark">Bật</string>
     <string name="theme_light">Tắt</string>
@@ -538,7 +543,7 @@
     </plurals>
     <string name="notification_chapters_multiple">Chương %1$s</string>
     <string name="notification_chapters_single_and_more">Chương %1$s và thêm %2$d</string>
-    <string name="download_insufficient_space">Không thể tãi chương vì dung lượng thấp</string>
+    <string name="download_insufficient_space">Không thể tãi chương vì dung lượng bộ nhớ xuống thấp</string>
     <string name="recent_manga_time">Ch.%1$s-%2$s</string>
     <plurals name="missing_chapters_warning">
         <item quantity="other">Có tất cả %d chương không tìm thấy</item>
@@ -652,4 +657,30 @@
     <string name="action_sort_chapter_fetch_date">Ngày nhập</string>
     <string name="action_filter_tracked">Đã theo dõi</string>
     <string name="cancel_all_for_series">Dừng tất cả cho series</string>
+    <string name="theme_dark_amoled_hotpink">Chủ đề AMOLED HOT PINK</string>
+    <string name="theme_dark_greenapple">Chủ đề Green Apple</string>
+    <string name="theme_dark_midnightdusk">Chủ đề Midnight Dusk</string>
+    <string name="theme_light_strawberrydaiquiri">Dâu Daiquiri</string>
+    <string name="action_display_local_badge">Huy hiệu cục bộ</string>
+    <string name="error_no_match">Không tìm thấy chính sác</string>
+    <string name="source_unsupported">Nguồn không hỗ trợ</string>
+    <string name="unread">Chưa đọc</string>
+    <string name="error_sharing_cover">Lỗi khi chia sẻ ảnh bìa</string>
+    <string name="error_saving_cover">Lỗi khi lưu ảnh bìa</string>
+    <string name="cover_saved">Đã lưu ảnh bìa</string>
+    <string name="manga_cover">Ảnh bìa</string>
+    <string name="date">Ngày</string>
+    <string name="local_filter_order_by">Xếp theo</string>
+    <string name="local_invalid_format">Định dạng chương không đúng</string>
+    <string name="chapter_not_found">Chương không tìm thấy</string>
+    <string name="pref_auto_add_track">Theo dõi âm thầm khi thêm truyện vào thư viện</string>
+    <string name="on">Bật</string>
+    <string name="off">Tắt</string>
+    <string name="pref_library_update_refresh_trackers_summary">Cập nhật theo dõi khi cập nhật thư viện</string>
+    <string name="pref_library_update_refresh_trackers">Tự động làm mới theo dõi</string>
+    <string name="restrictions">Hạn chế: %s</string>
+    <string name="alignment_bottom">Cuối</string>
+    <string name="alignment_center">Giữa</string>
+    <string name="alignment_top">Trên</string>
+    <string name="pref_side_nav_icon_alignment">Căn chỉnh biểu tượng điều hướng bên cạnh</string>
 </resources>

@@ -631,4 +631,9 @@
     <string name="pref_dual_page_invert_summary">Dacă amplasarea divizării duble a paginii nu corespunde cu direcția de citire</string>
     <string name="update_check_eol">Această versiune Android nu mai este suportată</string>
     <string name="clipboard_copy_error">Nu s-a reușit copierea în clipboard</string>
+    <string name="error_sharing_cover">Eroare la distribuirea copertei</string>
+    <string name="error_saving_cover">Eroare la salvarea copertei</string>
+    <string name="cover_saved">Copertă salvată</string>
+    <string name="chapter_not_found">Capitolul nu a fost găsit</string>
+    <string name="unread">Necitit</string>
 </resources>
