@@ -3,8 +3,7 @@ package eu.kanade.tachiyomi.ui.manga.chapter
 import android.app.Dialog
 import android.os.Bundle
 import androidx.core.os.bundleOf
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.customview.customView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
@@ -24,13 +23,10 @@ class SetChapterSettingsDialog(bundle: Bundle? = null) : DialogController(bundle
             setOptionDescription(R.string.also_set_chapter_settings_for_library)
         }
 
-        return MaterialDialog(activity!!)
-            .title(R.string.chapter_settings)
-            .customView(
-                view = view,
-                horizontalPadding = true
-            )
-            .positiveButton(android.R.string.ok) {
+        return MaterialAlertDialogBuilder(activity!!)
+            .setTitle(R.string.chapter_settings)
+            .setView(view)
+            .setPositiveButton(android.R.string.ok) { _, _ ->
                 ChapterSettingsHelper.setGlobalSettings(args.getSerializable(MANGA_KEY)!! as Manga)
                 if (view.isChecked()) {
                     ChapterSettingsHelper.updateAllMangasWithGlobalDefaults()
@@ -38,7 +34,8 @@ class SetChapterSettingsDialog(bundle: Bundle? = null) : DialogController(bundle
 
                 activity?.toast(activity!!.getString(R.string.chapter_settings_updated))
             }
-            .negativeButton(android.R.string.cancel)
+            .setNegativeButton(android.R.string.cancel, null)
+            .create()
     }
 
     private companion object {

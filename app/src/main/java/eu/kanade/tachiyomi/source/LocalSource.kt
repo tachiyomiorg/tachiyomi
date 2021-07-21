@@ -29,7 +29,6 @@ class LocalSource(private val context: Context) : CatalogueSource {
         const val ID = 0L
         const val HELP_URL = "https://tachiyomi.org/help/guides/local-manga/"
 
-        private const val COVER_NAME = "cover.jpg"
         private val SUPPORTED_ARCHIVE_TYPES = setOf("zip", "rar", "cbr", "cbz", "epub")
 
         private val LATEST_THRESHOLD = TimeUnit.MILLISECONDS.convert(7, TimeUnit.DAYS)
@@ -40,16 +39,27 @@ class LocalSource(private val context: Context) : CatalogueSource {
                 input.close()
                 return null
             }
-            val cover = File("${dir.absolutePath}/${manga.url}", COVER_NAME)
+            val cover = getCoverFile(File("${dir.absolutePath}/${manga.url}"))
 
-            // It might not exist if using the external SD card
-            cover.parentFile?.mkdirs()
-            input.use {
-                cover.outputStream().use {
-                    input.copyTo(it)
+            if (cover != null && cover.exists()) {
+                // It might not exist if using the external SD card
+                cover.parentFile?.mkdirs()
+                input.use {
+                    cover.outputStream().use {
+                        input.copyTo(it)
+                    }
                 }
             }
             return cover
+        }
+
+        /**
+         * Returns valid cover file inside [parent] directory.
+         */
+        private fun getCoverFile(parent: File): File? {
+            return parent.listFiles()?.find { it.nameWithoutExtension == "cover" }?.takeIf {
+                it.isFile && ImageUtil.isImage(it.name) { it.inputStream() }
+            }
         }
 
         private fun getBaseDirectories(context: Context): List<File> {
@@ -105,8 +115,8 @@ class LocalSource(private val context: Context) : CatalogueSource {
 
                 // Try to find the cover
                 for (dir in baseDirs) {
-                    val cover = File("${dir.absolutePath}/$url", COVER_NAME)
-                    if (cover.exists()) {
+                    val cover = getCoverFile(File("${dir.absolutePath}/$url"))
+                    if (cover != null && cover.exists()) {
                         thumbnail_url = cover.absolutePath
                         break
                     }

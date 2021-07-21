@@ -122,7 +122,14 @@ class SettingsGeneralController : SettingsController() {
                 key = Keys.appTheme
                 titleRes = R.string.pref_app_theme
 
-                val appThemes = Values.AppTheme.values().filter { it.titleResId != null }
+                val appThemes = Values.AppTheme.values().filter {
+                    val monetFilter = if (it == Values.AppTheme.MONET) {
+                        Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
+                    } else {
+                        true
+                    }
+                    it.titleResId != null && monetFilter
+                }
                 entriesRes = appThemes.map { it.titleResId!! }.toTypedArray()
                 entryValues = appThemes.map { it.name }.toTypedArray()
                 defaultValue = appThemes[0].name

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.databinding.TrackItemBinding
+import eu.kanade.tachiyomi.util.view.popupMenu
 import uy.kohesive.injekt.injectLazy
 import java.text.DateFormat
 
@@ -17,10 +18,9 @@ class TrackHolder(private val binding: TrackItemBinding, adapter: TrackAdapter) 
         preferences.dateFormat()
     }
 
-    init {
-        val listener = adapter.rowClickListener
+    private val listener = adapter.rowClickListener
 
-        binding.logoContainer.setOnClickListener { listener.onLogoClick(bindingAdapterPosition) }
+    init {
         binding.trackSet.setOnClickListener { listener.onSetClick(bindingAdapterPosition) }
         binding.trackTitle.setOnClickListener { listener.onSetClick(bindingAdapterPosition) }
         binding.trackTitle.setOnLongClickListener {
@@ -30,8 +30,6 @@ class TrackHolder(private val binding: TrackItemBinding, adapter: TrackAdapter) 
         binding.trackStatus.setOnClickListener { listener.onStatusClick(bindingAdapterPosition) }
         binding.trackChapters.setOnClickListener { listener.onChaptersClick(bindingAdapterPosition) }
         binding.trackScore.setOnClickListener { listener.onScoreClick(bindingAdapterPosition) }
-        binding.trackStartDate.setOnClickListener { listener.onStartDateClick(bindingAdapterPosition) }
-        binding.trackFinishDate.setOnClickListener { listener.onFinishDateClick(bindingAdapterPosition) }
     }
 
     @SuppressLint("SetTextI18n")
@@ -42,6 +40,7 @@ class TrackHolder(private val binding: TrackItemBinding, adapter: TrackAdapter) 
 
         binding.trackSet.isVisible = track == null
         binding.trackTitle.isVisible = track != null
+        binding.more.isVisible = track != null
 
         binding.middleRow.isVisible = track != null
         binding.bottomDivider.isVisible = track != null
@@ -77,20 +76,55 @@ class TrackHolder(private val binding: TrackItemBinding, adapter: TrackAdapter) 
                 if (track.started_reading_date != 0L) {
                     binding.trackStartDate.text = dateFormat.format(track.started_reading_date)
                     binding.trackStartDate.alpha = SET_STATUS_TEXT_ALPHA
+                    binding.trackStartDate.setOnClickListener {
+                        it.popupMenu(R.menu.track_item_date) {
+                            when (itemId) {
+                                R.id.action_edit -> listener.onStartDateEditClick(bindingAdapterPosition)
+                                R.id.action_remove -> listener.onStartDateRemoveClick(bindingAdapterPosition)
+                            }
+                        }
+                    }
                 } else {
                     binding.trackStartDate.text = ctx.getString(R.string.track_started_reading_date)
                     binding.trackStartDate.alpha = UNSET_STATUS_TEXT_ALPHA
+                    binding.trackStartDate.setOnClickListener {
+                        listener.onStartDateEditClick(bindingAdapterPosition)
+                    }
                 }
                 if (track.finished_reading_date != 0L) {
                     binding.trackFinishDate.text = dateFormat.format(track.finished_reading_date)
                     binding.trackFinishDate.alpha = SET_STATUS_TEXT_ALPHA
+                    binding.trackFinishDate.setOnClickListener {
+                        it.popupMenu(R.menu.track_item_date) {
+                            when (itemId) {
+                                R.id.action_edit -> listener.onFinishDateEditClick(bindingAdapterPosition)
+                                R.id.action_remove -> listener.onFinishDateRemoveClick(bindingAdapterPosition)
+                            }
+                        }
+                    }
                 } else {
                     binding.trackFinishDate.text = ctx.getString(R.string.track_finished_reading_date)
                     binding.trackFinishDate.alpha = UNSET_STATUS_TEXT_ALPHA
+                    binding.trackFinishDate.setOnClickListener {
+                        listener.onFinishDateEditClick(bindingAdapterPosition)
+                    }
                 }
             }
             binding.bottomDivider.isVisible = supportsReadingDates
             binding.bottomRow.isVisible = supportsReadingDates
+
+            binding.more.setOnClickListener {
+                it.popupMenu(R.menu.track_item) {
+                    when (itemId) {
+                        R.id.action_open_in_browser -> {
+                            listener.onOpenInBrowserClick(bindingAdapterPosition)
+                        }
+                        R.id.action_remove -> {
+                            listener.onRemoveItemClick(bindingAdapterPosition)
+                        }
+                    }
+                }
+            }
         }
     }
 

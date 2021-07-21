@@ -177,8 +177,6 @@ class PreferencesHelper(val context: Context) {
 
     fun autoUpdateTrack() = prefs.getBoolean(Keys.autoUpdateTrack, true)
 
-    fun autoAddTrack() = prefs.getBoolean(Keys.autoAddTrack, true)
-
     fun lastUsedSource() = flowPrefs.getLong(Keys.lastUsedSource, -1)
 
     fun lastUsedCategory() = flowPrefs.getInt(Keys.lastUsedCategory, 0)

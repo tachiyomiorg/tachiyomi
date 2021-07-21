@@ -11,7 +11,7 @@
     <string name="label_library">पुस्तकालय</string>
     <string name="label_recent_manga">इतिहास</string>
     <string name="label_recent_updates">अद्यतन</string>
-    <string name="label_backup">बैकअप</string>
+    <string name="label_backup">बैकअप और पुनर्स्थापना</string>
     <string name="action_settings">सेटिंग</string>
     <string name="action_filter">फिल्टर</string>
     <string name="action_filter_downloaded">डाउनलोड किया हुआ</string>
@@ -360,7 +360,7 @@
     <string name="theme_darkblue">गहरा नीला</string>
     <string name="pref_manage_notifications">सूचनाओं का प्रबंधन</string>
     <string name="pref_category_security">सुरक्षा</string>
-    <string name="lock_with_biometrics">बायोमेट्रिक्स के साथ लॉक करें</string>
+    <string name="lock_with_biometrics">अनलॉक की आवश्यकता है</string>
     <string name="lock_when_idle">निष्क्रिय होने पर लॉक करें</string>
     <string name="lock_always">हमेशा</string>
     <string name="lock_never">कभी नहीँ</string>
@@ -602,4 +602,18 @@
     <string name="pref_dual_page_split">दोहरी पृष्ठ विभाजन (अल्फा)</string>
     <string name="update_8hour">हर 8 घंटे में</string>
     <string name="update_4hour">हर 4 घंटे में</string>
+    <string name="alignment_bottom">नीचे</string>
+    <string name="alignment_center">मध्य</string>
+    <string name="alignment_top">ऊपर</string>
+    <string name="pref_side_nav_icon_alignment">साइड नेविगेशन आइकन अलाइनमेंट</string>
+    <string name="theme_dark_amoled_hotpink">एमोलेड हॉट पिंक</string>
+    <string name="theme_dark_midnightdusk">मध्यरात्रि शाम</string>
+    <string name="theme_dark_greenapple">ग्रीन एप्पल</string>
+    <string name="theme_light_yotsuba">योत्सुबा</string>
+    <string name="theme_light_strawberrydaiquiri">स्ट्रॉबेरी दैक्विरी</string>
+    <string name="action_start_downloading_now">अभी डाउनलोड करना शुरू करें</string>
+    <string name="action_show_errors">त्रुटियां दिखाएं</string>
+    <string name="cancel_all_for_series">इस श्रृंखला के लिए सभी रद्द करें</string>
+    <string name="action_display_local_badge">स्थानीय बैज</string>
+    <string name="action_sort_next_updated">अगला अपेक्षित अपडेट</string>
 </resources>

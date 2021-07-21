@@ -355,7 +355,7 @@
     <string name="action_open_in_web_view">Apri in WebView</string>
     <string name="pref_true_color">Colori a 32 bit</string>
     <string name="pref_skip_read_chapters">Salta i capitoli segnati come letti</string>
-    <string name="filter_mode_default">Default</string>
+    <string name="filter_mode_default">Predefinito</string>
     <string name="filter_mode_screen">Schermo</string>
     <string name="pref_read_with_long_tap">Mostra alla pressione lunga</string>
     <string name="pref_color_filter_mode">Modalità di filtraggio del colore</string>
@@ -581,7 +581,7 @@
     </plurals>
     <string name="backup_restore_missing_trackers">Trackers non collegati:</string>
     <string name="no_chapters_error">Nessun capitolo trovato</string>
-    <string name="parental_controls_info">Questo non impedisce a estensioni non ufficiali o potenzialmente segnalate in modo errato mostrare contenuti 18+ all\'interno dell\'applicazione.</string>
+    <string name="parental_controls_info">Questo non impedisce a estensioni non ufficiali o potenzialmente segnalate in modo errato di mostrare contenuti 18+ all\'interno dell\'applicazione.</string>
     <string name="chapter_settings_updated">Impostazioni predefinite del capitolo aggiornate</string>
     <string name="share_page_info">%1$s: %2$s, pagina %3$d</string>
     <string name="set_chapter_settings_as_default">Imposta come predefinito</string>
@@ -663,9 +663,35 @@
     <string name="pref_create_folder_per_manga">Salva pagine in cartelle separate</string>
     <string name="pref_reader_actions">Azioni</string>
     <string name="pref_grayscale">Scala di grigio</string>
-    <string name="pref_move_side_nav_to_bottom">Sposta i tasti di navigazione laterali in basso</string>
     <string name="error_no_match">Nessun risultato</string>
     <string name="local_filter_order_by">Ordina per</string>
     <string name="chapter_not_found">Capitolo non trovato</string>
     <string name="source_unsupported">Fonte non supportata</string>
+    <string name="theme_dark_greenapple">Verde Mela</string>
+    <string name="date">Data</string>
+    <string name="off">Diattivato</string>
+    <string name="alignment_center">Centro</string>
+    <string name="error_sharing_cover">Errore nella condivisione della copertina</string>
+    <string name="error_saving_cover">Errore nel salvataggio della copertina</string>
+    <string name="cover_saved">Copertina salvata</string>
+    <string name="unread">Non letti</string>
+    <string name="categorized_display_settings">Impostazioni di visualizzazione per categoria</string>
+    <string name="information_empty_category_dialog">Non hai ancora nessuna categoria.</string>
+    <string name="pref_auto_add_track">Traccia silenziosamente quando si aggiungono manga alla libreria</string>
+    <string name="on">Attivato</string>
+    <string name="restrictions">Restrizioni: %s</string>
+    <string name="alignment_bottom">In basso</string>
+    <string name="alignment_top">In alto</string>
+    <string name="pref_side_nav_icon_alignment">Allineamento delle icone di navigazione laterale</string>
+    <string name="theme_dark_amoled_hotpink">AMOLED Rosa caldo</string>
+    <string name="theme_dark_midnightdusk">Crepuscolo di mezzanotte</string>
+    <string name="theme_light_yotsuba">Yotsuba</string>
+    <string name="theme_light_strawberrydaiquiri">Daiquiri fragola</string>
+    <string name="action_display_local_badge">Indicatori locali</string>
+    <string name="manga_cover">Copertina</string>
+    <string name="local_invalid_format">Formato capitolo non valido</string>
+    <string name="tracking_guide">Guida al monitoraggio</string>
+    <string name="pref_library_update_refresh_trackers_summary">Aggiorna i monitoraggi quando si aggionra la libreria</string>
+    <string name="pref_library_update_refresh_trackers">Aggiorna automaticamente i monitoraggi</string>
+    <string name="action_start_downloading_now">Inizia subito lo scaricamento</string>
 </resources>

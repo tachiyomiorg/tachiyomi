@@ -92,7 +92,7 @@
     <string name="action_sort_alpha">वर्णानुक्रम अनुसार</string>
     <string name="action_filter_empty">फिल्टर हटाउनुहोस्</string>
     <string name="action_filter_unread">अपठित</string>
-    <string name="action_filter_tracked">ट्र्याक गरियो</string>
+    <string name="action_filter_tracked">ट्र्याक गरिएको</string>
     <string name="action_filter_bookmarked">बुकमार्क गरिएको</string>
     <string name="action_filter_downloaded">डाउनलोड गरिएको</string>
     <string name="action_filter">फिल्टर</string>
@@ -109,19 +109,24 @@
     <string name="information_no_recent">कुनै नयाँ अपडेटहरू छैनन्</string>
     <string name="label_download_queue">डाउनलोड लाम</string>
     <string name="confirm_exit">बाहिर निस्किन फेरि फिर्ता थिच्नुहोस्</string>
-    <string name="unlock_app">ताचियोमी अनलक गर्नुहोस्</string>
+    <string name="unlock_app">अन्लक ताचियोमी</string>
     <string name="information_no_downloads">कुनै डाउनलोड छैन</string>
     <string name="label_help">मद्दत</string>
     <string name="label_extension_info">विस्तार जानकारी</string>
     <string name="label_extensions">विस्तारहरू</string>
     <string name="label_migration">स्थानान्तरण</string>
-    <string name="label_backup">ब्याकअप</string>
+    <string name="label_backup">ब्याकअप र पुनर्स्थापना</string>
     <string name="label_sources">स्रोतहरू</string>
-    <string name="label_recent_manga">ईतिहास</string>
+    <string name="label_recent_manga">इतिहास</string>
     <string name="label_recent_updates">अद्यावधिकहरू</string>
     <string name="label_library">पुस्तकालय</string>
     <string name="label_settings">सेटिंग्स</string>
     <string name="label_more">अरु</string>
     <string name="name">नाम</string>
     <string name="information_cloudflare_bypass_failure">क्लाउडफ्लेयरलाई बाइपास गर्न असफल भयो</string>
+    <string name="action_display_mode">प्रदर्शन मोड</string>
+    <string name="action_select_inverse">उल्टो छान्नुहोस्</string>
+    <string name="action_sort_date_added">राखिएको मिती</string>
+    <string name="action_sort_chapter_fetch_date">खोजिएको मिति</string>
+    <string name="action_sort_latest_chapter">सबैभन्दा नयाँ अध्याय</string>
 </resources>

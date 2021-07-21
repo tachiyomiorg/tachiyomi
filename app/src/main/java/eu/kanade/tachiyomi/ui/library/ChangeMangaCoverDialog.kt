@@ -2,8 +2,8 @@ package eu.kanade.tachiyomi.ui.library
 
 import android.app.Dialog
 import android.os.Bundle
-import com.afollestad.materialdialogs.MaterialDialog
 import com.bluelinelabs.conductor.Controller
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
@@ -20,15 +20,16 @@ class ChangeMangaCoverDialog<T>(bundle: Bundle? = null) :
 
     @Suppress("DEPRECATION")
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-        return MaterialDialog(activity!!)
-            .title(R.string.action_edit_cover)
-            .positiveButton(R.string.action_edit) {
+        return MaterialAlertDialogBuilder(activity!!)
+            .setTitle(R.string.action_edit_cover)
+            .setPositiveButton(R.string.action_edit) { _, _ ->
                 (targetController as? Listener)?.openMangaCoverPicker(manga)
             }
-            .negativeButton(android.R.string.cancel)
-            .neutralButton(R.string.action_delete) {
+            .setNegativeButton(android.R.string.cancel, null)
+            .setNeutralButton(R.string.action_delete) { _, _ ->
                 (targetController as? Listener)?.deleteMangaCover(manga)
             }
+            .create()
     }
 
     interface Listener {

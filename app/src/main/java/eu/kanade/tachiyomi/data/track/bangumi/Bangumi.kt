@@ -35,24 +35,34 @@ class Bangumi(private val context: Context, id: Int) : TrackService(id) {
         return api.addLibManga(track)
     }
 
-    override suspend fun update(track: Track): Track {
+    override suspend fun update(track: Track, didReadChapter: Boolean): Track {
+        if (track.status != COMPLETED) {
+            if (didReadChapter) {
+                track.status = READING
+            }
+        }
+
         return api.updateLibManga(track)
     }
 
-    override suspend fun bind(track: Track): Track {
+    override suspend fun bind(track: Track, hasReadChapters: Boolean): Track {
         val statusTrack = api.statusLibManga(track)
         val remoteTrack = api.findLibManga(track)
         return if (remoteTrack != null && statusTrack != null) {
             track.copyPersonalFrom(remoteTrack)
             track.library_id = remoteTrack.library_id
-            track.status = statusTrack.status
+
+            if (track.status != COMPLETED) {
+                track.status = if (hasReadChapters) READING else statusTrack.status
+            }
+
             track.score = statusTrack.score
             track.last_chapter_read = statusTrack.last_chapter_read
             track.total_chapters = remoteTrack.total_chapters
             refresh(track)
         } else {
             // Set default fields if it's not found in the list
-            track.status = READING
+            track.status = if (hasReadChapters) READING else PLANNING
             track.score = 0F
             add(track)
             update(track)
@@ -90,6 +100,10 @@ class Bangumi(private val context: Context, id: Int) : TrackService(id) {
             else -> ""
         }
     }
+
+    override fun getReadingStatus(): Int = READING
+
+    override fun getRereadingStatus(): Int = -1
 
     override fun getCompletionStatus(): Int = COMPLETED
 

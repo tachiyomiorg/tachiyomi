@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Tachiyomi.Monet">
+        <item name="colorPrimary">@color/accent_monet</item>
+        <item name="colorOnPrimary">@color/on_accent_monet</item>
+        <item name="colorTertiary">@color/tertiary_monet</item>
+        <item name="colorOnTertiary">@color/on_tertiary_monet</item>
+        <item name="colorSurface">@color/surface_monet</item>
+        <item name="colorOnSurface">@color/on_surface_monet</item>
+        <item name="android:colorBackground">@color/background_monet</item>
+        <item name="colorOnBackground">@color/on_background_monet</item>
+        <item name="colorControlHighlight">@color/ripple_colored_monet</item>
+        <item name="android:divider">@color/divider_monet</item>
+        <item name="android:textColorPrimary">@color/text_primary_monet</item>
+        <item name="android:textColorSecondary">@color/text_secondary_monet</item>
+    </style>
+</resources>

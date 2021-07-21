@@ -2,15 +2,14 @@ package eu.kanade.tachiyomi.ui.manga.track
 
 import android.app.Dialog
 import android.os.Bundle
-import android.widget.NumberPicker
+import android.view.LayoutInflater
 import androidx.core.os.bundleOf
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.customview.customView
-import com.afollestad.materialdialogs.customview.getCustomView
 import com.bluelinelabs.conductor.Controller
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.TrackManager
+import eu.kanade.tachiyomi.databinding.TrackScoreDialogBinding
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
@@ -38,23 +37,9 @@ class SetTrackScoreDialog<T> : DialogController
     }
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-        val item = item
+        val pickerView = TrackScoreDialogBinding.inflate(LayoutInflater.from(activity!!))
+        val np = pickerView.scorePicker
 
-        val dialog = MaterialDialog(activity!!)
-            .title(R.string.score)
-            .customView(R.layout.track_score_dialog, dialogWrapContent = false)
-            .positiveButton(android.R.string.ok) { dialog ->
-                val view = dialog.getCustomView()
-                // Remove focus to update selected number
-                val np: NumberPicker = view.findViewById(R.id.score_picker)
-                np.clearFocus()
-
-                listener.setScore(item, np.value)
-            }
-            .negativeButton(android.R.string.cancel)
-
-        val view = dialog.getCustomView()
-        val np: NumberPicker = view.findViewById(R.id.score_picker)
         val scores = item.service.getScoreList().toTypedArray()
         np.maxValue = scores.size - 1
         np.displayedValues = scores
@@ -66,7 +51,15 @@ class SetTrackScoreDialog<T> : DialogController
             np.value = if (index != -1) index else 0
         }
 
-        return dialog
+        return MaterialAlertDialogBuilder(activity!!)
+            .setTitle(R.string.score)
+            .setView(pickerView.root)
+            .setPositiveButton(android.R.string.ok) { _, _ ->
+                np.clearFocus()
+                listener.setScore(item, np.value)
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .create()
     }
 
     interface Listener {

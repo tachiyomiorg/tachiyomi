@@ -36,6 +36,10 @@ abstract class TrackService(val id: Int) {
 
     abstract fun getStatus(status: Int): String
 
+    abstract fun getReadingStatus(): Int
+
+    abstract fun getRereadingStatus(): Int
+
     abstract fun getCompletionStatus(): Int
 
     abstract fun getScoreList(): List<String>
@@ -46,9 +50,9 @@ abstract class TrackService(val id: Int) {
 
     abstract fun displayScore(track: Track): String
 
-    abstract suspend fun update(track: Track): Track
+    abstract suspend fun update(track: Track, didReadChapter: Boolean = false): Track
 
-    abstract suspend fun bind(track: Track): Track
+    abstract suspend fun bind(track: Track, hasReadChapters: Boolean = false): Track
 
     abstract suspend fun search(query: String): List<TrackSearch>
 

@@ -6,7 +6,7 @@
     <string name="action_sort_total">Total de capítulos</string>
     <string name="label_extension_info">Información de extensión</string>
     <string name="confirm_exit">Pulse Atrás de nuevo para salir</string>
-    <string name="label_backup">Copia de seguridad</string>
+    <string name="label_backup">Respaldar y restaurar</string>
     <string name="label_recent_manga">Historial</string>
     <string name="history">Historial</string>
     <string name="action_display_list">Lista</string>
@@ -276,8 +276,13 @@
     <string name="system_default">Predeterminado</string>
     <string name="pref_language">Idioma</string>
     <string name="pref_start_screen">Pantalla inicial</string>
-    <string name="theme_darkblue">Azul oscuro</string>
-    <string name="theme_default">Predeterminado</string>
+    <string name="theme_dark_amoled">AMOLED Negro</string>
+    <string name="theme_dark_blue">Azul oscuro</string>
+    <string name="theme_dark_default">Predeterminado</string>
+    <string name="pref_theme_dark">Tema oscuro</string>
+    <string name="theme_light_blue">Celeste</string>
+    <string name="theme_light_default">Predeterminado</string>
+    <string name="pref_theme_light">Tema claro</string>
     <string name="theme_dark">Encendido</string>
     <string name="theme_light">Apagado</string>
     <string name="theme_system">Usar el del sistema</string>
@@ -524,7 +529,7 @@
     <string name="pref_category_locale">Local</string>
     <string name="action_global_search_query">Buscar \"%1$s\" Globalmente</string>
     <string name="action_sort_date_added">Fecha de agregado</string>
-    <string name="download_insufficient_space">No se pudieron descargar capítulos debido al poco espacio en el disco</string>
+    <string name="download_insufficient_space">No se pudieron descargar los capítulos debido al poco espacio de almacenamiento</string>
     <string name="pref_category_reading_mode">Modo de lectura</string>
     <string name="pref_category_theme">Tema</string>
     <plurals name="num_trackers">
@@ -616,7 +621,7 @@
 \nNecesitarás instalar cualquier extensión que falte e iniciar sesión en los servicios de seguimiento para utilizarlos.</string>
     <string name="nav_zone_prev">Anterior</string>
     <string name="nav_zone_next">Siguiente</string>
-    <string name="pref_create_folder_per_manga">Guarda páginas en carpetas separadas</string>
+    <string name="pref_create_folder_per_manga">Guardar páginas en carpetas separadas</string>
     <string name="pref_reader_actions">Acciones</string>
     <string name="pref_dual_page_split">Dividir páginas dobles</string>
     <string name="pref_show_navigation_mode_summary">Mostrar las zonas de toque cuando se abre el lector</string>
@@ -625,4 +630,10 @@
     <string name="pref_dual_page_invert">Invertir la posición de las páginas duales</string>
     <string name="pref_show_navigation_mode">Mostrar el diseño de navegación</string>
     <string name="pref_library_update_categories_details">Los manga en las categorías excluidas no se actualizarán aún cuando estén en las categorías incluidas.</string>
+    <string name="theme_light_yotsuba"></string>
+    <string name="theme_dark_greenapple">Manzana verde</string>
+    <string name="unread">No leído</string>
+    <string name="source_unsupported">Fuente incompatible</string>
+    <string name="action_start_downloading_now">Descargar ahora</string>
+    <string name="action_display_local_badge">Íconos locales</string>
 </resources>

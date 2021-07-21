@@ -23,12 +23,14 @@ object PreferenceValues {
 
     enum class AppTheme(val titleResId: Int?) {
         DEFAULT(R.string.theme_default),
+        MONET(R.string.theme_monet),
         BLUE(R.string.theme_blue),
         GREEN_APPLE(R.string.theme_greenapple),
         MIDNIGHT_DUSK(R.string.theme_midnightdusk),
         STRAWBERRY_DAIQUIRI(R.string.theme_strawberrydaiquiri),
-        YOTSUBA(R.string.theme_yotsuba),
+        TAKO(R.string.theme_tako),
         YINYANG(R.string.theme_yinyang),
+        YOTSUBA(R.string.theme_yotsuba),
 
         // Deprecated
         DARK_BLUE(null),

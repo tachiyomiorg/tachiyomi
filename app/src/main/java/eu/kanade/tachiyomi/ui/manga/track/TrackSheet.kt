@@ -3,16 +3,23 @@ package eu.kanade.tachiyomi.ui.manga.track
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import eu.kanade.tachiyomi.R.string
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.DateValidatorPointBackward
+import com.google.android.material.datepicker.DateValidatorPointForward
+import com.google.android.material.datepicker.MaterialDatePicker
+import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.track.UnattendedTrackService
+import eu.kanade.tachiyomi.data.track.EnhancedTrackService
 import eu.kanade.tachiyomi.databinding.TrackControllerBinding
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.ui.base.controller.openInBrowser
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.lang.launchIO
+import eu.kanade.tachiyomi.util.lang.toLocalCalendar
+import eu.kanade.tachiyomi.util.lang.toUtcCalendar
 import eu.kanade.tachiyomi.util.lang.withUIContext
 import eu.kanade.tachiyomi.util.system.copyToClipboard
 import eu.kanade.tachiyomi.util.system.toast
@@ -23,13 +30,13 @@ import uy.kohesive.injekt.api.get
 class TrackSheet(
     val controller: MangaController,
     val manga: Manga,
+    val fragmentManager: FragmentManager,
     private val sourceManager: SourceManager = Injekt.get()
 ) : BaseBottomSheetDialog(controller.activity!!),
     TrackAdapter.OnClickListener,
     SetTrackStatusDialog.Listener,
     SetTrackChaptersDialog.Listener,
-    SetTrackScoreDialog.Listener,
-    SetTrackReadingDatesDialog.Listener {
+    SetTrackScoreDialog.Listener {
 
     private lateinit var binding: TrackControllerBinding
 
@@ -63,7 +70,7 @@ class TrackSheet(
         }
     }
 
-    override fun onLogoClick(position: Int) {
+    override fun onOpenInBrowserClick(position: Int) {
         val track = adapter.getItem(position)?.track ?: return
 
         if (track.tracking_url.isNotBlank()) {
@@ -74,14 +81,14 @@ class TrackSheet(
     override fun onSetClick(position: Int) {
         val item = adapter.getItem(position) ?: return
 
-        if (item.service is UnattendedTrackService) {
+        if (item.service is EnhancedTrackService) {
             if (item.track != null) {
                 controller.presenter.unregisterTracking(item.service)
                 return
             }
 
             if (!item.service.accept(sourceManager.getOrStub(manga.source))) {
-                controller.presenter.view?.applicationContext?.toast(string.source_unsupported)
+                controller.presenter.view?.applicationContext?.toast(R.string.source_unsupported)
                 return
             }
 
@@ -90,9 +97,9 @@ class TrackSheet(
                     item.service.match(manga)?.let { track ->
                         controller.presenter.registerTracking(track, item.service)
                     }
-                        ?: withUIContext { controller.presenter.view?.applicationContext?.toast(string.error_no_match) }
+                        ?: withUIContext { controller.presenter.view?.applicationContext?.toast(R.string.error_no_match) }
                 } catch (e: Exception) {
-                    withUIContext { controller.presenter.view?.applicationContext?.toast(string.error_no_match) }
+                    withUIContext { controller.presenter.view?.applicationContext?.toast(R.string.error_no_match) }
                 }
             }
         } else {
@@ -128,18 +135,80 @@ class TrackSheet(
         SetTrackScoreDialog(controller, this, item).showDialog(controller.router)
     }
 
-    override fun onStartDateClick(position: Int) {
+    override fun onStartDateEditClick(position: Int) {
         val item = adapter.getItem(position) ?: return
         if (item.track == null) return
 
-        SetTrackReadingDatesDialog(controller, this, SetTrackReadingDatesDialog.ReadingDate.Start, item).showDialog(controller.router)
+        val selection = item.track.started_reading_date.toUtcCalendar()?.timeInMillis
+            ?: MaterialDatePicker.todayInUtcMilliseconds()
+
+        // No time travellers allowed
+        val constraints = CalendarConstraints.Builder().apply {
+            val finishedMillis = item.track.finished_reading_date.toUtcCalendar()?.timeInMillis
+            if (finishedMillis != null) {
+                setValidator(DateValidatorPointBackward.before(finishedMillis))
+            }
+        }.build()
+
+        val picker = MaterialDatePicker.Builder.datePicker()
+            .setTitleText(R.string.track_started_reading_date)
+            .setSelection(selection)
+            .setCalendarConstraints(constraints)
+            .build()
+        picker.addOnPositiveButtonClickListener { utcMillis ->
+            val result = utcMillis.toLocalCalendar()?.timeInMillis
+            if (result != null) {
+                controller.presenter.setTrackerStartDate(item, result)
+            }
+        }
+        picker.show(fragmentManager, null)
     }
 
-    override fun onFinishDateClick(position: Int) {
+    override fun onFinishDateEditClick(position: Int) {
         val item = adapter.getItem(position) ?: return
         if (item.track == null) return
 
-        SetTrackReadingDatesDialog(controller, this, SetTrackReadingDatesDialog.ReadingDate.Finish, item).showDialog(controller.router)
+        val selection = item.track.finished_reading_date.toUtcCalendar()?.timeInMillis
+            ?: MaterialDatePicker.todayInUtcMilliseconds()
+
+        // No time travellers allowed
+        val constraints = CalendarConstraints.Builder().apply {
+            val startMillis = item.track.started_reading_date.toUtcCalendar()?.timeInMillis
+            if (startMillis != null) {
+                setValidator(DateValidatorPointForward.from(startMillis))
+            }
+        }.build()
+
+        val picker = MaterialDatePicker.Builder.datePicker()
+            .setTitleText(R.string.track_finished_reading_date)
+            .setSelection(selection)
+            .setCalendarConstraints(constraints)
+            .build()
+        picker.addOnPositiveButtonClickListener { utcMillis ->
+            val result = utcMillis.toLocalCalendar()?.timeInMillis
+            if (result != null) {
+                controller.presenter.setTrackerFinishDate(item, result)
+            }
+        }
+        picker.show(fragmentManager, null)
+    }
+
+    override fun onStartDateRemoveClick(position: Int) {
+        val item = adapter.getItem(position) ?: return
+        if (item.track == null) return
+        controller.presenter.setTrackerStartDate(item, 0)
+    }
+
+    override fun onFinishDateRemoveClick(position: Int) {
+        val item = adapter.getItem(position) ?: return
+        if (item.track == null) return
+        controller.presenter.setTrackerFinishDate(item, 0)
+    }
+
+    override fun onRemoveItemClick(position: Int) {
+        val item = adapter.getItem(position) ?: return
+        if (item.track == null) return
+        controller.presenter.unregisterTracking(item.service)
     }
 
     override fun setStatus(item: TrackItem, selection: Int) {
@@ -152,13 +221,6 @@ class TrackSheet(
 
     override fun setScore(item: TrackItem, score: Int) {
         controller.presenter.setTrackerScore(item, score)
-    }
-
-    override fun setReadingDate(item: TrackItem, type: SetTrackReadingDatesDialog.ReadingDate, date: Long) {
-        when (type) {
-            SetTrackReadingDatesDialog.ReadingDate.Start -> controller.presenter.setTrackerStartDate(item, date)
-            SetTrackReadingDatesDialog.ReadingDate.Finish -> controller.presenter.setTrackerFinishDate(item, date)
-        }
     }
 
     fun getSearchDialog(): TrackSearchDialog? {

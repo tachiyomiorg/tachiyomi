@@ -34,9 +34,8 @@ inline fun PreferenceGroup.preference(block: (@DSL Preference).() -> Unit): Pref
 }
 
 inline fun PreferenceGroup.infoPreference(@StringRes infoRes: Int): Preference {
-    return initThenAdd(
-        Preference(context),
-        {
+    return add(
+        Preference(context).apply {
             iconRes = R.drawable.ic_info_24dp
             iconTint = context.getResourceColor(android.R.attr.textColorHint)
             summaryRes = infoRes

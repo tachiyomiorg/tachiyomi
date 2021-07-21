@@ -11,7 +11,7 @@
     <string name="label_library">Biblioteca</string>
     <string name="label_recent_manga">Historial</string>
     <string name="label_recent_updates">Novetats</string>
-    <string name="label_backup">Còpia de seguretat</string>
+    <string name="label_backup">Còpia de seguretat i restauració</string>
     <string name="label_migration">Migració</string>
     <string name="label_extensions">Extensions</string>
     <string name="label_extension_info">Informació de l\'extensió</string>
@@ -357,7 +357,10 @@
     <string name="theme_light">Desactivat</string>
     <string name="theme_dark">Activat</string>
     <string name="theme_system">Per defecte del sistema</string>
-    <string name="theme_darkblue">Blau Fosc</string>
+    <string name="pref_theme_dark">Tema fosc</string>
+    <string name="theme_dark_default">Per defecte</string>
+    <string name="theme_dark_blue">Blau Fosc</string>
+    <string name="theme_dark_amoled">Negre AMOLED</string>
     <string name="pref_manage_notifications">Gestiona les notificacions</string>
     <string name="pref_category_security">Seguretat</string>
     <string name="lock_with_biometrics">Requereix desbloqueig</string>
@@ -399,7 +402,9 @@
         <item quantity="one">Per a 1 títol</item>
         <item quantity="other">Per a %d títols</item>
     </plurals>
-    <string name="theme_default">Per defecte</string>
+    <string name="pref_theme_light">Tema clar</string>
+    <string name="theme_light_default">Per defecte</string>
+    <string name="theme_light_blue">Blau Clar</string>
     <string name="action_menu">Menú</string>
     <string name="action_reorganize_by">Reordena</string>
     <string name="action_newest">Els més nous</string>
@@ -503,7 +508,7 @@
     <string name="tapping_inverted_horizontal">En horitzontal</string>
     <string name="tapping_inverted_none">Cap</string>
     <string name="pref_read_with_tapping_inverted">Inverteix els tocs</string>
-    <string name="download_insufficient_space">No s\'han pogut baixar els capítols perquè hi ha poc espai al disc</string>
+    <string name="download_insufficient_space">No s\'han pogut baixar els capítols a causa de poc espai d\'emmagatzematge</string>
     <string name="loader_not_implemented_error">No s\'ha trobat la font</string>
     <plurals name="manga_num_chapters">
         <item quantity="one">1 capítol</item>
@@ -528,8 +533,8 @@
     <string name="action_download_unread">Baixa els capítols no llegits</string>
     <string name="action_sort_date_added">Data d\'incorporació</string>
     <plurals name="num_trackers">
-        <item quantity="one">1 rastrejador</item>
-        <item quantity="other">%d rastrejadors</item>
+        <item quantity="one">1 seguidor</item>
+        <item quantity="other">%d seguidors</item>
     </plurals>
     <string name="no_pinned_sources">No teniu cap origen fixat</string>
     <string name="download_notifier_download_finish">Baixada completada</string>
@@ -538,7 +543,7 @@
     <string name="channel_complete">Completada</string>
     <string name="channel_progress">Progrés</string>
     <string name="channel_errors">Errors</string>
-    <string name="backup_restore_missing_trackers">Rastrejadors sense sessió iniciada:</string>
+    <string name="backup_restore_missing_trackers">Seguidors sense sessió iniciada:</string>
     <string name="pref_remove_bookmarked_chapters">Suprimeix els capítols preferits</string>
     <string name="pref_category_delete_chapters">Suprimeix capítols</string>
     <string name="ext_nsfw_warning">Pot contenir contingut NSFW (+18)</string>
@@ -636,12 +641,26 @@
     <string name="date">Data</string>
     <string name="local_filter_order_by">Ordena per</string>
     <string name="local_invalid_format">Format de capítol no vàlid</string>
-    <string name="pref_auto_add_track">Rastreja silenciosament en afegir manga a la biblioteca</string>
-    <string name="pref_library_update_refresh_trackers_summary">Actualitza els rastrejadors en actualitzar la biblioteca</string>
-    <string name="pref_library_update_refresh_trackers">Actualitza els rastrejadors automàticament</string>
-    <string name="pref_move_side_nav_to_bottom">Mou els botons de navegació laterals a la part inferior</string>
-    <string name="theme_hotpink">Rosa calent</string>
-    <string name="theme_midnightdusk">Vespre de mitjanit</string>
-    <string name="theme_strawberrydaiquiri">Daiquiri de maduixa</string>
+    <string name="pref_auto_add_track">Segueix silenciosament en afegir manga a la biblioteca</string>
+    <string name="pref_library_update_refresh_trackers_summary">Actualitza els seguidors en actualitzar la biblioteca</string>
+    <string name="pref_library_update_refresh_trackers">Actualitza automàticament els seguidors</string>
+    <string name="theme_dark_amoled_hotpink">AMOLED Rosa Calent</string>
+    <string name="theme_dark_midnightdusk">Vespre de mitjanit</string>
+    <string name="theme_light_strawberrydaiquiri">Daiquiri de maduixa</string>
     <string name="chapter_not_found">Capítol no trobat</string>
+    <string name="error_sharing_cover">S\'ha produït un error en compartir la coberta</string>
+    <string name="error_saving_cover">S\'ha produït un error en desar la coberta</string>
+    <string name="cover_saved">Coberta desada</string>
+    <string name="manga_cover">Coberta</string>
+    <string name="tracking_guide">Guia de seguiment</string>
+    <string name="off">Desactivat</string>
+    <string name="on">Activat</string>
+    <string name="categorized_display_settings">Opcions de visualització per categoria</string>
+    <string name="restrictions">Restriccions: %s</string>
+    <string name="alignment_bottom">Part inferior</string>
+    <string name="alignment_center">Centrat</string>
+    <string name="alignment_top">Part superior</string>
+    <string name="pref_side_nav_icon_alignment">Alineació de la icona de navegació lateral</string>
+    <string name="theme_dark_greenapple">Poma Verda</string>
+    <string name="action_display_local_badge">Insígnies locals</string>
 </resources>

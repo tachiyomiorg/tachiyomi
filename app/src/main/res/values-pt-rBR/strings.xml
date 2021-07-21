@@ -357,7 +357,10 @@
     <string name="theme_light">Desligado</string>
     <string name="theme_dark">Ligado</string>
     <string name="theme_system">Seguir o sistema</string>
-    <string name="theme_darkblue">Azul Escuro</string>
+    <string name="pref_theme_dark">Tema escuro</string>
+    <string name="theme_dark_default">Padrão</string>
+    <string name="theme_dark_blue">Azul Escuro</string>
+    <string name="theme_dark_amoled">Preto AMOLED</string>
     <string name="pref_manage_notifications">Gerenciar notificações</string>
     <string name="pref_category_security">Segurança</string>
     <string name="lock_with_biometrics">Requer desbloqueio</string>
@@ -399,7 +402,9 @@
         <item quantity="one">Para 1 título</item>
         <item quantity="other">Para %d títulos</item>
     </plurals>
-    <string name="theme_default">Padrão</string>
+    <string name="pref_theme_light">Tema claro</string>
+    <string name="theme_light_default">Padrão</string>
+    <string name="theme_light_blue">Azul Claro</string>
     <string name="action_menu">Menu</string>
     <string name="action_reorganize_by">Reordenar</string>
     <string name="action_newest">Mais novos</string>
@@ -449,7 +454,7 @@
     <string name="error_invalid_date_supplied">Data inválida fornecida</string>
     <string name="last_used_source">Última utilizada</string>
     <string name="check_for_updates">Procurar por atualizações</string>
-    <string name="local_source_help_guide">Guia para a fonte local</string>
+    <string name="local_source_help_guide">Guia sobre a fonte local</string>
     <string name="restore_duration">%02d min e %02d seg</string>
     <string name="downloaded_only_summary">Filtra todos os mangás em sua biblioteca</string>
     <plurals name="download_queue_summary">
@@ -566,7 +571,7 @@
     <string name="clear_history_completed">Histórico excluído</string>
     <string name="spen_next_page">Próxima página</string>
     <string name="spen_previous_page">Página anterior</string>
-    <string name="migration_help_guide">Guia de migração de fonte</string>
+    <string name="migration_help_guide">Guia sobre a migração de fonte</string>
     <string name="invalid_backup_file_type">Tipo de arquivo de backup inválido: %1$s
 \nO arquivo deve terminar com .proto.gz ou .json.</string>
     <string name="pref_category_nsfw_content">Fontes NSFW (+18)</string>
@@ -581,8 +586,8 @@
     <string name="pref_viewer_nav">Layout de navegação</string>
     <string name="default_nav">Padrão</string>
     <string name="channel_crash_logs">Registros de travamentos</string>
-    <string name="track_finished_reading_date">Data de término da leitura</string>
-    <string name="track_started_reading_date">Data de início da leitura</string>
+    <string name="track_finished_reading_date">Data de término</string>
+    <string name="track_started_reading_date">Data de início</string>
     <string name="crash_log_saved">Registros de travamento salvos</string>
     <string name="pref_dump_crash_logs_summary">Salva os registros de erro em um arquivo para o compartilhamento com os desenvolvedores</string>
     <string name="pref_dump_crash_logs">Exportar os registros de travamentos</string>
@@ -634,19 +639,32 @@
     <string name="source_unsupported">Fonte não suportada</string>
     <string name="unread">Não lido</string>
     <string name="pref_auto_add_track">Monitora de modo silencioso ao adicionar um mangá na biblioteca</string>
-    <string name="pref_move_side_nav_to_bottom">Mover os botões de navegação laterais para baixo</string>
-    <string name="theme_hotpink">Rosa Quente</string>
-    <string name="theme_midnightdusk">Aurora-da-noite</string>
-    <string name="theme_strawberrydaiquiri">Daiquiri de Morango</string>
+    <string name="theme_dark_amoled_hotpink">Rosa Quente AMOLED</string>
+    <string name="theme_dark_midnightdusk">Aurora-da-noite</string>
+    <string name="theme_light_strawberrydaiquiri">Daiquiri de Morango</string>
     <string name="date">Data</string>
     <string name="local_filter_order_by">Ordenar por</string>
     <string name="local_invalid_format">Formato de capítulo inválido</string>
     <string name="chapter_not_found">Capítulo não encontrado</string>
     <string name="pref_library_update_refresh_trackers_summary">Atualizar os monitoradores durante a atualização da biblioteca</string>
     <string name="pref_library_update_refresh_trackers">Atualizar os monitoradores automaticamente</string>
-    <string name="theme_greenapple">Maçã Verde</string>
+    <string name="theme_dark_greenapple">Maçã Verde</string>
     <string name="restrictions">Restrições: %s</string>
     <string name="action_display_local_badge">Selos da fonte local</string>
     <string name="off">Desligado</string>
     <string name="on">Ligado</string>
+    <string name="error_sharing_cover">Erro ao compartilhar a capa</string>
+    <string name="error_saving_cover">Erro ao salvar a capa</string>
+    <string name="cover_saved">Capa salva</string>
+    <string name="manga_cover">Capa</string>
+    <string name="alignment_bottom">Inferior</string>
+    <string name="alignment_center">Centro</string>
+    <string name="alignment_top">Superior</string>
+    <string name="pref_side_nav_icon_alignment">Alinhamento dos ícones de navegação lateral</string>
+    <string name="categorized_display_settings">Configurações por categoria para ordenação e visualização</string>
+    <string name="tracking_guide">Guia sobre o monitoramento</string>
+    <string name="information_empty_category_dialog">Você não tem nenhuma categoria ainda.</string>
+    <string name="theme_light_yotsuba">Yotsuba</string>
+    <string name="action_start_downloading_now">Começar o download agora</string>
+    <string name="action_sort_next_updated">Próxima atualização esperada</string>
 </resources>

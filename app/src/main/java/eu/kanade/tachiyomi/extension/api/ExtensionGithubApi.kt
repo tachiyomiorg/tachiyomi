@@ -79,9 +79,6 @@ internal class ExtensionGithubApi {
     fun getApkUrl(extension: Extension.Available): String {
         return "${REPO_URL_PREFIX}apk/${extension.apkName}"
     }
-
-    companion object {
-        const val BASE_URL = "https://raw.githubusercontent.com/"
-        const val REPO_URL_PREFIX = "${BASE_URL}tachiyomiorg/tachiyomi-extensions/repo/"
-    }
 }
+
+private const val REPO_URL_PREFIX = "https://raw.githubusercontent.com/tachiyomiorg/tachiyomi-extensions/repo/"
