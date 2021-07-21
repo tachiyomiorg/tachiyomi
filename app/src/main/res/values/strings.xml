@@ -438,6 +438,8 @@
     <string name="pref_clear_database_summary">Delete history for manga that are not saved in your library</string>
     <string name="clear_database_confirmation">Are you sure? Read chapters and progress of non-library manga will be lost</string>
     <string name="clear_database_completed">Entries deleted</string>
+    <string name="database_source_manga_count">%1$d non-library manga in database</string>
+    <string name="database_clean_message">Database clean</string>
     <string name="pref_refresh_library_covers">Refresh library manga covers</string>
     <string name="pref_refresh_library_tracking">Refresh tracking</string>
     <string name="pref_refresh_library_tracking_summary">Updates status, score and last chapter read from the tracking services</string>
