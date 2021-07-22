@@ -111,10 +111,6 @@ fun syncChaptersWithSource(
             db.updateNextUpdated(manga).executeAsBlocking()
         }
 
-        if (newestDate != 0L && newestDate != manga.last_update) {
-            manga.last_update = newestDate
-            db.updateLastUpdated(manga).executeAsBlocking()
-        }
         return Pair(emptyList(), emptyList())
     }
 
@@ -177,13 +173,8 @@ fun syncChaptersWithSource(
         db.fixChaptersSourceOrder(sourceChapters).executeAsBlocking()
 
         // Set this manga as updated since chapters were changed
-        val newestChapter = topChapters.getOrNull(0)
-        val dateFetch = newestChapter?.date_upload ?: manga.last_update
-        if (dateFetch == 0L) {
-            if (toAdd.isNotEmpty()) {
-                manga.last_update = Date().time
-            }
-        } else manga.last_update = dateFetch
+        // Note that last_update actually represents last time the chapter list changed at all
+        manga.last_update = Date().time
         db.updateLastUpdated(manga).executeAsBlocking()
     }
 
