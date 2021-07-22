@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    app:cardBackgroundColor="?android:attr/colorBackground"
+    app:cardElevation="0dp"
+    app:cardForegroundColor="@color/draggable_card_foreground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/TextAppearance.Medium.SubHeading"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            tools:text="Title" />
+
+        <ImageView
+            android:id="@+id/reorder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="8dp"
+            android:scaleType="center"
+            app:srcCompat="@drawable/ic_drag_handle_24dp"
+            app:tint="?android:attr/textColorHint"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
