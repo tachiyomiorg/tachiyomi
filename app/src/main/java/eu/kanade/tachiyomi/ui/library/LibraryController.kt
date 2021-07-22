@@ -51,7 +51,7 @@ class LibraryController(
     RootController,
     TabbedController,
     ActionMode.Callback,
-    ChangeMangaCategoriesDialog.Listener,
+    ChangeMangaCategoriesSheet.Listener,
     DeleteLibraryMangasDialog.Listener {
 
     /**
@@ -550,12 +550,20 @@ class LibraryController(
         val categories = presenter.categories.filter { it.id != 0 }
 
         // Get indexes of the common categories to preselect.
-        val commonCategoriesIndexes = presenter.getCommonCategories(mangas)
-            .map { categories.indexOf(it) }
-            .toTypedArray()
-
-        ChangeMangaCategoriesDialog(this, mangas, categories, commonCategoriesIndexes)
-            .showDialog(router)
+        val commonIndexes = presenter.getCommonCategories(mangas)
+            .map { categories.indexOf(it) }.toTypedArray()
+        // Get indexes of the mix categories to preselect.
+        val mixIndexes = presenter.getMixCategories(mangas)
+            .map { categories.indexOf(it) }.toTypedArray()
+        val mangaCategoriesSheet = ChangeMangaCategoriesSheet(
+            this, router, mangas, categories, commonIndexes, mixIndexes
+        ) {
+            group ->
+            when (group) {
+                is ChangeMangaCategoriesSheet<*>.Selection.SelectionGroup -> onFilterChanged()
+            }
+        }
+        mangaCategoriesSheet.show()
     }
 
     private fun downloadUnreadChapters() {
@@ -574,8 +582,8 @@ class LibraryController(
         DeleteLibraryMangasDialog(this, selectedMangas.toList()).showDialog(router)
     }
 
-    override fun updateCategoriesForMangas(mangas: List<Manga>, categories: List<Category>) {
-        presenter.moveMangasToCategories(categories, mangas)
+    override fun updateCategoriesForMangas(mangas: List<Manga>, newCommon: List<Category>, oldCommon: List<Category>) {
+        presenter.updateMangasToCategories(mangas, newCommon, oldCommon)
         destroyActionModeIfNeeded()
     }
 
