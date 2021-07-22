@@ -3,7 +3,6 @@ package eu.kanade.tachiyomi.ui.base.activity
 import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.lifecycleScope
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferenceValues
@@ -25,7 +24,7 @@ abstract class BaseThemedActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        applyThemePreferences(preferences)
+        applyAppTheme(preferences)
 
         Injekt.get<PreferencesHelper>().incognitoMode()
             .asImmediateFlow {
@@ -37,7 +36,7 @@ abstract class BaseThemedActivity : AppCompatActivity() {
     }
 
     companion object {
-        fun AppCompatActivity.applyThemePreferences(preferences: PreferencesHelper) {
+        fun AppCompatActivity.applyAppTheme(preferences: PreferencesHelper) {
             val resIds = mutableListOf<Int>()
             when (preferences.appTheme().get()) {
                 PreferenceValues.AppTheme.MONET -> {
@@ -76,16 +75,6 @@ abstract class BaseThemedActivity : AppCompatActivity() {
 
             resIds.forEach {
                 setTheme(it)
-            }
-
-            lifecycleScope.launchWhenCreated {
-                AppCompatDelegate.setDefaultNightMode(
-                    when (preferences.themeMode().get()) {
-                        PreferenceValues.ThemeMode.light -> AppCompatDelegate.MODE_NIGHT_NO
-                        PreferenceValues.ThemeMode.dark -> AppCompatDelegate.MODE_NIGHT_YES
-                        PreferenceValues.ThemeMode.system -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
-                    }
-                )
             }
         }
     }
