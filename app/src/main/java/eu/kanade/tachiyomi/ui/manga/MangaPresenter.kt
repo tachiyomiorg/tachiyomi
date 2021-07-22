@@ -224,6 +224,7 @@ class MangaPresenter(
         }
         if (!manga.favorite) {
             manga.removeCovers(coverCache)
+            manga.overridePublicationStatus = 0 // clear custom publication status
         }
         db.insertManga(manga).executeAsBlocking()
         return manga.favorite
@@ -409,6 +410,12 @@ class MangaPresenter(
                 { view, _ -> view.onSetCoverSuccess() },
                 { view, e -> view.onSetCoverError(e) }
             )
+    }
+
+    fun setMangaStatus(sourceStatus: Int, overrideStatus: Int) {
+        manga.sourcePublicationStatus = sourceStatus
+        manga.overridePublicationStatus = overrideStatus
+        db.insertManga(manga).executeAsBlocking()
     }
 
     // Manga info - end

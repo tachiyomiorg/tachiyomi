@@ -104,4 +104,11 @@
         <item>@string/edge_nav</item>
         <item>@string/right_and_left_nav</item>
     </string-array>
+
+    <string-array name="manga_override_status_options">
+        <item>@string/from_source</item>
+        <item>@string/ongoing</item>
+        <item>@string/completed</item>
+        <item>@string/licensed</item>
+    </string-array>
 </resources>

@@ -49,10 +49,7 @@ import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.online.HttpSource
-import eu.kanade.tachiyomi.ui.base.controller.FabController
-import eu.kanade.tachiyomi.ui.base.controller.NucleusController
-import eu.kanade.tachiyomi.ui.base.controller.ToolbarLiftOnScrollController
-import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
+import eu.kanade.tachiyomi.ui.base.controller.*
 import eu.kanade.tachiyomi.ui.browse.migration.search.SearchController
 import eu.kanade.tachiyomi.ui.browse.source.browse.BrowseSourceController
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchController
@@ -68,6 +65,7 @@ import eu.kanade.tachiyomi.ui.manga.chapter.DeleteChaptersDialog
 import eu.kanade.tachiyomi.ui.manga.chapter.DownloadCustomChaptersDialog
 import eu.kanade.tachiyomi.ui.manga.chapter.MangaChaptersHeaderAdapter
 import eu.kanade.tachiyomi.ui.manga.chapter.base.BaseChaptersAdapter
+import eu.kanade.tachiyomi.ui.manga.info.ChangeMangaPublicationStatusDialog
 import eu.kanade.tachiyomi.ui.manga.info.MangaInfoHeaderAdapter
 import eu.kanade.tachiyomi.ui.manga.track.TrackItem
 import eu.kanade.tachiyomi.ui.manga.track.TrackSearchDialog
@@ -107,6 +105,7 @@ class MangaController :
     BaseChaptersAdapter.OnChapterClickListener,
     ChangeMangaCoverDialog.Listener,
     ChangeMangaCategoriesDialog.Listener,
+    ChangeMangaPublicationStatusDialog.Listener,
     DownloadCustomChaptersDialog.Listener,
     DeleteChaptersDialog.Listener {
 
@@ -571,7 +570,18 @@ class MangaController :
                 }
             }
         }
+        mangaInfoAdapter?.notifyDataSetChanged()
+    }
 
+    fun onPublicationStatusClick() {
+        val manga = presenter.manga
+        if (!manga.favorite) return
+        ChangeMangaPublicationStatusDialog(this, manga.sourcePublicationStatus, manga.overridePublicationStatus)
+            .showDialog(router)
+    }
+
+    override fun updatePublicationStatusForManga(sourceStatus: Int, overrideStatus: Int) {
+        presenter.setMangaStatus(sourceStatus, overrideStatus)
         mangaInfoAdapter?.notifyDataSetChanged()
     }
 

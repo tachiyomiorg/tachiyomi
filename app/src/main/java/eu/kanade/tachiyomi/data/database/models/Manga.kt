@@ -21,6 +21,26 @@ interface Manga : SManga {
 
     var viewer_flags: Int
 
+    /** The publication status that should be used when taking actions dependent on a
+     * manga status.
+     * This takes into account the real (source) status, and the user-defined status.
+     *
+     * Setting this value is the same as setting [sourcePublicationStatus]
+     */
+    var publicationStatus: Int
+        get() = if (status >= 0x0F) status shr 4 else status
+        set(value) { status = (status and 0xF0) or value }
+
+    /** The publication status as reported by the source of this manga */
+    var sourcePublicationStatus: Int
+        get() = status and 0x0F
+        set(value) { status = (status and 0xF0) or value }
+
+    /** The publication status set by the user */
+    var overridePublicationStatus: Int
+        get() = status shr 4
+        set(value) { status = (status and 0x0F) or (value shl 4) }
+
     var chapter_flags: Int
 
     var cover_last_modified: Long

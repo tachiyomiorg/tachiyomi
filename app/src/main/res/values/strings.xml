@@ -527,6 +527,7 @@
     <!-- Manga info fragment -->
     <string name="description">Description</string>
     <string name="ongoing">Ongoing</string>
+    <string name="from_source">From Source</string>
     <string name="unknown">Unknown</string>
     <string name="unknown_author">Unknown author</string>
     <string name="unknown_status">Unknown status</string>
@@ -548,6 +549,7 @@
     <string name="clipboard_copy_error">Failed to copy to clipboard</string>
     <string name="source_not_installed">Source not installed: %1$s</string>
     <string name="snack_add_to_library">Add manga to library?</string>
+    <string name="set_manga_status">Set Manga Status</string>
 
     <!-- Manga chapters fragment -->
     <string name="display_mode_chapter">Chapter %1$s</string>
