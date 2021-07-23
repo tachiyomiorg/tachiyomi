@@ -45,6 +45,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
+import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -75,8 +76,8 @@ open class BrowseSourcePresenter(
      */
     var sourceFilters = FilterList()
         set(value) {
-            field = value
-            filterItems = value.toItems()
+            field = FilterList(listOf(UnreadFilter(), Filter.Separator()) + value)
+            filterItems = field.toItems()
         }
 
     var filterItems: List<IFlexible<*>> = emptyList()
@@ -107,6 +108,20 @@ open class BrowseSourcePresenter(
     private var nextPageJob: Job? = null
 
     private val loggedServices by lazy { Injekt.get<TrackManager>().services.filter { it.isLogged } }
+
+    private interface StandardFilter {
+        fun filterFunc(manga: Manga): Boolean
+    }
+    private inner class UnreadFilter : Filter.TriState("Unread"), StandardFilter {
+        override fun filterFunc(manga: Manga): Boolean = when {
+            isIncluded() -> manga.unread != 0
+            isExcluded() -> manga.unread == 0
+            else -> true
+        }
+
+        private val Manga.unread: Int
+            get() = id?.let { db.getMangaUnread(it).executeAsBlocking().use { it.moveToFirst(); it.getInt(0) } } ?: -1
+    }
 
     init {
         query = searchQuery ?: ""
@@ -148,11 +163,25 @@ open class BrowseSourcePresenter(
 
         val sourceDisplayMode = prefs.sourceDisplayMode()
 
+        val standardFilters = { manga: Manga ->
+            this.appliedFilters.filterIsInstance<StandardFilter>().all { it.filterFunc(manga) }
+        }
+
         // Prepare the pager.
         pagerSubscription?.let { remove(it) }
+        var repaged = 1
         pagerSubscription = pager.results()
             .observeOn(Schedulers.io())
-            .map { (first, second) -> first to second.map { networkToLocalManga(it, sourceId) } }
+            .flatMap { (_, second) ->
+                val filtered = second.map { networkToLocalManga(it, sourceId) }.filter(standardFilters)
+                if (filtered.isEmpty() && second.isNotEmpty()) {
+                    if (hasNextPage()) {
+                        requestNext()
+                        Observable.empty<Pair<Int, List<Manga>>>()
+                    }
+                }
+                Observable.just(repaged++ to filtered)
+            }
             .doOnNext { initializeMangas(it.second) }
             .map { (first, second) -> first to second.map { SourceItem(it, sourceDisplayMode) } }
             .observeOn(AndroidSchedulers.mainThread())

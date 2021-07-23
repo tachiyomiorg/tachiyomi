@@ -64,6 +64,11 @@ interface MangaQueries : DbProvider {
         )
         .prepare()
 
+    fun getMangaUnread(id: Long) = db.get()
+        .cursor()
+        .withQuery(RawQuery.builder().query(mangaUnreadQuery).args(id).build())
+        .prepare()
+
     fun insertManga(manga: Manga) = db.put().`object`(manga).prepare()
 
     fun insertMangas(mangas: List<Manga>) = db.put().objects(mangas).prepare()
