@@ -163,8 +163,8 @@
     <string name="color_filter_a_value">A</string>
     <string name="pref_download_directory">Nedladdningsplats</string>
     <string name="pref_download_only_over_wifi">Ladda bara ner över WiFi</string>
-    <string name="pref_remove_after_marked_as_read">Efter manuellt markerad som läst</string>
-    <string name="pref_remove_after_read">Efter läsning</string>
+    <string name="pref_remove_after_marked_as_read">Efter markerad som läst</string>
+    <string name="pref_remove_after_read">Automatiskt efter läsning</string>
     <string name="custom_dir">Anpassad plats</string>
     <string name="disabled">Inaktiverad</string>
     <string name="last_read_chapter">Senaste lästa kapitel</string>
@@ -357,10 +357,6 @@
     <string name="theme_light">Av</string>
     <string name="theme_dark">På</string>
     <string name="theme_system">Följ systemet</string>
-    <string name="pref_theme_dark">Mörkt tema</string>
-    <string name="theme_dark_default">Standard</string>
-    <string name="theme_dark_blue">Mörkblå</string>
-    <string name="theme_dark_amoled">AMOLED svart</string>
     <string name="pref_manage_notifications">Hantera aviseringar</string>
     <string name="pref_category_security">Säkerhet</string>
     <string name="lock_with_biometrics">Kräv upplåsning</string>
@@ -402,9 +398,6 @@
         <item quantity="one">För 1 titel</item>
         <item quantity="other">För %d titlar</item>
     </plurals>
-    <string name="pref_theme_light">Ljust tema</string>
-    <string name="theme_light_default">Standard</string>
-    <string name="theme_light_blue">Ljusblå</string>
     <string name="action_menu">Meny</string>
     <string name="action_reorganize_by">Ändra ordning</string>
     <string name="action_newest">Nyaste</string>
@@ -542,7 +535,7 @@
         <item quantity="other">%d spårare</item>
     </plurals>
     <string name="no_pinned_sources">Du har inga fästa källor</string>
-    <string name="pref_remove_bookmarked_chapters">Ta bort bokmärkta kapitel</string>
+    <string name="pref_remove_bookmarked_chapters">Tillåt att radera bokmärkta kapitel</string>
     <string name="pref_category_delete_chapters">Ta bort kapitel</string>
     <string name="ext_nsfw_warning">Kan innehålla NSFW(18+) innehåll</string>
     <string name="ext_nsfw_short">18+</string>
@@ -589,8 +582,8 @@
     <string name="action_order_by_chapter_number">Efter kapitelnummer</string>
     <string name="action_order_by_upload_date">Efter uppladdningsdatum</string>
     <string name="action_asc">Stigande</string>
-    <string name="track_finished_reading_date">Avslutat läsdatum</string>
-    <string name="track_started_reading_date">Påbörjat läsdatum</string>
+    <string name="track_finished_reading_date">Slutdatum</string>
+    <string name="track_started_reading_date">Start datum</string>
     <string name="pref_viewer_nav">Navigationslayout</string>
     <string name="edge_nav">Kant</string>
     <string name="kindlish_nav">Kindle-ish</string>
@@ -638,17 +631,12 @@
     <string name="error_no_match">Ingen matchning hittad</string>
     <string name="source_unsupported">Källan stöds inte</string>
     <string name="unread">Oläst</string>
-    <string name="pref_auto_add_track">Spåra tyst när du lägger till manga i biblioteket</string>
     <string name="date">Datum</string>
     <string name="local_filter_order_by">Sortera efter</string>
     <string name="local_invalid_format">Ogiltigt kapitelformat</string>
     <string name="chapter_not_found">Kapitlet hittades inte</string>
     <string name="pref_library_update_refresh_trackers_summary">Uppdatera spårare när du uppdaterar biblioteket</string>
     <string name="pref_library_update_refresh_trackers">Uppdatera spårare automatiskt</string>
-    <string name="theme_dark_amoled_hotpink">AMOLED Skrikrosa</string>
-    <string name="theme_dark_midnightdusk">Midnattskymning</string>
-    <string name="theme_dark_greenapple">Grönt äpple</string>
-    <string name="theme_light_strawberrydaiquiri">Jordgubbs-Daiquiri</string>
     <string name="restrictions">Begränsningar: %s</string>
     <string name="action_display_local_badge">Lokala märken</string>
     <string name="off">Av</string>
@@ -662,8 +650,25 @@
     <string name="alignment_top">Topp</string>
     <string name="pref_side_nav_icon_alignment">Justering av sidonavigeringsikon</string>
     <string name="tracking_guide">Spårningsguide</string>
-    <string name="categorized_display_settings">Visningsinställningar per kategori</string>
-    <string name="theme_light_yotsuba">Yotsuba</string>
+    <string name="categorized_display_settings">Inställningar per kategori för sortering och visning</string>
     <string name="information_empty_category_dialog">Du har inga kategorier ännu.</string>
     <string name="action_start_downloading_now">Börja ladda ner nu</string>
+    <string name="notification_updating">Uppdaterar biblioteket ... (%1$d / %2$d)</string>
+    <string name="tracker_komga_warning">Denna tracker är endast kompatibel med Komga-källan.</string>
+    <string name="restore_miui_warning">MIUI Optimization måste vara aktiverat för att säkerhetskopiering / återställning ska fungera korrekt.</string>
+    <string name="enhanced_tracking_info">Tjänster som erbjuder förbättrade funktioner för specifika källor. Manga spåras automatiskt när de läggs till i ditt bibliotek.</string>
+    <string name="enhanced_services">Förbättrade tjänster</string>
+    <string name="pref_dark_theme_pure_black">Rent svart mörkt läge</string>
+    <string name="theme_yotsuba">Yotsuba</string>
+    <string name="theme_yinyang">Yin &amp; Yang</string>
+    <string name="theme_tako">Tako</string>
+    <string name="theme_strawberrydaiquiri">Jordgubbs-Daiquiri</string>
+    <string name="theme_midnightdusk">Midnattskymning</string>
+    <string name="theme_greenapple">Grönt äpple</string>
+    <string name="theme_blue">Blå</string>
+    <string name="theme_monet">Dynamisk</string>
+    <string name="theme_default">Standard</string>
+    <string name="pref_app_theme">App-tema</string>
+    <string name="action_sort_next_updated">Nästa förväntade uppdatering</string>
+    <string name="about_dont_kill_my_app">Vissa tillverkare har ytterligare appbegränsningar som dödar bakgrundstjänster. Denna webbplats har mer information om hur du åtgärdar det.</string>
 </resources>

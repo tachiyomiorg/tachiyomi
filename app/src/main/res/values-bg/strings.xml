@@ -468,7 +468,6 @@
     <string name="pref_category_security">Сигурност</string>
     <string name="pref_manage_notifications">Уведомления</string>
     <string name="pref_confirm_exit">Потвърждение при излизане</string>
-    <string name="theme_darkblue">Тъмносин</string>
     <string name="theme_default">По подразбиране</string>
     <string name="theme_system">Система на абонаментите</string>
     <string name="theme_dark">Включено</string>

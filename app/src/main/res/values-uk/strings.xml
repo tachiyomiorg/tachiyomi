@@ -357,7 +357,6 @@
     <string name="theme_light">Вимкнено</string>
     <string name="theme_dark">Увімкнено</string>
     <string name="theme_system">Використовувати системну</string>
-    <string name="theme_darkblue">Темно-синя</string>
     <string name="pref_manage_notifications">Керування сповіщеннями</string>
     <string name="pref_category_security">Безпека</string>
     <string name="lock_with_biometrics">Вимагати розблокування</string>
@@ -661,7 +660,6 @@
     <string name="local_filter_order_by">Сортувати за</string>
     <string name="local_invalid_format">Невірний формат глав</string>
     <string name="chapter_not_found">Главу не знайдено</string>
-    <string name="pref_auto_add_track">Тихенько відстежувати, при додаванні манги до бібліотеки</string>
     <string name="tracking_guide">Гайд відслідковування</string>
     <string name="off">Вимкнено</string>
     <string name="on">Увімкнено</string>
@@ -673,10 +671,5 @@
     <string name="alignment_center">Посередині</string>
     <string name="alignment_top">Згори</string>
     <string name="pref_side_nav_icon_alignment">Вирівнювання значків бокової навігації</string>
-    <string name="theme_dark_amoled_hotpink">Яскраво рожевий AMOLED</string>
-    <string name="theme_dark_midnightdusk">Опівнічні сутінки</string>
-    <string name="theme_dark_greenapple">Зелене яблуко</string>
-    <string name="theme_light_yotsuba">Йоцуба</string>
-    <string name="theme_light_strawberrydaiquiri">Полуничний Дайкірі</string>
     <string name="action_display_local_badge">Локальні значки</string>
 </resources>

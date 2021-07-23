@@ -366,7 +366,6 @@
     <string name="pref_manage_notifications">বিজ্ঞপ্তিগুলি নিয়ন্ত্রণ করুন</string>
     <string name="pref_confirm_exit">বের হতে নিশ্চিত করুন</string>
     <string name="pref_date_format">তারিখের রীতি</string>
-    <string name="theme_darkblue">গাঢ় নীল</string>
     <string name="theme_default">প্রকৃত</string>
     <string name="theme_dark">চালু করুন</string>
     <string name="theme_light">বন্ধ করুন</string>

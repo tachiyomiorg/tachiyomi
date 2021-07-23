@@ -359,13 +359,6 @@
     <string name="pref_category_security">إعدادات الأمان</string>
     <string name="pref_manage_notifications">إدارة الإشعارات</string>
     <string name="pref_date_format">صيغة التاريخ</string>
-    <string name="theme_dark_amoled">أسود غامق</string>
-    <string name="theme_dark_blue">أزرق غامق</string>
-    <string name="theme_dark_default">الافتراضي</string>
-    <string name="pref_theme_dark">المظهر الداكن</string>
-    <string name="theme_light_blue">أزرق فاتح</string>
-    <string name="theme_light_default">الافتراضي</string>
-    <string name="pref_theme_light">المظهر الفاتح</string>
     <string name="theme_system">اتبع مظهر النظام</string>
     <string name="theme_dark">مفعّل</string>
     <string name="theme_light">غير مفعّل</string>
@@ -687,7 +680,6 @@
     <string name="date">التاريخ</string>
     <string name="local_filter_order_by">ترتيب حسب</string>
     <string name="chapter_not_found">لم يتم العثور على الفصل</string>
-    <string name="pref_auto_add_track">تتبع بصمت عند إضافة المانجا إلى المكتبة</string>
     <string name="off">إيقاف</string>
     <string name="on">تشغيل</string>
     <string name="restrictions">قيود: %s</string>
@@ -705,13 +697,15 @@
     <string name="alignment_center">وسط</string>
     <string name="alignment_top">أعلى</string>
     <string name="pref_side_nav_icon_alignment">محاذاة رموز التنقل الجانبية</string>
-    <string name="theme_dark_amoled_hotpink">ازرق مشع غامق</string>
-    <string name="theme_dark_midnightdusk">غسق الليل</string>
-    <string name="theme_dark_greenapple">تفاح اخضر</string>
-    <string name="theme_light_strawberrydaiquiri">فراولة</string>
     <string name="cancel_all_for_series">إلغاء الكل لهذه السلسلة</string>
     <string name="action_display_local_badge">الشارات المحلية</string>
     <string name="information_empty_category_dialog">ليس لديك اي قوائم بعد</string>
-    <string name="theme_light_yotsuba">Yotsuba</string>
     <string name="action_start_downloading_now">ابدأ التحميل الآن</string>
+    <string name="theme_default">الإفتراضي</string>
+    <string name="theme_strawberrydaiquiri">أحمر</string>
+    <string name="theme_midnightdusk">منتصف الليل</string>
+    <string name="theme_greenapple">أخضر</string>
+    <string name="theme_blue">أزرق</string>
+    <string name="pref_app_theme">مظهر التطبيق</string>
+    <string name="action_sort_next_updated">التحديث القادم المتوقع</string>
 </resources>

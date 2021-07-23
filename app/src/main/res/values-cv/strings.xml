@@ -71,7 +71,6 @@
     <string name="pref_date_format">Вӑхӑт формачӗ</string>
     <string name="pref_language">Чӗлхе</string>
     <string name="pref_start_screen">Пуҫламӑш экран</string>
-    <string name="theme_darkblue">Тӗксӗм кӑвак</string>
     <string name="theme_dark">Ҫутнӑ</string>
     <string name="theme_light">Сӳнтернӗ</string>
     <string name="pref_category_advanced">Тата</string>
@@ -205,7 +204,7 @@
     <string name="information_cloudflare_bypass_failure">Cloudflare-ран иртеймерӗ</string>
     <string name="information_empty_category">Санӑн пухмӑшсем ҫук. Хӑвӑн вулавӑша йӗркелеме + пускӑч ҫине пус.</string>
     <string name="label_migration">Куҫар</string>
-    <string name="label_backup">Янтӑв</string>
+    <string name="label_backup">Янтӑллани тата тавӑрни</string>
     <string name="ext_obsolete">Кивелнӗ</string>
     <string name="ext_updates_pending">Ҫӗнетӳсем кӗтеҫҫӗ</string>
     <string name="all_lang">Веҫех</string>

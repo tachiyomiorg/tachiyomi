@@ -352,7 +352,6 @@
     <string name="theme_light">オフ</string>
     <string name="theme_dark">オン</string>
     <string name="theme_system">システム設定</string>
-    <string name="theme_darkblue">濃紺</string>
     <string name="pref_manage_notifications">通知設定</string>
     <string name="pref_category_security">セキュリティ</string>
     <string name="lock_with_biometrics">アンロックを必要とする</string>
@@ -638,13 +637,18 @@
     <string name="alignment_center">センター</string>
     <string name="alignment_top">トップ</string>
     <string name="pref_side_nav_icon_alignment">サイド ナビ アイコンの整列</string>
-    <string name="theme_dark_amoled_hotpink">AMOLED ホットピンク</string>
-    <string name="theme_dark_midnightdusk">たそがれ</string>
-    <string name="theme_dark_greenapple">青いリンゴ</string>
-    <string name="theme_light_yotsuba">よつば</string>
-    <string name="theme_light_strawberrydaiquiri">いちごダイキリ</string>
     <string name="cancel_all_for_series">このシリーズの全項目をキャンセル</string>
     <string name="action_display_local_badge">ローカル バッジ</string>
     <string name="rotation_landscape">横向き</string>
     <string name="rotation_portrait">縦向き</string>
+    <string name="pref_dark_theme_pure_black">真っ黒モード</string>
+    <string name="theme_yotsuba">四葉</string>
+    <string name="theme_yinyang">陰陽</string>
+    <string name="theme_tako">タコ</string>
+    <string name="theme_strawberrydaiquiri">ストロベリーダイキリ</string>
+    <string name="theme_midnightdusk">黄昏</string>
+    <string name="theme_greenapple">青りんご</string>
+    <string name="theme_blue">青い</string>
+    <string name="pref_app_theme">アプリテーマ</string>
+    <string name="action_start_downloading_now">ダウンロードを開始します</string>
 </resources>

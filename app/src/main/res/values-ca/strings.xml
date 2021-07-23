@@ -357,10 +357,6 @@
     <string name="theme_light">Desactivat</string>
     <string name="theme_dark">Activat</string>
     <string name="theme_system">Per defecte del sistema</string>
-    <string name="pref_theme_dark">Tema fosc</string>
-    <string name="theme_dark_default">Per defecte</string>
-    <string name="theme_dark_blue">Blau Fosc</string>
-    <string name="theme_dark_amoled">Negre AMOLED</string>
     <string name="pref_manage_notifications">Gestiona les notificacions</string>
     <string name="pref_category_security">Seguretat</string>
     <string name="lock_with_biometrics">Requereix desbloqueig</string>
@@ -402,9 +398,6 @@
         <item quantity="one">Per a 1 títol</item>
         <item quantity="other">Per a %d títols</item>
     </plurals>
-    <string name="pref_theme_light">Tema clar</string>
-    <string name="theme_light_default">Per defecte</string>
-    <string name="theme_light_blue">Blau Clar</string>
     <string name="action_menu">Menú</string>
     <string name="action_reorganize_by">Reordena</string>
     <string name="action_newest">Els més nous</string>
@@ -641,12 +634,8 @@
     <string name="date">Data</string>
     <string name="local_filter_order_by">Ordena per</string>
     <string name="local_invalid_format">Format de capítol no vàlid</string>
-    <string name="pref_auto_add_track">Segueix silenciosament en afegir manga a la biblioteca</string>
     <string name="pref_library_update_refresh_trackers_summary">Actualitza els seguidors en actualitzar la biblioteca</string>
     <string name="pref_library_update_refresh_trackers">Actualitza automàticament els seguidors</string>
-    <string name="theme_dark_amoled_hotpink">AMOLED Rosa Calent</string>
-    <string name="theme_dark_midnightdusk">Vespre de mitjanit</string>
-    <string name="theme_light_strawberrydaiquiri">Daiquiri de maduixa</string>
     <string name="chapter_not_found">Capítol no trobat</string>
     <string name="error_sharing_cover">S\'ha produït un error en compartir la coberta</string>
     <string name="error_saving_cover">S\'ha produït un error en desar la coberta</string>
@@ -661,6 +650,5 @@
     <string name="alignment_center">Centrat</string>
     <string name="alignment_top">Part superior</string>
     <string name="pref_side_nav_icon_alignment">Alineació de la icona de navegació lateral</string>
-    <string name="theme_dark_greenapple">Poma Verda</string>
     <string name="action_display_local_badge">Insígnies locals</string>
 </resources>

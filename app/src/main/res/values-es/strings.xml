@@ -389,7 +389,6 @@
     <string name="theme_light">Apagado</string>
     <string name="theme_dark">Encendido</string>
     <string name="theme_system">Usar el del sistema</string>
-    <string name="theme_darkblue">Negro y azul</string>
     <string name="pref_manage_notifications">Gestionar notificaciones</string>
     <string name="pref_category_security">Seguridad</string>
     <string name="lock_with_biometrics">Bloquear con huella</string>

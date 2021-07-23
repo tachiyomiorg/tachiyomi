@@ -276,13 +276,6 @@
     <string name="system_default">Predeterminado</string>
     <string name="pref_language">Idioma</string>
     <string name="pref_start_screen">Pantalla inicial</string>
-    <string name="theme_dark_amoled">AMOLED Negro</string>
-    <string name="theme_dark_blue">Azul oscuro</string>
-    <string name="theme_dark_default">Predeterminado</string>
-    <string name="pref_theme_dark">Tema oscuro</string>
-    <string name="theme_light_blue">Celeste</string>
-    <string name="theme_light_default">Predeterminado</string>
-    <string name="pref_theme_light">Tema claro</string>
     <string name="theme_dark">Encendido</string>
     <string name="theme_light">Apagado</string>
     <string name="theme_system">Usar el del sistema</string>
@@ -630,8 +623,6 @@
     <string name="pref_dual_page_invert">Invertir la posición de las páginas duales</string>
     <string name="pref_show_navigation_mode">Mostrar el diseño de navegación</string>
     <string name="pref_library_update_categories_details">Los manga en las categorías excluidas no se actualizarán aún cuando estén en las categorías incluidas.</string>
-    <string name="theme_light_yotsuba"></string>
-    <string name="theme_dark_greenapple">Manzana verde</string>
     <string name="unread">No leído</string>
     <string name="source_unsupported">Fuente incompatible</string>
     <string name="action_start_downloading_now">Descargar ahora</string>
