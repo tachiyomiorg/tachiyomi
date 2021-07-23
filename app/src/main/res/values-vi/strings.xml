@@ -127,8 +127,8 @@
     <!-- Downloads section -->
     <string name="pref_download_directory">Đường dẫn tải xuống</string>
     <string name="pref_download_only_over_wifi">Chỉ tải trên Wi-Fi</string>
-    <string name="pref_remove_after_marked_as_read">Gỡ bỏ sau khi được đánh dấu đã đọc</string>
-    <string name="pref_remove_after_read">Xoá sau khi đọc</string>
+    <string name="pref_remove_after_marked_as_read">Sau khi đọc chương đã đánh dấu</string>
+    <string name="pref_remove_after_read">Tự động xóa sau khi đọc</string>
     <string name="custom_dir">Đường dẫn tùy chỉnh</string>
     <string name="disabled">Vô hiệu hóa</string>
     <string name="last_read_chapter">Chương đã đọc gần nhất</string>
@@ -416,13 +416,6 @@
     <string name="pref_category_security">Bảo mật</string>
     <string name="pref_manage_notifications">Quản lý thông báo</string>
     <string name="pref_date_format">Định dạng ngày</string>
-    <string name="theme_dark_amoled">Chủ đề Amoled Đen</string>
-    <string name="theme_dark_blue">Chủ đề Dark Blue</string>
-    <string name="theme_dark_default">Mặc định</string>
-    <string name="pref_theme_dark">Chủ đề tối</string>
-    <string name="theme_light_blue">Xanh trắng</string>
-    <string name="theme_light_default">Mặc định</string>
-    <string name="pref_theme_light">Chủ đề sáng</string>
     <string name="theme_system">Theo hệ thống</string>
     <string name="theme_dark">Bật</string>
     <string name="theme_light">Tắt</string>
@@ -496,7 +489,7 @@
     <string name="clear_history_confirmation">Bạn có chắc không\? Tất cả lịch sử sẽ bị xoá.</string>
     <string name="invalid_backup_file_missing_data">Dữ liệu bị mất.</string>
     <string name="pref_library_update_categories_details">Manga trong danh mục bị loại trừ sẽ không được cập nhật.</string>
-    <string name="track_finished_reading_date">Ngày hoàn thành việc đọc</string>
+    <string name="track_finished_reading_date">Ngày kết thúc</string>
     <string name="filter_mode_lighten">Chế độ làm sáng lên</string>
     <string name="filter_mode_darken">Chế độ làm tối đi</string>
     <string name="manga_from_library">Truyện từ thư viện</string>
@@ -512,7 +505,7 @@
     <string name="clear_history_completed">Lịch sử đã được xoá</string>
     <string name="pref_clear_history">Xoá lịch sử</string>
     <string name="myanimelist_relogin">Xin hãy đăng nhập lại MAL</string>
-    <string name="track_started_reading_date">Ngày bắt đầu đọc</string>
+    <string name="track_started_reading_date">Ngày bắt đầu</string>
     <string name="pref_incognito_mode">Chế độ ẩn danh</string>
     <string name="pref_refresh_library_covers">Tải lại ảnh bìa trong thư viện</string>
     <string name="crash_log_saved">Thông tin lỗi đã được lưu</string>
@@ -608,7 +601,7 @@
     <string name="backup_restore_missing_sources">Nguồn không tìm thấy :</string>
     <string name="pref_download_new_categories_details">Manga trong các danh mục bị loại trừ sẽ không được tải xuống.</string>
     <string name="pref_category_auto_download">Tự động tải xuống</string>
-    <string name="pref_remove_bookmarked_chapters">Xoá chương đã đánh dấu</string>
+    <string name="pref_remove_bookmarked_chapters">Cho phép xóa các chương đã đánh dấu</string>
     <string name="pref_category_delete_chapters">Xoá chương</string>
     <string name="pref_webtoon_side_padding">Kích cỡ hai bên</string>
     <string name="webtoon_side_padding_0">Không</string>
@@ -657,10 +650,6 @@
     <string name="action_sort_chapter_fetch_date">Ngày nhập</string>
     <string name="action_filter_tracked">Đã theo dõi</string>
     <string name="cancel_all_for_series">Dừng tất cả cho series</string>
-    <string name="theme_dark_amoled_hotpink">Chủ đề AMOLED HOT PINK</string>
-    <string name="theme_dark_greenapple">Chủ đề Green Apple</string>
-    <string name="theme_dark_midnightdusk">Chủ đề Midnight Dusk</string>
-    <string name="theme_light_strawberrydaiquiri">Dâu Daiquiri</string>
     <string name="action_display_local_badge">Huy hiệu cục bộ</string>
     <string name="error_no_match">Không tìm thấy chính sác</string>
     <string name="source_unsupported">Nguồn không hỗ trợ</string>
@@ -673,7 +662,6 @@
     <string name="local_filter_order_by">Xếp theo</string>
     <string name="local_invalid_format">Định dạng chương không đúng</string>
     <string name="chapter_not_found">Chương không tìm thấy</string>
-    <string name="pref_auto_add_track">Theo dõi âm thầm khi thêm truyện vào thư viện</string>
     <string name="on">Bật</string>
     <string name="off">Tắt</string>
     <string name="pref_library_update_refresh_trackers_summary">Cập nhật theo dõi khi cập nhật thư viện</string>
@@ -683,4 +671,26 @@
     <string name="alignment_center">Giữa</string>
     <string name="alignment_top">Trên</string>
     <string name="pref_side_nav_icon_alignment">Căn chỉnh biểu tượng điều hướng bên cạnh</string>
+    <string name="tracker_komga_warning">Trình theo dõi này chỉ tương thích với nguồn Komga.</string>
+    <string name="notification_updating">Cập nhật thư viện… (%1$d/%2$d)</string>
+    <string name="information_empty_category_dialog">Người dùng chưa có danh mục.</string>
+    <string name="restore_miui_warning">Tính năng tối ưu hóa của MIUI phải được bật lên để việc lưu trữ/khôi phục hoạt động tốt.</string>
+    <string name="theme_greenapple">Chủ đề Green Apple</string>
+    <string name="theme_blue">Chủ đề xanh dương</string>
+    <string name="theme_monet">Động</string>
+    <string name="theme_default">Chủ đề mặc định</string>
+    <string name="pref_app_theme">Chủ đề ứng dụng</string>
+    <string name="action_start_downloading_now">Bắt đầu tải xuống ngay</string>
+    <string name="action_sort_next_updated">Cập nhật dự kiến tiếp theo</string>
+    <string name="theme_midnightdusk">Chủ đề Midnight Dusk</string>
+    <string name="theme_strawberrydaiquiri">Chủ đề Strawberry Daiquiri</string>
+    <string name="theme_tako">Chủ đề Tako</string>
+    <string name="theme_yinyang">Chủ đề Yin &amp; Yang</string>
+    <string name="theme_yotsuba">Chủ đề Yotsuba</string>
+    <string name="pref_dark_theme_pure_black">Chế độ đen hoàn toàn</string>
+    <string name="categorized_display_settings">Tùy chỉnh mỗi danh mục cho sắp xếp và hiện thị</string>
+    <string name="tracking_guide">Hướng dẫn theo dõi</string>
+    <string name="enhanced_services">Nguồn nâng cao</string>
+    <string name="enhanced_tracking_info">Dịch vụ cung cấp các tính năng nâng cao cho các nguồn cụ thể. Manga được tự động theo dõi khi được thêm vào thư viện của bạn.</string>
+    <string name="about_dont_kill_my_app">Một vài nhà sản xuất có các hạn chế về việc chạy ngầm của ứng dụng. Xem thêm ở địa chỉ này để sửa chữa chúng.</string>
 </resources>

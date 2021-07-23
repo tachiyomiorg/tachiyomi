@@ -7,7 +7,7 @@
     <string name="label_library">Biblioteca</string>
     <string name="label_recent_manga">Histórico</string>
     <string name="label_recent_updates">Atualizações</string>
-    <string name="label_backup">Cópia de segurança</string>
+    <string name="label_backup">Cópia de segurança e restauração</string>
     <!-- Actions -->
     <string name="action_settings">Definições</string>
     <string name="action_filter">Filtro</string>
@@ -106,7 +106,7 @@
     <string name="pref_download_directory">Localização das Transferências</string>
     <string name="pref_download_only_over_wifi">Apenas transferir por Wi-Fi</string>
     <string name="pref_remove_after_marked_as_read">Depois de marcado como lido</string>
-    <string name="pref_remove_after_read">Depois de lido</string>
+    <string name="pref_remove_after_read">Automaticamente depois de lido</string>
     <string name="custom_dir">Localização personalizada</string>
     <string name="disabled">Desativado</string>
     <string name="last_read_chapter">Último capítulo</string>
@@ -387,7 +387,6 @@
     <string name="theme_light">Desligado</string>
     <string name="theme_dark">Ligado</string>
     <string name="theme_system">Seguir o do sistema</string>
-    <string name="theme_darkblue">Azul escuro</string>
     <string name="pref_manage_notifications">Gerir notificações</string>
     <string name="pref_category_security">Segurança</string>
     <string name="lock_with_biometrics">Requerer desbloqueio</string>
@@ -443,7 +442,7 @@
     </plurals>
     <string name="updating_library">Atualizando biblioteca</string>
     <string name="pinned_sources">Fixado</string>
-    <string name="http_error_hint">Verifique o site no WebView</string>
+    <string name="http_error_hint">Verifique o sítio web no WebView</string>
     <string name="webtoon_side_padding_25">25%</string>
     <string name="webtoon_side_padding_20">20%</string>
     <string name="webtoon_side_padding_15">15%</string>
@@ -551,7 +550,7 @@
     <string name="updated_version">Atualizado para v%1$s</string>
     <string name="whats_new">Novidades</string>
     <string name="action_download_unread">Transferir capítulos não lidos</string>
-    <string name="download_insufficient_space">Não foi possível transferir capítulos devido a falta de espaço em disco</string>
+    <string name="download_insufficient_space">Não foi possível transferir capítulos devido a falta de espaço de armazenamento</string>
     <string name="action_global_search_query">Procurar por \"%1$s\" globalmente</string>
     <string name="pref_category_reading_mode">Modo de leitura</string>
     <string name="pref_category_locale">Localidade</string>
@@ -569,7 +568,7 @@
     <string name="download_notifier_download_finish">Transferência concluída</string>
     <string name="channel_errors">Erros</string>
     <string name="backup_restore_missing_trackers">Monitorizadores sem sessão iniciada:</string>
-    <string name="pref_remove_bookmarked_chapters">Eliminar capítulos marcados</string>
+    <string name="pref_remove_bookmarked_chapters">Permitir a eliminação de capítulos marcados</string>
     <string name="pref_category_delete_chapters">Eliminar capítulos</string>
     <string name="ext_nsfw_warning">Pode conter conteúdo NSFW (18+)</string>
     <string name="ext_nsfw_short">18+</string>
@@ -617,8 +616,8 @@
     <string name="action_filter_tracked">Monitorizado</string>
     <string name="edge_nav">Borda</string>
     <string name="channel_crash_logs">Registos de falhas</string>
-    <string name="track_finished_reading_date">Data de fim de leitura</string>
-    <string name="track_started_reading_date">Data de início de leitura</string>
+    <string name="track_finished_reading_date">Data de conclusão</string>
+    <string name="track_started_reading_date">Data de início</string>
     <string name="crash_log_saved">Registos de falhas guardados</string>
     <string name="pref_dump_crash_logs">Guardar registos de falhas</string>
     <string name="pref_dump_crash_logs_summary">Guarda registos de erros num ficheiro para partilhar com os desenvolvedores</string>
@@ -664,4 +663,40 @@
     <string name="automatic_background">Automático</string>
     <string name="off">Desligado</string>
     <string name="on">Ligado</string>
+    <string name="theme_yinyang">Yin &amp; Yang</string>
+    <string name="theme_tako">Tako</string>
+    <string name="theme_strawberrydaiquiri">Daiquiri de Morango</string>
+    <string name="theme_midnightdusk">Crepúsculo da Meia-Noite</string>
+    <string name="theme_greenapple">Maçã Verde</string>
+    <string name="theme_blue">Azul</string>
+    <string name="pref_app_theme">Tema da aplicação</string>
+    <string name="action_start_downloading_now">Começar a transferir agora</string>
+    <string name="cancel_all_for_series">Cancelar tudo para esta série</string>
+    <string name="action_sort_next_updated">Próxima atualização esperada</string>
+    <string name="unread">Não Lido</string>
+    <string name="error_sharing_cover">Erro ao partilhar capa</string>
+    <string name="error_saving_cover">Erro ao guardar capa</string>
+    <string name="cover_saved">Capa guardada</string>
+    <string name="manga_cover">Capa</string>
+    <string name="notification_incognito_text">Desativar o modo incógnito</string>
+    <string name="about_dont_kill_my_app">Alguns fabricantes têm restrições adicionais de aplicação que desligam os serviços em segundo plano. Este sítio web tem mais informações sobre como corrigi-lo.</string>
+    <string name="restore_miui_warning">A otimização MIUI deve estar ligada para que a restauração funcione corretamente.</string>
+    <string name="tracking_guide">Guia de monitorização</string>
+    <string name="categorized_display_settings">Configurações por categoria para ordenação e exibição</string>
+    <string name="restrictions">Restrições: %s</string>
+    <string name="alignment_bottom">Fundo</string>
+    <string name="alignment_center">Centro</string>
+    <string name="alignment_top">Topo</string>
+    <string name="pref_side_nav_icon_alignment">Alinhamento de ícones de navegação lateral</string>
+    <string name="pref_dark_theme_pure_black">Modo escuro preto puro</string>
+    <string name="theme_yotsuba">Yotsuba</string>
+    <string name="action_display_local_badge">Distintivos locais</string>
+    <string name="information_empty_category_dialog">Ainda não tens nenhuma categoria.</string>
+    <string name="notification_updating">Atualizando biblioteca… (%1$d/%2$d)</string>
+    <string name="error_no_match">Nenhuma correspondência encontrada</string>
+    <string name="source_unsupported">Fonte não é suportada</string>
+    <string name="enhanced_tracking_info">Serviços que oferecem funcionalidades melhoradas para fontes específicas.</string>
+    <string name="enhanced_services">Serviços melhorados</string>
+    <string name="pref_library_update_refresh_trackers">Atualizar monitorizadores automaticamente</string>
+    <string name="pref_library_update_refresh_trackers_summary">Atualizar monitorizadores ao atualizar biblioteca</string>
 </resources>

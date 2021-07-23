@@ -90,7 +90,6 @@
     <string name="theme_system">სისტემური</string>
     <string name="theme_light">მსუბუქი</string>
     <string name="theme_dark">ბნელი</string>
-    <string name="theme_darkblue">მოლურჯო ბნელი</string>
     <string name="pref_language">ენა</string>
     <string name="pref_date_format">თარიღის ფორმატი</string>
     <string name="pref_confirm_exit">გამოსვლის დადასტურება</string>

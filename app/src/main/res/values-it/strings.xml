@@ -390,7 +390,6 @@
     <string name="theme_light">Disattivo</string>
     <string name="theme_dark">Attivo</string>
     <string name="theme_system">Segui l\'impostazione di sistema</string>
-    <string name="theme_darkblue">Blu scuro</string>
     <string name="pref_manage_notifications">Gestisci le notifiche</string>
     <string name="pref_category_security">Sicurezza</string>
     <string name="lock_with_biometrics">Sblocco richiesto</string>
@@ -667,7 +666,6 @@
     <string name="local_filter_order_by">Ordina per</string>
     <string name="chapter_not_found">Capitolo non trovato</string>
     <string name="source_unsupported">Fonte non supportata</string>
-    <string name="theme_dark_greenapple">Verde Mela</string>
     <string name="date">Data</string>
     <string name="off">Diattivato</string>
     <string name="alignment_center">Centro</string>
@@ -677,16 +675,11 @@
     <string name="unread">Non letti</string>
     <string name="categorized_display_settings">Impostazioni di visualizzazione per categoria</string>
     <string name="information_empty_category_dialog">Non hai ancora nessuna categoria.</string>
-    <string name="pref_auto_add_track">Traccia silenziosamente quando si aggiungono manga alla libreria</string>
     <string name="on">Attivato</string>
     <string name="restrictions">Restrizioni: %s</string>
     <string name="alignment_bottom">In basso</string>
     <string name="alignment_top">In alto</string>
     <string name="pref_side_nav_icon_alignment">Allineamento delle icone di navigazione laterale</string>
-    <string name="theme_dark_amoled_hotpink">AMOLED Rosa caldo</string>
-    <string name="theme_dark_midnightdusk">Crepuscolo di mezzanotte</string>
-    <string name="theme_light_yotsuba">Yotsuba</string>
-    <string name="theme_light_strawberrydaiquiri">Daiquiri fragola</string>
     <string name="action_display_local_badge">Indicatori locali</string>
     <string name="manga_cover">Copertina</string>
     <string name="local_invalid_format">Formato capitolo non valido</string>
@@ -694,4 +687,5 @@
     <string name="pref_library_update_refresh_trackers_summary">Aggiorna i monitoraggi quando si aggionra la libreria</string>
     <string name="pref_library_update_refresh_trackers">Aggiorna automaticamente i monitoraggi</string>
     <string name="action_start_downloading_now">Inizia subito lo scaricamento</string>
+    <string name="about_dont_kill_my_app">Alcuni produttori hanno restrizioni aggiuntive per le app che uccidono i servizi in sfondo. Questo sito web ha più informazioni su come risolvere il problema.</string>
 </resources>

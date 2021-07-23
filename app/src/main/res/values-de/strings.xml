@@ -59,7 +59,7 @@
     <string name="action_open_log">Protokoll öffnen</string>
     <string name="action_create">Erstellen</string>
     <string name="action_restore">Wiederherstellen</string>
-    <string name="loading">Wird geladen …</string>
+    <string name="loading">Wird geladen…</string>
     <string name="app_not_available">App nicht verfügbar</string>
     <string name="pref_category_general">Allgemein</string>
     <string name="pref_category_reader">Lese-Einstellungen</string>
@@ -132,8 +132,8 @@
     <string name="color_filter_a_value">A</string>
     <string name="pref_download_directory">Speicherort</string>
     <string name="pref_download_only_over_wifi">Nur über WLAN herunterladen</string>
-    <string name="pref_remove_after_marked_as_read">Nachdem manuell als gelesen markiert</string>
-    <string name="pref_remove_after_read">Nach dem Lesen</string>
+    <string name="pref_remove_after_marked_as_read">Nachdem als gelesen markiert</string>
+    <string name="pref_remove_after_read">Automatisch nach dem Lesen</string>
     <string name="custom_dir">Eigener Speicherort</string>
     <string name="disabled">Deaktiviert</string>
     <string name="last_read_chapter">ab zuletzt gelesenem Kapitel</string>
@@ -206,7 +206,7 @@
     <string name="download_5">Nächste 5 Kapitel</string>
     <string name="download_10">Nächste 10 Kapitel</string>
     <string name="download_all">Alle</string>
-    <string name="download_unread">Ungelesene</string>
+    <string name="download_unread">Ungelesen</string>
     <string name="confirm_delete_chapters">Bist du sicher, dass du die ausgewählten Kapitel löschen willst\?</string>
     <string name="manga_tracking_tab">Tracking</string>
     <string name="reading">Am Lesen</string>
@@ -357,10 +357,6 @@
     <string name="theme_light">Aus</string>
     <string name="theme_dark">An</string>
     <string name="theme_system">Systemeinstellung</string>
-    <string name="pref_theme_dark">Dunkeldesign</string>
-    <string name="theme_dark_default">Standard</string>
-    <string name="theme_dark_blue">Dunkelblau</string>
-    <string name="theme_dark_amoled">AMOLED Schwarz</string>
     <string name="pref_manage_notifications">Benachrichtigungen verwalten</string>
     <string name="pref_category_security">Sicherheit</string>
     <string name="lock_with_biometrics">Entsperren erforderlich</string>
@@ -402,9 +398,6 @@
         <item quantity="one">Für 1 Titel</item>
         <item quantity="other">Für %d Titel</item>
     </plurals>
-    <string name="pref_theme_light">Helldesign</string>
-    <string name="theme_light_default">Standard</string>
-    <string name="theme_light_blue">Hellblau</string>
     <string name="action_menu">Menü</string>
     <string name="action_reorganize_by">Umordnen</string>
     <string name="action_newest">Neueste</string>
@@ -434,7 +427,7 @@
     <string name="pinned_sources">Angeheftet</string>
     <string name="action_unpin">Loslösen</string>
     <string name="action_pin">Anheften</string>
-    <string name="add_tracking">Verfolgung hinzufügen</string>
+    <string name="add_tracking">Tracking hinzufügen</string>
     <string name="manga_info_collapse">Weniger</string>
     <string name="manga_info_expand">Mehr</string>
     <string name="in_library">In der Bibliothek</string>
@@ -544,7 +537,7 @@
     <string name="channel_progress">Fortschritt</string>
     <string name="channel_errors">Fehler</string>
     <string name="backup_restore_missing_trackers">Nicht-angemeldete Tracker:</string>
-    <string name="pref_remove_bookmarked_chapters">Mit Lesezeichen versehene Kapitel löschen</string>
+    <string name="pref_remove_bookmarked_chapters">Erlauben, mit Lesezeichen versehene Kapitel zu löschen</string>
     <string name="pref_category_delete_chapters">Kapitel löschen</string>
     <string name="ext_nsfw_warning">Kann NSFW/Ü18-Inhalte enthalten</string>
     <string name="ext_nsfw_short">Ü18</string>
@@ -636,19 +629,14 @@
     <string name="automatic_background">Automatisch</string>
     <string name="cancel_all_for_series">Alles für diese Serie abbrechen</string>
     <string name="error_no_match">Keine Übereinstimmung gefunden</string>
-    <string name="source_unsupported">Quelle ist nicht unterstützt</string>
+    <string name="source_unsupported">Quelle wird nicht unterstützt</string>
     <string name="unread">Ungelesen</string>
-    <string name="pref_auto_add_track">Heimlich tracken, wenn neue Manga der Bibliothek hinzugefügt werden</string>
-    <string name="theme_dark_amoled_hotpink">AMOLED Heißes Pink</string>
-    <string name="theme_dark_midnightdusk">Mitternachtsdämmerung</string>
     <string name="date">Datum</string>
     <string name="local_filter_order_by">Sortiere nach</string>
     <string name="local_invalid_format">Ungültiges Kapitelformat</string>
     <string name="chapter_not_found">Kapitel nicht gefunden</string>
     <string name="pref_library_update_refresh_trackers_summary">Tracker aktualisieren, wenn die Bibliothek aktualisiert wird</string>
     <string name="pref_library_update_refresh_trackers">Tracker automatisch aktualisieren</string>
-    <string name="theme_light_strawberrydaiquiri">Erdbeer-Daiquiri</string>
-    <string name="theme_dark_greenapple">Grüner Apfel</string>
     <string name="restrictions">Einschränkungen: %s</string>
     <string name="action_display_local_badge">Lokal-Plaketten</string>
     <string name="off">Aus</string>
@@ -664,7 +652,23 @@
     <string name="categorized_display_settings">Sortierungs- und Anzeigeeinstellungen pro Kategorie</string>
     <string name="tracking_guide">Tracking-Anleitung</string>
     <string name="information_empty_category_dialog">Du hast noch keine Kategorien.</string>
-    <string name="theme_light_yotsuba">Yotsuba</string>
-    <string name="action_start_downloading_now">Herunterladen jetzt starten</string>
+    <string name="action_start_downloading_now">Download jetzt starten</string>
     <string name="action_sort_next_updated">Nächste erwartete Aktualisierung</string>
+    <string name="notification_updating">Aktualisiere Bibliothek… (%1$d/%2$d)</string>
+    <string name="about_dont_kill_my_app">Einige Hersteller haben zusätzliche Anwendungsbeschränkungen, die Hintergrunddienste stoppen. Diese Website hat mehr Informationen darüber, wie man dies beheben kann.</string>
+    <string name="restore_miui_warning">MIUI Optimierung muss aktiviert sein, damit die Sicherung/Wiederherstellung richtig funktioniert.</string>
+    <string name="pref_dark_theme_pure_black">Rein schwarzer Dunkelmodus</string>
+    <string name="theme_yotsuba">Yotsuba</string>
+    <string name="theme_yinyang">Yin &amp; Yang</string>
+    <string name="theme_tako">Tako</string>
+    <string name="theme_strawberrydaiquiri">Erdbeer-Daiquiri</string>
+    <string name="theme_midnightdusk">Mitternachtsdämmerung</string>
+    <string name="theme_greenapple">Grüner Apfel</string>
+    <string name="theme_blue">Blau</string>
+    <string name="theme_default">Standard</string>
+    <string name="pref_app_theme">App-Design</string>
+    <string name="enhanced_services">Erweiterte Anbieter</string>
+    <string name="enhanced_tracking_info">Anbieter, die für bestimmte Quellen erweiterte Features anbieten. Manga werden automatisch getrackt, wenn sie deiner Bibliothek hinzugefügt werden.</string>
+    <string name="tracker_komga_warning">Dieser Tracker ist nur mit der Komga-Quelle kompatibel.</string>
+    <string name="theme_monet">Dynamisch</string>
 </resources>

@@ -157,8 +157,8 @@
     <string name="pref_read_with_volume_keys">Клавиши громкости</string>
     <string name="pref_reader_navigation">Навигация</string>
     <string name="pref_reader_theme">Цвет фона</string>
-    <string name="pref_remove_after_marked_as_read">После того, как было помечено вручную как прочитано</string>
-    <string name="pref_remove_after_read">После прочтения</string>
+    <string name="pref_remove_after_marked_as_read">После того, как помечено как \"Прочитанно\"</string>
+    <string name="pref_remove_after_read">Автоматически после прочтения</string>
     <string name="pref_rotation_type">Тип ориентации по умолчанию</string>
     <string name="pref_show_page_number">Показывать номер страницы</string>
     <string name="pref_start_screen">Стартовый экран</string>
@@ -357,10 +357,6 @@
     <string name="theme_light">Выключено</string>
     <string name="theme_dark">Включено</string>
     <string name="theme_system">В соответствии с системной темой</string>
-    <string name="pref_theme_dark">Тёмная тема</string>
-    <string name="theme_dark_default">По умолчанию</string>
-    <string name="theme_dark_blue">Темно Синий</string>
-    <string name="theme_dark_amoled">AMOLED Чёрный</string>
     <string name="pref_manage_notifications">Управлять уведомлениями</string>
     <string name="pref_category_security">Безопасность</string>
     <string name="lock_with_biometrics">Требовать разблокировку</string>
@@ -402,11 +398,10 @@
     </plurals>
     <string name="notification_check_updates">Проверка наличия новых глав</string>
     <string name="updating_library">Обновление библиотеки</string>
-    <string name="http_error_hint">Проверить вебстраницу в WebView</string>
+    <string name="http_error_hint">Проверить веб-сайт в WebView</string>
     <string name="battery_optimization_disabled">Оптимизация батареи уже выключена</string>
     <string name="pref_disable_battery_optimization_summary">Помогает с фоновым обновлением библиотеки и резевной копии</string>
     <string name="pref_disable_battery_optimization">Выключить оптимизацию батареи</string>
-    <string name="theme_light_default">По умолчанию</string>
     <plurals name="update_check_notification_ext_updates">
         <item quantity="one">Доступно обновление для %d расширения</item>
         <item quantity="few">Доступны обновления для %d расширений</item>
@@ -417,9 +412,7 @@
     <string name="pref_always_show_chapter_transition">Всегда показывать переход между главами</string>
     <string name="pref_enable_automatic_extension_updates">Проверять обновления для расширений</string>
     <string name="hide_notification_content">Скрыть содержимое уведомлений</string>
-    <string name="secure_screen_summary">Скрывать содержимое приложения при переключении на другие приложения а также блокировать скриншоты</string>
-    <string name="theme_light_blue">Светло Синий</string>
-    <string name="pref_theme_light">Светлая тема</string>
+    <string name="secure_screen_summary">Скрыть содержимое приложения при переключении на другие приложения и блокировать скриншоты</string>
     <string name="action_oldest">Старейший</string>
     <string name="action_newest">Новейший</string>
     <string name="action_move_to_top">В начало</string>
@@ -565,7 +558,7 @@
     <string name="channel_progress">Прогресс</string>
     <string name="channel_errors">Ошибки</string>
     <string name="backup_restore_missing_trackers">Сервисы отслеживания в которые не выполнен вход:</string>
-    <string name="pref_remove_bookmarked_chapters">Удалять главы с закладками</string>
+    <string name="pref_remove_bookmarked_chapters">Разрешить удаление глав с закладками</string>
     <string name="pref_category_delete_chapters">Удаление глав</string>
     <string name="ext_nsfw_warning">Может содержать контент NSFW (18+)</string>
     <string name="ext_nsfw_short">18+</string>
@@ -583,7 +576,7 @@
     <string name="confirm_set_chapter_settings">Вы уверены, что хотите сохранить эти настройки по умолчанию\?</string>
     <string name="chapter_settings">Настройки главы</string>
     <string name="share_page_info">%1$s: %2$s, страница %3$d</string>
-    <string name="action_search_settings">Настройки поиска</string>
+    <string name="action_search_settings">Поиск настроек</string>
     <string name="downloaded_chapters">Загруженные главы</string>
     <string name="manga_from_library">Манга из библиотеки</string>
     <string name="pref_hide_bottom_bar_on_scroll">Скрыть нижнюю панель при прокрутке</string>
@@ -661,17 +654,12 @@
     <string name="error_no_match">Совпадений не найдено</string>
     <string name="source_unsupported">Источник не поддерживается</string>
     <string name="unread">Не прочитано</string>
-    <string name="pref_auto_add_track">Отслеживать бесшумно, при добавлении манги в библиотеку</string>
-    <string name="theme_dark_amoled_hotpink">Ярко Розовый AMOLED</string>
-    <string name="theme_dark_midnightdusk">Полночные Сумерки</string>
-    <string name="theme_light_strawberrydaiquiri">Клубничный Дайкири</string>
     <string name="date">Дата</string>
     <string name="local_filter_order_by">Сортировать по</string>
     <string name="local_invalid_format">Неверный формат глав</string>
     <string name="chapter_not_found">Глава не найдена</string>
     <string name="pref_library_update_refresh_trackers_summary">Обновлять отслеживание, при обновлении библиотеки</string>
     <string name="pref_library_update_refresh_trackers">Автоматически обновлять отслеживание</string>
-    <string name="theme_dark_greenapple">Зелёное Яблоко</string>
     <string name="restrictions">Ограничения: %s</string>
     <string name="action_display_local_badge">Локальные значки</string>
     <string name="off">Выключено</string>
@@ -687,7 +675,23 @@
     <string name="categorized_display_settings">Настройки сортировки и отображения для каждой категории</string>
     <string name="tracking_guide">Руководство по отслеживанию</string>
     <string name="information_empty_category_dialog">В вашей библиотеке ещё нет категорий.</string>
-    <string name="theme_light_yotsuba">Ёцуба</string>
     <string name="action_start_downloading_now">Начать загрузку сейчас</string>
     <string name="action_sort_next_updated">Следующее ожидаемое обновление</string>
+    <string name="theme_greenapple">Зелёное Яблоко</string>
+    <string name="theme_blue">Синяя</string>
+    <string name="theme_default">По умолчанию</string>
+    <string name="pref_app_theme">Тема приложения</string>
+    <string name="pref_dark_theme_pure_black">Тёмный режим с чистым чёрным</string>
+    <string name="theme_yotsuba">Ёцуба</string>
+    <string name="theme_yinyang">Инь и Янь</string>
+    <string name="theme_tako">Тако</string>
+    <string name="theme_strawberrydaiquiri">Клубничный Дайкири</string>
+    <string name="theme_midnightdusk">Полуночные Сумерки</string>
+    <string name="notification_updating">Обновление библиотеки... (%1$d/%2$d)</string>
+    <string name="about_dont_kill_my_app">У некоторых производителей есть дополнительные ограничения для приложений, которые убивают фоновые службы. На этом веб-сайте есть более подробная информация о том, как это исправить.</string>
+    <string name="restore_miui_warning">Оптимизация MIUI должна быть включена, чтобы резервная копия/восстановление работало правильно.</string>
+    <string name="enhanced_tracking_info">Услуги, предоставляющие расширенные возможности для определенных источников. При добавлении манги в библиотеку, она будет автоматически отслеживаться.</string>
+    <string name="enhanced_services">Расширенные услуги</string>
+    <string name="tracker_komga_warning">Этот трекер совместим только с источником Komga.</string>
+    <string name="theme_monet">Динамическая</string>
 </resources>

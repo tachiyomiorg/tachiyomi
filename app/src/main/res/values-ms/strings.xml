@@ -135,8 +135,8 @@
     <string name="color_filter_a_value">A</string>
     <string name="pref_download_directory">Lokasi muat turun</string>
     <string name="pref_download_only_over_wifi">Hanya muat turun melalui Wi-Fi</string>
-    <string name="pref_remove_after_marked_as_read">Selepas ditandakan sebagai dibaca secara manual</string>
-    <string name="pref_remove_after_read">Setelah membaca</string>
+    <string name="pref_remove_after_marked_as_read">Selepas ditandakan sebagai dibaca</string>
+    <string name="pref_remove_after_read">Secara automatik setelah membaca</string>
     <string name="custom_dir">Lokasi tersuai</string>
     <string name="disabled">Dinyahkan</string>
     <string name="last_read_chapter">Bab terakhir dibaca</string>
@@ -357,10 +357,6 @@
     <string name="theme_light">Mati</string>
     <string name="theme_dark">Hidup</string>
     <string name="theme_system">Ikut sistem</string>
-    <string name="pref_theme_dark">Tema gelap</string>
-    <string name="theme_dark_default">Lalai</string>
-    <string name="theme_dark_blue">Biru Gelap</string>
-    <string name="theme_dark_amoled">AMOLED Hitam</string>
     <string name="pref_manage_notifications">Uruskan pemberitahuan</string>
     <string name="pref_category_security">Keselamatan</string>
     <string name="lock_with_biometrics">Memerlukan buka kunci</string>
@@ -398,9 +394,6 @@
     <plurals name="notification_new_chapters_summary">
         <item quantity="other">Untuk %d tajuk</item>
     </plurals>
-    <string name="pref_theme_light">Tema terang</string>
-    <string name="theme_light_default">Lalai</string>
-    <string name="theme_light_blue">Biru Terang</string>
     <string name="action_menu">Menu</string>
     <string name="action_reorganize_by">Susun semula</string>
     <string name="action_newest">Terbaru</string>
@@ -533,7 +526,7 @@
     <string name="channel_complete">Selesai</string>
     <string name="channel_errors">Ralat</string>
     <string name="backup_restore_missing_trackers">Penjejak yang tidak dilog masuk:</string>
-    <string name="pref_remove_bookmarked_chapters">Padam bab yang ditanda</string>
+    <string name="pref_remove_bookmarked_chapters">Benarkan memadam bab yang ditanda</string>
     <string name="pref_category_delete_chapters">Padam bab</string>
     <string name="ext_nsfw_warning">Mungkin mengandungi kandungan 18+ tahun keatas</string>
     <string name="ext_nsfw_short">18+</string>
@@ -623,20 +616,15 @@
     <string name="notification_incognito_text">Nyahdaya mod inkognito</string>
     <string name="automatic_background">Automatik</string>
     <string name="cancel_all_for_series">Batalkan semua untuk siri ini</string>
-    <string name="pref_auto_add_track">Jejak dengan senyap semsa menambahkan manga ke pustaka</string>
     <string name="error_no_match">Tiada padanan dijumpai</string>
     <string name="source_unsupported">Sumber tidak disokong</string>
     <string name="unread">Belum dibaca</string>
-    <string name="theme_dark_midnightdusk">Senja Tengah Malam</string>
     <string name="date">Tarikh</string>
     <string name="local_filter_order_by">Susun mengikut</string>
     <string name="local_invalid_format">Format bab tidak sah</string>
     <string name="chapter_not_found">Bab tidak dijumpai</string>
-    <string name="theme_dark_amoled_hotpink">AMOLED Merah Jambu Panas</string>
-    <string name="theme_light_strawberrydaiquiri">Daiquiri Strawberi</string>
     <string name="pref_library_update_refresh_trackers_summary">Kemas kini penjejak ketika mengemaskini pustaka</string>
     <string name="pref_library_update_refresh_trackers">Segar semula penjejak secara automatik</string>
-    <string name="theme_dark_greenapple">Epal Hijau</string>
     <string name="restrictions">Sekatan: %s</string>
     <string name="action_display_local_badge">Penanda setempat</string>
     <string name="off">Mati</string>
@@ -651,8 +639,24 @@
     <string name="alignment_center">Tengah</string>
     <string name="alignment_top">Atas</string>
     <string name="tracking_guide">Panduan penjejakan</string>
-    <string name="theme_light_yotsuba">Yotsuba</string>
     <string name="information_empty_category_dialog">Anda belum mempunyai kategori.</string>
     <string name="action_start_downloading_now">Mula memuat turun sekarang</string>
     <string name="action_sort_next_updated">Jangkaan kemas kini seterusnya</string>
+    <string name="pref_dark_theme_pure_black">Mod gelap hitam asli</string>
+    <string name="theme_yotsuba">Yotsuba</string>
+    <string name="theme_yinyang">Yin &amp; Yang</string>
+    <string name="theme_tako">Tako</string>
+    <string name="theme_midnightdusk">Suasana tengah malam</string>
+    <string name="theme_greenapple">Epal Hijau</string>
+    <string name="theme_blue">Biru</string>
+    <string name="theme_monet">Dinamik</string>
+    <string name="theme_default">Lalai</string>
+    <string name="pref_app_theme">Tema aplikasi</string>
+    <string name="enhanced_tracking_info">Perkidmatan yang menyediakan fungsi yang dipertingkatkan untuk sumber tertentu. Manga akan dijejaki secara automatik apabila ditambahkan ke pustaka.</string>
+    <string name="notification_updating">Mengemaskini pustaka… (%1$d/%2$d)</string>
+    <string name="tracker_komga_warning">Penjejak ini cuma boleh digunakan dengan sumber Komga.</string>
+    <string name="restore_miui_warning">Pengoptimuman MIUI mesti dihidupkan untuk sandaran/memulih berfungsi dengan betul.</string>
+    <string name="about_dont_kill_my_app">Sesetengah pengeluar ada sekatan tambahan pada aplikasi yang akan menghentikan perkidmatan latar belakang. Laman web ini ada maklumat cara membaikinya.</string>
+    <string name="enhanced_services">Pertingkat perkhidmatan</string>
+    <string name="theme_strawberrydaiquiri">Strawberry Daiquiri</string>
 </resources>

@@ -217,8 +217,8 @@
     <string name="pref_zoom_start">Zoom startpositie</string>
     <string name="rotation_force_portrait">Vergrendeld staand</string>
     <string name="rotation_force_landscape">Vergrendeld liggend</string>
-    <string name="pref_remove_after_marked_as_read">Nadat ze handmatig gemarkeerd zijn als gelezen</string>
-    <string name="pref_remove_after_read">Na het lezen</string>
+    <string name="pref_remove_after_marked_as_read">Nadat ze gemarkeerd zijn als gelezen</string>
+    <string name="pref_remove_after_read">Automatisch na het lezen</string>
     <string name="disabled">Uitgeschakeld</string>
     <string name="fourth_to_last">Drie-na-laatste hoofdstuk</string>
     <string name="fifth_to_last">Vier-na-laatste hoofdstuk</string>
@@ -357,7 +357,6 @@
     <string name="theme_light">Uit</string>
     <string name="theme_dark">Aan</string>
     <string name="theme_system">Volg systeeminstelling</string>
-    <string name="theme_darkblue">Donkerblauw</string>
     <string name="pref_manage_notifications">Meldingen beheren</string>
     <string name="pref_category_security">Beveiliging</string>
     <string name="lock_with_biometrics">Ontgrendelen vereisen</string>
@@ -539,7 +538,7 @@
     <string name="download_notifier_download_finish">Download voltooid</string>
     <string name="channel_errors">Fouten</string>
     <string name="backup_restore_missing_trackers">Niet-ingelogde trackers:</string>
-    <string name="pref_remove_bookmarked_chapters">Verwijder hoofdstukken met bladwijzers</string>
+    <string name="pref_remove_bookmarked_chapters">Verwijderen van hoofdstukken met bladwijzers toestaan</string>
     <string name="pref_category_delete_chapters">Hoofdstukken verwijderen</string>
     <string name="ext_nsfw_warning">Kan NSFW-inhoud (18+) bevatten</string>
     <string name="ext_nsfw_short">18+</string>
@@ -642,7 +641,6 @@
     <string name="cover_saved">Omslag opgeslagen</string>
     <string name="manga_cover">Omslag</string>
     <string name="local_invalid_format">Ongeldig hoofstukkenformaat</string>
-    <string name="pref_auto_add_track">Automatisch tracken wanneer nieuwe manga wordt toegevoegd aan de bibliotheek</string>
     <string name="tracking_guide">Trackinghandleiding</string>
     <string name="off">Uit</string>
     <string name="on">Aan</string>
@@ -653,13 +651,20 @@
     <string name="alignment_center">Midden</string>
     <string name="alignment_top">Bovenkant</string>
     <string name="pref_side_nav_icon_alignment">Uitlijning zijnavigatiepictogram</string>
-    <string name="theme_dark_amoled_hotpink">AMOLED Felroze</string>
-    <string name="theme_dark_midnightdusk">Nachtschemering</string>
-    <string name="theme_light_strawberrydaiquiri">Aardbeien Daiquiri</string>
-    <string name="theme_dark_greenapple">Groene Appel</string>
     <string name="action_display_local_badge">Lokale badges</string>
     <string name="information_empty_category_dialog">Er zijn nog geen categorieën.</string>
-    <string name="theme_light_yotsuba">Yotsuba</string>
     <string name="action_start_downloading_now">Begin nu met downloaden</string>
     <string name="action_sort_next_updated">Volgende verwachte update</string>
+    <string name="notification_updating">Bibliotheek updaten... (%1$d/%2$d)</string>
+    <string name="about_dont_kill_my_app">Sommige fabrikanten hebben extra beperkingen op apps die achtergronddiensten uitschakelen. Informatie over hoe je dit kan oplossen kan je vinden op de deze website.</string>
+    <string name="restore_miui_warning">MIUI-optimalisatie moet geactiveerd zijn voordat het terugzetten goed kan werken.</string>
+    <string name="pref_dark_theme_pure_black">Puur-zwarte donkere modus</string>
+    <string name="theme_yotsuba">Yotsuba</string>
+    <string name="theme_yinyang">Yin &amp; Yang</string>
+    <string name="theme_tako">Tako</string>
+    <string name="theme_strawberrydaiquiri">Aardbeien Daiquiri</string>
+    <string name="theme_midnightdusk">Nachtschemering</string>
+    <string name="theme_greenapple">Groene Appel</string>
+    <string name="theme_blue">Blauw</string>
+    <string name="pref_app_theme">Appthema</string>
 </resources>

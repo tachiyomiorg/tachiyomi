@@ -376,13 +376,6 @@
     <string name="lock_with_biometrics">Wymagaj odblokowania</string>
     <string name="pref_category_security">Bezpieczeństwo</string>
     <string name="pref_manage_notifications">Zarządzaj powiadomieniami</string>
-    <string name="theme_dark_amoled">Czarny AMOLED</string>
-    <string name="theme_dark_blue">Ciemnoniebieski</string>
-    <string name="theme_dark_default">Domyślny</string>
-    <string name="pref_theme_dark">Wariant ciemnego motywu</string>
-    <string name="theme_light_blue">Jasnoniebieski</string>
-    <string name="theme_light_default">Domyślny</string>
-    <string name="pref_theme_light">Wariant jasnego motywu</string>
     <string name="theme_system">Systemowy</string>
     <string name="theme_dark">Włącz</string>
     <string name="theme_light">Wyłącz</string>
@@ -604,8 +597,8 @@
     <string name="pref_show_nsfw_extension">Pokazuj na liście rozszerzeń</string>
     <string name="pref_show_nsfw_source">Pokazuj na liście źródeł</string>
     <string name="channel_crash_logs">Logi crashy</string>
-    <string name="track_finished_reading_date">Data zakończenia czytania</string>
-    <string name="track_started_reading_date">Data rozpoczęcia czytania</string>
+    <string name="track_finished_reading_date">Data zakończenia</string>
+    <string name="track_started_reading_date">Data rozpoczęcia</string>
     <string name="crash_log_saved">Logi crasha zapisane</string>
     <string name="pref_dump_crash_logs_summary">Zapisuje logi błędów do pliku do udostępnienia programistom</string>
     <string name="pref_dump_crash_logs">Zapisz logi crasha</string>
@@ -653,7 +646,6 @@
     <string name="error_no_match">Nie znaleziono pasującego wyniku</string>
     <string name="source_unsupported">Źródło nie jest wspierane</string>
     <string name="unread">Nieprzeczytane</string>
-    <string name="pref_auto_add_track">Automatycznie dodaj śledzenie po dodaniu tytułu do biblioteki</string>
     <string name="rotation_type">Orientacja ekranu</string>
     <string name="default_rotation_type">Domyślnie</string>
     <string name="automatic_background">Automatyczne</string>
@@ -662,10 +654,6 @@
     <string name="pref_reader_actions">Akcje</string>
     <string name="pref_grayscale">Odcienie szarości</string>
     <string name="cancel_all_for_series">Anuluj wszystko dla tego tytułu</string>
-    <string name="theme_dark_amoled_hotpink">AMOLED Hot Pink</string>
-    <string name="theme_dark_midnightdusk">Zmierzch o północy</string>
-    <string name="theme_dark_greenapple">Zielone jabłko</string>
-    <string name="theme_light_strawberrydaiquiri">Truskawkowe Daiquiri</string>
     <string name="date">Data</string>
     <string name="local_filter_order_by">Sortowanie</string>
     <string name="local_invalid_format">Błędny format rozdziału</string>
@@ -687,5 +675,13 @@
     <string name="action_display_local_badge">Plakietki lokalnych serii</string>
     <string name="information_empty_category_dialog">Nie masz jeszcze żadnych kategorii.</string>
     <string name="restrictions">Ograniczenia: %s</string>
-    <string name="theme_light_yotsuba">Yotsuba</string>
+    <string name="about_dont_kill_my_app">Niektórzy producenci mają dodatkowe ograniczenia, które zabijają usługi działające w tle. Ta strona zawiera więcej informacji na ten temat.</string>
+    <string name="action_start_downloading_now">Zacznij pobierać teraz</string>
+    <string name="notification_updating">Aktualizowanie biblioteki… (%1$d/%2$d)</string>
+    <string name="theme_greenapple">Zielone jabłko</string>
+    <string name="theme_blue">Niebieski</string>
+    <string name="theme_monet">Dynamiczny</string>
+    <string name="theme_default">Domyślny</string>
+    <string name="pref_app_theme">Motyw aplikacji</string>
+    <string name="action_sort_next_updated">Następna spodziewana aktualizacja</string>
 </resources>

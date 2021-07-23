@@ -124,7 +124,7 @@
     <!-- Downloads section -->
     <string name="pref_download_directory">Répertoire de téléchargement</string>
     <string name="pref_download_only_over_wifi">Télécharger uniquement via Wi-Fi</string>
-    <string name="pref_remove_after_read">Après avoir lu</string>
+    <string name="pref_remove_after_read">Automatiquement après la lecture</string>
     <string name="disabled">Désactivé</string>
     <string name="last_read_chapter">Dernier chapitre lu</string>
     <string name="second_to_last">Avant-dernier chapitre lu</string>
@@ -391,10 +391,6 @@
     <string name="theme_light">Désactivé</string>
     <string name="theme_dark">Activé</string>
     <string name="theme_system">Par défaut du système</string>
-    <string name="pref_theme_dark">Thème sombre</string>
-    <string name="theme_dark_default">Par défaut</string>
-    <string name="theme_dark_blue">Bleu foncé</string>
-    <string name="theme_dark_amoled">Noir AMOLED</string>
     <string name="pref_manage_notifications">Notifications</string>
     <string name="pref_category_security">Sécurité</string>
     <string name="lock_with_biometrics">Déverrouillage obligatoire</string>
@@ -436,13 +432,10 @@
         <item quantity="one">Pour 1 titre</item>
         <item quantity="other">Pour %d titres</item>
     </plurals>
-    <string name="theme_light_default">Par défaut</string>
-    <string name="theme_light_blue">Bleu clair</string>
     <string name="action_menu">Menu</string>
     <string name="action_reorganize_by">Réorganiser</string>
     <string name="action_newest">Plus récent</string>
     <string name="action_oldest">Plus ancien</string>
-    <string name="pref_theme_light">Thème clair</string>
     <string name="action_move_to_top">Déplacer au début</string>
     <string name="action_move_to_bottom">Déplacer à la fin</string>
     <string name="channel_ext_updates">Mises à jour d\'extensions</string>
@@ -578,7 +571,7 @@
     <string name="download_notifier_download_finish">Téléchargement terminé</string>
     <string name="channel_errors">Erreurs</string>
     <string name="backup_restore_missing_trackers">Traceurs non connectés :</string>
-    <string name="pref_remove_bookmarked_chapters">Supprimer les chapitres favoris</string>
+    <string name="pref_remove_bookmarked_chapters">Permettre la suppression des chapitres marqués d\'un maque-page</string>
     <string name="pref_category_delete_chapters">Supprimer des chapitres</string>
     <string name="ext_nsfw_warning">Peut contenir du contenu +18</string>
     <string name="ext_nsfw_short">18+</string>
@@ -615,8 +608,8 @@
     <string name="pref_show_nsfw_extension">Afficher dans la liste d\'extensions</string>
     <string name="pref_show_nsfw_source">Afficher dans la liste de sources</string>
     <string name="channel_crash_logs">Journaux d\'erreur</string>
-    <string name="track_finished_reading_date">Date de fin de lecture</string>
-    <string name="track_started_reading_date">Date de début de lecture</string>
+    <string name="track_finished_reading_date">Date de fin</string>
+    <string name="track_started_reading_date">Date de début</string>
     <string name="kindlish_nav">Plutôt provoquant</string>
     <string name="crash_log_saved">Sauvegarde des journaux endommagés</string>
     <string name="pref_dump_crash_logs">Copie des journaux endommagés</string>
@@ -672,17 +665,12 @@
     <string name="local_filter_order_by">Trier par</string>
     <string name="local_invalid_format">Format de chapitre invalide</string>
     <string name="chapter_not_found">Chapitre non trouvé</string>
-    <string name="pref_auto_add_track">Pister silencieusement lors de l\'ajout d\'un manga à la bibliothèque</string>
     <string name="rotation_type">Mode de rotation</string>
     <string name="default_rotation_type">Par défaut</string>
     <string name="automatic_background">Automatique</string>
     <string name="pref_library_update_refresh_trackers_summary">Mise à jour des traqueurs lors de la mise à jour de la bibliothèque</string>
     <string name="pref_library_update_refresh_trackers">Actualisation automatique des traqueurs</string>
     <string name="restrictions">Restrictions : %s</string>
-    <string name="theme_dark_amoled_hotpink">AMOLED Rose chaud</string>
-    <string name="theme_dark_midnightdusk">Crépuscule de minuit</string>
-    <string name="theme_dark_greenapple">Pomme verte</string>
-    <string name="theme_light_strawberrydaiquiri">Daiquiri fraise</string>
     <string name="cancel_all_for_series">Tout annuler pour cette série</string>
     <string name="action_display_local_badge">Badges locaux</string>
     <string name="alignment_bottom">Bas</string>
@@ -696,8 +684,25 @@
     <string name="tracking_guide">Manuel de suivi</string>
     <string name="off">Désactivé</string>
     <string name="on">Activé</string>
-    <string name="categorized_display_settings">Paramètres d\'affichage par catégorie</string>
+    <string name="categorized_display_settings">Paramètres de tri et d\'affichage par catégorie</string>
     <string name="information_empty_category_dialog">Vous n\'avez pas encore de catégories.</string>
-    <string name="theme_light_yotsuba">Yotsuba</string>
     <string name="action_start_downloading_now">Commencer à télécharger</string>
+    <string name="notification_updating">Mise à jour de la bibliothèque… (%1$d/%2$d)</string>
+    <string name="tracker_komga_warning">Ce traqueur est uniquement compatible avec la source Komga.</string>
+    <string name="restore_miui_warning">L\'optimisation MIUI doit être activée pour que la sauvegarde/restauration fonctionne correctement.</string>
+    <string name="enhanced_tracking_info">Services qui fournissent des fonctionnalités améliorées pour des sources spécifiques. Les mangas sont automatiquement suivis quand ils sont ajoutés à votre bibliothèque.</string>
+    <string name="enhanced_services">Services avancés</string>
+    <string name="pref_dark_theme_pure_black">Mode noir pur</string>
+    <string name="theme_yotsuba">Yotsuba</string>
+    <string name="theme_yinyang">Yin &amp; Yang</string>
+    <string name="theme_tako">Tako</string>
+    <string name="theme_strawberrydaiquiri">Daiquiri aux fraises</string>
+    <string name="theme_midnightdusk">Crépuscule de minuit</string>
+    <string name="theme_greenapple">Pomme verte</string>
+    <string name="theme_blue">Bleu</string>
+    <string name="theme_monet">Dynamique</string>
+    <string name="theme_default">Par défaut</string>
+    <string name="pref_app_theme">Thème de l\'appli</string>
+    <string name="action_sort_next_updated">Prochaine mise à jour prévue</string>
+    <string name="about_dont_kill_my_app">Certains fabricants ont mis en place des restrictions supplémentaires sur les applications qui tuent les services d\'arrière-plan. Ce site Web contient plus d\'informations sur la manière de résoudre ce problème.</string>
 </resources>

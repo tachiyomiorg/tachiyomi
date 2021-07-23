@@ -165,7 +165,7 @@
     <string name="pref_download_directory">Cartella de sos iscarrigamentos</string>
     <string name="pref_download_only_over_wifi">Iscàrriga petzi impreende su WiFi</string>
     <string name="pref_remove_after_marked_as_read">A pustis de l\'àere marcadu comente lèghidu</string>
-    <string name="pref_remove_after_read">A pustis de sa leghidura</string>
+    <string name="pref_remove_after_read">Automaticamente a pustis de sa leghidura</string>
     <string name="custom_dir">Cartella personalizada</string>
     <string name="disabled">Disabilitadu</string>
     <string name="last_read_chapter">Leghe s\'ùrtimu capìtulu</string>
@@ -357,10 +357,6 @@
     <string name="theme_light">Istudadu</string>
     <string name="theme_dark">Allutu</string>
     <string name="theme_system">Sighi su sistema</string>
-    <string name="pref_theme_dark">Tema iscuru</string>
-    <string name="theme_dark_default">Predefinidu</string>
-    <string name="theme_dark_blue">Biaitu iscuru</string>
-    <string name="theme_dark_amoled">Nieddu AMOLED</string>
     <string name="pref_manage_notifications">Amministra sas notìficas</string>
     <string name="pref_category_security">Seguresa</string>
     <string name="lock_with_biometrics">Tocat a l\'isblocare</string>
@@ -402,9 +398,6 @@
         <item quantity="one">Pro 1 tìtulu</item>
         <item quantity="other">Pro %d tìtulos</item>
     </plurals>
-    <string name="pref_theme_light">Tema craru</string>
-    <string name="theme_light_default">Predefinidu</string>
-    <string name="theme_light_blue">Biaitu craru</string>
     <string name="action_menu">Menù</string>
     <string name="action_reorganize_by">Riòrdina</string>
     <string name="action_newest">Prus noos</string>
@@ -544,7 +537,7 @@
     <string name="download_notifier_download_finish">Iscarrigamentu acabadu</string>
     <string name="channel_errors">Errores</string>
     <string name="backup_restore_missing_trackers">Arrastadores a sos cales no as fatu atzessu:</string>
-    <string name="pref_remove_bookmarked_chapters">Iscantzella sos capìtulos sinnados</string>
+    <string name="pref_remove_bookmarked_chapters">Permite s\'iscantzelladura de sos capìtulos cun sinnalibros</string>
     <string name="pref_category_delete_chapters">Iscantzella capìtulos</string>
     <string name="ext_nsfw_warning">Diat pòdere cuntènnere cuntenutos NSFW (18+)</string>
     <string name="ext_nsfw_short">18+</string>
@@ -638,17 +631,12 @@
     <string name="error_no_match">Peruna currispondèntzia agatada</string>
     <string name="source_unsupported">Sa mitza no est suportada</string>
     <string name="unread">Non lèghidos</string>
-    <string name="pref_auto_add_track">Arrasta a sa muda cando annanghes manga a sa biblioteca</string>
-    <string name="theme_light_strawberrydaiquiri">Daiquiri de fràgola</string>
     <string name="date">Data</string>
     <string name="local_filter_order_by">Òrdina pro</string>
     <string name="local_invalid_format">Formadu de su capìtulu non vàlidu</string>
     <string name="chapter_not_found">Capìtulu no agatadu</string>
     <string name="pref_library_update_refresh_trackers_summary">Agiorna sos arrastadores cando agiornas sa biblioteca</string>
     <string name="pref_library_update_refresh_trackers">Annoa sos arrastadores automaticamente</string>
-    <string name="theme_dark_amoled_hotpink">Rosa caente AMOLED</string>
-    <string name="theme_dark_midnightdusk">Intrinada de mesanote</string>
-    <string name="theme_dark_greenapple">Mela birde</string>
     <string name="off">Istudadu</string>
     <string name="on">Allutu</string>
     <string name="restrictions">Restritziones: %s</string>
@@ -662,8 +650,25 @@
     <string name="alignment_top">In artu</string>
     <string name="pref_side_nav_icon_alignment">Alliniamentu de s\'icona de navigatzione laterale</string>
     <string name="tracking_guide">Ghia pro s\'arrastamentu</string>
-    <string name="categorized_display_settings">Impostatziones de visualizatzione pro categoria</string>
-    <string name="theme_light_yotsuba">Yotsuba</string>
+    <string name="categorized_display_settings">Impostatziones de ordinamentu e visualizatzione pro categoria</string>
     <string name="information_empty_category_dialog">Non tenes galu peruna categoria.</string>
     <string name="action_start_downloading_now">Incumintza a iscarrigare como</string>
+    <string name="theme_tako">Tako</string>
+    <string name="notification_updating">Agiornende sa biblioteca… (%1$d/%2$d)</string>
+    <string name="tracker_komga_warning">Custu arrastadore est cumpatìbile petzi cun sa fonte Komga.</string>
+    <string name="restore_miui_warning">S\'otimizatzione MIUI depet èssere abilitada pro chi su sarvamentu/su riprìstinu funtzionet comente si tocat.</string>
+    <string name="enhanced_tracking_info">Servìtzios chi frunint funtzionalidades avantzadas pro fontes ispetzìficas. Sos mangas benint arrastados in manera automàtica cando los annanghes a sa biblioteca tua.</string>
+    <string name="enhanced_services">Servìtzios avantzados</string>
+    <string name="pref_dark_theme_pure_black">Modalidade iscura niedda pura</string>
+    <string name="theme_yotsuba">Yotsuba</string>
+    <string name="theme_yinyang">Yin e Yang</string>
+    <string name="theme_strawberrydaiquiri">Daiquiri a sa Fràgola</string>
+    <string name="theme_midnightdusk">Intrinada de mesanote</string>
+    <string name="theme_greenapple">Mela birde</string>
+    <string name="theme_blue">Biaitu</string>
+    <string name="theme_monet">Dinàmicu</string>
+    <string name="theme_default">Predefinidu</string>
+    <string name="pref_app_theme">Tema de s\'aplicatzione</string>
+    <string name="action_sort_next_updated">Agiornamentu isetadu imbeniente</string>
+    <string name="about_dont_kill_my_app">Unos cantos produtores tenent restritziones de s\'aplicatzione chi istudant sos servìtzios in s\'isfundu. Custu situ web tenet informatziones in prus in subra de comente acontzare su problema.</string>
 </resources>

@@ -7,7 +7,7 @@
     <string name="label_settings">Nastavení</string>
     <string name="label_library">Knihovna</string>
     <string name="label_recent_manga">Historie</string>
-    <string name="label_backup">Záloha</string>
+    <string name="label_backup">Záloha a obnovení</string>
     <string name="label_migration">Migrovat</string>
     <string name="label_extensions">Rozšíření</string>
     <string name="label_extension_info">Informace o rozšíření</string>
@@ -96,8 +96,8 @@
     <string name="color_filter_a_value">A</string>
     <string name="pref_download_directory">Umístění pro stažení</string>
     <string name="pref_download_only_over_wifi">Stahovat pouze na Wi-Fi</string>
-    <string name="pref_remove_after_marked_as_read">Po manuálním označení jako přečtené</string>
-    <string name="pref_remove_after_read">Po přečtení</string>
+    <string name="pref_remove_after_marked_as_read">Po označení jako přečtené</string>
+    <string name="pref_remove_after_read">Automaticky po přečtení</string>
     <string name="custom_dir">Vlastní umístění</string>
     <string name="pref_download_new">Stahovat nové kapitoly</string>
     <string name="username">Uživatelské jméno</string>
@@ -363,11 +363,6 @@
     <string name="lock_when_idle">Uzamknout při nečinnosti</string>
     <string name="pref_category_security">Bezpečnost</string>
     <string name="pref_manage_notifications">Spravovat oznámení</string>
-    <string name="theme_dark_blue">Tmavě Modrý</string>
-    <string name="theme_dark_default">Výchozí</string>
-    <string name="pref_theme_dark">Temný vzhled</string>
-    <string name="theme_light_blue">Světle Modrý</string>
-    <string name="theme_light_default">Výchozí</string>
     <string name="action_oldest">Nejstarší</string>
     <string name="action_newest">Nejnovější</string>
     <string name="action_view_chapters">Zobrazit kapitoly</string>
@@ -451,7 +446,7 @@
     <string name="source_not_found_name">Zdroj nenalezen: %1$s</string>
     <string name="pref_enable_automatic_extension_updates">Kontrolovat dostupnost aktualizací rozšíření</string>
     <string name="tracking_info">Jednosměrná synchronizace pro aktualizaci počtu přečtených kapitol ve sledovacích službách. Nastavení sledování pro každou mangu je možné z jejich tlačítka sledování.</string>
-    <string name="pref_remove_bookmarked_chapters">Smazat založené kapitoly</string>
+    <string name="pref_remove_bookmarked_chapters">Povolit mazání založených kapitol</string>
     <string name="pref_category_delete_chapters">Smazat kapitoly</string>
     <string name="webtoon_side_padding_25">25%</string>
     <string name="webtoon_side_padding_20">20%</string>
@@ -491,8 +486,6 @@
     <string name="secure_screen">Chráněná obrazovka</string>
     <string name="lock_with_biometrics">Vyžadovat odemknutí</string>
     <string name="pref_confirm_exit">Potvrdit opuštění</string>
-    <string name="theme_dark_amoled">AMOLED Černý</string>
-    <string name="pref_theme_light">Světlý vzhled</string>
     <string name="theme_dark">Zapnuto</string>
     <string name="theme_light">Vypnuto</string>
     <string name="pref_theme_mode">Temný vzhled</string>
@@ -568,7 +561,7 @@
     <string name="page_list_empty_error">Žádné stránky nenalezeny</string>
     <string name="myanimelist_relogin">Prosím přihlašte se do MAL znovu</string>
     <string name="track_finished_reading_date">Datum dokončení čtení</string>
-    <string name="track_started_reading_date">Datum od začátku čtení</string>
+    <string name="track_started_reading_date">Datum zahájení čtení</string>
     <string name="pref_always_show_chapter_transition">Vždy zobrazovat přechod mezi kapitolami</string>
     <string name="kindlish_nav">Podobné Kindlu</string>
     <string name="pref_library_update_error_notification">Zobrazovat oznámení o chybách aktualizace</string>
@@ -655,10 +648,6 @@
     <string name="pref_library_update_refresh_trackers_summary">Aktualizovat sledovače při aktualizaci knihovny</string>
     <string name="pref_library_update_refresh_trackers">Automaticky aktualizovat sledovače</string>
     <string name="restrictions">Omezení: %s</string>
-    <string name="theme_dark_amoled_hotpink">AMOLED Žhavá Růžová</string>
-    <string name="theme_dark_midnightdusk">Půlnoční Soumrak</string>
-    <string name="theme_dark_greenapple">Zelené Jablko</string>
-    <string name="theme_light_strawberrydaiquiri">Jahodové Daiquiri</string>
     <string name="action_display_local_badge">Místní odznaky</string>
     <string name="error_sharing_cover">Při sdílení přebalu došlo k chybě</string>
     <string name="error_saving_cover">Při ukládání přebalu došlo k chybě</string>
@@ -672,6 +661,24 @@
     <string name="alignment_top">Nahoře</string>
     <string name="pref_side_nav_icon_alignment">Zarovnání ikony boční navigace</string>
     <string name="information_empty_category_dialog">Nemáte žádné kategorie.</string>
-    <string name="theme_light_yotsuba">Yotsuba</string>
     <string name="action_start_downloading_now">Začít stahovat nyní</string>
+    <string name="notification_updating">Aktualizuji knihovnu… (%1$d / %2$d)</string>
+    <string name="tracker_komga_warning">Tento sledovač je kompatibilní pouze se zdrojem Komga.</string>
+    <string name="about_dont_kill_my_app">Někteří výrobci používají další omezení aplikací, která vypíná služby na pozadí. Na této webové stránce najdete další informace o tom, jak to napravit.</string>
+    <string name="restore_miui_warning">Aby zálohování/obnovení fungovalo správně, musí být povolena optimalizace MIUI.</string>
+    <string name="enhanced_tracking_info">Služby, které poskytují rozšířené funkce pro konkrétní zdroje. Mangy jsou po přidání do knihovny automaticky sledovány.</string>
+    <string name="enhanced_services">Rozšířené služby</string>
+    <string name="tracking_guide">Návod ke sledování</string>
+    <string name="pref_dark_theme_pure_black">Čistě černý tmavý režim</string>
+    <string name="theme_yotsuba">Jotsuba</string>
+    <string name="theme_yinyang">Jin a Jang</string>
+    <string name="theme_tako">Tako</string>
+    <string name="theme_strawberrydaiquiri">Jahodové Daiquiri</string>
+    <string name="theme_midnightdusk">Půlnoční Soumrak</string>
+    <string name="theme_greenapple">Zelené Jablko</string>
+    <string name="theme_blue">Modrý</string>
+    <string name="theme_monet">Dynamické</string>
+    <string name="theme_default">Výchozí</string>
+    <string name="pref_app_theme">Motiv aplikace</string>
+    <string name="action_sort_next_updated">Další očekávaný aktualizace</string>
 </resources>

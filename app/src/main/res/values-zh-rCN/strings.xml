@@ -163,8 +163,8 @@
     <string name="color_filter_a_value">A</string>
     <string name="pref_download_directory">下载路径</string>
     <string name="pref_download_only_over_wifi">仅通过 Wi-Fi 下载</string>
-    <string name="pref_remove_after_marked_as_read">手动标记为已读后</string>
-    <string name="pref_remove_after_read">阅毕</string>
+    <string name="pref_remove_after_marked_as_read">标记为已读后</string>
+    <string name="pref_remove_after_read">阅毕自动删除</string>
     <string name="custom_dir">自定义路径</string>
     <string name="disabled">已禁用</string>
     <string name="last_read_chapter">最后阅读的章节</string>
@@ -357,9 +357,6 @@
     <string name="theme_light">关闭</string>
     <string name="theme_dark">开启</string>
     <string name="theme_system">跟随系统</string>
-    <string name="theme_dark_default">默认</string>
-    <string name="theme_dark_blue">深蓝</string>
-    <string name="theme_dark_amoled">纯黑（AMOLED）</string>
     <string name="pref_manage_notifications">通知管理</string>
     <string name="pref_category_security">安全</string>
     <string name="lock_when_idle">应用待机时锁定</string>
@@ -375,7 +372,6 @@
     <string name="unlock_app">解锁 Tachiyomi</string>
     <string name="secure_screen_summary">在切换应用时隐藏预览，并禁止截取屏幕截图</string>
     <string name="pref_category_display">显示</string>
-    <string name="pref_theme_dark">深色主题</string>
     <string name="channel_new_chapters">章节更新</string>
     <string name="hide_notification_content">隐藏通知内容</string>
     <string name="lock_with_biometrics">需要解锁</string>
@@ -398,9 +394,6 @@
     <plurals name="notification_new_chapters_summary">
         <item quantity="other">共 %d 个漫画</item>
     </plurals>
-    <string name="pref_theme_light">浅色主题</string>
-    <string name="theme_light_default">默认</string>
-    <string name="theme_light_blue">浅蓝</string>
     <string name="action_menu">菜单</string>
     <string name="action_reorganize_by">重新排序</string>
     <string name="action_newest">最新</string>
@@ -533,7 +526,7 @@
     <string name="download_notifier_download_finish">下载已完成</string>
     <string name="channel_errors">错误</string>
     <string name="backup_restore_missing_trackers">尚未登录的追踪服务：</string>
-    <string name="pref_remove_bookmarked_chapters">删除已添加书签的章节</string>
+    <string name="pref_remove_bookmarked_chapters">允许删除添加书签的章节</string>
     <string name="pref_category_delete_chapters">删除章节</string>
     <string name="ext_nsfw_warning">可能包含 NSFW (18+) 内容</string>
     <string name="ext_nsfw_short">18+</string>
@@ -623,20 +616,15 @@
     <string name="notification_incognito_text">禁用无痕模式</string>
     <string name="automatic_background">自动</string>
     <string name="cancel_all_for_series">取消这个系列的全部</string>
-    <string name="pref_auto_add_track">添加漫画到书架时自动启用更新追踪</string>
     <string name="error_no_match">未找到匹配项</string>
-    <string name="source_unsupported">源不受支持</string>
+    <string name="source_unsupported">图源不受支持</string>
     <string name="unread">未读</string>
-    <string name="theme_dark_amoled_hotpink">AMOLED 亮粉</string>
-    <string name="theme_dark_midnightdusk">午夜黄昏</string>
     <string name="date">日期</string>
     <string name="local_filter_order_by">排序依据</string>
     <string name="local_invalid_format">无效章节格式</string>
     <string name="chapter_not_found">未找到章节</string>
-    <string name="theme_light_strawberrydaiquiri">草莓黛琦莉</string>
     <string name="pref_library_update_refresh_trackers_summary">更新书架时更新追踪器</string>
     <string name="pref_library_update_refresh_trackers">自动刷新追踪器</string>
-    <string name="theme_dark_greenapple">青苹果</string>
     <string name="restrictions">限制：%s</string>
     <string name="action_display_local_badge">本地标记</string>
     <string name="off">关</string>
@@ -651,7 +639,24 @@
     <string name="pref_side_nav_icon_alignment">侧导航图标对齐</string>
     <string name="categorized_display_settings">每个类别的排序和显示设置</string>
     <string name="tracking_guide">追踪指南</string>
-    <string name="theme_light_yotsuba">四叶妹妹</string>
     <string name="information_empty_category_dialog">你还没有任何分类。</string>
     <string name="action_start_downloading_now">现在开始下载</string>
+    <string name="notification_updating">更新书库中… (%1$d/%2$d)</string>
+    <string name="about_dont_kill_my_app">一些制造商有额外的应用限制，会扼杀后台服务。这个网站有更多关于如何修复它的信息。</string>
+    <string name="restore_miui_warning">要让备份/还原正确工作必须启用MIUI优化。</string>
+    <string name="pref_dark_theme_pure_black">纯黑深色模式</string>
+    <string name="theme_yotsuba">四叶草</string>
+    <string name="theme_yinyang">阴&amp;阳</string>
+    <string name="theme_tako">Tako</string>
+    <string name="theme_strawberrydaiquiri">草莓黛琦丽</string>
+    <string name="theme_midnightdusk">午夜幽暗</string>
+    <string name="theme_greenapple">青苹果</string>
+    <string name="theme_blue">蓝色</string>
+    <string name="theme_default">默认</string>
+    <string name="pref_app_theme">应用主题</string>
+    <string name="action_sort_next_updated">下次预期更新</string>
+    <string name="tracker_komga_warning">此跟踪器仅与 Komga 图源兼容。</string>
+    <string name="enhanced_tracking_info">为特定图源提供增强功能的服务。 应用会在漫画添加到您的书库后自动跟踪它的更新。</string>
+    <string name="enhanced_services">增强服务</string>
+    <string name="theme_monet">动态</string>
 </resources>

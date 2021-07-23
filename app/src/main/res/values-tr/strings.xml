@@ -164,7 +164,7 @@
     <string name="pref_download_directory">İndirme konumu</string>
     <string name="pref_download_only_over_wifi">Yalnızca Wi-Fi ile indir</string>
     <string name="pref_remove_after_marked_as_read">Okundu olarak işaretlenince</string>
-    <string name="pref_remove_after_read">Okunduktan sonra</string>
+    <string name="pref_remove_after_read">Okuduktan sonra otomatik olarak</string>
     <string name="custom_dir">Özel konum</string>
     <string name="disabled">Devre dışı</string>
     <string name="last_read_chapter">Son okunan bölüm</string>
@@ -357,10 +357,6 @@
     <string name="theme_light">Kapalı</string>
     <string name="theme_dark">Açık</string>
     <string name="theme_system">Sisteme uy</string>
-    <string name="pref_theme_dark">Karanlık tema</string>
-    <string name="theme_dark_default">Öntanımlı</string>
-    <string name="theme_dark_blue">Koyu Mavi</string>
-    <string name="theme_dark_amoled">AMOLED Siyah</string>
     <string name="pref_manage_notifications">Bildirimleri yönet</string>
     <string name="pref_category_security">Güvenlik</string>
     <string name="lock_with_biometrics">Kilit açma gerektir</string>
@@ -402,9 +398,6 @@
         <item quantity="one">1 başlık için</item>
         <item quantity="other">%d başlık için</item>
     </plurals>
-    <string name="pref_theme_light">Aydınlık tema</string>
-    <string name="theme_light_default">Öntanımlı</string>
-    <string name="theme_light_blue">Açık Mavi</string>
     <string name="action_menu">Menü</string>
     <string name="action_reorganize_by">Yeniden sırala</string>
     <string name="action_newest">En yeni</string>
@@ -544,7 +537,7 @@
     <string name="download_notifier_download_finish">İndirme tamamlandı</string>
     <string name="channel_errors">Hatalar</string>
     <string name="backup_restore_missing_trackers">İzleyiciler giriş yapmadı:</string>
-    <string name="pref_remove_bookmarked_chapters">İşaretli bölümleri sil</string>
+    <string name="pref_remove_bookmarked_chapters">İşaretli bölümleri silmeye izin ver</string>
     <string name="pref_category_delete_chapters">Bölümleri sil</string>
     <string name="ext_nsfw_warning">Yetişkin (18+) içerik içerebilir</string>
     <string name="ext_nsfw_short">18+</string>
@@ -638,17 +631,12 @@
     <string name="error_no_match">Eşleşme bulunamadı</string>
     <string name="source_unsupported">Kaynak desteklenmiyor</string>
     <string name="unread">Okunmayan</string>
-    <string name="pref_auto_add_track">Kitaplığa manga eklerken sessizce izle</string>
-    <string name="theme_dark_amoled_hotpink">AMOLED Sıcak Pembe</string>
-    <string name="theme_dark_midnightdusk">Alacakaranlık</string>
     <string name="date">Tarih</string>
     <string name="local_filter_order_by">Sıralama ölçütü</string>
     <string name="local_invalid_format">Geçersiz bölüm biçimi</string>
     <string name="chapter_not_found">Bölüm bulunamadı</string>
     <string name="pref_library_update_refresh_trackers_summary">Kitaplığı güncellerken izleyicileri güncelle</string>
     <string name="pref_library_update_refresh_trackers">İzleyicileri otomatik olarak yenile</string>
-    <string name="theme_light_strawberrydaiquiri">Çilekli Kokteyl</string>
-    <string name="theme_dark_greenapple">Yeşil Elma</string>
     <string name="restrictions">Kısıtlamalar: %s</string>
     <string name="action_display_local_badge">Yerel rozetler</string>
     <string name="on">Açık</string>
@@ -663,7 +651,24 @@
     <string name="alignment_top">Üstte</string>
     <string name="pref_side_nav_icon_alignment">Yan gezinti simgesi hizalaması</string>
     <string name="tracking_guide">İzleme kılavuzu</string>
-    <string name="theme_light_yotsuba">Yotsuba</string>
     <string name="information_empty_category_dialog">Henüz bir kategoriniz yok.</string>
     <string name="action_start_downloading_now">Şimdi indirmeye başla</string>
+    <string name="notification_updating">Kitaplık güncelleniyor… (%1$d/%2$d)</string>
+    <string name="tracker_komga_warning">Bu izleyici yalnızca Komga kaynağıyla uyumludur.</string>
+    <string name="about_dont_kill_my_app">Bazı üreticilerin arka plan hizmetlerini öldüren ek uygulama kısıtlamaları vardır. Bu web sitesinde nasıl düzeltileceği hakkında daha fazla bilgi al.</string>
+    <string name="restore_miui_warning">Geri yüklemenin düzgün işlemesi için MIUI Optimizasyonu etkinleştirilmeli.</string>
+    <string name="enhanced_tracking_info">Belirli kaynaklar için gelişmiş özellikler sağlayan hizmetler. Manga, kitaplığınıza eklendiğinde otomatik olarak izlenir.</string>
+    <string name="enhanced_services">Gelişmiş hizmetler</string>
+    <string name="pref_dark_theme_pure_black">Saf siyah karanlık mod</string>
+    <string name="theme_yotsuba">Yotsuba</string>
+    <string name="theme_yinyang">Yin &amp; Yang</string>
+    <string name="theme_tako">Tako</string>
+    <string name="theme_strawberrydaiquiri">Çilekli Kokteyl</string>
+    <string name="theme_midnightdusk">Alacakaranlık</string>
+    <string name="theme_greenapple">Yeşil Elma</string>
+    <string name="theme_blue">Mavi</string>
+    <string name="theme_monet">Dinamik</string>
+    <string name="theme_default">Öntanımlı</string>
+    <string name="pref_app_theme">Uygulama teması</string>
+    <string name="action_sort_next_updated">Sonraki beklenen güncelleme</string>
 </resources>

@@ -356,7 +356,6 @@
     <string name="theme_light">Av</string>
     <string name="theme_dark">På</string>
     <string name="theme_system">System</string>
-    <string name="theme_darkblue">Mørkeblå</string>
     <string name="pref_manage_notifications">Håndter merknader</string>
     <string name="pref_category_security">Sikkerhet</string>
     <string name="lock_with_biometrics">Krev opplåsning</string>

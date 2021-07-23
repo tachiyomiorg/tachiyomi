@@ -279,7 +279,6 @@
     <string name="theme_light">Isključeno</string>
     <string name="theme_dark">Upaljeno</string>
     <string name="theme_system">Prati sistem</string>
-    <string name="theme_darkblue">Tamno plavo</string>
     <string name="pref_manage_notifications">Podesi notifikacije</string>
     <string name="pref_category_security">Bezbednost</string>
     <string name="lock_when_idle">Zaključaj kada nekorišćeno</string>

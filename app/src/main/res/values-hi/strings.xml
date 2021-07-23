@@ -357,7 +357,6 @@
     <string name="theme_light">बंद</string>
     <string name="theme_dark">चालू करे</string>
     <string name="theme_system">सिस्टम का पालन करें</string>
-    <string name="theme_darkblue">गहरा नीला</string>
     <string name="pref_manage_notifications">सूचनाओं का प्रबंधन</string>
     <string name="pref_category_security">सुरक्षा</string>
     <string name="lock_with_biometrics">अनलॉक की आवश्यकता है</string>
@@ -606,11 +605,6 @@
     <string name="alignment_center">मध्य</string>
     <string name="alignment_top">ऊपर</string>
     <string name="pref_side_nav_icon_alignment">साइड नेविगेशन आइकन अलाइनमेंट</string>
-    <string name="theme_dark_amoled_hotpink">एमोलेड हॉट पिंक</string>
-    <string name="theme_dark_midnightdusk">मध्यरात्रि शाम</string>
-    <string name="theme_dark_greenapple">ग्रीन एप्पल</string>
-    <string name="theme_light_yotsuba">योत्सुबा</string>
-    <string name="theme_light_strawberrydaiquiri">स्ट्रॉबेरी दैक्विरी</string>
     <string name="action_start_downloading_now">अभी डाउनलोड करना शुरू करें</string>
     <string name="action_show_errors">त्रुटियां दिखाएं</string>
     <string name="cancel_all_for_series">इस श्रृंखला के लिए सभी रद्द करें</string>

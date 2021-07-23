@@ -409,7 +409,6 @@
     <string name="pref_hide_bottom_bar_on_scroll">ซ่อนแถบด้านล่างเมื่อเลื่อน</string>
     <string name="pref_confirm_exit">ยืนยันการออก</string>
     <string name="pref_date_format">รูปแบบวันที่</string>
-    <string name="theme_darkblue">สีน้ำเงินเข้ม</string>
     <string name="theme_default">ค่าปกติ</string>
     <string name="theme_dark">เปิด</string>
     <string name="theme_light">ปิด</string>

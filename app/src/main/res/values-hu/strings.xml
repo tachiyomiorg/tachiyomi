@@ -147,7 +147,6 @@
     <string name="label_more">Több</string>
     <string name="label_sources">Források</string>
     <string name="pref_date_format">Dátum formátum</string>
-    <string name="theme_darkblue">Sötétkék</string>
     <string name="theme_dark">Be</string>
     <string name="theme_light">Ki</string>
     <string name="pref_category_library">Könyvtár</string>
@@ -384,6 +383,4 @@
     <string name="action_display_comfortable_grid">Kényelmes rács</string>
     <string name="action_sort_chapter_fetch_date">Lekérés dátuma</string>
     <string name="restrictions">Korlátozások: %s</string>
-    <string name="theme_dark_amoled_hotpink">Forró rózsaszín</string>
-    <string name="theme_dark_greenapple">Zöld alma</string>
 </resources>

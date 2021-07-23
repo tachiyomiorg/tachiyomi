@@ -341,7 +341,6 @@
     <string name="invalid_download_dir">無效的下載位置</string>
     <string name="ext_obsolete">過舊</string>
     <string name="obsolete_extension_message">這個擴充套件已無法使用。</string>
-    <string name="theme_darkblue">深藍</string>
     <string name="theme_default">預設</string>
     <string name="theme_light">關閉</string>
     <string name="theme_system">遵循系統</string>
@@ -623,18 +622,13 @@
     <string name="unread">未讀</string>
     <string name="date">日期</string>
     <string name="chapter_not_found">未找到章節</string>
-    <string name="pref_auto_add_track">將漫畫添加到書架時靜默追蹤</string>
     <string name="off">關閉</string>
     <string name="on">開啟</string>
     <string name="pref_library_update_refresh_trackers_summary">更新庫時更新追蹤源</string>
     <string name="pref_library_update_refresh_trackers">自動更新追蹤源</string>
     <string name="restrictions">限制：%s</string>
-    <string name="theme_dark_amoled_hotpink">亮粉 (AMOLED)</string>
-    <string name="theme_dark_midnightdusk">午夜黃昏</string>
-    <string name="theme_dark_greenapple">青蘋果</string>
     <string name="local_filter_order_by">排序</string>
     <string name="local_invalid_format">無效的章節格式</string>
-    <string name="theme_light_strawberrydaiquiri">草莓雞尾酒</string>
     <string name="action_display_local_badge">在地標記</string>
     <string name="information_empty_category_dialog">您目前沒有任何分類。</string>
     <string name="error_sharing_cover">分享封面時發生錯誤</string>

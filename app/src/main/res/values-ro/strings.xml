@@ -356,7 +356,6 @@
     <string name="theme_light">Oprită</string>
     <string name="theme_dark">Pornită</string>
     <string name="theme_system">Tema sistemului</string>
-    <string name="theme_darkblue">Albastru Închis</string>
     <string name="pref_manage_notifications">Setări notificări</string>
     <string name="pref_category_security">Securitate</string>
     <string name="lock_with_biometrics">Necesită deblocare</string>

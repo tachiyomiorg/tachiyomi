@@ -22,7 +22,6 @@
     <string name="system_default">ಡೀಫಾಲ್ಟ್</string>
     <string name="pref_language">ಭಾಷೆ</string>
     <string name="pref_start_screen">ಮೊದಲ ಪುಟ</string>
-    <string name="theme_darkblue">ಗಾಢವಾದ್ ನೀಲಿ</string>
     <string name="theme_default">ಡೀಫಾಲ್ಟ್</string>
     <string name="theme_system">ಸಿಸ್ಟಮ್ ಅನುಕರಿಸಿ</string>
     <string name="theme_dark">ಆನ್</string>
@@ -617,10 +616,6 @@
     <string name="pref_library_update_categories_details">ಹೊರಗಿಡಲಾದ ವರ್ಗಗಳಲ್ಲಿನ ಮಾಂಗಾ ಸೇರಿಸಿದ ವಿಭಾಗಗಳಲ್ಲಿದ್ದರೂ ನವೀಕರಿಸಲಾಗುವುದಿಲ್ಲ.</string>
     <string name="network_unmetered">ಅಳತೆಯಿಲ್ಲದ ನೆಟ್‌ವರ್ಕ್</string>
     <string name="action_show_errors">ದೋಷಗಳನ್ನು ತೋರಿಸು</string>
-    <string name="theme_dark_amoled_hotpink">ಅಮೋಲೆಡ್ ಹಾಟ್ ಪಿಂಕ್</string>
-    <string name="theme_dark_midnightdusk">ಮಿಡ್ ನೈಟ್ ಡಸ್ಕ್</string>
-    <string name="theme_dark_greenapple">ಹಸಿರು ಸೇಬು</string>
-    <string name="theme_light_strawberrydaiquiri">ಸ್ಟ್ರಾಬೆರಿ ಡೈಕ್ವಿರಿ</string>
     <string name="cancel_all_for_series">ಈ ಸರಣಿಯ ಎಲ್ಲವನ್ನೂ ರದ್ದುಮಾಡಿ</string>
     <string name="action_display_local_badge">ಸ್ಥಳೀಯ ಬ್ಯಾಡ್ಜ್ ಗಳು</string>
     <string name="action_sort_next_updated">ಮುಂದಿನ ನಿರೀಕ್ಷಿತ ನವೀಕರಣ</string>
@@ -639,7 +634,6 @@
     <string name="local_invalid_format">ಅಮಾನ್ಯ ಅಧ್ಯಾಯ ಸ್ವರೂಪ</string>
     <string name="chapter_not_found">ಅಧ್ಯಾಯ ಸಿಗಲಿಲ್ಲ</string>
     <string name="notification_incognito_text">ಅಜ್ಞಾತ ಮೋಡ್ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
-    <string name="pref_auto_add_track">ಲೈಬ್ರರಿಗೆ ಮಾಂಗಾ ಸೇರಿಸುವಾಗ ಮೌನವಾಗಿ ಟ್ರ್ಯಾಕ್ ಮಾಡಿ</string>
     <string name="tracking_guide">ಟ್ರ್ಯಾಕಿಂಗ್ ಮಾರ್ಗದರ್ಶಿ</string>
     <string name="rotation_landscape">ಅಡ್ಡವಾದ ಪುಟ</string>
     <string name="rotation_portrait">ಉದ್ದವಾದ ಪುಟ</string>
@@ -660,6 +654,5 @@
     <string name="alignment_center">ಮಧ್ಯ</string>
     <string name="alignment_top">ಮೇಲೆ</string>
     <string name="pref_side_nav_icon_alignment">ಸೈಡ್ ನ್ಯಾವಿಗೇಶನ್ ಐಕಾನ್ ಹೊಂದಾಣಿಕೆ</string>
-    <string name="theme_light_yotsuba">ಯೋತ್ಸುಬಾ</string>
     <string name="action_start_downloading_now">ಈಗಲೇ ಡೌನ್‌ಲೋಡ್ ಪ್ರಾರಂಭಿಸಿ</string>
 </resources>
